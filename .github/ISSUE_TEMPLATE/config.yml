@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Install guide
+    url: https://github.com/B4ckd0orl/Padrino-Store#install-in-four-steps
+    about: How to install Padrino Store with ShadowMount+, step by step.
+  - name: Troubleshooting
+    url: https://github.com/B4ckd0orl/Padrino-Store#troubleshooting
+    about: Padrino Store doesn't show up, an update won't install, and other common problems.
