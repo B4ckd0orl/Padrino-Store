@@ -57,7 +57,7 @@ jobs:
 
       - name: Package
         run: |
-          sudo bash packaging/make-exfat.sh ps5-react/dist/PPSA99058 PadrinoStore.exfat PADRINO
+          sudo bash packaging/make-exfat.sh ps5-react/dist/PPSA99059 PadrinoStore.exfat PADRINO
           # The in-app updater fetches one name, for an image install: the image
           # alone at the root of update.zip.
           zip -q -X -j update.zip PadrinoStore.exfat
@@ -71,7 +71,7 @@ jobs:
           path: |
             PadrinoStore.exfat
             update.zip
-            ps5-react/dist/PPSA99058.receipt.json
+            ps5-react/dist/PPSA99059.receipt.json
           if-no-files-found: error
 
       - name: Draft release

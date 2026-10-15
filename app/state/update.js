@@ -8,7 +8,7 @@ import { createUpdater } from './updater.js';
 import { VERSION } from '../version.js';
 import { Archives, Downloads, FileSystem, Http, Platform } from '@ps5-react/core';
 
-  var TITLE = "PPSA99058";
+  var TITLE = "PPSA99059";
   var FEED = "https://api.github.com/repos/B4ckd0orl/Padrino-Store/releases/latest";
   var FEED_OVERRIDES = [`${FileSystem.dataDir}/padrino-store/update-feed`, `/data/ps5-react/${TITLE}/padrino-store/update-feed`];
   function location() {

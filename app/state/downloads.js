@@ -12,7 +12,7 @@ import { Archives, BrowserCapture, DownloadFormats, Downloads, FileSystem, Http,
 
   var instance;
   var mocked = () => Platform.OS !== "ps5" && FileSystem.exists(`${FileSystem.dataDir}/padrino-store/mock-downloads`);
-  var stateDir = Platform.OS === "ps5" ? "/data/ps5-react/PPSA99058/queue" : void 0;
+  var stateDir = Platform.OS === "ps5" ? "/data/ps5-react/PPSA99059/queue" : void 0;
   var downloadQueue = () => instance ?? (instance = mocked() ? createMockDownloadQueue() : createDownloadQueue({
     fs: FileSystem,
     archives: Archives,

@@ -34,7 +34,7 @@
     if (type === "image" && path.endsWith(".exfat")) return { image: path };
     throw new Error(`ShadowMount runs Padrino Store from ${path}, an install of type ${type}`);
   }
-  // PadrinoStore.exfat as released, or PadrinoStore-PPSA99058….exfat from before the rename.
+  // PadrinoStore.exfat as released, or PadrinoStore-PPSA99059….exfat from before the rename.
   var imagesIn = ({ fs, dir: dir2, title }) => fs.exists(dir2) ? fs.readDir(dir2).filter((entry2) => !entry2.isDirectory && new RegExp(`^PadrinoStore(?:-${title})?\\b.*\\.exfat$`, "i").test(entry2.name)).map((entry2) => ({ image: `${dir2}/${entry2.name}` })) : [];
   function inHomebrew({ fs, roots, title }) {
     const found = roots().flatMap((root2) => [

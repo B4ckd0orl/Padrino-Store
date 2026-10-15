@@ -170,7 +170,7 @@ el icono.
 
 | Carpeta | Contenido |
 | --- | --- |
-| `app/` | La aplicación: JSX, estado, assets, datos del catálogo y `app.json` (title id `PPSA99058`) |
+| `app/` | La aplicación: JSX, estado, assets, datos del catálogo y `app.json` (title id `PPSA99059`) |
 | `ps5-react/` | El framework sobre el que corre |
 | `packaging/make-exfat.sh` | Arma la imagen exFAT que instala ShadowMount+ |
 | `.github/workflows/build.yml` | El build de CI |
@@ -192,7 +192,7 @@ El mismo build en local, en cualquier Linux con los paquetes del workflow (`clan
 ```sh
 cd ps5-react
 python3 tools/build_ps5.py --app-dir ../app --llvm /usr/bin
-sudo ../packaging/make-exfat.sh dist/PPSA99058 ../PadrinoStore.exfat
+sudo ../packaging/make-exfat.sh dist/PPSA99059 ../PadrinoStore.exfat
 ```
 
 La imagen es un volumen exFAT simple con la carpeta de la app en la raíz, clusters de

@@ -31,7 +31,7 @@ function buildBackup(data, now) {
     kind: BACKUP_KIND,
     version: BACKUP_VERSION,
     app: 'Padrino Store',
-    titleId: 'PPSA99058',
+    titleId: 'PPSA99059',
     exportedAt: isoNow(now),
     data: {
       wishlist: (data?.wishlist ?? []).slice(),
