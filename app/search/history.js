@@ -14,5 +14,8 @@ import { savedList } from '../state/saved.js';
   }
   var forgetSearch = (term) => searches.set(searches.get().filter((other) => other !== term));
   var useSearchHistory = searches.useList;
+  function replaceSearches(terms) {
+    searches.set((terms ?? []).slice(0, LIMIT2));
+  }
 
-export { forgetSearch, rememberSearch, useSearchHistory };
+export { forgetSearch, rememberSearch, replaceSearches, useSearchHistory };

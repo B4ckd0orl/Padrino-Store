@@ -25,6 +25,11 @@ import { loadList, saveList } from './saved.js';
         saveList("wishlist.json", "wishlist", next);
         return next;
       }),
+      replaceWishlist: (ids) => {
+        const next = [...new Set((ids ?? []).map(listedId))];
+        setWishlist(next);
+        saveList("wishlist.json", "wishlist", next);
+      },
       toggleFilter: (key, value) => setFilters((current) => ({ ...current, [key]: toggleValue(current[key], value) })),
       clearFilters: () => {
         setFilters(NO_FILTERS);

@@ -21,5 +21,6 @@ import { Sound, useNavigationEvents } from '@ps5-react/core';
     });
   }
   var playNotify = () => Sound.play(notify);
+  var playError = () => Sound.play(error);
 
-export { playNotify, useInterfaceSounds };
+export { playError, playNotify, useInterfaceSounds };

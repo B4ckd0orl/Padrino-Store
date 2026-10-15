@@ -10,5 +10,8 @@ import { savedList } from './saved.js';
     if (ids[0] !== id) recent.set([id, ...ids.filter((other) => other !== id)].slice(0, LIMIT));
   }
   var useRecent = recent.useList;
+  function replaceRecent(ids) {
+    recent.set((ids ?? []).slice(0, LIMIT));
+  }
 
-export { recordVisit, useRecent };
+export { recordVisit, replaceRecent, useRecent };
