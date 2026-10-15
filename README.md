@@ -3,44 +3,79 @@
 </p>
 
 <p align="center">
+  <b>El catálogo de juegos que va derecho a tu PS5 — sin PC, sin vueltas.</b>
+</p>
+
+<p align="center">
   <a href="https://github.com/B4ckd0orl/Padrino-Store/releases/latest"><img src="https://img.shields.io/github/v/release/B4ckd0orl/Padrino-Store?style=for-the-badge&label=release&labelColor=1e1e1e&color=e09f3e" alt="Última release" width="175"></a>
   <a href="https://github.com/B4ckd0orl/Padrino-Store/releases"><img src="https://img.shields.io/github/downloads/B4ckd0orl/Padrino-Store/total?style=for-the-badge&label=downloads&labelColor=1e1e1e&color=e09f3e" alt="Descargas totales" width="190"></a>
 </p>
 
-**Padrino Store** es un catálogo completo de juegos para tu PS5 con jailbreak: explorás,
-elegís y descargás directo a la consola, sin PC en el medio. Interfaz oscura hecha para el
-mando, actualizaciones que se instalan solas desde la propia app, y más de **1.800 títulos**
-para picar.
+<p align="center">
+  <a href="https://github.com/B4ckd0orl/Padrino-Store/releases/latest/download/PadrinoStore.exfat"><img src="https://img.shields.io/badge/Descargar-PadrinoStore.exfat-e09f3e?style=for-the-badge&labelColor=1e1e1e&color=1e1e1e" alt="Descargar PadrinoStore.exfat" width="420"></a>
+</p>
 
-## Qué te llevás
+<p align="center">
+  <img src=".github/readme/divider.svg" width="420" alt="">
+</p>
 
-- **Catálogo grande, navegación corta.** Portadas, puntuaciones, tamaños y filtros de todo
-  tipo (plataforma, estado, tamaño…) para encontrar algo y bajarlo en segundos.
-- **Descargas nativas.** Directo al almacenamiento interno o a cualquier pendrive USB, con
-  velocidad en vivo, gráficos de actividad y barra de espacio.
-- **Varios hosts.** Cada juego trae sus fuentes; si una cae, la app prueba la siguiente.
-- **Favoritos, historial de búsqueda** con teclado en pantalla y una págna de **Archivos**
-  para ver y limpiar lo que tenés en tus discos.
-- **13 idiomas**: English, Deutsch, Español, Français, Português (Brasil), Русский,
-  Bahasa Indonesia, 日本語, 简体中文, العربية, اردو, हिन्दी, বাংলা.
-- **Se actualiza sola.** Abre la app, aceptá el diálogo y listo: sin connectarte a una PC.
-- **Todo con el control.** <kbd>L1</kbd> <kbd>R1</kbd> cambian de sección,
-  <kbd>✕</kbd> confirma, <kbd>○</kbd> vuelve.
+## Por qué Padrino Store
 
-## Instalación
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <b>Catálogo gigante</b><br>
+      Más de 1.800 juegos con portadas, puntuaciones, tamaños y filtros por plataforma, estado y tamaño.
+    </td>
+    <td width="50%" valign="top">
+      <b>Descargas nativas</b><br>
+      Directo al disco interno o a cualquier pendrive USB, con velocidad en vivo y gráficos de actividad.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <b>Varios hosts</b><br>
+      Cada juego trae sus fuentes. Si una cae, la app prueba la siguiente automáticamente.
+    </td>
+    <td width="50%" valign="top">
+      <b>Favoritos y búsqueda</b><br>
+      Guardás lo tuyo, buscás con teclado en pantalla y limpiás desde la pestaña Archivos.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <b>13 idiomas</b><br>
+      Español, English, Deutsch, Français, Português, русский, 日本語, 中文, العربية, हिन्दी y más.
+    </td>
+    <td width="50%" valign="top">
+      <b>Se actualiza sola</b><br>
+      Un diálogo, tocás Install, y ya. Nunca más conectarte a una PC para actualizar.
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src=".github/readme/divider.svg" width="420" alt="">
+</p>
+
+## Instalación en 4 pasos
+
+<p align="center">
+  <img src=".github/readme/steps.svg" width="100%" alt="1 Descargá el .exfat · 2 Copialo a homebrew/ · 3 Conectá el USB · 4 Abrí la app">
+</p>
 
 > [!IMPORTANT]
 > Necesitás una **PS5 con jailbreak** corriendo
 > **[ShadowMount+](https://github.com/drakmor/ShadowMountPlus)**, el payload que instala
-> imágenes `.exfat` solito. Si te muestra su notificación al arrancar la consola, estás listo.
+> imágenes `.exfat` solito. Si ves su notificación al arrancar, estás listo.
+
+<details>
+<summary><b>Detalles de cada paso</b></summary>
+<br>
 
 1. **Descargá `PadrinoStore.exfat`** desde la
    [última release](https://github.com/B4ckd0orl/Padrino-Store/releases/latest).
    Es el único archivo que necesitás: no lo descomprimas ni le cambies la extensión.
-
-   <p align="center">
-     <a href="https://github.com/B4ckd0orl/Padrino-Store/releases/latest/download/PadrinoStore.exfat"><img src="https://img.shields.io/badge/Descargar-PadrinoStore.exfat-e09f3e?style=for-the-badge&labelColor=1e1e1e" alt="Descargar PadrinoStore.exfat" width="330"></a>
-   </p>
 
 2. **Copialo a un pendrive exFAT**, dentro de una carpeta llamada exactamente `homebrew`
    en la raíz del disco:
@@ -52,12 +87,18 @@ para picar.
    ```
 
 3. **Conectá el pendrive a la PS5.** ShadowMount+ detecta el archivo solo, lo monta e
-   instala; te avisa con una notificación cuando termina. No hay que apretar nada.
+   instala; te avisa con una notificación cuando termina.
 
 4. **Abrí Padrino Store desde la pantalla de inicio.** Ahí está con su sticker.
 
 ¿Preferís FTP? Subí el `.exfat` al interior de la consola, también a una carpeta
 `homebrew`: `/data/homebrew/PadrinoStore.exfat`.
+
+</details>
+
+<p align="center">
+  <img src=".github/readme/divider.svg" width="420" alt="">
+</p>
 
 ## Actualizaciones
 
@@ -71,7 +112,11 @@ segundos después de arrancar:
 Necesita unos **600 MB libres** en el disco donde está instalada. El `update.zip` de cada
 release es justamente ese paquete: vos nunca lo tocás.
 
-## Problemas típicos
+<p align="center">
+  <img src=".github/readme/divider.svg" width="420" alt="">
+</p>
+
+## Solución de problemas
 
 <details>
 <summary><b>No veo el icono en la pantalla de inicio</b></summary>
@@ -107,11 +152,15 @@ Cuando pasa esto, todavía no se cambió nada.
 <summary><b>¿Cómo la desinstalo?</b></summary>
 <br>
 
-Borrá `PadrinoStore.exfat` del carpeta `homebrew` **primero**, y después borrá el icono de
-la pantalla de inicio. Al revés ShadowMount+ vuelve a encontrar el archivo y te repone el
-icono.
+Borrá `PadrinoStore.exfat` de la carpeta `homebrew` **primero**, y después borrá el icono
+de la pantalla de inicio. Al revés ShadowMount+ vuelve a encontrar el archivo y te repone
+el icono.
 
 </details>
+
+<p align="center">
+  <img src=".github/readme/divider.svg" width="420" alt="">
+</p>
 
 ## Compilála vos mismo
 
@@ -122,7 +171,7 @@ icono.
 | Carpeta | Contenido |
 | --- | --- |
 | `app/` | La aplicación: JSX, estado, assets, datos del catálogo y `app.json` (title id `PPSA99058`) |
-| `ps5-react/` | El framework sobre el que corre, de [half144/ps5-react](https://github.com/half144/ps5-react) |
+| `ps5-react/` | El framework sobre el que corre |
 | `packaging/make-exfat.sh` | Arma la imagen exFAT que instala ShadowMount+ |
 | `.github/workflows/build.yml` | El build de CI |
 
@@ -153,15 +202,12 @@ la draft; eso crea el tag y las apps instaladas ofrecen exactamente esos archivo
 
 </details>
 
-## Créditos
+<p align="center">
+  <img src=".github/readme/logo-mark.svg" width="72" alt="">
+</p>
 
-- **[MyLuxy](https://github.com/MyLuxy)**, quien recuperó el código original de Overdrive
-  y lo reconstruyó: Padrino Store se apoya en ese trabajo.
-- **[ps5-react](https://github.com/half144/ps5-react)**, el framework que hace posible
-  todo esto (GPL-3.0-or-later, con sus `LICENSE`, `LICENSE-ATTRIBUTION` y `NOTICE`).
-- **[ShadowMount+](https://github.com/drakmor/ShadowMountPlus)** de drakmor, el payload
-  que instala la imagen.
-
-<sub>Padrino Store es un proyecto homebrew sin fines de lucro, sin afiliación ni respaldo
-de Sony Interactive Entertainment. PlayStation y PS5 son marcas de Sony Interactive
-Entertainment.</sub>
+<p align="center">
+  <sub>Padrino Store es un proyecto homebrew sin fines de lucro, sin afiliación ni respaldo
+  de Sony Interactive Entertainment. PlayStation y PS5 son marcas de Sony Interactive
+  Entertainment.</sub>
+</p>

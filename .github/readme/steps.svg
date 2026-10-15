@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 150" width="1200" height="150" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="1200" height="150" rx="18" fill="#1e1e1e"/>
+  <rect x="0.5" y="0.5" width="1199" height="149" rx="17.5" fill="none" stroke="#3a3a3c"/>
+
+  <circle cx="150" cy="50" r="24" fill="#e09f3e"/>
+  <text x="150" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="#1e1e1e">1</text>
+  <text x="150" y="102" text-anchor="middle" font-size="20" font-weight="700" fill="#f5f5f7">Descargá</text>
+  <text x="150" y="126" text-anchor="middle" font-size="14" fill="#98989d">PadrinoStore.exfat</text>
+
+  <path d="M294 40l10 10-10 10" fill="none" stroke="#48484a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="450" cy="50" r="24" fill="#e09f3e"/>
+  <text x="450" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="#1e1e1e">2</text>
+  <text x="450" y="102" text-anchor="middle" font-size="20" font-weight="700" fill="#f5f5f7">Copialo</text>
+  <text x="450" y="126" text-anchor="middle" font-size="14" fill="#98989d">a homebrew/ en tu USB</text>
+
+  <path d="M594 40l10 10-10 10" fill="none" stroke="#48484a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="750" cy="50" r="24" fill="#e09f3e"/>
+  <text x="750" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="#1e1e1e">3</text>
+  <text x="750" y="102" text-anchor="middle" font-size="20" font-weight="700" fill="#f5f5f7">Conectalo</text>
+  <text x="750" y="126" text-anchor="middle" font-size="14" fill="#98989d">ShadowMount+ lo instala</text>
+
+  <path d="M894 40l10 10-10 10" fill="none" stroke="#48484a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="1050" cy="50" r="24" fill="#e09f3e"/>
+  <text x="1050" y="59" text-anchor="middle" font-size="26" font-weight="700" fill="#1e1e1e">4</text>
+  <text x="1050" y="102" text-anchor="middle" font-size="20" font-weight="700" fill="#f5f5f7">Abrí</text>
+  <text x="1050" y="126" text-anchor="middle" font-size="14" fill="#98989d">Padrino Store en inicio</text>
+</svg>
