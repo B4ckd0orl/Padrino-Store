@@ -90,7 +90,7 @@ body:
     id: logs
     attributes:
       label: Log
-      description: If the app won't install or start, the relevant lines from `/data/shadowmount/debug.log` help a lot.
+      description: For downloads and anything inside the app, copy `/data/ps5-react/PPSA99058/app.log` over FTP right after it happens. If a game won't install or start, the relevant lines from `/data/shadowmount/debug.log` help a lot.
       render: text
 
   - type: checkboxes

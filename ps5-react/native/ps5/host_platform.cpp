@@ -274,9 +274,19 @@ void device_info(DeviceInfo& info) {
   }
   SystemSwVersion version{};
   version.size = sizeof version;
-  if (sceKernelGetSystemSwVersion(&version) == 0)
+  const int version_result = sceKernelGetSystemSwVersion(&version);
+  if (version_result == 0)
     std::snprintf(info.firmware, sizeof info.firmware, "%.*s",
                   static_cast<int>(sizeof version.version_string), version.version_string);
+  // Once per launch: the raw answer, since what the title is told can differ from the version
+  // System Software shows (a console showing 13.20 reported 13.59).
+  static bool version_logged = false;
+  if (!version_logged) {
+    version_logged = true;
+    async_log::write("[PS5-REACT] system software version=0x%08x string=\"%.*s\" result=0x%08x",
+                     version.version, static_cast<int>(sizeof version.version_string), version.version_string,
+                     static_cast<unsigned>(version_result));
+  }
   int temperature = 0;
   if (sceKernelGetCpuTemperature(&temperature) == 0) info.cpu_temperature = temperature;
   if (sceKernelGetSocSensorTemperature(0, &temperature) == 0) info.soc_temperature = temperature;

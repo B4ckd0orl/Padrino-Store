@@ -3,6 +3,8 @@
 
 import { t } from '../i18n/core.js';
 import { sourceKind } from '../state/download-sources.js';
+import { isPs5Package } from '../state/firmware.js';
+import { isPatchOnly } from '../state/release-sets.js';
 import { formatBytes } from '../state/size.js';
 
   var KIND = {
@@ -33,6 +35,24 @@ import { formatBytes } from '../state/size.js';
     if (kind === "direct" || kind === "manifest") return "direct";
     return kind === "browser" || kind === "datanodes" || kind === "unavailable" || GATED.has(kind) ? "browser" : "page";
   }
+  // The firmware a source needs, from its label ("USA 10.xx Base", "10.xx BackPort 4.xx"): a backport
+  // runs from the lowest firmware it names, anything else needs the highest. Null when it names none.
+  function requiredFirmware(release) {
+    const named = [...(release.label || "").matchAll(/\b(\d{1,2})\.xx\b/gi)].map((match) => Number(match[1]));
+    if (!named.length) return null;
+    return isBackport(release) ? Math.min(...named) : Math.max(...named);
+  }
+  // A line under the source for what it is beyond a game image (issue #13). Nothing reads the
+  // console's firmware here: the jailbreak can raise what the title is told (13.59 on a 13.20
+  // console), so a "works on your firmware" verdict could be wrong either way. The firmware a source
+  // needs is shown where the player checks it themselves (game details, the download tips).
+  function compatibility(release) {
+    if (isPatchOnly(release)) return { tone: "warn", text: t("sources.status.patch") };
+    // A PS5 PKG's firmware limit outweighs its being a DLC: the source list has room for one line.
+    if (isPs5Package(release)) return { tone: "warn", text: t("sources.status.package") };
+    if (isDlc(release)) return { tone: "info", text: t("sources.status.dlc") };
+    return null;
+  }
   var SPEED = { "archive.org": "sources.speed.archive", mediafire: "sources.speed.mediafire", "padrino cdn": "sources.cdnFastest" };
   var isOverdriveCdn = (provider) => /^(?:overdrive|padrino)\s*cdn$/i.test(provider ?? "");
   function describeSource(release) {
@@ -40,7 +60,7 @@ import { formatBytes } from '../state/size.js';
     const detail2 = [
       edition(release),
       release.version ? `v${release.version.replace(/^v/i, "")}` : null,
-      KIND[release.format] && t(KIND[release.format]),
+      isPatchOnly(release) ? t("sources.kind.patch") : KIND[release.format] && t(KIND[release.format]),
       parts ? t("sources.parts", { count: parts }) : null
     ].filter(Boolean).join(" \xB7 ");
     const reach = access(release);
@@ -50,7 +70,8 @@ import { formatBytes } from '../state/size.js';
       detail: speed ? [detail2, t(speed)].filter(Boolean).join(" \xB7 ") : detail2,
       size: release.sizeBytes ? formatBytes(release.sizeBytes) : null,
       group: release.unavailableReason ? "unavailable" : reach,
-      reason: release.unavailableReason ?? null
+      reason: release.unavailableReason ?? null,
+      status: release.unavailableReason ? null : compatibility(release)
     };
   }
   var version = (value) => {
@@ -63,7 +84,7 @@ import { formatBytes } from '../state/size.js';
   var recordOf = (release) => (release.parts?.[0].sources[0] ?? release).record;
   var sameFormat = (a, b) => a.format === b.format || a.format === "binary" || b.format === "binary";
   function equivalent(a, b) {
-    if (Boolean(a.parts) !== Boolean(b.parts) || a.parts?.length !== b.parts?.length || isDlc(a) !== isDlc(b)) return false;
+    if (Boolean(a.parts) !== Boolean(b.parts) || a.parts?.length !== b.parts?.length || isDlc(a) !== isDlc(b) || isPatchOnly(a) !== isPatchOnly(b)) return false;
     if (a.sha256 && b.sha256) return a.sha256 === b.sha256;
     const [ea, eb] = [edition(a).toLowerCase(), edition(b).toLowerCase()];
     if (ea && eb && ea !== eb) return false;
@@ -80,6 +101,8 @@ import { formatBytes } from '../state/size.js';
   var ranked = (release, index) => ({ release, index, rank: [
     isDlc(release) ? 1 : 0,
     release.unavailableReason ? 1 : 0,
+    isPatchOnly(release) ? 1 : 0,
+    isPs5Package(release) ? 1 : 0,
     hostRank(release),
     GROUP_RANK[describeSource(release).group],
     HEALTH_RANK[release.health] ?? 1,
@@ -92,7 +115,7 @@ import { formatBytes } from '../state/size.js';
     return releases.map(ranked).sort(compare)[0]?.index ?? 0;
   }
   function fallbacks(releases, selected) {
-    return releases.map(ranked).filter(({ release, index, rank }) => index !== selected && rank[3] <= GROUP_RANK.page && equivalent(releases[selected], release)).sort(compare).map(({ release }) => release);
+    return releases.map(ranked).filter(({ release, index }) => index !== selected && GROUP_RANK[describeSource(release).group] <= GROUP_RANK.page && equivalent(releases[selected], release)).sort(compare).map(({ release }) => release);
   }
   function sourceSections(releases) {
     const sections = ["direct", "page", "browser", "dlc", "unavailable"].map((group) => ({ group, items: [] }));
@@ -106,4 +129,4 @@ import { formatBytes } from '../state/size.js';
     return sections.filter((section) => section.items.length);
   }
 
-export { describeSource, fallbacks, isOverdriveCdn, preferredRelease, sourceSections };
+export { describeSource, fallbacks, isDlc, isOverdriveCdn, preferredRelease, requiredFirmware, sourceSections };

@@ -20,7 +20,17 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
     browser: { title: "sources.section.browser", icon: "external" },
     dlc: { title: "sources.section.dlc", icon: "download", note: "sources.section.dlcNote" }
   };
-  function RowFace({ icon, name, detail: detail2, size, recommended, current, cdn }) {
+  // Whether the source suits this console: a tinted icon and words, readable without the colour.
+  function StatusLine({ status }) {
+    // A DLC is neither: a neutral note, not a pass or a warning.
+    const tint = status.tone === "ok" ? colors.ok : status.tone === "info" ? colors.muted : colors.warn;
+    const icon = status.tone === "ok" ? "circleCheck" : status.tone === "info" ? "package" : "alert";
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 9 }, children: [
+      /* @__PURE__ */ (0, jsx)(Icon, { name: icon, size: 18, color: tint }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 423, fontFamily: "Inter-Regular", fontSize: 20, color: tint, numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 28 }, children: status.text })
+    ] });
+  }
+  function RowFace({ icon, name, detail: detail2, size, recommended, current, cdn, status }) {
     const t2 = useT();
     const focused = useIsFocused();
     const ink2 = focused ? colors.fg : colors.muted;
@@ -33,7 +43,8 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
           /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f2f2f3" }, children: name }),
           recommended ? /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: "#f2f2f3", paddingHorizontal: 9, paddingVertical: 2 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: "#000000", lineHeight: 24 }, children: t2("sources.recommended") }) }) : null
         ] }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: [{ width: 450, fontFamily: "Inter-Regular", fontSize: 21, numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, { color: ink2 }], children: detail2 || t2("sources.noDetails") })
+        /* @__PURE__ */ (0, jsx)(Text, { style: [{ width: 450, fontFamily: "Inter-Regular", fontSize: 21, numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, { color: ink2 }], children: detail2 || t2("sources.noDetails") }),
+        status ? /* @__PURE__ */ (0, jsx)(StatusLine, { status }) : null
       ] }),
       /* @__PURE__ */ (0, jsx)(Text, { style: [{ width: 108, fontFamily: "Inter-Regular", fontSize: 21, textAlign: "end", lineHeight: 30 }, { color: ink2 }], children: size ?? "" }),
       /* @__PURE__ */ (0, jsx)(View, { style: { width: 27, alignItems: "flex-end" }, children: current ? /* @__PURE__ */ (0, jsx)(Icon, { name: "check", size: 18, color: colors.fg }) : null })
@@ -48,7 +59,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
         note ? /* @__PURE__ */ (0, jsx)(Text, { style: { width: 660, fontFamily: "Inter-Regular", fontSize: 21, color: "#8a8a94", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, children: t2(note) }) : null
       ] }),
       items.map(({ release, index }, row) => {
-        const { name, detail: detail2, size } = describeSource(release);
+        const { name, detail: detail2, size, status } = describeSource(release);
         return /* @__PURE__ */ (0, jsx)(View, { autoFocus: index === selected || revealed && row === 0, onPress: () => onPick(index), style: (_state) => [{ position: "relative", minHeight: 84, flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 12 }, _state.focused ? { backgroundColor: "#212125" } : null], children: /* @__PURE__ */ (0, jsx)(
           RowFace,
           {
@@ -56,6 +67,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
             name,
             detail: detail2,
             size,
+            status,
             cdn: isOverdriveCdn(release.provider),
             recommended: index === recommended && group !== "browser",
             current: index === selected

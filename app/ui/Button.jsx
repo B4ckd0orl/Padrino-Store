@@ -36,7 +36,8 @@ import { Text, motion, useIsFocused } from '@ps5-react/core';
       label && /* @__PURE__ */ (0, jsx)(Text, { style: [TEXT[variant], TEXT_SIZE[size], focused && variant === "ghost" && { color: "#f2f2f3" }], children: label })
     ] });
   }
-  function Button2({ variant = "secondary", size = "md", label, icon, iconFill, children, onPress, style, ...rest2 }) {
+  // `halo: false` gives a primary button the plain ring the page's other buttons have.
+  function Button2({ variant = "secondary", size = "md", label, icon, iconFill, children, onPress, style, halo = true, ...rest2 }) {
     return /* @__PURE__ */ (0, jsxs)(
       motion.View,
       {
@@ -46,7 +47,7 @@ import { Text, motion, useIsFocused } from '@ps5-react/core';
         transition: pressMotion,
         style: ({ focused }) => [BASE, SIZE2[size], BOX[variant], focused && FOCUSED_BOX[variant], style],
         children: [
-          variant === "primary" ? /* @__PURE__ */ (0, jsx)(FocusRing, { halo: true, radius: 6 }) : /* @__PURE__ */ (0, jsx)(FocusRing, {}),
+          variant === "primary" && halo ? /* @__PURE__ */ (0, jsx)(FocusRing, { halo: true, radius: 6 }) : /* @__PURE__ */ (0, jsx)(FocusRing, {}),
           children,
           /* @__PURE__ */ (0, jsx)(Content, { variant, size, label, icon, iconFill })
         ]

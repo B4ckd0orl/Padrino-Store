@@ -7,6 +7,7 @@ import { INCOMPLETE_PART, STALE_PARTIAL, cause } from '../downloads/errors.js';
 import { t } from '../i18n/core.js';
 import { archivePassword } from './archive-password.js';
 import { BrowserRequired, archiveRefusal, cancellation, createSourceResolver, sourceKind, webURL } from './download-sources.js';
+import { PKG_FIRMWARE_ERROR, fakePackagesInstall, isPs5Title } from './firmware.js';
 import { readJSON } from './read-json.js';
 import { mountedImages, shadowRequest, within2 } from './shadowmount.js';
 import { MARGIN2, spaceShortfall, stillNeeded } from './space.js';
@@ -220,7 +221,10 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
         notifications.show(t("downloads.notice.installed"), job2.title);
       } catch (error2) {
         job2.state = "installer-required";
-        job2.error = error2.message;
+        // The install is always tried: the firmware the title is told can be raised by the jailbreak.
+        // Refused where it reads above 11.60 (an archive can turn out to hold a PKG, issue #6), the
+        // likely reason is said instead of the service's code; a full drive still reads as one.
+        job2.error = isPs5Title(job2.gameId) && !fakePackagesInstall() && !/space/i.test(error2.message) ? PKG_FIRMWARE_ERROR : error2.message;
         job2.message = t("downloads.installFailed");
       }
       job2.bytesPerSecond = 0;
@@ -373,6 +377,10 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       if (!archives?.inspect) return;
       const { kind, refusal } = archives.inspect([job2.downloadDestination]);
       if (refusal) throw new Error(refusal);
+      // A source listed without a format is kept only for what its headers turn out to be: when they
+      // are none Overdrive knows, the host sent something else, usually a web page. Leaving it as a
+      // downloaded ".binary" (issue #8) told the user nothing.
+      if (!kind && job2.release.format === "binary") throw new Error("Not a game file: the host sent something else.");
       if (!kind) return;
       const artifact2 = formats.detected(job2.release, job2.root, kind);
       if (artifact2.nextAction === "extraction-required") {
@@ -407,6 +415,25 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
         output = `${output}/${children[0].name}`;
       }
       return null;
+    }
+    // The extractor writes files 0666, without execute: ShadowMount mounts the folder, but its
+    // eboot.bin won't launch (CE-107750-0, issue #11) until everything is opened up, as the updater
+    // does for Overdrive's own folder. A frame every 256 entries keeps a large game from stalling the UI.
+    async function openUp(path) {
+      let count = 0;
+      const visit = async (dir2) => {
+        fs.chmod(dir2, 511);
+        for (const entry2 of fs.readDir(dir2)) {
+          if (++count % 256 === 0) await wait(0);
+          if (entry2.isDirectory) await visit(`${dir2}/${entry2.name}`);
+          else fs.chmod(`${dir2}/${entry2.name}`, 511);
+        }
+      };
+      try {
+        await visit(path);
+      } catch (error2) {
+        console.log("[download-queue] permissions not opened up:", error2.message);
+      }
     }
     function extraction(job2, files) {
       if (!archives) throw new Error("Archive extraction requires the updated PS5 React runtime.");
@@ -561,6 +588,7 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
           storageIdentity(job2);
           fs.rename(folder, destination);
           if (folder !== job2.output) await fs.removeAsync(job2.output);
+          await openUp(destination);
           job2.output = destination;
           job2.publishTo = destination;
           job2.artifact.nextAction = "shadowmount";

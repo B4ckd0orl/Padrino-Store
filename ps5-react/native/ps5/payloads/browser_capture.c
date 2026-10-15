@@ -70,7 +70,7 @@ int main(void) {
   if (found != 1) return fail("The browser could not be identified safely. Reopen the page and retry.");
   BrowserMatch match = {.filename = filename};
   ProbeReader reader = {.context = &target, .read = probe_target_read, .active = active,
-    .match = browser_match, .match_context = &match, .remaining = 128U * 1024U * 1024U};
+    .match = browser_match, .match_context = &match, .remaining = PROBE_SESSION_BUDGET};
   ProbeResult result = PROBE_ABSENT;
   while (active(&target) && reader.remaining) {
     result = probe_target_scan(&target, &reader, prefix);

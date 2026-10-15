@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased — Vikingfile capture without the Download button
+
+- Browser capture finds the verified Vikingfile link as the page holds it once the verification
+  passes, a JSON string with escaped slashes, so the user no longer selects Download and the
+  advertisements around it. The scanner reads at about 8 MiB/s with a 1 GiB session budget, so it
+  keeps looking through a slow verification; both changes follow Orbit Store 1.3.5.
+
+## Unreleased — download speed limit
+
+- Add `Downloads.setRateLimit(bytesPerSecond)` (native ABI v17, `network.setRateLimit`): every file
+  download shares the cap, and a new value applies at once, to running downloads too. A capped
+  download opens about one connection per MB/s and resumes its paused connections in turn, so none
+  sits long enough to hit the 30-second low-speed cutoff. `unlimited: true` exempts a download.
+
 ## Unreleased — comparing upscalers
 
 - `<Video compare={{upscale, split}}>` (native ABI v15, `video.setCompare`): right of `split` (0 to 1

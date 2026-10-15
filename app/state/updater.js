@@ -155,7 +155,7 @@ import { formatBytes } from './size.js';
     }
     async function fetchRelease(update, onProgress) {
       const zip = `${workDir}/${update.version}.zip`;
-      const download = downloads.enqueue({ url: update.url, destination: zip, sha256: update.sha256, expectedBytes: update.size, rejectHtml: true });
+      const download = downloads.enqueue({ url: update.url, destination: zip, sha256: update.sha256, expectedBytes: update.size, rejectHtml: true, unlimited: true });
       const off = download.subscribe(({ written }) => onProgress({ state: "downloading", written: written || 0, total: update.size }));
       try {
         await download.done;

@@ -7,8 +7,15 @@ The bundle contains `orbit-store-1.0.1-source.tar.gz`, backend/browser_*.
 `browser_url.c` adapts the filename-bound route validation in backend/providers.c.
 The release/catalog dependency was replaced by an explicit selected filename.
 
+From Orbit Store 1.3.5 (same licence), `browser_match.c` decodes JSON's escaped
+slash once, so the verified Vikingfile link is found before the page's Download
+button is pressed, and the scanner's overlap, read pace and session budget follow
+its `browser_scan.h`. Source bundle:
+https://github.com/saawant12/orbit-store-ps5/releases/download/v1.3.5/orbit-store-1.3.5-source-bundle.zip
+(`orbit-store-1.3.5-source.tar.gz`, backend/browser_match.c and backend/browser_scan.*).
+
 Only the uniquely identified SceNKNetworkProcess/SceNKNetworkProc is read.
 Identity is rechecked before reads; no executable/file-backed pages, writes,
-cookies, dumps or arbitrary process selectors. Each session has a 128 MiB total
-read budget, 64 KiB reads separated by 32 ms, and a maximum 180-second deadline.
+cookies, dumps or arbitrary process selectors. Each session has a 1 GiB total
+read budget, 64 KiB reads separated by 8 ms, and a maximum 180-second deadline.
 Only a complete matching Vikingfile URL is returned. Buffers are wiped.

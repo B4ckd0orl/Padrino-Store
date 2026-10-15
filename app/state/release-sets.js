@@ -12,7 +12,15 @@ import { archivePassword } from './archive-password.js';
     return `${(first >>> 0).toString(16)}${(second >>> 0).toString(16)}`;
   }
   var hostKey = (provider) => provider.toLowerCase().replace(/^www\./, "").replace(/\.[a-z]+$/, "");
-  var VOLUME_NAME = /\bpart(\d+)\.(?:rar|7z|zip)\b/i;
+  // DLPSGAME's "backport files" downloads hold only the eboot and a few files to copy over the base
+  // game (issue #8). The catalog sometimes numbers one as a part of a full backport archive; it is
+  // its own file, so it never joins a set.
+  var PATCH_FILES = /backport[+_ -]*files/i;
+  var isPatchOnly = (release) => {
+    const first = release.parts?.[0]?.sources[0] ?? release;
+    return PATCH_FILES.test(`${first.url || ""} ${first.browserUrl || ""} ${release.label || ""}`);
+  };
+  var VOLUME_NAME =/\bpart(\d+)\.(?:rar|7z|zip)\b/i;
   function missingVolumes(parts, declaredBytes) {
     if (parts.some((part, index) => part.number !== index + 1)) return "gap";
     const volumes = parts.map((part) => VOLUME_NAME.exec(part.name || "")?.[1]);
@@ -26,7 +34,7 @@ import { archivePassword } from './archive-password.js';
     const groups = /* @__PURE__ */ new Map();
     const output = [];
     for (const release of releases) {
-      const match = /\bpart\s*(\d+)\b/i.exec(release.label || release.volume || "");
+      const match = !isPatchOnly(release) && /\bpart\s*(\d+)\b/i.exec(release.label || release.volume || "");
       if (!match) {
         output.push(release);
         continue;
@@ -81,4 +89,4 @@ import { archivePassword } from './archive-password.js';
   };
   var sameRelease = (saved, release) => saved.id === release.id || Boolean(link(saved)) && link(saved) === link(release) && saved.parts?.length === release.parts?.length;
 
-export { releaseSets, sameRelease };
+export { isPatchOnly, releaseSets, sameRelease };

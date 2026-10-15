@@ -485,6 +485,13 @@ export const Downloads = {
   enqueueManifest({manifest, destination, ...options}) {
     return Downloads.enqueue({...options, ...normalizeDownloadManifest(manifest), destination});
   },
+  /** Bytes per second every file download shares, 0 for no limit (ABI v17). It applies at once,
+   * to running downloads too; one enqueued with `unlimited: true` (an app's own update) is exempt. */
+  setRateLimit(bytesPerSecond) {
+    if (!Number.isFinite(bytesPerSecond) || bytesPerSecond < 0)
+      throw new TypeError('Downloads.setRateLimit: expected bytes per second, 0 for no limit.');
+    host().network.setRateLimit(Math.floor(bytesPerSecond));
+  },
   get transportVersion() { return host().network.version(); },
 };
 

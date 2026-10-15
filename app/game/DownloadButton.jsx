@@ -67,9 +67,13 @@ import { DownloadFormats, Text, View, motion } from '@ps5-react/core';
     const lacking = download.status === "idle" && need && free[storage] !== null && free[storage] < need + MARGIN2;
     const stale = ["paused", "failed"].includes(download.status) && STALE_PARTIAL.test(cause(error2));
     const status = lacking ? "no-space" : stale ? "stale" : download.status;
+    // A new download first shows what the chosen source is and how to use it (DownloadTipsDialog);
+    // resuming, installing or pausing one already queued goes straight on.
     const begin = () => {
       if (stale) restart();
-      else if (!lacking) download.advance();
+      else if (lacking) return;
+      else if (status === "idle" && release) onRequestDialog({ kind: "tips", game, release, submit: () => download.advance(), changeSource: () => chooseSource() });
+      else download.advance();
     };
     const { openEdition, focusLater, push } = useNavActions();
     const editions = editionsOf(game);
