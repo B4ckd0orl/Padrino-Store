@@ -49,8 +49,8 @@ import { px } from './scale.js';
       borderColor: color
     });
     return /* @__PURE__ */ (0, jsxs)(motion.View, { ...breathe, style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }, children: [
-      /* @__PURE__ */ (0, jsx)(View, { style: ring2(3, "#ffffff59") }),
-      /* @__PURE__ */ (0, jsx)(View, { style: ring2(6, "#ffffff21") })
+      /* @__PURE__ */ (0, jsx)(View, { style: ring2(3, "#0a84ff59") }),
+      /* @__PURE__ */ (0, jsx)(View, { style: ring2(6, "#0a84ff21") })
     ] });
   }
   var RING_RADIUS = { full: 999, lg: 12, md: 10 };

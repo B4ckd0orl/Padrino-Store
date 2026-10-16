@@ -34,16 +34,16 @@ import { FocusScope, Text, View, motion, useIsFocused } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       button ? /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", right: 15 }, children: /* @__PURE__ */ (0, jsx)(ButtonGlyph, { button, size: 18 }) }) : null,
       icon ? /* @__PURE__ */ (0, jsx)(Icon, { name: icon, size: 20, color: focused ? colors.accentFg : colors.fg }) : null,
-      label ? /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ fontFamily: "Inter-Regular", fontSize: 27, color: "#f2f2f3", lineHeight: 36 }, focused ? { color: "#0d0d0f" } : null], children: label }) : null
+      label ? /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ fontFamily: "Inter-Regular", fontSize: 27, color: "#f5f5f7", lineHeight: 36 }, focused ? { color: "#ffffff" } : null], children: label }) : null
     ] });
   }
   var Key = (0, memo)(function Key2({ label, icon, button, wide, value, onKey, toResults, compact }) {
     const { rtl } = useLocale();
     return /* @__PURE__ */ (0, jsx)(motion.View, { onPress: () => onKey(value), ...focusEnd(rtl, toResults), style: (_state) => [
-      { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 12, borderRadius: 9, backgroundColor: "#17171a" },
+      { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 12, borderRadius: 9, backgroundColor: "#282828" },
       wide ? { width: 276 } : { width: 84 },
       compact ? { height: 60 } : { height: 84 },
-      _state.focused ? { backgroundColor: "#f2f2f3" } : null
+      _state.focused ? { backgroundColor: "#0a84ff" } : null
     ], initial: false, animate: { scale: 1 }, transition: { type: "tween", duration: 0.1, ease: [0.4, 0, 0.2, 1] }, whilePress: { scale: 0.95 }, children: /* @__PURE__ */ (0, jsx)(KeyFace, { label, icon, button, url: compact }) });
   });
   var Keyboard = (0, memo)(function Keyboard2({ onChange, onSubmit, url = false }) {

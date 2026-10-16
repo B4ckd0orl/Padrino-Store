@@ -40,8 +40,8 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
       cdn ? /* @__PURE__ */ (0, jsx)(CdnSpark, { size: 18 }) : /* @__PURE__ */ (0, jsx)(Icon, { name: icon, size: 18, color: ink2 }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
         /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12 }, children: [
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f2f2f3" }, children: name }),
-          recommended ? /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: "#f2f2f3", paddingHorizontal: 9, paddingVertical: 2 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: "#000000", lineHeight: 24 }, children: t2("sources.recommended") }) }) : null
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f5f7" }, children: name }),
+          recommended ? /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: "#0a84ff", paddingHorizontal: 9, paddingVertical: 2 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: "#ffffff", lineHeight: 24 }, children: t2("sources.recommended") }) }) : null
         ] }),
         /* @__PURE__ */ (0, jsx)(Text, { style: [{ width: 450, fontFamily: "Inter-Regular", fontSize: 21, numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, { color: ink2 }], children: detail2 || t2("sources.noDetails") }),
         status ? /* @__PURE__ */ (0, jsx)(StatusLine, { status }) : null
@@ -55,12 +55,12 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
     const { title, icon, note } = SECTION[group];
     return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 6 }, children: [
       /* @__PURE__ */ (0, jsxs)(View, { style: { marginBottom: 6, gap: 3, paddingHorizontal: 18 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#8a8a94" }, children: `${t2(title)} \xB7 ${items.length}` }),
-        note ? /* @__PURE__ */ (0, jsx)(Text, { style: { width: 660, fontFamily: "Inter-Regular", fontSize: 21, color: "#8a8a94", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, children: t2(note) }) : null
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#6e6e73" }, children: `${t2(title)} \xB7 ${items.length}` }),
+        note ? /* @__PURE__ */ (0, jsx)(Text, { style: { width: 660, fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e73", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, children: t2(note) }) : null
       ] }),
       items.map(({ release, index }, row) => {
         const { name, detail: detail2, size, status } = describeSource(release);
-        return /* @__PURE__ */ (0, jsx)(View, { autoFocus: index === selected || revealed && row === 0, onPress: () => onPick(index), style: (_state) => [{ position: "relative", minHeight: 84, flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 12 }, _state.focused ? { backgroundColor: "#212125" } : null], children: /* @__PURE__ */ (0, jsx)(
+        return /* @__PURE__ */ (0, jsx)(View, { autoFocus: index === selected || revealed && row === 0, onPress: () => onPick(index), style: (_state) => [{ position: "relative", minHeight: 84, flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 12 }, _state.focused ? { backgroundColor: "#323232" } : null], children: /* @__PURE__ */ (0, jsx)(
           RowFace,
           {
             icon,
@@ -84,7 +84,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
       /* @__PURE__ */ (0, jsx)(Icon, { name: "external", size: 18, color: ink2 }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f2f2f3" }, children: t2("sources.showBrowser", { count }) }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f5f7" }, children: t2("sources.showBrowser", { count }) }),
         /* @__PURE__ */ (0, jsx)(Text, { style: [{ width: 570, fontFamily: "Inter-Regular", fontSize: 21, numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, { color: ink2 }], children: t2("sources.browserNote") })
       ] }),
       /* @__PURE__ */ (0, jsx)(Icon, { name: "chevronDown", size: 18, color: ink2 })
@@ -93,9 +93,9 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
   function Versions({ editions, current, onEdition }) {
     const t2 = useT();
     return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 6 }, children: [
-      /* @__PURE__ */ (0, jsx)(Text, { style: { marginBottom: 6, paddingHorizontal: 18, fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#8a8a94" }, children: `${t2("sources.section.versions")} \xB7 ${editions.length}` }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { marginBottom: 6, paddingHorizontal: 18, fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#6e6e73" }, children: `${t2("sources.section.versions")} \xB7 ${editions.length}` }),
       editions.map(
-        (edition2, index) => /* @__PURE__ */ (0, jsx)(View, { onPress: () => onEdition(edition2), style: (_state2) => [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 18 }, _state2.focused ? { backgroundColor: "#212125" } : null], children: /* @__PURE__ */ (0, jsx)(
+        (edition2, index) => /* @__PURE__ */ (0, jsx)(View, { onPress: () => onEdition(edition2), style: (_state2) => [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 18 }, _state2.focused ? { backgroundColor: "#323232" } : null], children: /* @__PURE__ */ (0, jsx)(
           VersionFace,
           {
             edition: edition2,
@@ -147,7 +147,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
       !browser && count("browser") ? /* @__PURE__ */ (0, jsx)(View, { onPress: () => {
         setBrowser(true);
         setRevealed(true);
-      }, style: (_state3) => [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 18 }, _state3.focused ? { backgroundColor: "#212125" } : null], children: /* @__PURE__ */ (0, jsx)(RevealFace, { count: count("browser") }) }) : null,
+      }, style: (_state3) => [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 18 }, _state3.focused ? { backgroundColor: "#323232" } : null], children: /* @__PURE__ */ (0, jsx)(RevealFace, { count: count("browser") }) }) : null,
       count("dlc") ? /* @__PURE__ */ (0, jsx)(
         Section2,
         {

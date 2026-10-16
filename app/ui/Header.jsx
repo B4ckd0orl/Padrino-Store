@@ -58,7 +58,7 @@ import { FocusScope, Text, View } from '@ps5-react/core';
       children,
       /* @__PURE__ */ (0, jsx)(DownloadToast, { actionRef: toastAction }),
       choosingLanguage ? /* @__PURE__ */ (0, jsx)(LanguageSheet, { onClose: () => setChoosingLanguage(false) }) : null,
-      /* @__PURE__ */ (0, jsx)(View, { style: immersive ? { position: "absolute", left: 0, right: 0, top: 0, zIndex: 40, display: "none" } : { position: "absolute", left: 0, right: 0, top: 0, zIndex: 40 }, children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "header", inert: immersive, children: /* @__PURE__ */ (0, jsxs)(View, { onLayout: track("header"), style: { height: 96, flexDirection: "row", alignItems: "center", justifyContent: "space-between", backgroundColor: "#000000", paddingHorizontal: 48 }, children: [
+      /* @__PURE__ */ (0, jsx)(View, { style: immersive ? { position: "absolute", left: 0, right: 0, top: 0, zIndex: 40, display: "none" } : { position: "absolute", left: 0, right: 0, top: 0, zIndex: 40 }, children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "header", inert: immersive, children: /* @__PURE__ */ (0, jsxs)(View, { onLayout: track("header"), style: { height: 96, flexDirection: "row", alignItems: "center", justifyContent: "space-between", backgroundColor: "#1e1e1e", paddingHorizontal: 48 }, children: [
         /* @__PURE__ */ (0, jsx)(NavPill, { section, layouts }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 24 }, children: [
           /* @__PURE__ */ (0, jsx)(View, { style: rtl ? { marginRight: -24 } : { marginLeft: -24 }, children: /* @__PURE__ */ (0, jsx)(
@@ -128,7 +128,7 @@ import { FocusScope, Text, View } from '@ps5-react/core';
         /* @__PURE__ */ (0, jsxs)(View, { focusKey: "nav:home", onPress: on.discover, nextFocusDown: down, style: { marginHorizontal: 36, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 6, paddingHorizontal: 12 }, children: [
           /* @__PURE__ */ (0, jsx)(FocusRing, {}),
           /* @__PURE__ */ (0, jsx)(Logo, {}),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#8a8a94" }, children: `v${VERSION}` })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e73" }, children: `v${VERSION}` })
         ] }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 24 }, children: [
           /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 6 }, children: [

@@ -12,16 +12,16 @@ import { ScrollView, Text, View, useIsFocused } from '@ps5-react/core';
     const focused = useIsFocused();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f2f2f3", lineHeight: 42, letterSpacing: -0.75 }, children: title }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f5f7", lineHeight: 42, letterSpacing: -0.75 }, children: title }),
       /* @__PURE__ */ (0, jsx)(Icon, { name: "chevronRight", size: 16, color: focused ? colors.fg : colors.muted })
     ] });
   }
-  var Arrow = ({ name }) => /* @__PURE__ */ (0, jsx)(View, { style: { width: 48, height: 48, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#17171a" }, children: /* @__PURE__ */ (0, jsx)(Icon, { name, size: 16, color: colors.muted, fixed: true }) });
+  var Arrow = ({ name }) => /* @__PURE__ */ (0, jsx)(View, { style: { width: 48, height: 48, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#282828" }, children: /* @__PURE__ */ (0, jsx)(Icon, { name, size: 16, color: colors.muted, fixed: true }) });
   var LTR = { direction: "ltr" };
   function GameRail({ title, onSeeAll, seeAllKey, children }) {
     return /* @__PURE__ */ (0, jsxs)(View, { scrollAnchor: true, children: [
       /* @__PURE__ */ (0, jsxs)(View, { style: { marginBottom: 24, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }, children: [
-        onSeeAll ? /* @__PURE__ */ (0, jsx)(View, { onPress: onSeeAll, focusKey: seeAllKey, style: { flexDirection: "row", alignItems: "center", gap: 6, borderRadius: 9 }, children: /* @__PURE__ */ (0, jsx)(TitleLink, { title }) }) : /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f2f2f3", lineHeight: 42, letterSpacing: -0.75 }, children: title }),
+        onSeeAll ? /* @__PURE__ */ (0, jsx)(View, { onPress: onSeeAll, focusKey: seeAllKey, style: { flexDirection: "row", alignItems: "center", gap: 6, borderRadius: 9 }, children: /* @__PURE__ */ (0, jsx)(TitleLink, { title }) }) : /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f5f7", lineHeight: 42, letterSpacing: -0.75 }, children: title }),
         /* @__PURE__ */ (0, jsxs)(View, { style: [{ flexDirection: "row", gap: 12 }, LTR], children: [
           /* @__PURE__ */ (0, jsx)(Arrow, { name: "chevronLeft" }),
           /* @__PURE__ */ (0, jsx)(Arrow, { name: "chevronRight" })

@@ -33,12 +33,12 @@ import { FocusScope, Image, Text, View, useFocus } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsx)(FocusScope, { trap: true, autoFocus: true, onBack: () => {
       onClose(index);
       return true;
-    }, onAction, children: /* @__PURE__ */ (0, jsxs)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: "#000000" }, children: [
+    }, onAction, children: /* @__PURE__ */ (0, jsxs)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: "#1e1e1e" }, children: [
       /* @__PURE__ */ (0, jsx)(Image, { source: { uri: shots[index].url }, style: VIEW, resizeMode: "contain" }),
-      /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", left: 0, right: 0, bottom: 0, height: 288, backgroundGradient: { type: "linear", to: "top", stops: [{ color: "#000000", offset: 0 }, { color: "#00000000", offset: 1 }] } } }),
+      /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", left: 0, right: 0, bottom: 0, height: 288, backgroundGradient: { type: "linear", to: "top", stops: [{ color: "#000000", offset: 0 }, { color: "#ffffff00", offset: 1 }] } } }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { position: "absolute", left: 0, right: 0, bottom: 0 }, children: [
         /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 12 }, children: [
-          /* @__PURE__ */ (0, jsx)(Text, { style: { marginRight: 18, width: 96, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#f2f2f3", lineHeight: 30 }, children: t2("game.shotPosition", { index: index + 1, total: shots.length }) }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { marginRight: 18, width: 96, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", lineHeight: 30 }, children: t2("game.shotPosition", { index: index + 1, total: shots.length }) }),
           shots.map(
             (shot, i) => /* @__PURE__ */ (0, jsxs)(
               View,
@@ -49,7 +49,7 @@ import { FocusScope, Image, Text, View, useFocus } from '@ps5-react/core';
                 onPress: () => onClose(i),
                 style: { position: "relative", width: 192, height: 108 },
                 children: [
-                  /* @__PURE__ */ (0, jsx)(Image, { source: { uri: shot.thumb }, style: [{ borderRadius: 9, backgroundColor: "#212125" }, THUMB], resizeMode: "cover" }),
+                  /* @__PURE__ */ (0, jsx)(Image, { source: { uri: shot.thumb }, style: [{ borderRadius: 9, backgroundColor: "#323232" }, THUMB], resizeMode: "cover" }),
                   /* @__PURE__ */ (0, jsx)(FocusFrame, {})
                 ]
               },

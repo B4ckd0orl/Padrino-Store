@@ -28,9 +28,9 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
     const shown = shownState(job2);
     const percent = progress?.total && job2.state !== "failed" ? ` \xB7 ${formatPercent2(Math.floor(fraction * 100))}` : "";
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
-      /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ marginTop: 18, width: 225, fontFamily: "Inter-Regular", fontSize: 23, color: "#f2f2f3d9", numberOfLines: 1, ellipsizeMode: "tail" }, focused ? { color: "#f2f2f3" } : null], children: job2.title }),
+      /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ marginTop: 18, width: 225, fontFamily: "Inter-Regular", fontSize: 23, color: "#f5f5f7d9", numberOfLines: 1, ellipsizeMode: "tail" }, focused ? { color: "#f5f5f7" } : null], children: job2.title }),
       /* @__PURE__ */ (0, jsx)(View, { style: { marginTop: 12 }, children: /* @__PURE__ */ (0, jsx)(ProgressBar, { fraction, width: WIDTH2, active: job2.state === "downloading" }) }),
-      WAITING.includes(shown) ? /* @__PURE__ */ (0, jsx)(View, { style: { marginTop: 9, width: 225 }, children: /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: STATE, children: stateLabel(shown) }) }) : /* @__PURE__ */ (0, jsx)(Text, { style: job2.state === "failed" ? { marginTop: 9, width: 225, fontFamily: "Inter-Regular", fontSize: 21, color: "#f2f2f3", numberOfLines: 1, ellipsizeMode: "tail" } : { marginTop: 9, width: 225, fontFamily: "Inter-Regular", fontSize: 21, color: "#8a8a94", numberOfLines: 1, ellipsizeMode: "tail" }, children: job2.state === "failed" ? t2("browse.continueFailed") : `${stateLabel(job2.state)}${percent}` })
+      WAITING.includes(shown) ? /* @__PURE__ */ (0, jsx)(View, { style: { marginTop: 9, width: 225 }, children: /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: STATE, children: stateLabel(shown) }) }) : /* @__PURE__ */ (0, jsx)(Text, { style: job2.state === "failed" ? { marginTop: 9, width: 225, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", numberOfLines: 1, ellipsizeMode: "tail" } : { marginTop: 9, width: 225, fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e73", numberOfLines: 1, ellipsizeMode: "tail" }, children: job2.state === "failed" ? t2("browse.continueFailed") : `${stateLabel(job2.state)}${percent}` })
     ] });
   }
   var ContinueRow = (0, memo)(function ContinueRow2() {

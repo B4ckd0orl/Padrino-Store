@@ -24,7 +24,7 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View, motion, useIsFocus
     return /* @__PURE__ */ (0, jsx)(AnimatePresence, { children: open && /* @__PURE__ */ (0, jsx)(
       motion.View,
       {
-        style: left ? { position: "absolute", left: 0, top: "100%", zIndex: 50, marginTop: 9, width: 360, borderRadius: 12, borderWidth: 2, borderColor: "#2a2a2f", backgroundColor: "#17171a", padding: 6, transformOrigin: [0, 0] } : { position: "absolute", right: 0, top: "100%", zIndex: 50, marginTop: 9, width: 360, borderRadius: 12, borderWidth: 2, borderColor: "#2a2a2f", backgroundColor: "#17171a", padding: 6, transformOrigin: [1, 0] },
+        style: left ? { position: "absolute", left: 0, top: "100%", zIndex: 50, marginTop: 9, width: 360, borderRadius: 12, borderWidth: 2, borderColor: "#48484a", backgroundColor: "#282828", padding: 6, transformOrigin: [0, 0] } : { position: "absolute", right: 0, top: "100%", zIndex: 50, marginTop: 9, width: 360, borderRadius: 12, borderWidth: 2, borderColor: "#48484a", backgroundColor: "#282828", padding: 6, transformOrigin: [1, 0] },
         initial: { opacity: 0, y: -6, scale: pop },
         animate: { opacity: 1, y: 0, scale: 1 },
         exit: { opacity: 0, y: -4, transition: { type: "tween", duration: 0.1, ease: "easeIn" } },
@@ -37,7 +37,7 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View, motion, useIsFocus
   function ItemContent({ label, checked }) {
     const focused = useIsFocused();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
-      /* @__PURE__ */ (0, jsx)(Text, { focused, selected: checked, style: [{ flex: 1, fontFamily: "Inter-Regular", fontSize: 21, color: "#a3a3ab", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, checked ? { color: "#f2f2f3" } : null, focused ? { color: "#f2f2f3" } : null], children: label }),
+      /* @__PURE__ */ (0, jsx)(Text, { focused, selected: checked, style: [{ flex: 1, fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, checked ? { color: "#f5f5f7" } : null, focused ? { color: "#f5f5f7" } : null], children: label }),
       checked && /* @__PURE__ */ (0, jsx)(Icon, { name: "check", color: colors.fg })
     ] });
   }
@@ -46,8 +46,8 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View, motion, useIsFocus
     return /* @__PURE__ */ (0, jsx)(View, { autoFocus: checked || autoFocus, onPress: () => {
       onSelect();
       close();
-    }, style: (_state) => [{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 36, borderRadius: 9, paddingHorizontal: 18, paddingVertical: 12 }, _state.focused ? { backgroundColor: "#2b2b30" } : null], children: /* @__PURE__ */ (0, jsx)(ItemContent, { label, checked }) });
+    }, style: (_state) => [{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 36, borderRadius: 9, paddingHorizontal: 18, paddingVertical: 12 }, _state.focused ? { backgroundColor: "#3a3a3c" } : null], children: /* @__PURE__ */ (0, jsx)(ItemContent, { label, checked }) });
   }
-  var MenuDivider = () => /* @__PURE__ */ (0, jsx)(View, { style: { marginVertical: 6, height: 2, backgroundColor: "#2a2a2f" } });
+  var MenuDivider = () => /* @__PURE__ */ (0, jsx)(View, { style: { marginVertical: 6, height: 2, backgroundColor: "#48484a" } });
 
 export { Menu, MenuDivider, MenuItem };

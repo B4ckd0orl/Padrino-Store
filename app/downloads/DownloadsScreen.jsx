@@ -42,7 +42,7 @@ import { FocusScope, ScrollView, Text, View } from '@ps5-react/core';
     const t2 = useT();
     if (!jobs.length) return null;
     return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 18 }, children: [
-      /* @__PURE__ */ (0, jsx)(Text, { style: { paddingHorizontal: 6, fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#8a8a94", letterSpacing: 1 }, children: `${t2(title)}  ${formatNumber2(jobs.length)}` }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { paddingHorizontal: 6, fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#6e6e73", letterSpacing: 1 }, children: `${t2(title)}  ${formatNumber2(jobs.length)}` }),
       jobs.map(
         (job2) => /* @__PURE__ */ (0, jsx)(
           DownloadRow,
@@ -63,8 +63,8 @@ import { FocusScope, ScrollView, Text, View } from '@ps5-react/core';
     const t2 = useT();
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, alignItems: "center", justifyContent: "center", paddingBottom: 144 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: "download", size: 32, color: colors.subtle }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 24, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#f2f2f3", lineHeight: 42 }, children: t2(error2 ? "downloads.unavailable" : "downloads.empty") }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 6, width: 720, textAlign: "center", fontFamily: "Inter-Regular", fontSize: 24, color: "#a3a3ab", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 36 }, children: error2 || t2("downloads.emptyDetail") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 24, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#f5f5f7", lineHeight: 42 }, children: t2(error2 ? "downloads.unavailable" : "downloads.empty") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 6, width: 720, textAlign: "center", fontFamily: "Inter-Regular", fontSize: 24, color: "#98989d", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 36 }, children: error2 || t2("downloads.emptyDetail") }),
       /* @__PURE__ */ (0, jsx)(View, { style: { marginTop: 36 }, children: /* @__PURE__ */ (0, jsx)(Button2, { variant: "outline", label: t2("downloads.browseGames"), focusKey: EMPTY_KEY, autoFocus: true, onPress: onBack }) })
     ] });
   }
@@ -126,11 +126,11 @@ import { FocusScope, ScrollView, Text, View } from '@ps5-react/core';
     const first = active2[0] ?? stopped[0] ?? done[0];
     return /* @__PURE__ */ (0, jsx)(FocusScope, { autoFocus: true, onBack: back2, onAction, children: /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1 }, children: [
       /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "flex-end", gap: 48, paddingHorizontal: 48, paddingTop: 48, paddingBottom: 36 }, children: [
-        /* @__PURE__ */ (0, jsxs)(Text, { style: { width: 1356, fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f2f2f3", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 42, letterSpacing: -0.75 }, children: [
+        /* @__PURE__ */ (0, jsxs)(Text, { style: { width: 1356, fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f5f7", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 42, letterSpacing: -0.75 }, children: [
           fitBytes(t2("downloads.title"), SPAN_MAX),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontWeight: 400, color: "#8a8a94" }, children: jobs.length ? fitBytes(`  ${summary(jobs)}`, SPAN_MAX) : "" })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontWeight: 400, color: "#6e6e73" }, children: jobs.length ? fitBytes(`  ${summary(jobs)}`, SPAN_MAX) : "" })
         ] }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 420, fontFamily: "Inter-Regular", fontSize: 21, color: "#f2f2f3", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, children: failure })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 420, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, children: failure })
       ] }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, flexDirection: "row", gap: 48, paddingHorizontal: 48 }, children: [
         jobs.length > 0 ? /* @__PURE__ */ (0, jsx)(ScrollView, { style: { flex: 1 }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 60, paddingBottom: 60 }, children: [

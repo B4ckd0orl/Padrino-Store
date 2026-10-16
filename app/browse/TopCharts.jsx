@@ -23,20 +23,20 @@ import { Text, View } from '@ps5-react/core';
   var thumb = { width: 66, height: 87, borderRadius: 9 };
   function Detail({ chart, game }) {
     const t2 = useT();
-    if (chart !== "rating") return /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 6, fontFamily: "Inter-Regular", fontSize: 21, color: "#a3a3ab" }, children: DETAIL[chart](t2, game) });
+    if (chart !== "rating") return /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 6, fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d" }, children: DETAIL[chart](t2, game) });
     return /* @__PURE__ */ (0, jsxs)(View, { style: { marginTop: 6, flexDirection: "row", alignItems: "center", gap: 9 }, children: [
-      /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: "#f2f2f3", paddingHorizontal: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 700, color: "#000000", lineHeight: 30 }, children: String(game.metacritic ?? "\u2014") }) }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a3a3ab" }, children: "Metacritic" })
+      /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: "#0a84ff", paddingHorizontal: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 700, color: "#ffffff", lineHeight: 30 }, children: String(game.metacritic ?? "\u2014") }) }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d" }, children: "Metacritic" })
     ] });
   }
   function Row3({ rank, game, chart }) {
     const { rtl } = useLocale();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(FocusFrame, {}),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 18, fontFamily: "Inter-Regular", fontSize: 21, color: "#8a8a94", lineHeight: 30 }, children: String(rank) }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 18, fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e73", lineHeight: 30 }, children: String(rank) }),
       /* @__PURE__ */ (0, jsx)(Cover, { game, style: thumb, label: false }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 444, fontFamily: "Inter-Regular", fontSize: 21, color: "#f2f2f3", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: latin(rtl, game.title) }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 444, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: latin(rtl, game.title) }),
         /* @__PURE__ */ (0, jsx)(Detail, { chart, game })
       ] })
     ] });
@@ -66,7 +66,7 @@ import { Text, View } from '@ps5-react/core';
                 lightGame(key, game);
               },
               onBlur: () => unlight(key),
-              style: (_state) => [{ position: "relative", marginHorizontal: -12, flexDirection: "row", alignItems: "center", gap: 21, borderRadius: 12, padding: 12 }, _state.focused ? { backgroundColor: "#17171a" } : null],
+              style: (_state) => [{ position: "relative", marginHorizontal: -12, flexDirection: "row", alignItems: "center", gap: 21, borderRadius: 12, padding: 12 }, _state.focused ? { backgroundColor: "#282828" } : null],
               children: /* @__PURE__ */ (0, jsx)(Row3, { rank: index + 1, game, chart: chart.id })
             },
             game.id

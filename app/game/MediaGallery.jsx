@@ -13,9 +13,9 @@ import { FocusScope, Image, Text, View, motion } from '@ps5-react/core';
   var HINTS6 = [{ button: "cross", label: "hints.view" }, HINT.back, HINT.favorite, HINT.sections];
   function MainShot({ shots, index }) {
     const t2 = useT();
-    return /* @__PURE__ */ (0, jsxs)(View, { style: [{ position: "relative", overflow: "hidden", borderRadius: 18, backgroundColor: "#212125" }, SHOT], children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: [{ position: "relative", overflow: "hidden", borderRadius: 18, backgroundColor: "#323232" }, SHOT], children: [
       /* @__PURE__ */ (0, jsx)(Image, { source: { uri: shots[index].url }, style: [{ borderRadius: 18 }, SHOT], resizeMode: "cover" }),
-      /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", right: 24, bottom: 24, borderRadius: 14999, backgroundColor: "#000000b3", paddingHorizontal: 15, paddingVertical: 6 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#f2f2f3", lineHeight: 30 }, children: t2("game.shotPosition", { index: index + 1, total: shots.length }) }) })
+      /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", right: 24, bottom: 24, borderRadius: 14999, backgroundColor: "#1e1e1eb3", paddingHorizontal: 15, paddingVertical: 6 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", lineHeight: 30 }, children: t2("game.shotPosition", { index: index + 1, total: shots.length }) }) })
     ] });
   }
   function MediaGallery({ shots, nextDown, onOpen }) {
@@ -49,7 +49,7 @@ import { FocusScope, Image, Text, View, motion } from '@ps5-react/core';
                   initial: false,
                   animate: { opacity: i === index ? 1 : 0.45 },
                   transition: { duration: 0.2 },
-                  children: /* @__PURE__ */ (0, jsx)(Image, { source: { uri: shot.thumb }, style: [{ borderRadius: 9, backgroundColor: "#212125" }, THUMB], resizeMode: "cover" })
+                  children: /* @__PURE__ */ (0, jsx)(Image, { source: { uri: shot.thumb }, style: [{ borderRadius: 9, backgroundColor: "#323232" }, THUMB], resizeMode: "cover" })
                 }
               ),
               /* @__PURE__ */ (0, jsx)(FocusFrame, {})

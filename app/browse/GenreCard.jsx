@@ -45,13 +45,13 @@ import { Text, View, motion, useIsFocused } from '@ps5-react/core';
         selected: active2,
         whileFocus: { y: -6 },
         transition: spread,
-        style: (_state) => [{ width: 300, borderRadius: 18, backgroundColor: "#17171a", paddingHorizontal: 24, paddingBottom: 24, paddingTop: 216 }, active2 ? { backgroundColor: "#212125" } : null, _state.focused ? { backgroundColor: "#212125" } : null],
+        style: (_state) => [{ width: 300, borderRadius: 18, backgroundColor: "#282828", paddingHorizontal: 24, paddingBottom: 24, paddingTop: 216 }, active2 ? { backgroundColor: "#323232" } : null, _state.focused ? { backgroundColor: "#323232" } : null],
         children: [
           /* @__PURE__ */ (0, jsx)(Fan, { covers }),
           covers[0] && /* @__PURE__ */ (0, jsx)(Cover, { game: covers[0], style: [cover, front], label: false }),
-          active2 && /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", right: 18, top: 18, zIndex: 20, width: 36, height: 36, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#f2f2f3" }, children: /* @__PURE__ */ (0, jsx)(Icon, { name: "check", size: 14, strokeWidth: 3, color: colors.canvas }) }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#f2f2f3", lineHeight: 36 }, children: genreLabel(genre) }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#8a8a94", lineHeight: 30 }, children: t2("catalog.gameCount", { count }) }),
+          active2 && /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", right: 18, top: 18, zIndex: 20, width: 36, height: 36, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#0a84ff" }, children: /* @__PURE__ */ (0, jsx)(Icon, { name: "check", size: 14, strokeWidth: 3, color: colors.fg }) }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#f5f5f7", lineHeight: 36 }, children: genreLabel(genre) }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e73", lineHeight: 30 }, children: t2("catalog.gameCount", { count }) }),
           /* @__PURE__ */ (0, jsx)(Shine, { width: 200, round: "xl" }),
           /* @__PURE__ */ (0, jsx)(FocusFrame, { round: "xl" })
         ]

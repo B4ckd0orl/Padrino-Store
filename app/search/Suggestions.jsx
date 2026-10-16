@@ -27,13 +27,13 @@ import { FocusScope, ScrollView, Text, View, useIsFocused } from '@ps5-react/cor
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "full" }),
       /* @__PURE__ */ (0, jsx)(Icon, { name: icon, size: 18, color: focused ? colors.fg : colors.muted }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#f2f2f3", lineHeight: 36 }, children: label })
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#f5f5f7", lineHeight: 36 }, children: label })
     ] });
   }
   function Pill2({ label, icon, hints, onPress, onAction }) {
-    return /* @__PURE__ */ (0, jsx)(FocusScope, { onAction, children: /* @__PURE__ */ (0, jsx)(View, { onPress, style: (_state) => [{ height: 72, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, backgroundColor: "#17171a", paddingHorizontal: 30 }, _state.focused ? { backgroundColor: "#212125" } : null], children: /* @__PURE__ */ (0, jsx)(PillFace2, { label, icon, hints }) }) });
+    return /* @__PURE__ */ (0, jsx)(FocusScope, { onAction, children: /* @__PURE__ */ (0, jsx)(View, { onPress, style: (_state) => [{ height: 72, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, backgroundColor: "#282828", paddingHorizontal: 30 }, _state.focused ? { backgroundColor: "#323232" } : null], children: /* @__PURE__ */ (0, jsx)(PillFace2, { label, icon, hints }) }) });
   }
-  var Title3 = ({ children }) => /* @__PURE__ */ (0, jsx)(Text, { style: { marginBottom: 24, fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f2f2f3", lineHeight: 42, letterSpacing: -0.75 }, children });
+  var Title3 = ({ children }) => /* @__PURE__ */ (0, jsx)(Text, { style: { marginBottom: 24, fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f5f7", lineHeight: 42, letterSpacing: -0.75 }, children });
   function Suggestions({ onSearch, onOpenGame }) {
     const t2 = useT();
     const recent2 = useSearchHistory();
@@ -80,8 +80,8 @@ import { FocusScope, ScrollView, Text, View, useIsFocused } from '@ps5-react/cor
     const showLibrary = useShowLibrary();
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, alignItems: "center", justifyContent: "center", gap: 18, paddingBottom: 144 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: "searchX", size: 32, color: colors.subtle }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 900, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#f2f2f3", textAlign: "center", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 42 }, children: t2("search.noMatch", { query }) }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#a3a3ab", lineHeight: 36 }, children: t2("search.tryGenre") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 900, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#f5f5f7", textAlign: "center", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 42 }, children: t2("search.noMatch", { query }) }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#98989d", lineHeight: 36 }, children: t2("search.tryGenre") }),
       /* @__PURE__ */ (0, jsx)(View, { style: { marginTop: 24, width: 960, flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 18 }, children: GENRES.map(
         (genre) => /* @__PURE__ */ (0, jsx)(
           Pill2,

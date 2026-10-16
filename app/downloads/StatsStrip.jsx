@@ -16,11 +16,11 @@ import { Text, View } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsxs)(View, { style: [
       { height: 108, flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
       rtl ? { paddingRight: 30, paddingLeft: 24 } : { paddingLeft: 30, paddingRight: 24 },
-      first ? null : rtl ? { borderRightWidth: 2, borderColor: "#2a2a2f" } : { borderLeftWidth: 2, borderColor: "#2a2a2f" }
+      first ? null : rtl ? { borderRightWidth: 2, borderColor: "#48484a" } : { borderLeftWidth: 2, borderColor: "#48484a" }
     ], children: [
       /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 3 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: "#f2f2f3", lineHeight: 30 }, children: label }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 210, fontFamily: "Inter-Regular", fontSize: 21, color: "#a3a3ab", lineHeight: 30 }, children: value })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: "#f5f5f7", lineHeight: 30 }, children: label }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 210, fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", lineHeight: 30 }, children: value })
       ] }),
       chart
     ] });
@@ -30,7 +30,7 @@ import { Text, View } from '@ps5-react/core';
     const t2 = useT();
     const { network, disk } = useThroughput(id);
     const max = Math.max(...network, ...disk, 1);
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", borderTopWidth: 2, borderColor: "#2a2a2f" }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", borderTopWidth: 2, borderColor: "#48484a" }, children: [
       /* @__PURE__ */ (0, jsx)(
         Stat,
         {

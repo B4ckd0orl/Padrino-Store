@@ -38,7 +38,7 @@ import { ScrollView, View } from '@ps5-react/core';
             genre
           )
         ) }),
-        /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, bottom: 0, right: 0, width: 96, backgroundGradient: { type: "linear", to: "right", stops: [{ color: "transparent", offset: 0 }, { color: "#000000", offset: 1 }] } } })
+        /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, bottom: 0, right: 0, width: 96, backgroundGradient: { type: "linear", to: "right", stops: [{ color: "transparent", offset: 0 }, { color: "#ffffff", offset: 1 }] } } })
       ] })
     ] });
   }

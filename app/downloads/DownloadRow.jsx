@@ -75,16 +75,16 @@ import { Text, View } from '@ps5-react/core';
     const problem = job2.error && explainError(job2.error, Boolean(release.parts));
     const note = problem ? problem.action ? t2("downloads.problem", { title: problem.title, action: problem.action }) : problem.title : state === "downloaded" ? job2.message || t2("downloads.installHint") : "";
     const cdn = isOverdriveCdn(release.provider);
-    return /* @__PURE__ */ (0, jsxs)(View, { style: cdn ? { position: "relative", borderRadius: 18, backgroundColor: "#17171a" } : { overflow: "hidden", borderRadius: 18, borderWidth: 2, borderColor: "#2a2a2f", backgroundColor: "#17171a" }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: cdn ? { position: "relative", borderRadius: 18, backgroundColor: "#282828" } : { overflow: "hidden", borderRadius: 18, borderWidth: 2, borderColor: "#48484a", backgroundColor: "#282828" }, children: [
       cdn ? /* @__PURE__ */ (0, jsx)(CdnAura, { radius: 12, width: 904 }) : null,
       /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 30, paddingHorizontal: 30, paddingVertical: 24 }, children: [
         /* @__PURE__ */ (0, jsx)(Cover, { game, label: false, style: THUMB2 }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 15 }, children: [
           /* @__PURE__ */ (0, jsxs)(View, { style: { width: 870, flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between" }, children: [
-            /* @__PURE__ */ (0, jsx)(Text, { style: { width: 540, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#f2f2f3", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 42, letterSpacing: -0.68 }, children: job2.title }),
+            /* @__PURE__ */ (0, jsx)(Text, { style: { width: 540, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#f5f5f7", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 42, letterSpacing: -0.68 }, children: job2.title }),
             /* @__PURE__ */ (0, jsxs)(View, { style: { width: 315, flexDirection: "row", alignItems: "center", justifyContent: "flex-end", gap: 9 }, children: [
               cdn ? /* @__PURE__ */ (0, jsx)(CdnSpark, { size: 13 }) : null,
-              /* @__PURE__ */ (0, jsx)(Text, { style: cdn ? { maxWidth: 285, fontFamily: "Inter-Regular", fontSize: 21, color: "#f2f2f3", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { width: 315, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#8a8a94", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: meta })
+              /* @__PURE__ */ (0, jsx)(Text, { style: cdn ? { maxWidth: 285, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { width: 315, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e73", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: meta })
             ] })
           ] }),
           /* @__PURE__ */ (0, jsx)(
@@ -98,7 +98,7 @@ import { Text, View } from '@ps5-react/core';
               detail: shown === "finishing" ? t2("downloads.writingToDisk") : null
             }
           ),
-          note ? /* @__PURE__ */ (0, jsx)(Text, { style: problem ? { width: 870, fontFamily: "Inter-Regular", fontSize: 21, color: "#f2f2f3", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { width: 870, fontFamily: "Inter-Regular", fontSize: 21, color: "#a3a3ab", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: note }) : null
+          note ? /* @__PURE__ */ (0, jsx)(Text, { style: problem ? { width: 870, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { width: 870, fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: note }) : null
         ] }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 12 }, children: [
           /* @__PURE__ */ (0, jsx)(

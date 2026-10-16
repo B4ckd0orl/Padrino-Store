@@ -11,7 +11,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
 
   function Content2({ label, icon, iconFill, trailing, current }) {
     const focused = useIsFocused();
-    const color = current || focused ? colors.fg : "#f2f2f3a6";
+    const color = current || focused ? colors.fg : "#f5f5f7a6";
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "full" }),
       icon && /* @__PURE__ */ (0, jsx)(Icon, { name: icon, size: 18, color, fill: iconFill ? color : "none" }),

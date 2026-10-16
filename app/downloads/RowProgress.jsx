@@ -24,11 +24,11 @@ import { Text, View } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 12 }, children: [
       /* @__PURE__ */ (0, jsx)(ProgressBar, { fraction: complete ? 1 : fractionOf(progress), width: TRACK2, active: moving || complete }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { width: 870, flexDirection: "row", justifyContent: "space-between" }, children: [
-        waiting2 ? /* @__PURE__ */ (0, jsx)(View, { style: { width: 540 }, children: /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: LABEL, background: colors.surface, children: label }) }) : /* @__PURE__ */ (0, jsxs)(Text, { style: { width: 540, fontFamily: "Inter-Regular", fontSize: 21, color: "#f2f2f3", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: [
+        waiting2 ? /* @__PURE__ */ (0, jsx)(View, { style: { width: 540 }, children: /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: LABEL, background: colors.surface, children: label }) }) : /* @__PURE__ */ (0, jsxs)(Text, { style: { width: 540, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: [
           fitBytes(label, SPAN_MAX),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { color: "#a3a3ab" }, children: left ? fitBytes(`  ${left}`, SPAN_MAX) : "" })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { color: "#98989d" }, children: left ? fitBytes(`  ${left}`, SPAN_MAX) : "" })
         ] }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 315, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#a3a3ab", lineHeight: 30 }, children: size })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 315, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", lineHeight: 30 }, children: size })
       ] })
     ] });
   }

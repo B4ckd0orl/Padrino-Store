@@ -20,27 +20,27 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: armed ? "#000000" : "#f2f2f3", numberOfLines: 1, ellipsizeMode: "tail" }, children: name }),
-        armed ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#000000" }, children: t2("backup.confirm") }) : /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: focused ? colors.fg : colors.muted }, children: " " })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: armed ? "#1e1e1e" : "#f5f5f7", numberOfLines: 1, ellipsizeMode: "tail" }, children: name }),
+        armed ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#ffffff" }, children: t2("backup.confirm") }) : /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: focused ? colors.fg : colors.muted }, children: " " })
       ] })
     ] });
   }
   function FileRow({ file, armed, autoFocus, focusKey, onPress }) {
-    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, style: (_state) => armed ? { position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 18, backgroundColor: "#f2f2f3" } : [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 18 }, _state.focused ? { backgroundColor: "#212125" } : null], children: /* @__PURE__ */ (0, jsx)(FileFace, { name: file.name, armed }) });
+    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, style: (_state) => armed ? { position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 18, backgroundColor: "#0a84ff" } : [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 18 }, _state.focused ? { backgroundColor: "#323232" } : null], children: /* @__PURE__ */ (0, jsx)(FileFace, { name: file.name, armed }) });
   }
   function Empty() {
     const t2 = useT();
     return /* @__PURE__ */ (0, jsxs)(View, { style: { alignItems: "center", justifyContent: "center", paddingVertical: 72, gap: 6, paddingHorizontal: 18 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: "archive", size: 32, color: colors.subtle }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 18, fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f2f2f3", textAlign: "center", lineHeight: 36 }, children: t2("backup.none") }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 620, textAlign: "center", fontFamily: "Inter-Regular", fontSize: 20, color: "#8a8a94", lineHeight: 30 }, children: t2("backup.noneDetail") })
+      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 18, fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f5f7", textAlign: "center", lineHeight: 36 }, children: t2("backup.none") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 620, textAlign: "center", fontFamily: "Inter-Regular", fontSize: 20, color: "#6e6e73", lineHeight: 30 }, children: t2("backup.noneDetail") })
     ] });
   }
   function Status({ status }) {
     if (!status) return null;
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 18, paddingTop: 12 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: status.kind === "error" ? "alert" : "circleCheck", size: 22, color: colors.fg }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 19, color: "#a3a3ab", lineHeight: 27 }, children: status.text })
+      /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 19, color: "#98989d", lineHeight: 27 }, children: status.text })
     ] });
   }
   function BackupList({ onImport, onBack }) {

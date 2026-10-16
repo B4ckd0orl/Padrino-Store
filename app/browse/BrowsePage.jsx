@@ -26,20 +26,20 @@ import { FocusScope, ScrollView, Text, View } from '@ps5-react/core';
 
   function Footer() {
     const t2 = useT();
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { marginHorizontal: -48, marginTop: 120, flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderTopWidth: 2, borderColor: "#2a2a2f", paddingHorizontal: 48, paddingVertical: 48 }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { marginHorizontal: -48, marginTop: 120, flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderTopWidth: 2, borderColor: "#48484a", paddingHorizontal: 48, paddingVertical: 48 }, children: [
       /* @__PURE__ */ (0, jsx)(Logo, { color: colors.muted }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#8a8a94", lineHeight: 30 }, children: t2("browse.footer") })
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e73", lineHeight: 30 }, children: t2("browse.footer") })
     ] });
   }
   var MIGRATE_GUIDE = "github.com/B4ckd0orl/Padrino-Store";
   function FolderInstallNotice() {
     const t2 = useT();
     if (!useFolderInstall()) return null;
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 18, borderWidth: 2, borderColor: "#2a2a2f", backgroundColor: "#17171a", paddingHorizontal: 30, paddingVertical: 18 }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 18, borderWidth: 2, borderColor: "#48484a", backgroundColor: "#282828", paddingHorizontal: 30, paddingVertical: 18 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: "alert", size: 18, color: colors.muted }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a3a3ab", lineHeight: 30 }, children: t2("browse.folderInstall") }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "JetBrainsMono-Regular", fontSize: 21, color: "#f2f2f3", lineHeight: 30 }, children: MIGRATE_GUIDE })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", lineHeight: 30 }, children: t2("browse.folderInstall") }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "JetBrainsMono-Regular", fontSize: 21, color: "#f5f5f7", lineHeight: 30 }, children: MIGRATE_GUIDE })
       ] })
     ] });
   }

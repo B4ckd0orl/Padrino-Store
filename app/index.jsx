@@ -46,7 +46,7 @@ import { useInterfaceSounds } from './ui/sounds.js';
     const { rtl } = useLocale();
     return (
       // Arabic and Urdu mirror every row and right-align every paragraph from here.
-      /* @__PURE__ */ (0, jsxs)(View, { style: [{ width: 1920, height: 1080, backgroundColor: "#000000" }, { direction: rtl ? "rtl" : "ltr" }], children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: [{ width: 1920, height: 1080, backgroundColor: "#1e1e1e" }, { direction: rtl ? "rtl" : "ltr" }], children: [
         /* @__PURE__ */ (0, jsxs)(Header, { children: [
           /* @__PURE__ */ (0, jsx)(BrowseLayer, { shown: onBrowse }),
           onBrowse ? null : (
@@ -70,7 +70,7 @@ import { useInterfaceSounds } from './ui/sounds.js';
       const id = setTimeout(() => setBooted(true), 5e3);
       return () => clearTimeout(id);
     }, []);
-    return /* @__PURE__ */ (0, jsx)(View, { style: { width: 1920, height: 1080, backgroundColor: "#000000" }, children: booted
+    return /* @__PURE__ */ (0, jsx)(View, { style: { width: 1920, height: 1080, backgroundColor: "#1e1e1e" }, children: booted
       ? /* @__PURE__ */ (0, jsx)(LocaleProvider, { children: /* @__PURE__ */ (0, jsx)(StoreProvider, { children: /* @__PURE__ */ (0, jsx)(NavProvider, { children: /* @__PURE__ */ (0, jsx)(App, {}) }) }) })
       : /* @__PURE__ */ (0, jsx)(Splash, { onDone: () => setBooted(true) }) });
   }

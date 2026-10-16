@@ -6,7 +6,7 @@ import { jsx } from 'react/jsx-runtime';
 import { useEffect, useState } from 'react';
 import { Image, Text, View } from '@ps5-react/core';
 
-  var SKELETON = { backgroundColor: "#212125" };
+  var SKELETON = { backgroundColor: "#323232" };
   var tinted = /* @__PURE__ */ new Map();
   var skeleton = (tint) => tint ? tinted.get(tint) ?? tinted.set(tint, { backgroundColor: tint }).get(tint) : SKELETON;
   var STALL_MS = 8e3;
@@ -56,7 +56,7 @@ import { Image, Text, View } from '@ps5-react/core';
         uri
       ) });
     }
-    return /* @__PURE__ */ (0, jsx)(View, { style: [{ overflow: "hidden" }, style], children: /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#212125", padding: 12 }, children: label && /* @__PURE__ */ (0, jsx)(Text, { style: { width: "100%", textAlign: "center", fontFamily: "Inter-Regular", fontSize: 21, color: "#a3a3ab", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 30 }, children: game.title }) }) });
+    return /* @__PURE__ */ (0, jsx)(View, { style: [{ overflow: "hidden" }, style], children: /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#323232", padding: 12 }, children: label && /* @__PURE__ */ (0, jsx)(Text, { style: { width: "100%", textAlign: "center", fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 30 }, children: game.title }) }) });
   }
 
 export { Cover };

@@ -27,7 +27,7 @@ import { Image, Text } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsx)(
       Text,
       {
-        style: [{ fontFamily: "Inter-Regular", fontSize: 54, fontWeight: 600, color: "#f2f2f3", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 60, letterSpacing: -1.35 }, { width: px(width) }],
+        style: [{ fontFamily: "Inter-Regular", fontSize: 54, fontWeight: 600, color: "#f5f5f7", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 60, letterSpacing: -1.35 }, { width: px(width) }],
         children: game.title
       }
     );

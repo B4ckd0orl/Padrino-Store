@@ -13,8 +13,8 @@ import { px } from './scale.js';
   var R = 2.5;
   var TYPE = 6.5;
   var STYLE = {
-    ps5: { fill: "#ffffff", ink: "#000000", edge: "none" },
-    ps4: { fill: "#000000b3", ink: "#ffffff", edge: "#ffffff" }
+    ps5: { fill: "#ffffff", ink: "#1e1e1e", edge: "none" },
+    ps4: { fill: "#1e1e1eb3", ink: "#ffffff", edge: "#ffffff" }
   };
   function segment(i, count) {
     const left = i === 0 ? null : i * W + GAP / 2, right = i === count - 1 ? null : (i + 1) * W - GAP / 2;

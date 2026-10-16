@@ -73,7 +73,7 @@ import { px } from './scale.js';
     ]
   };
   var MIRRORED = { chevronLeft: "chevronRight", chevronRight: "chevronLeft", arrowLeft: "arrowRight" };
-  function Icon({ name, size = 16, color = "#f2f2f3", fill: fill2 = "none", strokeWidth = 2, fixed = false }) {
+  function Icon({ name, size = 16, color = "#f5f5f7", fill: fill2 = "none", strokeWidth = 2, fixed = false }) {
     const { rtl } = useLocale();
     const drawn = rtl && !fixed ? MIRRORED[name] ?? name : name;
     return /* @__PURE__ */ (0, jsx)(Svg, { width: px(size), height: px(size), viewBox: "0 0 24 24", children: ICONS[drawn].map((d) => /* @__PURE__ */ (0, jsx)(

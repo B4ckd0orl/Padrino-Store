@@ -11,7 +11,7 @@ import { View, motion, transitions } from '@ps5-react/core';
       active2 && /* @__PURE__ */ (0, jsx)(
         motion.View,
         {
-          style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, borderRadius: 14999, borderWidth: 2, borderColor: "#f2f2f3" },
+          style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, borderRadius: 14999, borderWidth: 2, borderColor: "#f5f5f7" },
           initial: { scale: 0.4, opacity: 0.7 },
           animate: { scale: 2.4, opacity: 0 },
           transition: { type: "tween", duration: 0.55, ease: "easeOut" }

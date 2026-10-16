@@ -40,7 +40,7 @@ import { Text, View } from '@ps5-react/core';
     "extraction-required": { icon: "circleCheck", text: "download.button.extraction-required" },
     removing: { icon: "delete", text: "download.button.removing" }
   };
-  var INK = { dark: { color: "#0d0d0f" }, light: { color: "#f2f2f3" }, disabled: { color: "#a3a3ab" } };
+  var INK = { dark: { color: "#ffffff" }, light: { color: "#f5f5f7" }, disabled: { color: "#98989d" } };
   function statusLine(status, progress, sizeGb) {
     if (status === "unavailable") return [t("download.status.unavailable"), null];
     if (status === "awaiting-browser") return [t("download.status.awaitingLink"), null];
