@@ -408,7 +408,7 @@
     "sources.section.versions": "Versi",
     "sources.showBrowser": "{count, plural, other {Tampilkan # sumber web browser}}",
     "sources.speed.archive": "Banyak koneksi sekaligus",
-    "sources.speed.mediafire": "Dibatasi sekitar 3 MB/s",
+    "sources.speed.mediafire": "Meningkat dengan jumlah koneksi",
     "sources.status.dlc": "DLC: butuh game dasar",
     "sources.status.package": "PKG palsu PS5 hanya bisa dipasang hingga firmware 11.60",
     "sources.status.patch": "Butuh game dasar, tidak bisa dipasang sendiri",

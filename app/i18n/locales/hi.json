@@ -408,7 +408,7 @@
     "sources.section.versions": "संस्करण",
     "sources.showBrowser": "{count, plural, one {# वेब ब्राउज़र स्रोत दिखाएँ} other {# वेब ब्राउज़र स्रोत दिखाएँ}}",
     "sources.speed.archive": "एक बार कई कनेक्शन",
-    "sources.speed.mediafire": "3 MB/s के पास सीमित",
+    "sources.speed.mediafire": "कनेक्शन के साथ बढ़ती है",
     "sources.status.dlc": "DLC: बेस गेम चाहिए",
     "sources.status.package": "PS5 के फ़ेक PKG केवल फ़र्मवेयर 11.60 तक इंस्टॉल होते हैं",
     "sources.status.patch": "बेस गेम चाहिए, अकेले इंस्टॉल नहीं होगा",

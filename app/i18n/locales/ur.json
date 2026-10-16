@@ -408,7 +408,7 @@
     "sources.section.versions": "ورژن",
     "sources.showBrowser": "{count, plural, one {دکھائیں # ویب براؤزر ذریعہ} other {دکھائیں # ویب براؤزر ذرائع}}",
     "sources.speed.archive": "ایک ساتھ متعدد رابطے",
-    "sources.speed.mediafire": "تقریباً 3 MB/s کے قریب محدود",
+    "sources.speed.mediafire": "رابطوں کی تعداد کے ساتھ تیز ہوتی ہے",
     "sources.status.dlc": "DLC: بنیادی گیم درکار ہے",
     "sources.status.package": "PS5 کے جعلی PKG صرف فرم ویئر 11.60 تک انسٹال ہوتے ہیں",
     "sources.status.patch": "بنیادی گیم درکار ہے، اکیلے انسٹال نہیں ہوتا",

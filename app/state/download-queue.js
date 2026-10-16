@@ -305,7 +305,11 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
               job2.error = `Queue save failed: ${error2.message}`;
               task.cancel();
             }
-            if (["extraction-required", "downloaded"].includes(job2.artifact.nextAction)) checkHeaders(job2, `${job2.downloadDestination}.part`, task);
+            // Header sniffing reads the growing .part file synchronously on the JS thread; only
+            // run it once the download is nearly done so it cannot stall the transfer loop.
+            if (["extraction-required", "downloaded"].includes(job2.artifact.nextAction) &&
+                job2.total > 0 && job2.written / job2.total > 0.9)
+              checkHeaders(job2, `${job2.downloadDestination}.part`, task);
           }
           emit2();
         });

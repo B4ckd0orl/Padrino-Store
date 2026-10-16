@@ -408,7 +408,7 @@
     "sources.section.versions": "バージョン",
     "sources.showBrowser": "{count, plural, other {Webブラウザの入手元を#件表示}}",
     "sources.speed.archive": "多数の接続を同時に使用",
-    "sources.speed.mediafire": "約3 MB/sに制限",
+    "sources.speed.mediafire": "接続数に応じて速度が向上",
     "sources.status.dlc": "DLC：本編が必要です",
     "sources.status.package": "PS5の偽PKGはファームウェア11.60までしかインストールできません",
     "sources.status.patch": "本編が必要です。単体ではインストールできません",

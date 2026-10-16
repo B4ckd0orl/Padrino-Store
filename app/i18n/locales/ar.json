@@ -408,7 +408,7 @@
     "sources.section.versions": "إصدار",
     "sources.showBrowser": "{count, plural, zero {عرض # مصدر متصفح ويب} one {عرض # مصدر متصفح ويب} two {عرض # مصدري متصفح ويب} few {عرض # مصادر متصفح ويب} many {عرض # مصدر متصفح ويب} other {عرض # مصدر متصفح ويب}}",
     "sources.speed.archive": "اتصالات متعددة في آن واحد",
-    "sources.speed.mediafire": "محدود بـ 3 MB/s تقريباً",
+    "sources.speed.mediafire": "تتسارع مع عدد الاتصالات",
     "sources.status.dlc": "محتوى إضافي: يحتاج اللعبة الأساسية",
     "sources.status.package": "لا تُثبَّت حزم PKG المزيفة لـ PS5 إلا حتى البرنامج الثابت 11.60",
     "sources.status.patch": "تحتاج اللعبة الأساسية، ولا تُثبَّت وحدها",

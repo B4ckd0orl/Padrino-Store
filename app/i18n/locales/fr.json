@@ -408,7 +408,7 @@
     "sources.section.versions": "Version",
     "sources.showBrowser": "{count, plural, one {Afficher # source navigateur} many {Afficher # millions de sources navigateur} other {Afficher # sources navigateur}}",
     "sources.speed.archive": "Connexions multiples",
-    "sources.speed.mediafire": "Limité près de 3 MB/s",
+    "sources.speed.mediafire": "S'adapte au nombre de connexions",
     "sources.status.dlc": "DLC : nécessite le jeu de base",
     "sources.status.package": "Les faux PKG PS5 ne s'installent que jusqu'au firmware 11.60",
     "sources.status.patch": "Nécessite le jeu de base, ne s'installe pas seul",

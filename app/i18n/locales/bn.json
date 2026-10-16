@@ -408,7 +408,7 @@
     "sources.section.versions": "সংস্করণ",
     "sources.showBrowser": "{count, plural, one {# ওয়েব ব্রাউজার উৎস দেখান} other {# ওয়েব ব্রাউজার উৎস দেখান}}",
     "sources.speed.archive": "একবারে অনেক সংযোগ",
-    "sources.speed.mediafire": "3 MB/s এর কাছাকাছি সীমাবদ্ধ",
+    "sources.speed.mediafire": "সংযোগ বাড়লে দ্রুত হয়",
     "sources.status.dlc": "DLC: বেস গেম লাগবে",
     "sources.status.package": "PS5-এর ফেক PKG শুধু ফার্মওয়্যার 11.60 পর্যন্ত ইনস্টল হয়",
     "sources.status.patch": "বেস গেম লাগবে, একা ইনস্টল হবে না",

@@ -408,7 +408,7 @@
     "sources.section.versions": "Version",
     "sources.showBrowser": "{count, plural, one {Zeige # Browser-Quelle} other {Zeige # Browser-Quellen}}",
     "sources.speed.archive": "Viele Verbindungen gleichzeitig",
-    "sources.speed.mediafire": "Begrenzt auf etwa 3 MB/s",
+    "sources.speed.mediafire": "Skaliert mit der Anzahl der Verbindungen",
     "sources.status.dlc": "DLC: braucht das Hauptspiel",
     "sources.status.package": "PS5-Fake-PKGs nur bis Firmware 11.60",
     "sources.status.patch": "Nur mit Hauptspiel installierbar",

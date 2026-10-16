@@ -657,6 +657,9 @@ private:
   double rate_budget_ = 0;
   Clock::time_point rate_refilled_{};
   std::size_t rate_turn_ = 0;
+  // Learned per-host AIMD windows, kept across jobs so multi-part volumes skip the ramp.
+  // Only the network thread touches this vector.
+  std::vector<Window> host_windows_;
   void refill_rate(Clock::time_point now);
   void resume_rate_paused(Job& job);
   std::uint64_t perform_us_ = 0;
@@ -1436,7 +1439,11 @@ void Service::run_job(const std::shared_ptr<Job>& job) {
     const unsigned limit = !job->ranged ? 1 : !capped ? job->request.connections :
       std::min(std::max(static_cast<unsigned>(capped/(1024*1024)), 2u), job->request.connections);
     const unsigned initial = job->request.adaptive ? std::min(8u, limit) : limit;
-    std::vector<Window> windows;
+    // Per-host AIMD windows persist across jobs so the next volume of a set starts at the
+    // learned width instead of ramping from `initial` again. Per-job counters reset here.
+    if (host_windows_.size() > 64) host_windows_.clear();
+    for (Window& w : host_windows_) { w.in_flight = 0; w.idle = 0; }
+    std::vector<Window>& windows = host_windows_;
     const auto window_for = [&](const std::string& url) {
       auto host = host_of(url);
       for (unsigned i = 0; i < windows.size(); ++i) if (windows[i].host == host) return i;

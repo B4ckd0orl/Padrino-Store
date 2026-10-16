@@ -6,7 +6,7 @@ import { Downloads } from '@ps5-react/core';
   // speeds (formatSpeed's MB is 1024 ** 2 bytes); 0 is no cap. Kept in settings.json beside the vibration, and
   // handed to the download engine at launch and on every change, running downloads included.
   // App updates are enqueued unlimited and never wait on it.
-  var LIMITS = [0, 50, 25, 10, 5, 2, 1];
+  var LIMITS = [0, 100, 75, 50, 25, 10, 5, 2, 1];
   var SETTINGS = "settings.json";
   var saved = loadList(SETTINGS, "settings").speedLimit;
   var speedLimit = LIMITS.includes(saved) ? saved : 0;

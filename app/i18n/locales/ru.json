@@ -408,7 +408,7 @@
     "sources.section.versions": "Версия",
     "sources.showBrowser": "{count, plural, one {Показать # источник веб-браузера} few {Показать # источника веб-браузера} many {Показать # источников веб-браузера} other {Показать # источников веб-браузера}}",
     "sources.speed.archive": "Много подключений одновременно",
-    "sources.speed.mediafire": "Ограничено около 3 МБ/с",
+    "sources.speed.mediafire": "Растёт с числом подключений",
     "sources.status.dlc": "DLC: нужна базовая игра",
     "sources.status.package": "Фейковые PKG для PS5 ставятся только до прошивки 11.60",
     "sources.status.patch": "Нужна базовая игра, отдельно не ставится",

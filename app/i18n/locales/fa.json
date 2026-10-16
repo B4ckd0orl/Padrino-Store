@@ -414,7 +414,7 @@
     "sources.section.versions": "نسخه",
     "sources.showBrowser": "{count, plural, one {نمایش # منبع مرورگر وب} other {نمایش # منبع مرورگر وب}}",
     "sources.speed.archive": "چند اتصال هم‌زمان",
-    "sources.speed.mediafire": "محدود به حدود ۳ مگابایت بر ثانیه",
+    "sources.speed.mediafire": "با تعداد اتصال‌ها سریع‌تر می‌شود",
     "sources.status.dlc": "DLC: بازی اصلی لازم است",
     "sources.status.package": "PKGهای جعلی PS5 فقط تا فریمور 11.60 نصب می‌شوند",
     "sources.status.patch": "بازی اصلی لازم است، به‌تنهایی نصب نمی‌شود",

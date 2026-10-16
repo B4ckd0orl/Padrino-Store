@@ -408,7 +408,7 @@
     "sources.section.versions": "版本",
     "sources.showBrowser": "{count, plural, other {显示 # 个网页浏览器来源}}",
     "sources.speed.archive": "支持多连接同时下载",
-    "sources.speed.mediafire": "速度上限约 3 MB/s",
+    "sources.speed.mediafire": "随连接数提升速度",
     "sources.status.dlc": "DLC：需要本体游戏",
     "sources.status.package": "PS5 伪 PKG 仅能在 11.60 及以下固件安装",
     "sources.status.patch": "需要本体游戏，无法单独安装",

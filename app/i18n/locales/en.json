@@ -416,7 +416,7 @@
     "sources.section.versions": "Version",
     "sources.showBrowser": "{count, plural, one {Show # web browser source} other {Show # web browser sources}}",
     "sources.speed.archive": "Many connections at once",
-    "sources.speed.mediafire": "Capped near 3 MB/s",
+    "sources.speed.mediafire": "Scales with connections",
     "sources.status.dlc": "DLC: needs the base game",
     "sources.status.package": "PS5 fake PKGs only install on firmware 11.60 or older",
     "sources.status.patch": "Needs the base game, won't install alone",
