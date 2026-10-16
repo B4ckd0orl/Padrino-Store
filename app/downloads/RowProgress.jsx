@@ -13,7 +13,7 @@ import { ShimmerText } from '../ui/ShimmerText.jsx';
 import { colors } from '../ui/colors.js';
 import { Text, View } from '@ps5-react/core';
 
-  var TRACK2 = 580;
+  var TRACK2 = 416;
   var LABEL = { fontFamily: "Inter-Regular", fontSize: 21, lineHeight: 30 };
   function RowProgress({ id, label, moving, waiting: waiting2, complete, detail: detail2 }) {
     const t2 = useT();
@@ -23,12 +23,12 @@ import { Text, View } from '@ps5-react/core';
     const size = detail2 ?? (complete ? formatBytes(total || written) : total ? t2("download.status.progress", { done: formatBytes(written), total: formatBytes(total) }) : written ? t2("download.soFar", { size: formatBytes(written) }) : "");
     return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 12 }, children: [
       /* @__PURE__ */ (0, jsx)(ProgressBar, { fraction: complete ? 1 : fractionOf(progress), width: TRACK2, active: moving || complete }),
-      /* @__PURE__ */ (0, jsxs)(View, { style: { width: 870, flexDirection: "row", justifyContent: "space-between" }, children: [
-        waiting2 ? /* @__PURE__ */ (0, jsx)(View, { style: { width: 540 }, children: /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: LABEL, background: colors.surface, children: label }) }) : /* @__PURE__ */ (0, jsxs)(Text, { style: { width: 540, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", justifyContent: "space-between" }, children: [
+        waiting2 ? /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1 }, children: /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: LABEL, background: colors.surface, children: label }) }) : /* @__PURE__ */ (0, jsxs)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: [
           fitBytes(label, SPAN_MAX),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { color: "#98989d" }, children: left ? fitBytes(`  ${left}`, SPAN_MAX) : "" })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { color: "#a39c92" }, children: left ? fitBytes(`  ${left}`, SPAN_MAX) : "" })
         ] }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 315, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", lineHeight: 30 }, children: size })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 315, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: size })
       ] })
     ] });
   }

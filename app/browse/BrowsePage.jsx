@@ -26,26 +26,26 @@ import { FocusScope, ScrollView, Text, View } from '@ps5-react/core';
 
   function Footer() {
     const t2 = useT();
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { marginHorizontal: -48, marginTop: 120, flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderTopWidth: 2, borderColor: "#48484a", paddingHorizontal: 48, paddingVertical: 48 }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { marginHorizontal: -48, marginTop: 120, flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderTopWidth: 1, borderColor: "#e09f3e33", paddingHorizontal: 48, paddingVertical: 48 }, children: [
       /* @__PURE__ */ (0, jsx)(Logo, { color: colors.muted }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e73", lineHeight: 30 }, children: t2("browse.footer") })
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", lineHeight: 30 }, children: t2("browse.footer") })
     ] });
   }
   var MIGRATE_GUIDE = "github.com/B4ckd0orl/Padrino-Store";
   function FolderInstallNotice() {
     const t2 = useT();
     if (!useFolderInstall()) return null;
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 18, borderWidth: 2, borderColor: "#48484a", backgroundColor: "#282828", paddingHorizontal: 30, paddingVertical: 18 }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 18, borderWidth: 2, borderColor: "#35302a", backgroundColor: "#1c1a17", paddingHorizontal: 30, paddingVertical: 18 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: "alert", size: 18, color: colors.muted }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", lineHeight: 30 }, children: t2("browse.folderInstall") }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "JetBrainsMono-Regular", fontSize: 21, color: "#f5f5f7", lineHeight: 30 }, children: MIGRATE_GUIDE })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("browse.folderInstall") }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "JetBrainsMono-Regular", fontSize: 21, color: "#f5f1ea", lineHeight: 30 }, children: MIGRATE_GUIDE })
       ] })
     ] });
   }
   var Sections = (0, memo)(function Sections2({ onOpenFilters }) {
     const onAction = useFavoriteAction();
-    return /* @__PURE__ */ (0, jsx)(FocusScope, { trap: true, onAction, children: /* @__PURE__ */ (0, jsxs)(ScrollView, { style: { flex: 1, gap: 60, paddingHorizontal: 48 }, children: [
+    return /* @__PURE__ */ (0, jsx)(FocusScope, { onAction, children: /* @__PURE__ */ (0, jsxs)(ScrollView, { style: { flex: 1, gap: 60, paddingHorizontal: 48 }, children: [
       /* @__PURE__ */ (0, jsxs)(View, { scrollAnchor: true, style: { gap: 24, paddingTop: 36 }, children: [
         /* @__PURE__ */ (0, jsx)(FolderInstallNotice, {}),
         /* @__PURE__ */ (0, jsx)(Spotlight, {})

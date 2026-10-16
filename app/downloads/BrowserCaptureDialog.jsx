@@ -27,11 +27,11 @@ import { FocusScope, Text, View } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsx)(FocusScope, { trap: true, autoFocus: true, onBack: () => {
       close();
       return true;
-    }, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#1e1e1ef2" }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1380, gap: 30, borderRadius: 18, borderWidth: 2, borderColor: "#48484a", backgroundColor: "#282828", padding: 48 }, children: [
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, color: "#f5f5f7", lineHeight: 48 }, children: t2("capture.title") }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 1260, fontFamily: "Inter-Regular", fontSize: 24, color: "#98989d", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 36 }, children: job2.title }),
+    }, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#121110f2" }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1380, gap: 30, borderRadius: 18, borderWidth: 2, borderColor: "#35302a", backgroundColor: "#1c1a17", padding: 48 }, children: [
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, color: "#f5f1ea", lineHeight: 48 }, children: t2("capture.title") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 1260, fontFamily: "Inter-Regular", fontSize: 24, color: "#a39c92", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 36 }, children: job2.title }),
       /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: INSTRUCTION, background: colors.surface, children: t2(`capture.${job2.captureState}`) }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 1260, fontFamily: "Inter-Regular", fontSize: 24, color: "#98989d", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 36 }, children: t2("capture.detail") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 1260, fontFamily: "Inter-Regular", fontSize: 24, color: "#a39c92", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 36 }, children: t2("capture.detail") }),
       /* @__PURE__ */ (0, jsx)(Button2, { label: t2("download.enterLink"), variant: "outline", onPress: () => {
         downloadQueue().cancelBrowserCapture(job2.id, { manual: true });
       } }),

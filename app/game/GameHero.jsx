@@ -6,7 +6,7 @@ import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { useState } from 'react';
 import { BackLink } from './BackLink.jsx';
 import { DownloadButton } from './DownloadButton.jsx';
-import { COVER, HERO, LOGO } from './art.js';
+  import { COVER, LOGO } from './art.js';
 import { canDownload } from './releases.js';
 import { SPAN_MAX, fitBytes } from '../i18n/fit.js';
 import { latin, useLocale, useT } from '../i18n/index.js';
@@ -28,7 +28,7 @@ import { Image, Text, View, motion } from '@ps5-react/core';
       Image,
       {
         source: { uri },
-        style: [{ position: "absolute", left: 0, top: -96, backgroundColor: "#323232" }, game.art.tint ? { ...HERO, backgroundColor: game.art.tint } : HERO],
+        style: [{ position: "absolute", left: 0, right: 0, top: 0, height: 900, backgroundColor: "#26231f" }, game.art.tint ? { backgroundColor: game.art.tint } : null],
         resizeMode: "cover",
         onError: () => setFailed((previous) => [...previous, uri])
       },
@@ -39,17 +39,17 @@ import { Image, Text, View, motion } from '@ps5-react/core';
     const t2 = useT();
     const { rtl } = useLocale();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
-      /* @__PURE__ */ (0, jsx)(motion.View, { variants: rise, style: { marginTop: 12 }, children: /* @__PURE__ */ (0, jsxs)(Text, { style: { width: 960, fontFamily: "Inter-Regular", fontSize: 23, color: "#98989d", numberOfLines: 1, ellipsizeMode: "tail" }, children: [
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: rise, style: { marginTop: 12 }, children: /* @__PURE__ */ (0, jsxs)(Text, { style: { width: 960, fontFamily: "Inter-Regular", fontSize: 23, color: "#a39c92", numberOfLines: 1, ellipsizeMode: "tail" }, children: [
         latin(rtl, fitBytes(game.developer, SPAN_MAX - 3)),
-        game.developer && game.genres.length > 0 ? /* @__PURE__ */ (0, jsx)(Text, { style: { color: "#6e6e73" }, children: "  \xB7  " }) : null,
+        game.developer && game.genres.length > 0 ? /* @__PURE__ */ (0, jsx)(Text, { style: { color: "#6e675e" }, children: "  \xB7  " }) : null,
         fitBytes(game.genres.map(genreLabel).join(", "), SPAN_MAX)
       ] }) }),
       /* @__PURE__ */ (0, jsxs)(motion.View, { variants: rise, style: { marginTop: 24, flexDirection: "row", alignItems: "center", gap: 36 }, children: [
         game.metacritic ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12 }, children: [
-          /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: "#0a84ff", paddingHorizontal: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 700, color: "#ffffff", lineHeight: 30 }, children: String(game.metacritic) }) }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", lineHeight: 30 }, children: t2("game.metacritic") })
+          /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: "#ffffff1a", paddingHorizontal: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 700, color: "#f5f1ea", lineHeight: 30 }, children: String(game.metacritic) }) }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("game.metacritic") })
         ] }) : null,
-        game.year ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", lineHeight: 30 }, children: t2("game.released", { year: String(game.year) }) }) : null
+        game.year ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("game.released", { year: String(game.year) }) }) : null
       ] })
     ] });
   }
@@ -59,14 +59,14 @@ import { Image, Text, View, motion } from '@ps5-react/core';
     const { toggleWish } = useStoreActions();
     const wished = useWishlist().includes(listedId(game.id));
     const nextDown = game.shots.length > 0 ? "game:shots" : void 0;
-    return /* @__PURE__ */ (0, jsxs)(View, { scrollAnchor: true, style: { position: "relative", overflow: "hidden", borderBottomWidth: 2, borderColor: "#48484a" }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { scrollAnchor: true, style: { position: "relative", overflow: "hidden", borderBottomWidth: 1, borderColor: "#e09f3e33" }, children: [
       /* @__PURE__ */ (0, jsx)(Backdrop, { game }, game.id),
       /* @__PURE__ */ (0, jsx)(View, { style: rtl ? { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "left", stops: [{ color: "#000000", offset: 0 }, { color: "#ffffffd9", offset: 0.45 }, { color: "#ffffff40", offset: 1 }] } } : { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "right", stops: [{ color: "#000000", offset: 0 }, { color: "#ffffffd9", offset: 0.45 }, { color: "#ffffff40", offset: 1 }] } } }),
       /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "top", stops: [{ color: "#000000", offset: 0 }, { color: "transparent", offset: 0.4 }, { color: "#ffffff66", offset: 1 }] } } }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { paddingHorizontal: 48, paddingTop: 36, paddingBottom: 72 }, children: [
         /* @__PURE__ */ (0, jsx)(BackLink, { onPress: onBack }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { marginTop: 60, flexDirection: "row", alignItems: "flex-end", gap: 60 }, children: [
-          /* @__PURE__ */ (0, jsx)(View, { style: { width: 288, height: 384, overflow: "hidden", borderRadius: 12, backgroundColor: "#282828" }, children: /* @__PURE__ */ (0, jsx)(Cover, { game, style: COVER }) }),
+          /* @__PURE__ */ (0, jsx)(View, { style: { width: 288, height: 384, overflow: "hidden", borderRadius: 12, backgroundColor: "#1c1a17" }, children: /* @__PURE__ */ (0, jsx)(Cover, { game, style: COVER }) }),
           /* @__PURE__ */ (0, jsxs)(motion.View, { variants: column, initial: "hidden", animate: "show", style: { flex: 1 }, children: [
             /* @__PURE__ */ (0, jsx)(motion.View, { variants: rise, style: { marginBottom: 24 }, children: /* @__PURE__ */ (0, jsx)(GameLogo, { game, width: LOGO.width, height: LOGO.height }) }),
             /* @__PURE__ */ (0, jsx)(Meta, { game }),

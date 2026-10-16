@@ -30,9 +30,9 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View } from '@ps5-react/
   function Features({ features: features2 }) {
     const t2 = useT();
     return /* @__PURE__ */ (0, jsxs)(View, { children: [
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f5f7", lineHeight: 42, letterSpacing: -0.75 }, children: t2("game.features") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f1ea", lineHeight: 42, letterSpacing: -0.75 }, children: t2("game.features") }),
       /* @__PURE__ */ (0, jsx)(View, { style: { marginTop: 24, flexDirection: "row", flexWrap: "wrap", gap: 12 }, children: features2.map(
-        (feature) => /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 9, backgroundColor: "#323232", paddingHorizontal: 18, paddingVertical: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7e6", lineHeight: 30 }, children: featureLabel(feature) }) }, feature)
+        (feature) => /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 9, backgroundColor: "#26231f", paddingHorizontal: 18, paddingVertical: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1eae6", lineHeight: 30 }, children: featureLabel(feature) }) }, feature)
       ) })
     ] });
   }
@@ -40,7 +40,7 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View } from '@ps5-react/
     const t2 = useT();
     return /* @__PURE__ */ (0, jsxs)(View, { scrollAnchor: true, style: { marginTop: 120 }, children: [
       /* @__PURE__ */ (0, jsx)(SectionHeader, { title: t2("game.moreLikeThis") }),
-      /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", columnGap: 24 }, children: games2.map(
+      /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", columnGap: 24 }, children: games2.slice(0, 5).map(
         (other) => /* @__PURE__ */ (0, jsx)(GameCard, { game: other, width: CARD_WIDTH2, onPress: () => onOpenGame(other) }, other.id)
       ) })
     ] });
@@ -89,7 +89,7 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View } from '@ps5-react/
         /* @__PURE__ */ (0, jsx)(GameHero, { onRequestDialog: setDialog, game, download, onBack, onDownloaded: () => setToast("complete") }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { paddingHorizontal: 48, paddingTop: 60, paddingBottom: 96 }, children: [
           /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 84 }, children: [
-            /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1308, gap: 84 }, children: [
+            /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1052, gap: 84 }, children: [
               game.shots.length > 0 ? /* @__PURE__ */ (0, jsx)(MediaGallery, { shots: game.shots, nextDown: about.length > 0 ? "game:about" : void 0, onOpen: setViewing }) : null,
               about.length > 0 ? /* @__PURE__ */ (0, jsx)(About, { paragraphs: about }) : null,
               game.features.length > 0 ? /* @__PURE__ */ (0, jsx)(Features, { features: game.features }) : null

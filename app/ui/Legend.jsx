@@ -36,7 +36,7 @@ import { View } from '@ps5-react/core';
     }, [hints]);
   }
   var Hints = (0, memo)(ButtonHints);
-  function Legend({ screen: screen2 }) {
+  function Legend({ screen: screen2, style }) {
     const [hints, setHints] = (0, useState)(() => registered2.at(-1)?.hints ?? null);
     (0, useEffect)(() => {
       listeners3.add(setHints);
@@ -44,7 +44,7 @@ import { View } from '@ps5-react/core';
       return () => listeners3.delete(setHints);
     }, []);
     if (!HINTS[screen2]) return null;
-    return /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", left: 0, right: 0, bottom: 0 }, children: /* @__PURE__ */ (0, jsx)(Hints, { hints: hints ?? HINTS[screen2] }) });
+    return /* @__PURE__ */ (0, jsx)(View, { style: [{ position: "absolute", left: 0, right: 0, bottom: 0 }, style], children: /* @__PURE__ */ (0, jsx)(Hints, { hints: hints ?? HINTS[screen2] }) });
   }
 
 export { HINT, Legend, useHints };

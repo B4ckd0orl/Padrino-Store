@@ -4,7 +4,7 @@
 import { jsx } from 'react/jsx-runtime';
 import { View, motion } from '@ps5-react/core';
 
-  var BLOCK = { backgroundColor: "#323232", borderRadius: 9 };
+  var BLOCK = { backgroundColor: "#26231f", borderRadius: 9 };
   var pulse = {
     initial: { opacity: 1 },
     animate: { opacity: 0.5 },

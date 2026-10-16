@@ -12,9 +12,9 @@ import { px } from './scale.js';
     width: px(1.5),
     size: 3,
     stops: [
-      { color: "#ffffff00", offset: 0.25 },
-      { color: "#ffffffc7", offset: 0.5 },
-      { color: "#ffffff00", offset: 0.75 }
+      { color: "#e09f3e00", offset: 0.25 },
+      { color: "#f7c66fdd", offset: 0.5 },
+      { color: "#e09f3e00", offset: 0.75 }
     ]
   };
   var fade = {
@@ -49,8 +49,8 @@ import { px } from './scale.js';
       borderColor: color
     });
     return /* @__PURE__ */ (0, jsxs)(motion.View, { ...breathe, style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }, children: [
-      /* @__PURE__ */ (0, jsx)(View, { style: ring2(3, "#0a84ff59") }),
-      /* @__PURE__ */ (0, jsx)(View, { style: ring2(6, "#0a84ff21") })
+      /* @__PURE__ */ (0, jsx)(View, { style: ring2(3, "#e09f3e59") }),
+      /* @__PURE__ */ (0, jsx)(View, { style: ring2(6, "#e09f3e21") })
     ] });
   }
   var RING_RADIUS = { full: 999, lg: 12, md: 10 };

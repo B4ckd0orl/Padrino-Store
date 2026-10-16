@@ -27,27 +27,27 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View, useIsFocused } fro
     const focused = useIsFocused();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
-      facet === "platform" ? /* @__PURE__ */ (0, jsx)(PlatformBadge, { platforms: [value] }) : /* @__PURE__ */ (0, jsx)(Text, { style: active2 ? { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#ffffff" } : { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f5f7" }, children: label }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: active2 ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#ffffffb3", lineHeight: 30 } : count === 0 ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e7399", lineHeight: 30 } : focused ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e73", lineHeight: 30 }, children: t2("catalog.gameCount", { count }) })
+facet === "platform" ? /* @__PURE__ */ (0, jsx)(PlatformBadge, { platforms: [value] }) : /* @__PURE__ */ (0, jsx)(Text, { style: active2 ? { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#1a1408" } : { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f1ea" }, children: label }),
+    /* @__PURE__ */ (0, jsx)(Text, { style: active2 ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#1a1408b3", lineHeight: 30 } : count === 0 ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e99", lineHeight: 30 } : focused ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", lineHeight: 30 }, children: t2("catalog.gameCount", { count }) })
     ] });
   }
   var reachable2 = ({ count, active: active2 }) => count > 0 || active2;
   function Tile({ focusKey, autoFocus, ...props }) {
     const { active: active2, onPress } = props;
-    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, focusable: reachable2(props), onPress, style: (_state) => active2 ? { height: 108, flex: 1, justifyContent: "center", gap: 9, borderRadius: 12, backgroundColor: "#0a84ff", paddingHorizontal: 24 } : [{ height: 108, flex: 1, justifyContent: "center", gap: 9, borderRadius: 12, borderWidth: 2, borderColor: "#48484a", paddingHorizontal: 24 }, _state.focused ? { backgroundColor: "#323232" } : null], children: /* @__PURE__ */ (0, jsx)(TileFace, { ...props }) });
+    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, focusable: reachable2(props), onPress, style: (_state) => active2 ? { height: 108, flex: 1, justifyContent: "center", gap: 9, borderRadius: 12, backgroundColor: "#e09f3e", paddingHorizontal: 24 } : [{ height: 108, flex: 1, justifyContent: "center", gap: 9, borderRadius: 12, backgroundColor: "#1c1a17", paddingHorizontal: 24 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(TileFace, { ...props }) });
   }
   function PillFace({ label, count, active: active2 }) {
     const focused = useIsFocused();
     const empty = count === 0 && !active2;
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "full" }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: active2 ? { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: "#ffffff", lineHeight: 30 } : empty ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e7399", lineHeight: 30 } : focused ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7d9", lineHeight: 30 }, children: label }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: active2 ? { fontFamily: "Inter-Regular", fontSize: 20, color: "#ffffff99" } : { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e6e73" }, children: formatNumber2(count) })
+/* @__PURE__ */ (0, jsx)(Text, { style: active2 ? { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: "#1a1408", lineHeight: 30 } : empty ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e99", lineHeight: 30 } : focused ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ead9", lineHeight: 30 }, children: label }),
+    /* @__PURE__ */ (0, jsx)(Text, { style: active2 ? { fontFamily: "Inter-Regular", fontSize: 20, color: "#1a140899" } : { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e675e" }, children: formatNumber2(count) })
     ] });
   }
   function Pill({ label, count, active: active2, onPress, focusKey, autoFocus, value }) {
     const cdn = value === "padrino cdn" && !active2;
-    return /* @__PURE__ */ (0, jsxs)(View, { focusKey, autoFocus, focusable: reachable2({ count, active: active2 }), onPress, style: (_state2) => active2 ? { height: 60, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, backgroundColor: "#0a84ff", paddingHorizontal: 24 } : cdn ? { position: "relative", height: 60, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, backgroundColor: "#282828", paddingHorizontal: 24 } : [{ height: 60, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, backgroundColor: "#282828", paddingHorizontal: 24 }, _state2.focused ? { backgroundColor: "#3a3a3c" } : null], children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey, autoFocus, focusable: reachable2({ count, active: active2 }), onPress, style: (_state2) => active2 ? { height: 60, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, backgroundColor: "#e09f3e", paddingHorizontal: 24 } : cdn ? { position: "relative", height: 60, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, backgroundColor: "#1c1a17", paddingHorizontal: 24 } : [{ height: 60, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, backgroundColor: "#1c1a17", paddingHorizontal: 24 }, _state2.focused ? { backgroundColor: "#302c27" } : null], children: [
       cdn ? /* @__PURE__ */ (0, jsx)(CdnAura, { radius: 20, width: 170 }) : null,
       cdn ? /* @__PURE__ */ (0, jsx)(CdnSpark, { size: 14 }) : null,
       /* @__PURE__ */ (0, jsx)(PillFace, { label, count, active: active2 })
@@ -56,9 +56,9 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View, useIsFocused } fro
   function More({ count, onPress }) {
     const t2 = useT();
     const focused = useIsFocused();
-    return /* @__PURE__ */ (0, jsxs)(View, { onPress, style: (_state3) => [{ height: 60, flexDirection: "row", alignItems: "center", borderRadius: 14999, borderWidth: 2, borderColor: "#48484a", paddingHorizontal: 24 }, _state3.focused ? { backgroundColor: "#3a3a3c" } : null], children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { onPress, style: (_state3) => [{ height: 60, flexDirection: "row", alignItems: "center", borderRadius: 14999, backgroundColor: "#1c1a17", paddingHorizontal: 24 }, _state3.focused ? { backgroundColor: "#302c27" } : null], children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "full" }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: focused ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", lineHeight: 30 }, children: t2("filters.more", { count }) })
+      /* @__PURE__ */ (0, jsx)(Text, { style: focused ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("filters.more", { count }) })
     ] });
   }
   function ClearFacet({ onPress }) {
@@ -66,7 +66,7 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View, useIsFocused } fro
     const focused = useIsFocused();
     return /* @__PURE__ */ (0, jsxs)(View, { onPress, style: { borderRadius: 6, paddingHorizontal: 6 }, children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
-      /* @__PURE__ */ (0, jsx)(Text, { style: focused ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", lineHeight: 30 }, children: t2("filters.clearFacet") })
+      /* @__PURE__ */ (0, jsx)(Text, { style: focused ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("filters.clearFacet") })
     ] });
   }
   function Facet({ facet, store, autoFocus }) {
@@ -78,11 +78,11 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View, useIsFocused } fro
     const tiles = facet.options.length <= TILE_LIMIT;
     const folded = !tiles && !expanded && facet.options.length > PILL_LIMIT;
     const shown = folded ? facet.options.filter((option, index) => index < PILL_LIMIT || picked.includes(option.value)) : facet.options;
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 18, borderBottomWidth: 2, borderColor: "#48484a", paddingVertical: 30 }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 18, borderBottomWidth: 1, borderColor: "#e09f3e33", paddingVertical: 30 }, children: [
       /* @__PURE__ */ (0, jsxs)(View, { style: { height: 36, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#98989d", letterSpacing: 1.6 }, children: facetTitle(facet.key).toUpperCase() }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#a39c92", letterSpacing: 1.6 }, children: facetTitle(facet.key).toUpperCase() }),
         picked.length > 0 && /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 18 }, children: [
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", lineHeight: 30 }, children: t2("filters.selected", { count: picked.length }) }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", lineHeight: 30 }, children: t2("filters.selected", { count: picked.length }) }),
           /* @__PURE__ */ (0, jsx)(ClearFacet, { onPress: () => {
             store.setFilters({ ...store.filters, [facet.key]: [] });
             focusLater(`filters:${facet.key}`);
@@ -129,11 +129,11 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View, useIsFocused } fro
     return (
       // A modal: the shoulder buttons would switch the header's section under it, so every action stops here.
       /* @__PURE__ */ (0, jsxs)(FocusScope, { trap: true, onBack: close, onAction: (action) => action !== "triangle" && action !== "options" || close(), children: [
-        /* @__PURE__ */ (0, jsxs)(View, { style: { height: 96, flexDirection: "row", alignItems: "center", gap: 18, borderBottomWidth: 2, borderColor: "#48484a" }, children: [
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f5f7", lineHeight: 42, letterSpacing: -0.75 }, children: t2("filters.title") }),
-          count > 0 && /* @__PURE__ */ (0, jsx)(View, { style: { height: 36, minWidth: 36, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#0a84ff", paddingHorizontal: 12 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#ffffff" }, children: String(count) }) }),
+        /* @__PURE__ */ (0, jsxs)(View, { style: { height: 96, flexDirection: "row", alignItems: "center", gap: 18, borderBottomWidth: 1, borderColor: "#e09f3e33" }, children: [
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f1ea", lineHeight: 42, letterSpacing: -0.75 }, children: t2("filters.title") }),
+          count > 0 && /* @__PURE__ */ (0, jsx)(View, { style: { height: 36, minWidth: 36, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#e09f3e", paddingHorizontal: 12 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#1a1408" }, children: String(count) }) }),
           /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1 } }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", lineHeight: 30 }, children: t2("catalog.gameCount", { count: total }) })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("catalog.gameCount", { count: total }) })
         ] }),
         /* @__PURE__ */ (0, jsxs)(ScrollView, { style: { marginHorizontal: -24, flex: 1, paddingHorizontal: 24 }, children: [
           FACETS.map((facet, index) => /* @__PURE__ */ (0, jsx)(Facet, { facet, store, autoFocus: index === 0 }, facet.key)),

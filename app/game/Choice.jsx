@@ -16,25 +16,25 @@ import { Text, View } from '@ps5-react/core';
         /* @__PURE__ */ (0, jsx)(FocusRing, {}),
         /* @__PURE__ */ (0, jsx)(CdnSpark, { size: 20 }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f5f7", numberOfLines: 1, ellipsizeMode: "tail" }, children: magic.name }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { width: 276, fontFamily: "Inter-Regular", fontSize: 20, color: "#f5f5f7bf", numberOfLines: 1, ellipsizeMode: "tail" }, children: magic.detail })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail" }, children: magic.name }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { width: 276, fontFamily: "Inter-Regular", fontSize: 20, color: "#f5f1eabf", numberOfLines: 1, ellipsizeMode: "tail" }, children: magic.detail })
         ] }),
         onPress ? /* @__PURE__ */ (0, jsx)(Icon, { name: "chevronRight", size: 16, color: colors.fg }) : null
       ] });
     }
     if (!onPress) {
-      return /* @__PURE__ */ (0, jsx)(View, { style: { paddingVertical: 12 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { width: 408, fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e73", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: text }) });
+      return /* @__PURE__ */ (0, jsx)(View, { style: { paddingVertical: 12 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { width: 408, fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: text }) });
     }
-    return /* @__PURE__ */ (0, jsxs)(View, { focusKey, nextFocusDown, onPress, style: (_state2) => [{ position: "relative", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderRadius: 9, borderWidth: 2, borderColor: "#48484a", paddingHorizontal: 18, paddingVertical: 12 }, _state2.focused ? { backgroundColor: "#323232" } : null], children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey, nextFocusDown, onPress, style: (_state2) => [{ position: "relative", flexDirection: "row", alignItems: "center", justifyContent: "space-between", borderRadius: 9, borderWidth: 2, borderColor: "#35302a", paddingHorizontal: 18, paddingVertical: 12 }, _state2.focused ? { backgroundColor: "#26231f" } : null], children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 339, fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: text }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 339, fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: text }),
       /* @__PURE__ */ (0, jsx)(Icon, { name: "chevronRight", size: 14, color: colors.muted })
     ] });
   }
   function TextAction({ focusKey, nextFocusDown, onPress, text }) {
-    return /* @__PURE__ */ (0, jsxs)(View, { focusKey, nextFocusDown, onPress, style: (_state3) => [{ position: "relative", borderRadius: 9, borderWidth: 2, borderColor: "#48484a", paddingHorizontal: 18, paddingVertical: 12 }, _state3.focused ? { backgroundColor: "#323232" } : null], children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey, nextFocusDown, onPress, style: (_state3) => [{ position: "relative", borderRadius: 9, borderWidth: 2, borderColor: "#35302a", paddingHorizontal: 18, paddingVertical: 12 }, _state3.focused ? { backgroundColor: "#26231f" } : null], children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", lineHeight: 30 }, children: text })
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: text })
     ] });
   }
 

@@ -18,7 +18,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
       /* @__PURE__ */ (0, jsx)(Icon, { name: icon, size: 18, color: ink2 }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f5f7" }, children: label }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f1ea" }, children: label }),
         /* @__PURE__ */ (0, jsx)(Text, { style: [{ width: 600, fontFamily: "Inter-Regular", fontSize: 21, numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, { color: ink2 }], children: detail2 })
       ] })
     ] });
@@ -40,7 +40,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
       item.onSelect();
     };
     const face = armed ? { ...item, ...item.armed } : item;
-    return /* @__PURE__ */ (0, jsx)(View, { autoFocus, onPress: press3, onBlur: () => setArmed(false), style: (_state) => [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 18 }, _state.focused ? { backgroundColor: "#323232" } : null], children: /* @__PURE__ */ (0, jsx)(OptionFace, { icon: face.icon, label: face.label, detail: face.detail }) });
+    return /* @__PURE__ */ (0, jsx)(View, { autoFocus, onPress: press3, onBlur: () => setArmed(false), style: (_state) => [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 18 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(OptionFace, { icon: face.icon, label: face.label, detail: face.detail }) });
   }
   function OptionsSheet({ title, items, onClose }) {
     const t2 = useT();

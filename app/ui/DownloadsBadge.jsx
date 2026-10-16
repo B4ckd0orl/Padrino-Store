@@ -37,8 +37,8 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
     }, []);
     if (!state.count) return null;
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
-      /* @__PURE__ */ (0, jsx)(Text, { style: [{ fontFamily: "Inter-Regular", fontSize: 23 }, { color: focused ? colors.fg : "#f5f5f7a6" }], children: String(state.count) }),
-      state.percent === null ? null : /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", left: 24, right: 24, bottom: 6, height: 5, overflow: "hidden", borderRadius: 14999, backgroundColor: "#ffffff33" }, children: /* @__PURE__ */ (0, jsx)(View, { style: [{ height: "100%", backgroundColor: "#0a84ff" }, { width: `${state.percent}%` }] }) })
+      /* @__PURE__ */ (0, jsx)(Text, { style: [{ fontFamily: "Inter-Regular", fontSize: 23 }, { color: focused ? colors.fg : "#f5f1eaa6" }], children: String(state.count) }),
+      state.percent === null ? null : /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", left: 24, right: 24, bottom: 6, height: 5, overflow: "hidden", borderRadius: 14999, backgroundColor: "#ffffff33" }, children: /* @__PURE__ */ (0, jsx)(View, { style: [{ height: "100%", backgroundColor: "#e09f3e" }, { width: `${state.percent}%` }] }) })
     ] });
   }
 

@@ -33,10 +33,10 @@ import { Image, Text, View, motion, useIsFocused } from '@ps5-react/core';
         /* @__PURE__ */ (0, jsx)(FocusFrame, { round: "lg" })
       ] }),
       /* @__PURE__ */ (0, jsxs)(View, { style: [{ paddingTop: 15 }, CAPTION2], children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e6e73", lineHeight: 24 }, children: t2("catalog.gameCount", { count: SERVED.length }) }),
-        /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ marginTop: 6, fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f5f7e6", lineHeight: 30 }, focused ? { color: "#f5f5f7" } : null], children: "Padrino CDN" }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e675e", lineHeight: 24 }, children: t2("catalog.gameCount", { count: SERVED.length }) }),
+        /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ marginTop: 6, fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f1eae6", lineHeight: 30 }, focused ? { color: "#f5f1ea" } : null], children: "Padrino CDN" }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { marginTop: 9, flexDirection: "row", alignItems: "center", gap: 6 }, children: [
-          /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ fontFamily: "Inter-Regular", fontSize: 20, color: "#98989d" }, focused ? { color: "#f5f5f7" } : null], children: t2("common.seeAll") }),
+          /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ fontFamily: "Inter-Regular", fontSize: 20, color: "#a39c92" }, focused ? { color: "#f5f1ea" } : null], children: t2("common.seeAll") }),
           /* @__PURE__ */ (0, jsx)(Icon, { name: "chevronRight", size: 14, color: focused ? colors.fg : colors.muted })
         ] })
       ] })

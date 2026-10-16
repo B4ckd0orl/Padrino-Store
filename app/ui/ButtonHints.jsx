@@ -24,7 +24,7 @@ import { px } from './scale.js';
     ] });
   }
   function Cap({ label, size }) {
-    return /* @__PURE__ */ (0, jsx)(View, { style: [{ alignItems: "center", justifyContent: "center", borderRadius: 6, backgroundColor: "#323232", paddingHorizontal: 9 }, { height: px(size) }], children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#f5f5f7" }, children: label }) });
+    return /* @__PURE__ */ (0, jsx)(View, { style: [{ alignItems: "center", justifyContent: "center", borderRadius: 6, backgroundColor: "#26231f", paddingHorizontal: 9 }, { height: px(size) }], children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#f5f1ea" }, children: label }) });
   }
   function ButtonGlyph({ button, size = 20 }) {
     if (FACES[button]) return /* @__PURE__ */ (0, jsx)(Face, { name: button, size });
@@ -35,7 +35,7 @@ import { px } from './scale.js';
     return /* @__PURE__ */ (0, jsx)(View, { style: { height: 60, flexDirection: "row", alignItems: "center", justifyContent: "flex-end", gap: 30, paddingHorizontal: 48 }, children: hints.map(
       ({ button, label }) => /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 9 }, children: [
         /* @__PURE__ */ (0, jsx)(ButtonGlyph, { button, size: 16 }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e73", lineHeight: 30 }, children: t2(label) })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", lineHeight: 30 }, children: t2(label) })
       ] }, button)
     ) });
   }

@@ -351,6 +351,7 @@
     "nav.allGames": "All games",
     "nav.browse": "Browse",
     "nav.discover": "Discover",
+    "nav.favorites": "Favorites",
     "nav.files": "Files",
     "nav.new": "New releases",
     "nav.search": "Search",
@@ -465,5 +466,11 @@
     "capture.preparing": "Preparing the file verification\u2026",
     "capture.capturing": "Complete the verification, then wait",
     "capture.validating": "Checking the captured file\u2026",
-    "capture.detail": "Don't press Download or any ad: the link is captured by itself. Then return here and the download starts automatically. Capture lasts up to 3 minutes."
+    "capture.detail": "Don't press Download or any ad: the link is captured by itself. Then return here and the download starts automatically. Capture lasts up to 3 minutes.",
+    "qr.title": "Join the community",
+    "qr.detail": "Scan the code to follow Padrino Store on Telegram and X: news, support and new releases.",
+    "qr.telegram": "Telegram",
+    "qr.x": "X",
+    "qr.enter": "Enter",
+    "downloads.filter.all": "ALL"
   }

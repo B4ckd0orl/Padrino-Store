@@ -21,7 +21,7 @@ import { Text, View, motion, useIsFocused } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", left: 15, right: 15, bottom: 9, height: 3, overflow: "hidden", borderRadius: 14999, backgroundColor: "#ffffff1a" }, children: /* @__PURE__ */ (0, jsx)(
       motion.View,
       {
-        style: { position: "absolute", top: 0, bottom: 0, left: 0, width: 360, backgroundColor: "#0a84ff" },
+        style: { position: "absolute", top: 0, bottom: 0, left: 0, width: 360, backgroundColor: "#e09f3e" },
         initial: { x: -TRACK * sign },
         animate: { x: paused ? x : 0 },
         transition: paused ? { type: "tween", duration: 0 } : { type: "tween", duration: left / 1e3, ease: "linear" }
@@ -31,7 +31,7 @@ import { Text, View, motion, useIsFocused } from '@ps5-react/core';
   function Title2({ title, active: active2 }) {
     const focused = useIsFocused();
     const { rtl } = useLocale();
-    return /* @__PURE__ */ (0, jsx)(Text, { selected: active2 || focused, style: [{ width: 264, fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, active2 || focused ? { color: "#f5f5f7" } : null], children: latin(rtl, title) });
+    return /* @__PURE__ */ (0, jsx)(Text, { selected: active2 || focused, style: [{ width: 264, fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, active2 || focused ? { color: "#f5f1ea" } : null], children: latin(rtl, title) });
   }
   var Item = (0, memo)(function Item2({ game, index, active: active2, progress, select, hold }) {
     const { rtl } = useLocale();
@@ -53,7 +53,7 @@ import { Text, View, motion, useIsFocused } from '@ps5-react/core';
           unlight(`spotlight:${index}`);
         },
         onPress: () => select(index),
-        style: [{ position: "relative", flex: 1, flexDirection: "row", alignItems: "center", gap: 21, borderRadius: 18, padding: 15 }, active2 ? { backgroundColor: "#282828" } : null],
+        style: [{ position: "relative", flex: 1, flexDirection: "row", alignItems: "center", gap: 21, borderRadius: 18, padding: 15 }, active2 ? { backgroundColor: "#1c1a17" } : null],
         children: [
           /* @__PURE__ */ (0, jsx)(Shine, { width: 260, round: "xl" }),
           /* @__PURE__ */ (0, jsx)(FocusFrame, { round: "xl" }),

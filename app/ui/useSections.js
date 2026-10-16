@@ -55,11 +55,36 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
       downloads: () => topName.current !== "downloads" && nav.push({ name: "downloads" }, "nav:downloads"),
       files: () => topName.current !== "files" && nav.push({ name: "files" }, "nav:files")
     }));
+    // Focus preview: hovering a browse section in the sidebar swaps the home
+    // content live, PS5-guide style. Screens (search/downloads/files) and the
+    // derived "catalog" still need a press, and a preview must never steal
+    // focus — that only happens in on.* below.
+    const preview = (name) => {
+      if (topName.current !== "browse") return;
+      if (name === section) return;
+      if (name === "search" || name === "downloads" || name === "files" || name === "catalog") return;
+      if (name === "discover") {
+        store.setFilters(NO_FILTERS);
+        store.setQuery("");
+        store.setSort("relevance");
+      } else if (name === "top") {
+        store.setFilters(NO_FILTERS);
+        store.setQuery("");
+        store.setSort("rating");
+      } else if (name === "new") {
+        store.setFilters(NO_FILTERS);
+        store.setQuery("");
+        store.setSort("newest");
+      } else if (name === "favorites") {
+        store.setFilters({ ...NO_FILTERS, wishlist: true });
+        store.setQuery("");
+        store.setSort("relevance");
+      }
+    };
     const step = (forward) => {
       const current = top.name === "search" ? "search" : underneath;
       const at = current === "catalog" ? 1.5 : TABS.indexOf(current);
-      const next = TABS[forward ? Math.floor(at) + 1 : Math.ceil(at) - 1];
-      if (!next) return;
+      const next = TABS[forward ? Math.floor(at) + 1 : Math.ceil(at) - 1] ?? TABS[forward ? 0 : TABS.length - 1];
       if (next === "downloads" || next === "files") {
         store.setQuery("");
         nav.home();
@@ -70,6 +95,7 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
       section,
       filters: store.filters,
       on,
+      preview,
       step,
       // The page's top elements go up to `nav:current`, the current section's item, like a PS5 tab
       // row; the scope's own memory would be stale after L1/R1 or a closed menu.

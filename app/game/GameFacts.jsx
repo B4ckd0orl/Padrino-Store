@@ -34,11 +34,11 @@ import { Text, View } from '@ps5-react/core';
       size
     ].filter(Boolean);
     return /* @__PURE__ */ (0, jsxs)(View, { style: { width: 432 }, children: [
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f5f7", lineHeight: 42, letterSpacing: -0.75 }, children: t2("game.details") }),
-      /* @__PURE__ */ (0, jsx)(View, { style: { marginTop: 24, borderBottomWidth: 2, borderColor: "#48484a" }, children: rows.map(
-        ([label, value]) => /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", justifyContent: "space-between", gap: 24, borderTopWidth: 2, borderColor: "#48484a", paddingVertical: 18 }, children: [
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e73", lineHeight: 30 }, children: label }),
-          typeof value === "string" ? /* @__PURE__ */ (0, jsx)(Text, { style: { width: 264, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", textAlign: "end", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: value }) : value
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f1ea", lineHeight: 42, letterSpacing: -0.75 }, children: t2("game.details") }),
+      /* @__PURE__ */ (0, jsx)(View, { style: { marginTop: 24, borderBottomWidth: 1, borderColor: "#e09f3e33" }, children: rows.map(
+        ([label, value]) => /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", justifyContent: "space-between", gap: 24, borderTopWidth: 1, borderColor: "#e09f3e33", paddingVertical: 18 }, children: [
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", lineHeight: 30 }, children: label }),
+          typeof value === "string" ? /* @__PURE__ */ (0, jsx)(Text, { style: { width: 264, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", textAlign: "end", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: value }) : value
         ] }, label)
       ) })
     ] });

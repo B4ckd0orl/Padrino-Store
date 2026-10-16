@@ -348,6 +348,7 @@
   "nav.allGames": "सभी गेम",
   "nav.browse": "ब्राउज़ करें",
   "nav.discover": "एक्सप्लोर",
+  "nav.favorites": "\u092a\u0938\u0902\u0926\u0940\u0926\u093e",
   "nav.files": "फ़ाइलें",
   "nav.new": "नई रिलीज़",
   "nav.search": "खोजें",
@@ -446,5 +447,11 @@
   "versions.recommended": "सुझाया गया · PS5 पर मूल रूप से चलता है",
   "versions.sources": "{count, plural, one {# स्रोत} other {# स्रोत}}",
   "versions.thisPage": "यह पृष्ठ",
-  "versions.title": "संस्करण चुनें"
+  "versions.title": "संस्करण चुनें",
+    "qr.title": "\u0938\u092e\u0941\u0926\u093e\u092f \u0938\u0947 \u091c\u0941\u0921\u093c\u0947\u0902",
+    "qr.detail": "\u091f\u0947\u0932\u0940\u0917\u094d\u0930\u093e\u092e \u0914\u0930 \u090f\u0915\u094d\u0938 \u092a\u0930 Padrino Store \u0915\u094b \u092b\u0949\u0932\u094b \u0915\u0930\u0928\u0947 \u0915\u0947 \u0932\u093f\u090f \u0915\u094b\u0921 \u0938\u094d\u0915\u0948\u0928 \u0915\u0930\u0947\u0902: \u0916\u092c\u0930\u0947\u0902, \u0938\u0939\u093e\u092f\u0924\u093e \u0914\u0930 \u0928\u0908 \u0930\u093f\u0932\u0940\u091c\u093c\u0964",
+    "qr.telegram": "\u091f\u0947\u0932\u0940\u0917\u094d\u0930\u093e\u092e",
+    "qr.x": "\u090f\u0915\u094d\u0938",
+    "qr.enter": "\u092a\u094d\u0930\u0935\u0947\u0936",
+    "downloads.filter.all": "\u0938\u092d\u0940"
 }

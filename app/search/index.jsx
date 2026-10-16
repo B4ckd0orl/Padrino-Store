@@ -23,11 +23,11 @@ import { FocusScope, ScrollView, Text, View, VirtualList, motion } from '@ps5-re
   function QueryField({ query }) {
     const t2 = useT();
     const { rtl } = useLocale();
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { width: 564, height: 84, flexDirection: "row", alignItems: "center", borderRadius: 14999, borderWidth: 2, borderColor: "#ffffff33", backgroundColor: "#ffffff0d", paddingHorizontal: 30 }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { width: 564, height: 84, flexDirection: "row", alignItems: "center", borderRadius: 14999, borderWidth: 1, borderColor: "#e09f3e66", backgroundColor: "#1c1a17", paddingHorizontal: 30 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: "search", size: 20, color: colors.subtle }),
-      query ? /* @__PURE__ */ (0, jsx)(Text, { style: [rtl ? { marginRight: 18, fontFamily: "Inter-Regular", fontSize: 27, color: "#f5f5f7", lineHeight: 36 } : { marginLeft: 18, fontFamily: "Inter-Regular", fontSize: 27, color: "#f5f5f7", lineHeight: 36 }, { writingDirection: "ltr" }], children: query }) : null,
-      /* @__PURE__ */ (0, jsx)(motion.View, { style: [{ width: 2, height: 30, backgroundColor: "#0a84ff" }, query ? rtl ? { marginRight: 3 } : { marginLeft: 3 } : rtl ? { marginRight: 18 } : { marginLeft: 18 }], initial: { opacity: 1 }, animate: { opacity: 0 }, transition: blink }),
-      query ? null : /* @__PURE__ */ (0, jsx)(Text, { style: rtl ? { marginRight: 6, fontFamily: "Inter-Regular", fontSize: 27, color: "#6e6e73", lineHeight: 36 } : { marginLeft: 6, fontFamily: "Inter-Regular", fontSize: 27, color: "#6e6e73", lineHeight: 36 }, children: t2("search.placeholder") })
+      query ? /* @__PURE__ */ (0, jsx)(Text, { style: [rtl ? { marginRight: 18, fontFamily: "Inter-Regular", fontSize: 27, color: "#f5f1ea", lineHeight: 36 } : { marginLeft: 18, fontFamily: "Inter-Regular", fontSize: 27, color: "#f5f1ea", lineHeight: 36 }, { writingDirection: "ltr" }], children: query }) : null,
+      /* @__PURE__ */ (0, jsx)(motion.View, { style: [{ width: 2, height: 30, backgroundColor: "#e09f3e" }, query ? rtl ? { marginRight: 3 } : { marginLeft: 3 } : rtl ? { marginRight: 18 } : { marginLeft: 18 }], initial: { opacity: 1 }, animate: { opacity: 0 }, transition: blink }),
+      query ? null : /* @__PURE__ */ (0, jsx)(Text, { style: rtl ? { marginRight: 6, fontFamily: "Inter-Regular", fontSize: 27, color: "#6e675e", lineHeight: 36 } : { marginLeft: 6, fontFamily: "Inter-Regular", fontSize: 27, color: "#6e675e", lineHeight: 36 }, children: t2("search.placeholder") })
     ] });
   }
   function useSettled(query) {
@@ -44,9 +44,9 @@ import { FocusScope, ScrollView, Text, View, VirtualList, motion } from '@ps5-re
     const results = searchGames(query);
     if (!results.length) return /* @__PURE__ */ (0, jsx)(NoResults, { query: query.trim() });
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
-      /* @__PURE__ */ (0, jsxs)(Text, { style: { marginBottom: 6, paddingHorizontal: 12, fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f5f7", lineHeight: 42, letterSpacing: -0.75 }, children: [
+      /* @__PURE__ */ (0, jsxs)(Text, { style: { marginBottom: 6, paddingHorizontal: 12, fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f1ea", lineHeight: 42, letterSpacing: -0.75 }, children: [
         fitBytes(t2("search.resultsFor", { query: query.trim() }), SPAN_MAX),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontWeight: 400, color: "#6e6e73" }, children: fitBytes(`  ${t2("catalog.gameCount", { count: results.length })}`, SPAN_MAX) })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontWeight: 400, color: "#6e675e" }, children: fitBytes(`  ${t2("catalog.gameCount", { count: results.length })}`, SPAN_MAX) })
       ] }),
       /* @__PURE__ */ (0, jsx)(ScrollView, { style: { flex: 1 }, children: /* @__PURE__ */ (0, jsx)(
         VirtualList,
@@ -108,7 +108,7 @@ import { FocusScope, ScrollView, Text, View, VirtualList, motion } from '@ps5-re
         return favorite(action);
       return true;
     };
-    return /* @__PURE__ */ (0, jsx)(FocusScope, { autoFocus: true, onBack: back2, onAction, children: /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, flexDirection: "row", gap: 72, backgroundColor: "#1e1e1e", paddingHorizontal: 48, paddingTop: 48 }, children: [
+    return /* @__PURE__ */ (0, jsx)(FocusScope, { autoFocus: true, onBack: back2, onAction, children: /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, flexDirection: "row", gap: 72, backgroundColor: "#121110", paddingHorizontal: 48, paddingTop: 48 }, children: [
       /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 36 }, children: [
         /* @__PURE__ */ (0, jsx)(QueryField, { query }),
         /* @__PURE__ */ (0, jsx)(Keyboard, { onChange: setQuery, onSubmit: on.submit })

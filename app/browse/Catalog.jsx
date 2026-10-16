@@ -19,10 +19,10 @@ import { px } from '../ui/scale.js';
 import { FocusScope, Image, Text, View, VirtualList, useIsFocused } from '@ps5-react/core';
 
   var STAGGER = 0.03;
-  var COLUMNS = 6;
+  var COLUMNS = 5;
   var BATCH = COLUMNS * 8;
-  var CARD_WIDTH = 182;
-  var CARD_HEIGHT = 243 + DETAILED_CAPTION;
+  var CARD_WIDTH = 196;
+  var CARD_HEIGHT = 261 + DETAILED_CAPTION;
   var FIRST = COLUMNS * 3;
   var STEP = 3;
   var AHEAD = [2, 5];
@@ -94,8 +94,8 @@ import { FocusScope, Image, Text, View, VirtualList, useIsFocused } from '@ps5-r
     const focused = useIsFocused();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
-      /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7d9", lineHeight: 30 }, focused ? { color: "#f5f5f7" } : null], children: t2("filters.title") }),
-      count > 0 && /* @__PURE__ */ (0, jsx)(View, { style: { height: 30, minWidth: 30, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#0a84ff", paddingHorizontal: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: "#ffffff", lineHeight: 24 }, children: String(count) }) }),
+      /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ead9", lineHeight: 30 }, focused ? { color: "#f5f1ea" } : null], children: t2("filters.title") }),
+      count > 0 && /* @__PURE__ */ (0, jsx)(View, { style: { height: 30, minWidth: 30, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#e09f3e", paddingHorizontal: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: "#1a1408", lineHeight: 24 }, children: String(count) }) }),
       /* @__PURE__ */ (0, jsx)(ButtonGlyph, { button: "triangle", size: 18 })
     ] });
   }
@@ -121,15 +121,18 @@ import { FocusScope, Image, Text, View, VirtualList, useIsFocused } from '@ps5-r
       return true;
     };
     return /* @__PURE__ */ (0, jsx)(FocusScope, { restoreFocus: false, onAction, children: /* @__PURE__ */ (0, jsxs)(View, { scrollAnchor: true, children: [
-      /* @__PURE__ */ (0, jsxs)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f5f7", lineHeight: 42, letterSpacing: -0.75 }, children: [
-        fitBytes(title, SPAN_MAX),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontWeight: 400, color: "#6e6e73" }, children: fitBytes(`  ${t2("catalog.gameCount", { count: results.length })}`, SPAN_MAX) })
+      /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12 }, children: [
+        /* @__PURE__ */ (0, jsx)(View, { style: { width: 4, height: 26, borderRadius: 14999, backgroundColor: "#e09f3e" } }),
+        /* @__PURE__ */ (0, jsxs)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f1ea", lineHeight: 42, letterSpacing: -0.75 }, children: [
+          fitBytes(title, SPAN_MAX),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontWeight: 400, color: "#6e675e" }, children: fitBytes(`  ${t2("catalog.gameCount", { count: results.length })}`, SPAN_MAX) })
+        ] })
       ] }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { zIndex: 10, marginTop: 24, flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12 }, children: [
         /* @__PURE__ */ (0, jsx)(View, { focusKey: "catalog:filters", onPress: onOpenFilters, style: (_state) => [
-          { height: 60, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, backgroundColor: "#282828" },
+          { height: 60, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, backgroundColor: "#1c1a17" },
           rtl ? { paddingRight: 24, paddingLeft: 18 } : { paddingLeft: 24, paddingRight: 18 },
-          _state.focused ? { backgroundColor: "#3a3a3c" } : null
+          _state.focused ? { backgroundColor: "#302c27" } : null
         ], children: /* @__PURE__ */ (0, jsx)(FiltersLabel, { count: filtersCount }) }),
         /* @__PURE__ */ (0, jsx)(SortSelect, {}),
         /* @__PURE__ */ (0, jsx)(ActiveFilters, {})

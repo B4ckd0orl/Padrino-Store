@@ -8,21 +8,21 @@ import { Icon } from './Icon.jsx';
 import { colors } from './colors.js';
 import { Text, motion, useIsFocused } from '@ps5-react/core';
 
-  var BASE = { flexDirection: "row", flexShrink: 0, alignItems: "center", justifyContent: "center", gap: 12, borderRadius: 9 };
+  var BASE = { flexDirection: "row", flexShrink: 0, alignItems: "center", justifyContent: "center", gap: 12, borderRadius: 12 };
   var SIZE2 = { sm: { height: 48, paddingHorizontal: 18 }, md: { height: 60, paddingHorizontal: 24 }, lg: { height: 72, paddingHorizontal: 30 }, icon: { width: 60, height: 60 } };
   var BOX = {
-    primary: { backgroundColor: "#0a84ff" },
-    secondary: { backgroundColor: "#323232" },
+    primary: { backgroundColor: "#e09f3e" },
+    secondary: { backgroundColor: "#26231f" },
     // Over light art a bare line vanishes: the translucent fill keeps the button readable anywhere.
-    outline: { borderWidth: 2, borderColor: "#ffffff33", backgroundColor: "#1e1e1e99" },
+    outline: { borderWidth: 2, borderColor: "#ffffff33", backgroundColor: "#12111099" },
     ghost: null
   };
-  var FOCUSED_BOX = { primary: { backgroundColor: "#3395ff" }, secondary: { backgroundColor: "#3a3a3c" }, outline: { backgroundColor: "#282828" }, ghost: null };
+  var FOCUSED_BOX = { primary: { backgroundColor: "#f2b655" }, secondary: { backgroundColor: "#302c27" }, outline: { backgroundColor: "#1c1a17" }, ghost: null };
   var TEXT = {
-    primary: { fontFamily: "Inter-Regular", color: "#ffffff" },
-    secondary: { fontFamily: "Inter-Regular", color: "#f5f5f7" },
-    outline: { fontFamily: "Inter-Regular", color: "#f5f5f7" },
-    ghost: { fontFamily: "Inter-Regular", color: "#98989d" }
+    primary: { fontFamily: "Inter-Regular", color: "#1a1408" },
+    secondary: { fontFamily: "Inter-Regular", color: "#f5f1ea" },
+    outline: { fontFamily: "Inter-Regular", color: "#f5f1ea" },
+    ghost: { fontFamily: "Inter-Regular", color: "#a39c92" }
   };
   var TEXT_SIZE = { sm: { fontSize: 21, lineHeight: 30 }, md: { fontSize: 21, lineHeight: 30 }, lg: { fontSize: 23 }, icon: { fontSize: 21, lineHeight: 30 } };
   var press2 = { scale: 0.95 };
@@ -33,7 +33,7 @@ import { Text, motion, useIsFocused } from '@ps5-react/core';
     const color = ink(variant, focused);
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       icon && /* @__PURE__ */ (0, jsx)(Icon, { name: icon, size: size === "icon" ? 20 : 16, color, fill: iconFill ? color : "none" }),
-      label && /* @__PURE__ */ (0, jsx)(Text, { style: [TEXT[variant], TEXT_SIZE[size], focused && variant === "ghost" && { color: "#f5f5f7" }], children: label })
+      label && /* @__PURE__ */ (0, jsx)(Text, { style: [TEXT[variant], TEXT_SIZE[size], focused && variant === "ghost" && { color: "#f5f1ea" }], children: label })
     ] });
   }
   // `halo: false` gives a primary button the plain ring the page's other buttons have.

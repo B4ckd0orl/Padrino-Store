@@ -9,14 +9,14 @@ import { EASE_OUT } from './ease.js';
 import { FocusScope, ScrollView, Text, View, motion } from '@ps5-react/core';
 
   var enter = { type: "tween", duration: 0.28, ease: EASE_OUT };
-  var PANEL = { position: "absolute", right: 0, top: 0, bottom: 0, borderLeftWidth: 2, borderColor: "#48484a", backgroundColor: "#1e1e1e" };
-  var PANEL_RTL = { position: "absolute", left: 0, top: 0, bottom: 0, borderRightWidth: 2, borderColor: "#48484a", backgroundColor: "#1e1e1e" };
+  var PANEL = { position: "absolute", right: 0, top: 0, bottom: 0, borderLeftWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#121110" };
+  var PANEL_RTL = { position: "absolute", left: 0, top: 0, bottom: 0, borderRightWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#121110" };
   var HINTS2 = [HINT.select, HINT.close];
   function SheetPanel({ style, children, initial, animate, exit, ...animation }) {
     const { rtl } = useLocale();
     const mirror = (values) => rtl && values?.x ? { ...values, x: -values.x } : values;
     return /* @__PURE__ */ (0, jsxs)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }, children: [
-      /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: "#1e1e1ecc" } }),
+      /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: "#121110cc" } }),
       /* @__PURE__ */ (0, jsx)(
         motion.View,
         {
@@ -44,8 +44,8 @@ import { FocusScope, ScrollView, Text, View, motion } from '@ps5-react/core';
         transition: enter,
         children: [
           /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 6, paddingHorizontal: 18 }, children: [
-            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f5f7", lineHeight: 42, letterSpacing: -0.75 }, children: title }),
-            subtitle ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: subtitle }) : null
+            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f1ea", lineHeight: 42, letterSpacing: -0.75 }, children: title }),
+            subtitle ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: subtitle }) : null
           ] }),
           /* @__PURE__ */ (0, jsx)(ScrollView, { style: { flex: 1 }, children })
         ]

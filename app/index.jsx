@@ -11,10 +11,12 @@ import { GameScreen } from './game/index.jsx';
 import { LocaleProvider, useLocale } from './i18n/index.js';
 import { SearchScreen } from './search/index.jsx';
 import { getGame, warmCovers } from './state/catalog.js';
+import { loadList, saveList } from './state/saved.js';
 import { NavProvider, useIsImmersive, useNavActions, useNavState } from './state/nav.jsx';
 import { StoreFreeze, StoreProvider } from './state/store.jsx';
 import { Sidebar, SIDEBAR_W } from './ui/Sidebar.jsx';
 import { Legend } from './ui/Legend.jsx';
+import { QrGate } from './ui/QrGate.jsx';
 import { Splash } from './ui/Splash.jsx';
 import { UpdateDialog } from './ui/UpdateDialog.jsx';
 import { useInterfaceHaptics } from './ui/haptics.js';
@@ -49,7 +51,7 @@ import { useInterfaceSounds } from './ui/sounds.js';
     const side = rtl ? { left: 0, right: SIDEBAR_W } : { left: SIDEBAR_W, right: 0 };
     return (
       // Arabic and Urdu mirror every row and right-align every paragraph from here.
-      /* @__PURE__ */ (0, jsxs)(View, { style: [{ width: 1920, height: 1080, backgroundColor: "#1e1e1e" }, { direction: rtl ? "rtl" : "ltr" }], children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: [{ width: 1920, height: 1080, backgroundColor: "#121110" }, { direction: rtl ? "rtl" : "ltr" }], children: [
         /* @__PURE__ */ (0, jsxs)(Sidebar, { children: [
           /* @__PURE__ */ (0, jsx)(BrowseLayer, { shown: onBrowse }),
           onBrowse ? null : (
@@ -57,11 +59,21 @@ import { useInterfaceSounds } from './ui/sounds.js';
             // fill the whole screen twice. `screen` lets the sidebar's Into return to where it was left.
             /* @__PURE__ */ (0, jsx)(View, { style: immersive ? { position: "absolute", top: 0, right: 0, bottom: 0, left: 0 } : top.name === "downloads" || top.name === "files" ? [{ position: "absolute", top: 0, bottom: 0 }, side] : [{ position: "absolute", top: 0, bottom: 60 }, side], children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "screen", children: /* @__PURE__ */ (0, jsx)(Screen, { screen: top }) }) }, key)
           ),
-          immersive ? null : /* @__PURE__ */ (0, jsx)(Legend, { screen: top.name }),
+          immersive ? null : /* @__PURE__ */ (0, jsx)(Legend, { screen: top.name, style: side }),
           /* @__PURE__ */ (0, jsx)(UpdateDialog, {})
         ] })
       ] })
     );
+  }
+  // The community QR gate shows once per console: the flag lives next to the other saved
+  // lists, and the store mounts only after it is dismissed (like the splash before it).
+  function Gate() {
+    const [seen, setSeen] = (0, useState)(() => loadList("qr.json", "qr gate").seen === true);
+    if (!seen) return /* @__PURE__ */ (0, jsx)(QrGate, { onDone: () => {
+      saveList("qr.json", "qr gate", { seen: true });
+      setSeen(true);
+    } });
+    return /* @__PURE__ */ (0, jsx)(App, {});
   }
   // The intro owns the screen until it ends: the store is mounted by its `onDone`, so no
   // page, cover or catalog work happens underneath the needle.
@@ -73,8 +85,8 @@ import { useInterfaceSounds } from './ui/sounds.js';
       const id = setTimeout(() => setBooted(true), 5e3);
       return () => clearTimeout(id);
     }, []);
-    return /* @__PURE__ */ (0, jsx)(View, { style: { width: 1920, height: 1080, backgroundColor: "#1e1e1e" }, children: booted
-      ? /* @__PURE__ */ (0, jsx)(LocaleProvider, { children: /* @__PURE__ */ (0, jsx)(StoreProvider, { children: /* @__PURE__ */ (0, jsx)(NavProvider, { children: /* @__PURE__ */ (0, jsx)(App, {}) }) }) })
+    return /* @__PURE__ */ (0, jsx)(View, { style: { width: 1920, height: 1080, backgroundColor: "#121110" }, children: booted
+      ? /* @__PURE__ */ (0, jsx)(LocaleProvider, { children: /* @__PURE__ */ (0, jsx)(StoreProvider, { children: /* @__PURE__ */ (0, jsx)(NavProvider, { children: /* @__PURE__ */ (0, jsx)(Gate, {}) }) }) })
       : /* @__PURE__ */ (0, jsx)(Splash, { onDone: () => setBooted(true) }) });
   }
   AppRegistry.registerComponent("overdrive", () => () => /* @__PURE__ */ (0, jsx)(Boot, {}));

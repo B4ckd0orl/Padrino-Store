@@ -15,7 +15,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
   function ClearAll() {
     const t2 = useT();
     const focused = useIsFocused();
-    return /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ fontFamily: "Inter-Regular", fontSize: 21, color: "#98989d", lineHeight: 30 }, focused ? { color: "#f5f5f7" } : null], children: t2("filters.clearAll") });
+    return /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, focused ? { color: "#f5f1ea" } : null], children: t2("filters.clearAll") });
   }
   var ActiveFilters = (0, memo)(function ActiveFilters2() {
     const t2 = useT();
@@ -49,7 +49,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
       chips.length > 1 && /* @__PURE__ */ (0, jsxs)(View, { onPress: () => {
         clearFilters();
         focusLater("catalog:filters");
-      }, style: (_state) => [{ height: 60, justifyContent: "center", borderRadius: 14999, paddingHorizontal: 24 }, _state.focused ? { backgroundColor: "#3a3a3c" } : null], children: [
+      }, style: (_state) => [{ height: 60, justifyContent: "center", borderRadius: 14999, paddingHorizontal: 24 }, _state.focused ? { backgroundColor: "#302c27" } : null], children: [
         /* @__PURE__ */ (0, jsx)(FocusRing, { round: "full" }),
         /* @__PURE__ */ (0, jsx)(ClearAll, {})
       ] })

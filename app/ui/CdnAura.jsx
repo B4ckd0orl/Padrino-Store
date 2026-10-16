@@ -8,19 +8,19 @@ import { px } from './scale.js';
 
   var SHINE_MS = 6e3;
   var DANCE = [
-    { color: "#c4b5fd00", offset: 0.22 },
-    { color: "#c4b5fdcc", offset: 0.38 },
-    { color: "#ffffffe6", offset: 0.5 },
-    { color: "#fbcfe8cc", offset: 0.62 },
-    { color: "#a5f3fc00", offset: 0.78 }
+    { color: "#e09f3e00", offset: 0.22 },
+    { color: "#e09f3ecc", offset: 0.38 },
+    { color: "#ffe9c4e6", offset: 0.5 },
+    { color: "#ffd694cc", offset: 0.62 },
+    { color: "#f2b65500", offset: 0.78 }
   ];
   var ground = { backgroundGradient: {
     type: "linear",
     angle: 115,
     stops: [
-      { color: "#c4b5fd17", offset: 0 },
-      { color: "#a5f3fc0d", offset: 0.55 },
-      { color: "#fbcfe812", offset: 1 }
+      { color: "#e09f3e17", offset: 0 },
+      { color: "#f2b6550d", offset: 0.55 },
+      { color: "#ffd69412", offset: 1 }
     ]
   } };
   var band = { backgroundGradient: {
@@ -51,7 +51,7 @@ import { px } from './scale.js';
           transition: crossing
         }
       ) }),
-      /* @__PURE__ */ (0, jsx)(View, { style: [{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }, { borderRadius: px(radius), borderWidth: px(1), borderColor: "#c4b5fd29" }] }),
+      /* @__PURE__ */ (0, jsx)(View, { style: [{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }, { borderRadius: px(radius), borderWidth: px(1), borderColor: "#e09f3e29" }] }),
       /* @__PURE__ */ (0, jsx)(Animated.View, { style: [{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }, {
         borderRadius: px(radius),
         borderGradientAngle: angle,
@@ -64,11 +64,11 @@ import { px } from './scale.js';
     width: px(1.5),
     angle: 210,
     stops: [
-      { color: "#c4b5fd", offset: 0 },
-      { color: "#a5f3fc", offset: 0.3 },
-      { color: "#ffffff", offset: 0.5 },
-      { color: "#fbcfe8", offset: 0.75 },
-      { color: "#c4b5fd", offset: 1 }
+      { color: "#e09f3e", offset: 0 },
+      { color: "#f2b655", offset: 0.3 },
+      { color: "#ffe9c4", offset: 0.5 },
+      { color: "#ffd694", offset: 0.75 },
+      { color: "#e09f3e", offset: 1 }
     ]
   };
   function CdnMark({ radius = 8 }) {
@@ -76,8 +76,8 @@ import { px } from './scale.js';
   }
   function CdnSpark({ size = 14 }) {
     return /* @__PURE__ */ (0, jsxs)(Svg, { width: px(size), height: px(size), viewBox: "0 0 24 24", children: [
-      /* @__PURE__ */ (0, jsx)(Path, { d: "M10 1C10 7 13 10 19 10C13 10 10 13 10 19C10 13 7 10 1 10C7 10 10 7 10 1Z", fill: "#a5f3fc" }),
-      /* @__PURE__ */ (0, jsx)(Path, { d: "M19 14C19 17 20 18 23 18C20 18 19 19 19 22C19 19 18 18 15 18C18 18 19 17 19 14Z", fill: "#f9a8d4" })
+      /* @__PURE__ */ (0, jsx)(Path, { d: "M10 1C10 7 13 10 19 10C13 10 10 13 10 19C10 13 7 10 1 10C7 10 10 7 10 1Z", fill: "#f2b655" }),
+      /* @__PURE__ */ (0, jsx)(Path, { d: "M19 14C19 17 20 18 23 18C20 18 19 19 19 22C19 19 18 18 15 18C18 18 19 17 19 14Z", fill: "#ffd694" })
     ] });
   }
 

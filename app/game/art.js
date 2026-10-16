@@ -7,7 +7,7 @@ import { Image } from '@ps5-react/core';
 
   var HERO = { width: 1920, height: 900 };
   var COVER = { width: px(192), height: px(256), borderRadius: px(8) };
-  var SHOT = { width: 1308, height: 735 };
+  var SHOT = { width: 1052, height: 592 };
   var THUMB = { width: 192, height: 108 };
   var VIEW = { width: 1920, height: 1080 };
   var LOGO = { width: 384, height: 120 };

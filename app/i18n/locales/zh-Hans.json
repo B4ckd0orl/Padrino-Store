@@ -348,6 +348,7 @@
   "nav.allGames": "全部游戏",
   "nav.browse": "浏览",
   "nav.discover": "发现",
+  "nav.favorites": "\u6536\u85cf",
   "nav.files": "文件",
   "nav.new": "新品",
   "nav.search": "搜索",
@@ -446,5 +447,11 @@
   "versions.recommended": "推荐 · 在 PS5 上原生运行",
   "versions.sources": "{count, plural, other {# 个来源}}",
   "versions.thisPage": "本页",
-  "versions.title": "选择版本"
+  "versions.title": "选择版本",
+    "qr.title": "\u52a0\u5165\u793e\u533a",
+    "qr.detail": "\u626b\u63cf\u4ee3\u7801\uff0c\u5728 Telegram \u548c X \u4e0a\u5173\u6ce8 Padrino Store\uff1a\u65b0\u95fb\u3001\u652f\u6301\u4e0e\u65b0\u53d1\u5e03\u3002",
+    "qr.telegram": "Telegram",
+    "qr.x": "X",
+    "qr.enter": "\u8fdb\u5165",
+    "downloads.filter.all": "\u5168\u90e8"
 }

@@ -348,6 +348,7 @@
   "nav.allGames": "Todos os jogos",
   "nav.browse": "Navegar",
   "nav.discover": "Descobrir",
+  "nav.favorites": "Favoritos",
   "nav.files": "Arquivos",
   "nav.new": "Lançamentos",
   "nav.search": "Busca",
@@ -462,5 +463,11 @@
   "capture.preparing": "Preparando a verificação do arquivo…",
   "capture.capturing": "Conclua a verificação e aguarde",
   "capture.validating": "Conferindo o arquivo capturado…",
-  "capture.detail": "Não aperte Download nem anúncios: o link é capturado sozinho. Depois volte aqui e o download começa automaticamente. A captura dura até 3 minutos."
+  "capture.detail": "Não aperte Download nem anúncios: o link é capturado sozinho. Depois volte aqui e o download começa automaticamente. A captura dura até 3 minutos.",
+    "qr.title": "Entre na comunidade",
+    "qr.detail": "Escaneie o c\u00f3digo para seguir a Padrino Store no Telegram e no X: novidades, suporte e novos lan\u00e7amentos.",
+    "qr.telegram": "Telegram",
+    "qr.x": "X",
+    "qr.enter": "Entrar",
+    "downloads.filter.all": "TODOS"
 }

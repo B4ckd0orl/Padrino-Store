@@ -348,6 +348,7 @@
   "nav.allGames": "Semua game",
   "nav.browse": "Jelajahi",
   "nav.discover": "Temukan",
+  "nav.favorites": "Favorit",
   "nav.files": "File",
   "nav.new": "Rilis baru",
   "nav.search": "Cari",
@@ -446,5 +447,11 @@
   "versions.recommended": "Direkomendasikan · berjalan native di PS5",
   "versions.sources": "{count, plural, other {# sumber}}",
   "versions.thisPage": "Halaman ini",
-  "versions.title": "Pilih versi"
+  "versions.title": "Pilih versi",
+    "qr.title": "Gabung komunitas",
+    "qr.detail": "Pindai kode untuk mengikuti Padrino Store di Telegram dan X: berita, dukungan, dan rilis baru.",
+    "qr.telegram": "Telegram",
+    "qr.x": "X",
+    "qr.enter": "Masuk",
+    "downloads.filter.all": "SEMUA"
 }

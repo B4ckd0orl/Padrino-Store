@@ -348,6 +348,7 @@
   "nav.allGames": "Tous les jeux",
   "nav.browse": "Parcourir",
   "nav.discover": "Découvrir",
+  "nav.favorites": "Favoris",
   "nav.files": "Fichiers",
   "nav.new": "Nouvelles",
   "nav.search": "Recherche",
@@ -446,5 +447,11 @@
   "versions.recommended": "Recommandé · fonctionne nativement sur PS5",
   "versions.sources": "{count, plural, one {# source} many {# millions de sources} other {# sources}}",
   "versions.thisPage": "Cette page",
-  "versions.title": "Choisir la version"
+  "versions.title": "Choisir la version",
+    "qr.title": "Rejoignez la communaut\u00e9",
+    "qr.detail": "Scannez le code pour suivre Padrino Store sur Telegram et X : actualit\u00e9s, support et nouveaut\u00e9s.",
+    "qr.telegram": "Telegram",
+    "qr.x": "X",
+    "qr.enter": "Entrer",
+    "downloads.filter.all": "TOUS"
 }
