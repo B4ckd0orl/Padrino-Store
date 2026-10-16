@@ -29,9 +29,9 @@ import { Text, View, motion } from '@ps5-react/core';
         transition: enter2,
         exit: rtl ? leaveRtl : leave,
         children: /* @__PURE__ */ (0, jsxs)(View, { style: [
-          { flexDirection: "row", alignItems: "center", gap: 24, overflow: "hidden", borderRadius: 18, borderWidth: 2, backgroundColor: "#1c1a17", padding: 18 },
+          { flexDirection: "row", alignItems: "center", gap: 24, overflow: "hidden", borderRadius: 18, borderWidth: 1, backgroundColor: "#1c1a17", padding: 18 },
           rtl ? { paddingLeft: 30 } : { paddingRight: 30 },
-          failed ? { borderColor: "#f5f1ea99" } : { borderColor: "#35302a" }
+          failed ? { borderColor: "#f5f1ea99" } : { borderColor: "#e09f3e33" }
         ], children: [
           game ? /* @__PURE__ */ (0, jsx)(Cover, { game, label: false, style: THUMB3 }) : null,
           /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 6 }, children: [

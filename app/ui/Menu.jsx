@@ -24,7 +24,7 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View, motion, useIsFocus
     return /* @__PURE__ */ (0, jsx)(AnimatePresence, { children: open && /* @__PURE__ */ (0, jsx)(
       motion.View,
       {
-        style: left ? { position: "absolute", left: 0, top: "100%", zIndex: 50, marginTop: 9, width: 360, borderRadius: 12, borderWidth: 2, borderColor: "#35302a", backgroundColor: "#1c1a17", padding: 6, transformOrigin: [0, 0] } : { position: "absolute", right: 0, top: "100%", zIndex: 50, marginTop: 9, width: 360, borderRadius: 12, borderWidth: 2, borderColor: "#35302a", backgroundColor: "#1c1a17", padding: 6, transformOrigin: [1, 0] },
+        style: left ? { position: "absolute", left: 0, top: "100%", zIndex: 50, marginTop: 9, width: 360, borderRadius: 12, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#1c1a17", padding: 6, transformOrigin: [0, 0] } : { position: "absolute", right: 0, top: "100%", zIndex: 50, marginTop: 9, width: 360, borderRadius: 12, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#1c1a17", padding: 6, transformOrigin: [1, 0] },
         initial: { opacity: 0, y: -6, scale: pop },
         animate: { opacity: 1, y: 0, scale: 1 },
         exit: { opacity: 0, y: -4, transition: { type: "tween", duration: 0.1, ease: "easeIn" } },
@@ -48,6 +48,6 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View, motion, useIsFocus
       close();
     }, style: (_state) => [{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 36, borderRadius: 9, paddingHorizontal: 18, paddingVertical: 12 }, _state.focused ? { backgroundColor: "#302c27" } : null], children: /* @__PURE__ */ (0, jsx)(ItemContent, { label, checked }) });
   }
-  var MenuDivider = () => /* @__PURE__ */ (0, jsx)(View, { style: { marginVertical: 6, height: 2, backgroundColor: "#35302a" } });
+  var MenuDivider = () => /* @__PURE__ */ (0, jsx)(View, { style: { marginVertical: 6, height: 1, backgroundColor: "#e09f3e33" } });
 
 export { Menu, MenuDivider, MenuItem };

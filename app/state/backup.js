@@ -13,17 +13,36 @@ function pad2(n) {
   return String(n).padStart(2, '0');
 }
 
+// The PS5 QuickJS build only ships Date.now(): no Date constructor, no getters, no Date.parse.
+// UTC calendar fields come from Howard Hinnant's civil-from-days, pure integer math on the
+// epoch day count, so export never touches a missing intrinsic.
+function civilFromDays(z0) {
+  const z = z0 + 719468;
+  const era = Math.floor(z / 146097);
+  const doe = Math.floor(z - era * 146097);
+  const yoe = Math.floor((doe - Math.floor(doe / 1460) + Math.floor(doe / 36524) - Math.floor(doe / 146096)) / 365);
+  const doy = doe - (365 * yoe + Math.floor(yoe / 4) - Math.floor(yoe / 100));
+  const mp = Math.floor((5 * doy + 2) / 153);
+  const day = doy - Math.floor((153 * mp + 2) / 5) + 1;
+  const month = mp + (mp < 10 ? 3 : -9);
+  return [yoe + era * 400 + (month <= 2 ? 1 : 0), month, day];
+}
+
+function utc(ms) {
+  const sec = Math.floor(ms / 1000);
+  const [year, month, day] = civilFromDays(Math.floor(sec / 86400));
+  const rem = sec % 86400;
+  return { year, month, day, hh: Math.floor(rem / 3600), mm: Math.floor((rem % 3600) / 60), ss: rem % 60 };
+}
+
 function stamp(now) {
-  const d = now instanceof Date ? now : new Date(now);
-  return `${d.getFullYear()}${pad2(d.getMonth() + 1)}${pad2(d.getDate())}-${pad2(d.getHours())}${pad2(d.getMinutes())}${pad2(d.getSeconds())}`;
+  const t = utc(now);
+  return `${t.year}${pad2(t.month)}${pad2(t.day)}-${pad2(t.hh)}${pad2(t.mm)}${pad2(t.ss)}`;
 }
 
 function isoNow(now) {
-  const d = now instanceof Date ? now : new Date(now);
-  const off = -d.getTimezoneOffset();
-  const sign = off >= 0 ? '+' : '-';
-  const abs = Math.abs(off);
-  return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}T${pad2(d.getHours())}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())}${sign}${pad2(Math.floor(abs / 60))}:${pad2(abs % 60)}`;
+  const t = utc(now);
+  return `${t.year}-${pad2(t.month)}-${pad2(t.day)}T${pad2(t.hh)}:${pad2(t.mm)}:${pad2(t.ss)}Z`;
 }
 
 function buildBackup(data, now) {

@@ -26,7 +26,7 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
     ] });
   }
   function FileRow({ file, armed, autoFocus, focusKey, onPress }) {
-    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, style: (_state) => armed ? { position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 18, backgroundColor: "#e09f3e" } : [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 18 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(FileFace, { name: file.name, armed }) });
+    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, style: (_state) => armed ? { position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 18, paddingHorizontal: 18, paddingVertical: 18, backgroundColor: "#e09f3e" } : [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 18, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33", paddingHorizontal: 18, paddingVertical: 18 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(FileFace, { name: file.name, armed }) });
   }
   function Empty() {
     const t2 = useT();
@@ -78,12 +78,12 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
       setArmed(file.path);
       setStatus(null);
     };
-    if (!files.length) return /* @__PURE__ */ (0, jsxs)(View, { focusable: true, focusKey: "backup:empty", autoFocus: true, onPress: onBack, style: { position: "relative", gap: 6, padding: 9, paddingBottom: 48, borderRadius: 12 }, children: [
+    if (!files.length) return /* @__PURE__ */ (0, jsxs)(View, { focusable: true, focusKey: "backup:empty", autoFocus: true, onPress: onBack, style: { position: "relative", gap: 6, padding: 12, paddingBottom: 48, borderRadius: 18 }, children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
       /* @__PURE__ */ (0, jsx)(Empty, {}),
       /* @__PURE__ */ (0, jsx)(Status, { status })
     ] });
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 6, padding: 9, paddingBottom: 48 }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 12, padding: 12, paddingBottom: 48 }, children: [
       files.map(
         (file, index) => /* @__PURE__ */ (0, jsx)(
           FileRow,

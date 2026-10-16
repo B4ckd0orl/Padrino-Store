@@ -39,14 +39,14 @@ import { FileSystem, FocusScope, ScrollView, Text, View, useIsFocused } from '@p
     ] });
   }
   function RailItem({ onPress, focusKey, autoFocus, onFocus, ...face }) {
-    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, onFocus, style: (_state) => face.current ? { height: 84, flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 12, backgroundColor: "#1c1a17", paddingHorizontal: 18 } : [{ height: 84, flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 12, paddingHorizontal: 18 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(RailFace, { ...face }) });
+    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, onFocus, style: (_state) => face.current ? { height: 84, flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 18, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33", paddingHorizontal: 18 } : [{ height: 84, flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 18, paddingHorizontal: 18 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(RailFace, { ...face }) });
   }
   function Label({ children }) {
     return /* @__PURE__ */ (0, jsx)(Text, { style: { paddingHorizontal: 18, paddingBottom: 6, fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#6e675e", letterSpacing: 1 }, children });
   }
   function ShadowMountStatus({ up }) {
     const t2 = useT();
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 18, paddingHorizontal: 18, paddingTop: 6 }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 18, marginTop: 12, borderRadius: 18, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#1c1a17", padding: 18 }, children: [
       /* @__PURE__ */ (0, jsx)(View, { style: up ? { marginTop: 9, height: 12, width: 12, borderRadius: 14999, backgroundColor: "#e09f3e" } : { marginTop: 9, height: 12, width: 12, borderRadius: 14999, borderWidth: 2, borderColor: "#6e675e" } }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
         /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#a39c92" }, children: t2(up ? "files.shadowMountOn" : "files.shadowMountOff") }),
@@ -165,7 +165,7 @@ import { FileSystem, FocusScope, ScrollView, Text, View, useIsFocused } from '@p
         ] }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 36 }, children: [
           /* @__PURE__ */ (0, jsx)(StorageBar, { usage, sums, focus: focused?.kind ?? (kind === "all" ? null : kind), width: LIST_WIDTH }),
-          shown.length ? /* @__PURE__ */ (0, jsx)(ScrollView, { style: { flex: 1 }, children: /* @__PURE__ */ (0, jsx)(View, { style: { gap: 6, paddingBottom: 48 }, children: shown.map(
+          shown.length ? /* @__PURE__ */ (0, jsx)(ScrollView, { style: { flex: 1 }, children: /* @__PURE__ */ (0, jsx)(View, { style: { gap: 12, paddingBottom: 48 }, children: shown.map(
             (file, index) => /* @__PURE__ */ (0, jsx)(
               FileRow,
               {

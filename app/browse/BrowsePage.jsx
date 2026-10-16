@@ -35,7 +35,7 @@ import { FocusScope, ScrollView, Text, View } from '@ps5-react/core';
   function FolderInstallNotice() {
     const t2 = useT();
     if (!useFolderInstall()) return null;
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 18, borderWidth: 2, borderColor: "#35302a", backgroundColor: "#1c1a17", paddingHorizontal: 30, paddingVertical: 18 }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 18, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#1c1a17", paddingHorizontal: 30, paddingVertical: 18 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: "alert", size: 18, color: colors.muted }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
         /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("browse.folderInstall") }),

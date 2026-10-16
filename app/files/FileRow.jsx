@@ -76,7 +76,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
     ] });
   }
   var FileRow = (0, memo)(function FileRow2({ file, armed, installing, shadowMount, autoFocus, focusKey, onPress, onFocus }) {
-    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, onFocus, style: (_state) => armed ? { height: 102, flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 12, backgroundColor: "#e09f3e", paddingHorizontal: 24 } : [{ height: 102, flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 12, paddingHorizontal: 24 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(Face2, { file, armed, installing, shadowMount }) });
+    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, onFocus, style: (_state) => armed ? { height: 102, flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 18, backgroundColor: "#e09f3e", paddingHorizontal: 24 } : [{ height: 102, flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 18, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33", paddingHorizontal: 24 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(Face2, { file, armed, installing, shadowMount }) });
   });
 
 export { FileRow };

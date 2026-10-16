@@ -99,7 +99,7 @@ import { FocusScope, Text, View, useIsFocused } from '@ps5-react/core';
     };
     return (
       // A modal like the update dialog: the page underneath takes no input until it closes.
-      /* @__PURE__ */ (0, jsx)(FocusScope, { trap: true, autoFocus: true, onBack: cancel, onAction: () => true, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#121110d9" }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1320, gap: 26, borderRadius: 24, borderWidth: 2, borderColor: colors.line, backgroundColor: colors.surface, paddingHorizontal: 60, paddingTop: 44, paddingBottom: 40 }, children: [
+      /* @__PURE__ */ (0, jsx)(FocusScope, { trap: true, autoFocus: true, onBack: cancel, onAction: () => true, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#121110d9" }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1320, gap: 26, borderRadius: 24, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: colors.surface, paddingHorizontal: 60, paddingTop: 44, paddingBottom: 40 }, children: [
         /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 6 }, children: [
           /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: colors.subtle, letterSpacing: 3 }, children: t2("tips.eyebrow").toLocaleUpperCase() }),
           /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 44, fontWeight: 600, color: colors.fg, letterSpacing: -1.1, lineHeight: 52 }, children: t2("tips.title") })
@@ -124,7 +124,7 @@ import { FocusScope, Text, View, useIsFocused } from '@ps5-react/core';
           /* @__PURE__ */ (0, jsx)(View, { focusKey: "tips:toggle", nextFocusDown: "tips:continue", onPress: () => setOpen(!open), style: (_state) => [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 14, marginHorizontal: -16, paddingHorizontal: 16, paddingVertical: 12 }, _state.focused ? { backgroundColor: colors.surface2 } : null], children: /* @__PURE__ */ (0, jsx)(ToggleFace, { open }) }),
           open ? /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", flexWrap: "wrap", rowGap: 16, columnGap: 44 }, children: TIPS.map((key) => /* @__PURE__ */ (0, jsx)(Tip, { title: t2(`tips.tip.${key}.title`), body: t2(`tips.tip.${key}.body`) }, key)) }) : null
         ] }),
-        /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 18, borderTopWidth: 2, borderColor: colors.line, paddingTop: 26 }, children: [
+        /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 18, borderTopWidth: 1, borderColor: "#e09f3e33", paddingTop: 26 }, children: [
           /* @__PURE__ */ (0, jsx)(Button2, { variant: "primary", size: "lg", icon: "download", label: t2("tips.continue"), halo: false, focusKey: "tips:continue", onPress: proceed }),
           /* @__PURE__ */ (0, jsx)(Button2, { variant: "secondary", size: "lg", icon: "layers", label: t2("tips.changeSource"), focusKey: "tips:source", onPress: pick })
         ] })

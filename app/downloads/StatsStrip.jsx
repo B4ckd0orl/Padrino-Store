@@ -16,7 +16,7 @@ import { Text, View } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsxs)(View, { style: [
       { height: 108, flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
       rtl ? { paddingRight: 30, paddingLeft: 24 } : { paddingLeft: 30, paddingRight: 24 },
-      first ? null : rtl ? { borderRightWidth: 2, borderColor: "#35302a" } : { borderLeftWidth: 2, borderColor: "#35302a" }
+      first ? null : rtl ? { borderRightWidth: 1, borderColor: "#e09f3e33" } : { borderLeftWidth: 1, borderColor: "#e09f3e33" }
     ], children: [
       /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 3 }, children: [
         /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: "#f5f1ea", lineHeight: 30 }, children: label }),
@@ -30,14 +30,14 @@ import { Text, View } from '@ps5-react/core';
     const t2 = useT();
     const { network, disk } = useThroughput(id);
     const max = Math.max(...network, ...disk, 1);
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", borderTopWidth: 2, borderColor: "#35302a" }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", borderTopWidth: 1, borderColor: "#e09f3e33" }, children: [
       /* @__PURE__ */ (0, jsx)(
         Stat,
         {
           first: true,
           label: t2("downloads.stats.download"),
           value: formatSpeed(latest(network)),
-          chart: /* @__PURE__ */ (0, jsx)(SpeedChart, { samples: network, max, color: colors.fg, ...CHART })
+          chart: /* @__PURE__ */ (0, jsx)(SpeedChart, { samples: network, max, color: colors.accent, ...CHART })
         }
       ),
       /* @__PURE__ */ (0, jsx)(

@@ -14,7 +14,7 @@ import { Text, motion, useIsFocused } from '@ps5-react/core';
     primary: { backgroundColor: "#e09f3e" },
     secondary: { backgroundColor: "#26231f" },
     // Over light art a bare line vanishes: the translucent fill keeps the button readable anywhere.
-    outline: { borderWidth: 2, borderColor: "#ffffff33", backgroundColor: "#12111099" },
+    outline: { borderWidth: 1, borderColor: "#e09f3e66", backgroundColor: "#12111099" },
     ghost: null
   };
   var FOCUSED_BOX = { primary: { backgroundColor: "#f2b655" }, secondary: { backgroundColor: "#302c27" }, outline: { backgroundColor: "#1c1a17" }, ghost: null };

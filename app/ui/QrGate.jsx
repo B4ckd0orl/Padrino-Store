@@ -14,15 +14,28 @@ import { colors } from './colors.js';
 import { FocusScope, Path, Svg, Text, View } from '@ps5-react/core';
 
   var QUIET = 4;
+  var MODULE = 11;
   var LINKS = [
     { text: "https://t.me/padrinostore", labelKey: "qr.telegram" },
     { text: "https://x.com/granpadrinostor", labelKey: "qr.x" }
   ];
+  // Absolute-pixel modules, one merged subpath per horizontal run: the PS5 SVG renderer
+  // clips fractional/negative viewBoxes and huge per-module paths. The quiet zone is the
+  // offset, so it lives inside the SVG on the white plate.
   function modulePath(qr) {
     let d = "";
     for (let y = 0; y < qr.size; y++) {
-      for (let x = 0; x < qr.size; x++) {
-        if (qr.getModule(x, y)) d += `M${x} ${y}h1v1h-1z`;
+      let x = 0;
+      while (x < qr.size) {
+        if (!qr.getModule(x, y)) {
+          x += 1;
+          continue;
+        }
+        let run = x;
+        while (run < qr.size && qr.getModule(run, y)) run += 1;
+        const w = (run - x) * MODULE;
+        d += `M${(x + QUIET) * MODULE} ${(y + QUIET) * MODULE}h${w}v${MODULE}h-${w}z`;
+        x = run;
       }
     }
     return d;
@@ -30,12 +43,11 @@ import { FocusScope, Path, Svg, Text, View } from '@ps5-react/core';
   function QrCard({ text, labelKey }) {
     const t2 = useT();
     const qr = useMemo(() => qrcodegen.QrCode.encodeText(text, qrcodegen.QrCode.Ecc.MEDIUM), [text]);
-    const span = qr.size + QUIET * 2;
-    const box = 360;
+    const box = (qr.size + QUIET * 2) * MODULE;
     return /* @__PURE__ */ (0, jsxs)(View, { style: { alignItems: "center", gap: 24 }, children: [
       /* @__PURE__ */ (0, jsxs)(View, { style: { borderRadius: 24, backgroundColor: "#f5f1ea", padding: 24 }, children: [
-        /* @__PURE__ */ (0, jsxs)(Svg, { width: box, height: box, viewBox: `${-QUIET} ${-QUIET} ${span} ${span}`, children: [
-          /* @__PURE__ */ (0, jsx)(Path, { d: modulePath(qr), fill: "#121110", fillRule: "evenodd" })
+        /* @__PURE__ */ (0, jsxs)(Svg, { width: box, height: box, children: [
+          /* @__PURE__ */ (0, jsx)(Path, { d: modulePath(qr), fill: "#121110" })
         ] })
       ] }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: colors.fg, lineHeight: 36 }, children: t2(labelKey) }),

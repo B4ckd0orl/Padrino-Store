@@ -8,7 +8,6 @@
     surface: "#1c1a17",
     surface2: "#26231f",
     surface3: "#302c27",
-    line: "#35302a",
     fg: "#f5f1ea",
     muted: "#a39c92",
     subtle: "#6e675e",

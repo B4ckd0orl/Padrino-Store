@@ -88,7 +88,9 @@ import { sourceKind, webURL } from './download-sources.js';
       if (filename && filename !== metadata.filename) throw new Error("Captured response names a different file.");
     }
     const etag = response.headers?.etag;
-    if (!/^"[^"\x00-\x20\x7f]*"$/.test(etag || "") && !Number.isFinite(Date.parse(response.headers?.["last-modified"] || "")))
+    const lastModified = response.headers?.["last-modified"];
+    // No Date.parse either: a present, non-trivial header is the stability check.
+    if (!/^"[^"\x00-\x20\x7f]*"$/.test(etag || "") && !(typeof lastModified === "string" && lastModified.length > 8))
       throw new Error("Captured file has no stable identity. Reopen the page and retry.");
     return { url, expectedBytes: bytes };
   }

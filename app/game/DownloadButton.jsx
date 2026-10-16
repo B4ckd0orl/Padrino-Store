@@ -195,13 +195,13 @@ import { DownloadFormats, Text, View, motion } from '@ps5-react/core';
     }, [status]);
     return /* @__PURE__ */ (0, jsxs)(View, { style: { width: 408, gap: 12 }, children: [
       /* @__PURE__ */ (0, jsxs)(View, { onPress: advance, autoFocus: canDownload(game) && !disabled, focusKey: mainFocus, nextFocusDown: after(mainFocus), style: (_state) => [
-        { position: "relative", height: 72, width: 408, borderRadius: 9 },
-        disabled ? { borderWidth: 2, borderColor: "#35302a" } : inProgress ? { backgroundColor: "#26231f" } : [{ backgroundColor: "#e09f3e" }, _state.focused ? { backgroundColor: "#f2b655" } : null]
+        { position: "relative", height: 72, width: 408, borderRadius: 12 },
+        disabled ? { borderWidth: 1, borderColor: "#e09f3e33" } : inProgress ? { backgroundColor: "#26231f" } : [{ backgroundColor: "#e09f3e" }, _state.focused ? { backgroundColor: "#f2b655" } : null]
       ], children: [
         /* @__PURE__ */ (0, jsxs)(
           motion.View,
           {
-            style: { overflow: "hidden", borderRadius: 9 },
+            style: { overflow: "hidden", borderRadius: 12 },
             initial: false,
             animate: { scale: pulse3 ? 1.035 : 1 },
             transition: { duration: 0.225, ease: EASE_OUT },
