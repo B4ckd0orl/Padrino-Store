@@ -8,8 +8,9 @@ import { FIRST_POPULAR } from './PopularRail.jsx';
 import { SpotlightList } from './SpotlightList.jsx';
 import { useSlides } from './useSlides.js';
 import { games } from '../data/catalog.js';
+import { HERO } from '../data/curate.js';
 import { LATIN_IN_RTL, focusEnd, useLocale, useT } from '../i18n/index.js';
-import { fromArchive, genreLabel, sortGames, summaryOf } from '../state/catalog.js';
+import { fromArchive, genreLabel, getGame, isHidden, sortGames, summaryOf } from '../state/catalog.js';
 import { useNavActions, useNavState } from '../state/nav.jsx';
 import { useStoreActions, useWishlist } from '../state/store.jsx';
 import { Button2 } from '../ui/Button.jsx';
@@ -27,8 +28,10 @@ import { AnimatePresence, Image, Text, View, motion } from '@ps5-react/core';
     return list;
   };
   function selectFeatured() {
-    const eligible = games.filter((game) => game.art.logo && fromArchive(game));
-    const pool = eligible.length >= 5 ? eligible : games.filter((game) => game.art.logo);
+    const curated = HERO.map((id) => getGame(id)).filter((game) => game && game.art.logo && !isHidden(game));
+    if (curated.length >= 3) return curated;
+    const eligible = games.filter((game) => game.art.logo && fromArchive(game) && !isHidden(game));
+    const pool = eligible.length >= 5 ? eligible : games.filter((game) => game.art.logo && !isHidden(game));
     const byFame = [...pool].sort((a, b) => b.recommendations - a.recommendations);
     const latest2 = new Set(sortGames(games, "newest").slice(0, NEWEST));
     const recent2 = shuffle(byFame.filter((game) => latest2.has(game)).slice(0, 10)).slice(0, 2);
@@ -36,7 +39,7 @@ import { AnimatePresence, Image, Text, View, motion } from '@ps5-react/core';
     return shuffle([...famous, ...recent2]);
   }
   var featured = selectFeatured();
-  var ART = { width: 1410, height: 660 };
+  var ART = { width: 1154, height: 660 };
   var LOGO2 = [320, 112, 48 * 256];
   function prefetchSlides() {
     for (const game of featured) {
@@ -135,7 +138,7 @@ import { AnimatePresence, Image, Text, View, motion } from '@ps5-react/core';
       return () => clearTimeout(id);
     }, []);
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 24 }, children: [
-      /* @__PURE__ */ (0, jsxs)(View, { style: { position: "relative", width: 1410, height: 660, overflow: "hidden", borderRadius: 18, backgroundColor: "#323232" }, children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: { position: "relative", width: 1154, height: 660, overflow: "hidden", borderRadius: 18, backgroundColor: "#323232" }, children: [
         /* @__PURE__ */ (0, jsx)(Art, { game }),
         /* @__PURE__ */ (0, jsx)(View, { style: rtl ? { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "left", stops: [{ color: "#000000", offset: 0 }, { color: "#ffffffbf", offset: 0.35 }, { color: "transparent", offset: 0.75 }] } } : { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "right", stops: [{ color: "#000000", offset: 0 }, { color: "#ffffffbf", offset: 0.35 }, { color: "transparent", offset: 0.75 }] } } }),
         /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "top", stops: [{ color: "#000000b3", offset: 0 }, { color: "transparent", offset: 0.5 }] } } }),

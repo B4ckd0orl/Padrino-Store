@@ -2,6 +2,7 @@
 // reconstructed from the esbuild bundle in eboot.bin
 
 import { features, games, twins } from '../data/catalog.js';
+import { HIDDEN } from '../data/curate.js';
 import { formatDate2, formatNumber2, t } from '../i18n/core.js';
 import { createPageCache } from './page-cache.js';
 import { createReleaseCache } from './release-cache.js';
@@ -12,6 +13,8 @@ import { FileSystem, Image } from '@ps5-react/core';
   var releaseCache = createReleaseCache((path) => FileSystem.readFile(`/app0/${path}`));
   var pageCache = createPageCache((path) => FileSystem.readFile(`/app0/${path}`));
   var NO_PAGE = { about: [], shots: [], summary: "" };
+  var hiddenIds = new Set(HIDDEN);
+  var isHidden = (game) => hiddenIds.has(game.id);
   var SYNONYMS = {
     "Role Playing Game (RPG)": "RPG",
     "Role Playing Games": "RPG",
@@ -180,7 +183,7 @@ import { FileSystem, Image } from '@ps5-react/core';
   var passes = (game, facet, picked) => !picked.length || (facet.any ? picked.some((value) => facet.has(game, value)) : picked.every((value) => facet.has(game, value)));
   function matching({ filters, query, wishlist }, skip) {
     const q = query.trim().toLowerCase();
-    return games.filter((game) => (!q || `${game.title} ${game.developer} ${game.publisher}`.toLowerCase().includes(q)) && FACETS.every((facet) => facet === skip || passes(game, facet, filters[facet.key])) && (!filters.wishlist || wishlist.includes(game.id)));
+    return games.filter((game) => !isHidden(game) && (!q || `${game.title} ${game.developer} ${game.publisher}`.toLowerCase().includes(q)) && FACETS.every((facet) => facet === skip || passes(game, facet, filters[facet.key])) && (!filters.wishlist || wishlist.includes(game.id)));
   }
   var filterGames = (state) => matching(state);
   function facetCounts(state, facet) {
@@ -200,4 +203,4 @@ import { FileSystem, Image } from '@ps5-react/core';
     return formatNumber2(n);
   }
 
-export { CDN_HOST, FACETS, NO_FILTERS, SORTS, activeCount, editionsOf, facetCounts, facetLabel, facetTitle, featureLabel, filterGames, formatCount, formatDate3, fromArchive, genreLabel, genres, getGame, listedId, onCdn, optionLabel, relatedGames, showcase, sortGames, sortLabel, summaryOf, toggleValue, warmCovers };
+export { CDN_HOST, FACETS, NO_FILTERS, SORTS, activeCount, editionsOf, facetCounts, facetLabel, facetTitle, featureLabel, filterGames, formatCount, formatDate3, fromArchive, genreLabel, genres, getGame, isHidden, listedId, onCdn, optionLabel, relatedGames, showcase, sortGames, sortLabel, summaryOf, toggleValue, warmCovers };

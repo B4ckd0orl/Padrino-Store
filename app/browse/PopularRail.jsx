@@ -5,14 +5,20 @@ import { jsx } from 'react/jsx-runtime';
 import { memo } from 'react';
 import { GameRail } from './GameRail.jsx';
 import { games } from '../data/catalog.js';
+import { PINNED } from '../data/curate.js';
 import { useT } from '../i18n/index.js';
-import { NO_FILTERS, showcase, sortGames } from '../state/catalog.js';
+import { NO_FILTERS, getGame, isHidden, showcase, sortGames } from '../state/catalog.js';
 import { useNavActions } from '../state/nav.jsx';
 import { useStoreActions } from '../state/store.jsx';
 import { GameCard } from '../ui/GameCard.jsx';
 
   var WIDTH4 = 152;
-  var POPULAR = showcase(sortGames(games, "relevance"), 15);
+  var pinned = (PINNED.popular || []).map((id) => getGame(id)).filter((game) => game && !isHidden(game));
+  var pinnedIds = new Set(pinned.map((game) => game.id));
+  var POPULAR = [
+    ...pinned,
+    ...showcase(sortGames(games.filter((game) => !pinnedIds.has(game.id) && !isHidden(game)), "relevance"), Math.max(0, 15 - pinned.length))
+  ];
   var FIRST_POPULAR = `popular:${POPULAR[0].id}`;
   var PopularRail = (0, memo)(function PopularRail2() {
     const t2 = useT();

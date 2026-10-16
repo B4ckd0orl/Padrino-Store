@@ -36,7 +36,7 @@ import { Text, View } from '@ps5-react/core';
       /* @__PURE__ */ (0, jsx)(Text, { style: { width: 18, fontFamily: "Inter-Regular", fontSize: 21, color: "#6e6e73", lineHeight: 30 }, children: String(rank) }),
       /* @__PURE__ */ (0, jsx)(Cover, { game, style: thumb, label: false }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 444, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: latin(rtl, game.title) }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { width: "100%", fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f5f7", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: latin(rtl, game.title) }),
         /* @__PURE__ */ (0, jsx)(Detail, { chart, game })
       ] })
     ] });

@@ -20,7 +20,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
     ] });
   }
   var NavItem = (0, memo)(function NavItem2({ label, icon, iconFill, trailing, current = false, children, ...rest2 }) {
-    return /* @__PURE__ */ (0, jsxs)(View, { ...rest2, style: { position: "relative", height: 60, flexDirection: "row", alignItems: "center", gap: 9, borderRadius: 14999, paddingHorizontal: 24 }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { ...rest2, style: { position: "relative", height: 60, flexDirection: "row", alignItems: "center", gap: 9, borderRadius: 14999, paddingHorizontal: 20 }, children: [
       /* @__PURE__ */ (0, jsx)(Content2, { label, icon, iconFill, trailing, current }),
       children
     ] });
