@@ -1,13 +1,19 @@
 name: build
 
-# Builds run only from Run workflow: a push builds nothing. Each run puts its build in a draft
-# release; publishing that draft creates its tag, and no build runs on tags, so players get the
-# very files that were tested.
+# A push to main builds and publishes: the release is public, the tag is unique per run, and the
+# in-app updater (releases/latest) picks it up on its own. The version is injected into the build
+# workspace only, so no build number is ever committed.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: build-main
+  cancel-in-progress: false
 
 jobs:
   ps5:
@@ -15,6 +21,22 @@ jobs:
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
+
+      - name: Stamp the build version
+        # Each run is its own release, so each run needs a version no console has seen. The run
+        # number only grows, and the two halves of the scheme never meet: a stamped build writes
+        # 1.<run>.0, a manual build writes 0.<run>.0. The stamp lives in the build workspace, so
+        # the commit stays free of build numbers.
+        run: |
+          run=${{ github.run_number }}
+          base=$(sed -n 's/.*var VERSION = "1\.\([0-9]*\)\..*/\1/p' app/version.js)
+          echo "base VERSION component in app/version.js: '${base:-<none>}'"
+          sed -i "s/var VERSION = \"[^\"]*\"/var VERSION = \"1.$run.0\"/" app/version.js
+          cp -a app "$RUNNER_TEMP/app"
+          sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"0.$run.0\"/" "$RUNNER_TEMP/app/app.json"
+          echo "APP_DIR=$RUNNER_TEMP/app" >> "$GITHUB_ENV"
+          grep 'var VERSION' app/version.js
+          grep '"version"' "$RUNNER_TEMP/app/app.json"
 
       - name: Install the toolchain
         run: |
@@ -53,7 +75,7 @@ jobs:
 
       - name: Build
         working-directory: ps5-react
-        run: python3 tools/build_ps5.py --app-dir "$GITHUB_WORKSPACE/app" --llvm /usr/bin
+        run: python3 tools/build_ps5.py --app-dir "$APP_DIR" --llvm /usr/bin
 
       - name: Package
         run: |
@@ -74,31 +96,25 @@ jobs:
             ps5-react/dist/PPSA99059.receipt.json
           if-no-files-found: error
 
-      - name: Draft release
-        # Only people with write access see a draft, and the in-app update feed
-        # (releases/latest) never returns one, so a test build reaches nobody else.
-        # The draft is named after app/version.js; building again replaces its files
-        # and moves it to this commit. A version already published is left alone.
-        if: github.event_name == 'workflow_dispatch'
+      - name: Publish the release
+        # The tag is stamped from the run number, so it is always greater than what a console has
+        # already installed, and the feed (releases/latest) always points here. update.zip is the
+        # only asset the in-app updater fetches; the .exfat is the image install path.
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          version=$(sed -n 's/.*var VERSION = "\([^"]*\)".*/\1/p' app/version.js)
-          test -n "$version" || { echo "no VERSION in app/version.js" >&2; exit 1; }
-          tag="v$version"
+          run=${{ github.run_number }}
+          sha=$(echo "$GITHUB_SHA" | cut -c1-7)
+          tag="v1.$run.0"
           assets="PadrinoStore.exfat update.zip"
-          draft=$(gh api "repos/$GITHUB_REPOSITORY/releases" --paginate \
-            --jq ".[] | select(.tag_name == \"$tag\") | .draft")
-          case "$draft" in
-            "")
-              gh release create "$tag" $assets --draft --target "$GITHUB_SHA" \
-                --title "Padrino Store $tag" --notes "Test build of $GITHUB_SHA." ;;
-            true)
-              gh release edit "$tag" --target "$GITHUB_SHA" --notes "Test build of $GITHUB_SHA."
-              gh release upload "$tag" $assets --clobber ;;
-            *)
-              echo "$tag is already published: raise the version in app/version.js" >&2
-              exit 1 ;;
-          esac
-          gh release view "$tag" --json isDraft,tagName,assets \
+          notes="Padrino Store v1.$run.0 — build $run ($sha)."
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release edit "$tag" --notes "$notes"
+            gh release upload "$tag" $assets --clobber
+          else
+            gh release create "$tag" $assets --target "$GITHUB_SHA" \
+              --title "Padrino Store $tag" --notes "$notes"
+          fi
+          gh release view "$tag" --json tagName,isDraft,assets \
             --jq '"\(.tagName) draft=\(.isDraft) " + ([.assets[] | "\(.name) \(.size)"] | join(", "))'
