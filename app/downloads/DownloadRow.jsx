@@ -6,21 +6,19 @@ import { jsx, jsxs } from 'react/jsx-runtime';
 import { memo, useEffect, useState } from 'react';
 import { RowProgress } from './RowProgress.jsx';
 import { StatsStrip } from './StatsStrip.jsx';
-import { PANEL_KEY } from './SummaryPanel.jsx';
 import { STALE_PARTIAL, cause, explainError } from './errors.js';
 import { WAITING, clearAction, shownState, stateLabel } from './labels.js';
 import { shapeOf } from './useQueue.js';
 import { isOverdriveCdn } from '../game/sources.js';
-import { focusEnd, useLocale, useT } from '../i18n/index.js';
+import { useT } from '../i18n/index.js';
 import { BUSY, COMPLETE } from '../state/download-queue.js';
 import { Button2 } from '../ui/Button.jsx';
 import { CdnSpark } from '../ui/CdnAura.jsx';
 import { Cover } from '../ui/Cover.jsx';
-import { FocusRing } from '../ui/FocusRing.jsx';
 import { colors } from '../ui/colors.js';
-import { HAIRLINE, HAIRLINE_FOCUS, RADIUS_CARD } from '../ui/tokens.js';
+import { HAIRLINE, RADIUS_CARD } from '../ui/tokens.js';
 import { px } from '../ui/scale.js';
-import { Text, View, useIsFocused } from '@ps5-react/core';
+import { Text, View } from '@ps5-react/core';
 
   var THUMB2 = { width: px(78), height: px(104), borderRadius: px(8) };
   var PRIMARY = { width: 210 };
@@ -37,8 +35,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
     if (state === "downloaded") return { icon: "circleCheck", label: "downloads.action.install", onPress: () => run("register") };
     return { icon: "chevronRight", label: "downloads.action.gamePage", onPress: openGame };
   }
-  function DeleteButton({ id, action, run, onFocus, onBlur }) {
-    const { rtl } = useLocale();
+  function DeleteButton({ id, action, run, onBlur }) {
     const [armed, setArmed] = (0, useState)(false);
     (0, useEffect)(() => {
       if (!armed) return void 0;
@@ -52,8 +49,6 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
         size: "icon",
         icon: armed ? "delete" : "x",
         focusKey: `downloads-cancel:${id}`,
-        ...focusEnd(rtl, PANEL_KEY),
-        onFocus,
         onBlur: () => {
           setArmed(false);
           onBlur?.();
@@ -71,7 +66,6 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
   }
   function DownloadRowView({ job: job2, game, autoFocus, run, onOpenGame, onFocusRow }) {
     const t2 = useT();
-    const focused = useIsFocused();
     const { state, release } = job2;
     const shown = shownState(job2);
     const complete = COMPLETE.includes(state);
@@ -86,15 +80,10 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsxs)(
       View,
       {
-        focusKey: primaryKey(job2.id),
-        autoFocus,
-        onFocus,
-        style: (_state) => [
-          { position: "relative", overflow: "hidden", borderRadius: RADIUS_CARD, backgroundColor: colors.surface, borderWidth: 1, borderColor: busy ? "#e09f3e40" : HAIRLINE },
-          _state.focused ? { borderColor: HAIRLINE_FOCUS, backgroundColor: colors.surface2 } : null
+        style: [
+          { position: "relative", overflow: "hidden", borderRadius: RADIUS_CARD, backgroundColor: colors.surface, borderWidth: 1, borderColor: busy ? "#e09f3e40" : HAIRLINE }
         ],
         children: [
-          /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
           /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 30, paddingHorizontal: 30, paddingVertical: 24 }, children: [
             /* @__PURE__ */ (0, jsx)(Cover, { game, label: false, style: THUMB2 }),
             /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 15 }, children: [
@@ -126,8 +115,9 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
                   icon: main.icon,
                   label: t2(main.label),
                   style: PRIMARY,
-                  autoFocus: false,
-                  focusKey: `downloads-action:${job2.id}`,
+                  autoFocus,
+                  focusKey: primaryKey(job2.id),
+                  onFocus,
                   onPress: main.onPress
                 }
               ),
