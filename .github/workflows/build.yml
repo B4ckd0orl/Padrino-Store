@@ -118,6 +118,7 @@ jobs:
         # The tag is stamped from the run number, so it is always greater than what a console has
         # already installed, and the feed (releases/latest) always points here. update.zip is the
         # asset for an image install; update-app.zip is the asset for a folder install.
+        # Release body = CHANGELOG.md section for the upcoming release (in-app "what's new" list).
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -126,13 +127,27 @@ jobs:
           sha=$(echo "$GITHUB_SHA" | cut -c1-7)
           tag="v1.$run"
           assets="PadrinoStore.exfat update.zip update-app.zip"
-          notes="Padrino Store v1.$run — build $run ($sha)."
+          # Body: everything under "## Próxima release" until "## Archivo", else the file, else a one-liner.
+          notes_file="$RUNNER_TEMP/release-notes.md"
+          if [ -f CHANGELOG.md ]; then
+            awk '
+              /^## Próxima release/ { grab=1; next }
+              /^## Archivo/ { grab=0 }
+              grab { print }
+            ' CHANGELOG.md > "$notes_file"
+            # Trim leading blank lines
+            sed -i '/./,$!d' "$notes_file"
+          fi
+          if [ ! -s "$notes_file" ]; then
+            echo "Padrino Store v1.$run — build $run ($sha)." > "$notes_file"
+          fi
+          echo "Release notes preview:"; cat "$notes_file"
           if gh release view "$tag" >/dev/null 2>&1; then
-            gh release edit "$tag" --notes "$notes"
+            gh release edit "$tag" --notes-file "$notes_file"
             gh release upload "$tag" $assets --clobber
           else
             gh release create "$tag" $assets --target "$GITHUB_SHA" \
-              --title "Padrino Store $tag" --notes "$notes"
+              --title "Padrino Store $tag" --notes-file "$notes_file"
           fi
           gh release view "$tag" --json tagName,isDraft,assets \
             --jq '"\(.tagName) draft=\(.isDraft) " + ([.assets[] | "\(.name) \(.size)"] | join(", "))'

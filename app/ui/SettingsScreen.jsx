@@ -51,22 +51,24 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
       { position: "relative", minHeight: ROW_H, flexDirection: "row", alignItems: "center", borderRadius: RADIUS_CARD, paddingHorizontal: 18, paddingVertical: 14, borderWidth: 1, borderColor: armed ? colors.accent : HAIRLINE },
       _state.focused ? { backgroundColor: colors.surface2, borderColor: HAIRLINE_FOCUS } : null,
       armed ? { backgroundColor: colors.accent } : null
-    ], children: /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }), children: void 0 });
+    ], children: [/* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }), children] });
   }
 
-  function LanguageFace({ name, detail: detail2, checked }) {
+  function LanguageFace({ name, detail: detail2, checked, onAccent }) {
     const focused = useIsFocused();
+    const nameInk = onAccent ? colors.accentFg : "#f5f1ea";
+    const detailInk = onAccent ? "#1a1408cc" : focused ? colors.fg : colors.muted;
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, flexDirection: "row", alignItems: "center", gap: 14 }, children: [
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 2 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 22, fontWeight: 600, color: "#f5f1ea" }, children: name }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: [{ fontFamily: "Inter-Regular", fontSize: 19, lineHeight: 26 }, { color: focused ? colors.fg : colors.muted }], children: detail2 })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 22, fontWeight: 600, color: nameInk }, children: name }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: [{ fontFamily: "Inter-Regular", fontSize: 19, lineHeight: 26 }, { color: detailInk }], children: detail2 })
       ] }),
-      checked ? /* @__PURE__ */ (0, jsx)(Icon, { name: "check", color: colors.accent }) : /* @__PURE__ */ (0, jsx)(View, { style: { width: 24, height: 24 } })
+      checked ? /* @__PURE__ */ (0, jsx)(Icon, { name: "check", color: onAccent ? colors.accentFg : colors.accent }) : /* @__PURE__ */ (0, jsx)(View, { style: { width: 24, height: 24 } })
     ] });
   }
 
   function LanguageRow({ code, name, detail: detail2, checked, onPress }) {
-    return /* @__PURE__ */ (0, jsx)(FlatRow, { focusKey: `language:${code}`, onPress, children: /* @__PURE__ */ (0, jsx)(LanguageFace, { name, detail: detail2, checked }) });
+    return /* @__PURE__ */ (0, jsx)(FlatRow, { focusKey: `language:${code}`, onPress, armed: checked, children: /* @__PURE__ */ (0, jsx)(LanguageFace, { name, detail: detail2, checked, onAccent: checked }) });
   }
 
   function SpeedSegment({ limit, chosen }) {
@@ -163,7 +165,7 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
     const general = /* @__PURE__ */ (0, jsxs)(motion.View, { variants: listAnim, initial: "hidden", animate: "shown", style: { gap: 4 }, children: [
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SpeedLimit, {}) }),
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SectionLabel, { title: t2("settings.controller") }) }),
-      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(FlatRow, { focusKey: "settings:vibration", onPress: () => setNavigationHaptics(!vibration), children: /* @__PURE__ */ (0, jsx)(LanguageFace, { name: t2("settings.vibration"), detail: t2("settings.vibrationDetail"), checked: vibration }) }) })
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(FlatRow, { focusKey: "settings:vibration", onPress: () => setNavigationHaptics(!vibration), armed: vibration, children: /* @__PURE__ */ (0, jsx)(LanguageFace, { name: t2("settings.vibration"), detail: t2("settings.vibrationDetail"), checked: vibration, onAccent: vibration }) }) })
     ] });
     const language = /* @__PURE__ */ (0, jsxs)(motion.View, { variants: listAnim, initial: "hidden", animate: "shown", style: { gap: 4 }, children: [
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(LanguageRow, { code: "system", name: t2("language.system"), detail: nameOf(systemLocale()), checked: choice2 === null, onPress: () => pick2(null) }) }),

@@ -15,7 +15,7 @@
   "conceptId": "99059",
   "contentBadgeType": 1,
   "contentId": "UP9000-PPSA99059_00-PADRINOSTORE0000",
-  "contentVersion": "01.004.000",
+  "contentVersion": "00.001.000",
   "downloadDataSize": 256,
   "gameIntent": {
     "permittedIntents": [
@@ -34,7 +34,7 @@
       "titleName": "Padrino Store"
     }
   },
-  "masterVersion": "01.00",
+  "masterVersion": "00.01",
   "pubtools": {
     "creationDate": "2026-08-22 00:00:00",
     "loudnessSnd0": "-28.00",

@@ -17,7 +17,8 @@ import { StoreFreeze, StoreProvider } from './state/store.jsx';
 import { Sidebar, SIDEBAR_W } from './ui/Sidebar.jsx';
 import { SettingsScreen } from './ui/SettingsScreen.jsx';
   import { Legend } from './ui/Legend.jsx';
-  import { QrGate } from './ui/QrGate.jsx';
+  import { WelcomeGate } from './ui/WelcomeGate.jsx';
+  import { Bgm } from './ui/Bgm.jsx';
 import { UpdateDialog } from './ui/UpdateDialog.jsx';
 import { useInterfaceHaptics } from './ui/haptics.js';
 import { useInterfaceSounds } from './ui/sounds.js';
@@ -53,6 +54,7 @@ import { useInterfaceSounds } from './ui/sounds.js';
     return (
       // Arabic and Urdu mirror every row and right-align every paragraph from here.
       /* @__PURE__ */ (0, jsxs)(View, { style: [{ width: 1920, height: 1080, backgroundColor: "#121110" }, { direction: rtl ? "rtl" : "ltr" }], children: [
+        /* @__PURE__ */ (0, jsx)(Bgm, {}),
         /* @__PURE__ */ (0, jsxs)(Sidebar, { children: [
           /* @__PURE__ */ (0, jsx)(BrowseLayer, { shown: onBrowse }),
           onBrowse ? null : (
@@ -66,11 +68,11 @@ import { useInterfaceSounds } from './ui/sounds.js';
       ] })
     );
   }
-  // The community QR gate shows once per console: the flag lives next to the other saved
+  // The welcome gate shows once per console: the flag lives next to the other saved
   // lists, and the store mounts only after it is dismissed (like the splash before it).
   function Gate() {
     const [seen, setSeen] = (0, useState)(() => loadList("qr.json", "qr gate").seen === true);
-    if (!seen) return /* @__PURE__ */ (0, jsx)(QrGate, { onDone: () => {
+    if (!seen) return /* @__PURE__ */ (0, jsx)(WelcomeGate, { onDone: () => {
       saveList("qr.json", "qr gate", { seen: true });
       setSeen(true);
     } });

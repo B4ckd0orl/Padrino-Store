@@ -3,7 +3,7 @@
 
 import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { focusEnd, useLocale, useT } from '../i18n/index.js';
 import { getGame } from '../state/catalog.js';
 import { useIsImmersive, useNavActions, useNavState } from '../state/nav.jsx';
@@ -16,7 +16,6 @@ import { NavItem } from './NavItem.jsx';
 import { useSections } from './useSections.js';
 import { colors } from './colors.js';
 import { HAIRLINE, SIDEBAR_W } from './tokens.js';
-import { VERSION } from '../version.js';
 import { FocusScope, Text, View } from '@ps5-react/core';
 
   var BADGE = /* @__PURE__ */ (0, jsx)(DownloadsBadge, {});
@@ -53,7 +52,7 @@ import { FocusScope, Text, View } from '@ps5-react/core';
       /* @__PURE__ */ (0, jsx)(View, { style: [immersive ? { display: "none" } : null, { position: "absolute", top: 0, bottom: 0, width: SIDEBAR_W, zIndex: 40, backgroundColor: "#0f0e0c" }, side], children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "sidebar", inert: immersive, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: SIDEBAR_W, height: 1080, paddingTop: 24, paddingBottom: 24, alignItems: "center", gap: 6 }, children: [
         /* @__PURE__ */ (0, jsx)(View, { focusKey: "nav:home", onPress: on.discover, ...into, onFocus: () => preview("discover"), style: { position: "relative", marginBottom: 12 }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: 14, backgroundColor: colors.surface }, children: [
           /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
-          /* @__PURE__ */ (0, jsx)(Logo, {})
+          /* @__PURE__ */ (0, jsx)(Logo, { compact: true })
         ] }) }),
         /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: keyOf("search"), icon: "search", label: t2("nav.search"), current: section === "search", onPress: on.search, ...into }),
         /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: keyOf("discover"), icon: "globe", label: t2("nav.discover"), current: section === "discover", onPress: on.discover, ...into, ...hover("discover") }),

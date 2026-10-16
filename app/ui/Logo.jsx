@@ -9,7 +9,8 @@ import { colors } from './colors.js';
 import { px } from './scale.js';
 
   var ICON = { width: px(30), height: px(30) };
-  function Logo({ color = colors.fg }) {
+  function Logo({ color = colors.fg, compact = false }) {
+    if (compact) return /* @__PURE__ */ (0, jsx)(Image, { source: brandIcon, resizeMode: "contain", style: ICON });
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12 }, children: [
       /* @__PURE__ */ (0, jsx)(Image, { source: brandIcon, resizeMode: "contain", style: ICON }),
       /* @__PURE__ */ (0, jsx)(Text, { style: [{ fontFamily: "Inter-Regular", fontSize: 29, fontWeight: 600, letterSpacing: -0.85 }, { color }], children: "padrino" })

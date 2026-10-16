@@ -1,0 +1,15 @@
+Background Music — CC0 Notice
+=============================
+
+Track:   "Morning Coffee"
+Artist:  HoliznaCC0
+Album:   Lo-fi And Chill (2022)
+License: CC0 1.0 Universal (Public Domain Dedication)
+Source:  https://freemusicarchive.org/track/morning-coffee
+File:    app/assets/bgm/morning-coffee.mp3
+
+This track is dedicated to the public domain under CC0 1.0.
+No attribution is required. You may copy, modify, distribute and perform
+the work, even for commercial purposes, all without asking permission.
+
+Full license text: https://creativecommons.org/publicdomain/zero/1.0/legalcode
