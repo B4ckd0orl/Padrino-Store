@@ -34,15 +34,16 @@ jobs:
           run=${{ github.run_number }}
           python3 - "$run" <<'PY'
           import json, pathlib, re, sys
-          run = sys.argv[1]
-          # The updater compares component-wise and only installs a strictly greater version.
+          run = int(sys.argv[1])
+          # The updater compares component-wise (Number per part) and only installs a strictly
+          # greater version, so 1.9.0 < 1.10.0 needs no zero padding.
           p = pathlib.Path("app/version.js")
           p.write_text(re.sub(r'var VERSION = "[^"]*"',
                               f'var VERSION = "1.{run}.0"', p.read_text()), encoding="utf-8")
-          # The packager requires NN.NNN.NNN, so the PS5 content version gets its own half.
+          # The packager requires NN.NNN.NNN (three zero-padded digits per part).
           p = pathlib.Path("app/app.json")
           c = json.loads(p.read_text(encoding="utf-8"))
-          c["version"] = f"01.{run}.000"
+          c["version"] = f"01.{run:03d}.000"
           p.write_text(json.dumps(c, indent=2) + "\n", encoding="utf-8")
           PY
           cp -a app "$RUNNER_TEMP/app"
