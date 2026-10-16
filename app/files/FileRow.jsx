@@ -1,5 +1,5 @@
 // ../pub-game-store/native/files/FileRow.jsx
-// reconstructed from the esbuild bundle in eboot.bin
+// MODIFIED: flat 72px row — no card border, subtle focus bg, hairline separator.
 
 import '../assets/Inter-Regular.ttf';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
@@ -15,6 +15,7 @@ import { Icon } from '../ui/Icon.jsx';
 import { PlatformBadge } from '../ui/PlatformBadge.jsx';
 import { ProgressBar } from '../ui/ProgressBar.jsx';
 import { colors } from '../ui/colors.js';
+import { HAIRLINE } from '../ui/tokens.js';
 import { px } from '../ui/scale.js';
 import { Text, View, useIsFocused } from '@ps5-react/core';
 
@@ -29,7 +30,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
   }
   function Thumb({ file, dark }) {
     if (file.game?.art?.cover) return /* @__PURE__ */ (0, jsx)(Cover, { game: file.game, label: false, style: COVER2 });
-    return /* @__PURE__ */ (0, jsx)(View, { style: [{ height: 72, width: 54, alignItems: "center", justifyContent: "center", borderRadius: 6, backgroundColor: "#26231f" }, dark ? { backgroundColor: "#dcdce0" } : null], children: /* @__PURE__ */ (0, jsx)(Icon, { name: ICON_OF[file.kind], size: 18, color: dark ? colors.canvas : colors.muted }) });
+    return /* @__PURE__ */ (0, jsx)(View, { style: [{ height: 48, width: 36, alignItems: "center", justifyContent: "center", borderRadius: 6, backgroundColor: "#26231f" }, dark ? { backgroundColor: "#dcdce0" } : null], children: /* @__PURE__ */ (0, jsx)(Icon, { name: ICON_OF[file.kind], size: 16, color: dark ? colors.canvas : colors.muted }) });
   }
   function detail(t2, file, shadowMount) {
     const parts = [t2(typeOf2(file))];
@@ -44,39 +45,38 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
     const focused = useIsFocused();
     const busy = installing && !installing.done && !installing.error;
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
-      armed ? null : /* @__PURE__ */ (0, jsx)(FocusRing, {}),
+      armed ? null : /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
       /* @__PURE__ */ (0, jsx)(Thumb, { file, dark: armed }),
-      /* @__PURE__ */ (0, jsxs)(View, { style: [{ gap: 9 }, { width: px(TEXT_WIDTH) }], children: [
-        /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 15 }, children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 4 }, children: [
+        /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12 }, children: [
           file.platform ? /* @__PURE__ */ (0, jsx)(PlatformBadge, { platforms: [file.platform] }) : null,
           /* @__PURE__ */ (0, jsx)(
             Text,
             {
-              style: [armed ? { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#1a1408", numberOfLines: 1, ellipsizeMode: "tail" } : { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail" }, { width: px(file.platform ? TEXT_WIDTH - 54 : TEXT_WIDTH) }],
+              style: [armed ? { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: "#1a1408", numberOfLines: 1, ellipsizeMode: "tail" } : { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail" }],
               children: file.game?.title ?? file.name
             }
           )
         ] }),
-        armed ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 9 }, children: [
+        armed ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 8 }, children: [
           /* @__PURE__ */ (0, jsx)(ButtonGlyph, { button: "square", size: 14 }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#1a1408" }, children: t2("files.confirmDelete", { size: formatBytes(file.size) }) })
-        ] }) : busy ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 18 }, children: [
-          /* @__PURE__ */ (0, jsx)(ProgressBar, { fraction: installing.fraction, width: 240, active: true }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#f5f1ea" }, children: t2("files.installing", { percent: formatPercent2(Math.round(installing.fraction * 100)) }) })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: "#1a1408" }, children: t2("files.confirmDelete", { size: formatBytes(file.size) }) })
+        ] }) : busy ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 16 }, children: [
+          /* @__PURE__ */ (0, jsx)(ProgressBar, { fraction: installing.fraction, width: 200, active: true }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, color: "#f5f1ea" }, children: t2("files.installing", { percent: formatPercent2(Math.round(installing.fraction * 100)) }) })
         ] }) : /* @__PURE__ */ (0, jsx)(
           Text,
           {
-            style: [installing?.error ? { fontFamily: "Inter-Regular", fontSize: 20, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail" } : focused ? { fontFamily: "Inter-Regular", fontSize: 20, color: "#a39c92", numberOfLines: 1, ellipsizeMode: "tail" } : { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e675e", numberOfLines: 1, ellipsizeMode: "tail" }, { width: px(TEXT_WIDTH) }],
+            style: [installing?.error ? { fontFamily: "Inter-Regular", fontSize: 18, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail" } : focused ? { fontFamily: "Inter-Regular", fontSize: 18, color: "#a39c92", numberOfLines: 1, ellipsizeMode: "tail" } : { fontFamily: "Inter-Regular", fontSize: 18, color: "#6e675e", numberOfLines: 1, ellipsizeMode: "tail" }],
             children: installing?.error ? t2("files.installFailed") : installing?.done ? t2("files.installDone") : file.game ? `${file.name} \xB7 ${detail(t2, file, shadowMount)}` : detail(t2, file, shadowMount)
           }
         )
       ] }),
-      /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1 } }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: armed ? { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#1a1408" } : { fontFamily: "Inter-Regular", fontSize: 23, color: "#f5f1ea" }, children: formatBytes(file.size) })
+      /* @__PURE__ */ (0, jsx)(Text, { style: armed ? { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: "#1a1408" } : { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea" }, children: formatBytes(file.size) })
     ] });
   }
   var FileRow = (0, memo)(function FileRow2({ file, armed, installing, shadowMount, autoFocus, focusKey, onPress, onFocus }) {
-    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, onFocus, style: (_state) => armed ? { height: 102, flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 18, backgroundColor: "#e09f3e", paddingHorizontal: 24 } : [{ height: 102, flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 18, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33", paddingHorizontal: 24 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(Face2, { file, armed, installing, shadowMount }) });
+    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, onFocus, style: (_state) => armed ? { height: 72, flexDirection: "row", alignItems: "center", gap: 20, borderRadius: 10, backgroundColor: colors.accent, paddingHorizontal: 20 } : [{ height: 72, flexDirection: "row", alignItems: "center", gap: 20, borderRadius: 10, paddingHorizontal: 20, borderBottomWidth: 1, borderBottomColor: HAIRLINE }, _state.focused ? { backgroundColor: colors.surface } : null], children: /* @__PURE__ */ (0, jsx)(Face2, { file, armed, installing, shadowMount }) });
   });
 
 export { FileRow };

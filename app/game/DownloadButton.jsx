@@ -149,7 +149,19 @@ import { DownloadFormats, Text, View, motion } from '@ps5-react/core';
       onSelect: deleteFromDisk,
       armed: { label: t2("hints.confirmDelete"), detail: t2("files.confirmDelete", { size: formatBytes(job2.total || 0) }) }
     };
-    const options = COMPLETE.includes(status) ? [removal, deletion] : recoverable ? [
+    const moveItem = job2 && roots.length > 1 && {
+      icon: "folder",
+      label: t2("download.move.label"),
+      detail: t2("download.move.detail", { drive: driveName(roots[(roots.indexOf(job2.root) + 1) % roots.length]) }),
+      onSelect: () => {
+        const nextRoot = roots[(roots.indexOf(job2.root) + 1) % roots.length];
+        if (nextRoot && nextRoot !== job2.root) {
+          downloadQueue().relocate(job2.id, nextRoot).catch(() => {});
+        }
+      },
+      next: true
+    };
+    const options = COMPLETE.includes(status) ? [moveItem, removal, deletion].filter(Boolean) : recoverable ? [
       stale ? null : {
         icon: "restart",
         label: t2("download.restart.label"),

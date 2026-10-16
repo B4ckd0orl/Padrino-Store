@@ -1,6 +1,5 @@
 // ../pub-game-store/native/ui/BackupSheet.jsx
-// Lista de respaldos para importar; se monta dentro del SideSheet de Ajustes.
-// MODIFIED: console-style rows — lift on focus, press feedback, staggered entrance.
+// MODIFIED: flat rows — no lift/shine, neutral border, console-native.
 
 import '../assets/Inter-Regular.ttf';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
@@ -11,39 +10,24 @@ import { useT } from '../i18n/index.js';
 import { FocusRing } from './FocusRing.jsx';
 import { Icon } from './Icon.jsx';
 import { colors } from './colors.js';
-import { EASE_OUT } from './ease.js';
+import { HAIRLINE, HAIRLINE_FOCUS, RADIUS_CARD, ROW_H } from './tokens.js';
 import { playError, playNotify } from './sounds.js';
-import { FileSystem, Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
+import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
 
   var STATUS_MS = 1500;
-  var rowMotion = { type: "tween", duration: 0.25, ease: EASE_OUT };
-  var listAnim = { hidden: {}, shown: { transition: { staggerChildren: 0.04, delayChildren: 0.08 } } };
-  var itemAnim = { hidden: { opacity: 0, y: 16 }, shown: { opacity: 1, y: 0, transition: transitions.panel } };
   function FileFace({ name, armed }) {
     const t2 = useT();
     const focused = useIsFocused();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
-      /* @__PURE__ */ (0, jsx)(FocusRing, {}),
-      /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: armed ? "#121110" : "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail" }, children: name }),
-        armed ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#1a1408" }, children: t2("backup.confirm") }) : /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: focused ? colors.fg : colors.muted }, children: " " })
+      /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
+      /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 2 }, children: [
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: armed ? "#121110" : "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail" }, children: name }),
+        armed ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: "#1a1408" }, children: t2("backup.confirm") }) : /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, color: focused ? colors.fg : colors.muted }, children: " " })
       ] })
     ] });
   }
   function FileRow({ file, armed, autoFocus, focusKey, onPress }) {
-    return /* @__PURE__ */ (0, jsx)(
-      motion.View,
-      {
-        focusKey,
-        autoFocus,
-        onPress,
-        whileFocus: armed ? void 0 : { y: -3 },
-        whilePress: { scale: 0.98 },
-        transition: rowMotion,
-        style: (_state) => armed ? { position: "relative", borderRadius: 18, paddingHorizontal: 18, paddingVertical: 18, backgroundColor: "#e09f3e" } : [{ position: "relative", borderRadius: 18, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33", paddingHorizontal: 18, paddingVertical: 18 }, _state.focused ? { backgroundColor: "#26231f", borderColor: "#e09f3e66" } : null],
-        children: /* @__PURE__ */ (0, jsx)(FileFace, { name: file.name, armed })
-      }
-    );
+    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, style: (_state) => armed ? { position: "relative", height: ROW_H, borderRadius: RADIUS_CARD, paddingHorizontal: 18, backgroundColor: colors.accent } : [{ position: "relative", height: ROW_H, borderRadius: RADIUS_CARD, borderWidth: 1, borderColor: HAIRLINE, paddingHorizontal: 18 }, _state.focused ? { backgroundColor: colors.surface2, borderColor: HAIRLINE_FOCUS } : null], children: /* @__PURE__ */ (0, jsx)(FileFace, { name: file.name, armed }) });
   }
   function Empty() {
     const t2 = useT();
@@ -55,9 +39,9 @@ import { FileSystem, Text, View, motion, transitions, useIsFocused } from '@ps5-
   }
   function Status({ status }) {
     if (!status) return null;
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 18, paddingTop: 12 }, children: [
-      /* @__PURE__ */ (0, jsx)(Icon, { name: status.kind === "error" ? "alert" : "circleCheck", size: 22, color: status.kind === "error" ? colors.warn : colors.ok }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 19, color: "#a39c92", lineHeight: 27 }, children: status.text })
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 10, paddingTop: 12 }, children: [
+      /* @__PURE__ */ (0, jsx)(Icon, { name: status.kind === "error" ? "alert" : "circleCheck", size: 20, color: status.kind === "error" ? colors.warn : colors.ok }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 18, color: "#a39c92", lineHeight: 26 }, children: status.text })
     ] });
   }
   function BackupList({ onImport, onBack }) {
@@ -95,27 +79,21 @@ import { FileSystem, Text, View, motion, transitions, useIsFocused } from '@ps5-
       setArmed(file.path);
       setStatus(null);
     };
-    if (!files.length) return /* @__PURE__ */ (0, jsxs)(View, { focusable: true, focusKey: "backup:empty", autoFocus: true, onPress: onBack, style: { position: "relative", gap: 6, padding: 12, paddingBottom: 48, borderRadius: 18 }, children: [
-      /* @__PURE__ */ (0, jsx)(FocusRing, {}),
+    if (!files.length) return /* @__PURE__ */ (0, jsxs)(View, { focusable: true, focusKey: "backup:empty", autoFocus: true, onPress: onBack, style: { position: "relative", gap: 6, borderRadius: RADIUS_CARD }, children: [
+      /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
       /* @__PURE__ */ (0, jsx)(Empty, {}),
       /* @__PURE__ */ (0, jsx)(Status, { status })
     ] });
-    return /* @__PURE__ */ (0, jsxs)(motion.View, { variants: listAnim, initial: "hidden", animate: "shown", style: { gap: 12, padding: 12, paddingBottom: 48 }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 4 }, children: [
       files.map(
         (file, index) => /* @__PURE__ */ (0, jsx)(
-          motion.View,
+          FileRow,
           {
-            variants: itemAnim,
-            children: /* @__PURE__ */ (0, jsx)(
-              FileRow,
-              {
-                file,
-                armed: armed === file.path,
-                autoFocus: index === 0,
-                focusKey: `backup:${file.path}`,
-                onPress: () => press(file)
-              }
-            )
+            file,
+            armed: armed === file.path,
+            autoFocus: index === 0,
+            focusKey: `backup:${file.path}`,
+            onPress: () => press(file)
           },
           file.path
         )

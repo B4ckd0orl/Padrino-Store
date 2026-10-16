@@ -1,6 +1,5 @@
 // ../pub-game-store/native/downloads/DownloadsScreen.jsx
-// reconstructed from the esbuild bundle in eboot.bin
-// MODIFIED: console-style header, staggered row entrance, animated filter chips.
+// MODIFIED: KPI strip on top, segmented filter bar (no pills), full-width list.
 
 import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
@@ -22,6 +21,7 @@ import { Icon } from '../ui/Icon.jsx';
 import { HINT } from '../ui/Legend.jsx';
 import { colors } from '../ui/colors.js';
 import { EASE_OUT } from '../ui/ease.js';
+import { GUTTER, HAIRLINE, RADIUS_PILL, SEGMENT_H } from '../ui/tokens.js';
 import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions } from '@ps5-react/core';
 
   var LIST_HINTS = [
@@ -33,8 +33,8 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
   var EMPTY_HINTS = [HINT.select, HINT.back];
   var EMPTY_KEY = "downloads:empty";
   var listAnim = { hidden: {}, shown: { transition: { staggerChildren: 0.05, delayChildren: 0.08 } } };
-  var rowAnim = { hidden: { opacity: 0, y: 20 }, shown: { opacity: 1, y: 0, transition: transitions.panel } };
-  var headerAnim = { hidden: { opacity: 0, y: 12 }, shown: { opacity: 1, y: 0, transition: { type: "tween", duration: 0.35, ease: EASE_OUT } } };
+  var rowAnim = { hidden: { opacity: 0, y: 16 }, shown: { opacity: 1, y: 0, transition: transitions.panel } };
+  var headerAnim = { hidden: { opacity: 0, y: 10 }, shown: { opacity: 1, y: 0, transition: { type: "tween", duration: 0.3, ease: EASE_OUT } } };
   function summary(jobs) {
     const count = (states) => jobs.filter((job2) => states.includes(job2.state)).length;
     return [
@@ -44,12 +44,12 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
       [count(COMPLETE), "completed"]
     ].filter(([n]) => n > 0).map(([n, key]) => t(`downloads.summary.${key}`, { count: n })).join(" \xB7 ");
   }
-  function FilterChip({ label, count, current, focusKey, autoFocus, onPress }) {
+  function Segment({ label, count, current, focusKey, autoFocus, onPress }) {
     const focused = useIsFocused();
-    return /* @__PURE__ */ (0, jsxs)(View, { focusKey, autoFocus, onPress, style: (_state) => [{ height: 54, flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 21, borderRadius: 14999 }, current ? { backgroundColor: "#e09f3e" } : focused ? { backgroundColor: "#26231f" } : null], children: [
-      /* @__PURE__ */ (0, jsx)(FocusRing, { round: "full" }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: current ? "#1a1408" : focused ? "#f5f1ea" : "#a39c92", lineHeight: 30 }, children: label }),
-      count > 0 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: current ? "#1a1408b3" : "#6e675e", lineHeight: 30 }, children: formatNumber2(count) }) : null
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey, autoFocus, onPress, style: (_state) => [{ height: SEGMENT_H, flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 18, borderRadius: RADIUS_PILL }, current ? { backgroundColor: colors.accent } : focused ? { backgroundColor: colors.surface2 } : null], children: [
+      /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: current ? "#1a1408" : focused ? "#f5f1ea" : "#a39c92", lineHeight: 26 }, children: label }),
+      count > 0 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, color: current ? "#1a1408b3" : "#6e675e", lineHeight: 26 }, children: formatNumber2(count) }) : null
     ] });
   }
   function Empty({ error: error2, onBack }) {
@@ -87,7 +87,6 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
           if (filterRef.current === "all" || groupOf(list[i]) === filterRef.current) return primaryKey(list[i].id);
         }
       }
-      // The last row of the last filter leaves the Empty state, whose browse button holds this key.
       return list.length > 1 ? `downloads-filter:${filterRef.current}` : EMPTY_KEY;
     };
     const [handlers] = (0, useState)(() => ({
@@ -136,48 +135,46 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
       ["completed", "downloads.section.completed", done.length]
     ];
     return /* @__PURE__ */ (0, jsx)(FocusScope, { autoFocus: true, onBack: back2, onAction, children: /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1 }, children: [
-      /* @__PURE__ */ (0, jsxs)(motion.View, { variants: listAnim, initial: "hidden", animate: "shown", style: { gap: 18 }, children: [
-        /* @__PURE__ */ (0, jsxs)(motion.View, { variants: headerAnim, style: { flexDirection: "row", alignItems: "flex-end", gap: 48, paddingHorizontal: 48, paddingTop: 42, paddingBottom: 6 }, children: [
+      /* @__PURE__ */ (0, jsxs)(motion.View, { variants: listAnim, initial: "hidden", animate: "shown", style: { gap: 14 }, children: [
+        /* @__PURE__ */ (0, jsxs)(motion.View, { variants: headerAnim, style: { flexDirection: "row", alignItems: "flex-end", gap: 48, paddingHorizontal: GUTTER, paddingTop: 40, paddingBottom: 4 }, children: [
           /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 4 }, children: [
-            /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 15 }, children: [
+            /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 14 }, children: [
               /* @__PURE__ */ (0, jsx)(Icon, { name: "download", size: 22, color: colors.accent }),
               /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, fontWeight: 600, color: "#f5f1ea", lineHeight: 48, letterSpacing: -1 }, children: fitBytes(t2("downloads.title"), SPAN_MAX) })
             ] }),
-            jobs.length ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", lineHeight: 30 }, children: fitBytes(summary(jobs), SPAN_MAX) }) : null
+            jobs.length ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e675e", lineHeight: 28 }, children: fitBytes(summary(jobs), SPAN_MAX) }) : null
           ] }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { width: 420, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, children: failure })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { width: 420, fontFamily: "Inter-Regular", fontSize: 20, color: "#f5f1ea", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 28 }, children: failure })
         ] }),
-        /* @__PURE__ */ (0, jsx)(View, { style: { height: 1, marginHorizontal: 48, backgroundColor: "#e09f3e33" } }),
-        jobs.length > 0 ? /* @__PURE__ */ (0, jsx)(motion.View, { variants: headerAnim, style: { flexDirection: "row", paddingHorizontal: 48, paddingTop: 12, paddingBottom: 18 }, children: /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", gap: 6, padding: 6, borderRadius: 14999, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33" }, children: FILTERS.map(
-          ([key, labelKey, count]) => /* @__PURE__ */ (0, jsx)(FilterChip, { label: t2(labelKey), count, current: filter === key, focusKey: `downloads-filter:${key}`, onPress: () => setFilter(key) }, key)
-        ) }) }) : null
-      ] }),
-      /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, flexDirection: "row", gap: 48, paddingHorizontal: 48 }, children: [
-        jobs.length > 0 ? /* @__PURE__ */ (0, jsx)(ScrollView, { style: { flex: 1 }, children: filtered.length ? /* @__PURE__ */ (0, jsx)(motion.View, { variants: listAnim, initial: "hidden", animate: "shown", style: { gap: 18, paddingBottom: 60 }, children: filtered.map(
-          (job2) => /* @__PURE__ */ (0, jsx)(
-            motion.View,
-            {
-              variants: rowAnim,
-              style: { position: "relative" },
-              children: /* @__PURE__ */ (0, jsx)(
-                DownloadRow,
-                {
-                  job: job2,
-                  game: getGame(job2.gameId) ?? { title: job2.title, art: {} },
-                  autoFocus: job2 === first,
-                  run: handlers.run,
-                  onOpenGame: handlers.openGame,
-                  onFocusRow: handlers.focusRow
-                }
-              )
-            },
-            job2.id
-          )
-        ) }) : /* @__PURE__ */ (0, jsx)(View, { style: { paddingTop: 96, alignItems: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#6e675e" }, children: t2("downloads.empty") }) }) }) : /* @__PURE__ */ (0, jsx)(Empty, { error: error2, onBack }),
+        /* @__PURE__ */ (0, jsx)(View, { style: { height: 1, marginHorizontal: GUTTER, backgroundColor: HAIRLINE } }),
         /* @__PURE__ */ (0, jsx)(SummaryPanel, { error: error2, onFocus: () => {
           focused.current = null;
-        } })
+        } }),
+        jobs.length > 0 ? /* @__PURE__ */ (0, jsx)(motion.View, { variants: headerAnim, style: { flexDirection: "row", paddingHorizontal: GUTTER, paddingBottom: 14 }, children: /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", gap: 4, padding: 4, borderRadius: RADIUS_PILL, backgroundColor: colors.surface, borderWidth: 1, borderColor: HAIRLINE }, children: FILTERS.map(
+          ([key, labelKey, count]) => /* @__PURE__ */ (0, jsx)(Segment, { label: t2(labelKey), count, current: filter === key, focusKey: `downloads-filter:${key}`, onPress: () => setFilter(key) }, key)
+        ) }) }) : null
       ] }),
+      /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1, paddingHorizontal: GUTTER }, children: jobs.length > 0 ? /* @__PURE__ */ (0, jsx)(ScrollView, { style: { flex: 1 }, children: filtered.length ? /* @__PURE__ */ (0, jsx)(motion.View, { variants: listAnim, initial: "hidden", animate: "shown", style: { gap: 14, paddingBottom: 60 }, children: filtered.map(
+        (job2) => /* @__PURE__ */ (0, jsx)(
+          motion.View,
+          {
+            variants: rowAnim,
+            style: { position: "relative" },
+            children: /* @__PURE__ */ (0, jsx)(
+              DownloadRow,
+              {
+                job: job2,
+                game: getGame(job2.gameId) ?? { title: job2.title, art: {} },
+                autoFocus: job2 === first,
+                run: handlers.run,
+                onOpenGame: handlers.openGame,
+                onFocusRow: handlers.focusRow
+              }
+            )
+          },
+          job2.id
+        )
+      ) }) : /* @__PURE__ */ (0, jsx)(View, { style: { paddingTop: 96, alignItems: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#6e675e" }, children: t2("downloads.empty") }) }) }) : /* @__PURE__ */ (0, jsx)(Empty, { error: error2, onBack }) }),
       /* @__PURE__ */ (0, jsx)(ButtonHints, { hints: jobs.length > 0 ? LIST_HINTS : EMPTY_HINTS })
     ] }) });
   }

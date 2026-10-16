@@ -1,5 +1,5 @@
 // ../pub-game-store/native/files/StorageBar.jsx
-// reconstructed from the esbuild bundle in eboot.bin
+// MODIFIED: full-width hero storage meter for the header.
 
 import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
@@ -7,6 +7,7 @@ import { KINDS } from './scan.js';
 import { useT } from '../i18n/index.js';
 import { formatBytes } from '../state/size.js';
 import { EASE_OUT } from '../ui/ease.js';
+import { HAIRLINE } from '../ui/tokens.js';
 import { px } from '../ui/scale.js';
 import { Text, View, motion } from '@ps5-react/core';
 
@@ -14,10 +15,10 @@ import { Text, View, motion } from '@ps5-react/core';
   var OTHER_DATA = "#302c27";
   var lift3 = { type: "tween", duration: 0.18, ease: EASE_OUT };
   function Swatch({ color, label, size }) {
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12 }, children: [
-      /* @__PURE__ */ (0, jsx)(View, { style: [{ height: 12, width: 12, borderRadius: 14999 }, { backgroundColor: color }] }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#a39c92" }, children: label }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e675e" }, children: size })
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 10 }, children: [
+      /* @__PURE__ */ (0, jsx)(View, { style: [{ height: 10, width: 10, borderRadius: 5 }, { backgroundColor: color }] }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, color: "#a39c92" }, children: label }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, color: "#6e675e" }, children: size })
     ] });
   }
   function StorageBar({ usage, sums, focus: focus2, width }) {
@@ -26,8 +27,8 @@ import { Text, View, motion } from '@ps5-react/core';
     const share = (bytes) => Math.round(bytes / usage.total * width);
     const kinds = KINDS.filter((kind) => sums[kind.key].size > 0);
     const others = Math.max(0, usage.total - usage.free - sums.all.size);
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 18 }, children: [
-      /* @__PURE__ */ (0, jsxs)(View, { style: [{ height: 12, flexDirection: "row", overflow: "hidden", borderRadius: 14999, backgroundColor: "#1c1a17" }, { width: px(width) }], children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { paddingHorizontal: 56, paddingBottom: 16, gap: 12 }, children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: [{ height: 10, flexDirection: "row", overflow: "hidden", borderRadius: 5, backgroundColor: "#1c1a17" }, { width: px(width) }], children: [
         kinds.map(
           (kind) => /* @__PURE__ */ (0, jsx)(
             motion.View,
@@ -35,14 +36,14 @@ import { Text, View, motion } from '@ps5-react/core';
               initial: false,
               transition: lift3,
               animate: { opacity: !focus2 || focus2 === kind.key ? 1 : 0.55 },
-              style: [{ height: 12 }, { width: px(Math.max(3, share(sums[kind.key].size))), backgroundColor: focus2 === kind.key ? "#e09f3e" : SHADE[kind.key] }]
+              style: [{ height: 10 }, { width: px(Math.max(3, share(sums[kind.key].size))), backgroundColor: focus2 === kind.key ? "#e09f3e" : SHADE[kind.key] }]
             },
             kind.key
           )
         ),
-        /* @__PURE__ */ (0, jsx)(View, { style: [{ height: 12 }, { width: px(share(others)), backgroundColor: OTHER_DATA }] })
+        /* @__PURE__ */ (0, jsx)(View, { style: [{ height: 10 }, { width: px(share(others)), backgroundColor: OTHER_DATA }] })
       ] }),
-      /* @__PURE__ */ (0, jsxs)(View, { style: [{ flexDirection: "row", flexWrap: "wrap", columnGap: 30, rowGap: 6 }, { width: px(width) }], children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: [{ flexDirection: "row", flexWrap: "wrap", columnGap: 24, rowGap: 4 }, { width: px(width) }], children: [
         kinds.map((kind) => /* @__PURE__ */ (0, jsx)(
           Swatch,
           {

@@ -1,6 +1,5 @@
 // ../pub-game-store/native/downloads/DownloadRow.jsx
-// reconstructed from the esbuild bundle in eboot.bin
-// MODIFIED: console-style card — lift on focus, shine border, gold edge while busy.
+// MODIFIED: flat console row — neutral border, no lift/shine/gold bar, subtle focus.
 
 import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
@@ -15,18 +14,17 @@ import { isOverdriveCdn } from '../game/sources.js';
 import { focusEnd, useLocale, useT } from '../i18n/index.js';
 import { BUSY, COMPLETE } from '../state/download-queue.js';
 import { Button2 } from '../ui/Button.jsx';
-import { CdnAura, CdnSpark } from '../ui/CdnAura.jsx';
+import { CdnSpark } from '../ui/CdnAura.jsx';
 import { Cover } from '../ui/Cover.jsx';
-import { ShineBorder } from '../ui/FocusRing.jsx';
+import { FocusRing } from '../ui/FocusRing.jsx';
 import { colors } from '../ui/colors.js';
-import { EASE_OUT } from '../ui/ease.js';
+import { HAIRLINE, HAIRLINE_FOCUS, RADIUS_CARD } from '../ui/tokens.js';
 import { px } from '../ui/scale.js';
-import { AnimatePresence, Text, View, motion } from '@ps5-react/core';
+import { Text, View, useIsFocused } from '@ps5-react/core';
 
   var THUMB2 = { width: px(78), height: px(104), borderRadius: px(8) };
   var PRIMARY = { width: 210 };
   var ARM_MS = 3e3;
-  var cardMotion = { type: "tween", duration: 0.28, ease: EASE_OUT };
   var primaryKey = (id) => `downloads:${id}`;
   function primary({ state, error: error2 }, run, openGame) {
     if (state === "pausing") return { icon: "pause", label: "downloads.action.pausing", onPress: () => {
@@ -73,32 +71,30 @@ import { AnimatePresence, Text, View, motion } from '@ps5-react/core';
   }
   function DownloadRowView({ job: job2, game, autoFocus, run, onOpenGame, onFocusRow }) {
     const t2 = useT();
+    const focused = useIsFocused();
     const { state, release } = job2;
     const shown = shownState(job2);
     const complete = COMPLETE.includes(state);
-    const [engaged, setEngaged] = (0, useState)(false);
     const openGame = () => onOpenGame(job2);
     const main = primary(job2, (name) => run(job2, name), openGame);
-    const onFocus = () => {
-      setEngaged(true);
-      onFocusRow(job2);
-    };
-    const onBlur = () => setEngaged(false);
+    const onFocus = () => onFocusRow(job2);
     const meta = [(job2.artifact.format || release.format).toUpperCase(), `${release.provider} ${release.version || ""}`.trim(), job2.root].join(" \xB7 ");
     const problem = job2.error && explainError(job2.error, Boolean(release.parts));
     const note = problem ? problem.action ? t2("downloads.problem", { title: problem.title, action: problem.action }) : problem.title : state === "downloaded" ? job2.message || t2("downloads.installHint") : "";
     const cdn = isOverdriveCdn(release.provider);
     const busy = BUSY.includes(state);
     return /* @__PURE__ */ (0, jsxs)(
-      motion.View,
+      View,
       {
-        initial: false,
-        animate: engaged ? { y: -4 } : { y: 0 },
-        transition: cardMotion,
-        style: { position: "relative", overflow: "hidden", borderRadius: 18, backgroundColor: colors.surface, borderWidth: 1, borderColor: engaged ? "#e09f3e66" : busy ? "#e09f3e40" : "#e09f3e29" },
+        focusKey: primaryKey(job2.id),
+        autoFocus,
+        onFocus,
+        style: (_state) => [
+          { position: "relative", overflow: "hidden", borderRadius: RADIUS_CARD, backgroundColor: colors.surface, borderWidth: 1, borderColor: busy ? "#e09f3e40" : HAIRLINE },
+          _state.focused ? { borderColor: HAIRLINE_FOCUS, backgroundColor: colors.surface2 } : null
+        ],
         children: [
-          cdn ? /* @__PURE__ */ (0, jsx)(CdnAura, { radius: 12, width: 1100 }) : null,
-          busy ? /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", left: 0, top: 0, bottom: 0, width: 3, backgroundColor: colors.accent } }) : null,
+          /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
           /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 30, paddingHorizontal: 30, paddingVertical: 24 }, children: [
             /* @__PURE__ */ (0, jsx)(Cover, { game, label: false, style: THUMB2 }),
             /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 15 }, children: [
@@ -130,10 +126,8 @@ import { AnimatePresence, Text, View, motion } from '@ps5-react/core';
                   icon: main.icon,
                   label: t2(main.label),
                   style: PRIMARY,
-                  autoFocus,
-                  focusKey: primaryKey(job2.id),
-                  onFocus,
-                  onBlur,
+                  autoFocus: false,
+                  focusKey: `downloads-action:${job2.id}`,
                   onPress: main.onPress
                 }
               ),
@@ -142,15 +136,12 @@ import { AnimatePresence, Text, View, motion } from '@ps5-react/core';
                 {
                   id: job2.id,
                   action: clearAction(state),
-                  run: (name) => run(job2, name),
-                  onFocus,
-                  onBlur
+                  run: (name) => run(job2, name)
                 }
               )
             ] })
           ] }),
-          state === "downloading" ? /* @__PURE__ */ (0, jsx)(StatsStrip, { id: job2.id }) : null,
-          /* @__PURE__ */ (0, jsx)(AnimatePresence, { children: engaged ? /* @__PURE__ */ (0, jsx)(ShineBorder, { radius: 18 }, "shine") : null })
+          state === "downloading" ? /* @__PURE__ */ (0, jsx)(StatsStrip, { id: job2.id }) : null
         ]
       }
     );

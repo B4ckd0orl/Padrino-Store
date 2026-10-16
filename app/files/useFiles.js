@@ -102,4 +102,4 @@ import { FileSystem, Http, Packages, Platform } from '@ps5-react/core';
     return { files, installing, install, remove, rescan, shadowMount };
   }
 
-export { useFiles };
+export { finishedJobs, useFiles };

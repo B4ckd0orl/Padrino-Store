@@ -1,5 +1,5 @@
 // ../pub-game-store/native/files/FilesScreen.jsx
-// reconstructed from the esbuild bundle in eboot.bin
+// MODIFIED: horizontal tabs under header, StorageBar in header, flat 72px rows.
 
 import '../assets/Inter-Regular.ttf';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { FileRow } from './FileRow.jsx';
 import { StorageBar } from './StorageBar.jsx';
 import { KINDS, isPackage, totals } from './scan.js';
-import { useFiles } from './useFiles.js';
+import { useFiles, finishedJobs } from './useFiles.js';
 import { useT } from '../i18n/index.js';
 import { driveName, storageRoots } from '../state/downloads.js';
 import { useNavActions } from '../state/nav.jsx';
@@ -17,41 +17,44 @@ import { FocusRing } from '../ui/FocusRing.jsx';
 import { Icon } from '../ui/Icon.jsx';
 import { HINT } from '../ui/Legend.jsx';
 import { colors } from '../ui/colors.js';
+import { GUTTER, HAIRLINE, HAIRLINE_FOCUS, RADIUS_CARD, RADIUS_PILL, SEGMENT_H } from '../ui/tokens.js';
 import { FileSystem, FocusScope, ScrollView, Text, View, useIsFocused } from '@ps5-react/core';
 
-  var LIST_WIDTH = 764;
   var ARM_MS2 = 4e3;
   var RAIL_HINTS = [HINT.select, HINT.back];
   var PACKAGE_HINTS = [{ button: "cross", label: "hints.install" }, { button: "square", label: "hints.delete" }, HINT.back];
-  var FILE_HINTS = [{ button: "square", label: "hints.delete" }, HINT.back];
+  var FILE_HINTS = [{ button: "square", label: "hints.delete" }, { button: "triangle", label: "hints.move" }, HINT.back];
   var ARMED_HINTS = [{ button: "square", label: "hints.confirmDelete" }, HINT.back];
   var fileKey = (path) => `files:${path}`;
-  function RailFace({ icon, label, detail: detail2, current }) {
+  function DriveTab({ label, detail: detail2, current, focusKey, autoFocus, onFocus, onPress }) {
     const focused = useIsFocused();
-    return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
-      /* @__PURE__ */ (0, jsx)(FocusRing, {}),
-      /* @__PURE__ */ (0, jsx)(Icon, { name: icon, size: 18, color: current || focused ? colors.fg : colors.subtle }),
-      /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: current ? { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail" } : { fontFamily: "Inter-Regular", fontSize: 23, color: "#a39c92", numberOfLines: 1, ellipsizeMode: "tail" }, children: label }),
-        detail2 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e675e", numberOfLines: 1, ellipsizeMode: "tail" }, children: detail2 }) : null
-      ] }),
-      current ? /* @__PURE__ */ (0, jsx)(View, { style: { height: 9, width: 9, borderRadius: 14999, backgroundColor: "#e09f3e" } }) : null
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey, autoFocus, onPress, onFocus, style: (_state) => [
+      { position: "relative", height: SEGMENT_H, flexDirection: "row", alignItems: "center", gap: 10, borderRadius: RADIUS_PILL, paddingHorizontal: 18 },
+      current ? { backgroundColor: colors.accent } : _state.focused ? { backgroundColor: colors.surface2 } : null
+    ], children: [
+      /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
+      /* @__PURE__ */ (0, jsx)(Icon, { name: "hardDrive", size: 16, color: current ? colors.accentFg : focused ? colors.fg : colors.subtle }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: current ? colors.accentFg : focused ? colors.fg : colors.muted, numberOfLines: 1 }, children: label }),
+      detail2 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 16, color: current ? "#1a1408b3" : colors.subtle, numberOfLines: 1 }, children: detail2 }) : null
     ] });
   }
-  function RailItem({ onPress, focusKey, autoFocus, onFocus, ...face }) {
-    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, onFocus, style: (_state) => face.current ? { height: 84, flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 18, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33", paddingHorizontal: 18 } : [{ height: 84, flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 18, paddingHorizontal: 18 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(RailFace, { ...face }) });
-  }
-  function Label({ children }) {
-    return /* @__PURE__ */ (0, jsx)(Text, { style: { paddingHorizontal: 18, paddingBottom: 6, fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: "#6e675e", letterSpacing: 1 }, children });
+  function KindTab({ icon, label, detail: detail2, current, focusKey, autoFocus, onFocus, onPress }) {
+    const focused = useIsFocused();
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey, autoFocus, onPress, onFocus, style: (_state) => [
+      { position: "relative", height: SEGMENT_H, flexDirection: "row", alignItems: "center", gap: 8, borderRadius: RADIUS_PILL, paddingHorizontal: 16 },
+      current ? { backgroundColor: colors.accent } : _state.focused ? { backgroundColor: colors.surface2 } : null
+    ], children: [
+      /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
+      /* @__PURE__ */ (0, jsx)(Icon, { name: icon, size: 16, color: current ? colors.accentFg : focused ? colors.fg : colors.subtle }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: current ? colors.accentFg : focused ? colors.fg : colors.muted, numberOfLines: 1 }, children: label }),
+      detail2 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 16, color: current ? "#1a1408b3" : colors.subtle, numberOfLines: 1 }, children: detail2 }) : null
+    ] });
   }
   function ShadowMountStatus({ up }) {
     const t2 = useT();
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 18, marginTop: 12, borderRadius: 18, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#1c1a17", padding: 18 }, children: [
-      /* @__PURE__ */ (0, jsx)(View, { style: up ? { marginTop: 9, height: 12, width: 12, borderRadius: 14999, backgroundColor: "#e09f3e" } : { marginTop: 9, height: 12, width: 12, borderRadius: 14999, borderWidth: 2, borderColor: "#6e675e" } }),
-      /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#a39c92" }, children: t2(up ? "files.shadowMountOn" : "files.shadowMountOff") }),
-        up ? null : /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e675e", numberOfLines: 3, ellipsizeMode: "tail" }, children: t2("shadowMount.offAction") })
-      ] })
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 14, paddingVertical: 8, borderRadius: 10, backgroundColor: colors.surface, borderWidth: 1, borderColor: HAIRLINE }, children: [
+      /* @__PURE__ */ (0, jsx)(View, { style: up ? { height: 8, width: 8, borderRadius: 4, backgroundColor: colors.accent } : { height: 8, width: 8, borderRadius: 4, borderWidth: 2, borderColor: colors.subtle } }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 17, color: up ? colors.muted : colors.subtle }, children: t2(up ? "files.shadowMountOn" : "files.shadowMountOff") })
     ] });
   }
   function Empty2() {
@@ -92,7 +95,32 @@ import { FileSystem, FocusScope, ScrollView, Text, View, useIsFocused } from '@p
       if (armed && armed !== file.path) setArmed(null);
     };
     const onAction = (action) => {
-      if (action !== "square" || !focused) return false;
+      if (!focused) return false;
+      if (action === "triangle") {
+        const { queue, jobs } = finishedJobs(focused.path);
+        const image = jobs.find((job2) => job2.artifact.nextAction === "shadowmount");
+        if (!image || !queue) {
+          setNotice(t2("files.moveNoJob"));
+          return true;
+        }
+        const roots2 = storageRoots();
+        const current = roots2.indexOf(image.root);
+        const nextRoot = roots2[(current + 1) % roots2.length];
+        if (!nextRoot || nextRoot === image.root) {
+          setNotice(t2("files.moveNoTarget"));
+          return true;
+        }
+        setNotice(t2("files.moving", { drive: driveName(nextRoot) }));
+        queue.relocate(image.id, nextRoot).then(
+          () => {
+            setNotice(t2("files.moveDone", { drive: driveName(nextRoot) }));
+            rescan();
+          },
+          (error2) => setNotice(/ShadowMount/.test(error2.message) ? error2.message : t2("files.moveFailed"))
+        );
+        return true;
+      }
+      if (action !== "square") return false;
       if (armed !== focused.path) {
         setArmed(focused.path);
         return true;
@@ -113,76 +141,74 @@ import { FileSystem, FocusScope, ScrollView, Text, View, useIsFocused } from '@p
       return true;
     };
     const hints = !focused ? RAIL_HINTS : armed === focused.path ? ARMED_HINTS : isPackage(focused.name) ? PACKAGE_HINTS : FILE_HINTS;
-    const free = usage ? t2("files.free", { free: formatBytes(usage.free), total: formatBytes(usage.total) }) : "";
     return /* @__PURE__ */ (0, jsx)(FocusScope, { autoFocus: true, onBack: back2, onAction, children: /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1 }, children: [
-      /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between", paddingHorizontal: 48, paddingTop: 48, paddingBottom: 36 }, children: [
-        /* @__PURE__ */ (0, jsxs)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 42, letterSpacing: -0.75 }, children: [
-          t2("files.title"),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontWeight: 400, color: "#6e675e" }, children: `  ${t2("files.summary", { count: sums.all.count, size: formatBytes(sums.all.size) })}` })
+      /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between", paddingHorizontal: GUTTER, paddingTop: 40, paddingBottom: 16 }, children: [
+        /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 4 }, children: [
+          /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 14 }, children: [
+            /* @__PURE__ */ (0, jsx)(Icon, { name: "folder", size: 22, color: colors.accent }),
+            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, fontWeight: 600, color: "#f5f1ea", lineHeight: 48, letterSpacing: -1 }, children: t2("files.title") })
+          ] }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e675e", lineHeight: 28 }, children: t2("files.summary", { count: sums.all.count, size: formatBytes(sums.all.size) }) })
         ] }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 600, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, children: notice })
-      ] }),
-      /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, flexDirection: "row", gap: 48, paddingHorizontal: 48 }, children: [
-        /* @__PURE__ */ (0, jsxs)(View, { style: { width: 372, gap: 6 }, children: [
-          /* @__PURE__ */ (0, jsx)(Label, { children: t2("files.drives") }),
-          roots.map(
-            (path, index) => /* @__PURE__ */ (0, jsx)(
-              RailItem,
-              {
-                icon: "hardDrive",
-                label: driveName(path),
-                current: index === drive,
-                detail: index === drive ? free : null,
-                focusKey: `files-drive:${path}`,
-                onFocus: () => setFocused(null),
-                onPress: () => {
-                  setDrive(index);
-                  setArmed(null);
-                }
-              },
-              path
-            )
-          ),
+        /* @__PURE__ */ (0, jsxs)(View, { style: { alignItems: "flex-end", gap: 10 }, children: [
           /* @__PURE__ */ (0, jsx)(ShadowMountStatus, { up: shadowMount }),
-          /* @__PURE__ */ (0, jsx)(View, { style: { height: 30 } }),
-          /* @__PURE__ */ (0, jsx)(Label, { children: t2("files.kinds") }),
-          [{ key: "all", icon: "layers" }, ...KINDS].map(
-            (item) => /* @__PURE__ */ (0, jsx)(
-              RailItem,
-              {
-                icon: item.icon,
-                label: t2(`files.kind.${item.key}`),
-                current: kind === item.key,
-                detail: sums[item.key].count ? formatBytes(sums[item.key].size) : null,
-                focusKey: `files-kind:${item.key}`,
-                onFocus: () => setFocused(null),
-                onPress: () => setKind(item.key),
-                autoFocus: !files.length && item.key === "all"
-              },
-              item.key
-            )
-          )
-        ] }),
-        /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 36 }, children: [
-          /* @__PURE__ */ (0, jsx)(StorageBar, { usage, sums, focus: focused?.kind ?? (kind === "all" ? null : kind), width: LIST_WIDTH }),
-          shown.length ? /* @__PURE__ */ (0, jsx)(ScrollView, { style: { flex: 1 }, children: /* @__PURE__ */ (0, jsx)(View, { style: { gap: 12, paddingBottom: 48 }, children: shown.map(
-            (file, index) => /* @__PURE__ */ (0, jsx)(
-              FileRow,
-              {
-                file,
-                focusKey: fileKey(file.path),
-                autoFocus: index === 0,
-                armed: armed === file.path,
-                installing: installing?.path === file.path ? installing : null,
-                shadowMount,
-                onFocus: () => focusFile(file),
-                onPress: isPackage(file.name) ? () => install(file) : void 0
-              },
-              file.path
-            )
-          ) }) }) : /* @__PURE__ */ (0, jsx)(Empty2, {})
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#a39c92", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 28 }, children: notice })
         ] })
       ] }),
+      /* @__PURE__ */ (0, jsx)(View, { style: { height: 1, marginHorizontal: GUTTER, backgroundColor: HAIRLINE } }),
+      /* @__PURE__ */ (0, jsx)(StorageBar, { usage, sums, focus: focused?.kind ?? (kind === "all" ? null : kind), width: 1808 }),
+      /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 10, paddingHorizontal: GUTTER, paddingBottom: 14, flexWrap: "wrap" }, children: [
+        roots.map(
+          (path, index) => /* @__PURE__ */ (0, jsx)(
+            DriveTab,
+            {
+              label: driveName(path),
+              detail: index === drive ? usage ? formatBytes(usage.free) : null : null,
+              current: index === drive,
+              focusKey: `files-drive:${path}`,
+              onFocus: () => setFocused(null),
+              onPress: () => {
+                setDrive(index);
+                setArmed(null);
+              }
+            },
+            path
+          )
+        ),
+        /* @__PURE__ */ (0, jsx)(View, { style: { width: 1, backgroundColor: HAIRLINE, marginHorizontal: 6 } }),
+        [{ key: "all", icon: "layers" }, ...KINDS].map(
+          (item) => /* @__PURE__ */ (0, jsx)(
+            KindTab,
+            {
+              icon: item.icon,
+              label: t2(`files.kind.${item.key}`),
+              detail: sums[item.key].count ? formatBytes(sums[item.key].size) : null,
+              current: kind === item.key,
+              focusKey: `files-kind:${item.key}`,
+              onFocus: () => setFocused(null),
+              onPress: () => setKind(item.key),
+              autoFocus: !files.length && item.key === "all"
+            },
+            item.key
+          )
+        )
+      ] }),
+      /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1, paddingHorizontal: GUTTER }, children: shown.length ? /* @__PURE__ */ (0, jsx)(ScrollView, { style: { flex: 1 }, children: /* @__PURE__ */ (0, jsx)(View, { style: { gap: 4, paddingBottom: 48 }, children: shown.map(
+        (file, index) => /* @__PURE__ */ (0, jsx)(
+          FileRow,
+          {
+            file,
+            focusKey: fileKey(file.path),
+            autoFocus: index === 0,
+            armed: armed === file.path,
+            installing: installing?.path === file.path ? installing : null,
+            shadowMount,
+            onFocus: () => focusFile(file),
+            onPress: isPackage(file.name) ? () => install(file) : void 0
+          },
+          file.path
+        )
+      ) }) }) : /* @__PURE__ */ (0, jsx)(Empty2, {}) }),
       /* @__PURE__ */ (0, jsx)(ButtonHints, { hints })
     ] }) });
   }

@@ -1307,6 +1307,84 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
           job2.error = error2.message;
         }
         change();
+      },
+      /**
+       * Moves a finished homebrew image to another drive via ShadowMount games/move.
+       * Rewrites the job's root and owned paths so delete/sync keep working, then persists.
+       */
+      async relocate(id, newRoot) {
+        const job2 = find(id);
+        if (!COMPLETE.includes(job2.state)) throw new Error("Only a finished download can be moved.");
+        if (newRoot === job2.root) throw new Error("It is already on that drive.");
+        storageIdentity(job2);
+        const info = fs.stat(newRoot);
+        if (!info?.isDirectory) throw new Error("The destination drive is not connected.");
+        const size = job2.total || 0;
+        const free = (() => {
+          try {
+            return fs.diskUsage(newRoot).free;
+          } catch {
+            return null;
+          }
+        })();
+        if (free !== null && free < size + MARGIN2) throw new Error("Not enough space on the destination drive.");
+        fs.mkdir(`${newRoot}/homebrew`, { recursive: true });
+        const oldRoot = job2.root;
+        const prefix = (path) => path?.startsWith(`${oldRoot}/`) ? `${newRoot}${path.slice(oldRoot.length)}` : path;
+        job2.artifact = {
+          ...job2.artifact,
+          directory: prefix(job2.artifact.directory),
+          destination: prefix(job2.artifact.destination)
+        };
+        if (job2.output) job2.output = prefix(job2.output);
+        if (job2.publishTo) job2.publishTo = prefix(job2.publishTo);
+        if (job2.downloadDestination) job2.downloadDestination = prefix(job2.downloadDestination);
+        job2.root = newRoot;
+        job2.state = "moving";
+        job2.error = "";
+        job2.message = t("downloads.moving");
+        change();
+        power.keepAwake(true);
+        try {
+          const reply = await shadowRequest2("games/move", {
+            title_id: job2.consoleTitleId ?? job2.titleId,
+            destination_dir: `${newRoot}/homebrew`
+          });
+          const jobId = reply.job_id;
+          if (!jobId) throw new Error("ShadowMount did not accept the move.");
+          for (;;) {
+            await wait(700);
+            const status = await shadowRequest2("games/storage/status", { job_id: jobId });
+            if (status.total_bytes) {
+              job2.written = status.processed_bytes || 0;
+              job2.total = status.total_bytes;
+              emit2();
+            }
+            if (status.phase === "done" || status.phase === "completed") break;
+            if (status.phase === "failed" || status.phase === "error") throw new Error(status.error || "Move failed.");
+            if (status.phase === "cancelled") throw new Error("Move cancelled.");
+          }
+          job2.rootIdentity = storageIdentity(job2);
+          job2.state = COMPLETE.includes(job2.state) ? job2.state : "downloaded";
+          job2.message = t("downloads.moved");
+          job2.error = "";
+        } catch (error2) {
+          job2.root = oldRoot;
+          job2.artifact = {
+            ...job2.artifact,
+            directory: prefix(job2.artifact.directory)?.replace(newRoot, oldRoot) ?? job2.artifact.directory,
+            destination: prefix(job2.artifact.destination)?.replace(newRoot, oldRoot) ?? job2.artifact.destination
+          };
+          if (job2.output) job2.output = job2.output.replace(newRoot, oldRoot);
+          if (job2.publishTo) job2.publishTo = job2.publishTo.replace(newRoot, oldRoot);
+          if (job2.downloadDestination) job2.downloadDestination = job2.downloadDestination.replace(newRoot, oldRoot);
+          job2.error = error2.message;
+          job2.message = "";
+          throw error2;
+        } finally {
+          power.keepAwake(false);
+          change();
+        }
       }
     };
   }

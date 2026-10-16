@@ -15,6 +15,7 @@ import { loadList, saveList } from './state/saved.js';
 import { NavProvider, useIsImmersive, useNavActions, useNavState } from './state/nav.jsx';
 import { StoreFreeze, StoreProvider } from './state/store.jsx';
 import { Sidebar, SIDEBAR_W } from './ui/Sidebar.jsx';
+import { SettingsScreen } from './ui/SettingsScreen.jsx';
   import { Legend } from './ui/Legend.jsx';
   import { QrGate } from './ui/QrGate.jsx';
 import { UpdateDialog } from './ui/UpdateDialog.jsx';
@@ -27,6 +28,7 @@ import { useInterfaceSounds } from './ui/sounds.js';
     if (screen2.name === "game") return /* @__PURE__ */ (0, jsx)(GameScreen, { game: getGame(screen2.id), download: screen2.download, onBack: pop, onOpenGame: openCard });
     if (screen2.name === "downloads") return /* @__PURE__ */ (0, jsx)(DownloadsScreen, { onBack: pop, onOpenGame: openGame });
     if (screen2.name === "files") return /* @__PURE__ */ (0, jsx)(FilesScreen, { onBack: pop });
+    if (screen2.name === "settings") return /* @__PURE__ */ (0, jsx)(SettingsScreen, { onBack: pop });
     return /* @__PURE__ */ (0, jsx)(SearchScreen, { onBack: pop, onOpenGame: openCard });
   }
   function BrowseLayer({ shown }) {
@@ -56,7 +58,7 @@ import { useInterfaceSounds } from './ui/sounds.js';
           onBrowse ? null : (
             // No background of its own: the root's canvas shows through, so a screen change does not
             // fill the whole screen twice. `screen` lets the sidebar's Into return to where it was left.
-            /* @__PURE__ */ (0, jsx)(View, { style: immersive ? { position: "absolute", top: 0, right: 0, bottom: 0, left: 0 } : top.name === "downloads" || top.name === "files" ? [{ position: "absolute", top: 0, bottom: 0 }, side] : [{ position: "absolute", top: 0, bottom: 60 }, side], children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "screen", children: /* @__PURE__ */ (0, jsx)(Screen, { screen: top }) }) }, key)
+            /* @__PURE__ */ (0, jsx)(View, { style: immersive ? { position: "absolute", top: 0, right: 0, bottom: 0, left: 0 } : top.name === "downloads" || top.name === "files" || top.name === "settings" ? [{ position: "absolute", top: 0, bottom: 0 }, side] : [{ position: "absolute", top: 0, bottom: 60 }, side], children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "screen", children: /* @__PURE__ */ (0, jsx)(Screen, { screen: top }) }) }, key)
           ),
           immersive ? null : /* @__PURE__ */ (0, jsx)(Legend, { screen: top.name, style: side }),
           /* @__PURE__ */ (0, jsx)(UpdateDialog, {})
