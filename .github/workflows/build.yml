@@ -56,13 +56,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y \
             clang-18 llvm-18 llvm-18-dev cmake ninja-build nodejs npm python3-venv \
-            zlib1g-dev build-essential pkg-config unzip zip curl zstd exfatprogs exfat-fuse
+            zlib1g-dev build-essential pkg-config unzip zip curl zstd exfatprogs exfat-fuse \
+            nasm
           # The build wants unversioned clang and llvm-config in --llvm.
           for tool in clang clang++ llvm-config; do
             sudo ln -sf "/usr/bin/$tool-18" "/usr/local/bin/$tool"
           done
           clang --version | head -1
           llvm-config --version
+          nasm --version
 
       - name: Install the Python dependencies
         run: |
