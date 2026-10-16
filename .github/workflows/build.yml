@@ -24,16 +24,27 @@ jobs:
 
       - name: Stamp the build version
         # Each run is its own release, so each run needs a version no console has seen. The run
-        # number only grows, and the two halves of the scheme never meet: a stamped build writes
-        # 1.<run>.0, a manual build writes 0.<run>.0. The stamp lives in the build workspace, so
-        # the commit stays free of build numbers.
+        # number only grows, and the two halves never meet: an automatic build stamps 00.<run>.000,
+        # a manual build stamps 01.<run>.000. Each half is written independently from the other, so
+        # neither can ever rewrite the other. The stamp lives in the build workspace only, so no
+        # build number is ever committed.
         run: |
           run=${{ github.run_number }}
-          base=$(sed -n 's/.*var VERSION = "1\.\([0-9]*\)\..*/\1/p' app/version.js)
-          echo "base VERSION component in app/version.js: '${base:-<none>}'"
-          sed -i "s/var VERSION = \"[^\"]*\"/var VERSION = \"1.$run.0\"/" app/version.js
+          run=$(printf '%03d' "$run")
+          python3 - "$run" <<'PY'
+          import json, pathlib, re, sys
+          run = sys.argv[1]
+          # The updater compares component-wise and only installs a strictly greater version.
+          p = pathlib.Path("app/version.js")
+          p.write_text(re.sub(r'var VERSION = "[^"]*"',
+                              f'var VERSION = "0.0.{run}"', p.read_text()), encoding="utf-8")
+          # The packager requires NN.NNN.NNN, so the PS5 content version gets its own half.
+          p = pathlib.Path("app/app.json")
+          c = json.loads(p.read_text(encoding="utf-8"))
+          c["version"] = f"00.{run}.000"
+          p.write_text(json.dumps(c, indent=2) + "\n", encoding="utf-8")
+          PY
           cp -a app "$RUNNER_TEMP/app"
-          sed -i "s/\"version\": \"[^\"]*\"/\"version\": \"0.$run.0\"/" "$RUNNER_TEMP/app/app.json"
           echo "APP_DIR=$RUNNER_TEMP/app" >> "$GITHUB_ENV"
           grep 'var VERSION' app/version.js
           grep '"version"' "$RUNNER_TEMP/app/app.json"
@@ -105,10 +116,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           run=${{ github.run_number }}
+          run=$(printf '%03d' "$run")
           sha=$(echo "$GITHUB_SHA" | cut -c1-7)
-          tag="v1.$run.0"
+          tag="v0.0.$run"
           assets="PadrinoStore.exfat update.zip"
-          notes="Padrino Store v1.$run.0 — build $run ($sha)."
+          notes="Padrino Store v0.0.$run — build $run ($sha)."
           if gh release view "$tag" >/dev/null 2>&1; then
             gh release edit "$tag" --notes "$notes"
             gh release upload "$tag" $assets --clobber
