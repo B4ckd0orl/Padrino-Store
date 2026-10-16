@@ -7,8 +7,10 @@ import { useState } from 'react';
 import { useT } from '../i18n/index.js';
 import { Keyboard } from '../search/Keyboard.jsx';
 import { Button2 } from '../ui/Button.jsx';
-import { FocusScope, Text, View } from '@ps5-react/core';
+import { EASE_OUT } from '../ui/ease.js';
+import { FocusScope, Text, View, motion } from '@ps5-react/core';
 
+  var dialogEnter = { type: "tween", duration: 0.3, ease: EASE_OUT };
   function URLDialog({ title, detail: detail2, initial = "https://", submit, onClose }) {
     const t2 = useT();
     const [value, setValue] = (0, useState)(initial);
@@ -29,7 +31,7 @@ import { FocusScope, Text, View } from '@ps5-react/core';
       }, onAction: (action) => {
         if (action === "r2") done();
         return true;
-      }, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#121110f2" }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1380, gap: 30, borderRadius: 18, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#1c1a17", padding: 48 }, children: [
+      }, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#121110f2" }, children: /* @__PURE__ */ (0, jsxs)(motion.View, { initial: { opacity: 0, y: 28 }, animate: { opacity: 1, y: 0 }, transition: dialogEnter, style: { width: 1380, gap: 30, borderRadius: 18, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#1c1a17", padding: 48 }, children: [
         /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, color: "#f5f1ea", lineHeight: 48 }, children: title }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 48 }, children: [
           /* @__PURE__ */ (0, jsx)(Keyboard, { url: true, onChange: setValue, onSubmit: done }),

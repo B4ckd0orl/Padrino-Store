@@ -15,11 +15,12 @@ import { Archives, Downloads, FileSystem, Http, Platform } from '@ps5-react/core
     if (Platform.OS !== "ps5") return { installDir: `${FileSystem.dataDir}/homebrew/${TITLE}`, workDir: `${FileSystem.dataDir}/padrino-update` };
     return locateInstall({ http: Http, fs: FileSystem, title: TITLE, roots: storageRoots });
   }
-  // One package carries an update: the image alone, for an image install. A folder install is
-  // offered nothing, because replacing it would hand `replaceImage` a folder holding an image.
-  function assetFor({ image }) {
+  // One package carries an update: the image alone, for an image install; the full app folder,
+  // for a folder install (the updater swaps it in with backup + rollback and relaunches).
+  function assetFor({ image, installDir }) {
     if (Platform.OS !== "ps5") return "PadrinoStore-desktop.zip";
-    return image ? "update.zip" : null;
+    if (image) return "update.zip";
+    return installDir ? "update-app.zip" : null;
   }
   var foundInstall;
   var located = new Promise((resolve2) => {

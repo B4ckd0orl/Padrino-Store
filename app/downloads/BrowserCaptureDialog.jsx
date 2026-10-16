@@ -9,9 +9,11 @@ import { downloadQueue } from '../state/downloads.js';
 import { Button2 } from '../ui/Button.jsx';
 import { ShimmerText } from '../ui/ShimmerText.jsx';
 import { colors } from '../ui/colors.js';
-import { FocusScope, Text, View } from '@ps5-react/core';
+import { EASE_OUT } from '../ui/ease.js';
+import { FocusScope, Text, View, motion } from '@ps5-react/core';
 
   var INSTRUCTION = { fontFamily: "Inter-Regular", fontSize: 24, lineHeight: 36 };
+  var dialogEnter = { type: "tween", duration: 0.3, ease: EASE_OUT };
   function BrowserCaptureDialog({ job: job2 }) {
     const t2 = useT();
     const close = () => downloadQueue().cancelBrowserCapture(job2.id);
@@ -27,7 +29,7 @@ import { FocusScope, Text, View } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsx)(FocusScope, { trap: true, autoFocus: true, onBack: () => {
       close();
       return true;
-    }, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#121110f2" }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1380, gap: 30, borderRadius: 18, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#1c1a17", padding: 48 }, children: [
+    }, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#121110f2" }, children: /* @__PURE__ */ (0, jsxs)(motion.View, { initial: { opacity: 0, y: 28 }, animate: { opacity: 1, y: 0 }, transition: dialogEnter, style: { width: 1380, gap: 30, borderRadius: 18, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#1c1a17", padding: 48 }, children: [
       /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, color: "#f5f1ea", lineHeight: 48 }, children: t2("capture.title") }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { width: 1260, fontFamily: "Inter-Regular", fontSize: 24, color: "#a39c92", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 36 }, children: job2.title }),
       /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: INSTRUCTION, background: colors.surface, children: t2(`capture.${job2.captureState}`) }),

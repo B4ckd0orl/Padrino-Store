@@ -6,6 +6,8 @@ name: build
 on:
   push:
     branches: [main]
+  # Manual runs: pick ANY branch in the UI (hotfix without touching main). The run number is
+  # repo-global and monotonic, so a hotfix build is still greater than anything released before.
   workflow_dispatch:
 
 permissions:
@@ -23,25 +25,24 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Stamp the build version
-        # Each run is its own release, so each run needs a version no console has seen. The run
-        # number only grows, and the two halves never meet: an automatic build stamps 00.<run>.000,
-        # a manual build stamps 01.<run>.000. Each half is written independently from the other, so
-        # neither can ever rewrite the other. The stamp lives in the build workspace only, so no
-        # build number is ever committed.
+        # Each run is its own release, so each run needs a version no console has seen. The version
+        # is 1.<run>.0: the committed base stays 1.0.4 and every run is strictly greater, so the
+        # in-app updater (which only installs a strictly greater version) always accepts it. The PS5
+        # content version gets its own half (packager requires NN.NNN.NNN). The stamp lives in the
+        # build workspace only, so no build number is ever committed.
         run: |
           run=${{ github.run_number }}
-          run=$(printf '%03d' "$run")
           python3 - "$run" <<'PY'
           import json, pathlib, re, sys
           run = sys.argv[1]
           # The updater compares component-wise and only installs a strictly greater version.
           p = pathlib.Path("app/version.js")
           p.write_text(re.sub(r'var VERSION = "[^"]*"',
-                              f'var VERSION = "0.0.{run}"', p.read_text()), encoding="utf-8")
+                              f'var VERSION = "1.{run}.0"', p.read_text()), encoding="utf-8")
           # The packager requires NN.NNN.NNN, so the PS5 content version gets its own half.
           p = pathlib.Path("app/app.json")
           c = json.loads(p.read_text(encoding="utf-8"))
-          c["version"] = f"00.{run}.000"
+          c["version"] = f"01.{run}.000"
           p.write_text(json.dumps(c, indent=2) + "\n", encoding="utf-8")
           PY
           cp -a app "$RUNNER_TEMP/app"
@@ -94,8 +95,12 @@ jobs:
           # The in-app updater fetches one name, for an image install: the image
           # alone at the root of update.zip.
           zip -q -X -j update.zip PadrinoStore.exfat
+          # update-app.zip: the full app folder, for a folder install (data/homebrew/PPSA99059).
+          # The updater extracts it over the install dir with backup + rollback.
+          (cd ps5-react/dist && zip -q -X -r "$GITHUB_WORKSPACE/update-app.zip" PPSA99059)
           unzip -l update.zip
-          ls -l PadrinoStore.exfat update.zip ps5-react/dist/
+          unzip -l update-app.zip | head -20
+          ls -l PadrinoStore.exfat update.zip update-app.zip ps5-react/dist/
 
       - name: Upload
         uses: actions/upload-artifact@v4
@@ -104,23 +109,23 @@ jobs:
           path: |
             PadrinoStore.exfat
             update.zip
+            update-app.zip
             ps5-react/dist/PPSA99059.receipt.json
           if-no-files-found: error
 
       - name: Publish the release
         # The tag is stamped from the run number, so it is always greater than what a console has
         # already installed, and the feed (releases/latest) always points here. update.zip is the
-        # only asset the in-app updater fetches; the .exfat is the image install path.
+        # asset for an image install; update-app.zip is the asset for a folder install.
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           run=${{ github.run_number }}
-          run=$(printf '%03d' "$run")
           sha=$(echo "$GITHUB_SHA" | cut -c1-7)
-          tag="v0.0.$run"
-          assets="PadrinoStore.exfat update.zip"
-          notes="Padrino Store v0.0.$run — build $run ($sha)."
+          tag="v1.$run"
+          assets="PadrinoStore.exfat update.zip update-app.zip"
+          notes="Padrino Store v1.$run — build $run ($sha)."
           if gh release view "$tag" >/dev/null 2>&1; then
             gh release edit "$tag" --notes "$notes"
             gh release upload "$tag" $assets --clobber

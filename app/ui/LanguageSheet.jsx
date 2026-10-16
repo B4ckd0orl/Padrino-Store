@@ -2,6 +2,7 @@
 // reconstructed from the esbuild bundle in eboot.bin
 // MODIFIED: the sheet is the app's settings: a download speed limit, navigation vibration, then the languages.
 // MODIFIED: Data section with backup export/import (C3).
+// MODIFIED: console-style cards — lift on focus, press feedback, staggered section entrance, sliding speed pill.
 
 import '../assets/Inter-Regular.ttf';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
@@ -18,12 +19,16 @@ import { FocusRing } from './FocusRing.jsx';
 import { Icon } from './Icon.jsx';
 import { SideSheet } from './SideSheet.jsx';
 import { colors } from './colors.js';
+import { EASE_OUT } from './ease.js';
 import { setNavigationHaptics, useNavigationHaptics } from './haptics.js';
 import { LIMITS, setSpeedLimit, useSpeedLimit } from '../state/speed-limit.js';
 import { playError, playNotify } from './sounds.js';
-import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
+import { FileSystem, Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
 
   var nameOf = (code) => LOCALES.find((locale2) => locale2.code === code).name;
+  var rowMotion = { type: "tween", duration: 0.25, ease: EASE_OUT };
+  var listAnim = { hidden: {}, shown: { transition: { staggerChildren: 0.04, delayChildren: 0.1 } } };
+  var itemAnim = { hidden: { opacity: 0, y: 16 }, shown: { opacity: 1, y: 0, transition: transitions.panel } };
   function LanguageFace({ name, detail: detail2, checked }) {
     const focused = useIsFocused();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
@@ -35,16 +40,33 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
       checked ? /* @__PURE__ */ (0, jsx)(Icon, { name: "check", color: colors.fg }) : /* @__PURE__ */ (0, jsx)(View, { style: { width: 24, height: 24 } })
     ] });
   }
+  function CardRow({ focusKey, autoFocus, onPress, children }) {
+    return /* @__PURE__ */ (0, jsx)(
+      motion.View,
+      {
+        focusKey,
+        autoFocus,
+        onPress,
+        whileFocus: { y: -3 },
+        whilePress: { scale: 0.98 },
+        transition: rowMotion,
+        style: (_state) => [{ position: "relative", borderRadius: 18, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33" }, _state.focused ? { backgroundColor: "#26231f", borderColor: "#e09f3e66" } : null],
+        children
+      }
+    );
+  }
   function Row4({ code, name, detail: detail2, checked, onPress }) {
-    return /* @__PURE__ */ (0, jsx)(View, { focusKey: `language:${code}`, onPress, style: (_state) => [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 18, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33", paddingHorizontal: 18, paddingVertical: 18 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(LanguageFace, { name, detail: detail2, checked }) });
+    return /* @__PURE__ */ (0, jsx)(CardRow, { focusKey: `language:${code}`, onPress, children: /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", alignItems: "center", gap: 24, paddingHorizontal: 18, paddingVertical: 18 }, children: /* @__PURE__ */ (0, jsx)(LanguageFace, { name, detail: detail2, checked }) }) });
   }
   // One segment of the speed limit (issue #15): every value in view, the chosen one filled. The D-pad
-  // moves along the row and Cross picks, so no value has to be typed.
+  // moves along the row and Cross picks, so no value has to be typed. The gold fill slides between
+  // segments instead of popping.
   function SpeedSegment({ limit, chosen }) {
     const t2 = useT();
-    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:speed:${limit}`, autoFocus: chosen, onPress: () => setSpeedLimit(limit), style: { position: "relative", flex: limit ? 1 : 2, height: 60, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: chosen ? colors.accent : colors.surface2 }, children: [
-      /* @__PURE__ */ (0, jsx)(FocusRing, {}),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: chosen ? colors.accentFg : colors.muted, numberOfLines: 1 }, children: limit ? String(limit) : t2("settings.speedUnlimited") })
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:speed:${limit}`, autoFocus: chosen, onPress: () => setSpeedLimit(limit), style: { position: "relative", flex: limit ? 1 : 2, height: 60, borderRadius: 14999, backgroundColor: colors.surface2, overflow: "hidden" }, children: [
+      /* @__PURE__ */ (0, jsx)(FocusRing, { round: "full" }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { initial: false, animate: { opacity: chosen ? 1 : 0 }, transition: { type: "tween", duration: 0.22, ease: EASE_OUT }, style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: colors.accent, borderRadius: 14999 } }),
+      /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, alignItems: "center", justifyContent: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: chosen ? colors.accentFg : colors.muted, numberOfLines: 1 }, children: limit ? String(limit) : t2("settings.speedUnlimited") }) })
     ] });
   }
   function SpeedLimit() {
@@ -54,7 +76,7 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
       /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 3 }, children: [
         /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" }, children: [
           /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: colors.fg }, children: t2("settings.speedLimit") }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: colors.fg }, children: limit ? t2("units.speed", { n: String(limit) }) : t2("settings.speedUnlimited") })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: colors.accent, fontWeight: 600 }, children: limit ? t2("units.speed", { n: String(limit) }) : t2("settings.speedUnlimited") })
         ] }),
         /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: colors.muted, lineHeight: 30 }, children: t2("settings.speedLimitDetail") })
       ] }),
@@ -67,17 +89,17 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
       detail2 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, color: colors.muted, lineHeight: 27 }, children: detail2 }) : null
     ] });
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "flex-start", gap: 18, paddingHorizontal: 18, paddingTop: 18, paddingBottom: 6 }, children: [
-      icon ? /* @__PURE__ */ (0, jsx)(Icon, { name: icon, size: 26, color: colors.muted }) : null,
+      icon ? /* @__PURE__ */ (0, jsx)(Icon, { name: icon, size: 26, color: colors.accent }) : null,
       text
     ] });
   }
   function ActionRow({ focusKey, autoFocus, name, detail: detail2, onPress }) {
-    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, style: (_state) => [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 18, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33", paddingHorizontal: 18, paddingVertical: 18 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(LanguageFace, { name, detail: detail2, checked: false }) });
+    return /* @__PURE__ */ (0, jsx)(CardRow, { focusKey, autoFocus, onPress, children: /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", alignItems: "center", gap: 24, paddingHorizontal: 18, paddingVertical: 18 }, children: /* @__PURE__ */ (0, jsx)(LanguageFace, { name, detail: detail2, checked: false }) }) });
   }
   function StatusRow({ status }) {
     if (!status) return null;
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 18, paddingTop: 4, paddingBottom: 6 }, children: [
-      /* @__PURE__ */ (0, jsx)(Icon, { name: status.kind === "error" ? "alert" : "circleCheck", size: 22, color: colors.fg }),
+      /* @__PURE__ */ (0, jsx)(Icon, { name: status.kind === "error" ? "alert" : "circleCheck", size: 22, color: status.kind === "error" ? colors.warn : colors.ok }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 19, color: "#a39c92", lineHeight: 27 }, children: status.text })
     ] });
   }
@@ -119,22 +141,22 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
     // language choice still closes the sheet as before. Focus opens on the chosen speed, at the top.
     // Import swaps the sheet body for the backup list; Circle returns to settings
     // (the SideSheet back handler is re-routed while the backup view is open).
-    const settings = /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 12, padding: 12, paddingBottom: 48 }, children: [
-      /* @__PURE__ */ (0, jsx)(SectionLabel, { icon: "download", title: t2("settings.downloads") }),
-      /* @__PURE__ */ (0, jsx)(SpeedLimit, {}),
-      /* @__PURE__ */ (0, jsx)(SectionLabel, { title: t2("settings.controller") }),
-      /* @__PURE__ */ (0, jsx)(View, { focusKey: "settings:vibration", onPress: () => setNavigationHaptics(!vibration), style: (_state) => [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 18, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33", paddingHorizontal: 18, paddingVertical: 18 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(LanguageFace, { name: t2("settings.vibration"), detail: t2("settings.vibrationDetail"), checked: vibration }) }),
-      /* @__PURE__ */ (0, jsx)(SectionLabel, { icon: "hardDrive", title: t2("settings.data"), detail: t2("settings.dataDetail") }),
-      /* @__PURE__ */ (0, jsx)(StatusRow, { status }),
-      /* @__PURE__ */ (0, jsx)(ActionRow, { focusKey: "settings:export", name: t2("backup.export"), detail: t2("backup.exportDetail"), onPress: exportNow }),
-      /* @__PURE__ */ (0, jsx)(ActionRow, { focusKey: "settings:import", name: t2("backup.import"), detail: t2("backup.importDetail"), onPress: () => {
+    const settings = /* @__PURE__ */ (0, jsxs)(motion.View, { variants: listAnim, initial: "hidden", animate: "shown", style: { gap: 12, padding: 12, paddingBottom: 48 }, children: [
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SectionLabel, { icon: "download", title: t2("settings.downloads") }) }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SpeedLimit, {}) }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SectionLabel, { title: t2("settings.controller") }) }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(CardRow, { focusKey: "settings:vibration", onPress: () => setNavigationHaptics(!vibration), children: /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", alignItems: "center", gap: 24, paddingHorizontal: 18, paddingVertical: 18 }, children: /* @__PURE__ */ (0, jsx)(LanguageFace, { name: t2("settings.vibration"), detail: t2("settings.vibrationDetail"), checked: vibration }) }) }) }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SectionLabel, { icon: "hardDrive", title: t2("settings.data"), detail: t2("settings.dataDetail") }) }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(StatusRow, { status }) }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(ActionRow, { focusKey: "settings:export", name: t2("backup.export"), detail: t2("backup.exportDetail"), onPress: exportNow }) }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(ActionRow, { focusKey: "settings:import", name: t2("backup.import"), detail: t2("backup.importDetail"), onPress: () => {
         setStatus(null);
         setView("backup");
-      } }),
-      /* @__PURE__ */ (0, jsx)(SectionLabel, { icon: "languages", title: t2("language.title"), detail: t2("language.subtitle") }),
-      /* @__PURE__ */ (0, jsx)(Row4, { code: "system", name: t2("language.system"), detail: nameOf(systemLocale()), checked: choice2 === null, onPress: () => pick2(null) }),
+      } }) }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SectionLabel, { icon: "languages", title: t2("language.title"), detail: t2("language.subtitle") }) }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(Row4, { code: "system", name: t2("language.system"), detail: nameOf(systemLocale()), checked: choice2 === null, onPress: () => pick2(null) }) }),
       LOCALES.map(
-        ({ code, name }) => /* @__PURE__ */ (0, jsx)(Row4, { code, name, detail: t2(`language.name.${code}`), checked: choice2 === code, onPress: () => pick2(code) }, code)
+        ({ code, name }) => /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(Row4, { code, name, detail: t2(`language.name.${code}`), checked: choice2 === code, onPress: () => pick2(code) }) }, code)
       )
     ] });
     return /* @__PURE__ */ (0, jsx)(SideSheet, { title: view === "settings" ? t2("settings.title") : t2("backup.title"), onClose: view === "backup" ? () => setView("settings") : onClose, children: view === "settings" ? settings : /* @__PURE__ */ (0, jsx)(BackupList, { onImport: applyImport, onBack: () => setView("settings") }) });

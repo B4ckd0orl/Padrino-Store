@@ -1,5 +1,6 @@
 // ../pub-game-store/native/ui/BackupSheet.jsx
 // Lista de respaldos para importar; se monta dentro del SideSheet de Ajustes.
+// MODIFIED: console-style rows — lift on focus, press feedback, staggered entrance.
 
 import '../assets/Inter-Regular.ttf';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
@@ -10,10 +11,14 @@ import { useT } from '../i18n/index.js';
 import { FocusRing } from './FocusRing.jsx';
 import { Icon } from './Icon.jsx';
 import { colors } from './colors.js';
+import { EASE_OUT } from './ease.js';
 import { playError, playNotify } from './sounds.js';
-import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
+import { FileSystem, Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
 
   var STATUS_MS = 1500;
+  var rowMotion = { type: "tween", duration: 0.25, ease: EASE_OUT };
+  var listAnim = { hidden: {}, shown: { transition: { staggerChildren: 0.04, delayChildren: 0.08 } } };
+  var itemAnim = { hidden: { opacity: 0, y: 16 }, shown: { opacity: 1, y: 0, transition: transitions.panel } };
   function FileFace({ name, armed }) {
     const t2 = useT();
     const focused = useIsFocused();
@@ -26,7 +31,19 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
     ] });
   }
   function FileRow({ file, armed, autoFocus, focusKey, onPress }) {
-    return /* @__PURE__ */ (0, jsx)(View, { focusKey, autoFocus, onPress, style: (_state) => armed ? { position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 18, paddingHorizontal: 18, paddingVertical: 18, backgroundColor: "#e09f3e" } : [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 18, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33", paddingHorizontal: 18, paddingVertical: 18 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(FileFace, { name: file.name, armed }) });
+    return /* @__PURE__ */ (0, jsx)(
+      motion.View,
+      {
+        focusKey,
+        autoFocus,
+        onPress,
+        whileFocus: armed ? void 0 : { y: -3 },
+        whilePress: { scale: 0.98 },
+        transition: rowMotion,
+        style: (_state) => armed ? { position: "relative", borderRadius: 18, paddingHorizontal: 18, paddingVertical: 18, backgroundColor: "#e09f3e" } : [{ position: "relative", borderRadius: 18, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33", paddingHorizontal: 18, paddingVertical: 18 }, _state.focused ? { backgroundColor: "#26231f", borderColor: "#e09f3e66" } : null],
+        children: /* @__PURE__ */ (0, jsx)(FileFace, { name: file.name, armed })
+      }
+    );
   }
   function Empty() {
     const t2 = useT();
@@ -39,7 +56,7 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
   function Status({ status }) {
     if (!status) return null;
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 18, paddingTop: 12 }, children: [
-      /* @__PURE__ */ (0, jsx)(Icon, { name: status.kind === "error" ? "alert" : "circleCheck", size: 22, color: colors.fg }),
+      /* @__PURE__ */ (0, jsx)(Icon, { name: status.kind === "error" ? "alert" : "circleCheck", size: 22, color: status.kind === "error" ? colors.warn : colors.ok }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 19, color: "#a39c92", lineHeight: 27 }, children: status.text })
     ] });
   }
@@ -83,16 +100,22 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
       /* @__PURE__ */ (0, jsx)(Empty, {}),
       /* @__PURE__ */ (0, jsx)(Status, { status })
     ] });
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 12, padding: 12, paddingBottom: 48 }, children: [
+    return /* @__PURE__ */ (0, jsxs)(motion.View, { variants: listAnim, initial: "hidden", animate: "shown", style: { gap: 12, padding: 12, paddingBottom: 48 }, children: [
       files.map(
         (file, index) => /* @__PURE__ */ (0, jsx)(
-          FileRow,
+          motion.View,
           {
-            file,
-            armed: armed === file.path,
-            autoFocus: index === 0,
-            focusKey: `backup:${file.path}`,
-            onPress: () => press(file)
+            variants: itemAnim,
+            children: /* @__PURE__ */ (0, jsx)(
+              FileRow,
+              {
+                file,
+                armed: armed === file.path,
+                autoFocus: index === 0,
+                focusKey: `backup:${file.path}`,
+                onPress: () => press(file)
+              }
+            )
           },
           file.path
         )

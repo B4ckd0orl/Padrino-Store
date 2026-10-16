@@ -1,5 +1,6 @@
 // ../pub-game-store/native/downloads/DownloadRow.jsx
 // reconstructed from the esbuild bundle in eboot.bin
+// MODIFIED: console-style card — lift on focus, shine border, gold edge while busy.
 
 import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
@@ -16,12 +17,16 @@ import { BUSY, COMPLETE } from '../state/download-queue.js';
 import { Button2 } from '../ui/Button.jsx';
 import { CdnAura, CdnSpark } from '../ui/CdnAura.jsx';
 import { Cover } from '../ui/Cover.jsx';
+import { ShineBorder } from '../ui/FocusRing.jsx';
+import { colors } from '../ui/colors.js';
+import { EASE_OUT } from '../ui/ease.js';
 import { px } from '../ui/scale.js';
-import { Text, View } from '@ps5-react/core';
+import { AnimatePresence, Text, View, motion } from '@ps5-react/core';
 
-  var THUMB2 = { width: px(54), height: px(72), borderRadius: px(4) };
-  var PRIMARY = { width: 198 };
+  var THUMB2 = { width: px(78), height: px(104), borderRadius: px(8) };
+  var PRIMARY = { width: 210 };
   var ARM_MS = 3e3;
+  var cardMotion = { type: "tween", duration: 0.28, ease: EASE_OUT };
   var primaryKey = (id) => `downloads:${id}`;
   function primary({ state, error: error2 }, run, openGame) {
     if (state === "pausing") return { icon: "pause", label: "downloads.action.pausing", onPress: () => {
@@ -34,7 +39,7 @@ import { Text, View } from '@ps5-react/core';
     if (state === "downloaded") return { icon: "circleCheck", label: "downloads.action.install", onPress: () => run("register") };
     return { icon: "chevronRight", label: "downloads.action.gamePage", onPress: openGame };
   }
-  function DeleteButton({ id, action, run, onFocus }) {
+  function DeleteButton({ id, action, run, onFocus, onBlur }) {
     const { rtl } = useLocale();
     const [armed, setArmed] = (0, useState)(false);
     (0, useEffect)(() => {
@@ -51,7 +56,10 @@ import { Text, View } from '@ps5-react/core';
         focusKey: `downloads-cancel:${id}`,
         ...focusEnd(rtl, PANEL_KEY),
         onFocus,
-        onBlur: () => setArmed(false),
+        onBlur: () => {
+          setArmed(false);
+          onBlur?.();
+        },
         onPress: () => {
           if (action === "remove") {
             run(action);
@@ -68,65 +76,84 @@ import { Text, View } from '@ps5-react/core';
     const { state, release } = job2;
     const shown = shownState(job2);
     const complete = COMPLETE.includes(state);
+    const [engaged, setEngaged] = (0, useState)(false);
     const openGame = () => onOpenGame(job2);
     const main = primary(job2, (name) => run(job2, name), openGame);
-    const onFocus = () => onFocusRow(job2);
+    const onFocus = () => {
+      setEngaged(true);
+      onFocusRow(job2);
+    };
+    const onBlur = () => setEngaged(false);
     const meta = [(job2.artifact.format || release.format).toUpperCase(), `${release.provider} ${release.version || ""}`.trim(), job2.root].join(" \xB7 ");
     const problem = job2.error && explainError(job2.error, Boolean(release.parts));
     const note = problem ? problem.action ? t2("downloads.problem", { title: problem.title, action: problem.action }) : problem.title : state === "downloaded" ? job2.message || t2("downloads.installHint") : "";
     const cdn = isOverdriveCdn(release.provider);
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { position: "relative", overflow: "hidden", borderRadius: 18, backgroundColor: "#1c1a17" }, children: [
-      cdn ? /* @__PURE__ */ (0, jsx)(CdnAura, { radius: 12, width: 1100 }) : null,
-      /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 30, paddingHorizontal: 30, paddingVertical: 24 }, children: [
-        /* @__PURE__ */ (0, jsx)(Cover, { game, label: false, style: THUMB2 }),
-        /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 15 }, children: [
-          /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between" }, children: [
-            /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 42, letterSpacing: -0.68 }, children: job2.title }),
-            /* @__PURE__ */ (0, jsxs)(View, { style: { width: 285, flexDirection: "row", alignItems: "center", justifyContent: "flex-end", gap: 9 }, children: [
-              cdn ? /* @__PURE__ */ (0, jsx)(CdnSpark, { size: 13 }) : null,
-              /* @__PURE__ */ (0, jsx)(Text, { style: cdn ? { maxWidth: 285, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { width: 285, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: meta })
+    const busy = BUSY.includes(state);
+    return /* @__PURE__ */ (0, jsxs)(
+      motion.View,
+      {
+        initial: false,
+        animate: engaged ? { y: -4 } : { y: 0 },
+        transition: cardMotion,
+        style: { position: "relative", overflow: "hidden", borderRadius: 18, backgroundColor: colors.surface, borderWidth: 1, borderColor: engaged ? "#e09f3e66" : busy ? "#e09f3e40" : "#e09f3e29" },
+        children: [
+          cdn ? /* @__PURE__ */ (0, jsx)(CdnAura, { radius: 12, width: 1100 }) : null,
+          busy ? /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", left: 0, top: 0, bottom: 0, width: 3, backgroundColor: colors.accent } }) : null,
+          /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 30, paddingHorizontal: 30, paddingVertical: 24 }, children: [
+            /* @__PURE__ */ (0, jsx)(Cover, { game, label: false, style: THUMB2 }),
+            /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 15 }, children: [
+              /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between" }, children: [
+                /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 42, letterSpacing: -0.68 }, children: job2.title }),
+                /* @__PURE__ */ (0, jsxs)(View, { style: { width: 285, flexDirection: "row", alignItems: "center", justifyContent: "flex-end", gap: 9 }, children: [
+                  cdn ? /* @__PURE__ */ (0, jsx)(CdnSpark, { size: 13 }) : null,
+                  /* @__PURE__ */ (0, jsx)(Text, { style: cdn ? { maxWidth: 285, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { width: 285, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: meta })
+                ] })
+              ] }),
+              /* @__PURE__ */ (0, jsx)(
+                RowProgress,
+                {
+                  id: job2.id,
+                  label: stateLabel(shown),
+                  moving: busy && state !== "pausing",
+                  waiting: WAITING.includes(shown),
+                  complete,
+                  detail: shown === "finishing" ? t2("downloads.writingToDisk") : null
+                }
+              ),
+              note ? /* @__PURE__ */ (0, jsx)(Text, { style: problem ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: note }) : null
+            ] }),
+            /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 12 }, children: [
+              /* @__PURE__ */ (0, jsx)(
+                Button2,
+                {
+                  variant: "secondary",
+                  icon: main.icon,
+                  label: t2(main.label),
+                  style: PRIMARY,
+                  autoFocus,
+                  focusKey: primaryKey(job2.id),
+                  onFocus,
+                  onBlur,
+                  onPress: main.onPress
+                }
+              ),
+              /* @__PURE__ */ (0, jsx)(
+                DeleteButton,
+                {
+                  id: job2.id,
+                  action: clearAction(state),
+                  run: (name) => run(job2, name),
+                  onFocus,
+                  onBlur
+                }
+              )
             ] })
           ] }),
-          /* @__PURE__ */ (0, jsx)(
-            RowProgress,
-            {
-              id: job2.id,
-              label: stateLabel(shown),
-              moving: BUSY.includes(state) && state !== "pausing",
-              waiting: WAITING.includes(shown),
-              complete,
-              detail: shown === "finishing" ? t2("downloads.writingToDisk") : null
-            }
-          ),
-          note ? /* @__PURE__ */ (0, jsx)(Text, { style: problem ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: note }) : null
-        ] }),
-        /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 12 }, children: [
-          /* @__PURE__ */ (0, jsx)(
-            Button2,
-            {
-              variant: "secondary",
-              icon: main.icon,
-              label: t2(main.label),
-              style: PRIMARY,
-              autoFocus,
-              focusKey: primaryKey(job2.id),
-              onFocus,
-              onPress: main.onPress
-            }
-          ),
-          /* @__PURE__ */ (0, jsx)(
-            DeleteButton,
-            {
-              id: job2.id,
-              action: clearAction(state),
-              run: (name) => run(job2, name),
-              onFocus
-            }
-          )
-        ] })
-      ] }),
-      state === "downloading" ? /* @__PURE__ */ (0, jsx)(StatsStrip, { id: job2.id }) : null
-    ] });
+          state === "downloading" ? /* @__PURE__ */ (0, jsx)(StatsStrip, { id: job2.id }) : null,
+          /* @__PURE__ */ (0, jsx)(AnimatePresence, { children: engaged ? /* @__PURE__ */ (0, jsx)(ShineBorder, { radius: 18 }, "shine") : null })
+        ]
+      }
+    );
   }
   var DownloadRow = (0, memo)(
     DownloadRowView,
