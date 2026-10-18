@@ -18,38 +18,45 @@ import { Controller, useNavigationEvents } from '@ps5-react/core';
   // A pulse on every focus move, press and page change is a lot to hold for a whole browse, so
   // it starts off and lives in settings.json beside the language. The finished-download pulse
   // is a notice, not navigation, and stays on either way.
+  // Navigation pulses are scaled by a level in percent, 0 being off (issue #32). The setting
+  // used to be `vibration: true`, which reads as full strength.
+  var LEVELS = [0, 25, 50, 75, 100];
   var SETTINGS = "settings.json";
-  var navigationHaptics = loadList(SETTINGS, "settings").vibration === true;
+  var saved = loadList(SETTINGS, "settings").vibration;
+  var vibrationLevel = saved === true ? 100 : LEVELS.includes(saved) ? saved : 0;
   var listeners = /* @__PURE__ */ new Set();
-  function setNavigationHaptics(on) {
-    navigationHaptics = on;
+  var navigationPulse = ([strength, ms]) => pulse2([strength * vibrationLevel / 100, ms]);
+  // A chosen level is felt at once, so the player can tell the steps apart while picking one.
+  function setVibrationLevel(level) {
+    vibrationLevel = level;
     const { vibration, ...settings } = loadList(SETTINGS, "settings");
-    saveList(SETTINGS, "settings", on ? { ...settings, vibration: true } : settings);
-    for (const listener of listeners) listener(on);
+    saveList(SETTINGS, "settings", level ? { ...settings, vibration: level } : settings);
+    for (const listener of listeners) listener(level);
+    if (level) navigationPulse(PAGE);
   }
-  function useNavigationHaptics() {
-    const [on, setOn] = (0, useState)(navigationHaptics);
+  function useVibrationLevel() {
+    const [level, setLevel] = (0, useState)(vibrationLevel);
     (0, useEffect)(() => {
-      listeners.add(setOn);
+      listeners.add(setLevel);
       return () => {
-        listeners.delete(setOn);
+        listeners.delete(setLevel);
       };
     }, []);
-    return on;
+    return level;
   }
   function useInterfaceHaptics() {
     useNavigationEvents((event) => {
-      if (!navigationHaptics) return;
-      if (event.type === "move") pulse2(TICK);
+      if (!vibrationLevel) return;
+      if (event.type === "move") navigationPulse(TICK);
       else if (event.type === "blocked") {
-        pulse2(EDGE);
-        setTimeout(() => pulse2(EDGE), EDGE_GAP_MS);
-      } else if (event.type === "press") pulse2(event.handled ? PRESS : EDGE);
-      else if (event.handled && event.type === "back") pulse2(BACK);
-      else if (event.handled && PAGE_ACTIONS.has(event.action)) pulse2(PAGE);
-      else if (event.handled) pulse2(PRESS);
+        navigationPulse(EDGE);
+        setTimeout(() => navigationPulse(EDGE), EDGE_GAP_MS);
+      } else if (event.type === "press") navigationPulse(event.handled ? PRESS : EDGE);
+      else if (event.handled && event.type === "back") navigationPulse(BACK);
+      else if (event.handled && PAGE_ACTIONS.has(event.action)) navigationPulse(PAGE);
+      else if (event.handled) navigationPulse(PRESS);
     });
   }
   var pulseNotice = () => pulse2(NOTICE);
 
-export { pulseNotice, setNavigationHaptics, useInterfaceHaptics, useNavigationHaptics };
+export { LEVELS, pulseNotice, setVibrationLevel, useInterfaceHaptics, useVibrationLevel };

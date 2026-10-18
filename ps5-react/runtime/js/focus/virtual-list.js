@@ -149,8 +149,9 @@ export const VirtualList = forwardRef(function VirtualList(props, ref) {
           }
         }
         list.base = base;
-        list.scroll -= dy;
-        frame.shift(dy);
+        // Content above the list does not move: a view or a target up there keeps its offset.
+        frame.shift(dy, frame.viewport ? y - frame.viewport.y : -Infinity);
+        list.scroll = frame.y;
         rerender();
       },
       /**

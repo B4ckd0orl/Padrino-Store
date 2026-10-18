@@ -40,7 +40,7 @@ import { FocusScope, ScrollView, Text, View, useIsFocused } from '@ps5-react/cor
     if (isPs5Package(release)) notes.push({ tone: "warn", icon: "alert", key: "package" });
     const kind = accessKind(release);
     if (kind === "vikingfile") notes.push({ tone: "info", icon: "globe", key: "browserViking" });
-    else if (kind === "browser" || kind === "datanodes") notes.push({ tone: "info", icon: "globe", key: "browserOther" });
+    else if (kind === "browser" || kind === "datanodes" || kind === "buzzheavier") notes.push({ tone: "info", icon: "globe", key: "browserOther" });
     const need = requiredFirmware(release);
     if (need !== null && !isDlc(release)) notes.push({ tone: "info", icon: "cpu", key: "firmware", values: { need: `${need}.xx` } });
     return notes;

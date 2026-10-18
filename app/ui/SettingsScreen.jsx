@@ -5,6 +5,7 @@ import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { useState } from 'react';
 import { chooseLanguage, languageChoice, systemLocale, useT } from '../i18n/index.js';
+import { formatPercent2 } from '../i18n/core.js';
 import { LOCALES } from '../i18n/locales.js';
 import { exportBackup } from '../state/backup.js';
 import { storageRoots } from '../state/downloads.js';
@@ -16,7 +17,7 @@ import { FocusRing } from './FocusRing.jsx';
 import { Icon } from './Icon.jsx';
 import { colors } from './colors.js';
 import { EASE_OUT } from './ease.js';
-import { setNavigationHaptics, useNavigationHaptics } from './haptics.js';
+import { LEVELS, setVibrationLevel, useVibrationLevel } from './haptics.js';
 import { LIMITS, setSpeedLimit, useSpeedLimit } from '../state/speed-limit.js';
 import { playError, playNotify } from './sounds.js';
 import { GUTTER, HAIRLINE, HAIRLINE_FOCUS, RADIUS_CARD, RADIUS_PILL, ROW_H, SEGMENT_H } from './tokens.js';
@@ -95,6 +96,30 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
     ] });
   }
 
+  function VibrationSegment({ level, chosen }) {
+    const t2 = useT();
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:vibration:${level}`, onPress: () => setVibrationLevel(level), style: { position: "relative", flex: level ? 1 : 2, height: SEGMENT_H, borderRadius: RADIUS_PILL, backgroundColor: colors.surface2, overflow: "hidden" }, children: [
+      /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { initial: false, animate: { opacity: chosen ? 1 : 0 }, transition: { type: "tween", duration: 0.22, ease: EASE_OUT }, style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: colors.accent, borderRadius: RADIUS_PILL } }),
+      /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, alignItems: "center", justifyContent: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: chosen ? colors.accentFg : colors.muted, numberOfLines: 1 }, children: level ? formatPercent2(level) : t2("settings.vibrationOff") }) })
+    ] });
+  }
+
+  function VibrationLevel() {
+    const t2 = useT();
+    const level = useVibrationLevel();
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 14, paddingTop: 6, paddingBottom: 18 }, children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 3 }, children: [
+        /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" }, children: [
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 22, fontWeight: 600, color: colors.fg }, children: t2("settings.vibration") }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, color: colors.accent, fontWeight: 600 }, children: level ? formatPercent2(level) : t2("settings.vibrationOff") })
+        ] }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, color: colors.muted, lineHeight: 26 }, children: t2("settings.vibrationDetail") })
+      ] }),
+      /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", gap: 8 }, children: LEVELS.map((value) => /* @__PURE__ */ (0, jsx)(VibrationSegment, { level: value, chosen: value === level }, value)) })
+    ] });
+  }
+
   function SectionLabel({ icon, title, detail: detail2 }) {
     const text = /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 2 }, children: [
       /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 16, fontWeight: 600, color: colors.subtle, letterSpacing: 1.5 }, children: title }),
@@ -117,7 +142,6 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
   function SettingsScreen({ onBack }) {
     const t2 = useT();
     const choice2 = languageChoice();
-    const vibration = useNavigationHaptics();
     const [category, setCategory] = (0, useState)("general");
     const [status, setStatus] = (0, useState)(null);
     const [view, setView] = (0, useState)("settings");
@@ -165,7 +189,7 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
     const general = /* @__PURE__ */ (0, jsxs)(motion.View, { variants: listAnim, initial: "hidden", animate: "shown", style: { gap: 4 }, children: [
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SpeedLimit, {}) }),
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SectionLabel, { title: t2("settings.controller") }) }),
-      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(FlatRow, { focusKey: "settings:vibration", onPress: () => setNavigationHaptics(!vibration), armed: vibration, children: /* @__PURE__ */ (0, jsx)(LanguageFace, { name: t2("settings.vibration"), detail: t2("settings.vibrationDetail"), checked: vibration, onAccent: vibration }) }) })
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(VibrationLevel, {}) })
     ] });
     const language = /* @__PURE__ */ (0, jsxs)(motion.View, { variants: listAnim, initial: "hidden", animate: "shown", style: { gap: 4 }, children: [
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(LanguageRow, { code: "system", name: t2("language.system"), detail: nameOf(systemLocale()), checked: choice2 === null, onPress: () => pick2(null) }) }),

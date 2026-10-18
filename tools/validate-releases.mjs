@@ -15,6 +15,7 @@ async function main() {
   let fullyDeadFiles = 0;
   let partialDeadFiles = 0;
   let filesChecked = 0;
+  let emptyFiles = 0;
   const problems = [];
 
   for (const file of files) {
@@ -26,12 +27,15 @@ async function main() {
       problems.push(`${file}: PARSE ERROR ${e.message}`);
       continue;
     }
-    if (!Array.isArray(data) || !data.length) {
+    if (!Array.isArray(data)) {
       schemaErrors++;
-      problems.push(`${file}: not a non-empty array`);
+      problems.push(`${file}: not an array`);
       continue;
     }
     filesChecked++;
+    // Empty [] is a valid end state: drops every source of a broken set on
+    // purpose, and the app resolves a missing file to [] anyway.
+    if (!data.length) emptyFiles++;
     let dead = 0;
     for (const rel of data) {
       if (rel.unavailableReason) { deadSources++; dead++; }
@@ -57,7 +61,7 @@ async function main() {
     else if (dead > 0) partialDeadFiles++;
   }
 
-  console.log(`Files: ${filesChecked} ok, ${parseErrors} parse errors, ${schemaErrors} schema errors`);
+  console.log(`Files: ${filesChecked} ok (${emptyFiles} empty), ${parseErrors} parse errors, ${schemaErrors} schema errors`);
   console.log(`Sources with unavailableReason: ${deadSources}`);
   console.log(`Fully dead files: ${fullyDeadFiles}, partially dead: ${partialDeadFiles}`);
   if (problems.length) {

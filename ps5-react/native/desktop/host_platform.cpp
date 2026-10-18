@@ -8,14 +8,19 @@
 #include "audio/mixer.hpp"
 
 #include <dirent.h>
-#include <mach/mach.h>
 #include <spawn.h>
-#include <sys/mount.h>
 #include <sys/statvfs.h>
 #include <sys/param.h>
 #include <sys/resource.h>
-#include <sys/sysctl.h>
 #include <sys/wait.h>
+#ifdef __APPLE__
+#include <mach/mach.h>
+#include <sys/mount.h>
+#include <sys/sysctl.h>
+#else
+#include <mntent.h>
+#include <sys/sysinfo.h>
+#endif
 #include <cerrno>
 #include <cstdio>
 #include <cstdlib>
@@ -26,8 +31,12 @@ extern char** environ;
 namespace {
 SDL_GameController* controller = nullptr;
 
-void sysctl_string(const char* name, char* out, std::size_t size) {
+void sysctl_string([[maybe_unused]] const char* name, char* out, [[maybe_unused]] std::size_t size) {
+#ifdef __APPLE__
   if (sysctlbyname(name, out, &size, nullptr, 0) != 0) *out = '\0';
+#else
+  *out = '\0';
+#endif
 }
 
 // "pt_BR.UTF-8" → "pt-BR"; the C and POSIX locales name no language.
@@ -43,6 +52,11 @@ void environment_language(char* out, std::size_t size) {
 }
 
 std::int64_t free_memory() {
+#ifndef __APPLE__
+  struct sysinfo info;
+  if (sysinfo(&info) != 0) return -1;
+  return static_cast<std::int64_t>(info.freeram + info.bufferram) * static_cast<std::int64_t>(info.mem_unit);
+#else
   vm_statistics64_data_t stats;
   mach_msg_type_number_t count = HOST_VM_INFO64_COUNT;
   vm_size_t page = 0;
@@ -50,6 +64,7 @@ std::int64_t free_memory() {
       host_statistics64(mach_host_self(), HOST_VM_INFO64, reinterpret_cast<host_info64_t>(&stats), &count) != KERN_SUCCESS)
     return -1;
   return static_cast<std::int64_t>(stats.free_count + stats.inactive_count) * static_cast<std::int64_t>(page);
+#endif
 }
 } // namespace
 
@@ -70,6 +85,21 @@ bool arrange_relaunch(char*, std::size_t) {
 }
 
 int list_mounts(MountEntry* mounts, int max) {
+#ifndef __APPLE__
+  FILE* table = setmntent("/proc/self/mounts", "r");
+  if (!table) return -1;
+  int used = 0;
+  while (used < max) {
+    const mntent* entry = getmntent(table);
+    if (!entry) break;
+    std::snprintf(mounts[used].device, sizeof mounts[used].device, "%s", entry->mnt_fsname);
+    std::snprintf(mounts[used].path, sizeof mounts[used].path, "%s", entry->mnt_dir);
+    std::snprintf(mounts[used].type, sizeof mounts[used].type, "%s", entry->mnt_type);
+    ++used;
+  }
+  endmntent(table);
+  return used;
+#else
   struct statfs* found = nullptr;
   const int count = getmntinfo(&found, MNT_NOWAIT);
   if (count <= 0) return -1;
@@ -80,6 +110,7 @@ int list_mounts(MountEntry* mounts, int max) {
     std::snprintf(mounts[i].type, sizeof mounts[i].type, "%s", found[i].f_fstypename);
   }
   return used;
+#endif
 }
 
 bool disk_usage(const char* real_path, double& total, double& free) {
@@ -120,11 +151,13 @@ void device_info(DeviceInfo& info) {
   char version[24];
   sysctl_string("kern.osproductversion", version, sizeof version);
   if (*version) std::snprintf(info.firmware, sizeof info.firmware, "macOS %s", version);
+#ifdef __APPLE__
   std::uint64_t frequency = 0;
   std::size_t size = sizeof frequency;
   // Apple silicon does not publish a CPU frequency; it stays unknown there.
   if (sysctlbyname("hw.cpufrequency", &frequency, &size, nullptr, 0) == 0)
     info.cpu_frequency = static_cast<std::int64_t>(frequency);
+#endif
   info.free_memory = free_memory();
   rusage usage;
   if (getrusage(RUSAGE_SELF, &usage) == 0)
@@ -152,10 +185,14 @@ bool notify(const char* message, const char* sub_message) {
 
 bool open_url(const char* url) {
   if (std::strncmp(url, "http://", 7) && std::strncmp(url, "https://", 8)) return false;
+#ifdef __APPLE__
   char open[] = "open";
+#else
+  char open[] = "xdg-open";
+#endif
   char* argv[] = {open, const_cast<char*>(url), nullptr};
   pid_t pid = 0;
-  if (posix_spawnp(&pid, "open", nullptr, nullptr, argv, environ) != 0) return false;
+  if (posix_spawnp(&pid, open, nullptr, nullptr, argv, environ) != 0) return false;
   int status = 0;
   // `open` hands the URL to Launch Services and exits at once.
   return waitpid(pid, &status, 0) == pid && WIFEXITED(status) && WEXITSTATUS(status) == 0;

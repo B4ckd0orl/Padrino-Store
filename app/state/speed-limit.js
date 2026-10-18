@@ -6,10 +6,13 @@ import { Downloads } from '@ps5-react/core';
   // speeds (formatSpeed's MB is 1024 ** 2 bytes); 0 is no cap. Kept in settings.json beside the vibration, and
   // handed to the download engine at launch and on every change, running downloads included.
   // App updates are enqueued unlimited and never wait on it.
-  var LIMITS = [0, 100, 75, 50, 25, 10, 5, 2, 1];
+  // 50, 2 and 1 MB/s went (2026-10-17): few connections reach 50 with these hosts, and 1 or 2 take a day
+  // over a big game. A saved one of them becomes the nearest value left.
+  var LIMITS = [0, 25, 10, 5];
   var SETTINGS = "settings.json";
   var saved = loadList(SETTINGS, "settings").speedLimit;
-  var speedLimit = LIMITS.includes(saved) ? saved : 0;
+  var nearest = (limit) => LIMITS.filter(Boolean).reduce((best, value) => Math.abs(value - limit) < Math.abs(best - limit) ? value : best);
+  var speedLimit = LIMITS.includes(saved) ? saved : typeof saved === "number" && saved > 0 ? nearest(saved) : 0;
   var listeners = /* @__PURE__ */ new Set();
   function apply() {
     try {

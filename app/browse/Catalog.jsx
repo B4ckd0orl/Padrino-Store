@@ -65,7 +65,8 @@ import { FocusScope, Image, Text, View, VirtualList, useIsFocused } from '@ps5-r
           game,
           width: CARD_WIDTH,
           detailed: true,
-          rowEnd: index % COLUMNS === COLUMNS - 1,
+          rowEnd: index % COLUMNS === COLUMNS - 1 || index === all.current.length - 1,
+          rowStart: index % COLUMNS === 0,
           enterDelay: entering.current ? index * STAGGER : void 0,
           onFocus: () => prefetchBelow(all.current, index),
           onPress: () => openGame(game.id, `card:${game.id}`)

@@ -6,6 +6,7 @@ import { jsx, jsxs } from 'react/jsx-runtime';
 import { URLDialog } from './URLDialog.jsx';
 import { useT } from '../i18n/index.js';
 import { downloadQueue } from '../state/downloads.js';
+import { formatBytes } from '../state/size.js';
 import { Button2 } from '../ui/Button.jsx';
 import { ShimmerText } from '../ui/ShimmerText.jsx';
 import { colors } from '../ui/colors.js';
@@ -26,14 +27,26 @@ import { FocusScope, Text, View, motion } from '@ps5-react/core';
         onClose: close
       }
     );
+    // A captured file that names no game: the player says whether it is the one they chose.
+    if (job2.captureState === "confirm" && job2.captureFile) return /* @__PURE__ */ (0, jsx)(FocusScope, { trap: true, autoFocus: true, onBack: () => {
+      downloadQueue().confirmCapturedFile(job2.id, false);
+      return true;
+    }, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#000000f2" }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1380, gap: 30, borderRadius: 18, borderWidth: 2, borderColor: "#2a2a2f", backgroundColor: "#17171a", padding: 48 }, children: [
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, color: "#f2f2f3", lineHeight: 48 }, children: t2("capture.confirm.title") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 1260, fontFamily: "Inter-Regular", fontSize: 24, color: "#a3a3ab", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 36 }, children: job2.title }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { ...INSTRUCTION, width: 1260, color: "#f2f2f3", numberOfLines: 2, ellipsizeMode: "tail" }, children: `${job2.captureFile.name || t2("capture.confirm.noName")} \xB7 ${formatBytes(job2.captureFile.bytes)}` }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 1260, fontFamily: "Inter-Regular", fontSize: 24, color: "#a3a3ab", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 36 }, children: t2("capture.confirm.detail") }),
+      /* @__PURE__ */ (0, jsx)(Button2, { label: t2("capture.confirm.accept"), onPress: () => downloadQueue().confirmCapturedFile(job2.id, true) }),
+      /* @__PURE__ */ (0, jsx)(Button2, { label: t2("capture.confirm.refuse"), variant: "outline", onPress: () => downloadQueue().confirmCapturedFile(job2.id, false) })
+    ] }) }) });
     return /* @__PURE__ */ (0, jsx)(FocusScope, { trap: true, autoFocus: true, onBack: () => {
       close();
       return true;
     }, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#121110f2" }, children: /* @__PURE__ */ (0, jsxs)(motion.View, { initial: { opacity: 0, y: 28 }, animate: { opacity: 1, y: 0 }, transition: dialogEnter, style: { width: 1380, gap: 30, borderRadius: 18, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#1c1a17", padding: 48 }, children: [
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, color: "#f5f1ea", lineHeight: 48 }, children: t2("capture.title") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, color: "#f5f1ea", lineHeight: 48 }, children: t2(job2.captureMode === "link" ? "capture.link.title" : "capture.title") }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { width: 1260, fontFamily: "Inter-Regular", fontSize: 24, color: "#a39c92", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 36 }, children: job2.title }),
       /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: INSTRUCTION, background: colors.surface, children: t2(`capture.${job2.captureState}`) }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 1260, fontFamily: "Inter-Regular", fontSize: 24, color: "#a39c92", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 36 }, children: t2("capture.detail") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 1260, fontFamily: "Inter-Regular", fontSize: 24, color: "#a39c92", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 36 }, children: t2(job2.captureMode === "link" ? "capture.link.detail" : "capture.detail") }),
       /* @__PURE__ */ (0, jsx)(Button2, { label: t2("download.enterLink"), variant: "outline", onPress: () => {
         downloadQueue().cancelBrowserCapture(job2.id, { manual: true });
       } }),

@@ -10,11 +10,14 @@
 /* Bounded read-only scanner. Matchers must return only the selected file. */
 #define PROBE_CHUNK 65536U
 #define PROBE_MARKER_MAX 256U
-#define PROBE_MATCH_MAX 544U /* Percent-encoded filename and route, including NUL. */
+/* Percent-encoded filename and route, including NUL. FileKeeper hands its file out through
+ * Datanodes' dlproxy.uk gateway with a 598-character token and a signature, about 675 bytes. */
+#define PROBE_MATCH_MAX 2048U
 /* Cumulative reads, not resident memory: enough to keep scanning through the whole verification
- * window at about 8 MiB/s, a late human verification included (upstream store 1.3.5). */
+ * window at about 8 MiB/s, a late human verification included (upstream store 1.3.5). A LinkVault
+ * page adds its own check and a mirror before the host's, so the window is up to 300 s. */
 #define PROBE_READ_DELAY_NS 8000000L
-#define PROBE_SESSION_BUDGET (1024ULL * 1024ULL * 1024ULL)
+#define PROBE_SESSION_BUDGET (3ULL * 1024ULL * 1024ULL * 1024ULL)
 typedef struct {
     void *context;
     int (*read)(void *, uint64_t, void *, size_t);

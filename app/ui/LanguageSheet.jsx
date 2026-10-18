@@ -8,6 +8,7 @@ import '../assets/Inter-Regular.ttf';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { useState } from 'react';
 import { chooseLanguage, languageChoice, systemLocale, useT } from '../i18n/index.js';
+import { formatPercent2 } from '../i18n/core.js';
 import { LOCALES } from '../i18n/locales.js';
 import { exportBackup } from '../state/backup.js';
 import { storageRoots } from '../state/downloads.js';
@@ -20,7 +21,7 @@ import { Icon } from './Icon.jsx';
 import { SideSheet } from './SideSheet.jsx';
 import { colors } from './colors.js';
 import { EASE_OUT } from './ease.js';
-import { setNavigationHaptics, useNavigationHaptics } from './haptics.js';
+import { LEVELS, setVibrationLevel, useVibrationLevel } from './haptics.js';
 import { LIMITS, setSpeedLimit, useSpeedLimit } from '../state/speed-limit.js';
 import { playError, playNotify } from './sounds.js';
 import { FileSystem, Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
@@ -83,6 +84,30 @@ import { FileSystem, Text, View, motion, transitions, useIsFocused } from '@ps5-
       /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", gap: 9 }, children: LIMITS.map((value) => /* @__PURE__ */ (0, jsx)(SpeedSegment, { limit: value, chosen: value === limit }, value)) })
     ] });
   }
+  // The vibration level (issue #32), laid out like the speed limit: every step in view, Cross picks.
+  var levelName = (t2, level) => level ? formatPercent2(level) : t2("settings.vibrationOff");
+  function VibrationSegment({ level, chosen }) {
+    const t2 = useT();
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:vibration:${level}`, onPress: () => setVibrationLevel(level), style: { position: "relative", flex: level ? 1 : 2, height: 60, borderRadius: 14999, backgroundColor: colors.surface2, overflow: "hidden" }, children: [
+      /* @__PURE__ */ (0, jsx)(FocusRing, { round: "full" }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { initial: false, animate: { opacity: chosen ? 1 : 0 }, transition: { type: "tween", duration: 0.22, ease: EASE_OUT }, style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: colors.accent, borderRadius: 14999 } }),
+      /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, alignItems: "center", justifyContent: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: chosen ? colors.accentFg : colors.muted, numberOfLines: 1 }, children: levelName(t2, level) }) })
+    ] });
+  }
+  function VibrationLevel() {
+    const t2 = useT();
+    const level = useVibrationLevel();
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 18, paddingHorizontal: 18, paddingTop: 6, paddingBottom: 18 }, children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 3 }, children: [
+        /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" }, children: [
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: colors.fg }, children: t2("settings.vibration") }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: colors.accent, fontWeight: 600 }, children: levelName(t2, level) })
+        ] }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: colors.muted, lineHeight: 30 }, children: t2("settings.vibrationDetail") })
+      ] }),
+      /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", gap: 9 }, children: LEVELS.map((value) => /* @__PURE__ */ (0, jsx)(VibrationSegment, { level: value, chosen: value === level }, value)) })
+    ] });
+  }
   function SectionLabel({ icon, title, detail: detail2 }) {
     const text = /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
       /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: colors.muted, letterSpacing: 1.5 }, children: title }),
@@ -106,7 +131,6 @@ import { FileSystem, Text, View, motion, transitions, useIsFocused } from '@ps5-
   function LanguageSheet({ onClose }) {
     const t2 = useT();
     const choice2 = languageChoice();
-    const vibration = useNavigationHaptics();
     const [view, setView] = (0, useState)("settings");
     const [status, setStatus] = (0, useState)(null);
     const wishlist = useWishlist();
@@ -145,7 +169,7 @@ import { FileSystem, Text, View, motion, transitions, useIsFocused } from '@ps5-
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SectionLabel, { icon: "download", title: t2("settings.downloads") }) }),
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SpeedLimit, {}) }),
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SectionLabel, { title: t2("settings.controller") }) }),
-      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(CardRow, { focusKey: "settings:vibration", onPress: () => setNavigationHaptics(!vibration), children: /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", alignItems: "center", gap: 24, paddingHorizontal: 18, paddingVertical: 18 }, children: /* @__PURE__ */ (0, jsx)(LanguageFace, { name: t2("settings.vibration"), detail: t2("settings.vibrationDetail"), checked: vibration }) }) }) }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(VibrationLevel, {}) }),
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SectionLabel, { icon: "hardDrive", title: t2("settings.data"), detail: t2("settings.dataDetail") }) }),
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(StatusRow, { status }) }),
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(ActionRow, { focusKey: "settings:export", name: t2("backup.export"), detail: t2("backup.exportDetail"), onPress: exportNow }) }),

@@ -44,7 +44,7 @@ set(ERUI_GRADIENT ON CACHE BOOL "" FORCE)
 set(ERUI_GRADIENT_RADIAL ON CACHE BOOL "" FORCE)
 # Icons are <Svg> nodes: 128 geometry slots (4.5 KB each) and 32 cached static nodes (84 KB each),
 # about 3.1 MB of .bss over the 8/2 defaults, so icons are not re-flattened on nearby repaints. 64
-# slots ran out in Overdrive (its hidden library page keeps a heart per favorited card mounted), and
+# slots ran out in the store (its hidden library page keeps a heart per favorited card mounted), and
 # the legend glyphs past the 64th drew nothing.
 set(ERUI_MAX_VECTOR_NODES 128 CACHE STRING "" FORCE)
 set(ERUI_VECTOR_CACHE_NODES 32 CACHE STRING "" FORCE)

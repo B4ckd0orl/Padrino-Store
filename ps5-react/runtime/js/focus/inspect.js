@@ -41,4 +41,19 @@ export function installInspector(manager) {
     };
   }));
   globalThis.__ps5ReactFocus = key => manager.focus(key);
+  // A pointer at (nx, ny), fractions of the screen: focuses the smallest navigable element under it,
+  // as a mouse click on the desktop preview would. Returns whether one took focus. Only the desktop
+  // host has a pointer (it sets the flag before the bundle loads); the PS5 gets no hook.
+  if (!globalThis.__ps5ReactPointer) return;
+  globalThis.__ps5ReactHit = (nx, ny) => {
+    const x = nx * screen.width, y = ny * screen.height;
+    let best = null, bestArea = Infinity;
+    for (const node of manager.nodes) {
+      const rect = screenRect(node);
+      if (!rect || inert(node.scope) || x < rect.x || y < rect.y || x >= rect.x + rect.width || y >= rect.y + rect.height) continue;
+      const area = rect.width * rect.height;
+      if (area < bestArea) { best = node; bestArea = area; }
+    }
+    return best ? manager.focus(best) : false;
+  };
 }

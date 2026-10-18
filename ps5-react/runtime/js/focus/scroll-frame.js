@@ -24,6 +24,15 @@ const FRAME_MS = 1000 / 60;
 // starts then. Cached art still draws during the scroll.
 const IMAGE_DEFER_MS = 150;
 
+// A reveal farther than this many viewports skips most of the way (see `reveal`).
+const SKIP_VIEWPORTS = 2;
+
+/** Where a scroll from `from` to `to` starts: `from`, or one viewport short of a far `to`. */
+function skipTo(from, to, viewport) {
+  if (Math.abs(to - from) <= SKIP_VIEWPORTS * viewport) return from;
+  return Math.round(to + Math.sign(from - to) * viewport);
+}
+
 function assignRef(ref, value) {
   if (typeof ref === 'function') ref(value);
   else if (ref) ref.current = value;
@@ -60,7 +69,15 @@ export function createFrame(parent) {
         if (x === frame.x && y === frame.y) return;
         frame.x = x;
         frame.y = y;
-        frame.animate(fromX, fromY, x, y);
+        // A jump far along the frame (Circle back to the top of a long page) would ease through every
+        // row on the way, at a catch-up speed that rasterizes screens of content per frame: it skips
+        // to one viewport short of the target first, so only the last stretch moves.
+        const startX = skipTo(fromX, x, viewport.width), startY = skipTo(fromY, y, viewport.height);
+        if (startX !== fromX || startY !== fromY) {
+          frame.stop();
+          const [atX, atY] = NativeUI.scrollTo(handle, startX, startY);
+          frame.animate(atX, atY, x, y);
+        } else frame.animate(fromX, fromY, x, y);
       }
       frame.notify();
       frame.props.onScrollTarget?.({x: frame.x, y: frame.y});
@@ -112,15 +129,20 @@ export function createFrame(parent) {
      * The content moved up by `dy` (a VirtualList dropping rows above the viewport, or down for a
      * negative `dy`): scrolls by the same amount so nothing moves on screen, mid-animation included.
      */
-    shift(dy) {
+    // Only content at or below `top` moved: an offset above it (the view, or a target, on what sits
+    // above the list) stays, or a jump up past the list would be carried back down into it.
+    shift(dy, top = -Infinity) {
       const [, atY] = NativeUI.scrollTo(frame.handle, NaN, NaN);
-      NativeUI.scrollTo(frame.handle, NaN, atY - dy);
-      frame.y -= dy;
+      const here = atY >= top;
+      if (here) NativeUI.scrollTo(frame.handle, NaN, atY - dy);
+      if (frame.y >= top) frame.y -= dy;
       if (frame.timer === null) return;
-      frame.from = [frame.from[0], frame.from[1] - dy];
-      frame.to = [frame.to[0], frame.to[1] - dy];
-      frame.position = [frame.position[0], frame.position[1] - dy];
-      frame.target[1] -= dy;
+      if (here) {
+        frame.from = [frame.from[0], frame.from[1] - dy];
+        frame.to = [frame.to[0], frame.to[1] - dy];
+        frame.position = [frame.position[0], frame.position[1] - dy];
+      }
+      if (frame.target[1] >= top) frame.target[1] -= dy;
     },
     // Viewport or offset changed; while animating, y is the target, so listeners see where it is going.
     notify() {

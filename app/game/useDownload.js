@@ -7,7 +7,7 @@ import { BUSY } from '../state/download-queue.js';
 import { downloadQueue } from '../state/downloads.js';
 import { sameRelease } from '../state/release-sets.js';
 
-  function useDownload(game, release, root2, alternatives) {
+  function useDownload(game, release, root2) {
     const [job2, setJob] = (0, useState)(null);
     const [error2, setError] = (0, useState)("");
     const started = (0, useRef)(false);
@@ -33,7 +33,7 @@ import { sameRelease } from '../state/release-sets.js';
         if (!job2) {
           if (release) {
             started.current = true;
-            queue.enqueue(game, release, root2, alternatives);
+            queue.enqueue(game, release, root2);
           }
         } else if (BUSY.includes(job2.state) && job2.state !== "pausing" && job2.state !== "installing") queue.pause(job2.id);
         else if (job2.state === "installer-required") queue.install(job2.id);

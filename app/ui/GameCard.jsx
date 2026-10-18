@@ -5,7 +5,7 @@ import '../assets/Inter-Regular.ttf';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { useEffect, useRef, useState } from 'react';
 import { prefetchWhenSettled } from '../game/art.js';
-import { focusEnd, latin, useLocale } from '../i18n/index.js';
+import { focusEnd, focusStart, latin, useLocale } from '../i18n/index.js';
 import { genreLabel, onCdn } from '../state/catalog.js';
 import { formatSize } from '../state/size.js';
 import { useStoreActions, useWishlist } from '../state/store.jsx';
@@ -111,6 +111,7 @@ import { Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
     width = 150,
     focusKey = `card:${game.id}`,
     rowEnd,
+    rowStart,
     enterDelay,
     caption,
     detailed,
@@ -139,6 +140,9 @@ import { Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
       motion.View,
       {
         ...focusEnd(rtl, rowEnd ? focusKey : void 0),
+        // A grid's first column: Left stops there instead of looking up the page for something to its left,
+        // or goes where rowStart names (Search's keyboard).
+        ...focusStart(rtl, typeof rowStart === "string" ? rowStart : rowStart ? focusKey : void 0),
         ...rest2,
         focusKey,
         onPress,

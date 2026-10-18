@@ -4,6 +4,8 @@
 import { sourceKind, webURL } from './download-sources.js';
 
   var VIKING_PREFIX = "https://vikingfile.com/d/";
+  // The file page a LinkVault vault opens; the capture's page mode returns it.
+  var VIKING_PAGE_PREFIX = "https://vikingfile.com/f/";
   var VIKING_PREFIXES = [VIKING_PREFIX, "https://vik1ngfile.site/d/"];
   var vikingPath = (url) => {
     const prefix = VIKING_PREFIXES.find((item) => url.startsWith(item));
@@ -39,7 +41,11 @@ import { sourceKind, webURL } from './download-sources.js';
     try {
       webURL(url);
       const path = vikingPath(url);
-      return /^[a-z0-9]{10}\/[^/?#]+$/i.test(path) && decodeURIComponent(path.slice(11)) === filename;
+      if (!/^[a-z0-9]{10}\/[^/?#]+$/i.test(path)) return false;
+      const name = path.slice(11);
+      // A form encoding writes a space as a literal "+" (the capture accepts it the same way); an
+      // encoded plus, %2B, stays a plus either way.
+      return decodeURIComponent(name) === filename || decodeURIComponent(name.replace(/\+/g, "%20")) === filename;
     } catch {
       return false;
     }
@@ -54,8 +60,14 @@ import { sourceKind, webURL } from './download-sources.js';
   }
   function transferURL(url) {
     const parsed = webURL(url);
-    if (!url.startsWith("https://") || parsed.origin !== `https://${parsed.host}` || parsed.path.includes("#") || !(["vikingfile.com", "ar.vikingfile.com", "vik1ngfile.site"].includes(parsed.host) || parsed.host.endsWith(".s3.bhs.io.cloud.ovh.net") || parsed.host.endsWith(".r2.cloudflarestorage.com")))
+    // Vikingfile hands each file to one of its own servers (ar., am., zo. ... .vikingfile.com, seen
+    // 2026-10-18): any of its subdomains is its own.
+    const own = ["vikingfile.com", "vik1ngfile.site"].some((domain) => parsed.host === domain || parsed.host.endsWith(`.${domain}`));
+    if (!url.startsWith("https://") || parsed.origin !== `https://${parsed.host}` || parsed.path.includes("#") || !(own || parsed.host.endsWith(".s3.bhs.io.cloud.ovh.net") || parsed.host.endsWith(".r2.cloudflarestorage.com"))) {
+      // The host only, never the path or query: those carry the file's signed token.
+      console.log("[browser-capture] download host refused:", parsed.origin);
       throw new Error("Captured file redirected to an unsupported download host.");
+    }
     return url;
   }
   async function rangeProbe(http, url, signal) {
@@ -116,17 +128,10 @@ import { sourceKind, webURL } from './download-sources.js';
       catalogBytes: release.sizeBytes || null
     };
   }
-  function capturedVikingFile(url, metadata) {
-    const path = vikingPath(url);
-    let filename = "";
-    try {
-      if (/^[a-z0-9]{10}\/[^/?#]+$/i.test(path)) filename = decodeURIComponent(path.slice(11));
-    } catch {
-    }
-    if (!usableFilename(filename)) throw new Error("Captured link does not name a usable file.");
-    if (metadata.part && !new RegExp(`part[\\s._-]*0*${metadata.part}(?!\\d)`, "i").test(filename))
-      throw new Error(`Captured file is not part ${metadata.part}. Reopen the page and download that part.`);
-    return { ...metadata, filename };
+  // A vault's record may stand for one part of a set; the page it opened has to be that part.
+  function requirePart(part, filename) {
+    if (part && !new RegExp(`part[\\s._-]*0*${part}(?!\\d)`, "i").test(filename))
+      throw new Error(`Captured file is not part ${part}. Reopen the page and download that part.`);
   }
 
-export { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetadata, validateVikingCapture, vikingLinkPage };
+export { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetadata, requirePart, validateVikingCapture, vikingLinkPage };

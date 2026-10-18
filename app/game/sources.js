@@ -73,48 +73,31 @@ import { formatBytes } from '../state/size.js';
       status: release.unavailableReason ? null : compatibility(release)
     };
   }
-  var version = (value) => {
-    const parts = (value || "").replace(/^v/i, "").split(".").map(Number);
-    while (parts.length > 1 && parts.at(-1) === 0) parts.pop();
-    return parts.join(".");
-  };
-  var sameSize = (a, b) => Boolean(a && b) && Math.abs(a - b) <= a * 0.01;
-  var partOf = ({ label, filename }) => /\bpart\s*(\d+)\b/i.exec(`${label || ""} ${filename || ""}`)?.[1] ?? "";
-  var recordOf = (release) => (release.parts?.[0].sources[0] ?? release).record;
-  var sameFormat = (a, b) => a.format === b.format || a.format === "binary" || b.format === "binary";
-  function equivalent(a, b) {
-    if (Boolean(a.parts) !== Boolean(b.parts) || a.parts?.length !== b.parts?.length || isDlc(a) !== isDlc(b) || isPatchOnly(a) !== isPatchOnly(b)) return false;
-    if (a.sha256 && b.sha256) return a.sha256 === b.sha256;
-    const [ea, eb] = [edition(a).toLowerCase(), edition(b).toLowerCase()];
-    if (ea && eb && ea !== eb) return false;
-    if (a.version && b.version && version(a.version) !== version(b.version)) return false;
-    if (a.sizeBytes && b.sizeBytes && !sameSize(a.sizeBytes, b.sizeBytes)) return false;
-    if (!a.parts && (!sameFormat(a, b) || partOf(a) !== partOf(b))) return false;
-    return sameSize(a.sizeBytes, b.sizeBytes) || Boolean(ea) && ea === eb && recordOf(a) !== void 0 && recordOf(a) === recordOf(b);
-  }
   var isDlc = ({ label }) => /\bDLCs?\b/i.test(label || "") && !/\b(?:game|full)\b|\+\s*(?:all\s+)?DLCs?\b|\bwith\s+(?:all\s+)?DLCs?\b|\bincl/i.test(label);
   var GROUP_RANK = { direct: 0, page: 1, browser: 2, unavailable: 3 };
   var HEALTH_RANK = { ok: 0, flaky: 2 };
   var isBackport = ({ label }) => /\bback\s*port\b/i.test(label || "");
-  var hostRank = ({ provider }) => isOverdriveCdn(provider) ? 0 : provider.toLowerCase() === "archive.org" ? 1 : provider.toLowerCase() === "mediafire" ? 2 : 3;
+  // After MediaFire, the browser hosts confirmed on the console (Vikingfile, DataNodes, FileKeeper)
+  // before the ones still being tried (AkiraBox, a vault's other mirrors).
+  var CONFIRMED = /^(?:vik[i1]ngfile|datanodes|filekeeper(?:\.net)?)$/i;
+  var hostRank = ({ provider }) => isOverdriveCdn(provider) ? 0 : provider.toLowerCase() === "archive.org" ? 1 : provider.toLowerCase() === "mediafire" ? 2 : CONFIRMED.test(provider) ? 3 : 4;
   var ranked = (release, index) => ({ release, index, rank: [
     isDlc(release) ? 1 : 0,
     release.unavailableReason ? 1 : 0,
     isPatchOnly(release) ? 1 : 0,
     isPs5Package(release) ? 1 : 0,
+    // A backport is the game fixed for older firmware, or only the files to copy over it (a 40 MB
+    // download, issue #47): the full game comes first whatever its host.
+    isBackport(release) ? 1 : 0,
     hostRank(release),
     GROUP_RANK[describeSource(release).group],
     HEALTH_RANK[release.health] ?? 1,
-    isBackport(release) ? 1 : 0,
     release.source === "catalog-v7" ? 0 : 1,
     release.requiresBrowser ? 1 : 0
   ] });
   var compare = (a, b) => a.rank.reduce((order, value, i) => order || value - b.rank[i], 0) || a.index - b.index;
   function preferredRelease(releases) {
     return releases.map(ranked).sort(compare)[0]?.index ?? 0;
-  }
-  function fallbacks(releases, selected) {
-    return releases.map(ranked).filter(({ release, index }) => index !== selected && GROUP_RANK[describeSource(release).group] <= GROUP_RANK.page && equivalent(releases[selected], release)).sort(compare).map(({ release }) => release);
   }
   function sourceSections(releases) {
     const sections = ["direct", "page", "browser", "dlc", "unavailable"].map((group) => ({ group, items: [] }));
@@ -128,4 +111,4 @@ import { formatBytes } from '../state/size.js';
     return sections.filter((section) => section.items.length);
   }
 
-export { describeSource, fallbacks, formatLabel, isDlc, isOverdriveCdn, preferredRelease, requiredFirmware, sourceSections };
+export { describeSource, formatLabel, isDlc, isOverdriveCdn, preferredRelease, requiredFirmware, sourceSections };

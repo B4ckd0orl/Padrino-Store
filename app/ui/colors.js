@@ -1,7 +1,7 @@
 // ../pub-game-store/native/ui/colors.js
 // reconstructed from the esbuild bundle in eboot.bin
 // MODIFIED: Padrino Store palette — warm black canvas, single gold accent (#e09f3e),
-// no Overdrive blue. accentFg is the ink that sits ON gold.
+  // no stray brand blue. accentFg is the ink that sits ON gold.
 
   var colors = {
     canvas: "#121110",

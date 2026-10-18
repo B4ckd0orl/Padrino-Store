@@ -25,6 +25,33 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 - Antes solo se veía una categoría genérica ("Imagen"/"Paquete") y los ZIP/RAR/7Z no etiquetaban nada
 - "Formato" traducido a los 15 idiomas de la tienda
 
+### Navegación y portada
+- Foco de consola visible en todas las listas, con lista virtual para los catálogos largos y salto entre secciones con los gatillos
+- Portada con sección "Para ti", Spotlight de grandes títulos y Top charts que rota por género
+- La biblioteca abre en "Lanzamientos nuevos" y el buscador vuelve al teclado al borrar
+
+### Ajustes
+- Vibración mientras navegas: encendida o apagada, con intensidad al 0, 25, 50, 75 o 100
+- Menos opciones de límite de velocidad (sin límite, 5, 10 y 25)
+- app.log guarda las últimas 5 sesiones para diagnóstico
+
+### Descargas y extracción
+- Sets multi-volumen: solo se ofrecen completos, con validación del último volumen antes de instalar
+- Al extraer, la app indica qué carpetas quedaron en el destino
+- Paquetes PS5 reconocidos por su cabecera con el título leído del contenido, y el error real de instalación visible en Archivos
+- Descargas finalizadas ya no aparecen como error y la cola avanza tras cancelar
+
+### Datos del catálogo
+- Sets multi-volumen corregidos: 851 enlaces inválidos retirados y unas 1160 etiquetas de volumen arregladas
+- Retirados los sets que no traían su último volumen (esos juegos quedan sin fuentes hasta que aparezca el set completo)
+- Fuentes .7z fantasma de Ghost of Yotei retiradas: la consola no las extrae
+
+### Captura en el navegador
+- Nuevos hosts en la captura: 1fichier, Datanodes, LinkVault, AkiraBox, FileKeeper y BuzzHeavier
+- Captura exacta de vikingfile a través de LinkVault con comprobación del title id
+- Solo se capturan enlaces nuevos de la página abierta; los rechazados se descartan y la sesión retoma sin repetirlos
+- Nombres de archivo con espacios leídos correctamente
+
 ---
 
 ## Archivo

@@ -9,7 +9,7 @@ import { useT } from '../i18n/index.js';
 import { genres } from '../state/catalog.js';
 import { useStoreActions, useStoreState } from '../state/store.jsx';
 import { SectionHeader } from '../ui/SectionHeader.jsx';
-import { ScrollView, View } from '@ps5-react/core';
+import { FocusScope, ScrollView, View } from '@ps5-react/core';
 
   var used = /* @__PURE__ */ new Set();
   var RAIL = genres.map((genre) => ({ genre, matches: games.filter((game) => game.genres.includes(genre)).sort((a, b) => b.recommendations - a.recommendations) })).filter(({ matches }) => matches.length >= 3).sort((a, b) => b.matches.length - a.matches.length).map(({ genre, matches }) => {
@@ -25,7 +25,8 @@ import { ScrollView, View } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsxs)(View, { scrollAnchor: true, children: [
       /* @__PURE__ */ (0, jsx)(SectionHeader, { title: t2("browse.popularGenres") }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { position: "relative", marginHorizontal: -9, marginVertical: -30 }, children: [
-        /* @__PURE__ */ (0, jsx)(ScrollView, { style: [{ flexDirection: "row", gap: 18, paddingHorizontal: 9, paddingVertical: 30 }, { direction: "ltr" }], children: RAIL.map(
+        // A row scope, like GameRail: Left and Right stop at the rail's ends.
+        /* @__PURE__ */ (0, jsx)(FocusScope, { row: true, children: /* @__PURE__ */ (0, jsx)(ScrollView, { style: [{ flexDirection: "row", gap: 18, paddingHorizontal: 9, paddingVertical: 30 }, { direction: "ltr" }], children: RAIL.map(
           ({ genre, count, covers }) => /* @__PURE__ */ (0, jsx)(
             GenreCard,
             {
@@ -37,7 +38,7 @@ import { ScrollView, View } from '@ps5-react/core';
             },
             genre
           )
-        ) }),
+        ) }) }),
         /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, bottom: 0, right: 0, width: 96, backgroundGradient: { type: "linear", to: "right", stops: [{ color: "transparent", offset: 0 }, { color: "#ffffff", offset: 1 }] } } })
       ] })
     ] });

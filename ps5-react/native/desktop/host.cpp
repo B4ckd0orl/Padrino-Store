@@ -242,17 +242,24 @@ struct Host {
     cfg.screen_width = width; cfg.screen_height = height; cfg.screen_scale = 2;
     cfg.memory_limit = kJsMemoryLimit;
     cfg.malloc_functions = js_heap_functions();
+#ifdef __APPLE__
     cfg.max_stack_size = 1024 * 1024;
+#else
+    // x86-64 Linux builds use deeper native frames per JS call; the main thread has 8 MiB.
+    cfg.max_stack_size = 4 * 1024 * 1024;
+#endif
     cfg.install_host_globals = ps5_react_install_host_api;
     runtime_started = er_runtime_init(&cfg);
     if (!runtime_started) return false;
     // PS5_REACT_PROFILE=<file> samples JavaScript; the folded stacks are written there on exit.
     if (std::getenv("PS5_REACT_PROFILE")) profiler.start(JS_GetRuntime(er_runtime_context()), 1000);
-    if (controlled) {
-      // Read when the bundle loads: Text reports its content to the inspector only then.
+    {
+      // Read when the bundle loads: the pointer hit-test exists only where a mouse can call it, and
+      // Text reports its content to the inspector only under the control channel.
       JSContext* ctx = er_runtime_context();
       JSValue global = JS_GetGlobalObject(ctx);
-      JS_SetPropertyStr(ctx, global, "__ps5ReactInspecting", JS_TRUE);
+      JS_SetPropertyStr(ctx, global, "__ps5ReactPointer", JS_TRUE);
+      if (controlled) JS_SetPropertyStr(ctx, global, "__ps5ReactInspecting", JS_TRUE);
       JS_FreeValue(ctx, global);
     }
     er_register_assets();
@@ -312,6 +319,39 @@ struct Host {
     return call_input("__ps5ReactTouch", 2, args);
   }
 
+  // A mouse click at window point (x, y): focuses the element under it, as a developer's pointer. The
+  // frame is letterboxed in the window, so the point maps through that scale and offset.
+  bool click(int x, int y) {
+    int ww = 0, wh = 0;
+    SDL_GetWindowSize(window, &ww, &wh);
+    if (ww <= 0 || wh <= 0) return false;
+    const float scale = std::min(float(ww) / width, float(wh) / height);
+    return hit((x - (ww - width * scale) / 2) / scale, (y - (wh - height * scale) / 2) / scale);
+  }
+
+  // Focuses the navigable element under logical point (fx, fy); whether one took focus.
+  bool hit(float fx, float fy) {
+    if (fx < 0 || fy < 0 || fx >= width || fy >= height) return false;
+    gc_scheduler.input(now_us());
+    JSContext* ctx = er_runtime_context();
+    JSValue global = JS_GetGlobalObject(ctx);
+    JSValue fn = JS_GetPropertyStr(ctx, global, "__ps5ReactHit");
+    // As fractions: the runtime's layout units need not be the render's pixels.
+    JSValue args[2] = {JS_NewFloat64(ctx, fx / width), JS_NewFloat64(ctx, fy / height)};
+    JSValue result = JS_Call(ctx, fn, global, 2, args);
+    const bool hit = !JS_IsException(result) && JS_ToBool(ctx, result) == 1;
+    if (JS_IsException(result)) {
+      JSValue error = JS_GetException(ctx);
+      const char* message = JS_ToCString(ctx, error);
+      std::fprintf(stderr, "Click failed: %s\n", message ? message : "JS exception");
+      if (message) JS_FreeCString(ctx, message);
+      JS_FreeValue(ctx, error);
+    }
+    JS_FreeValue(ctx, result); JS_FreeValue(ctx, args[0]); JS_FreeValue(ctx, args[1]);
+    JS_FreeValue(ctx, fn); JS_FreeValue(ctx, global);
+    return hit;
+  }
+
   // A development hook's result as text: strings as they are, anything else through JSON.
   std::string call_js(const char* name, const char* arg) {
     JSContext* ctx = er_runtime_context();
@@ -369,6 +409,12 @@ struct Host {
         Control::reply(client, call_js("__ps5ReactInspect", nullptr));
       } else if (verb == "focus") {
         Control::reply(client, call_js("__ps5ReactFocus", arg.c_str()) == "true" ? "ok" : "not found: " + arg);
+      } else if (verb == "click") {
+        // `click <x> <y>` in logical pixels: a left mouse click there.
+        int x = 0, y = 0;
+        const bool found = std::sscanf(arg.c_str(), "%d %d", &x, &y) == 2 && hit(float(x), float(y));
+        if (found && !dispatch(action_name(HostAction::confirm))) return false;
+        Control::reply(client, found ? "ok" : "nothing at " + arg);
       } else if (verb == "script") {
         // Runs input-script steps from now on, e.g. a touchpad swipe.
         char error[512] = {};
@@ -438,6 +484,13 @@ struct Host {
       } else if ((event.type == SDL_CONTROLLERTOUCHPADDOWN || event.type == SDL_CONTROLLERTOUCHPADMOTION ||
                   event.type == SDL_CONTROLLERTOUCHPADUP) && event.ctouchpad.touchpad == 0 && event.ctouchpad.finger == 0) {
         if (!touch(event.type != SDL_CONTROLLERTOUCHPADUP, event.ctouchpad.x, event.ctouchpad.y)) return false;
+      } else if (event.type == SDL_MOUSEBUTTONDOWN) {
+        // A developer's mouse stands in for the pad: left selects what is under it, right goes back.
+        if (event.button.button == SDL_BUTTON_LEFT) {
+          if (click(event.button.x, event.button.y)) action = action_name(HostAction::confirm);
+        } else if (event.button.button == SDL_BUTTON_RIGHT) action = action_name(HostAction::back);
+      } else if (event.type == SDL_MOUSEWHEEL && event.wheel.y != 0) {
+        action = action_name(event.wheel.y > 0 ? HostAction::up : HostAction::down);
       } else if (event.type == SDL_CONTROLLERAXISMOTION) {
         const auto trigger = [&](bool& down, const char* name) {
           if (crossed(down, event.caxis.value / 32767.0f)) action = name;

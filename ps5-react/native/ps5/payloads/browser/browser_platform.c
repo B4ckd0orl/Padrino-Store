@@ -88,7 +88,7 @@ int probe_target_read(void *context, uint64_t address, void *bytes, size_t lengt
     ProbeTarget *target = context;
     /* Rate limit: at most 64 KiB every 8 ms, roughly 8 MiB/s. */
     struct timespec delay = {.tv_nsec = PROBE_READ_DELAY_NS};
-    nanosleep(&delay, NULL);
+    if (!target->unpaced) nanosleep(&delay, NULL);
     if (!probe_target_active(target)) return -1;
     return kernel_proc_copyout(target->pid, (intptr_t)address, bytes, length);
 }

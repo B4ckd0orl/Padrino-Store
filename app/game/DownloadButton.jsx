@@ -3,14 +3,14 @@
 
 import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { STALE_PARTIAL, cause, explainError } from '../downloads/errors.js';
 import { WAITING, shownState } from '../downloads/labels.js';
 import { Choice, TextAction } from './Choice.jsx';
 import { DISABLED, DownloadLabel, statusLine } from './DownloadLabel.jsx';
 import { MoreOptions, ProblemNote } from './DownloadProblem.jsx';
 import { canDownload, spaceAdvice, spaceNeeded } from './releases.js';
-import { fallbacks, formatLabel, isOverdriveCdn, preferredRelease } from './sources.js';
+import { formatLabel, isOverdriveCdn, preferredRelease } from './sources.js';
 import { useDownload } from './useDownload.js';
 import { useFreeSpace } from './useFreeSpace.js';
 import { useShadowMount } from './useShadowMount.js';
@@ -59,8 +59,7 @@ import { DownloadFormats, Text, View, motion } from '@ps5-react/core';
       }));
     });
     const release = releases[selected];
-    const alternatives = (0, useMemo)(() => fallbacks(releases, selected), [releases, selected]);
-    const download = useDownload(game, release, roots[storage], alternatives);
+    const download = useDownload(game, release, roots[storage]);
     const { progress, restart, remove, deleteFromDisk, job: job2, error: error2 } = download;
     const free = useFreeSpace(roots, download.status, !job2);
     const need = spaceNeeded(release, roots[storage]);

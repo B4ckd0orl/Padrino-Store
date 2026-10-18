@@ -68,7 +68,8 @@ import { FocusScope, ScrollView, Text, View, useIsFocused } from '@ps5-react/cor
             game,
             width: CARD_WIDTH3,
             onPress: () => onOpenGame(game),
-            rowEnd: index % COLUMNS3 === COLUMNS3 - 1
+            rowEnd: index % COLUMNS3 === COLUMNS3 - 1,
+            rowStart: index % COLUMNS3 === 0 ? "search-keyboard" : void 0
           },
           game.id
         )
@@ -88,7 +89,7 @@ import { FocusScope, ScrollView, Text, View, useIsFocused } from '@ps5-react/cor
           {
             label: genreLabel(genre),
             icon: "chevronRight",
-            onPress: () => showLibrary({ ...NO_FILTERS, genre: [genre] }, "relevance")
+            onPress: () => showLibrary({ ...NO_FILTERS, genre: [genre] }, "newest")
           },
           genre
         )

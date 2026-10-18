@@ -78,9 +78,10 @@ import { FileSystem, Image } from '@ps5-react/core';
     Image.warm(sortGames(games, "relevance").filter((game) => game.art.cover).map((game) => game.art.cover));
   }
   var SORTS = [
+    // New releases first: the library's sort menu opens on it.
+    { id: "newest", compare: (a, b) => b.releaseDate.localeCompare(a.releaseDate) },
     // Most popular puts the games Archive.org serves first: the app downloads them fastest.
     { id: "relevance", compare: (a, b) => fromArchive(b) - fromArchive(a) || b.recommendations - a.recommendations },
-    { id: "newest", compare: (a, b) => b.releaseDate.localeCompare(a.releaseDate) },
     { id: "rating", compare: (a, b) => (b.metacritic ?? 0) - (a.metacritic ?? 0) },
     { id: "size", compare: (a, b) => (b.sizeGb ?? 0) - (a.sizeGb ?? 0) },
     { id: "title", compare: (a, b) => a.title.localeCompare(b.title) }
@@ -109,7 +110,11 @@ import { FileSystem, Image } from '@ps5-react/core';
     filecrypt: "Filecrypt",
     fileditchfiles: "FileDitch",
     ranoz: "Ranoz",
-    transfer: "Transfer.it"
+    transfer: "Transfer.it",
+    akirabox: "AkiraBox",
+    "link-vault.org": "LinkVault",
+    "rootz.so": "Rootz",
+    mega: "Mega"
   };
   var MIN_HOST_GAMES = 20;
   var hostCounts = /* @__PURE__ */ new Map();

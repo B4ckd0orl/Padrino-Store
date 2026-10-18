@@ -72,7 +72,7 @@ test('a 120 Hz display scrolls at the 60 Hz speed, through the positions between
 test('while it animates, position is where the engine shows the view (VirtualList reads it)', () => {
   const {engine, frame} = setup(5000);
   frame.reveal({x: 0, y: 3000, width: 100, height: 100}, null);
-  assert.deepEqual(frame.position, [0, 0]);
+  assert.deepEqual(frame.position, [engine.x, engine.y], 'a far reveal skips most of the way first');
   for (let i = 0; i < 5; i++) {
     globalThis.__ps5ReactFrame(1000 / 120);
     assert.deepEqual(frame.position, [engine.x, engine.y]);
@@ -80,4 +80,38 @@ test('while it animates, position is where the engine shows the view (VirtualLis
   assert.ok(frame.position[1] > 0 && frame.timer !== null);
   frame.shift(40);
   assert.equal(frame.position[1], engine.y, 'a shift moves it with the content');
+});
+
+test('a jump far up a long page skips to a viewport short of the target, then eases the rest', () => {
+  const {engine, frame, settle} = setup(20000);
+  frame.reveal({x: 0, y: 12000, width: 100, height: 100}, null, {instant: true});
+  assert.equal(engine.y, 11412);
+  frame.reveal({x: 0, y: 0, width: 100, height: 100}, null);
+  assert.equal(engine.y, 720, 'one viewport below the top, before any frame');
+  const positions = [];
+  for (let i = 0; i < 400 && frame.timer !== null; i++) {
+    globalThis.__ps5ReactFrame(1000 / 60);
+    positions.push(engine.y);
+  }
+  assert.equal(engine.y, 0);
+  assert.ok(positions.every((y, i) => y <= (i ? positions[i - 1] : 720)), 'it only moves up from there');
+  frame.reveal({x: 0, y: 1300, width: 100, height: 100}, null);
+  settle();
+  assert.equal(engine.y, 712, 'a reveal within two viewports eases all the way');
+});
+
+test('a shift moves only offsets at or below the moved content, so a jump above a list stays put', () => {
+  const {engine, frame} = setup(20000);
+  frame.reveal({x: 0, y: 12000, width: 100, height: 100}, null, {instant: true});
+  frame.reveal({x: 0, y: 0, width: 100, height: 100}, null);
+  assert.equal(engine.y, 720);
+  frame.shift(-6000, 3000);
+  assert.equal(engine.y, 720, 'the view above the list does not move');
+  assert.equal(frame.target[1], 0, 'nor does the target');
+  for (let i = 0; i < 400 && frame.timer !== null; i++) globalThis.__ps5ReactFrame(1000 / 60);
+  assert.equal(engine.y, 0, 'it reaches the top');
+  frame.reveal({x: 0, y: 5000, width: 100, height: 100}, null, {instant: true});
+  const before = engine.y;
+  frame.shift(-600, 3000);
+  assert.equal(engine.y, before + 600, 'a view inside the list moves with it');
 });

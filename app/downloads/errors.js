@@ -20,6 +20,9 @@ import { t } from '../i18n/core.js';
     [/archive password/i, "archivePassword", "otherSource"],
     [/not a game file/i, "notGameFile", "otherSource"],
     [/fake PKGs install only/i, "pkgFirmware", "otherSource"],
+    // The package installer is sent to the payload loader (etaHEN, an elfldr): without one the PKG is
+    // ready on the drive and only needs installing by hand.
+    [/payload loader on port 9021/i, "pkgNoLoader", "installByHand"],
     // A set's last volume ends where the archive goes on, or its first is not where it starts: the source lists
     // too few volumes, and downloading them again fails the same way. A lone archive the worker cannot open
     // fails with the same words; that one is downloaded again.

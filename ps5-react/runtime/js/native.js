@@ -560,8 +560,8 @@ export const LocalNetwork = Object.freeze({
 
 /** Read-only, filename-bound Vikingfile capture on PS5; no browser data is retained. */
 export const BrowserCapture = Object.freeze({
-  capture({prefix = 'https://vikingfile.com/d/', suffix, timeoutSeconds = 180}) {
-    const id = host().browser.capture(prefix, suffix, timeoutSeconds);
+  capture({prefix = 'https://vikingfile.com/d/', suffix, timeoutSeconds = 180, rejected = [], resume = false}) {
+    const id = host().browser.capture(prefix, suffix, timeoutSeconds, rejected, Boolean(resume));
     return networkTask(id, 'BrowserCapture.capture', '', 'browser');
   },
 });

@@ -14,7 +14,7 @@ import { loadList, saveList } from './saved.js';
   function StoreProvider({ children }) {
     const [wishlist, setWishlist] = (0, useState)(() => [...new Set(loadList("wishlist.json", "wishlist").map(listedId))]);
     const [filters, setFilters] = (0, useState)(NO_FILTERS);
-    const [sort, setSort] = (0, useState)("relevance");
+    const [sort, setSort] = (0, useState)("newest");
     const [query, setQuery] = (0, useState)("");
     const [actions] = (0, useState)(() => ({
       setFilters,

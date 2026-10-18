@@ -5,12 +5,13 @@ import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { memo, useEffect, useRef, useState } from 'react';
 import { FIRST_POPULAR } from './PopularRail.jsx';
+import { FAMOUS, picked, shuffle } from './picks.js';
 import { SpotlightList } from './SpotlightList.jsx';
 import { useSlides } from './useSlides.js';
 import { games } from '../data/catalog.js';
 import { HERO } from '../data/curate.js';
 import { LATIN_IN_RTL, focusEnd, useLocale, useT } from '../i18n/index.js';
-import { fromArchive, genreLabel, getGame, isHidden, sortGames, summaryOf } from '../state/catalog.js';
+import { genreLabel, getGame, isHidden, summaryOf } from '../state/catalog.js';
 import { useNavActions, useNavState } from '../state/nav.jsx';
 import { useStoreActions, useWishlist } from '../state/store.jsx';
 import { Button2 } from '../ui/Button.jsx';
@@ -19,24 +20,17 @@ import { WishHeart } from '../ui/WishHeart.jsx';
 import { EASE_OUT } from '../ui/ease.js';
 import { AnimatePresence, Image, Text, View, motion } from '@ps5-react/core';
 
-  var NEWEST = 150;
-  var shuffle = (list) => {
-    for (let i = list.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [list[i], list[j]] = [list[j], list[i]];
-    }
-    return list;
-  };
+  // Five slides, new on every launch: four of the hand-picked famous games (picks.js), and one
+  // surprise from the rest of the catalog's well-dressed games. A slide needs only its hero art: a
+  // game with no logo shows its title in its place (GameLogo).
   function selectFeatured() {
     const curated = HERO.map((id) => getGame(id)).filter((game) => game && game.art.logo && !isHidden(game));
     if (curated.length >= 3) return curated;
-    const eligible = games.filter((game) => game.art.logo && fromArchive(game) && !isHidden(game));
-    const pool = eligible.length >= 5 ? eligible : games.filter((game) => game.art.logo && !isHidden(game));
-    const byFame = [...pool].sort((a, b) => b.recommendations - a.recommendations);
-    const latest2 = new Set(sortGames(games, "newest").slice(0, NEWEST));
-    const recent2 = shuffle(byFame.filter((game) => latest2.has(game)).slice(0, 10)).slice(0, 2);
-    const famous = shuffle(byFame.filter((game) => !recent2.includes(game)).slice(0, 20)).slice(0, 5 - recent2.length);
-    return shuffle([...famous, ...recent2]);
+    const famous = picked(games, FAMOUS).filter((game) => game.art.hero && !isHidden(game));
+    const chosen = new Set(famous);
+    const surprise = shuffle(games.filter((game) => game.art.hero && game.genres.length && !chosen.has(game) && !isHidden(game) && (game.art.logo || game.recommendations > 0 || game.metacritic)));
+    const slides = [...famous.slice(0, 4), ...surprise.slice(0, 5 - Math.min(4, famous.length))];
+    return shuffle(slides.length ? slides : games.filter((game) => game.art.hero && !isHidden(game)).slice(0, 5));
   }
   var featured = selectFeatured();
   var ART = { width: 1616, height: 660 };

@@ -6,7 +6,7 @@ import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { FocusRing } from '../ui/FocusRing.jsx';
 import { Icon } from '../ui/Icon.jsx';
 import { colors } from '../ui/colors.js';
-import { ScrollView, Text, View, useIsFocused } from '@ps5-react/core';
+import { FocusScope, ScrollView, Text, View, useIsFocused } from '@ps5-react/core';
 
   function TitleLink({ title }) {
     const focused = useIsFocused();
@@ -16,6 +16,8 @@ import { ScrollView, Text, View, useIsFocused } from '@ps5-react/core';
       /* @__PURE__ */ (0, jsx)(Icon, { name: "chevronRight", size: 16, color: focused ? colors.fg : colors.muted })
     ] });
   }
+  // A row scope: Left and Right stop at the rail's first and last card. Without one, a press past
+  // the end looked for the nearest element across the whole page and could land at its top.
   var Arrow = ({ name }) => /* @__PURE__ */ (0, jsx)(View, { style: { width: 48, height: 48, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#1c1a17" }, children: /* @__PURE__ */ (0, jsx)(Icon, { name, size: 16, color: colors.muted, fixed: true }) });
   var BAR = { width: 4, height: 26, borderRadius: 14999, backgroundColor: colors.accent };
   var LTR = { direction: "ltr" };
@@ -31,7 +33,7 @@ import { ScrollView, Text, View, useIsFocused } from '@ps5-react/core';
           /* @__PURE__ */ (0, jsx)(Arrow, { name: "chevronRight" })
         ] })
       ] }),
-      /* @__PURE__ */ (0, jsx)(View, { style: { marginHorizontal: -12, marginVertical: -24 }, children: /* @__PURE__ */ (0, jsx)(ScrollView, { style: [{ flexDirection: "row", gap: 36, paddingHorizontal: 12, paddingVertical: 24 }, LTR], children }) })
+      /* @__PURE__ */ (0, jsx)(View, { style: { marginHorizontal: -12, marginVertical: -24 }, children: /* @__PURE__ */ (0, jsx)(FocusScope, { row: true, children: /* @__PURE__ */ (0, jsx)(ScrollView, { style: [{ flexDirection: "row", gap: 36, paddingHorizontal: 12, paddingVertical: 24 }, LTR], children }) }) })
     ] });
   }
 

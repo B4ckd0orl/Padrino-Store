@@ -2,16 +2,18 @@
 // reconstructed from the esbuild bundle in eboot.bin
 // MODIFIED: an Archive.org refusal fails over or fails as a dead link instead of asking for the browser.
 // MODIFIED: an archive the catalog's password doesn't open is tried with the known release passwords.
+// MODIFIED: any provider that needs the console browser (LinkVault's mirrors, Akirabox, Datanodes)
+// has its file link captured from the browser, like Vikingfile's.
 
 import { INCOMPLETE_PART, STALE_PARTIAL, cause } from '../downloads/errors.js';
 import { t } from '../i18n/core.js';
 import { archivePassword } from './archive-password.js';
 import { BrowserRequired, archiveRefusal, cancellation, createSourceResolver, sourceKind, webURL } from './download-sources.js';
-import { PKG_FIRMWARE_ERROR, fakePackagesInstall, isPs5Title } from './firmware.js';
+import { LINK_PREFIX, captureAnchor, linkForLog, otherSourceLink, validateCapturedLink } from './browser-links.js';
 import { readJSON } from './read-json.js';
 import { mountedImages, shadowRequest, within2 } from './shadowmount.js';
 import { MARGIN2, spaceShortfall, stillNeeded } from './space.js';
-import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetadata, validateVikingCapture, vikingLinkPage } from './viking-capture.js';
+import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetadata, requirePart, validateVikingCapture, vikingLinkPage } from './viking-capture.js';
 
   var ACTIVE = ["resolving", "connecting", "downloading", "verifying", "extracting", "installing", "pausing"];
   var BUSY = ["queued", ...ACTIVE];
@@ -26,6 +28,44 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
   // no staging behind, so each one costs a moment. They are checked on the console: nothing counts them.
   var KNOWN_PASSWORDS = ["DLPSGAME.COM", "[DLPSGAME.COM]", "www.DLPSGAME.COM", "SuperPSX", "downloadgameps3.com", "hako"];
   var PASSWORD_FAILURE = /archive password|passphrase/i;
+  // A LinkVault page adds its own check and a mirror page before the host's, so a link capture gets
+  // the payload's longest window.
+  var LINK_CAPTURE_SECONDS = 300;
+  // The folder an extraction is written to, and its game's under homebrew: the source's file name
+  // without the ".binary" a source of unknown format downloads under. Jobs extracted before used it
+  // with that suffix, so ownedPaths claims both.
+  var legacyFolderName = (release) => release.filename.replace(/[^a-z0-9_.-]/gi, "_");
+  var folderName = (release) => legacyFolderName({ filename: release.filename.replace(/[.](?:binary|bin)$/i, "") });
+  // The payload's first pass, before the page opens, fingerprints the links the browser already
+  // holds; the task turns "capturing" when it ends (or settles if it fails), and only then may the
+  // page open, so no link the page makes is counted as old.
+  function armedCapture(task) {
+    return new Promise((resolve) => {
+      let off = null, settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        off?.();
+        resolve();
+      };
+      off = task.subscribe((snapshot) => {
+        if (snapshot.state !== "queued") finish();
+      });
+      if (settled) off();
+      task.done.then(finish, finish);
+    });
+  }
+  // Which source opened the browser, for the log: its provider, and the vault or host it opens.
+  function sourceForLog(source2, browserUrl) {
+    let host = "?";
+    try {
+      host = webURL(browserUrl).host;
+    } catch {
+    }
+    return `${source2.provider || sourceKind(source2) || "?"} at ${host}${host.endsWith("link-vault.org") ? " (LinkVault)" : ""}`;
+  }
+  // A host's web page is kilobytes; a file this big with no known headers is the game itself.
+  var WEB_PAGE_BYTES = 4 * 1024 ** 2;
   function durable(fs, stateDir2) {
     try {
       fs.mkdir(stateDir2, { recursive: true });
@@ -44,6 +84,8 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
     }).map((job2) => {
       delete job2.captureState;
       delete job2.captureError;
+      delete job2.captureFile;
+      delete job2.fallbacks;
       if (job2.state === "installing") return { ...job2, state: "installer-required" };
       if (job2.state === "extracting") job2.written = job2.total;
       if (job2.state === "removing") {
@@ -67,7 +109,7 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
     http,
     formats,
     dataDir,
-    stateDir: stateDir2 = `${dataDir}/padrino-store`,
+    stateDir: stateDir2 = `${dataDir}/overdrive`,
     platform,
     notifications,
     power,
@@ -79,8 +121,8 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
     browserCapture,
     wait = (ms) => new Promise((resolve2) => setTimeout(resolve2, ms))
   }) {
-    const legacy = `${dataDir}/padrino-store/downloads.json`;
-    const directory = stateDir2 === `${dataDir}/padrino-store` || durable(fs, stateDir2) ? stateDir2 : `${dataDir}/padrino-store`;
+    const legacy = `${dataDir}/overdrive/downloads.json`;
+    const directory = stateDir2 === `${dataDir}/overdrive` || durable(fs, stateDir2) ? stateDir2 : `${dataDir}/overdrive`;
     const file = `${directory}/downloads.json`;
     const listeners4 = /* @__PURE__ */ new Set();
     sources ?? (sources = createSourceResolver({ http }));
@@ -152,6 +194,48 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
         console.log(`[download-queue] queue not saved to ${file}: ${error2.message}`);
       }
     }
+    // A finished download that stayed a ".binary" before its header check knew PS5 packages and its
+    // name was read (issues #24, #42) is routed now, once at launch, as a new one would be: a game
+    // image to the homebrew folder for ShadowMount+, a PKG to the packages folder to install. One
+    // still unknown, or one an archive after all, is left where it is.
+    for (const job2 of jobs) {
+      if (job2.state !== "file-downloaded" || job2.artifact?.nextAction !== "downloaded" || !/[.](?:binary|bin)$/i.test(job2.downloadDestination || "")) continue;
+      const before = job2.artifact;
+      try {
+        if (!fs.exists(job2.downloadDestination)) continue;
+        route(job2);
+        if (!["shadowmount", "installer-required"].includes(job2.artifact.nextAction)) {
+          job2.artifact = before;
+          continue;
+        }
+        job2.state = job2.artifact.nextAction === "shadowmount" ? "downloaded" : "installer-required";
+        console.log(`[download-queue] ${job2.id}: a finished ".binary" is now ${job2.downloadDestination}`);
+        change();
+      } catch (error2) {
+        if (!job2.routing) job2.artifact = before;
+        console.log(`[download-queue] ${job2.id}: a finished ".binary" stays as it is: ${error2.message}`);
+      }
+    }
+    // An archive's image published before 1.0.7 stayed inside "<homebrew>/<name>-extracted/", where
+    // ShadowMount+ never looks (issue #42): it moves to the homebrew folder itself, once at launch.
+    for (const job2 of jobs) {
+      const folder = job2.publishTo;
+      const image = job2.artifact?.destination;
+      if (job2.state !== "downloaded" || job2.artifact?.nextAction !== "shadowmount" || job2.published || !folder?.endsWith("-extracted") || !image?.startsWith(`${folder}/`)) continue;
+      try {
+        if (!fs.exists(image)) continue;
+        const [target] = publishedImages(job2, [image]);
+        if (fs.exists(target)) throw new Error(`${target} already exists`);
+        storageIdentity(job2);
+        fs.rename(image, target);
+        job2.published = [target];
+        job2.artifact.destination = target;
+        console.log(`[download-queue] ${job2.id}: the image moved out of its extraction folder to ${target}`);
+        change();
+      } catch (error2) {
+        console.log(`[download-queue] ${job2.id}: an extracted image stays where it is: ${error2.message}`);
+      }
+    }
     const find = (id) => {
       const job2 = jobs.find((item) => item.id === id);
       if (!job2) throw new Error("Download is no longer in the queue.");
@@ -162,26 +246,9 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       destination: `${root2}/downloads/extracted/${release.filename}`,
       nextAction: "extracted"
     } : formats.artifact(release, root2);
-    function failOver(job2, error2) {
-      if (job2.written || job2.parts?.some((part) => part.written) || /space|storage|drive|disconnected/i.test(cause(error2.message))) return false;
-      while (job2.fallbacks?.length) {
-        const next = job2.fallbacks.shift();
-        const artifact2 = artifactFor(next, job2.root);
-        if (fs.exists(artifact2.destination) || fs.exists(`${artifact2.destination}.part`) || jobs.some((other) => other !== job2 && other.artifact.destination === artifact2.destination)) continue;
-        job2.message = t("downloads.switchedSource", { failed: job2.release.provider, next: next.provider });
-        job2.release = { ...next };
-        job2.artifact = artifact2;
-        job2.total = next.sizeBytes || null;
-        for (const key of ["options", "browserUrl", "directURL", "parts", "partIndex", "currentSource", "downloadDestination", "inspected", "adopted"]) delete job2[key];
-        job2.error = "";
-        job2.state = "queued";
-        return true;
-      }
-      return false;
-    }
     function reresolve(job2) {
       const source2 = job2.parts ? job2.currentSource : job2.release;
-      if ((job2.reresolved || 0) >= 2 || ["direct", "browser", "datanodes", "manifest", "unavailable"].includes(sourceKind(source2))) return false;
+      if ((job2.reresolved || 0) >= 2 || ["direct", "browser", "datanodes", "buzzheavier", "manifest", "unavailable"].includes(sourceKind(source2))) return false;
       job2.reresolved = (job2.reresolved || 0) + 1;
       delete job2.options;
       if (job2.parts) delete job2.parts[job2.partIndex].options;
@@ -221,10 +288,11 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
         notifications.show(t("downloads.notice.installed"), job2.title);
       } catch (error2) {
         job2.state = "installer-required";
-        // The install is always tried: the firmware the title is told can be raised by the jailbreak.
-        // Refused where it reads above 11.60 (an archive can turn out to hold a PKG, issue #6), the
-        // likely reason is said instead of the service's code; a full drive still reads as one.
-        job2.error = isPs5Title(job2.gameId) && !fakePackagesInstall() && !/space/i.test(error2.message) ? PKG_FIRMWARE_ERROR : error2.message;
+        // The install's own reason is shown as it is (issue #44): putting the 11.60 limit in its place
+        // blamed the firmware on an 11.60 console, whose jailbreak reports a higher one to the title,
+        // and hid the usual cause, no payload loader on port 9021, which errors.js turns into "install
+        // it by hand". The 11.60 limit is told before the download, in its tips.
+        job2.error = error2.message;
         job2.message = t("downloads.installFailed");
       }
       job2.bytesPerSecond = 0;
@@ -267,7 +335,8 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
             job2.options = {
               ...resolved,
               rejectHtml: true,
-              expectedBytes: job2.release.sizeBytes || void 0,
+              // A source that reads its file's real length (FileKeeper) outweighs the catalog's.
+              expectedBytes: resolved.expectedBytes || job2.release.sizeBytes || void 0,
               sha256: job2.release.sha256 || void 0
             };
             delete job2.directURL;
@@ -325,17 +394,25 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       } catch (error2) {
         console.log("[download-queue] transfer stopped:", error2.message);
         // The engine words every 401/403 as a possible browser check; from Archive.org it is a
-        // restricted or removed item, so it fails over like a dead link and reads as one.
+        // restricted or removed item, so it reads as a dead link.
         const refused = archiveRefusal(job2.parts ? job2.currentSource : job2.release, cause(error2.message));
         if (refused) error2 = new Error(`Source unavailable: HTTP ${refused}. Choose another source.`);
-        const browser = !refused && (error2 instanceof BrowserRequired || /browser verification required/i.test(cause(error2.message)));
+        // A link captured from the browser may wait in the queue past its life: refused before a byte
+        // was written, it asks for the page's check again instead of reading as a dead source.
+        const unwritten = !(job2.parts ? job2.parts[job2.partIndex]?.written : job2.written);
+        const expired = !refused && job2.capturedLink && unwritten && /HTTP (?:401|403|404|410)/.test(cause(error2.message));
+        if (expired) console.log("[download-queue] the captured link expired while queued; asking for the check again");
+        const browser = !refused && (expired || error2 instanceof BrowserRequired || /browser verification required/i.test(cause(error2.message)));
         const retried = job2.state !== "pausing" && !job2.cancelling && browser && active2.transferring && reresolve(job2);
-        const switched = !retried && job2.state !== "pausing" && !job2.cancelling && failOver(job2, error2);
-        if (!retried && !switched && job2.state !== "pausing") {
+        // A source that fails stays failed: the player picks another (the automatic switch to an
+        // "equivalent" source was removed on 2026-10-16 at the user's request).
+        if (!retried && job2.state !== "pausing") {
           job2.state = browser ? "awaiting-browser" : "failed";
           job2.error || (job2.error = job2.adopted && STALE_PARTIAL.test(cause(error2.message)) ? ADOPTED : error2.message);
           if (browser) {
-            job2.browserUrl = error2.url || job2.currentSource?.browserUrl || job2.currentSource?.url || job2.release.browserUrl || job2.release.url;
+            delete job2.capturedLink;
+            if (expired) job2.error = "The captured link expired while it waited in the queue. Open the source and pass its check again.";
+            job2.browserUrl = (expired ? null : error2.url) || job2.currentSource?.browserUrl || job2.currentSource?.url || job2.release.browserUrl || job2.release.url;
             delete job2.options;
             if (job2.parts) delete job2.parts[job2.partIndex].options;
           } else if (!job2.cancelling) notifications.show(t("downloads.notice.failed"), job2.title);
@@ -344,15 +421,10 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
         unsubscribe?.();
         if (job2.state === "pausing") job2.state = "paused";
         if (COMPLETE.includes(job2.state)) delete job2.launches;
-        if (job2.cancelling) {
-          try {
-            await forget(job2);
-          } catch (error2) {
-            delete job2.cancelling;
-            job2.error = error2.message;
-          }
-        }
         active2 = null;
+        // A cancelled download's files are deleted after the queue moves on: deleting tens of GB from a
+        // USB drive can take long, and the next download sat "queued" at 0 MB the whole time.
+        if (job2.cancelling) void forgetCancelled(job2);
         try {
           change();
         } catch (error2) {
@@ -368,10 +440,11 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       if (job2.inspected || tries >= 3 || !archives?.inspect || !fs.exists(path)) return;
       inspections.set(job2, tries + 1);
       const started = Date.now();
-      const { kind, refusal } = archives.inspect([path]);
+      const { kind, refusal, title } = archives.inspect([path]);
       if (Date.now() - started > 250) console.log(`[download-queue] header check took ${Date.now() - started} ms`);
       if (!kind) return;
       job2.inspected = kind;
+      noteTitle(job2, title);
       if (refusal) {
         job2.error = refusal;
         task.cancel();
@@ -379,14 +452,18 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
     }
     function route(job2) {
       if (!archives?.inspect) return;
-      const { kind, refusal } = archives.inspect([job2.downloadDestination]);
+      const { kind, refusal, title } = archives.inspect([job2.downloadDestination]);
       if (refusal) throw new Error(refusal);
+      noteTitle(job2, title);
       // A source listed without a format is kept only for what its headers turn out to be: when they
-      // are none Overdrive knows, the host sent something else, usually a web page. Leaving it as a
-      // downloaded ".binary" (issue #8) told the user nothing.
-      if (!kind && job2.release.format === "binary") throw new Error("Not a game file: the host sent something else.");
-      if (!kind) return;
-      const artifact2 = formats.detected(job2.release, job2.root, kind);
+      // are none the extractor knows, the host sent something else, usually a web page. Leaving it as a
+      // downloaded ".binary" (issue #8) told the user nothing. Only a small file reads as one, though:
+      // gigabytes the headers don't name are still the game, in a format not checked (issue #24).
+      if (!kind && job2.release.format === "binary" && (fs.stat(job2.downloadDestination)?.size || 0) < WEB_PAGE_BYTES) throw new Error("Not a game file: the host sent something else.");
+      const named = kind ? null : namedKind(job2);
+      if (!kind && !named) return;
+      if (named) console.log(`[download-queue] headers name no format; the file's name says ${named}`);
+      const artifact2 = formats.detected(job2.release, job2.root, kind || named);
       if (artifact2.nextAction === "extraction-required") {
         job2.artifact = { ...job2.artifact, format: kind, nextAction: artifact2.nextAction };
         return;
@@ -397,6 +474,38 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       change();
       finishRouting(job2);
     }
+    // A game image or package whose first bytes the header check does not know (a .ffpfsc that does
+    // not open on "PFSC", a PS5 package) would stay a ".binary" ShadowMount+ never sees (issues #24,
+    // #42). Its name still tells: the one the host gave it, the link's own path, else the format the
+    // same link has in another listing of this game. Archives are left to their headers, which name
+      // every kind the extractor handles.
+    function namedKind(job2) {
+      const kinds = [...formats.images, "pkg", "fpkg"];
+      const kindOf = (name) => {
+        const lower = String(name || "").toLowerCase().replace(/[?#].*$/, "");
+        const found = kinds.find((kind) => lower.endsWith(`.${kind}`));
+        return found === "fpkg" ? "pkg" : found;
+      };
+      const segments = (url) => {
+        try {
+          return webURL(url).path.replace(/[?#].*$/, "").split("/").map((part) => {
+            try {
+              return decodeURIComponent(part);
+            } catch {
+              return part;
+            }
+          });
+        } catch {
+          return [];
+        }
+      };
+      const fromName = kindOf(job2.fileName) || [job2.options?.url, job2.release.url].flatMap(segments).map(kindOf).find(Boolean);
+      if (fromName) return fromName;
+      if (!releasesOf) return null;
+      const urls = new Set([job2.release.url, job2.release.browserUrl].filter(Boolean));
+      const listed = releasesOf(job2.gameId).flatMap((release) => release.parts ? release.parts.flatMap((part) => part.sources) : [release]);
+      return listed.filter((item) => urls.has(item.url) || urls.has(item.browserUrl)).map((item) => kindOf(`.${item.format}`) || kindOf(item.filename)).find(Boolean) || null;
+    }
     function finishRouting(job2) {
       const from = job2.downloadDestination, to = job2.routing.destination;
       if (fs.exists(from)) fs.rename(from, to);
@@ -405,6 +514,48 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       job2.downloadDestination = to;
       delete job2.routing;
       change();
+    }
+    // gameFolder follows a lone folder down and gives up beside a second one, as a dump with its
+    // patch, DLC or backport folder next to it. Only when it finds nothing, every folder holding a
+    // game is listed, and one is taken only when exactly one is plainly the game: not named a patch
+    // or an update, with the chosen game's title id when several are left. Else nothing moves.
+    var PATCH_FOLDER = /(?:^|[-_ .(\[])(?:patch|update|upd)(?:$|[-_ .)\]\d])/i;
+    function gameFolders(output) {
+      const found = [];
+      const queue = [{ path: output, depth: 0 }];
+      for (let visited = 0; queue.length && visited < 2e3 && found.length < 16; visited++) {
+        const { path, depth } = queue.shift();
+        if (fs.exists(`${path}/eboot.bin`) && fs.exists(`${path}/sce_sys/param.json`)) {
+          found.push(path);
+          continue;
+        }
+        if (depth >= 6) continue;
+        let children;
+        try {
+          children = fs.readDir(path).filter((entry2) => entry2.isDirectory && !entry2.name.startsWith(".ps5-react"));
+        } catch {
+          continue;
+        }
+        for (const child of children) queue.push({ path: `${path}/${child.name}`, depth: depth + 1 });
+      }
+      return found;
+    }
+    function findGame(job2, output) {
+      const lone = gameFolder(output);
+      if (lone) return { folder: lone, beside: false };
+      const found = gameFolders(output);
+      const shown = (path) => path.slice(output.length) || "/";
+      if (found.length) console.log(`[download-queue] game folders in ${output}: ${found.map(shown).join(", ")}`);
+      const name = (path) => path.slice(path.lastIndexOf("/") + 1);
+      let games = found.filter((path) => !PATCH_FOLDER.test(name(path)));
+      const titled = games.filter((path) => String(titleIn(path) || "").toUpperCase() === String(job2.titleId || "").toUpperCase());
+      if (titled.length) games = titled;
+      if (games.length !== 1) {
+        if (found.length) console.log(`[download-queue] none of them is plainly the game; left where they were extracted`);
+        return { folder: null, beside: false };
+      }
+      console.log(`[download-queue] taking ${shown(games[0])} as the game`);
+      return { folder: games[0], beside: true };
     }
     function gameFolder(output) {
       for (let depth = 0; depth <= 16; depth++) {
@@ -422,7 +573,7 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
     }
     // The extractor writes files 0666, without execute: ShadowMount mounts the folder, but its
     // eboot.bin won't launch (CE-107750-0, issue #11) until everything is opened up, as the updater
-    // does for Overdrive's own folder. A frame every 256 entries keeps a large game from stalling the UI.
+    // does for the app's own folder. A frame every 256 entries keeps a large game from stalling the UI.
     async function openUp(path) {
       let count = 0;
       const visit = async (dir2) => {
@@ -453,7 +604,7 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       storageIdentity(job2);
       const directory2 = `${job2.root}/downloads/extracted`;
       fs.mkdir(directory2, { recursive: true });
-      job2.output || (job2.output = `${directory2}/${job2.release.filename.replace(/[^a-z0-9_.-]/gi, "_")}`);
+      job2.output || (job2.output = `${directory2}/${folderName(job2.release)}`);
       if (job2.publishTo && fs.exists(job2.publishTo)) job2.output = job2.publishTo;
       return {
         sources: files,
@@ -562,36 +713,41 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       }
       const images = (result.artifacts || []).filter((path) => /\.(ffpfsc|ffpfs|ffpkg|exfat)$/i.test(path));
       if (images.length) {
-        const destination = `${job2.root}/homebrew/${job2.release.filename.replace(/[^a-z0-9_.-]/gi, "_")}-extracted`;
+        // ShadowMount+ finds an image only directly in the homebrew folder (issue #42: one left in a
+        // "-extracted" folder there was never mounted), so the image file itself is published there,
+        // named as a downloaded image would be; the archive's other files stay where it was extracted.
+        const targets = publishedImages(job2, images);
+        // A target already there while its image is still in the extraction is another file: kept.
+        if (targets.some((target, index) => fs.exists(target) && fs.exists(`${job2.output}/${images[index]}`)))
+          throw new Error("Extracted destination already exists; preserve it and inspect before retrying.");
         fs.mkdir(`${job2.root}/homebrew`, { recursive: true });
-        job2.publishTo = destination;
-        change();
-        if (job2.output !== destination) {
-          if (fs.exists(destination)) throw new Error("Extracted destination already exists; preserve it and inspect before retrying.");
-          storageIdentity(job2);
-          fs.rename(job2.output, destination);
-          job2.output = destination;
-        }
+        storageIdentity(job2);
+        images.forEach((image, index) => fs.exists(`${job2.output}/${image}`) && fs.rename(`${job2.output}/${image}`, targets[index]));
+        job2.published = targets;
         job2.artifact.nextAction = "shadowmount";
-        job2.artifact.destination = `${job2.output}/${images[0]}`;
+        job2.artifact.destination = targets[0];
         job2.state = "downloaded";
         job2.message = t("downloads.extractedReady", { parts: job2.parts ? "all" : "one" });
       } else {
         job2.state = "extracted";
         job2.message = t("downloads.extractedTo", { path: job2.output });
         const packaged = (result.artifacts || []).filter((path) => /\.(pkg|fpkg)$/i.test(path));
-        const folder = packaged.length ? null : gameFolder(job2.output);
+        const { folder, beside } = packaged.length ? { folder: null, beside: false } : findGame(job2, job2.output);
         if (packaged.length) {
           job2.packages = packaged.map((path) => `${job2.output}/${path}`);
           job2.state = "installer-required";
           job2.message = t("downloads.packagesExtracted", { path: job2.output });
         } else if (folder) {
-          const destination = `${job2.root}/homebrew/${job2.release.filename.replace(/[^a-z0-9_.-]/gi, "_")}-app`;
+          noteTitle(job2, titleIn(folder));
+          const destination = `${job2.root}/homebrew/${folderName(job2.release)}-app`;
           fs.mkdir(`${job2.root}/homebrew`, { recursive: true });
           if (fs.exists(destination)) throw new Error("Extracted destination already exists; preserve it and inspect before retrying.");
           storageIdentity(job2);
+          const extracted = job2.output;
           fs.rename(folder, destination);
-          if (folder !== job2.output) await fs.removeAsync(job2.output);
+          // Whatever the wider search found the game beside (a patch, DLC, another game) stays where
+          // it was extracted; a lone folder's leftovers are only the archive's loose files.
+          if (folder !== extracted && !beside) await fs.removeAsync(extracted);
           await openUp(destination);
           job2.output = destination;
           job2.publishTo = destination;
@@ -599,6 +755,7 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
           job2.artifact.destination = destination;
           job2.state = "downloaded";
           job2.message = t("downloads.extractedReady", { parts: job2.parts ? "all" : "one" });
+          if (beside) job2.message = `${job2.message} ${t("downloads.extractedLeft", { path: extracted })}`;
         }
       }
       change();
@@ -637,18 +794,24 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       const size = (index) => sizes[index] ?? largest;
       return Math.max(0, job2.parts.reduce((sum, item, index) => sum + size(index) + (item.completed ? 0 : Math.max(0, size(index) - item.written)), 0) - extracted);
     }
+    // Where an archive's images are published: the homebrew folder itself, under the name a
+    // downloaded image of this release takes (a second image gets "-2", and so on).
+    function publishedImages(job2, images) {
+      return images.map((image, index) => `${job2.root}/homebrew/${folderName(job2.release)}${index ? `-${index + 1}` : ""}.${image.split(".").pop().toLowerCase()}`);
+    }
     function ownedPaths(job2) {
       const managed = (path) => {
         const parts = path.startsWith(`${job2.root}/`) ? path.slice(job2.root.length + 1).split("/") : [];
         return !parts.some((part) => ["", ".", ".."].includes(part)) && (parts[0] === "homebrew" && parts.length >= 2 || parts[0] === "downloads" && parts.length >= 3);
       };
-      const extracted = job2.output && `${job2.root}/downloads/extracted/${job2.release.filename.replace(/[^a-z0-9_.-]/gi, "_")}`;
+      const extracted = job2.output && [folderName(job2.release), legacyFolderName(job2.release)].map((name) => `${job2.root}/downloads/extracted/${name}`);
       const paths = [
         job2.artifact.destination,
         job2.downloadDestination,
         job2.output,
         job2.publishTo,
-        extracted,
+        ...job2.published || [],
+        ...extracted || [],
         job2.release.parts && setDirectory(job2)
       ].filter(Boolean).flatMap((path) => [path, ...[".complete", ".complete.tmp", ".part", ".resume", ".resume.tmp"].map((suffix) => path + suffix)]);
       return [...new Set(paths)].filter((path) => managed(path) && !jobs.some((other) => other !== job2 && [other.artifact.destination, other.downloadDestination, other.output, other.publishTo].some((owned2) => owned2 && (owned2 === path || owned2.startsWith(`${path}/`)))));
@@ -685,7 +848,7 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
           job2.currentSource = source2;
           if (!part.options) {
             const resolved = await sources.resolve(source2, { signal, directURL: job2.directURL });
-            part.options = { ...resolved, expectedBytes: source2.sizeBytes || void 0, sha256: source2.sha256 || void 0 };
+            part.options = { ...resolved, expectedBytes: resolved.expectedBytes || source2.sizeBytes || void 0, sha256: source2.sha256 || void 0 };
             delete job2.directURL;
             change();
           }
@@ -765,7 +928,8 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       return jobs.filter((job2) => job2.root === root2 && (BUSY.includes(job2.state) || job2.state === "paused") && !lost.includes(job2));
     }
     function pump(first) {
-      if (active2 || captures.size) return;
+      // An open verification no longer holds the queue: what is queued downloads meanwhile.
+      if (active2) return;
       const job2 = first?.state === "queued" ? first : jobs.find((item) => item.state === "queued");
       if (!job2) return;
       active2 = { job: job2, task: null };
@@ -840,6 +1004,24 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
         return false;
       }
     };
+    async function forgetCancelled(job2) {
+      const started = Date.now();
+      console.log(`[download-queue] ${job2.id} cancelled; deleting its files`);
+      try {
+        await forget(job2);
+        console.log(`[download-queue] ${job2.id} files deleted in ${Math.round((Date.now() - started) / 1e3)} s`);
+      } catch (error2) {
+        delete job2.cancelling;
+        job2.error = error2.message;
+        console.log(`[download-queue] ${job2.id} files not deleted:`, error2.message);
+      }
+      try {
+        change();
+      } catch {
+        emit2();
+      }
+      pump();
+    }
     async function forget(job2) {
       if ((job2.rootIdentity || job2.written) && !job2.adopted && onOriginalStorage(job2)) {
         const paths = job2.release.parts ? setFiles(job2) : partialFiles(job2);
@@ -860,7 +1042,7 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       return shadowRequest(http, route2, body);
     }
     async function registered3(job2) {
-      const paths = [job2.artifact.destination, job2.output, job2.publishTo].filter(Boolean);
+      const paths = [job2.artifact.destination, job2.output, job2.publishTo, ...job2.published || []].filter(Boolean);
       const info = (title) => shadowRequest2("games/info", { title_id: title }).catch((error2) => {
         if (/HTTP 404/.test(error2.message)) return null;
         throw error2;
@@ -873,19 +1055,30 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
         const game = await info(title);
         if (within2(game?.path, paths, job2.root)) {
           job2.consoleTitleId = title;
+          noteTitle(job2, title);
           return game;
         }
       }
       return !fs.exists(job2.artifact.destination) && listed2?.managed ? listed2 : null;
     }
+    function titleIn(folder) {
+      try {
+        return JSON.parse(fs.readFile(`${folder}/sce_sys/param.json`)).titleId || null;
+      } catch {
+        return null;
+      }
+    }
+    // The title id the files themselves carry (a PKG's header, an extracted or mounted game's
+    // param.json) against the game the player chose. A link can bring another game's file past
+    // every check before it downloads; this is the one that reads the game itself. Another region
+    // of the same game has its own id too, so a difference is shown on the row, never acted on.
+    function noteTitle(job2, title) {
+      if (!title || !job2.titleId || job2.titleMismatch || String(title).toUpperCase() === String(job2.titleId).toUpperCase()) return;
+      job2.titleMismatch = String(title).toUpperCase();
+      console.log(`[download-queue] ${job2.id}: the files are ${job2.titleMismatch}, the game chosen is ${job2.titleId}`);
+      change();
+    }
     function mountedTitle(image) {
-      const titleIn = (folder) => {
-        try {
-          return JSON.parse(fs.readFile(`${folder}/sce_sys/param.json`)).titleId || null;
-        } catch {
-          return null;
-        }
-      };
       let folders = [];
       try {
         folders = fs.readDir(image.mount_point).filter((entry2) => entry2.isDirectory).map((entry2) => `${image.mount_point}/${entry2.name}`);
@@ -1040,6 +1233,8 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       }
       delete job2.captureState;
       delete job2.captureError;
+      delete job2.captureMode;
+      delete job2.captureFile;
     }
     function continueJob(job2, url, verifiedOptions) {
       if (job2.state !== "awaiting-browser" || active2?.job === job2) return;
@@ -1050,6 +1245,8 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       if (job2.parts) job2.parts[job2.partIndex].options = verifiedOptions;
       job2.options = job2.parts ? void 0 : verifiedOptions;
       job2.directURL = verifiedOptions ? void 0 : url;
+      // Captured from the browser: if it waits in the queue too long, its refusal means expired.
+      job2.capturedLink = Boolean(verifiedOptions);
       stopCapture(job2);
       delete job2.reresolved;
       job2.message = "";
@@ -1058,26 +1255,196 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
       change();
       pump(job2);
     }
+    // A multi-volume archive's last volume is smaller than the others. When a Vikingfile set's last
+    // listed volume is as big as its first, the archive goes on past it and can never be extracted
+    // (issue #42: 100 GB downloaded for nothing): checked from both pages' public sizes before the
+    // first volume downloads. A page that can't be read lets the download go on, as before.
+    const SIZE_UNITS = { B: 1, KB: 1024, MB: 1024 ** 2, GB: 1024 ** 3, TB: 1024 ** 4, KIB: 1024, MIB: 1024 ** 2, GIB: 1024 ** 3, TIB: 1024 ** 4 };
+    const pageBytes = (metadata) => metadata?.displaySize ? metadata.displaySize.value * (SIZE_UNITS[metadata.displaySize.unit] ?? 0) : 0;
+    async function lastVolumeIsFull(job2, first, signal) {
+      if (!job2.parts || job2.parts.length < 2 || job2.partIndex !== 0) return false;
+      const lastPart = job2.release.parts?.at(-1);
+      const last = lastPart?.sources?.[job2.parts.at(-1)?.sourceIndex || 0];
+      if (!last || vikingLinkPage(last) || !/vik[i1]ngfile\.(?:com|site)\/f\//.test(last.browserUrl || last.url || "")) return false;
+      try {
+        const lastMetadata = await describeVikingCapture(http, last, signal);
+        const [firstBytes, lastBytes] = [pageBytes(first), pageBytes(lastMetadata)];
+        // The pages round sizes ("9.90 GB"): only a last volume shown at least as big as the first
+        // counts as full, as all 30 cut sets found on 2026-10-18 were.
+        return firstBytes > 0 && lastBytes >= firstBytes;
+      } catch (error2) {
+        console.log("[browser-capture] the last volume's page could not be read:", error2.message);
+        return false;
+      }
+    }
     async function captureBrowser(job2, source2, session) {
       const current = () => captures.get(job2.id) === session && jobs.includes(job2) && job2.state === "awaiting-browser";
       let handingOff = false;
       try {
         const linkPage = vikingLinkPage(source2);
-        console.log(linkPage ? "[browser-capture] link page; any Vikingfile file" : "[browser-capture] reading public file metadata");
-        const metadata = linkPage ? linkPageMetadata(source2) : await describeVikingCapture(http, source2, session.cancel.signal);
+        console.log("[browser-capture] source:", sourceForLog(source2, job2.browserUrl));
+        const deadline = Date.now() + (linkPage ? LINK_CAPTURE_SECONDS : 180) * 1e3;
+        let metadata = null;
+        if (linkPage) {
+          // A vault hides which Vikingfile page it opens, so the capture first takes that page; its
+          // public metadata then names the file exactly, as a direct Vikingfile source's does.
+          session.task = browserCapture.capture({ prefix: VIKING_PAGE_PREFIX, suffix: "/", timeoutSeconds: LINK_CAPTURE_SECONDS });
+        } else {
+          console.log("[browser-capture] reading public file metadata");
+          metadata = await describeVikingCapture(http, source2, session.cancel.signal);
+          if (!current()) return;
+          if (await lastVolumeIsFull(job2, metadata, session.cancel.signal)) {
+            if (!current()) return;
+            console.log("[browser-capture] the set's last volume is as big as the first: the archive goes on past it");
+            captures.delete(job2.id);
+            job2.state = "failed";
+            job2.error = "Incomplete RAR archive or missing volume.";
+            delete job2.captureState;
+            change();
+            pump();
+            return;
+          }
+          session.task = browserCapture.capture({ prefix: VIKING_PREFIX, suffix: `/${metadata.filename}`, timeoutSeconds: 180 });
+        }
+        await armedCapture(session.task);
         if (!current()) return;
-        session.task = browserCapture.capture({ prefix: VIKING_PREFIX, suffix: `/${metadata.filename}`, timeoutSeconds: 180 });
         job2.captureState = "capturing";
         change();
-        console.log("[browser-capture] capture submitted; opening browser");
+        console.log("[browser-capture] capture armed; opening browser");
         if (!linking?.openURL(webURL(job2.browserUrl).url)) throw new Error("The browser could not open. Retry or enter the final file link.");
+        if (linkPage) {
+          const page = await session.task.done;
+          if (!current()) return;
+          console.log("[browser-capture] the vault opened", page.url, "- reading its public file metadata");
+          metadata = await describeVikingCapture(http, { ...source2, url: page.url, browserUrl: page.url }, session.cancel.signal);
+          if (!current()) return;
+          requirePart(linkPageMetadata(source2).part, metadata.filename);
+          const seconds = Math.floor((deadline - Date.now()) / 1e3);
+          if (seconds < 5) throw new Error("The verification ran out of time. Reopen the page and retry.");
+          console.log("[browser-capture] Vikingfile names", metadata.filename, "- capturing that file");
+          session.task = browserCapture.capture({ prefix: VIKING_PREFIX, suffix: `/${metadata.filename}`, timeoutSeconds: seconds, resume: true });
+        }
         const result = await session.task.done;
         if (!current()) return;
         job2.captureState = "validating";
         change();
-        console.log("[browser-capture] link captured; validating one-byte range");
-        const validated = await validateVikingCapture(http, result.url, linkPage ? capturedVikingFile(result.url, metadata) : metadata, session.cancel.signal);
+        console.log("[browser-capture] link captured:", linkForLog(result.url), "- validating one-byte range");
+        const validated = await validateVikingCapture(http, result.url, metadata, session.cancel.signal);
         if (!current()) return;
+        if (metadata.filename) job2.fileName = metadata.filename;
+        source2.sizeBytes = validated.expectedBytes;
+        if (!job2.parts) job2.total = validated.expectedBytes;
+        notifications.show(t("downloads.notice.captured"), job2.title);
+        console.log("[browser-capture] file validated; handing off to queue");
+        handingOff = true;
+        continueJob(job2, validated.url, {
+          url: validated.url,
+          expectedBytes: validated.expectedBytes,
+          sha256: source2.sha256 || void 0,
+          rejectHtml: true
+        });
+        console.log("[browser-capture] handoff finished; state:", job2.state);
+      } catch (error2) {
+        if (!current() && !(handingOff && jobs.includes(job2) && job2.state === "queued" && active2?.job !== job2)) return;
+        console.log("[browser-capture] failed:", error2.message);
+        session.cancel.cancel();
+        session.task?.cancel();
+        captures.delete(job2.id);
+        job2.state = "awaiting-browser";
+        job2.captureState = "failed";
+        job2.captureError = error2.message;
+        change();
+        pump();
+      }
+    }
+    // A file that names no game waits for the player's word, shown in the capture dialog.
+    function confirmCapturedFile(job2, session, found) {
+      return new Promise((resolve) => {
+        session.decide = (accepted) => {
+          delete session.decide;
+          delete job2.captureFile;
+          resolve(accepted);
+        };
+        session.cancel.signal.addEventListener("abort", () => session.decide?.(false));
+        job2.captureState = "confirm";
+        job2.captureFile = { name: found.filename, bytes: found.expectedBytes };
+        change();
+      });
+    }
+    /** The same capture for a host whose check only the browser can pass: the vault's mirrors,
+     * Akirabox, Datanodes. The file link appears on the page, or when its download starts, and the
+     * browser's memory is read for it: the human never types it. */
+    async function captureBrowserLink(job2, source2, session) {
+      const current = () => captures.get(job2.id) === session && jobs.includes(job2) && job2.state === "awaiting-browser";
+      let handingOff = false;
+      try {
+        const anchor = captureAnchor(job2.titleId);
+        console.log("[browser-capture] source:", sourceForLog(source2, job2.browserUrl), "- watching any file link carrying", anchor);
+        // A LinkVault record's catalog size is the whole vault's, not the file's: compared with the
+        // captured file it refused the right one every time. Only a direct host's size is evidence.
+        const vaulted = webURL(job2.browserUrl).host === "link-vault.org";
+        const catalogBytes = vaulted ? null : source2.sizeBytes || null;
+        const akiraBox = /(?:^|\.)akirabox\.(?:com|to)$/.test(webURL(job2.browserUrl).host) || vaulted && /#AkiraBox$/.test(job2.browserUrl);
+        const akiraPart = akiraBox ? linkPageMetadata(source2).part : null;
+        // A link the probe refuses (a page, an expired route) does not end the session: the payload
+        // scans on past it until the deadline, as upstream store 1.3.5 does, up to six refusals. The
+        // restart resumes from the first pass's fingerprints, so the links that appeared since stay new.
+        const deadline = Date.now() + LINK_CAPTURE_SECONDS * 1e3;
+        const rejected = [];
+        let validated = null;
+        while (!validated) {
+          const seconds = Math.floor((deadline - Date.now()) / 1e3);
+          if (seconds < 5) throw new Error("Captured file failed validation or expired. Reopen the page and retry.");
+          const resume = rejected.length > 0;
+          session.task = browserCapture.capture({ prefix: LINK_PREFIX, suffix: `/${anchor}`, timeoutSeconds: seconds, rejected, resume });
+          if (!resume) {
+            await armedCapture(session.task);
+            if (!current()) return;
+            console.log("[browser-capture] capture armed; opening browser");
+            if (!linking?.openURL(webURL(job2.browserUrl).url)) throw new Error("The browser could not open. Retry or enter the final file link.");
+          }
+          job2.captureState = "capturing";
+          change();
+          const result = await session.task.done;
+          if (!current()) return;
+          job2.captureState = "validating";
+          change();
+          if (otherSourceLink(result.url, source2)) {
+            if (rejected.length >= 6) throw new Error("Captured link belongs to another source. Reopen the page and retry.");
+            console.log("[browser-capture] passed over", linkForLog(result.url), "- another source's link, scanning on");
+            rejected.push(result.url);
+            continue;
+          }
+          console.log("[browser-capture] link captured:", linkForLog(result.url), "- validating one-byte range");
+          let found;
+          try {
+            found = await validateCapturedLink(http, result.url, { anchor, sizeBytes: catalogBytes }, session.cancel.signal);
+            // An AkiraBox set's parts are captured one by one, and the part before is still in the
+            // browser's memory, on the same host and named for the same game: the file has to be the
+            // part this source is.
+            if (akiraPart) requirePart(akiraPart, found.filename);
+          } catch (error2) {
+            if (!current() || rejected.length >= 6) throw error2;
+            console.log("[browser-capture] refused", linkForLog(result.url), "and scanning on:", error2.message);
+            rejected.push(result.url);
+            continue;
+          }
+          if (found.unbound) {
+            console.log(`[browser-capture] ${linkForLog(result.url)} names no game (${found.filename || "no file name"}, ${found.expectedBytes} bytes); asking the player`);
+            const accepted = await confirmCapturedFile(job2, session, found);
+            if (!current()) return;
+            console.log("[browser-capture] player", accepted ? "accepted it" : "refused it");
+            if (!accepted) {
+              if (rejected.length >= 6) throw new Error("None of the captured files was this game's. Reopen the page and retry.");
+              rejected.push(result.url);
+              continue;
+            }
+          }
+          validated = found;
+        }
+        if (!current()) return;
+        if (validated.filename) job2.fileName = validated.filename;
+        // The file's real length replaces the one the catalog could not know, as for Vikingfile.
         source2.sizeBytes = validated.expectedBytes;
         if (!job2.parts) job2.total = validated.expectedBytes;
         notifications.show(t("downloads.notice.captured"), job2.title);
@@ -1110,8 +1477,7 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
         listener(snapshot());
         return () => listeners4.delete(listener);
       },
-      /** `alternatives`: other sources of the game, best first, tried in order if this one can't start. */
-      enqueue(game, release, root2, alternatives = []) {
+      enqueue(game, release, root2) {
         const id = `${game.id}/${release.id}`;
         const existing = jobs.find((job2) => job2.id === id);
         if (existing) return existing.id;
@@ -1136,7 +1502,6 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
           title: game.title,
           release: { ...release },
           requestedId: release.id,
-          fallbacks: alternatives.slice(0, 4).map((item) => ({ ...item })),
           root: root2,
           artifact: artifact2,
           state: "queued",
@@ -1151,6 +1516,7 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
           jobs.pop();
           throw error2;
         }
+        if (active2) console.log(`[download-queue] ${id} queued behind ${active2.job.id} (${active2.job.state})`);
         pump();
         return id;
       },
@@ -1244,20 +1610,33 @@ import { VIKING_PREFIX, capturedVikingFile, describeVikingCapture, linkPageMetad
         const job2 = find(id);
         if (job2.state !== "awaiting-browser") return;
         const source2 = job2.parts ? job2.currentSource : job2.release;
-        if (browserCapture && (sourceKind(source2) === "vikingfile" || vikingLinkPage(source2))) {
+        const viking = sourceKind(source2) === "vikingfile" || vikingLinkPage(source2);
+        const anchor = viking ? "" : captureAnchor(job2.titleId);
+        if (browserCapture && (viking || anchor)) {
           if (captures.has(id)) return;
-          if (captures.size || active2) throw new Error("Wait for the current queue task before opening Vikingfile, so its captured link can start immediately.");
+          // A verification may be done while another download runs: the captured link waits in the
+          // queue for its turn, and if it expired by then the download asks for the check again. The
+          // console's browser is read for one capture at a time.
+          if (captures.size) throw new Error("Another download's verification is open. Finish or cancel it first.");
           const session = { cancel: cancellation(), task: null };
           captures.set(id, session);
           job2.captureState = "preparing";
           delete job2.captureError;
+          // A vault's Vikingfile capture takes the vault's longer window, and says so.
+          if (viking && !vikingLinkPage(source2)) delete job2.captureMode;
+          else job2.captureMode = "link";
           change();
-          void captureBrowser(job2, source2, session);
+          if (viking) void captureBrowser(job2, source2, session);
+          else void captureBrowserLink(job2, source2, session);
           return;
         }
         if (!linking?.openURL(webURL(job2.browserUrl).url)) throw new Error("The browser could not open. Open this source on another device.");
         job2.message = t("downloads.afterVerification");
         change();
+      },
+      /** The player's answer about a captured file that names no game: download it, or scan on. */
+      confirmCapturedFile(id, accepted) {
+        captures.get(id)?.decide?.(Boolean(accepted));
       },
       cancelBrowserCapture(id, { manual = false } = {}) {
         const job2 = find(id);

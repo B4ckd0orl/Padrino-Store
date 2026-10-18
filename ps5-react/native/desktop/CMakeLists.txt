@@ -61,6 +61,9 @@ endforeach()
 if(APPLE)
   target_link_libraries(ps5-react-preview PRIVATE "-framework VideoToolbox" "-framework CoreFoundation" "-framework CoreMedia"
                         "-framework CoreVideo" "-framework CoreServices" "-framework Security")
+else()
+  # FFmpeg's https/tls protocols use the system OpenSSL on Linux.
+  target_link_libraries(ps5-react-preview PRIVATE OpenSSL::SSL OpenSSL::Crypto)
 endif()
 # tools/test_video.py: the player in real time on a short clip, with a stand-in mixer.
 add_executable(ps5-react-video-test EXCLUDE_FROM_ALL ../../tools/tests/video_client.cpp ../shared/video_player.cpp ../shared/video_subtitles.cpp ../shared/audio_sink.cpp video_decoder.cpp)
