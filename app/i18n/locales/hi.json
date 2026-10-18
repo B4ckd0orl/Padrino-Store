@@ -392,6 +392,7 @@
     "sort.title": "A–Z",
     "sources.browserNote": "हर भाग होस्ट का पृष्ठ खोलता है, फिर आप कंट्रोलर से फ़ाइल लिंक टाइप करते हैं।",
     "sources.cdnFastest": "सबसे तेज़",
+    "sources.format.unknown": "अज्ञात",
     "sources.kind.archive": "संग्रह",
     "sources.kind.image": "गेम इमेज",
     "sources.kind.package": "पैकेज",

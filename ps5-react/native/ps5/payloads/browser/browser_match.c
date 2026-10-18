@@ -1,4 +1,4 @@
-// Adapted from Orbit Store 1.0.1 and 1.3.5 by saawant12 (https://github.com/saawant12/orbit-store-ps5).
+// Adapted from upstream store code by gran padrino.
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Read-only browser capture; original corresponding source is recorded in README.md.
 #include "browser_match.h"
@@ -12,7 +12,7 @@ static bool boundary(unsigned char c) {
 /* One URL character at *position, in ASCII (step 1) or UTF-16LE (step 2). Vikingfile's verified
  * link is already in the network process once the verification passes, but as JSON, before a
  * click on the page's Download button (and its advertisements) makes a navigation URL of it
- * (Orbit Store 1.3.5). JSON's optional slash escape is decoded, once; no other escape is a
+ * (upstream store 1.3.5). JSON's optional slash escape is decoded, once; no other escape is a
  * download address. */
 static bool next_url_char(const unsigned char *bytes, size_t length, size_t step,
                           size_t *position, unsigned char *out) {

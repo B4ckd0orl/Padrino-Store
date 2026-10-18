@@ -197,7 +197,7 @@ remain historical evidence explaining the integration and its access contract.
 ## Writable roots after elevation
 
 A subsequent Game-store report described `fs.writeFile` permission failures on
-the same console where Orbit and Spectrum worked. The local Game-store build
+the same console where other stores worked. The local Game-store build
 receipt enables console filesystem access and includes an exact-title
 `PPSA99058` helper; this is not a missing manifest opt-in. Static inspection
 found that root selection checked only `open(O_RDONLY | O_DIRECTORY)`. A root

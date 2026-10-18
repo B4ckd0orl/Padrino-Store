@@ -392,6 +392,7 @@
     "sort.title": "A–Z",
     "sources.browserNote": "Jeder Teil öffnet die Host-Seite, dann geben Sie seinen Link mit dem Controller ein.",
     "sources.cdnFastest": "Am schnellsten",
+    "sources.format.unknown": "Unbekannt",
     "sources.kind.archive": "Archiv",
     "sources.kind.image": "Spielimage",
     "sources.kind.package": "Paket",

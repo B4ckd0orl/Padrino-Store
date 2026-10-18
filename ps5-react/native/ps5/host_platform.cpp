@@ -40,7 +40,7 @@ struct LoginUserIdList {
 constexpr int kInvalidUserId = -1;
 }
 
-// libkernel's toast request, the one Spectrum and Orbit use; it needs no dlopen'd module.
+// libkernel's toast request, the one Spectrum and other stores use; it needs no dlopen'd module.
 struct NotifyRequest {
   char reserved[45];
   char message[3075];

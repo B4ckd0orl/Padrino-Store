@@ -397,6 +397,7 @@
     "sort.title": "A–Z",
     "sources.browserNote": "Cada parte abre a página de um host, depois você digita seu link de arquivo com o controle.",
     "sources.cdnFastest": "Mais rápido",
+    "sources.format.unknown": "Desconhecido",
     "sources.kind.archive": "Arquivo",
     "sources.kind.image": "Imagem de jogo",
     "sources.kind.package": "Pacote",

@@ -10,7 +10,7 @@ import { Choice, TextAction } from './Choice.jsx';
 import { DISABLED, DownloadLabel, statusLine } from './DownloadLabel.jsx';
 import { MoreOptions, ProblemNote } from './DownloadProblem.jsx';
 import { canDownload, spaceAdvice, spaceNeeded } from './releases.js';
-import { fallbacks, isOverdriveCdn, preferredRelease } from './sources.js';
+import { fallbacks, formatLabel, isOverdriveCdn, preferredRelease } from './sources.js';
 import { useDownload } from './useDownload.js';
 import { useFreeSpace } from './useFreeSpace.js';
 import { useShadowMount } from './useShadowMount.js';
@@ -251,7 +251,7 @@ import { DownloadFormats, Text, View, motion } from '@ps5-react/core';
             name: release.provider,
             detail: [t2("sources.cdnFastest"), release.sizeBytes && formatBytes(release.sizeBytes)].filter(Boolean).join(" \xB7 ")
           } : null,
-          text: [t2("download.source", { source: release.provider }), release.sizeBytes && formatBytes(release.sizeBytes)].filter(Boolean).join(" \xB7 ")
+          text: [t2("download.source", { source: release.provider }), formatLabel(release.format), release.sizeBytes && formatBytes(release.sizeBytes)].filter(Boolean).join(" \xB7 ")
         }
       ) : null,
       !job2 ? /* @__PURE__ */ (0, jsx)(

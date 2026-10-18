@@ -635,7 +635,7 @@ identified browser network process is read, with identity checked before every
 read. Scanning is limited to anonymous readable/writable nonexecutable user
 pages, 64 KiB every 8 ms, 1 GiB per session. No dumps, cookies, arbitrary
 process selection or writes. Only complete ASCII/UTF-16 matching routes are
-returned. Provenance: `native/ps5/payloads/browser/README.md` (Orbit Store 1.0.1 and 1.3.5).
+returned. Provenance: `native/ps5/payloads/browser/README.md`.
 
 A captured URL may already be stale; the app must validate host, decoded
 filename, HTTP status, content type and length before starting immediately.

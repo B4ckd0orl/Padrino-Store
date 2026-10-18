@@ -30,8 +30,8 @@ import { DeviceInfo } from '@ps5-react/core';
     return major < lastMajor || major === lastMajor && minor <= lastMinor;
   }
   var isPackage = (release) => PKG_FORMATS.has(release.format);
-  // PS4 fake PKGs install on the PS5's later firmware too; the 11.60 limit is for PS5 ones (Orbit
-  // Store's notes say the same). The title ID tells them apart; the filename starts with it too.
+  // PS4 fake PKGs install on the PS5's later firmware too; the 11.60 limit is for PS5 ones.
+  // The title ID tells them apart; the filename starts with it too.
   var isPs5Title = (titleId) => /^PPSA/i.test(titleId || "");
   var isPs5Package = (release) => isPackage(release) && isPs5Title(release.titleId || release.filename);
 

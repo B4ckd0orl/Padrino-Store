@@ -392,6 +392,7 @@
     "sort.title": "あいうえお順",
     "sources.browserNote": "パートごとにホストのページが開きます。ファイルのリンクはコントローラーで入力してください。",
     "sources.cdnFastest": "最速",
+    "sources.format.unknown": "不明",
     "sources.kind.archive": "アーカイブ",
     "sources.kind.image": "ゲームイメージ",
     "sources.kind.package": "パッケージ",

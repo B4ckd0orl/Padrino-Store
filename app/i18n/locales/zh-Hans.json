@@ -392,6 +392,7 @@
     "sort.title": "A–Z",
     "sources.browserNote": "每个部分都会打开一个主机页面，然后用手柄输入其文件链接。",
     "sources.cdnFastest": "最快",
+    "sources.format.unknown": "未知",
     "sources.kind.archive": "压缩包",
     "sources.kind.image": "游戏镜像",
     "sources.kind.package": "安装包",

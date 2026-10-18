@@ -10,36 +10,32 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 
 ## Próxima release
 
-### Bienvenida
-- Eliminados los códigos QR de la primera apertura
-- Nueva pantalla de bienvenida con mensaje de agradecimiento y links a Telegram y X
-- Identidad del repo reiniciada a v0.1
+### Catálogo
+- +1555 fuentes de descarga nuevas importadas de un catálogo complementario (rev. 31)
+- +414 juegos nuevos (68 PS5 y 346 PS4) con carátula, género, fecha y tamaño
+- 449 juegos sin fuentes vivas o con fuentes parciales reciben enlaces de respaldo
+- Links de vikingfile con captura directa `/d/` se importan como descarga directa real
+- Cada link de archive.org se verificó uno a uno contra su API antes de importar
+- Nuevo tool `tools/catalog-import.mjs` para reimportar el catálogo cuando salga una revisión nueva
 
-### Música
-- Música lo-fi de fondo ("Morning Coffee" de HoliznaCC0, CC0 / dominio público)
-- Suena en loop durante toda la estadía en la tienda
-- Volumen bajo para no molestar al navegar
-
-### Interfaz
-- Logo del sidebar: solo el icono (antes el texto "padrino" se comprimía y se veía distorsionado)
-- Sidebar: etiquetas en oro al enfocar cada ícono (antes no aparecían)
-- Ajustes: filas de Idioma, Datos y Vibración ahora muestran sus textos (bug `children` que no renderizaba)
-- Filas seleccionadas en Idioma: texto oscuro sobre el oro (legibilidad)
-
-### Antes de descargar
-- Diálogo de tips renovado estilo Padrino (no el aspecto Overdrive)
-- Badge de tipo de fuente: "Descarga directa" / "Se abre en el navegador"
-- Tips en cards con borde y acento dorado
-- Notas de fuente con icono y contorno
-
-### Actualizaciones
-- El changelog del release se muestra como lista con viñetas doradas
-- Scroll si el changelog es largo (antes se cortaba a 4 líneas)
-- Cada release de GitHub ahora incluye este archivo como notas
+### Formato visible
+- La ficha del juego muestra el formato de la fuente recomendada (FFPFSC, EXFAT, PKG, ZIP...)
+- El botón de descarga indica el formato junto al proveedor y el tamaño
+- El selector de fuentes y el diálogo "Antes de descargar" muestran el formato real de cada fuente
+- Antes solo se veía una categoría genérica ("Imagen"/"Paquete") y los ZIP/RAR/7Z no etiquetaban nada
+- "Formato" traducido a los 15 idiomas de la tienda
 
 ---
 
 ## Archivo
+
+### v1.9 y anteriores (histórico inicial)
+- Eliminados los códigos QR de la primera apertura; nueva pantalla de bienvenida con links a Telegram y X
+- Música lo-fi de fondo ("Morning Coffee" de HoliznaCC0, CC0 / dominio público), en loop y a volumen bajo
+- Logo del sidebar solo con el icono; etiquetas en oro al enfocar cada ícono
+- Ajustes: filas de Idioma, Datos y Vibración con sus textos (bug `children`)
+- Diálogo de tips renovado estilo Padrino; badge "Descarga directa" / "Se abre en el navegador"
+- Changelog del release como lista con viñetas doradas y scroll
 
 ### v1.12
 - Rediseño de consola: QR, KPI strip, Ajustes full-screen, icon rail

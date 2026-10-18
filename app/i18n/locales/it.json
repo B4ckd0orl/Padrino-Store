@@ -398,6 +398,7 @@
     "sort.title": "A–Z",
     "sources.browserNote": "Ogni parte apre la pagina di un host, poi scrivi il link del file con il controller.",
     "sources.cdnFastest": "La più veloce",
+    "sources.format.unknown": "Sconosciuto",
     "sources.kind.archive": "Archivio",
     "sources.kind.image": "Immagine di gioco",
     "sources.kind.package": "Pacchetto",

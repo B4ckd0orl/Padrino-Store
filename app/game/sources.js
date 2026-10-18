@@ -7,15 +7,14 @@ import { isPs5Package } from '../state/firmware.js';
 import { isPatchOnly } from '../state/release-sets.js';
 import { formatBytes } from '../state/size.js';
 
-  var KIND = {
-    ffpfsc: "sources.kind.image",
-    ffpfs: "sources.kind.image",
-    ffpkg: "sources.kind.image",
-    exfat: "sources.kind.image",
-    pkg: "sources.kind.package",
-    fpkg: "sources.kind.package",
-    "archive-set": "sources.kind.archive"
-  };
+  // The format a source carries, shown before downloading ("FFPFSC", "EXFAT", "PKG", "ZIP"...).
+  // Formats are technical identifiers, identical in every language; only the unknown case
+  // is translated. archive-set is a multi-part bundle, not a file extension.
+  function formatLabel(format) {
+    if (!format || format === "binary") return t("sources.format.unknown");
+    if (format === "archive-set") return t("sources.kind.archive");
+    return format.toUpperCase();
+  }
   function edition({ label, provider }) {
     const text = (label || "").replace(/\s*·\s*\d+ parts$/, "").trim();
     const split = text.lastIndexOf(" - ");
@@ -60,7 +59,7 @@ import { formatBytes } from '../state/size.js';
     const detail2 = [
       edition(release),
       release.version ? `v${release.version.replace(/^v/i, "")}` : null,
-      isPatchOnly(release) ? t("sources.kind.patch") : KIND[release.format] && t(KIND[release.format]),
+      isPatchOnly(release) ? t("sources.kind.patch") : formatLabel(release.format),
       parts ? t("sources.parts", { count: parts }) : null
     ].filter(Boolean).join(" \xB7 ");
     const reach = access(release);
@@ -107,7 +106,7 @@ import { formatBytes } from '../state/size.js';
     GROUP_RANK[describeSource(release).group],
     HEALTH_RANK[release.health] ?? 1,
     isBackport(release) ? 1 : 0,
-    release.source === "orbit" ? 0 : 1,
+    release.source === "catalog-v7" ? 0 : 1,
     release.requiresBrowser ? 1 : 0
   ] });
   var compare = (a, b) => a.rank.reduce((order, value, i) => order || value - b.rank[i], 0) || a.index - b.index;
@@ -129,4 +128,4 @@ import { formatBytes } from '../state/size.js';
     return sections.filter((section) => section.items.length);
   }
 
-export { describeSource, fallbacks, isDlc, isOverdriveCdn, preferredRelease, requiredFirmware, sourceSections };
+export { describeSource, fallbacks, formatLabel, isDlc, isOverdriveCdn, preferredRelease, requiredFirmware, sourceSections };

@@ -392,6 +392,7 @@
     "sort.title": "أ–ي",
     "sources.browserNote": "كل جزء يفتح صفحة المضيف، ثم تكتب رابط الملف باستخدام التحكم.",
     "sources.cdnFastest": "الأسرع",
+    "sources.format.unknown": "غير معروف",
     "sources.kind.archive": "أرشيف",
     "sources.kind.image": "صورة اللعبة",
     "sources.kind.package": "حزمة",

@@ -392,6 +392,7 @@
     "sort.title": "A–Z",
     "sources.browserNote": "প্রতিটি অংশ একটি হোস্টের পৃষ্ঠা খুলে, তারপর আপনি কন্ট্রোলার থেকে এর ফাইল লিঙ্ক টাইপ করেন।",
     "sources.cdnFastest": "দ্রুততম",
+    "sources.format.unknown": "অজানা",
     "sources.kind.archive": "সংরক্ষণাগার",
     "sources.kind.image": "গেম ইমেজ",
     "sources.kind.package": "প্যাকেজ",

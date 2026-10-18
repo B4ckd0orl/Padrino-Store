@@ -392,6 +392,7 @@
     "sort.title": "А–Я",
     "sources.browserNote": "Каждая часть открывает страницу хоста, затем вы вводите её ссылку на файл контроллером.",
     "sources.cdnFastest": "Быстрее всего",
+    "sources.format.unknown": "Неизвестно",
     "sources.kind.archive": "Архив",
     "sources.kind.image": "Образ игры",
     "sources.kind.package": "Пакет",

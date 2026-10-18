@@ -392,6 +392,7 @@
     "sort.title": "A–Z",
     "sources.browserNote": "Chaque partie ouvre la page d'un serveur, puis vous tapez son lien avec la manette.",
     "sources.cdnFastest": "Le plus rapide",
+    "sources.format.unknown": "Inconnu",
     "sources.kind.archive": "Archive",
     "sources.kind.image": "Image",
     "sources.kind.package": "Paquet",

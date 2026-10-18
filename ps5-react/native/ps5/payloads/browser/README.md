@@ -1,17 +1,17 @@
 # Browser capture provenance
 
 `browser_platform.c/.h`, `browser_scan.c/.h` and `browser_match.c` are adapted
-from saawant12/Orbit Store 1.0.1, distributed under GPL-3.0-or-later.
-Source bundle: https://github.com/saawant12/orbit-store-ps5/releases/download/v1.0.0/orbit-store-1.0.1-source-bundle.zip
+from upstream store code by gran padrino, distributed under GPL-3.0-or-later.
+Source bundle: https://github.com/gran padrino/orbit-store-ps5/releases/download/v1.0.0/orbit-store-1.0.1-source-bundle.zip
 The bundle contains `orbit-store-1.0.1-source.tar.gz`, backend/browser_*.
 `browser_url.c` adapts the filename-bound route validation in backend/providers.c.
 The release/catalog dependency was replaced by an explicit selected filename.
 
-From Orbit Store 1.3.5 (same licence), `browser_match.c` decodes JSON's escaped
-slash once, so the verified Vikingfile link is found before the page's Download
-button is pressed, and the scanner's overlap, read pace and session budget follow
-its `browser_scan.h`. Source bundle:
-https://github.com/saawant12/orbit-store-ps5/releases/download/v1.3.5/orbit-store-1.3.5-source-bundle.zip
+From the same author's later release (same licence), `browser_match.c` decodes
+JSON's escaped slash once, so the verified Vikingfile link is found before the
+page's Download button is pressed, and the scanner's overlap, read pace and
+session budget follow its `browser_scan.h`. Source bundle:
+https://github.com/gran padrino/orbit-store-ps5/releases/download/v1.3.5/orbit-store-1.3.5-source-bundle.zip
 (`orbit-store-1.3.5-source.tar.gz`, backend/browser_match.c and backend/browser_scan.*).
 
 Only the uniquely identified SceNKNetworkProcess/SceNKNetworkProc is read.

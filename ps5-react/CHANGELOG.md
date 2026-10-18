@@ -5,7 +5,7 @@
 - Browser capture finds the verified Vikingfile link as the page holds it once the verification
   passes, a JSON string with escaped slashes, so the user no longer selects Download and the
   advertisements around it. The scanner reads at about 8 MiB/s with a 1 GiB session budget, so it
-  keeps looking through a slow verification; both changes follow Orbit Store 1.3.5.
+  keeps looking through a slow verification.
 
 ## Unreleased — download speed limit
 
@@ -346,7 +346,7 @@
 
 - Add ABI v7 `BrowserCapture.capture`, a bounded, read-only Vikingfile URL
   matcher running through a loader payload, with cancellation and desktop failure.
-  Adapted from Orbit Store 1.0.1; firmware execution still needs hardware validation.
+  Firmware execution still needs hardware validation.
 
 ## Unreleased — package installation
 
