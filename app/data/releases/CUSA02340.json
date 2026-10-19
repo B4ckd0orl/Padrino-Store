@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa02340",
+    "format": "pkg",
+    "filename": "CUSA02340_War_of_the_Monsters_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa02340_pkg/CUSA02340_War_of_the_Monsters_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa02340_pkg/CUSA02340_War_of_the_Monsters_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2254857830,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA02340"
+  },
+  {
+    "id": "r_vk_cusa02340",
+    "format": "pkg",
+    "filename": "CUSA02340_War_of_the_Monsters_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa02340_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa02340_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 2254857830,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA02340"
+  }
+]

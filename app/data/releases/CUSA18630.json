@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa18630",
+    "format": "pkg",
+    "filename": "CUSA18630_Robotics_Notes_Elite_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa18630_pkg/CUSA18630_Robotics_Notes_Elite_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa18630_pkg/CUSA18630_Robotics_Notes_Elite_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 10093173146,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18630"
+  },
+  {
+    "id": "r_vk_cusa18630",
+    "format": "pkg",
+    "filename": "CUSA18630_Robotics_Notes_Elite_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa18630_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa18630_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 10093173146,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18630"
+  }
+]

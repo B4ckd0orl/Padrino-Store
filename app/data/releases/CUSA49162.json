@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49162",
+    "format": "pkg",
+    "filename": "CUSA49162_Black_the_Fall.pkg",
+    "url": "https://vikingfile.com/f/cusa49162_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49162_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3972844749,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49162"
+  },
+  {
+    "id": "r_mf_cusa49162",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49162-Black_the_Fall.rar",
+    "url": "https://www.mediafire.com/file/cusa49162_mf/CUSA49162_Black_the_Fall.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49162_mf/CUSA49162_Black_the_Fall.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3972844749,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49162"
+  }
+]

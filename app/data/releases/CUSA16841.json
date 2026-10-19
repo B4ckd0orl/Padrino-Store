@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa16841",
+    "format": "pkg",
+    "filename": "CUSA16841_Arc_of_Alchemist.pkg",
+    "url": "https://vikingfile.com/f/cusa16841_base",
+    "browserUrl": "https://vikingfile.com/f/cusa16841_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA16841"
+  },
+  {
+    "id": "r_mf_cusa16841",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA16841-Arc_of_Alchemist.rar",
+    "url": "https://www.mediafire.com/file/cusa16841_mf/CUSA16841_Arc_of_Alchemist.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa16841_mf/CUSA16841_Arc_of_Alchemist.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA16841"
+  }
+]

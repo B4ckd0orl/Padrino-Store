@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55655",
+    "format": "pkg",
+    "filename": "CUSA55655_The_Secret_Order__Return_to_the_Buried_Kingdom.pkg",
+    "url": "https://vikingfile.com/f/cusa55655_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55655_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5583457485,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55655"
+  },
+  {
+    "id": "r_mf_cusa55655",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55655-The_Secret_Order__Return_to_the_Buried_Kingdom.rar",
+    "url": "https://www.mediafire.com/file/cusa55655_mf/CUSA55655_The_Secret_Order__Return_to_the_Buried_Kingdom.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55655_mf/CUSA55655_The_Secret_Order__Return_to_the_Buried_Kingdom.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5583457485,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55655"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55675",
+    "format": "pkg",
+    "filename": "CUSA55675_Shantae_and_the_Pirate_s_Curse.pkg",
+    "url": "https://vikingfile.com/f/cusa55675_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55675_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9234179686,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55675"
+  },
+  {
+    "id": "r_mf_cusa55675",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55675-Shantae_and_the_Pirate_s_Curse.rar",
+    "url": "https://www.mediafire.com/file/cusa55675_mf/CUSA55675_Shantae_and_the_Pirate_s_Curse.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55675_mf/CUSA55675_Shantae_and_the_Pirate_s_Curse.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9234179686,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55675"
+  }
+]

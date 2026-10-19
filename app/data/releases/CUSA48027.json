@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48027",
+    "format": "pkg",
+    "filename": "CUSA48027_8_Bit_Armies.pkg",
+    "url": "https://vikingfile.com/f/cusa48027_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48027_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1825361101,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48027"
+  },
+  {
+    "id": "r_mf_cusa48027",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48027-8_Bit_Armies.rar",
+    "url": "https://www.mediafire.com/file/cusa48027_mf/CUSA48027_8_Bit_Armies.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48027_mf/CUSA48027_8_Bit_Armies.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1825361101,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48027"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa02842",
+    "format": "pkg",
+    "filename": "CUSA02842_Mordheim__City_of_the_Damned.pkg",
+    "url": "https://vikingfile.com/f/cusa02842_base",
+    "browserUrl": "https://vikingfile.com/f/cusa02842_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA02842"
+  },
+  {
+    "id": "r_mf_cusa02842",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA02842-Mordheim__City_of_the_Damned.rar",
+    "url": "https://www.mediafire.com/file/cusa02842_mf/CUSA02842_Mordheim__City_of_the_Damned.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa02842_mf/CUSA02842_Mordheim__City_of_the_Damned.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA02842"
+  }
+]

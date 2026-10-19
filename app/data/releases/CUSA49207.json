@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49207",
+    "format": "pkg",
+    "filename": "CUSA49207_Breakthrough_Gaming_Arcade__Track.pkg",
+    "url": "https://vikingfile.com/f/cusa49207_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49207_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8912057139,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49207"
+  },
+  {
+    "id": "r_mf_cusa49207",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49207-Breakthrough_Gaming_Arcade__Track.rar",
+    "url": "https://www.mediafire.com/file/cusa49207_mf/CUSA49207_Breakthrough_Gaming_Arcade__Track.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49207_mf/CUSA49207_Breakthrough_Gaming_Arcade__Track.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8912057139,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49207"
+  }
+]

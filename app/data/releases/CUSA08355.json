@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa08355",
+    "format": "pkg",
+    "filename": "CUSA08355_Black_Mirror.pkg",
+    "url": "https://vikingfile.com/f/cusa08355_base",
+    "browserUrl": "https://vikingfile.com/f/cusa08355_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA08355"
+  },
+  {
+    "id": "r_mf_cusa08355",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA08355-Black_Mirror.rar",
+    "url": "https://www.mediafire.com/file/cusa08355_mf/CUSA08355_Black_Mirror.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa08355_mf/CUSA08355_Black_Mirror.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA08355"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55633",
+    "format": "pkg",
+    "filename": "CUSA55633_Runner2__Future_Legend_of_Rhythm_Alien.pkg",
+    "url": "https://vikingfile.com/f/cusa55633_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55633_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7408818586,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55633"
+  },
+  {
+    "id": "r_mf_cusa55633",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55633-Runner2__Future_Legend_of_Rhythm_Alien.rar",
+    "url": "https://www.mediafire.com/file/cusa55633_mf/CUSA55633_Runner2__Future_Legend_of_Rhythm_Alien.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55633_mf/CUSA55633_Runner2__Future_Legend_of_Rhythm_Alien.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7408818586,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55633"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49317",
+    "format": "pkg",
+    "filename": "CUSA49317_Crows__Burning_Edge.pkg",
+    "url": "https://vikingfile.com/f/cusa49317_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49317_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49317"
+  },
+  {
+    "id": "r_mf_cusa49317",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49317-Crows__Burning_Edge.rar",
+    "url": "https://www.mediafire.com/file/cusa49317_mf/CUSA49317_Crows__Burning_Edge.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49317_mf/CUSA49317_Crows__Burning_Edge.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49317"
+  }
+]

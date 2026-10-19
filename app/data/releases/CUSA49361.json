@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49361",
+    "format": "pkg",
+    "filename": "CUSA49361_Defenders_of_Ekron.pkg",
+    "url": "https://vikingfile.com/f/cusa49361_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49361_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6335076762,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49361"
+  },
+  {
+    "id": "r_mf_cusa49361",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49361-Defenders_of_Ekron.rar",
+    "url": "https://www.mediafire.com/file/cusa49361_mf/CUSA49361_Defenders_of_Ekron.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49361_mf/CUSA49361_Defenders_of_Ekron.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6335076762,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49361"
+  }
+]

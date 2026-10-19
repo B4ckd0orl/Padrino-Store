@@ -7,7 +7,7 @@ import { preferredRelease } from '../game/sources.js';
   var GB = 1024 ** 3;
   var artifact = { destination: "/data/homebrew/mock.ffpfsc", nextAction: "shadowmount" };
   function job(game, state, written, total, extra = {}) {
-    const release = { ...game.releases[preferredRelease(game.releases)], provider: "Archive.org" };
+    const release = { ...game.releases[preferredRelease(game.releases)], provider: "archive.org" };
     return {
       id: `${game.id}/mock`,
       gameId: game.id,

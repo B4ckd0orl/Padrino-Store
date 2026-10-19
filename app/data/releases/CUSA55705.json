@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55705",
+    "format": "pkg",
+    "filename": "CUSA55705_Sky_Force_Reloaded.pkg",
+    "url": "https://vikingfile.com/f/cusa55705_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55705_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2362232013,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55705"
+  },
+  {
+    "id": "r_mf_cusa55705",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55705-Sky_Force_Reloaded.rar",
+    "url": "https://www.mediafire.com/file/cusa55705_mf/CUSA55705_Sky_Force_Reloaded.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55705_mf/CUSA55705_Sky_Force_Reloaded.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2362232013,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55705"
+  }
+]

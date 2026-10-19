@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa34407",
+    "format": "pkg",
+    "filename": "CUSA34407_Monster_Menu__The_Scavenger_s_Cookbook.pkg",
+    "url": "https://vikingfile.com/f/cusa34407_base",
+    "browserUrl": "https://vikingfile.com/f/cusa34407_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA34407"
+  },
+  {
+    "id": "r_mf_cusa34407",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA34407-Monster_Menu__The_Scavenger_s_Cookbook.rar",
+    "url": "https://www.mediafire.com/file/cusa34407_mf/CUSA34407_Monster_Menu__The_Scavenger_s_Cookbook.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa34407_mf/CUSA34407_Monster_Menu__The_Scavenger_s_Cookbook.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA34407"
+  }
+]

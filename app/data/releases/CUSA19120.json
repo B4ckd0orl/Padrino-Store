@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa19120",
+    "format": "pkg",
+    "filename": "CUSA19120_Genesis_Noir_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa19120_pkg/CUSA19120_Genesis_Noir_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa19120_pkg/CUSA19120_Genesis_Noir_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5476083302,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA19120"
+  },
+  {
+    "id": "r_vk_cusa19120",
+    "format": "pkg",
+    "filename": "CUSA19120_Genesis_Noir_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa19120_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa19120_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 5476083302,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA19120"
+  }
+]

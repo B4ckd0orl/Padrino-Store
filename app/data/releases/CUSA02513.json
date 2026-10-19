@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa02513",
+    "format": "pkg",
+    "filename": "CUSA02513_Grand_Ages__Medieval.pkg",
+    "url": "https://vikingfile.com/f/cusa02513_base",
+    "browserUrl": "https://vikingfile.com/f/cusa02513_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA02513"
+  },
+  {
+    "id": "r_mf_cusa02513",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA02513-Grand_Ages__Medieval.rar",
+    "url": "https://www.mediafire.com/file/cusa02513_mf/CUSA02513_Grand_Ages__Medieval.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa02513_mf/CUSA02513_Grand_Ages__Medieval.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA02513"
+  }
+]

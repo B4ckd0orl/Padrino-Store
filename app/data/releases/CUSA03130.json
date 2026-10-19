@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa03130",
+    "format": "pkg",
+    "filename": "CUSA03130_Megadimension_Neptunia_VII.pkg",
+    "url": "https://vikingfile.com/f/cusa03130_base",
+    "browserUrl": "https://vikingfile.com/f/cusa03130_base",
+    "requiresBrowser": true,
+    "sizeBytes": 12025908429,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03130"
+  },
+  {
+    "id": "r_mf_cusa03130",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA03130-Megadimension_Neptunia_VII.rar",
+    "url": "https://www.mediafire.com/file/cusa03130_mf/CUSA03130_Megadimension_Neptunia_VII.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa03130_mf/CUSA03130_Megadimension_Neptunia_VII.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 12025908429,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03130"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa12810",
+    "format": "pkg",
+    "filename": "CUSA12810_Disgaea_1_Complete.pkg",
+    "url": "https://vikingfile.com/f/cusa12810_base",
+    "browserUrl": "https://vikingfile.com/f/cusa12810_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4509715661,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA12810"
+  },
+  {
+    "id": "r_mf_cusa12810",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA12810-Disgaea_1_Complete.rar",
+    "url": "https://www.mediafire.com/file/cusa12810_mf/CUSA12810_Disgaea_1_Complete.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa12810_mf/CUSA12810_Disgaea_1_Complete.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4509715661,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA12810"
+  }
+]

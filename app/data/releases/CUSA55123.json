@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55123",
+    "format": "pkg",
+    "filename": "CUSA55123_Madden_NFL_19.pkg",
+    "url": "https://vikingfile.com/f/cusa55123_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55123_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55123"
+  },
+  {
+    "id": "r_mf_cusa55123",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55123-Madden_NFL_19.rar",
+    "url": "https://www.mediafire.com/file/cusa55123_mf/CUSA55123_Madden_NFL_19.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55123_mf/CUSA55123_Madden_NFL_19.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55123"
+  }
+]

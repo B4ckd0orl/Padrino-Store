@@ -502,5 +502,17 @@
     "welcome.detail": "Over 1,800 free games for your PS5. Enjoy! Support us with a follow on Telegram and X: there we post news, support and new games.",
     "welcome.enter": "Enter",
     "welcome.family": "Welcome to the family!",
-    "welcome.title": "Welcome to Padrino Store!"
+    "welcome.title": "Welcome to Padrino Store!",
+    "sources.action.install": "Install",
+    "sources.action.extract": "Extract",
+    "sources.action.image": "Mount image",
+    "tips.note.format": "The exact format is confirmed as soon as the download starts.",
+    "nav.info": "Info",
+    "info.subtitle": "About Padrino Store",
+    "info.lead": "This store was created by Gran Padrino. If you find a problem, report it so it can be fixed. I'd also appreciate it if you follow me.",
+    "info.firmwareTitle": "Firmware",
+    "info.firmware": "Some games may not be compatible with your firmware. It's not a store bug: it depends on the download links.",
+    "info.coversTitle": "Covers",
+    "info.covers": "Some games have no cover because the PlayStation API key is missing. It doesn't affect how the store works.",
+    "info.follow": "Follow me at:"
 }

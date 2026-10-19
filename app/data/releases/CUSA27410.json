@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa27410",
+    "format": "pkg",
+    "filename": "CUSA27410_Gnosia_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa27410_pkg/CUSA27410_Gnosia_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa27410_pkg/CUSA27410_Gnosia_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1181116006,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA27410"
+  },
+  {
+    "id": "r_vk_cusa27410",
+    "format": "pkg",
+    "filename": "CUSA27410_Gnosia_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa27410_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa27410_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 1181116006,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA27410"
+  }
+]

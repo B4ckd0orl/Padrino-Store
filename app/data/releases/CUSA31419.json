@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa31419",
+    "format": "pkg",
+    "filename": "CUSA31419_Skautfold__Shrouded_in_Sanity.pkg",
+    "url": "https://vikingfile.com/f/cusa31419_base",
+    "browserUrl": "https://vikingfile.com/f/cusa31419_base",
+    "requiresBrowser": true,
+    "sizeBytes": 858993459,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA31419"
+  },
+  {
+    "id": "r_mf_cusa31419",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA31419-Skautfold__Shrouded_in_Sanity.rar",
+    "url": "https://www.mediafire.com/file/cusa31419_mf/CUSA31419_Skautfold__Shrouded_in_Sanity.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa31419_mf/CUSA31419_Skautfold__Shrouded_in_Sanity.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 858993459,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA31419"
+  }
+]

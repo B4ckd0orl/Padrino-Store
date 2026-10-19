@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49170",
+    "format": "pkg",
+    "filename": "CUSA49170_Blaster_Master_Zero.pkg",
+    "url": "https://vikingfile.com/f/cusa49170_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49170_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5798205850,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49170"
+  },
+  {
+    "id": "r_mf_cusa49170",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49170-Blaster_Master_Zero.rar",
+    "url": "https://www.mediafire.com/file/cusa49170_mf/CUSA49170_Blaster_Master_Zero.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49170_mf/CUSA49170_Blaster_Master_Zero.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5798205850,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49170"
+  }
+]

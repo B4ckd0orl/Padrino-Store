@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50045",
+    "format": "pkg",
+    "filename": "CUSA50045_Earth_Wars.pkg",
+    "url": "https://vikingfile.com/f/cusa50045_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50045_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50045"
+  },
+  {
+    "id": "r_mf_cusa50045",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50045-Earth_Wars.rar",
+    "url": "https://www.mediafire.com/file/cusa50045_mf/CUSA50045_Earth_Wars.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50045_mf/CUSA50045_Earth_Wars.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50045"
+  }
+]

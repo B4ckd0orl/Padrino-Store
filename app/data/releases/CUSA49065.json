@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49065",
+    "format": "pkg",
+    "filename": "CUSA49065_Arcade_Archives__Vendetta.pkg",
+    "url": "https://vikingfile.com/f/cusa49065_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49065_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8160437862,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49065"
+  },
+  {
+    "id": "r_mf_cusa49065",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49065-Arcade_Archives__Vendetta.rar",
+    "url": "https://www.mediafire.com/file/cusa49065_mf/CUSA49065_Arcade_Archives__Vendetta.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49065_mf/CUSA49065_Arcade_Archives__Vendetta.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8160437862,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49065"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49402",
+    "format": "pkg",
+    "filename": "CUSA49402_Divide.pkg",
+    "url": "https://vikingfile.com/f/cusa49402_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49402_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1932735283,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49402"
+  },
+  {
+    "id": "r_mf_cusa49402",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49402-Divide.rar",
+    "url": "https://www.mediafire.com/file/cusa49402_mf/CUSA49402_Divide.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49402_mf/CUSA49402_Divide.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1932735283,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49402"
+  }
+]

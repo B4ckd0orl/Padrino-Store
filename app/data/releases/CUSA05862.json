@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa05862",
+    "format": "pkg",
+    "filename": "CUSA05862_Handball_17.pkg",
+    "url": "https://vikingfile.com/f/cusa05862_base",
+    "browserUrl": "https://vikingfile.com/f/cusa05862_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA05862"
+  },
+  {
+    "id": "r_mf_cusa05862",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA05862-Handball_17.rar",
+    "url": "https://www.mediafire.com/file/cusa05862_mf/CUSA05862_Handball_17.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa05862_mf/CUSA05862_Handball_17.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA05862"
+  }
+]

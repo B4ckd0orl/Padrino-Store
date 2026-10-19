@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa14216",
+    "format": "pkg",
+    "filename": "CUSA14216_Streets_of_Rogue.pkg",
+    "url": "https://vikingfile.com/f/cusa14216_base",
+    "browserUrl": "https://vikingfile.com/f/cusa14216_base",
+    "requiresBrowser": true,
+    "sizeBytes": 697932186,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14216"
+  },
+  {
+    "id": "r_mf_cusa14216",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA14216-Streets_of_Rogue.rar",
+    "url": "https://www.mediafire.com/file/cusa14216_mf/CUSA14216_Streets_of_Rogue.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa14216_mf/CUSA14216_Streets_of_Rogue.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 697932186,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14216"
+  }
+]

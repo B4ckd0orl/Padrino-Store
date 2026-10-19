@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48037",
+    "format": "pkg",
+    "filename": "CUSA48037_Aaero.pkg",
+    "url": "https://vikingfile.com/f/cusa48037_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48037_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48037"
+  },
+  {
+    "id": "r_mf_cusa48037",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48037-Aaero.rar",
+    "url": "https://www.mediafire.com/file/cusa48037_mf/CUSA48037_Aaero.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48037_mf/CUSA48037_Aaero.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48037"
+  }
+]

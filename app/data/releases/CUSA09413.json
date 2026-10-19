@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa09413",
+    "format": "pkg",
+    "filename": "CUSA09413_Xenon_Valkyrie_.pkg",
+    "url": "https://vikingfile.com/f/cusa09413_base",
+    "browserUrl": "https://vikingfile.com/f/cusa09413_base",
+    "requiresBrowser": true,
+    "sizeBytes": 322122547,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA09413"
+  },
+  {
+    "id": "r_mf_cusa09413",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA09413-Xenon_Valkyrie_.rar",
+    "url": "https://www.mediafire.com/file/cusa09413_mf/CUSA09413_Xenon_Valkyrie_.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa09413_mf/CUSA09413_Xenon_Valkyrie_.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 322122547,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA09413"
+  }
+]

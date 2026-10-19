@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50089",
+    "format": "pkg",
+    "filename": "CUSA50089_Eventide_2__Sorcerer_s_Mirror.pkg",
+    "url": "https://vikingfile.com/f/cusa50089_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50089_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1932735283,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50089"
+  },
+  {
+    "id": "r_mf_cusa50089",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50089-Eventide_2__Sorcerer_s_Mirror.rar",
+    "url": "https://www.mediafire.com/file/cusa50089_mf/CUSA50089_Eventide_2__Sorcerer_s_Mirror.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50089_mf/CUSA50089_Eventide_2__Sorcerer_s_Mirror.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1932735283,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50089"
+  }
+]

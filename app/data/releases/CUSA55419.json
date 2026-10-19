@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55419",
+    "format": "pkg",
+    "filename": "CUSA55419_Phoenotopia__Awakening.pkg",
+    "url": "https://vikingfile.com/f/cusa55419_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55419_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55419"
+  },
+  {
+    "id": "r_mf_cusa55419",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55419-Phoenotopia__Awakening.rar",
+    "url": "https://www.mediafire.com/file/cusa55419_mf/CUSA55419_Phoenotopia__Awakening.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55419_mf/CUSA55419_Phoenotopia__Awakening.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55419"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa19342",
+    "format": "pkg",
+    "filename": "CUSA19342_Samurai_Shodown_NeoGeo_Collection.pkg",
+    "url": "https://vikingfile.com/f/cusa19342_base",
+    "browserUrl": "https://vikingfile.com/f/cusa19342_base",
+    "requiresBrowser": true,
+    "sizeBytes": 12348030976,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA19342"
+  },
+  {
+    "id": "r_mf_cusa19342",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA19342-Samurai_Shodown_NeoGeo_Collection.rar",
+    "url": "https://www.mediafire.com/file/cusa19342_mf/CUSA19342_Samurai_Shodown_NeoGeo_Collection.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa19342_mf/CUSA19342_Samurai_Shodown_NeoGeo_Collection.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 12348030976,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA19342"
+  }
+]

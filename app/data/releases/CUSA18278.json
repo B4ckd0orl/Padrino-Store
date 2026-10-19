@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa18278",
+    "format": "pkg",
+    "filename": "CUSA18278_Paradise_Killer.pkg",
+    "url": "https://vikingfile.com/f/cusa18278_base",
+    "browserUrl": "https://vikingfile.com/f/cusa18278_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18278"
+  },
+  {
+    "id": "r_mf_cusa18278",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA18278-Paradise_Killer.rar",
+    "url": "https://www.mediafire.com/file/cusa18278_mf/CUSA18278_Paradise_Killer.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa18278_mf/CUSA18278_Paradise_Killer.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18278"
+  }
+]

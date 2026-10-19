@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55335",
+    "format": "pkg",
+    "filename": "CUSA55335_Obduction.pkg",
+    "url": "https://vikingfile.com/f/cusa55335_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55335_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9556302234,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55335"
+  },
+  {
+    "id": "r_mf_cusa55335",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55335-Obduction.rar",
+    "url": "https://www.mediafire.com/file/cusa55335_mf/CUSA55335_Obduction.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55335_mf/CUSA55335_Obduction.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9556302234,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55335"
+  }
+]

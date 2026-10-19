@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55792",
+    "format": "pkg",
+    "filename": "CUSA55792_Strikers_1945_II.pkg",
+    "url": "https://vikingfile.com/f/cusa55792_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55792_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8804682957,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55792"
+  },
+  {
+    "id": "r_mf_cusa55792",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55792-Strikers_1945_II.rar",
+    "url": "https://www.mediafire.com/file/cusa55792_mf/CUSA55792_Strikers_1945_II.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55792_mf/CUSA55792_Strikers_1945_II.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8804682957,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55792"
+  }
+]

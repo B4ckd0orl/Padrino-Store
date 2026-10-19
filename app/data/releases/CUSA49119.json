@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49119",
+    "format": "pkg",
+    "filename": "CUSA49119_The_Bard_s_Tale__Remastered_and_Resnarkled.pkg",
+    "url": "https://vikingfile.com/f/cusa49119_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49119_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1395864371,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49119"
+  },
+  {
+    "id": "r_mf_cusa49119",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49119-The_Bard_s_Tale__Remastered_and_Resnarkled.rar",
+    "url": "https://www.mediafire.com/file/cusa49119_mf/CUSA49119_The_Bard_s_Tale__Remastered_and_Resnarkled.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49119_mf/CUSA49119_The_Bard_s_Tale__Remastered_and_Resnarkled.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1395864371,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49119"
+  }
+]

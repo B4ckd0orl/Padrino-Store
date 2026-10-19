@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_ppsa14507",
+    "format": "exfat",
+    "filename": "PPSA14507_Bud_Spencer___Terence_Hill___Slaps_And_Beans_2.exfat",
+    "url": "https://vikingfile.com/f/ppsa14507_base",
+    "browserUrl": "https://vikingfile.com/f/ppsa14507_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3650722202,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game EXFAT - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA14507"
+  },
+  {
+    "id": "r_mf_ppsa14507",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-PPSA14507-Bud_Spencer___Terence_Hill___Slaps_And_Beans_2.rar",
+    "url": "https://www.mediafire.com/file/ppsa14507_mf/PPSA14507_Bud_Spencer___Terence_Hill___Slaps_And_Beans_2.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/ppsa14507_mf/PPSA14507_Bud_Spencer___Terence_Hill___Slaps_And_Beans_2.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3650722202,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA14507"
+  }
+]

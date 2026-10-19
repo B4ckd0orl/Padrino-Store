@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55787",
+    "format": "pkg",
+    "filename": "CUSA55787_Stranded_Deep.pkg",
+    "url": "https://vikingfile.com/f/cusa55787_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55787_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3328599654,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55787"
+  },
+  {
+    "id": "r_mf_cusa55787",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55787-Stranded_Deep.rar",
+    "url": "https://www.mediafire.com/file/cusa55787_mf/CUSA55787_Stranded_Deep.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55787_mf/CUSA55787_Stranded_Deep.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3328599654,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55787"
+  }
+]

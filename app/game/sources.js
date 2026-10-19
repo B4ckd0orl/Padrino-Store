@@ -2,7 +2,7 @@
 // reconstructed from the esbuild bundle in eboot.bin
 
 import { t } from '../i18n/core.js';
-import { sourceKind } from '../state/download-sources.js';
+import { sourceKind, webURL } from '../state/download-sources.js';
 import { isPs5Package } from '../state/firmware.js';
 import { isPatchOnly } from '../state/release-sets.js';
 import { formatBytes } from '../state/size.js';
@@ -14,6 +14,73 @@ import { formatBytes } from '../state/size.js';
     if (!format || format === "binary") return t("sources.format.unknown");
     if (format === "archive-set") return t("sources.kind.archive");
     return format.toUpperCase();
+  }
+  // The extensions a console recognizes, the ones the download engine routes on
+  // (ps5-react/runtime/js/download-formats.js).
+  var FMT = /^(?:ffpfsc|ffpfs|ffpkg|exfat|pkg|fpkg|zip|rar|7z|tar|tgz)$/i;
+  // The format the host's own link names: the last path segment ending in one of them, reading
+  // right to left so "…/file.part01.rar/file" yields "rar" and a bare "file" is skipped.
+  function pathFormat(value) {
+    if (!value) return null;
+    let path;
+    try {
+      path = webURL(value).path;
+    } catch {
+      return null;
+    }
+    const segments = path.split("/").filter(Boolean);
+    for (let index = segments.length - 1; index >= 0; index--) {
+      let name = segments[index];
+      try {
+        name = decodeURIComponent(name);
+      } catch {
+      }
+      const found = /\.([a-z0-9]{1,10})$/i.exec(name)?.[1];
+      if (found && FMT.test(found)) return found.toLowerCase();
+    }
+    return null;
+  }
+  // The edition's label when it says the format outright. Only tokens no game title can carry
+  // (exFAT, ffpfs, ffpkg) or a dotted extension: a bare "zip" inside a name would be a guess.
+  function labelFormat(label) {
+    const text = String(label || "");
+    const exotic = /\b(ffpfs|ffpkg|exfat)\b/i.exec(text);
+    if (exotic) return exotic[1].toLowerCase();
+    return /\.(zip|rar|7z|pkg|tar|tgz)\b/i.exec(text)?.[1]?.toLowerCase() ?? null;
+  }
+  // What the catalog could not name, the link and the label still can. Display only: the queue
+  // keeps detecting the real kind from the bytes it receives (download-formats.js detectedArtifact).
+  function inferFormat(release) {
+    if (!release) return null;
+    if (release.format && release.format !== "binary") return release.format;
+    return pathFormat(release.browserUrl) || pathFormat(release.url) || labelFormat(release.label) || release.format || null;
+  }
+  // What the console does with the file, beside its technical name ("RAR · Extract").
+  var ACTION = {
+    pkg: "sources.action.install",
+    fpkg: "sources.action.install",
+    zip: "sources.action.extract",
+    rar: "sources.action.extract",
+    "7z": "sources.action.extract",
+    tar: "sources.action.extract",
+    tgz: "sources.action.extract",
+    "archive-set": "sources.action.extract",
+    exfat: "sources.action.image",
+    ffpfs: "sources.action.image",
+    ffpfsc: "sources.action.image",
+    ffpkg: "sources.action.image"
+  };
+  function formatAction(format) {
+    const key = format && ACTION[String(format).toLowerCase()];
+    return key ? t(key) : "";
+  }
+  // For the panels with room beside the value (game details, the edition picker, a source row):
+  // the code and what happens to it. A format nobody declared stays short — there is no action
+  // to promise yet.
+  function formatDetail(format) {
+    const action = formatAction(format);
+    if (!action) return t("sources.format.unknown");
+    return [formatLabel(format), action].join(" \xB7 ");
   }
   function edition({ label, provider }) {
     const text = (label || "").replace(/\s*·\s*\d+ parts$/, "").trim();
@@ -59,7 +126,7 @@ import { formatBytes } from '../state/size.js';
     const detail2 = [
       edition(release),
       release.version ? `v${release.version.replace(/^v/i, "")}` : null,
-      isPatchOnly(release) ? t("sources.kind.patch") : formatLabel(release.format),
+      isPatchOnly(release) ? t("sources.kind.patch") : formatDetail(inferFormat(release)),
       parts ? t("sources.parts", { count: parts }) : null
     ].filter(Boolean).join(" \xB7 ");
     const reach = access(release);
@@ -111,4 +178,4 @@ import { formatBytes } from '../state/size.js';
     return sections.filter((section) => section.items.length);
   }
 
-export { describeSource, formatLabel, isDlc, isOverdriveCdn, preferredRelease, requiredFirmware, sourceSections };
+export { describeSource, formatAction, formatDetail, formatLabel, inferFormat, isDlc, isOverdriveCdn, preferredRelease, requiredFirmware, sourceSections };

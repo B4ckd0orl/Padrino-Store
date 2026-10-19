@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55944",
+    "format": "pkg",
+    "filename": "CUSA55944_Umihara_Kawase_BaZooKa.pkg",
+    "url": "https://vikingfile.com/f/cusa55944_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55944_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9448928051,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55944"
+  },
+  {
+    "id": "r_mf_cusa55944",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55944-Umihara_Kawase_BaZooKa.rar",
+    "url": "https://www.mediafire.com/file/cusa55944_mf/CUSA55944_Umihara_Kawase_BaZooKa.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55944_mf/CUSA55944_Umihara_Kawase_BaZooKa.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9448928051,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55944"
+  }
+]

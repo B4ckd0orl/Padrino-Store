@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55806",
+    "format": "pkg",
+    "filename": "CUSA55806_Super_Buckyball_Tournament.pkg",
+    "url": "https://vikingfile.com/f/cusa55806_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55806_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7194070221,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55806"
+  },
+  {
+    "id": "r_mf_cusa55806",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55806-Super_Buckyball_Tournament.rar",
+    "url": "https://www.mediafire.com/file/cusa55806_mf/CUSA55806_Super_Buckyball_Tournament.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55806_mf/CUSA55806_Super_Buckyball_Tournament.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7194070221,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55806"
+  }
+]

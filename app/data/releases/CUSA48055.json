@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48055",
+    "format": "pkg",
+    "filename": "CUSA48055_Aegis_Defenders.pkg",
+    "url": "https://vikingfile.com/f/cusa48055_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48055_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6549825126,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48055"
+  },
+  {
+    "id": "r_mf_cusa48055",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48055-Aegis_Defenders.rar",
+    "url": "https://www.mediafire.com/file/cusa48055_mf/CUSA48055_Aegis_Defenders.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48055_mf/CUSA48055_Aegis_Defenders.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6549825126,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48055"
+  }
+]

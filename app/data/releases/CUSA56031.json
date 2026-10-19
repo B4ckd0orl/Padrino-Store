@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56031",
+    "format": "pkg",
+    "filename": "CUSA56031_Way_of_Redemption.pkg",
+    "url": "https://vikingfile.com/f/cusa56031_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56031_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7408818586,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56031"
+  },
+  {
+    "id": "r_mf_cusa56031",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56031-Way_of_Redemption.rar",
+    "url": "https://www.mediafire.com/file/cusa56031_mf/CUSA56031_Way_of_Redemption.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56031_mf/CUSA56031_Way_of_Redemption.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7408818586,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56031"
+  }
+]

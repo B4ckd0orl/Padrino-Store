@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa15910",
+    "format": "pkg",
+    "filename": "CUSA15910_Hellpoint_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa15910_pkg/CUSA15910_Hellpoint_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa15910_pkg/CUSA15910_Hellpoint_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 10522669875,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA15910"
+  },
+  {
+    "id": "r_vk_cusa15910",
+    "format": "pkg",
+    "filename": "CUSA15910_Hellpoint_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa15910_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa15910_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 10522669875,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA15910"
+  }
+]

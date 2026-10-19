@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55492",
+    "format": "pkg",
+    "filename": "CUSA55492_Psycho_Pass__Mandatory_Happiness.pkg",
+    "url": "https://vikingfile.com/f/cusa55492_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55492_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7194070221,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55492"
+  },
+  {
+    "id": "r_mf_cusa55492",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55492-Psycho_Pass__Mandatory_Happiness.rar",
+    "url": "https://www.mediafire.com/file/cusa55492_mf/CUSA55492_Psycho_Pass__Mandatory_Happiness.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55492_mf/CUSA55492_Psycho_Pass__Mandatory_Happiness.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7194070221,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55492"
+  }
+]

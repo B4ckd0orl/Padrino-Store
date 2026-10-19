@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa34461",
+    "format": "pkg",
+    "filename": "CUSA34461_Mercenaries_Rebirth__Call_of_the_Wild_Lynx.pkg",
+    "url": "https://vikingfile.com/f/cusa34461_base",
+    "browserUrl": "https://vikingfile.com/f/cusa34461_base",
+    "requiresBrowser": true,
+    "sizeBytes": 912680550,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA34461"
+  },
+  {
+    "id": "r_mf_cusa34461",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA34461-Mercenaries_Rebirth__Call_of_the_Wild_Lynx.rar",
+    "url": "https://www.mediafire.com/file/cusa34461_mf/CUSA34461_Mercenaries_Rebirth__Call_of_the_Wild_Lynx.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa34461_mf/CUSA34461_Mercenaries_Rebirth__Call_of_the_Wild_Lynx.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 912680550,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA34461"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa14366",
+    "format": "pkg",
+    "filename": "CUSA14366_Everspace__Stellar_Edition.pkg",
+    "url": "https://vikingfile.com/f/cusa14366_base",
+    "browserUrl": "https://vikingfile.com/f/cusa14366_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14366"
+  },
+  {
+    "id": "r_mf_cusa14366",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA14366-Everspace__Stellar_Edition.rar",
+    "url": "https://www.mediafire.com/file/cusa14366_mf/CUSA14366_Everspace__Stellar_Edition.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa14366_mf/CUSA14366_Everspace__Stellar_Edition.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14366"
+  }
+]

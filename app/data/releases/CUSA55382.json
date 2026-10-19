@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55382",
+    "format": "pkg",
+    "filename": "CUSA55382_Panzer_Dragoon__Remake.pkg",
+    "url": "https://vikingfile.com/f/cusa55382_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55382_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6871947674,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55382"
+  },
+  {
+    "id": "r_mf_cusa55382",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55382-Panzer_Dragoon__Remake.rar",
+    "url": "https://www.mediafire.com/file/cusa55382_mf/CUSA55382_Panzer_Dragoon__Remake.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55382_mf/CUSA55382_Panzer_Dragoon__Remake.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6871947674,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55382"
+  }
+]

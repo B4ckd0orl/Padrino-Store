@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa01196",
+    "format": "pkg",
+    "filename": "CUSA01196_OlliOlli2__Welcome_to_Olliwood.pkg",
+    "url": "https://vikingfile.com/f/cusa01196_base",
+    "browserUrl": "https://vikingfile.com/f/cusa01196_base",
+    "requiresBrowser": true,
+    "sizeBytes": 858993459,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA01196"
+  },
+  {
+    "id": "r_mf_cusa01196",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA01196-OlliOlli2__Welcome_to_Olliwood.rar",
+    "url": "https://www.mediafire.com/file/cusa01196_mf/CUSA01196_OlliOlli2__Welcome_to_Olliwood.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa01196_mf/CUSA01196_OlliOlli2__Welcome_to_Olliwood.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 858993459,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA01196"
+  }
+]

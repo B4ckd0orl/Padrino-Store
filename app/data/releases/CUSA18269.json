@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa18269",
+    "format": "pkg",
+    "filename": "CUSA18269_Cloudpunk.pkg",
+    "url": "https://vikingfile.com/f/cusa18269_base",
+    "browserUrl": "https://vikingfile.com/f/cusa18269_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18269"
+  },
+  {
+    "id": "r_mf_cusa18269",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA18269-Cloudpunk.rar",
+    "url": "https://www.mediafire.com/file/cusa18269_mf/CUSA18269_Cloudpunk.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa18269_mf/CUSA18269_Cloudpunk.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18269"
+  }
+]

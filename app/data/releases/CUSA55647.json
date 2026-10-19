@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55647",
+    "format": "pkg",
+    "filename": "CUSA55647_Score_Rush_Extended.pkg",
+    "url": "https://vikingfile.com/f/cusa55647_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55647_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5798205850,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55647"
+  },
+  {
+    "id": "r_mf_cusa55647",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55647-Score_Rush_Extended.rar",
+    "url": "https://www.mediafire.com/file/cusa55647_mf/CUSA55647_Score_Rush_Extended.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55647_mf/CUSA55647_Score_Rush_Extended.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5798205850,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55647"
+  }
+]

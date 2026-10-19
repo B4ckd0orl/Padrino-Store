@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49094",
+    "format": "pkg",
+    "filename": "CUSA49094_Atelier_Lydie___Suelle__Alchemists_of_the_Mysterious_Painting.pkg",
+    "url": "https://vikingfile.com/f/cusa49094_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49094_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49094"
+  },
+  {
+    "id": "r_mf_cusa49094",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49094-Atelier_Lydie___Suelle__Alchemists_of_the_Mysterious_Painting.rar",
+    "url": "https://www.mediafire.com/file/cusa49094_mf/CUSA49094_Atelier_Lydie___Suelle__Alchemists_of_the_Mysterious_Painting.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49094_mf/CUSA49094_Atelier_Lydie___Suelle__Alchemists_of_the_Mysterious_Painting.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49094"
+  }
+]

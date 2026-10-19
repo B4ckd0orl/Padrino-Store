@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55851",
+    "format": "pkg",
+    "filename": "CUSA55851_Tembo_the_Badass_Elephant.pkg",
+    "url": "https://vikingfile.com/f/cusa55851_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55851_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6335076762,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55851"
+  },
+  {
+    "id": "r_mf_cusa55851",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55851-Tembo_the_Badass_Elephant.rar",
+    "url": "https://www.mediafire.com/file/cusa55851_mf/CUSA55851_Tembo_the_Badass_Elephant.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55851_mf/CUSA55851_Tembo_the_Badass_Elephant.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6335076762,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55851"
+  }
+]

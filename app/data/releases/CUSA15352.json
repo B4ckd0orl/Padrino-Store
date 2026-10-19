@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa15352",
+    "format": "pkg",
+    "filename": "CUSA15352_Valfaris.pkg",
+    "url": "https://vikingfile.com/f/cusa15352_base",
+    "browserUrl": "https://vikingfile.com/f/cusa15352_base",
+    "requiresBrowser": true,
+    "sizeBytes": 966367642,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA15352"
+  },
+  {
+    "id": "r_mf_cusa15352",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA15352-Valfaris.rar",
+    "url": "https://www.mediafire.com/file/cusa15352_mf/CUSA15352_Valfaris.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa15352_mf/CUSA15352_Valfaris.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 966367642,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA15352"
+  }
+]

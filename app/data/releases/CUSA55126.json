@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55126",
+    "format": "pkg",
+    "filename": "CUSA55126_Mafia_III__Definitive_Edition.pkg",
+    "url": "https://vikingfile.com/f/cusa55126_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55126_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4939212390,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55126"
+  },
+  {
+    "id": "r_mf_cusa55126",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55126-Mafia_III__Definitive_Edition.rar",
+    "url": "https://www.mediafire.com/file/cusa55126_mf/CUSA55126_Mafia_III__Definitive_Edition.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55126_mf/CUSA55126_Mafia_III__Definitive_Edition.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4939212390,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55126"
+  }
+]

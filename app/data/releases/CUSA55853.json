@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55853",
+    "format": "pkg",
+    "filename": "CUSA55853_Tennis_in_the_Face.pkg",
+    "url": "https://vikingfile.com/f/cusa55853_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55853_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5583457485,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55853"
+  },
+  {
+    "id": "r_mf_cusa55853",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55853-Tennis_in_the_Face.rar",
+    "url": "https://www.mediafire.com/file/cusa55853_mf/CUSA55853_Tennis_in_the_Face.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55853_mf/CUSA55853_Tennis_in_the_Face.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5583457485,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55853"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49163",
+    "format": "pkg",
+    "filename": "CUSA49163_Blackwood_Crossing.pkg",
+    "url": "https://vikingfile.com/f/cusa49163_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49163_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4939212390,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49163"
+  },
+  {
+    "id": "r_mf_cusa49163",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49163-Blackwood_Crossing.rar",
+    "url": "https://www.mediafire.com/file/cusa49163_mf/CUSA49163_Blackwood_Crossing.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49163_mf/CUSA49163_Blackwood_Crossing.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4939212390,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49163"
+  }
+]

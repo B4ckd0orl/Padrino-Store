@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50240",
+    "format": "pkg",
+    "filename": "CUSA50240_Grim_Legends__The_Forsaken_Bride.pkg",
+    "url": "https://vikingfile.com/f/cusa50240_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50240_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3221225472,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50240"
+  },
+  {
+    "id": "r_mf_cusa50240",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50240-Grim_Legends__The_Forsaken_Bride.rar",
+    "url": "https://www.mediafire.com/file/cusa50240_mf/CUSA50240_Grim_Legends__The_Forsaken_Bride.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50240_mf/CUSA50240_Grim_Legends__The_Forsaken_Bride.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3221225472,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50240"
+  }
+]

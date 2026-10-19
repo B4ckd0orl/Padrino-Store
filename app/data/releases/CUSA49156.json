@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49156",
+    "format": "pkg",
+    "filename": "CUSA49156_Blackguards_2.pkg",
+    "url": "https://vikingfile.com/f/cusa49156_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49156_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49156"
+  },
+  {
+    "id": "r_mf_cusa49156",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49156-Blackguards_2.rar",
+    "url": "https://www.mediafire.com/file/cusa49156_mf/CUSA49156_Blackguards_2.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49156_mf/CUSA49156_Blackguards_2.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49156"
+  }
+]

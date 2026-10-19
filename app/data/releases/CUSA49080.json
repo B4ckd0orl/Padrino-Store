@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49080",
+    "format": "pkg",
+    "filename": "CUSA49080_A_Space_for_the_Unbound.pkg",
+    "url": "https://vikingfile.com/f/cusa49080_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49080_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3972844749,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49080"
+  },
+  {
+    "id": "r_mf_cusa49080",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49080-A_Space_for_the_Unbound.rar",
+    "url": "https://www.mediafire.com/file/cusa49080_mf/CUSA49080_A_Space_for_the_Unbound.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49080_mf/CUSA49080_A_Space_for_the_Unbound.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3972844749,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49080"
+  }
+]

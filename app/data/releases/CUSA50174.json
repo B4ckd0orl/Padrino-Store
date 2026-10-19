@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50174",
+    "format": "pkg",
+    "filename": "CUSA50174_Full_Mojo_Rampage.pkg",
+    "url": "https://vikingfile.com/f/cusa50174_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50174_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7408818586,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50174"
+  },
+  {
+    "id": "r_mf_cusa50174",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50174-Full_Mojo_Rampage.rar",
+    "url": "https://www.mediafire.com/file/cusa50174_mf/CUSA50174_Full_Mojo_Rampage.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50174_mf/CUSA50174_Full_Mojo_Rampage.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7408818586,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50174"
+  }
+]

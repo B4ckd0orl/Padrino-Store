@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa13276",
+    "format": "pkg",
+    "filename": "CUSA13276_Override__Mech_City_Brawl.pkg",
+    "url": "https://vikingfile.com/f/cusa13276_base",
+    "browserUrl": "https://vikingfile.com/f/cusa13276_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5798205850,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA13276"
+  },
+  {
+    "id": "r_mf_cusa13276",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA13276-Override__Mech_City_Brawl.rar",
+    "url": "https://www.mediafire.com/file/cusa13276_mf/CUSA13276_Override__Mech_City_Brawl.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa13276_mf/CUSA13276_Override__Mech_City_Brawl.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5798205850,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA13276"
+  }
+]

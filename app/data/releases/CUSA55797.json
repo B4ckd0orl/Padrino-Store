@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55797",
+    "format": "pkg",
+    "filename": "CUSA55797_The_Suicide_of_Rachel_Foster.pkg",
+    "url": "https://vikingfile.com/f/cusa55797_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55797_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4294967296,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55797"
+  },
+  {
+    "id": "r_mf_cusa55797",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55797-The_Suicide_of_Rachel_Foster.rar",
+    "url": "https://www.mediafire.com/file/cusa55797_mf/CUSA55797_The_Suicide_of_Rachel_Foster.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55797_mf/CUSA55797_The_Suicide_of_Rachel_Foster.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4294967296,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55797"
+  }
+]

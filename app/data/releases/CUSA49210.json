@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49210",
+    "format": "pkg",
+    "filename": "CUSA49210_Bridge_Constructor_Portal.pkg",
+    "url": "https://vikingfile.com/f/cusa49210_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49210_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5368709120,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49210"
+  },
+  {
+    "id": "r_mf_cusa49210",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49210-Bridge_Constructor_Portal.rar",
+    "url": "https://www.mediafire.com/file/cusa49210_mf/CUSA49210_Bridge_Constructor_Portal.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49210_mf/CUSA49210_Bridge_Constructor_Portal.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5368709120,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49210"
+  }
+]

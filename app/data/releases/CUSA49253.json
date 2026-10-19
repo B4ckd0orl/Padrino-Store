@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49253",
+    "format": "pkg",
+    "filename": "CUSA49253_Catlateral_Damage.pkg",
+    "url": "https://vikingfile.com/f/cusa49253_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49253_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2362232013,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49253"
+  },
+  {
+    "id": "r_mf_cusa49253",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49253-Catlateral_Damage.rar",
+    "url": "https://www.mediafire.com/file/cusa49253_mf/CUSA49253_Catlateral_Damage.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49253_mf/CUSA49253_Catlateral_Damage.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2362232013,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49253"
+  }
+]

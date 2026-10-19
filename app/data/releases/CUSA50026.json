@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50026",
+    "format": "pkg",
+    "filename": "CUSA50026_Duck_Dynasty.pkg",
+    "url": "https://vikingfile.com/f/cusa50026_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50026_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8160437862,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50026"
+  },
+  {
+    "id": "r_mf_cusa50026",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50026-Duck_Dynasty.rar",
+    "url": "https://www.mediafire.com/file/cusa50026_mf/CUSA50026_Duck_Dynasty.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50026_mf/CUSA50026_Duck_Dynasty.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8160437862,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50026"
+  }
+]

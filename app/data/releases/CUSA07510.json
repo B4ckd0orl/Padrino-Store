@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa07510",
+    "format": "pkg",
+    "filename": "CUSA07510_Star_Ocean_Till_the_End_of_Time_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa07510_pkg/CUSA07510_Star_Ocean_Till_the_End_of_Time_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa07510_pkg/CUSA07510_Star_Ocean_Till_the_End_of_Time_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 10522669875,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA07510"
+  },
+  {
+    "id": "r_vk_cusa07510",
+    "format": "pkg",
+    "filename": "CUSA07510_Star_Ocean_Till_the_End_of_Time_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa07510_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa07510_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 10522669875,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA07510"
+  }
+]

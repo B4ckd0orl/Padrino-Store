@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48097",
+    "format": "pkg",
+    "filename": "CUSA48097_Angry_Birds_Star_Wars.pkg",
+    "url": "https://vikingfile.com/f/cusa48097_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48097_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2147483648,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48097"
+  },
+  {
+    "id": "r_mf_cusa48097",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48097-Angry_Birds_Star_Wars.rar",
+    "url": "https://www.mediafire.com/file/cusa48097_mf/CUSA48097_Angry_Birds_Star_Wars.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48097_mf/CUSA48097_Angry_Birds_Star_Wars.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2147483648,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48097"
+  }
+]

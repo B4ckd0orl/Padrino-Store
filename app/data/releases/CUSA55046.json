@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55046",
+    "format": "pkg",
+    "filename": "CUSA55046_Laid_Back_Camp__Virtual__Fumoto_Campsite.pkg",
+    "url": "https://vikingfile.com/f/cusa55046_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55046_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3758096384,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55046"
+  },
+  {
+    "id": "r_mf_cusa55046",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55046-Laid_Back_Camp__Virtual__Fumoto_Campsite.rar",
+    "url": "https://www.mediafire.com/file/cusa55046_mf/CUSA55046_Laid_Back_Camp__Virtual__Fumoto_Campsite.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55046_mf/CUSA55046_Laid_Back_Camp__Virtual__Fumoto_Campsite.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3758096384,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55046"
+  }
+]

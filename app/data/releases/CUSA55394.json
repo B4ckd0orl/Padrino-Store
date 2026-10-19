@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55394",
+    "format": "pkg",
+    "filename": "CUSA55394_Path_of_Sin__Greed.pkg",
+    "url": "https://vikingfile.com/f/cusa55394_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55394_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55394"
+  },
+  {
+    "id": "r_mf_cusa55394",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55394-Path_of_Sin__Greed.rar",
+    "url": "https://www.mediafire.com/file/cusa55394_mf/CUSA55394_Path_of_Sin__Greed.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55394_mf/CUSA55394_Path_of_Sin__Greed.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55394"
+  }
+]

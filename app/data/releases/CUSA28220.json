@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa28220",
+    "format": "pkg",
+    "filename": "CUSA28220_Behind_the_Frame__The_Finest_Scenery.pkg",
+    "url": "https://vikingfile.com/f/cusa28220_base",
+    "browserUrl": "https://vikingfile.com/f/cusa28220_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2254857830,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA28220"
+  },
+  {
+    "id": "r_mf_cusa28220",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA28220-Behind_the_Frame__The_Finest_Scenery.rar",
+    "url": "https://www.mediafire.com/file/cusa28220_mf/CUSA28220_Behind_the_Frame__The_Finest_Scenery.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa28220_mf/CUSA28220_Behind_the_Frame__The_Finest_Scenery.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2254857830,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA28220"
+  }
+]

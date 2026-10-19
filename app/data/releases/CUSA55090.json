@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55090",
+    "format": "pkg",
+    "filename": "CUSA55090_Little_Big_Workshop.pkg",
+    "url": "https://vikingfile.com/f/cusa55090_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55090_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5046586573,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55090"
+  },
+  {
+    "id": "r_mf_cusa55090",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55090-Little_Big_Workshop.rar",
+    "url": "https://www.mediafire.com/file/cusa55090_mf/CUSA55090_Little_Big_Workshop.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55090_mf/CUSA55090_Little_Big_Workshop.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5046586573,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55090"
+  }
+]

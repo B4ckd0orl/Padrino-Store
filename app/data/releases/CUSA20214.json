@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa20214",
+    "format": "pkg",
+    "filename": "CUSA20214_Autonauts.pkg",
+    "url": "https://vikingfile.com/f/cusa20214_base",
+    "browserUrl": "https://vikingfile.com/f/cusa20214_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA20214"
+  },
+  {
+    "id": "r_mf_cusa20214",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA20214-Autonauts.rar",
+    "url": "https://www.mediafire.com/file/cusa20214_mf/CUSA20214_Autonauts.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa20214_mf/CUSA20214_Autonauts.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA20214"
+  }
+]

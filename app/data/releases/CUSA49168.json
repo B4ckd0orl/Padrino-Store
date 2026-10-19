@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49168",
+    "format": "pkg",
+    "filename": "CUSA49168_Blade_Strangers.pkg",
+    "url": "https://vikingfile.com/f/cusa49168_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49168_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49168"
+  },
+  {
+    "id": "r_mf_cusa49168",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49168-Blade_Strangers.rar",
+    "url": "https://www.mediafire.com/file/cusa49168_mf/CUSA49168_Blade_Strangers.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49168_mf/CUSA49168_Blade_Strangers.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49168"
+  }
+]

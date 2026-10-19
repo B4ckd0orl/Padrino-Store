@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50381",
+    "format": "pkg",
+    "filename": "CUSA50381_Jagged_Alliance__Rage_.pkg",
+    "url": "https://vikingfile.com/f/cusa50381_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50381_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50381"
+  },
+  {
+    "id": "r_mf_cusa50381",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50381-Jagged_Alliance__Rage_.rar",
+    "url": "https://www.mediafire.com/file/cusa50381_mf/CUSA50381_Jagged_Alliance__Rage_.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50381_mf/CUSA50381_Jagged_Alliance__Rage_.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50381"
+  }
+]

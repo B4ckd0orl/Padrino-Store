@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa06217",
+    "format": "pkg",
+    "filename": "CUSA06217_Clustertruck.pkg",
+    "url": "https://vikingfile.com/f/cusa06217_base",
+    "browserUrl": "https://vikingfile.com/f/cusa06217_base",
+    "requiresBrowser": true,
+    "sizeBytes": 536870912,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06217"
+  },
+  {
+    "id": "r_mf_cusa06217",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA06217-Clustertruck.rar",
+    "url": "https://www.mediafire.com/file/cusa06217_mf/CUSA06217_Clustertruck.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa06217_mf/CUSA06217_Clustertruck.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 536870912,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06217"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56094",
+    "format": "pkg",
+    "filename": "CUSA56094_Yeah__You_Want__Those_Games___Right__So_Here_You_Go__Now__Let_s_See_You_Clear_Them_.pkg",
+    "url": "https://vikingfile.com/f/cusa56094_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56094_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56094"
+  },
+  {
+    "id": "r_mf_cusa56094",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56094-Yeah__You_Want__Those_Games___Right__So_Here_You_Go__Now__Let_s_See_You_Clear_Them_.rar",
+    "url": "https://www.mediafire.com/file/cusa56094_mf/CUSA56094_Yeah__You_Want__Those_Games___Right__So_Here_You_Go__Now__Let_s_See_You_Clear_Them_.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56094_mf/CUSA56094_Yeah__You_Want__Those_Games___Right__So_Here_You_Go__Now__Let_s_See_You_Clear_Them_.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56094"
+  }
+]

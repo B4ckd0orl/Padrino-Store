@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50053",
+    "format": "pkg",
+    "filename": "CUSA50053_eBaseball_Powerful_Pro_Yakyuu_2022.pkg",
+    "url": "https://vikingfile.com/f/cusa50053_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50053_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6120328397,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50053"
+  },
+  {
+    "id": "r_mf_cusa50053",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50053-eBaseball_Powerful_Pro_Yakyuu_2022.rar",
+    "url": "https://www.mediafire.com/file/cusa50053_mf/CUSA50053_eBaseball_Powerful_Pro_Yakyuu_2022.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50053_mf/CUSA50053_eBaseball_Powerful_Pro_Yakyuu_2022.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6120328397,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50053"
+  }
+]

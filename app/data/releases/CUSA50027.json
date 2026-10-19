@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50027",
+    "format": "pkg",
+    "filename": "CUSA50027_Duck_Game.pkg",
+    "url": "https://vikingfile.com/f/cusa50027_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50027_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3113851290,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50027"
+  },
+  {
+    "id": "r_mf_cusa50027",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50027-Duck_Game.rar",
+    "url": "https://www.mediafire.com/file/cusa50027_mf/CUSA50027_Duck_Game.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50027_mf/CUSA50027_Duck_Game.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3113851290,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50027"
+  }
+]

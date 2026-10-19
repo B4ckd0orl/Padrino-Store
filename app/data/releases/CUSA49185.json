@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49185",
+    "format": "pkg",
+    "filename": "CUSA49185_Bloons_TD_5.pkg",
+    "url": "https://vikingfile.com/f/cusa49185_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49185_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4831838208,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49185"
+  },
+  {
+    "id": "r_mf_cusa49185",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49185-Bloons_TD_5.rar",
+    "url": "https://www.mediafire.com/file/cusa49185_mf/CUSA49185_Bloons_TD_5.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49185_mf/CUSA49185_Bloons_TD_5.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4831838208,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49185"
+  }
+]

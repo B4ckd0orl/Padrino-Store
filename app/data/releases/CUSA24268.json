@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa24268",
+    "format": "pkg",
+    "filename": "CUSA24268_One_Step_From_Eden.pkg",
+    "url": "https://vikingfile.com/f/cusa24268_base",
+    "browserUrl": "https://vikingfile.com/f/cusa24268_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1020054733,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA24268"
+  },
+  {
+    "id": "r_mf_cusa24268",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA24268-One_Step_From_Eden.rar",
+    "url": "https://www.mediafire.com/file/cusa24268_mf/CUSA24268_One_Step_From_Eden.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa24268_mf/CUSA24268_One_Step_From_Eden.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1020054733,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA24268"
+  }
+]

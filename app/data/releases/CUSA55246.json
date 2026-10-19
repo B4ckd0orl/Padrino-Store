@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55246",
+    "format": "pkg",
+    "filename": "CUSA55246_MX_Nitro.pkg",
+    "url": "https://vikingfile.com/f/cusa55246_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55246_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9234179686,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55246"
+  },
+  {
+    "id": "r_mf_cusa55246",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55246-MX_Nitro.rar",
+    "url": "https://www.mediafire.com/file/cusa55246_mf/CUSA55246_MX_Nitro.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55246_mf/CUSA55246_MX_Nitro.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9234179686,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55246"
+  }
+]

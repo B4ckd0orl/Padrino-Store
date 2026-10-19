@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50275",
+    "format": "pkg",
+    "filename": "CUSA50275_Heart_Slash.pkg",
+    "url": "https://vikingfile.com/f/cusa50275_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50275_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50275"
+  },
+  {
+    "id": "r_mf_cusa50275",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50275-Heart_Slash.rar",
+    "url": "https://www.mediafire.com/file/cusa50275_mf/CUSA50275_Heart_Slash.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50275_mf/CUSA50275_Heart_Slash.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50275"
+  }
+]

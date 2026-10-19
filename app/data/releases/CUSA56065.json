@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56065",
+    "format": "pkg",
+    "filename": "CUSA56065_World_of_Warriors.pkg",
+    "url": "https://vikingfile.com/f/cusa56065_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56065_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9019431322,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56065"
+  },
+  {
+    "id": "r_mf_cusa56065",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56065-World_of_Warriors.rar",
+    "url": "https://www.mediafire.com/file/cusa56065_mf/CUSA56065_World_of_Warriors.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56065_mf/CUSA56065_World_of_Warriors.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9019431322,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56065"
+  }
+]

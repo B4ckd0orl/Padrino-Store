@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa06810",
+    "format": "pkg",
+    "filename": "CUSA06810_Valkyria_Revolution_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa06810_pkg/CUSA06810_Valkyria_Revolution_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa06810_pkg/CUSA06810_Valkyria_Revolution_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 20830591386,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06810"
+  },
+  {
+    "id": "r_vk_cusa06810",
+    "format": "pkg",
+    "filename": "CUSA06810_Valkyria_Revolution_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa06810_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa06810_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 20830591386,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06810"
+  }
+]

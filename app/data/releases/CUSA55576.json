@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55576",
+    "format": "pkg",
+    "filename": "CUSA55576_Resident_Evil_Zero_HD_Remaster.pkg",
+    "url": "https://vikingfile.com/f/cusa55576_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55576_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55576"
+  },
+  {
+    "id": "r_mf_cusa55576",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55576-Resident_Evil_Zero_HD_Remaster.rar",
+    "url": "https://www.mediafire.com/file/cusa55576_mf/CUSA55576_Resident_Evil_Zero_HD_Remaster.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55576_mf/CUSA55576_Resident_Evil_Zero_HD_Remaster.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55576"
+  }
+]

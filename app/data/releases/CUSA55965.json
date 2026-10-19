@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55965",
+    "format": "pkg",
+    "filename": "CUSA55965_Uno_Flip_.pkg",
+    "url": "https://vikingfile.com/f/cusa55965_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55965_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6871947674,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55965"
+  },
+  {
+    "id": "r_mf_cusa55965",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55965-Uno_Flip_.rar",
+    "url": "https://www.mediafire.com/file/cusa55965_mf/CUSA55965_Uno_Flip_.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55965_mf/CUSA55965_Uno_Flip_.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6871947674,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55965"
+  }
+]

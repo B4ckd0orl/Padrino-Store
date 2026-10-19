@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55686",
+    "format": "pkg",
+    "filename": "CUSA55686_Shiny_Ski_Resort.pkg",
+    "url": "https://vikingfile.com/f/cusa55686_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55686_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5690831667,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55686"
+  },
+  {
+    "id": "r_mf_cusa55686",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55686-Shiny_Ski_Resort.rar",
+    "url": "https://www.mediafire.com/file/cusa55686_mf/CUSA55686_Shiny_Ski_Resort.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55686_mf/CUSA55686_Shiny_Ski_Resort.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5690831667,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55686"
+  }
+]

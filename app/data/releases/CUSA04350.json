@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa04350",
+    "format": "pkg",
+    "filename": "CUSA04350_MX_vs_ATV_Supercross_Encore.pkg",
+    "url": "https://vikingfile.com/f/cusa04350_base",
+    "browserUrl": "https://vikingfile.com/f/cusa04350_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA04350"
+  },
+  {
+    "id": "r_mf_cusa04350",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA04350-MX_vs_ATV_Supercross_Encore.rar",
+    "url": "https://www.mediafire.com/file/cusa04350_mf/CUSA04350_MX_vs_ATV_Supercross_Encore.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa04350_mf/CUSA04350_MX_vs_ATV_Supercross_Encore.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA04350"
+  }
+]

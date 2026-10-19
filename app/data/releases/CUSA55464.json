@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55464",
+    "format": "pkg",
+    "filename": "CUSA55464_Praey_for_the_Gods.pkg",
+    "url": "https://vikingfile.com/f/cusa55464_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55464_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4509715661,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55464"
+  },
+  {
+    "id": "r_mf_cusa55464",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55464-Praey_for_the_Gods.rar",
+    "url": "https://www.mediafire.com/file/cusa55464_mf/CUSA55464_Praey_for_the_Gods.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55464_mf/CUSA55464_Praey_for_the_Gods.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4509715661,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55464"
+  }
+]

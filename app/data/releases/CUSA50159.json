@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50159",
+    "format": "pkg",
+    "filename": "CUSA50159_Foul_Play.pkg",
+    "url": "https://vikingfile.com/f/cusa50159_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50159_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2469606195,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50159"
+  },
+  {
+    "id": "r_mf_cusa50159",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50159-Foul_Play.rar",
+    "url": "https://www.mediafire.com/file/cusa50159_mf/CUSA50159_Foul_Play.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50159_mf/CUSA50159_Foul_Play.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2469606195,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50159"
+  }
+]

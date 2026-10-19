@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55383",
+    "format": "pkg",
+    "filename": "CUSA55383_Papa_s_Quiz.pkg",
+    "url": "https://vikingfile.com/f/cusa55383_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55383_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55383"
+  },
+  {
+    "id": "r_mf_cusa55383",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55383-Papa_s_Quiz.rar",
+    "url": "https://www.mediafire.com/file/cusa55383_mf/CUSA55383_Papa_s_Quiz.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55383_mf/CUSA55383_Papa_s_Quiz.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55383"
+  }
+]

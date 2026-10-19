@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa03348",
+    "format": "pkg",
+    "filename": "CUSA03348_Nitroplus_Blasterz__Heroines_Infinite_Duel.pkg",
+    "url": "https://vikingfile.com/f/cusa03348_base",
+    "browserUrl": "https://vikingfile.com/f/cusa03348_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03348"
+  },
+  {
+    "id": "r_mf_cusa03348",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA03348-Nitroplus_Blasterz__Heroines_Infinite_Duel.rar",
+    "url": "https://www.mediafire.com/file/cusa03348_mf/CUSA03348_Nitroplus_Blasterz__Heroines_Infinite_Duel.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa03348_mf/CUSA03348_Nitroplus_Blasterz__Heroines_Infinite_Duel.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03348"
+  }
+]

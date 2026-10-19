@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55253",
+    "format": "pkg",
+    "filename": "CUSA55253_My_Universe__Fashion_Boutique.pkg",
+    "url": "https://vikingfile.com/f/cusa55253_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55253_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1395864371,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55253"
+  },
+  {
+    "id": "r_mf_cusa55253",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55253-My_Universe__Fashion_Boutique.rar",
+    "url": "https://www.mediafire.com/file/cusa55253_mf/CUSA55253_My_Universe__Fashion_Boutique.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55253_mf/CUSA55253_My_Universe__Fashion_Boutique.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1395864371,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55253"
+  }
+]

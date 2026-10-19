@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55323",
+    "format": "pkg",
+    "filename": "CUSA55323_Ninja_Shodown.pkg",
+    "url": "https://vikingfile.com/f/cusa55323_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55323_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3543348019,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55323"
+  },
+  {
+    "id": "r_mf_cusa55323",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55323-Ninja_Shodown.rar",
+    "url": "https://www.mediafire.com/file/cusa55323_mf/CUSA55323_Ninja_Shodown.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55323_mf/CUSA55323_Ninja_Shodown.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3543348019,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55323"
+  }
+]

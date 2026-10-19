@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa06780",
+    "format": "pkg",
+    "filename": "CUSA06780_Danganronpa_1_2_Reload_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa06780_pkg/CUSA06780_Danganronpa_1_2_Reload_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa06780_pkg/CUSA06780_Danganronpa_1_2_Reload_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9556302234,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06780"
+  },
+  {
+    "id": "r_vk_cusa06780",
+    "format": "pkg",
+    "filename": "CUSA06780_Danganronpa_1_2_Reload_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa06780_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa06780_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 9556302234,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06780"
+  }
+]

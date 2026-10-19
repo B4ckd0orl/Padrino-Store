@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa14367",
+    "format": "pkg",
+    "filename": "CUSA14367_Rebel_Galaxy_Outlaw.pkg",
+    "url": "https://vikingfile.com/f/cusa14367_base",
+    "browserUrl": "https://vikingfile.com/f/cusa14367_base",
+    "requiresBrowser": true,
+    "sizeBytes": 15891378995,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14367"
+  },
+  {
+    "id": "r_mf_cusa14367",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA14367-Rebel_Galaxy_Outlaw.rar",
+    "url": "https://www.mediafire.com/file/cusa14367_mf/CUSA14367_Rebel_Galaxy_Outlaw.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa14367_mf/CUSA14367_Rebel_Galaxy_Outlaw.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 15891378995,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14367"
+  }
+]

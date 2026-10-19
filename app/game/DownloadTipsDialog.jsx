@@ -5,7 +5,7 @@
 import '../assets/Inter-Regular.ttf';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { useEffect, useState } from 'react';
-import { describeSource, isDlc, requiredFirmware } from './sources.js';
+import { describeSource, formatAction, inferFormat, isDlc, requiredFirmware } from './sources.js';
 import { useT } from '../i18n/index.js';
 import { sourceKind } from '../state/download-sources.js';
 import { isPs5Package } from '../state/firmware.js';
@@ -43,6 +43,7 @@ import { FocusScope, ScrollView, Text, View, useIsFocused } from '@ps5-react/cor
     else if (kind === "browser" || kind === "datanodes" || kind === "buzzheavier") notes.push({ tone: "info", icon: "globe", key: "browserOther" });
     const need = requiredFirmware(release);
     if (need !== null && !isDlc(release)) notes.push({ tone: "info", icon: "cpu", key: "firmware", values: { need: `${need}.xx` } });
+    if (!formatAction(inferFormat(release))) notes.push({ tone: "info", icon: "download", key: "format" });
     return notes;
   }
   function TypeBadge({ kind }) {

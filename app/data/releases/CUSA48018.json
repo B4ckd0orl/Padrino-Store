@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48018",
+    "format": "pkg",
+    "filename": "CUSA48018_2urvive.pkg",
+    "url": "https://vikingfile.com/f/cusa48018_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48018_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48018"
+  },
+  {
+    "id": "r_mf_cusa48018",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48018-2urvive.rar",
+    "url": "https://www.mediafire.com/file/cusa48018_mf/CUSA48018_2urvive.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48018_mf/CUSA48018_2urvive.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48018"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa11857",
+    "format": "pkg",
+    "filename": "CUSA11857_Fade_to_Silence.pkg",
+    "url": "https://vikingfile.com/f/cusa11857_base",
+    "browserUrl": "https://vikingfile.com/f/cusa11857_base",
+    "requiresBrowser": true,
+    "sizeBytes": 12025908429,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA11857"
+  },
+  {
+    "id": "r_mf_cusa11857",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA11857-Fade_to_Silence.rar",
+    "url": "https://www.mediafire.com/file/cusa11857_mf/CUSA11857_Fade_to_Silence.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa11857_mf/CUSA11857_Fade_to_Silence.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 12025908429,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA11857"
+  }
+]

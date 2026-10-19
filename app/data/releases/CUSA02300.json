@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa02300",
+    "format": "pkg",
+    "filename": "CUSA02300_Hot_Shots_Tennis_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa02300_pkg/CUSA02300_Hot_Shots_Tennis_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa02300_pkg/CUSA02300_Hot_Shots_Tennis_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1610612736,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA02300"
+  },
+  {
+    "id": "r_vk_cusa02300",
+    "format": "pkg",
+    "filename": "CUSA02300_Hot_Shots_Tennis_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa02300_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa02300_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 1610612736,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA02300"
+  }
+]

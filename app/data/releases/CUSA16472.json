@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa16472",
+    "format": "pkg",
+    "filename": "CUSA16472_Moons_of_Madness.pkg",
+    "url": "https://vikingfile.com/f/cusa16472_base",
+    "browserUrl": "https://vikingfile.com/f/cusa16472_base",
+    "requiresBrowser": true,
+    "sizeBytes": 15891378995,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA16472"
+  },
+  {
+    "id": "r_mf_cusa16472",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA16472-Moons_of_Madness.rar",
+    "url": "https://www.mediafire.com/file/cusa16472_mf/CUSA16472_Moons_of_Madness.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa16472_mf/CUSA16472_Moons_of_Madness.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 15891378995,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA16472"
+  }
+]

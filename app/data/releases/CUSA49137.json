@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49137",
+    "format": "pkg",
+    "filename": "CUSA49137_Bee_Simulator.pkg",
+    "url": "https://vikingfile.com/f/cusa49137_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49137_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49137"
+  },
+  {
+    "id": "r_mf_cusa49137",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49137-Bee_Simulator.rar",
+    "url": "https://www.mediafire.com/file/cusa49137_mf/CUSA49137_Bee_Simulator.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49137_mf/CUSA49137_Bee_Simulator.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49137"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55611",
+    "format": "pkg",
+    "filename": "CUSA55611_Rocketbirds_2__Evolution.pkg",
+    "url": "https://vikingfile.com/f/cusa55611_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55611_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7086696038,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55611"
+  },
+  {
+    "id": "r_mf_cusa55611",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55611-Rocketbirds_2__Evolution.rar",
+    "url": "https://www.mediafire.com/file/cusa55611_mf/CUSA55611_Rocketbirds_2__Evolution.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55611_mf/CUSA55611_Rocketbirds_2__Evolution.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7086696038,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55611"
+  }
+]

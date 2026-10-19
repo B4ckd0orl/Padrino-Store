@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa24739",
+    "format": "pkg",
+    "filename": "CUSA24739_PAW_Patrol_The_Movie__Adventure_City_Calls.pkg",
+    "url": "https://vikingfile.com/f/cusa24739_base",
+    "browserUrl": "https://vikingfile.com/f/cusa24739_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA24739"
+  },
+  {
+    "id": "r_mf_cusa24739",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA24739-PAW_Patrol_The_Movie__Adventure_City_Calls.rar",
+    "url": "https://www.mediafire.com/file/cusa24739_mf/CUSA24739_PAW_Patrol_The_Movie__Adventure_City_Calls.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa24739_mf/CUSA24739_PAW_Patrol_The_Movie__Adventure_City_Calls.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA24739"
+  }
+]

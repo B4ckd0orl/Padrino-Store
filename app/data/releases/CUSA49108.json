@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49108",
+    "format": "pkg",
+    "filename": "CUSA49108_Backgammon_Blitz.pkg",
+    "url": "https://vikingfile.com/f/cusa49108_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49108_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8482560410,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49108"
+  },
+  {
+    "id": "r_mf_cusa49108",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49108-Backgammon_Blitz.rar",
+    "url": "https://www.mediafire.com/file/cusa49108_mf/CUSA49108_Backgammon_Blitz.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49108_mf/CUSA49108_Backgammon_Blitz.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8482560410,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49108"
+  }
+]

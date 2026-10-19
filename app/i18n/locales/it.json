@@ -499,5 +499,17 @@
     "welcome.detail": "Oltre 1.800 giochi gratuiti per la tua PS5. Divertiti! Sostienici con un follow su Telegram e X: lì pubblichiamo news, supporto e nuovi giochi.",
     "welcome.enter": "Entra",
     "welcome.family": "Benvenuto nella famiglia!",
-    "welcome.title": "Benvenuto su Padrino Store!"
+    "welcome.title": "Benvenuto su Padrino Store!",
+    "sources.action.install": "Installa",
+    "sources.action.extract": "Estrai",
+    "sources.action.image": "Monta immagine",
+    "tips.note.format": "Il formato esatto viene confermato non appena inizia il download.",
+    "nav.info": "Info",
+    "info.subtitle": "Informazioni su Padrino Store",
+    "info.lead": "Questo store è stato creato da Gran Padrino. Se trovi un problema, segnalalo così può essere risolto. Apprezzo anche se mi segui.",
+    "info.firmwareTitle": "Firmware",
+    "info.firmware": "Alcuni giochi potrebbero non essere compatibili con il tuo firmware. Non è un bug dello store: dipende dai link di download.",
+    "info.coversTitle": "Copertine",
+    "info.covers": "Alcuni giochi non hanno copertina perché manca la chiave API di PlayStation. Non influenza il funzionamento dello store.",
+    "info.follow": "Seguimi su:"
 }

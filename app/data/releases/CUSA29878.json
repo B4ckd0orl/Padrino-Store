@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa29878",
+    "format": "pkg",
+    "filename": "CUSA29878_Surviving_the_Aftermath.pkg",
+    "url": "https://vikingfile.com/f/cusa29878_base",
+    "browserUrl": "https://vikingfile.com/f/cusa29878_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5583457485,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA29878"
+  },
+  {
+    "id": "r_mf_cusa29878",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA29878-Surviving_the_Aftermath.rar",
+    "url": "https://www.mediafire.com/file/cusa29878_mf/CUSA29878_Surviving_the_Aftermath.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa29878_mf/CUSA29878_Surviving_the_Aftermath.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5583457485,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA29878"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa05495",
+    "format": "pkg",
+    "filename": "CUSA05495_Steep.pkg",
+    "url": "https://vikingfile.com/f/cusa05495_base",
+    "browserUrl": "https://vikingfile.com/f/cusa05495_base",
+    "requiresBrowser": true,
+    "sizeBytes": 23407571763,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA05495"
+  },
+  {
+    "id": "r_mf_cusa05495",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA05495-Steep.rar",
+    "url": "https://www.mediafire.com/file/cusa05495_mf/CUSA05495_Steep.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa05495_mf/CUSA05495_Steep.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 23407571763,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA05495"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55879",
+    "format": "pkg",
+    "filename": "CUSA55879_ToeJam___Earl__Back_in_the_Groove.pkg",
+    "url": "https://vikingfile.com/f/cusa55879_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55879_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3865470566,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55879"
+  },
+  {
+    "id": "r_mf_cusa55879",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55879-ToeJam___Earl__Back_in_the_Groove.rar",
+    "url": "https://www.mediafire.com/file/cusa55879_mf/CUSA55879_ToeJam___Earl__Back_in_the_Groove.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55879_mf/CUSA55879_ToeJam___Earl__Back_in_the_Groove.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3865470566,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55879"
+  }
+]

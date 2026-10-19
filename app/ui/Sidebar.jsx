@@ -63,6 +63,7 @@ import { FocusScope, Text, View } from '@ps5-react/core';
         /* @__PURE__ */ (0, jsx)(View, { style: { height: 1, width: 40, marginVertical: 8, backgroundColor: HAIRLINE } }),
         /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: keyOf("downloads"), icon: "download", label: t2("downloads.title"), current: section === "downloads", onPress: on.downloads, ...into, children: BADGE }),
         /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: keyOf("files"), icon: "folder", label: t2("nav.files"), current: section === "files", onPress: on.files, ...into }),
+        /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: "nav:info", icon: "info", label: t2("nav.info"), current: top.name === "info", onPress: () => nav.push({ name: "info" }, "nav:info"), ...into }),
         /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1 } }),
         /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: "nav:settings", icon: "settings", label: t2("settings.title"), current: top.name === "settings", onPress: () => nav.push({ name: "settings" }, "nav:settings"), ...into })
       ] }) }) })

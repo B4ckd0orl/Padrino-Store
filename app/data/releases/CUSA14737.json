@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa14737",
+    "format": "pkg",
+    "filename": "CUSA14737_Stay_Cool__Kobayashi_san___A_River_City_Ransom_Story.pkg",
+    "url": "https://vikingfile.com/f/cusa14737_base",
+    "browserUrl": "https://vikingfile.com/f/cusa14737_base",
+    "requiresBrowser": true,
+    "sizeBytes": 697932186,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14737"
+  },
+  {
+    "id": "r_mf_cusa14737",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA14737-Stay_Cool__Kobayashi_san___A_River_City_Ransom_Story.rar",
+    "url": "https://www.mediafire.com/file/cusa14737_mf/CUSA14737_Stay_Cool__Kobayashi_san___A_River_City_Ransom_Story.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa14737_mf/CUSA14737_Stay_Cool__Kobayashi_san___A_River_City_Ransom_Story.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 697932186,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14737"
+  }
+]

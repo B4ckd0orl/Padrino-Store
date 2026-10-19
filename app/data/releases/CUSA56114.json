@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56114",
+    "format": "pkg",
+    "filename": "CUSA56114_Zheros.pkg",
+    "url": "https://vikingfile.com/f/cusa56114_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56114_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5476083302,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56114"
+  },
+  {
+    "id": "r_mf_cusa56114",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56114-Zheros.rar",
+    "url": "https://www.mediafire.com/file/cusa56114_mf/CUSA56114_Zheros.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56114_mf/CUSA56114_Zheros.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5476083302,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56114"
+  }
+]

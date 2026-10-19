@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49005",
+    "format": "pkg",
+    "filename": "CUSA49005_The_Aquatic_Adventure_of_the_Last_Human.pkg",
+    "url": "https://vikingfile.com/f/cusa49005_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49005_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6764573491,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49005"
+  },
+  {
+    "id": "r_mf_cusa49005",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49005-The_Aquatic_Adventure_of_the_Last_Human.rar",
+    "url": "https://www.mediafire.com/file/cusa49005_mf/CUSA49005_The_Aquatic_Adventure_of_the_Last_Human.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49005_mf/CUSA49005_The_Aquatic_Adventure_of_the_Last_Human.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6764573491,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49005"
+  }
+]

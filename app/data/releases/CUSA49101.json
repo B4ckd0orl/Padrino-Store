@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49101",
+    "format": "pkg",
+    "filename": "CUSA49101_Awesomenauts_Assemble.pkg",
+    "url": "https://vikingfile.com/f/cusa49101_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49101_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8375186227,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49101"
+  },
+  {
+    "id": "r_mf_cusa49101",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49101-Awesomenauts_Assemble.rar",
+    "url": "https://www.mediafire.com/file/cusa49101_mf/CUSA49101_Awesomenauts_Assemble.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49101_mf/CUSA49101_Awesomenauts_Assemble.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8375186227,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49101"
+  }
+]

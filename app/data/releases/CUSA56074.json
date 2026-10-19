@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56074",
+    "format": "pkg",
+    "filename": "CUSA56074_Wulverblade.pkg",
+    "url": "https://vikingfile.com/f/cusa56074_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56074_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8482560410,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56074"
+  },
+  {
+    "id": "r_mf_cusa56074",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56074-Wulverblade.rar",
+    "url": "https://www.mediafire.com/file/cusa56074_mf/CUSA56074_Wulverblade.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56074_mf/CUSA56074_Wulverblade.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8482560410,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56074"
+  }
+]

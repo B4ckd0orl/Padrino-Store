@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa16303",
+    "format": "pkg",
+    "filename": "CUSA16303_The_Complex.pkg",
+    "url": "https://vikingfile.com/f/cusa16303_base",
+    "browserUrl": "https://vikingfile.com/f/cusa16303_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9878424781,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA16303"
+  },
+  {
+    "id": "r_mf_cusa16303",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA16303-The_Complex.rar",
+    "url": "https://www.mediafire.com/file/cusa16303_mf/CUSA16303_The_Complex.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa16303_mf/CUSA16303_The_Complex.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9878424781,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA16303"
+  }
+]

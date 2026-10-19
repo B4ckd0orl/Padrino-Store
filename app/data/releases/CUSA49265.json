@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49265",
+    "format": "pkg",
+    "filename": "CUSA49265_Chorus__Rise_As_One.pkg",
+    "url": "https://vikingfile.com/f/cusa49265_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49265_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49265"
+  },
+  {
+    "id": "r_mf_cusa49265",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49265-Chorus__Rise_As_One.rar",
+    "url": "https://www.mediafire.com/file/cusa49265_mf/CUSA49265_Chorus__Rise_As_One.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49265_mf/CUSA49265_Chorus__Rise_As_One.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49265"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55924",
+    "format": "pkg",
+    "filename": "CUSA55924_Tr_berbrook.pkg",
+    "url": "https://vikingfile.com/f/cusa55924_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55924_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4724464026,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55924"
+  },
+  {
+    "id": "r_mf_cusa55924",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55924-Tr_berbrook.rar",
+    "url": "https://www.mediafire.com/file/cusa55924_mf/CUSA55924_Tr_berbrook.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55924_mf/CUSA55924_Tr_berbrook.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4724464026,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55924"
+  }
+]

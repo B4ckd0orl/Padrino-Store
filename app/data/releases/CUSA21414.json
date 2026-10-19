@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa21414",
+    "format": "pkg",
+    "filename": "CUSA21414_Project_Starship_X.pkg",
+    "url": "https://vikingfile.com/f/cusa21414_base",
+    "browserUrl": "https://vikingfile.com/f/cusa21414_base",
+    "requiresBrowser": true,
+    "sizeBytes": 536870912,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA21414"
+  },
+  {
+    "id": "r_mf_cusa21414",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA21414-Project_Starship_X.rar",
+    "url": "https://www.mediafire.com/file/cusa21414_mf/CUSA21414_Project_Starship_X.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa21414_mf/CUSA21414_Project_Starship_X.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 536870912,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA21414"
+  }
+]

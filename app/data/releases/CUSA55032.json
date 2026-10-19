@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55032",
+    "format": "pkg",
+    "filename": "CUSA55032_Knot.pkg",
+    "url": "https://vikingfile.com/f/cusa55032_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55032_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2362232013,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55032"
+  },
+  {
+    "id": "r_mf_cusa55032",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55032-Knot.rar",
+    "url": "https://www.mediafire.com/file/cusa55032_mf/CUSA55032_Knot.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55032_mf/CUSA55032_Knot.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2362232013,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55032"
+  }
+]

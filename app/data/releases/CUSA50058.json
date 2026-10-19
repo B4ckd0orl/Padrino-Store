@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50058",
+    "format": "pkg",
+    "filename": "CUSA50058_Effie.pkg",
+    "url": "https://vikingfile.com/f/cusa50058_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50058_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5476083302,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50058"
+  },
+  {
+    "id": "r_mf_cusa50058",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50058-Effie.rar",
+    "url": "https://www.mediafire.com/file/cusa50058_mf/CUSA50058_Effie.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50058_mf/CUSA50058_Effie.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5476083302,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50058"
+  }
+]

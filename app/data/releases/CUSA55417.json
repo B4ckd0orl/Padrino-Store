@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55417",
+    "format": "pkg",
+    "filename": "CUSA55417_Pharaonic.pkg",
+    "url": "https://vikingfile.com/f/cusa55417_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55417_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2362232013,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55417"
+  },
+  {
+    "id": "r_mf_cusa55417",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55417-Pharaonic.rar",
+    "url": "https://www.mediafire.com/file/cusa55417_mf/CUSA55417_Pharaonic.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55417_mf/CUSA55417_Pharaonic.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2362232013,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55417"
+  }
+]

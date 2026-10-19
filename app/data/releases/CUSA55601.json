@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55601",
+    "format": "pkg",
+    "filename": "CUSA55601_Road_Redemption.pkg",
+    "url": "https://vikingfile.com/f/cusa55601_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55601_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9771050598,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55601"
+  },
+  {
+    "id": "r_mf_cusa55601",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55601-Road_Redemption.rar",
+    "url": "https://www.mediafire.com/file/cusa55601_mf/CUSA55601_Road_Redemption.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55601_mf/CUSA55601_Road_Redemption.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9771050598,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55601"
+  }
+]

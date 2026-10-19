@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49381",
+    "format": "pkg",
+    "filename": "CUSA49381_Devious_Dungeon.pkg",
+    "url": "https://vikingfile.com/f/cusa49381_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49381_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7623566950,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49381"
+  },
+  {
+    "id": "r_mf_cusa49381",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49381-Devious_Dungeon.rar",
+    "url": "https://www.mediafire.com/file/cusa49381_mf/CUSA49381_Devious_Dungeon.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49381_mf/CUSA49381_Devious_Dungeon.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7623566950,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49381"
+  }
+]

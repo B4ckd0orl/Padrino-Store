@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa07218",
+    "format": "pkg",
+    "filename": "CUSA07218_Mr__Shifty.pkg",
+    "url": "https://vikingfile.com/f/cusa07218_base",
+    "browserUrl": "https://vikingfile.com/f/cusa07218_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1503238554,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA07218"
+  },
+  {
+    "id": "r_mf_cusa07218",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA07218-Mr__Shifty.rar",
+    "url": "https://www.mediafire.com/file/cusa07218_mf/CUSA07218_Mr__Shifty.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa07218_mf/CUSA07218_Mr__Shifty.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1503238554,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA07218"
+  }
+]

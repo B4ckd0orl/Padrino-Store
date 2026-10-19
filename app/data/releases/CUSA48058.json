@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48058",
+    "format": "pkg",
+    "filename": "CUSA48058_AER__Memories_of_Old.pkg",
+    "url": "https://vikingfile.com/f/cusa48058_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48058_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7086696038,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48058"
+  },
+  {
+    "id": "r_mf_cusa48058",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48058-AER__Memories_of_Old.rar",
+    "url": "https://www.mediafire.com/file/cusa48058_mf/CUSA48058_AER__Memories_of_Old.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48058_mf/CUSA48058_AER__Memories_of_Old.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7086696038,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48058"
+  }
+]

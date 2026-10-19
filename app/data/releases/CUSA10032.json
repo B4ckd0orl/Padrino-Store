@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa10032",
+    "format": "pkg",
+    "filename": "CUSA10032_Shining_Resonance_Refrain.pkg",
+    "url": "https://vikingfile.com/f/cusa10032_base",
+    "browserUrl": "https://vikingfile.com/f/cusa10032_base",
+    "requiresBrowser": true,
+    "sizeBytes": 15891378995,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA10032"
+  },
+  {
+    "id": "r_mf_cusa10032",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA10032-Shining_Resonance_Refrain.rar",
+    "url": "https://www.mediafire.com/file/cusa10032_mf/CUSA10032_Shining_Resonance_Refrain.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa10032_mf/CUSA10032_Shining_Resonance_Refrain.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 15891378995,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA10032"
+  }
+]

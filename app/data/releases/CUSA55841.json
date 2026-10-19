@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55841",
+    "format": "pkg",
+    "filename": "CUSA55841_Syrup_and_The_Ultimate_Sweet.pkg",
+    "url": "https://vikingfile.com/f/cusa55841_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55841_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3758096384,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55841"
+  },
+  {
+    "id": "r_mf_cusa55841",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55841-Syrup_and_The_Ultimate_Sweet.rar",
+    "url": "https://www.mediafire.com/file/cusa55841_mf/CUSA55841_Syrup_and_The_Ultimate_Sweet.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55841_mf/CUSA55841_Syrup_and_The_Ultimate_Sweet.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3758096384,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55841"
+  }
+]

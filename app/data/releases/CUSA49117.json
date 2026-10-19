@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49117",
+    "format": "pkg",
+    "filename": "CUSA49117_Bang_On_Balls__Chronicles.pkg",
+    "url": "https://vikingfile.com/f/cusa49117_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49117_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5261334938,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49117"
+  },
+  {
+    "id": "r_mf_cusa49117",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49117-Bang_On_Balls__Chronicles.rar",
+    "url": "https://www.mediafire.com/file/cusa49117_mf/CUSA49117_Bang_On_Balls__Chronicles.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49117_mf/CUSA49117_Bang_On_Balls__Chronicles.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5261334938,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49117"
+  }
+]

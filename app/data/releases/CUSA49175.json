@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49175",
+    "format": "pkg",
+    "filename": "CUSA49175_BlazBlue__Central_Fiction.pkg",
+    "url": "https://vikingfile.com/f/cusa49175_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49175_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4294967296,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49175"
+  },
+  {
+    "id": "r_mf_cusa49175",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49175-BlazBlue__Central_Fiction.rar",
+    "url": "https://www.mediafire.com/file/cusa49175_mf/CUSA49175_BlazBlue__Central_Fiction.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49175_mf/CUSA49175_BlazBlue__Central_Fiction.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4294967296,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49175"
+  }
+]

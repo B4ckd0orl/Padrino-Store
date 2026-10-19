@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa06890",
+    "format": "pkg",
+    "filename": "CUSA06890_ELEX.pkg",
+    "url": "https://vikingfile.com/f/cusa06890_base",
+    "browserUrl": "https://vikingfile.com/f/cusa06890_base",
+    "requiresBrowser": true,
+    "sizeBytes": 34896609280,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06890"
+  },
+  {
+    "id": "r_mf_cusa06890",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA06890-ELEX.rar",
+    "url": "https://www.mediafire.com/file/cusa06890_mf/CUSA06890_ELEX.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa06890_mf/CUSA06890_ELEX.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 34896609280,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06890"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55886",
+    "format": "pkg",
+    "filename": "CUSA55886_Tom_Clancy_s_Rainbow_Six__Siege.pkg",
+    "url": "https://vikingfile.com/f/cusa55886_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55886_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2362232013,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55886"
+  },
+  {
+    "id": "r_mf_cusa55886",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55886-Tom_Clancy_s_Rainbow_Six__Siege.rar",
+    "url": "https://www.mediafire.com/file/cusa55886_mf/CUSA55886_Tom_Clancy_s_Rainbow_Six__Siege.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55886_mf/CUSA55886_Tom_Clancy_s_Rainbow_Six__Siege.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2362232013,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55886"
+  }
+]

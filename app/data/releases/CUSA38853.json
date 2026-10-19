@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa38853",
+    "format": "pkg",
+    "filename": "CUSA38853_Monochrome_Mobius__Rights_and_Wrongs_Forgotten.pkg",
+    "url": "https://vikingfile.com/f/cusa38853_base",
+    "browserUrl": "https://vikingfile.com/f/cusa38853_base",
+    "requiresBrowser": true,
+    "sizeBytes": 19864223744,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA38853"
+  },
+  {
+    "id": "r_mf_cusa38853",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA38853-Monochrome_Mobius__Rights_and_Wrongs_Forgotten.rar",
+    "url": "https://www.mediafire.com/file/cusa38853_mf/CUSA38853_Monochrome_Mobius__Rights_and_Wrongs_Forgotten.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa38853_mf/CUSA38853_Monochrome_Mobius__Rights_and_Wrongs_Forgotten.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 19864223744,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA38853"
+  }
+]

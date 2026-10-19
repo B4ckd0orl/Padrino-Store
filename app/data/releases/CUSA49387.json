@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49387",
+    "format": "pkg",
+    "filename": "CUSA49387_Dirt_4.pkg",
+    "url": "https://vikingfile.com/f/cusa49387_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49387_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5905580032,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49387"
+  },
+  {
+    "id": "r_mf_cusa49387",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49387-Dirt_4.rar",
+    "url": "https://www.mediafire.com/file/cusa49387_mf/CUSA49387_Dirt_4.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49387_mf/CUSA49387_Dirt_4.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5905580032,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49387"
+  }
+]

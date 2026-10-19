@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa18315",
+    "format": "pkg",
+    "filename": "CUSA18315_Twin_Mirror.pkg",
+    "url": "https://vikingfile.com/f/cusa18315_base",
+    "browserUrl": "https://vikingfile.com/f/cusa18315_base",
+    "requiresBrowser": true,
+    "sizeBytes": 18038862643,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18315"
+  },
+  {
+    "id": "r_mf_cusa18315",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA18315-Twin_Mirror.rar",
+    "url": "https://www.mediafire.com/file/cusa18315_mf/CUSA18315_Twin_Mirror.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa18315_mf/CUSA18315_Twin_Mirror.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 18038862643,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18315"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa20424",
+    "format": "pkg",
+    "filename": "CUSA20424_Open_Country.pkg",
+    "url": "https://vikingfile.com/f/cusa20424_base",
+    "browserUrl": "https://vikingfile.com/f/cusa20424_base",
+    "requiresBrowser": true,
+    "sizeBytes": 17716740096,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA20424"
+  },
+  {
+    "id": "r_mf_cusa20424",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA20424-Open_Country.rar",
+    "url": "https://www.mediafire.com/file/cusa20424_mf/CUSA20424_Open_Country.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa20424_mf/CUSA20424_Open_Country.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 17716740096,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA20424"
+  }
+]

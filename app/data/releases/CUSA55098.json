@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55098",
+    "format": "pkg",
+    "filename": "CUSA55098_Lornsword_Winter_Chronicle.pkg",
+    "url": "https://vikingfile.com/f/cusa55098_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55098_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3865470566,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55098"
+  },
+  {
+    "id": "r_mf_cusa55098",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55098-Lornsword_Winter_Chronicle.rar",
+    "url": "https://www.mediafire.com/file/cusa55098_mf/CUSA55098_Lornsword_Winter_Chronicle.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55098_mf/CUSA55098_Lornsword_Winter_Chronicle.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3865470566,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55098"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55139",
+    "format": "pkg",
+    "filename": "CUSA55139_Marchen_Forest__Mylne_and_the_Forest_Gift.pkg",
+    "url": "https://vikingfile.com/f/cusa55139_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55139_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6549825126,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55139"
+  },
+  {
+    "id": "r_mf_cusa55139",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55139-Marchen_Forest__Mylne_and_the_Forest_Gift.rar",
+    "url": "https://www.mediafire.com/file/cusa55139_mf/CUSA55139_Marchen_Forest__Mylne_and_the_Forest_Gift.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55139_mf/CUSA55139_Marchen_Forest__Mylne_and_the_Forest_Gift.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6549825126,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55139"
+  }
+]

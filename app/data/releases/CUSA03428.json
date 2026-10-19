@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa03428",
+    "format": "pkg",
+    "filename": "CUSA03428_The_Jackbox_Party_Pack.pkg",
+    "url": "https://vikingfile.com/f/cusa03428_base",
+    "browserUrl": "https://vikingfile.com/f/cusa03428_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1503238554,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03428"
+  },
+  {
+    "id": "r_mf_cusa03428",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA03428-The_Jackbox_Party_Pack.rar",
+    "url": "https://www.mediafire.com/file/cusa03428_mf/CUSA03428_The_Jackbox_Party_Pack.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa03428_mf/CUSA03428_The_Jackbox_Party_Pack.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1503238554,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03428"
+  }
+]

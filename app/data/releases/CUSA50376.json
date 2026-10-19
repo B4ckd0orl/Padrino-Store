@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50376",
+    "format": "pkg",
+    "filename": "CUSA50376_J_Stars_Victory_Vs_.pkg",
+    "url": "https://vikingfile.com/f/cusa50376_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50376_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3221225472,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50376"
+  },
+  {
+    "id": "r_mf_cusa50376",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50376-J_Stars_Victory_Vs_.rar",
+    "url": "https://www.mediafire.com/file/cusa50376_mf/CUSA50376_J_Stars_Victory_Vs_.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50376_mf/CUSA50376_J_Stars_Victory_Vs_.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3221225472,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50376"
+  }
+]

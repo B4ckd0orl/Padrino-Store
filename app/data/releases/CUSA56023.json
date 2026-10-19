@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56023",
+    "format": "pkg",
+    "filename": "CUSA56023_Warhammer_Age_of_Sigmar__Storm_Ground.pkg",
+    "url": "https://vikingfile.com/f/cusa56023_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56023_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2684354560,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56023"
+  },
+  {
+    "id": "r_mf_cusa56023",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56023-Warhammer_Age_of_Sigmar__Storm_Ground.rar",
+    "url": "https://www.mediafire.com/file/cusa56023_mf/CUSA56023_Warhammer_Age_of_Sigmar__Storm_Ground.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56023_mf/CUSA56023_Warhammer_Age_of_Sigmar__Storm_Ground.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2684354560,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56023"
+  }
+]

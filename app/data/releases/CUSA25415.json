@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa25415",
+    "format": "pkg",
+    "filename": "CUSA25415_Sir_Lovelot.pkg",
+    "url": "https://vikingfile.com/f/cusa25415_base",
+    "browserUrl": "https://vikingfile.com/f/cusa25415_base",
+    "requiresBrowser": true,
+    "sizeBytes": 429496730,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA25415"
+  },
+  {
+    "id": "r_mf_cusa25415",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA25415-Sir_Lovelot.rar",
+    "url": "https://www.mediafire.com/file/cusa25415_mf/CUSA25415_Sir_Lovelot.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa25415_mf/CUSA25415_Sir_Lovelot.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 429496730,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA25415"
+  }
+]

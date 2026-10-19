@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa03862",
+    "format": "pkg",
+    "filename": "CUSA03862_Styx__Shards_of_Darkness.pkg",
+    "url": "https://vikingfile.com/f/cusa03862_base",
+    "browserUrl": "https://vikingfile.com/f/cusa03862_base",
+    "requiresBrowser": true,
+    "sizeBytes": 12025908429,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03862"
+  },
+  {
+    "id": "r_mf_cusa03862",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA03862-Styx__Shards_of_Darkness.rar",
+    "url": "https://www.mediafire.com/file/cusa03862_mf/CUSA03862_Styx__Shards_of_Darkness.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa03862_mf/CUSA03862_Styx__Shards_of_Darkness.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 12025908429,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03862"
+  }
+]

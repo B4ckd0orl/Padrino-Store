@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_ppsa18378",
+    "format": "exfat",
+    "filename": "PPSA18378_Until_Dawn_Remake.exfat",
+    "url": "https://vikingfile.com/f/ppsa18378_base",
+    "browserUrl": "https://vikingfile.com/f/ppsa18378_base",
+    "requiresBrowser": true,
+    "sizeBytes": 62706522522,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game EXFAT - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA18378"
+  },
+  {
+    "id": "r_mf_ppsa18378",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-PPSA18378-Until_Dawn_Remake.rar",
+    "url": "https://www.mediafire.com/file/ppsa18378_mf/PPSA18378_Until_Dawn_Remake.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/ppsa18378_mf/PPSA18378_Until_Dawn_Remake.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 62706522522,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA18378"
+  }
+]

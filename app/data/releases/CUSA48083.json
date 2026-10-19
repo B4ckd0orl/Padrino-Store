@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48083",
+    "format": "pkg",
+    "filename": "CUSA48083_Alice_Gear_Aegis_CS__Concerto_of_Simulatrix.pkg",
+    "url": "https://vikingfile.com/f/cusa48083_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48083_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5261334938,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48083"
+  },
+  {
+    "id": "r_mf_cusa48083",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48083-Alice_Gear_Aegis_CS__Concerto_of_Simulatrix.rar",
+    "url": "https://www.mediafire.com/file/cusa48083_mf/CUSA48083_Alice_Gear_Aegis_CS__Concerto_of_Simulatrix.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48083_mf/CUSA48083_Alice_Gear_Aegis_CS__Concerto_of_Simulatrix.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5261334938,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48083"
+  }
+]

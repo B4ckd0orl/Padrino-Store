@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49310",
+    "format": "pkg",
+    "filename": "CUSA49310_The_Count_Lucanor.pkg",
+    "url": "https://vikingfile.com/f/cusa49310_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49310_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9448928051,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49310"
+  },
+  {
+    "id": "r_mf_cusa49310",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49310-The_Count_Lucanor.rar",
+    "url": "https://www.mediafire.com/file/cusa49310_mf/CUSA49310_The_Count_Lucanor.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49310_mf/CUSA49310_The_Count_Lucanor.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9448928051,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49310"
+  }
+]

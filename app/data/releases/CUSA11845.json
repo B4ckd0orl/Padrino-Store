@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa11845",
+    "format": "pkg",
+    "filename": "CUSA11845_Dead_or_Alive_6.pkg",
+    "url": "https://vikingfile.com/f/cusa11845_base",
+    "browserUrl": "https://vikingfile.com/f/cusa11845_base",
+    "requiresBrowser": true,
+    "sizeBytes": 34896609280,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA11845"
+  },
+  {
+    "id": "r_mf_cusa11845",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA11845-Dead_or_Alive_6.rar",
+    "url": "https://www.mediafire.com/file/cusa11845_mf/CUSA11845_Dead_or_Alive_6.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa11845_mf/CUSA11845_Dead_or_Alive_6.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 34896609280,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA11845"
+  }
+]

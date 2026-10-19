@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55399",
+    "format": "pkg",
+    "filename": "CUSA55399_Peaky_Blinders__Mastermind.pkg",
+    "url": "https://vikingfile.com/f/cusa55399_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55399_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9341553869,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55399"
+  },
+  {
+    "id": "r_mf_cusa55399",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55399-Peaky_Blinders__Mastermind.rar",
+    "url": "https://www.mediafire.com/file/cusa55399_mf/CUSA55399_Peaky_Blinders__Mastermind.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55399_mf/CUSA55399_Peaky_Blinders__Mastermind.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9341553869,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55399"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55996",
+    "format": "pkg",
+    "filename": "CUSA55996_Vikings__Wolves_of_Midgard.pkg",
+    "url": "https://vikingfile.com/f/cusa55996_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55996_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55996"
+  },
+  {
+    "id": "r_mf_cusa55996",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55996-Vikings__Wolves_of_Midgard.rar",
+    "url": "https://www.mediafire.com/file/cusa55996_mf/CUSA55996_Vikings__Wolves_of_Midgard.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55996_mf/CUSA55996_Vikings__Wolves_of_Midgard.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55996"
+  }
+]

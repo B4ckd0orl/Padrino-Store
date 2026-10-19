@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55712",
+    "format": "pkg",
+    "filename": "CUSA55712_Slender__The_Arrival.pkg",
+    "url": "https://vikingfile.com/f/cusa55712_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55712_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4724464026,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55712"
+  },
+  {
+    "id": "r_mf_cusa55712",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55712-Slender__The_Arrival.rar",
+    "url": "https://www.mediafire.com/file/cusa55712_mf/CUSA55712_Slender__The_Arrival.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55712_mf/CUSA55712_Slender__The_Arrival.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4724464026,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55712"
+  }
+]

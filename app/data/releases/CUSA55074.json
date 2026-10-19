@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55074",
+    "format": "pkg",
+    "filename": "CUSA55074_Leisure_Suit_Larry__Wet_Dreams_Dry_Twice.pkg",
+    "url": "https://vikingfile.com/f/cusa55074_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55074_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55074"
+  },
+  {
+    "id": "r_mf_cusa55074",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55074-Leisure_Suit_Larry__Wet_Dreams_Dry_Twice.rar",
+    "url": "https://www.mediafire.com/file/cusa55074_mf/CUSA55074_Leisure_Suit_Larry__Wet_Dreams_Dry_Twice.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55074_mf/CUSA55074_Leisure_Suit_Larry__Wet_Dreams_Dry_Twice.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55074"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55208",
+    "format": "pkg",
+    "filename": "CUSA55208_MLB_The_Show_22.pkg",
+    "url": "https://vikingfile.com/f/cusa55208_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55208_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5798205850,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55208"
+  },
+  {
+    "id": "r_mf_cusa55208",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55208-MLB_The_Show_22.rar",
+    "url": "https://www.mediafire.com/file/cusa55208_mf/CUSA55208_MLB_The_Show_22.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55208_mf/CUSA55208_MLB_The_Show_22.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5798205850,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55208"
+  }
+]

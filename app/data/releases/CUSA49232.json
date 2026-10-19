@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49232",
+    "format": "pkg",
+    "filename": "CUSA49232_Calamity_Angels__Special_Delivery.pkg",
+    "url": "https://vikingfile.com/f/cusa49232_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49232_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9448928051,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49232"
+  },
+  {
+    "id": "r_mf_cusa49232",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49232-Calamity_Angels__Special_Delivery.rar",
+    "url": "https://www.mediafire.com/file/cusa49232_mf/CUSA49232_Calamity_Angels__Special_Delivery.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49232_mf/CUSA49232_Calamity_Angels__Special_Delivery.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9448928051,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49232"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55929",
+    "format": "pkg",
+    "filename": "CUSA55929_Turrican_Anthology_Vol__II.pkg",
+    "url": "https://vikingfile.com/f/cusa55929_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55929_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6335076762,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55929"
+  },
+  {
+    "id": "r_mf_cusa55929",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55929-Turrican_Anthology_Vol__II.rar",
+    "url": "https://www.mediafire.com/file/cusa55929_mf/CUSA55929_Turrican_Anthology_Vol__II.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55929_mf/CUSA55929_Turrican_Anthology_Vol__II.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6335076762,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55929"
+  }
+]

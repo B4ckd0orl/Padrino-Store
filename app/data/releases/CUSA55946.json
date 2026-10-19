@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55946",
+    "format": "pkg",
+    "filename": "CUSA55946_Umineko_When_They_Cry.pkg",
+    "url": "https://vikingfile.com/f/cusa55946_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55946_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6227702579,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55946"
+  },
+  {
+    "id": "r_mf_cusa55946",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55946-Umineko_When_They_Cry.rar",
+    "url": "https://www.mediafire.com/file/cusa55946_mf/CUSA55946_Umineko_When_They_Cry.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55946_mf/CUSA55946_Umineko_When_They_Cry.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6227702579,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55946"
+  }
+]

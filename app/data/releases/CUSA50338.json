@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50338",
+    "format": "pkg",
+    "filename": "CUSA50338_Inazuma_Eleven__Victory_Road.pkg",
+    "url": "https://vikingfile.com/f/cusa50338_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50338_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6227702579,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50338"
+  },
+  {
+    "id": "r_mf_cusa50338",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50338-Inazuma_Eleven__Victory_Road.rar",
+    "url": "https://www.mediafire.com/file/cusa50338_mf/CUSA50338_Inazuma_Eleven__Victory_Road.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50338_mf/CUSA50338_Inazuma_Eleven__Victory_Road.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6227702579,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50338"
+  }
+]

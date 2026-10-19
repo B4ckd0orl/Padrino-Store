@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa02350",
+    "format": "pkg",
+    "filename": "CUSA02350_Twisted_Metal_Black_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa02350_pkg/CUSA02350_Twisted_Metal_Black_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa02350_pkg/CUSA02350_Twisted_Metal_Black_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4939212390,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA02350"
+  },
+  {
+    "id": "r_vk_cusa02350",
+    "format": "pkg",
+    "filename": "CUSA02350_Twisted_Metal_Black_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa02350_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa02350_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 4939212390,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA02350"
+  }
+]

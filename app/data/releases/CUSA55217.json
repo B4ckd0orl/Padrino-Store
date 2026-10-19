@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55217",
+    "format": "pkg",
+    "filename": "CUSA55217_Monster_Hunter_Rise.pkg",
+    "url": "https://vikingfile.com/f/cusa55217_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55217_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5476083302,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55217"
+  },
+  {
+    "id": "r_mf_cusa55217",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55217-Monster_Hunter_Rise.rar",
+    "url": "https://www.mediafire.com/file/cusa55217_mf/CUSA55217_Monster_Hunter_Rise.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55217_mf/CUSA55217_Monster_Hunter_Rise.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5476083302,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55217"
+  }
+]

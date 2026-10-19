@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_ppsa25611",
+    "format": "exfat",
+    "filename": "PPSA25611_Hunter_x_Hunter_Nen_x_Impact.exfat",
+    "url": "https://vikingfile.com/f/ppsa25611_base",
+    "browserUrl": "https://vikingfile.com/f/ppsa25611_base",
+    "requiresBrowser": true,
+    "sizeBytes": 17609365914,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game exFAT - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA25611"
+  },
+  {
+    "id": "r_mf_ppsa25611",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-PPSA25611-Hunter_x_Hunter_Nen_x_Impact.rar",
+    "url": "https://www.mediafire.com/file/ppsa25611_mf/PPSA25611_Hunter_x_Hunter_Nen_x_Impact.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/ppsa25611_mf/PPSA25611_Hunter_x_Hunter_Nen_x_Impact.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 17609365914,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA25611"
+  }
+]

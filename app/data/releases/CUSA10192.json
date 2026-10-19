@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa10192",
+    "format": "pkg",
+    "filename": "CUSA10192_Minit.pkg",
+    "url": "https://vikingfile.com/f/cusa10192_base",
+    "browserUrl": "https://vikingfile.com/f/cusa10192_base",
+    "requiresBrowser": true,
+    "sizeBytes": 268435456,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA10192"
+  },
+  {
+    "id": "r_mf_cusa10192",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA10192-Minit.rar",
+    "url": "https://www.mediafire.com/file/cusa10192_mf/CUSA10192_Minit.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa10192_mf/CUSA10192_Minit.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 268435456,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA10192"
+  }
+]

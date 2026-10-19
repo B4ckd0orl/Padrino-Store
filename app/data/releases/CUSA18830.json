@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa18830",
+    "format": "pkg",
+    "filename": "CUSA18830_Dreamscaper_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa18830_pkg/CUSA18830_Dreamscaper_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa18830_pkg/CUSA18830_Dreamscaper_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18830"
+  },
+  {
+    "id": "r_vk_cusa18830",
+    "format": "pkg",
+    "filename": "CUSA18830_Dreamscaper_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa18830_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa18830_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18830"
+  }
+]

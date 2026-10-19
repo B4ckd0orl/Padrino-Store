@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50106",
+    "format": "pkg",
+    "filename": "CUSA50106_The_Falconeer__Warrior_Edition.pkg",
+    "url": "https://vikingfile.com/f/cusa50106_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50106_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7623566950,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50106"
+  },
+  {
+    "id": "r_mf_cusa50106",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50106-The_Falconeer__Warrior_Edition.rar",
+    "url": "https://www.mediafire.com/file/cusa50106_mf/CUSA50106_The_Falconeer__Warrior_Edition.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50106_mf/CUSA50106_The_Falconeer__Warrior_Edition.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7623566950,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50106"
+  }
+]

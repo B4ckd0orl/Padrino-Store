@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa09842",
+    "format": "pkg",
+    "filename": "CUSA09842_Masters_of_Anima.pkg",
+    "url": "https://vikingfile.com/f/cusa09842_base",
+    "browserUrl": "https://vikingfile.com/f/cusa09842_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1932735283,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA09842"
+  },
+  {
+    "id": "r_mf_cusa09842",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA09842-Masters_of_Anima.rar",
+    "url": "https://www.mediafire.com/file/cusa09842_mf/CUSA09842_Masters_of_Anima.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa09842_mf/CUSA09842_Masters_of_Anima.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1932735283,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA09842"
+  }
+]

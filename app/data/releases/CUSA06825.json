@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa06825",
+    "format": "pkg",
+    "filename": "CUSA06825_Samurai_Warriors__Spirit_of_Sanada.pkg",
+    "url": "https://vikingfile.com/f/cusa06825_base",
+    "browserUrl": "https://vikingfile.com/f/cusa06825_base",
+    "requiresBrowser": true,
+    "sizeBytes": 22763326669,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06825"
+  },
+  {
+    "id": "r_mf_cusa06825",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA06825-Samurai_Warriors__Spirit_of_Sanada.rar",
+    "url": "https://www.mediafire.com/file/cusa06825_mf/CUSA06825_Samurai_Warriors__Spirit_of_Sanada.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa06825_mf/CUSA06825_Samurai_Warriors__Spirit_of_Sanada.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 22763326669,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06825"
+  }
+]

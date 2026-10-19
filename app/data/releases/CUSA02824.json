@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa02824",
+    "format": "pkg",
+    "filename": "CUSA02824_Sword_Art_Online__Lost_Song.pkg",
+    "url": "https://vikingfile.com/f/cusa02824_base",
+    "browserUrl": "https://vikingfile.com/f/cusa02824_base",
+    "requiresBrowser": true,
+    "sizeBytes": 15247133901,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA02824"
+  },
+  {
+    "id": "r_mf_cusa02824",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA02824-Sword_Art_Online__Lost_Song.rar",
+    "url": "https://www.mediafire.com/file/cusa02824_mf/CUSA02824_Sword_Art_Online__Lost_Song.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa02824_mf/CUSA02824_Sword_Art_Online__Lost_Song.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 15247133901,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA02824"
+  }
+]

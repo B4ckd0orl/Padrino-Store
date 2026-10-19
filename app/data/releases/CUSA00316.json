@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa00316",
+    "format": "pkg",
+    "filename": "CUSA00316_Journey__Collector_s_Edition.pkg",
+    "url": "https://vikingfile.com/f/cusa00316_base",
+    "browserUrl": "https://vikingfile.com/f/cusa00316_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA00316"
+  },
+  {
+    "id": "r_mf_cusa00316",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA00316-Journey__Collector_s_Edition.rar",
+    "url": "https://www.mediafire.com/file/cusa00316_mf/CUSA00316_Journey__Collector_s_Edition.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa00316_mf/CUSA00316_Journey__Collector_s_Edition.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA00316"
+  }
+]

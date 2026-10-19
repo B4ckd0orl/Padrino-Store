@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa20887",
+    "format": "pkg",
+    "filename": "CUSA20887_Chronos__Before_the_Ashes.pkg",
+    "url": "https://vikingfile.com/f/cusa20887_base",
+    "browserUrl": "https://vikingfile.com/f/cusa20887_base",
+    "requiresBrowser": true,
+    "sizeBytes": 12240656794,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA20887"
+  },
+  {
+    "id": "r_mf_cusa20887",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA20887-Chronos__Before_the_Ashes.rar",
+    "url": "https://www.mediafire.com/file/cusa20887_mf/CUSA20887_Chronos__Before_the_Ashes.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa20887_mf/CUSA20887_Chronos__Before_the_Ashes.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 12240656794,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA20887"
+  }
+]

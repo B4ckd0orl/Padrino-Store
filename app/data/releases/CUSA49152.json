@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49152",
+    "format": "pkg",
+    "filename": "CUSA49152_Bit_Trip.pkg",
+    "url": "https://vikingfile.com/f/cusa49152_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49152_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5046586573,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49152"
+  },
+  {
+    "id": "r_mf_cusa49152",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49152-Bit_Trip.rar",
+    "url": "https://www.mediafire.com/file/cusa49152_mf/CUSA49152_Bit_Trip.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49152_mf/CUSA49152_Bit_Trip.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5046586573,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49152"
+  }
+]

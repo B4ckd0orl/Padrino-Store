@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49370",
+    "format": "pkg",
+    "filename": "CUSA49370_Demons_Age.pkg",
+    "url": "https://vikingfile.com/f/cusa49370_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49370_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1503238554,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49370"
+  },
+  {
+    "id": "r_mf_cusa49370",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49370-Demons_Age.rar",
+    "url": "https://www.mediafire.com/file/cusa49370_mf/CUSA49370_Demons_Age.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49370_mf/CUSA49370_Demons_Age.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1503238554,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49370"
+  }
+]

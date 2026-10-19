@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56090",
+    "format": "pkg",
+    "filename": "CUSA56090_Yaga.pkg",
+    "url": "https://vikingfile.com/f/cusa56090_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56090_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6335076762,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56090"
+  },
+  {
+    "id": "r_mf_cusa56090",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56090-Yaga.rar",
+    "url": "https://www.mediafire.com/file/cusa56090_mf/CUSA56090_Yaga.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56090_mf/CUSA56090_Yaga.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6335076762,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56090"
+  }
+]

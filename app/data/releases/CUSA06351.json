@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa06351",
+    "format": "pkg",
+    "filename": "CUSA06351_Wild_Guns_Reloaded.pkg",
+    "url": "https://vikingfile.com/f/cusa06351_base",
+    "browserUrl": "https://vikingfile.com/f/cusa06351_base",
+    "requiresBrowser": true,
+    "sizeBytes": 912680550,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06351"
+  },
+  {
+    "id": "r_mf_cusa06351",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA06351-Wild_Guns_Reloaded.rar",
+    "url": "https://www.mediafire.com/file/cusa06351_mf/CUSA06351_Wild_Guns_Reloaded.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa06351_mf/CUSA06351_Wild_Guns_Reloaded.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 912680550,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06351"
+  }
+]

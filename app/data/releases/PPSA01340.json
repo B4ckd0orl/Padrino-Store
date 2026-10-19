@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_ppsa01340",
+    "format": "exfat",
+    "filename": "PPSA01340_Godfall.exfat",
+    "url": "https://vikingfile.com/f/ppsa01340_base",
+    "browserUrl": "https://vikingfile.com/f/ppsa01340_base",
+    "requiresBrowser": true,
+    "sizeBytes": 33822867456,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game exFAT - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA01340"
+  },
+  {
+    "id": "r_mf_ppsa01340",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-PPSA01340-Godfall.rar",
+    "url": "https://www.mediafire.com/file/ppsa01340_mf/PPSA01340_Godfall.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/ppsa01340_mf/PPSA01340_Godfall.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 33822867456,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA01340"
+  }
+]

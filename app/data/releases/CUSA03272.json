@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa03272",
+    "format": "pkg",
+    "filename": "CUSA03272_Teslagrad.pkg",
+    "url": "https://vikingfile.com/f/cusa03272_base",
+    "browserUrl": "https://vikingfile.com/f/cusa03272_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1181116006,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03272"
+  },
+  {
+    "id": "r_mf_cusa03272",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA03272-Teslagrad.rar",
+    "url": "https://www.mediafire.com/file/cusa03272_mf/CUSA03272_Teslagrad.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa03272_mf/CUSA03272_Teslagrad.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1181116006,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03272"
+  }
+]

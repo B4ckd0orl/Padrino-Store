@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50269",
+    "format": "pkg",
+    "filename": "CUSA50269_Harvest_Moon__One_World.pkg",
+    "url": "https://vikingfile.com/f/cusa50269_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50269_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5046586573,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50269"
+  },
+  {
+    "id": "r_mf_cusa50269",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50269-Harvest_Moon__One_World.rar",
+    "url": "https://www.mediafire.com/file/cusa50269_mf/CUSA50269_Harvest_Moon__One_World.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50269_mf/CUSA50269_Harvest_Moon__One_World.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5046586573,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50269"
+  }
+]

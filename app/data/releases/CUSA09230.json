@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa09230",
+    "format": "pkg",
+    "filename": "CUSA09230_Chaos_Child_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa09230_pkg/CUSA09230_Chaos_Child_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa09230_pkg/CUSA09230_Chaos_Child_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8697308774,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA09230"
+  },
+  {
+    "id": "r_vk_cusa09230",
+    "format": "pkg",
+    "filename": "CUSA09230_Chaos_Child_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa09230_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa09230_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 8697308774,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA09230"
+  }
+]

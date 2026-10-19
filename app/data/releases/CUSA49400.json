@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49400",
+    "format": "pkg",
+    "filename": "CUSA49400_Distraint_2.pkg",
+    "url": "https://vikingfile.com/f/cusa49400_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49400_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7838315315,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49400"
+  },
+  {
+    "id": "r_mf_cusa49400",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49400-Distraint_2.rar",
+    "url": "https://www.mediafire.com/file/cusa49400_mf/CUSA49400_Distraint_2.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49400_mf/CUSA49400_Distraint_2.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7838315315,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49400"
+  }
+]

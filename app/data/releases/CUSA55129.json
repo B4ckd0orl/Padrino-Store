@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55129",
+    "format": "pkg",
+    "filename": "CUSA55129_Magicians_Dead__Force_of_the_Soul.pkg",
+    "url": "https://vikingfile.com/f/cusa55129_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55129_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55129"
+  },
+  {
+    "id": "r_mf_cusa55129",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55129-Magicians_Dead__Force_of_the_Soul.rar",
+    "url": "https://www.mediafire.com/file/cusa55129_mf/CUSA55129_Magicians_Dead__Force_of_the_Soul.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55129_mf/CUSA55129_Magicians_Dead__Force_of_the_Soul.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55129"
+  }
+]

@@ -4,7 +4,7 @@
 import '../assets/Inter-Regular.ttf';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { useMemo } from 'react';
-import { preferredRelease, sourceSections } from './sources.js';
+import { formatDetail, inferFormat, preferredRelease, sourceSections } from './sources.js';
 import { t } from '../i18n/core.js';
 import { useLocale, useT } from '../i18n/index.js';
 import { formatBytes, formatSize } from '../state/size.js';
@@ -16,9 +16,12 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
 
   function summary2(edition2) {
     const releases = edition2.releases || [];
-    const bytes = releases[preferredRelease(releases)]?.sizeBytes;
+    const preferred = releases[preferredRelease(releases)];
+    const bytes = preferred?.sizeBytes;
     const sources = sourceSections(releases).filter(({ group }) => group !== "dlc" && group !== "unavailable").reduce((sum, { items }) => sum + items.length, 0);
-    return [bytes ? formatBytes(bytes) : edition2.sizeGb ? formatSize(edition2.sizeGb) : null, t("versions.sources", { count: sources })];
+    // What the file is, first: the edition picker is where a player compares what they would get.
+    const format = preferred ? formatDetail(inferFormat(preferred)) : null;
+    return [format, bytes ? formatBytes(bytes) : edition2.sizeGb ? formatSize(edition2.sizeGb) : null, t("versions.sources", { count: sources })];
   }
   function VersionFace({ edition: edition2, here, twin, recommended }) {
     const t2 = useT();

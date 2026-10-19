@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50330",
+    "format": "pkg",
+    "filename": "CUSA50330_The_Idolmaster_Starlit_Season.pkg",
+    "url": "https://vikingfile.com/f/cusa50330_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50330_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8160437862,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50330"
+  },
+  {
+    "id": "r_mf_cusa50330",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50330-The_Idolmaster_Starlit_Season.rar",
+    "url": "https://www.mediafire.com/file/cusa50330_mf/CUSA50330_The_Idolmaster_Starlit_Season.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50330_mf/CUSA50330_The_Idolmaster_Starlit_Season.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8160437862,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50330"
+  }
+]

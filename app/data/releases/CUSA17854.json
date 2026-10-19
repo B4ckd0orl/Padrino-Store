@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa17854",
+    "format": "pkg",
+    "filename": "CUSA17854_Katana_Kami__A_Way_of_the_Samurai_Story.pkg",
+    "url": "https://vikingfile.com/f/cusa17854_base",
+    "browserUrl": "https://vikingfile.com/f/cusa17854_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA17854"
+  },
+  {
+    "id": "r_mf_cusa17854",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA17854-Katana_Kami__A_Way_of_the_Samurai_Story.rar",
+    "url": "https://www.mediafire.com/file/cusa17854_mf/CUSA17854_Katana_Kami__A_Way_of_the_Samurai_Story.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa17854_mf/CUSA17854_Katana_Kami__A_Way_of_the_Samurai_Story.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA17854"
+  }
+]

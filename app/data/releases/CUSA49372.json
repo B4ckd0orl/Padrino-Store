@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49372",
+    "format": "pkg",
+    "filename": "CUSA49372_Demon_s_Tilt.pkg",
+    "url": "https://vikingfile.com/f/cusa49372_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49372_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2040109466,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49372"
+  },
+  {
+    "id": "r_mf_cusa49372",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49372-Demon_s_Tilt.rar",
+    "url": "https://www.mediafire.com/file/cusa49372_mf/CUSA49372_Demon_s_Tilt.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49372_mf/CUSA49372_Demon_s_Tilt.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2040109466,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49372"
+  }
+]

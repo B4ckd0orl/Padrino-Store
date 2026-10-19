@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49369",
+    "format": "pkg",
+    "filename": "CUSA49369_Demon_Turf.pkg",
+    "url": "https://vikingfile.com/f/cusa49369_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49369_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6442450944,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49369"
+  },
+  {
+    "id": "r_mf_cusa49369",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49369-Demon_Turf.rar",
+    "url": "https://www.mediafire.com/file/cusa49369_mf/CUSA49369_Demon_Turf.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49369_mf/CUSA49369_Demon_Turf.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6442450944,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49369"
+  }
+]

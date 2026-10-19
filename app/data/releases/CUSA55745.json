@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55745",
+    "format": "pkg",
+    "filename": "CUSA55745_SpellForce_3_Reforced.pkg",
+    "url": "https://vikingfile.com/f/cusa55745_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55745_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8160437862,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55745"
+  },
+  {
+    "id": "r_mf_cusa55745",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55745-SpellForce_3_Reforced.rar",
+    "url": "https://www.mediafire.com/file/cusa55745_mf/CUSA55745_SpellForce_3_Reforced.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55745_mf/CUSA55745_SpellForce_3_Reforced.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8160437862,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55745"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50259",
+    "format": "pkg",
+    "filename": "CUSA50259_Gunvolt_Chronicles__Luminous_Avenger_iX_2.pkg",
+    "url": "https://vikingfile.com/f/cusa50259_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50259_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6764573491,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50259"
+  },
+  {
+    "id": "r_mf_cusa50259",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50259-Gunvolt_Chronicles__Luminous_Avenger_iX_2.rar",
+    "url": "https://www.mediafire.com/file/cusa50259_mf/CUSA50259_Gunvolt_Chronicles__Luminous_Avenger_iX_2.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50259_mf/CUSA50259_Gunvolt_Chronicles__Luminous_Avenger_iX_2.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6764573491,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50259"
+  }
+]

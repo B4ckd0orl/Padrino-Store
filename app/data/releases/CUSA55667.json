@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55667",
+    "format": "pkg",
+    "filename": "CUSA55667_Shadow_Corridor.pkg",
+    "url": "https://vikingfile.com/f/cusa55667_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55667_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3650722202,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55667"
+  },
+  {
+    "id": "r_mf_cusa55667",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55667-Shadow_Corridor.rar",
+    "url": "https://www.mediafire.com/file/cusa55667_mf/CUSA55667_Shadow_Corridor.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55667_mf/CUSA55667_Shadow_Corridor.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3650722202,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55667"
+  }
+]

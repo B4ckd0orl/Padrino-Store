@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa19468",
+    "format": "pkg",
+    "filename": "CUSA19468_Natsuki_Chronicles.pkg",
+    "url": "https://vikingfile.com/f/cusa19468_base",
+    "browserUrl": "https://vikingfile.com/f/cusa19468_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA19468"
+  },
+  {
+    "id": "r_mf_cusa19468",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA19468-Natsuki_Chronicles.rar",
+    "url": "https://www.mediafire.com/file/cusa19468_mf/CUSA19468_Natsuki_Chronicles.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa19468_mf/CUSA19468_Natsuki_Chronicles.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4080218931,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA19468"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55962",
+    "format": "pkg",
+    "filename": "CUSA55962_Unholy_Heights.pkg",
+    "url": "https://vikingfile.com/f/cusa55962_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55962_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2791728742,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55962"
+  },
+  {
+    "id": "r_mf_cusa55962",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55962-Unholy_Heights.rar",
+    "url": "https://www.mediafire.com/file/cusa55962_mf/CUSA55962_Unholy_Heights.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55962_mf/CUSA55962_Unholy_Heights.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2791728742,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55962"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49167",
+    "format": "pkg",
+    "filename": "CUSA49167_Blade_Runner__Enhanced_Edition.pkg",
+    "url": "https://vikingfile.com/f/cusa49167_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49167_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9448928051,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49167"
+  },
+  {
+    "id": "r_mf_cusa49167",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49167-Blade_Runner__Enhanced_Edition.rar",
+    "url": "https://www.mediafire.com/file/cusa49167_mf/CUSA49167_Blade_Runner__Enhanced_Edition.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49167_mf/CUSA49167_Blade_Runner__Enhanced_Edition.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9448928051,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49167"
+  }
+]

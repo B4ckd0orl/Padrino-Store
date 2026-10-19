@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa21209",
+    "format": "pkg",
+    "filename": "CUSA21209_Maquette.pkg",
+    "url": "https://vikingfile.com/f/cusa21209_base",
+    "browserUrl": "https://vikingfile.com/f/cusa21209_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4509715661,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA21209"
+  },
+  {
+    "id": "r_mf_cusa21209",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA21209-Maquette.rar",
+    "url": "https://www.mediafire.com/file/cusa21209_mf/CUSA21209_Maquette.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa21209_mf/CUSA21209_Maquette.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4509715661,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA21209"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55340",
+    "format": "pkg",
+    "filename": "CUSA55340_Oceanhorn__Monster_of_Uncharted_Seas.pkg",
+    "url": "https://vikingfile.com/f/cusa55340_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55340_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6657199309,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55340"
+  },
+  {
+    "id": "r_mf_cusa55340",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55340-Oceanhorn__Monster_of_Uncharted_Seas.rar",
+    "url": "https://www.mediafire.com/file/cusa55340_mf/CUSA55340_Oceanhorn__Monster_of_Uncharted_Seas.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55340_mf/CUSA55340_Oceanhorn__Monster_of_Uncharted_Seas.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6657199309,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55340"
+  }
+]

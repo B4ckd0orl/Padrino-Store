@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa32420",
+    "format": "pkg",
+    "filename": "CUSA32420_Sophstar.pkg",
+    "url": "https://vikingfile.com/f/cusa32420_base",
+    "browserUrl": "https://vikingfile.com/f/cusa32420_base",
+    "requiresBrowser": true,
+    "sizeBytes": 912680550,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA32420"
+  },
+  {
+    "id": "r_mf_cusa32420",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA32420-Sophstar.rar",
+    "url": "https://www.mediafire.com/file/cusa32420_mf/CUSA32420_Sophstar.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa32420_mf/CUSA32420_Sophstar.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 912680550,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA32420"
+  }
+]

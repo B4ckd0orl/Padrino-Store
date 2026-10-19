@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa04810",
+    "format": "pkg",
+    "filename": "CUSA04810_Natural_Doctrine.pkg",
+    "url": "https://vikingfile.com/f/cusa04810_base",
+    "browserUrl": "https://vikingfile.com/f/cusa04810_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9019431322,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA04810"
+  },
+  {
+    "id": "r_mf_cusa04810",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA04810-Natural_Doctrine.rar",
+    "url": "https://www.mediafire.com/file/cusa04810_mf/CUSA04810_Natural_Doctrine.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa04810_mf/CUSA04810_Natural_Doctrine.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9019431322,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA04810"
+  }
+]

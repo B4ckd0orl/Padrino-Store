@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55515",
+    "format": "pkg",
+    "filename": "CUSA55515_Q_U_B_E__Director_s_Cut.pkg",
+    "url": "https://vikingfile.com/f/cusa55515_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55515_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1825361101,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55515"
+  },
+  {
+    "id": "r_mf_cusa55515",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55515-Q_U_B_E__Director_s_Cut.rar",
+    "url": "https://www.mediafire.com/file/cusa55515_mf/CUSA55515_Q_U_B_E__Director_s_Cut.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55515_mf/CUSA55515_Q_U_B_E__Director_s_Cut.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1825361101,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55515"
+  }
+]

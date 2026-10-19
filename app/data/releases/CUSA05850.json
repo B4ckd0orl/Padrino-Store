@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa05850",
+    "format": "pkg",
+    "filename": "CUSA05850_WRC_6_FIA_World_Rally_Championship.pkg",
+    "url": "https://vikingfile.com/f/cusa05850_base",
+    "browserUrl": "https://vikingfile.com/f/cusa05850_base",
+    "requiresBrowser": true,
+    "sizeBytes": 20937965568,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA05850"
+  },
+  {
+    "id": "r_mf_cusa05850",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA05850-WRC_6_FIA_World_Rally_Championship.rar",
+    "url": "https://www.mediafire.com/file/cusa05850_mf/CUSA05850_WRC_6_FIA_World_Rally_Championship.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa05850_mf/CUSA05850_WRC_6_FIA_World_Rally_Championship.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 20937965568,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA05850"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55113",
+    "format": "pkg",
+    "filename": "CUSA55113_Lumo.pkg",
+    "url": "https://vikingfile.com/f/cusa55113_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55113_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9019431322,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55113"
+  },
+  {
+    "id": "r_mf_cusa55113",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55113-Lumo.rar",
+    "url": "https://www.mediafire.com/file/cusa55113_mf/CUSA55113_Lumo.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55113_mf/CUSA55113_Lumo.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9019431322,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55113"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa18402",
+    "format": "pkg",
+    "filename": "CUSA18402_Project_Warlock.pkg",
+    "url": "https://vikingfile.com/f/cusa18402_base",
+    "browserUrl": "https://vikingfile.com/f/cusa18402_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1932735283,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18402"
+  },
+  {
+    "id": "r_mf_cusa18402",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA18402-Project_Warlock.rar",
+    "url": "https://www.mediafire.com/file/cusa18402_mf/CUSA18402_Project_Warlock.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa18402_mf/CUSA18402_Project_Warlock.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1932735283,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18402"
+  }
+]

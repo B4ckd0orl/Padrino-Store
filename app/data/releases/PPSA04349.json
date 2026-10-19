@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_ppsa04349",
+    "format": "exfat",
+    "filename": "PPSA04349_Shredders.exfat",
+    "url": "https://vikingfile.com/f/ppsa04349_base",
+    "browserUrl": "https://vikingfile.com/f/ppsa04349_base",
+    "requiresBrowser": true,
+    "sizeBytes": 15891378995,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game EXFAT - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA04349"
+  },
+  {
+    "id": "r_mf_ppsa04349",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-PPSA04349-Shredders.rar",
+    "url": "https://www.mediafire.com/file/ppsa04349_mf/PPSA04349_Shredders.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/ppsa04349_mf/PPSA04349_Shredders.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 15891378995,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA04349"
+  }
+]

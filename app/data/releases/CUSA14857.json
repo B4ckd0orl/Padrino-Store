@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa14857",
+    "format": "pkg",
+    "filename": "CUSA14857_Xenon_Racer.pkg",
+    "url": "https://vikingfile.com/f/cusa14857_base",
+    "browserUrl": "https://vikingfile.com/f/cusa14857_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9019431322,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14857"
+  },
+  {
+    "id": "r_mf_cusa14857",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA14857-Xenon_Racer.rar",
+    "url": "https://www.mediafire.com/file/cusa14857_mf/CUSA14857_Xenon_Racer.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa14857_mf/CUSA14857_Xenon_Racer.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9019431322,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14857"
+  }
+]

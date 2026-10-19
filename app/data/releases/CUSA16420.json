@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa16420",
+    "format": "pkg",
+    "filename": "CUSA16420_Mary_Skelter_2_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa16420_pkg/CUSA16420_Mary_Skelter_2_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa16420_pkg/CUSA16420_Mary_Skelter_2_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9878424781,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA16420"
+  },
+  {
+    "id": "r_vk_cusa16420",
+    "format": "pkg",
+    "filename": "CUSA16420_Mary_Skelter_2_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa16420_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa16420_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 9878424781,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA16420"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa00053",
+    "format": "pkg",
+    "filename": "CUSA00053_Middle_earth__Shadow_of_Mordor.pkg",
+    "url": "https://vikingfile.com/f/cusa00053_base",
+    "browserUrl": "https://vikingfile.com/f/cusa00053_base",
+    "requiresBrowser": true,
+    "sizeBytes": 41339060224,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA00053"
+  },
+  {
+    "id": "r_mf_cusa00053",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA00053-Middle_earth__Shadow_of_Mordor.rar",
+    "url": "https://www.mediafire.com/file/cusa00053_mf/CUSA00053_Middle_earth__Shadow_of_Mordor.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa00053_mf/CUSA00053_Middle_earth__Shadow_of_Mordor.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 41339060224,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA00053"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa19274",
+    "format": "pkg",
+    "filename": "CUSA19274_Ary_and_the_Secret_of_Seasons.pkg",
+    "url": "https://vikingfile.com/f/cusa19274_base",
+    "browserUrl": "https://vikingfile.com/f/cusa19274_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA19274"
+  },
+  {
+    "id": "r_mf_cusa19274",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA19274-Ary_and_the_Secret_of_Seasons.rar",
+    "url": "https://www.mediafire.com/file/cusa19274_mf/CUSA19274_Ary_and_the_Secret_of_Seasons.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa19274_mf/CUSA19274_Ary_and_the_Secret_of_Seasons.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA19274"
+  }
+]

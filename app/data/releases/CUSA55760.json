@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55760",
+    "format": "pkg",
+    "filename": "CUSA55760_Star_Hammer__The_Vanguard_Prophecy.pkg",
+    "url": "https://vikingfile.com/f/cusa55760_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55760_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8912057139,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55760"
+  },
+  {
+    "id": "r_mf_cusa55760",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55760-Star_Hammer__The_Vanguard_Prophecy.rar",
+    "url": "https://www.mediafire.com/file/cusa55760_mf/CUSA55760_Star_Hammer__The_Vanguard_Prophecy.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55760_mf/CUSA55760_Star_Hammer__The_Vanguard_Prophecy.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8912057139,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55760"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55532",
+    "format": "pkg",
+    "filename": "CUSA55532_Rabi_Ribi.pkg",
+    "url": "https://vikingfile.com/f/cusa55532_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55532_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2469606195,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55532"
+  },
+  {
+    "id": "r_mf_cusa55532",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55532-Rabi_Ribi.rar",
+    "url": "https://www.mediafire.com/file/cusa55532_mf/CUSA55532_Rabi_Ribi.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55532_mf/CUSA55532_Rabi_Ribi.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2469606195,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55532"
+  }
+]

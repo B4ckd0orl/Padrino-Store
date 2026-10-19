@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56019",
+    "format": "pkg",
+    "filename": "CUSA56019_Wargroove.pkg",
+    "url": "https://vikingfile.com/f/cusa56019_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56019_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6120328397,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56019"
+  },
+  {
+    "id": "r_mf_cusa56019",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56019-Wargroove.rar",
+    "url": "https://www.mediafire.com/file/cusa56019_mf/CUSA56019_Wargroove.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56019_mf/CUSA56019_Wargroove.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6120328397,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56019"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_ppsa16371",
+    "format": "exfat",
+    "filename": "PPSA16371_Coral_Island.exfat",
+    "url": "https://vikingfile.com/f/ppsa16371_base",
+    "browserUrl": "https://vikingfile.com/f/ppsa16371_base",
+    "requiresBrowser": true,
+    "sizeBytes": 13314398618,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game EXFAT - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA16371"
+  },
+  {
+    "id": "r_mf_ppsa16371",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-PPSA16371-Coral_Island.rar",
+    "url": "https://www.mediafire.com/file/ppsa16371_mf/PPSA16371_Coral_Island.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/ppsa16371_mf/PPSA16371_Coral_Island.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 13314398618,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA16371"
+  }
+]

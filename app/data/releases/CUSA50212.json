@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50212",
+    "format": "pkg",
+    "filename": "CUSA50212_Girls_und_Panzer__Dream_Tank_Match.pkg",
+    "url": "https://vikingfile.com/f/cusa50212_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50212_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50212"
+  },
+  {
+    "id": "r_mf_cusa50212",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50212-Girls_und_Panzer__Dream_Tank_Match.rar",
+    "url": "https://www.mediafire.com/file/cusa50212_mf/CUSA50212_Girls_und_Panzer__Dream_Tank_Match.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50212_mf/CUSA50212_Girls_und_Panzer__Dream_Tank_Match.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50212"
+  }
+]

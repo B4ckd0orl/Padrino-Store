@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa14890",
+    "format": "pkg",
+    "filename": "CUSA14890_Atelier_Lulua__The_Scion_of_Arland.pkg",
+    "url": "https://vikingfile.com/f/cusa14890_base",
+    "browserUrl": "https://vikingfile.com/f/cusa14890_base",
+    "requiresBrowser": true,
+    "sizeBytes": 13743895347,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14890"
+  },
+  {
+    "id": "r_mf_cusa14890",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA14890-Atelier_Lulua__The_Scion_of_Arland.rar",
+    "url": "https://www.mediafire.com/file/cusa14890_mf/CUSA14890_Atelier_Lulua__The_Scion_of_Arland.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa14890_mf/CUSA14890_Atelier_Lulua__The_Scion_of_Arland.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 13743895347,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14890"
+  }
+]

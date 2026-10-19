@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49219",
+    "format": "pkg",
+    "filename": "CUSA49219_Bubsy__Paws_on_Fire_.pkg",
+    "url": "https://vikingfile.com/f/cusa49219_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49219_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8053063680,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49219"
+  },
+  {
+    "id": "r_mf_cusa49219",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49219-Bubsy__Paws_on_Fire_.rar",
+    "url": "https://www.mediafire.com/file/cusa49219_mf/CUSA49219_Bubsy__Paws_on_Fire_.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49219_mf/CUSA49219_Bubsy__Paws_on_Fire_.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8053063680,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49219"
+  }
+]

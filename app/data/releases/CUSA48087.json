@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48087",
+    "format": "pkg",
+    "filename": "CUSA48087_All_Star_Fruit_Racing.pkg",
+    "url": "https://vikingfile.com/f/cusa48087_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48087_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8912057139,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48087"
+  },
+  {
+    "id": "r_mf_cusa48087",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48087-All_Star_Fruit_Racing.rar",
+    "url": "https://www.mediafire.com/file/cusa48087_mf/CUSA48087_All_Star_Fruit_Racing.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48087_mf/CUSA48087_All_Star_Fruit_Racing.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8912057139,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48087"
+  }
+]

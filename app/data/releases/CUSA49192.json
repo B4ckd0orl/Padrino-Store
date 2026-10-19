@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49192",
+    "format": "pkg",
+    "filename": "CUSA49192_Bokuhime_Project.pkg",
+    "url": "https://vikingfile.com/f/cusa49192_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49192_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4831838208,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49192"
+  },
+  {
+    "id": "r_mf_cusa49192",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49192-Bokuhime_Project.rar",
+    "url": "https://www.mediafire.com/file/cusa49192_mf/CUSA49192_Bokuhime_Project.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49192_mf/CUSA49192_Bokuhime_Project.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4831838208,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49192"
+  }
+]

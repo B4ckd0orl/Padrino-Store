@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_ppsa17450",
+    "format": "exfat",
+    "filename": "PPSA17450_Ultros.exfat",
+    "url": "https://vikingfile.com/f/ppsa17450_base",
+    "browserUrl": "https://vikingfile.com/f/ppsa17450_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game exFAT - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA17450"
+  },
+  {
+    "id": "r_mf_ppsa17450",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-PPSA17450-Ultros.rar",
+    "url": "https://www.mediafire.com/file/ppsa17450_mf/PPSA17450_Ultros.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/ppsa17450_mf/PPSA17450_Ultros.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA17450"
+  }
+]

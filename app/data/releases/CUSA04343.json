@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa04343",
+    "format": "pkg",
+    "filename": "CUSA04343_Garou__Mark_of_the_Wolves.pkg",
+    "url": "https://vikingfile.com/f/cusa04343_base",
+    "browserUrl": "https://vikingfile.com/f/cusa04343_base",
+    "requiresBrowser": true,
+    "sizeBytes": 858993459,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA04343"
+  },
+  {
+    "id": "r_mf_cusa04343",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA04343-Garou__Mark_of_the_Wolves.rar",
+    "url": "https://www.mediafire.com/file/cusa04343_mf/CUSA04343_Garou__Mark_of_the_Wolves.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa04343_mf/CUSA04343_Garou__Mark_of_the_Wolves.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 858993459,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA04343"
+  }
+]

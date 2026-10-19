@@ -92,7 +92,7 @@ function sourceId(url) {
 }
 
 const HOSTS = {
-  archive: { match: (h) => h === "archive.org" || h.endsWith(".archive.org"), provider: "Archive.org", flow: "direct" },
+  archive: { match: (h) => h === "archive.org" || h.endsWith(".archive.org"), provider: "archive.org", flow: "direct" },
   vikingfile: { match: (h) => h === "vikingfile.com" || h.endsWith(".vikingfile.com") || h === "vik1ngfile.site", provider: "VikingFile", flow: "vikingfile" },
   akirabox: { match: (h) => h === "akirabox.com" || h.endsWith(".akirabox.com") || h === "akirabox.to", provider: "AkiraBox", flow: "browser" },
 };
@@ -233,7 +233,7 @@ const escapeAscii = (s) => JSON.stringify(s).replace(/[\u007f-\uffff]/g, (c) => 
 
 function newGameEntry(tid, game, rows, sources) {
   const platform = tid.startsWith("CUSA") ? "ps4" : "ps5";
-  const providers = [...new Set(sources.map((s) => (s.provider === "Archive.org" ? "archive.org" : s.provider === "VikingFile" ? "vikingfile" : "akirabox")))].sort();
+  const providers = [...new Set(sources.map((s) => String(s.provider || "").toLowerCase()).filter(Boolean))].sort();
   const direct = sources.some((s) => s.flow === "direct");
   const genres = (game?.genre || "")
     .split("/")
@@ -489,7 +489,7 @@ async function main() {
 
   let catText = readFileSync(CATALOG, "utf8");
   for (const [tid, sources] of plan.newSources) {
-    const addProviders = [...new Set(sources.map((s) => (s.provider === "Archive.org" ? "archive.org" : s.provider === "VikingFile" ? "vikingfile" : "akirabox")))];
+    const addProviders = [...new Set(sources.map((s) => String(s.provider || "").toLowerCase()).filter(Boolean))];
     const makeDirect = sources.some((s) => s.flow === "direct");
     const r = patchCatalogExisting(catText, tid, addProviders, makeDirect);
     catText = r.text;

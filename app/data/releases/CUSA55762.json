@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55762",
+    "format": "pkg",
+    "filename": "CUSA55762_Star_Melody__Yumemi_Dreamer.pkg",
+    "url": "https://vikingfile.com/f/cusa55762_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55762_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4724464026,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55762"
+  },
+  {
+    "id": "r_mf_cusa55762",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55762-Star_Melody__Yumemi_Dreamer.rar",
+    "url": "https://www.mediafire.com/file/cusa55762_mf/CUSA55762_Star_Melody__Yumemi_Dreamer.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55762_mf/CUSA55762_Star_Melody__Yumemi_Dreamer.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4724464026,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55762"
+  }
+]

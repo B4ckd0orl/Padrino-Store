@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa03425",
+    "format": "pkg",
+    "filename": "CUSA03425_Arslan__The_Warriors_of_Legend.pkg",
+    "url": "https://vikingfile.com/f/cusa03425_base",
+    "browserUrl": "https://vikingfile.com/f/cusa03425_base",
+    "requiresBrowser": true,
+    "sizeBytes": 13743895347,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03425"
+  },
+  {
+    "id": "r_mf_cusa03425",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA03425-Arslan__The_Warriors_of_Legend.rar",
+    "url": "https://www.mediafire.com/file/cusa03425_mf/CUSA03425_Arslan__The_Warriors_of_Legend.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa03425_mf/CUSA03425_Arslan__The_Warriors_of_Legend.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 13743895347,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03425"
+  }
+]

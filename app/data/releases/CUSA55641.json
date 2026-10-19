@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55641",
+    "format": "pkg",
+    "filename": "CUSA55641_Samurai_Aces.pkg",
+    "url": "https://vikingfile.com/f/cusa55641_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55641_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5046586573,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55641"
+  },
+  {
+    "id": "r_mf_cusa55641",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55641-Samurai_Aces.rar",
+    "url": "https://www.mediafire.com/file/cusa55641_mf/CUSA55641_Samurai_Aces.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55641_mf/CUSA55641_Samurai_Aces.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5046586573,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55641"
+  }
+]

@@ -6,6 +6,7 @@ import { HIDDEN } from '../data/curate.js';
 import { formatDate2, formatNumber2, t } from '../i18n/core.js';
 import { createPageCache } from './page-cache.js';
 import { createReleaseCache } from './release-cache.js';
+import { pausedFilter } from './paused-hosts.js';
 import { FileSystem, Image } from '@ps5-react/core';
 
   var COVER_WIDTH = 440;
@@ -51,6 +52,15 @@ import { FileSystem, Image } from '@ps5-react/core';
       return this.id;
     }
   };
+  // paused-hosts: oculta solo los juegos con providers POBLADOS cuyos hosts están todos en pausa
+  // (el usuario no podría descargarlos en la app). providers vacío/ausente = las fuentes viven en
+  // el archivo de release (data/releases/*.json), patrón de los PS4 en este catálogo; esos juegos se
+  // conservan visibles y release-cache ya filtra las fuentes pausadas una a una al leer el release.
+  var playable = (game) => game.providers?.length > 0 && !game.providers.every(pausedFilter);
+  var hidden = (game) => game.providers?.length > 0 && !playable(game);
+  for (const list of [games, twins])
+    for (let index = list.length - 1; index >= 0; index--)
+      if (hidden(list[index])) list.splice(index, 1);
   var entries = [...games, ...twins];
   var _a;
   for (const game of entries) {
@@ -124,7 +134,7 @@ import { FileSystem, Image } from '@ps5-react/core';
     return words.map((word, i) => i ? word[0].toUpperCase() + word.slice(1) : word).join("");
   }
   var CDN_HOST = "padrino cdn";
-  var hosts = [...hostCounts].filter(([host2, count]) => count >= MIN_HOST_GAMES || host2 === CDN_HOST).sort((a, b) => (b[0] === CDN_HOST) - (a[0] === CDN_HOST) || b[1] - a[1]).map(([host2]) => ({ value: host2, name: HOST_NAMES[host2] ?? host2 }));
+  var hosts = [...hostCounts].filter(([host2, count]) => (count >= MIN_HOST_GAMES || host2 === CDN_HOST) && !pausedFilter(host2)).sort((a, b) => (b[0] === CDN_HOST) - (a[0] === CDN_HOST) || b[1] - a[1]).map(([host2]) => ({ value: host2, name: HOST_NAMES[host2] ?? host2 }));
   var onCdn = (game) => Boolean(game.providers?.includes(CDN_HOST));
   var SIZES = [
     { value: "small", label: "filters.size.small", test: (gb) => gb < 10 },

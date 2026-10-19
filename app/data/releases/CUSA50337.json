@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50337",
+    "format": "pkg",
+    "filename": "CUSA50337_In_Between.pkg",
+    "url": "https://vikingfile.com/f/cusa50337_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50337_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2791728742,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50337"
+  },
+  {
+    "id": "r_mf_cusa50337",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50337-In_Between.rar",
+    "url": "https://www.mediafire.com/file/cusa50337_mf/CUSA50337_In_Between.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50337_mf/CUSA50337_In_Between.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2791728742,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50337"
+  }
+]

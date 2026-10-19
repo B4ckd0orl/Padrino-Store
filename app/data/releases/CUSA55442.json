@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55442",
+    "format": "pkg",
+    "filename": "CUSA55442_Pneuma__Breath_of_Life.pkg",
+    "url": "https://vikingfile.com/f/cusa55442_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55442_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2040109466,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55442"
+  },
+  {
+    "id": "r_mf_cusa55442",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55442-Pneuma__Breath_of_Life.rar",
+    "url": "https://www.mediafire.com/file/cusa55442_mf/CUSA55442_Pneuma__Breath_of_Life.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55442_mf/CUSA55442_Pneuma__Breath_of_Life.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2040109466,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55442"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa22268",
+    "format": "pkg",
+    "filename": "CUSA22268_Wildfire.pkg",
+    "url": "https://vikingfile.com/f/cusa22268_base",
+    "browserUrl": "https://vikingfile.com/f/cusa22268_base",
+    "requiresBrowser": true,
+    "sizeBytes": 912680550,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA22268"
+  },
+  {
+    "id": "r_mf_cusa22268",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA22268-Wildfire.rar",
+    "url": "https://www.mediafire.com/file/cusa22268_mf/CUSA22268_Wildfire.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa22268_mf/CUSA22268_Wildfire.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 912680550,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA22268"
+  }
+]

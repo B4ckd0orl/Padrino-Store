@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50024",
+    "format": "pkg",
+    "filename": "CUSA50024_Driveclub_Bikes.pkg",
+    "url": "https://vikingfile.com/f/cusa50024_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50024_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1610612736,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50024"
+  },
+  {
+    "id": "r_mf_cusa50024",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50024-Driveclub_Bikes.rar",
+    "url": "https://www.mediafire.com/file/cusa50024_mf/CUSA50024_Driveclub_Bikes.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50024_mf/CUSA50024_Driveclub_Bikes.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1610612736,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50024"
+  }
+]

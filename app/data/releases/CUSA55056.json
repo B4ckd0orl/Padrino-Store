@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55056",
+    "format": "pkg",
+    "filename": "CUSA55056_The_Last_Kids_on_Earth_and_the_Staff_of_Doom.pkg",
+    "url": "https://vikingfile.com/f/cusa55056_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55056_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2791728742,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55056"
+  },
+  {
+    "id": "r_mf_cusa55056",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55056-The_Last_Kids_on_Earth_and_the_Staff_of_Doom.rar",
+    "url": "https://www.mediafire.com/file/cusa55056_mf/CUSA55056_The_Last_Kids_on_Earth_and_the_Staff_of_Doom.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55056_mf/CUSA55056_The_Last_Kids_on_Earth_and_the_Staff_of_Doom.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2791728742,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55056"
+  }
+]

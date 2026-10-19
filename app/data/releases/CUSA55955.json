@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55955",
+    "format": "pkg",
+    "filename": "CUSA55955_Undernauts__Labyrinth_of_Yomi.pkg",
+    "url": "https://vikingfile.com/f/cusa55955_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55955_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9341553869,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55955"
+  },
+  {
+    "id": "r_mf_cusa55955",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55955-Undernauts__Labyrinth_of_Yomi.rar",
+    "url": "https://www.mediafire.com/file/cusa55955_mf/CUSA55955_Undernauts__Labyrinth_of_Yomi.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55955_mf/CUSA55955_Undernauts__Labyrinth_of_Yomi.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9341553869,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55955"
+  }
+]

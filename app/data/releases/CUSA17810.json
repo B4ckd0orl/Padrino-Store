@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa17810",
+    "format": "pkg",
+    "filename": "CUSA17810_Ys__Memories_of_Celceta.pkg",
+    "url": "https://vikingfile.com/f/cusa17810_base",
+    "browserUrl": "https://vikingfile.com/f/cusa17810_base",
+    "requiresBrowser": true,
+    "sizeBytes": 12240656794,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA17810"
+  },
+  {
+    "id": "r_mf_cusa17810",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA17810-Ys__Memories_of_Celceta.rar",
+    "url": "https://www.mediafire.com/file/cusa17810_mf/CUSA17810_Ys__Memories_of_Celceta.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa17810_mf/CUSA17810_Ys__Memories_of_Celceta.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 12240656794,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA17810"
+  }
+]

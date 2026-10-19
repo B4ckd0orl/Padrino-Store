@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55286",
+    "format": "pkg",
+    "filename": "CUSA55286_Necropolis.pkg",
+    "url": "https://vikingfile.com/f/cusa55286_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55286_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3328599654,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55286"
+  },
+  {
+    "id": "r_mf_cusa55286",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55286-Necropolis.rar",
+    "url": "https://www.mediafire.com/file/cusa55286_mf/CUSA55286_Necropolis.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55286_mf/CUSA55286_Necropolis.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3328599654,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55286"
+  }
+]

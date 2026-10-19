@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48069",
+    "format": "pkg",
+    "filename": "CUSA48069_Air_Conflicts__Pacific_Carriers.pkg",
+    "url": "https://vikingfile.com/f/cusa48069_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48069_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5690831667,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48069"
+  },
+  {
+    "id": "r_mf_cusa48069",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48069-Air_Conflicts__Pacific_Carriers.rar",
+    "url": "https://www.mediafire.com/file/cusa48069_mf/CUSA48069_Air_Conflicts__Pacific_Carriers.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48069_mf/CUSA48069_Air_Conflicts__Pacific_Carriers.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5690831667,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48069"
+  }
+]

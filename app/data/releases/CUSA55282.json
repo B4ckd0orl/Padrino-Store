@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55282",
+    "format": "pkg",
+    "filename": "CUSA55282_NBA_Live_18.pkg",
+    "url": "https://vikingfile.com/f/cusa55282_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55282_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4617089843,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55282"
+  },
+  {
+    "id": "r_mf_cusa55282",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55282-NBA_Live_18.rar",
+    "url": "https://www.mediafire.com/file/cusa55282_mf/CUSA55282_NBA_Live_18.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55282_mf/CUSA55282_NBA_Live_18.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4617089843,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55282"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49277",
+    "format": "pkg",
+    "filename": "CUSA49277_City_Limits.pkg",
+    "url": "https://vikingfile.com/f/cusa49277_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49277_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49277"
+  },
+  {
+    "id": "r_mf_cusa49277",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49277-City_Limits.rar",
+    "url": "https://www.mediafire.com/file/cusa49277_mf/CUSA49277_City_Limits.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49277_mf/CUSA49277_City_Limits.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49277"
+  }
+]

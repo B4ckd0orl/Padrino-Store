@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55809",
+    "format": "pkg",
+    "filename": "CUSA55809_Super_Dodgeball_Beats.pkg",
+    "url": "https://vikingfile.com/f/cusa55809_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55809_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6012954214,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55809"
+  },
+  {
+    "id": "r_mf_cusa55809",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55809-Super_Dodgeball_Beats.rar",
+    "url": "https://www.mediafire.com/file/cusa55809_mf/CUSA55809_Super_Dodgeball_Beats.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55809_mf/CUSA55809_Super_Dodgeball_Beats.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6012954214,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55809"
+  }
+]

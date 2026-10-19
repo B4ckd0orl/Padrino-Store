@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56096",
+    "format": "pkg",
+    "filename": "CUSA56096_Yesterday_Origins.pkg",
+    "url": "https://vikingfile.com/f/cusa56096_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56096_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6764573491,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56096"
+  },
+  {
+    "id": "r_mf_cusa56096",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56096-Yesterday_Origins.rar",
+    "url": "https://www.mediafire.com/file/cusa56096_mf/CUSA56096_Yesterday_Origins.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56096_mf/CUSA56096_Yesterday_Origins.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6764573491,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56096"
+  }
+]

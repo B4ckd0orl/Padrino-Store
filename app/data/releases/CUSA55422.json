@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55422",
+    "format": "pkg",
+    "filename": "CUSA55422_Pic_a_Pix_Classic_2.pkg",
+    "url": "https://vikingfile.com/f/cusa55422_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55422_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4187593114,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55422"
+  },
+  {
+    "id": "r_mf_cusa55422",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55422-Pic_a_Pix_Classic_2.rar",
+    "url": "https://www.mediafire.com/file/cusa55422_mf/CUSA55422_Pic_a_Pix_Classic_2.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55422_mf/CUSA55422_Pic_a_Pix_Classic_2.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4187593114,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55422"
+  }
+]

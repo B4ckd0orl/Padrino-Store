@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55812",
+    "format": "pkg",
+    "filename": "CUSA55812_Super_Exploding_Zoo.pkg",
+    "url": "https://vikingfile.com/f/cusa55812_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55812_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4402341478,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55812"
+  },
+  {
+    "id": "r_mf_cusa55812",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55812-Super_Exploding_Zoo.rar",
+    "url": "https://www.mediafire.com/file/cusa55812_mf/CUSA55812_Super_Exploding_Zoo.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55812_mf/CUSA55812_Super_Exploding_Zoo.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4402341478,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55812"
+  }
+]

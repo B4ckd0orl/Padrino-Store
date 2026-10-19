@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48040",
+    "format": "pkg",
+    "filename": "CUSA48040_A_Boy_and_His_Blob.pkg",
+    "url": "https://vikingfile.com/f/cusa48040_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48040_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5583457485,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48040"
+  },
+  {
+    "id": "r_mf_cusa48040",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48040-A_Boy_and_His_Blob.rar",
+    "url": "https://www.mediafire.com/file/cusa48040_mf/CUSA48040_A_Boy_and_His_Blob.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48040_mf/CUSA48040_A_Boy_and_His_Blob.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5583457485,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48040"
+  }
+]

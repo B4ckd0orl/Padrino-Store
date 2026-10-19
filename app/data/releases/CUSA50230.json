@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50230",
+    "format": "pkg",
+    "filename": "CUSA50230_Graceful_Explosion_Machine.pkg",
+    "url": "https://vikingfile.com/f/cusa50230_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50230_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1610612736,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50230"
+  },
+  {
+    "id": "r_mf_cusa50230",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50230-Graceful_Explosion_Machine.rar",
+    "url": "https://www.mediafire.com/file/cusa50230_mf/CUSA50230_Graceful_Explosion_Machine.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50230_mf/CUSA50230_Graceful_Explosion_Machine.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1610612736,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50230"
+  }
+]

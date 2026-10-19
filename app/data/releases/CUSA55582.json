@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55582",
+    "format": "pkg",
+    "filename": "CUSA55582_Reverie.pkg",
+    "url": "https://vikingfile.com/f/cusa55582_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55582_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3758096384,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55582"
+  },
+  {
+    "id": "r_mf_cusa55582",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55582-Reverie.rar",
+    "url": "https://www.mediafire.com/file/cusa55582_mf/CUSA55582_Reverie.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55582_mf/CUSA55582_Reverie.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3758096384,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55582"
+  }
+]

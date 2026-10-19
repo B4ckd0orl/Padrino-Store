@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49091",
+    "format": "pkg",
+    "filename": "CUSA49091_Atari_Flashback_Classics__Volume_2.pkg",
+    "url": "https://vikingfile.com/f/cusa49091_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49091_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9771050598,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49091"
+  },
+  {
+    "id": "r_mf_cusa49091",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49091-Atari_Flashback_Classics__Volume_2.rar",
+    "url": "https://www.mediafire.com/file/cusa49091_mf/CUSA49091_Atari_Flashback_Classics__Volume_2.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49091_mf/CUSA49091_Atari_Flashback_Classics__Volume_2.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9771050598,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49091"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa09429",
+    "format": "pkg",
+    "filename": "CUSA09429_The_Coma__Recut.pkg",
+    "url": "https://vikingfile.com/f/cusa09429_base",
+    "browserUrl": "https://vikingfile.com/f/cusa09429_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA09429"
+  },
+  {
+    "id": "r_mf_cusa09429",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA09429-The_Coma__Recut.rar",
+    "url": "https://www.mediafire.com/file/cusa09429_mf/CUSA09429_The_Coma__Recut.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa09429_mf/CUSA09429_The_Coma__Recut.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA09429"
+  }
+]

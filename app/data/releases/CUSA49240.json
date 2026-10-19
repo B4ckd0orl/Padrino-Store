@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49240",
+    "format": "pkg",
+    "filename": "CUSA49240_Capsule_Force.pkg",
+    "url": "https://vikingfile.com/f/cusa49240_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49240_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6012954214,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49240"
+  },
+  {
+    "id": "r_mf_cusa49240",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49240-Capsule_Force.rar",
+    "url": "https://www.mediafire.com/file/cusa49240_mf/CUSA49240_Capsule_Force.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49240_mf/CUSA49240_Capsule_Force.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6012954214,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49240"
+  }
+]

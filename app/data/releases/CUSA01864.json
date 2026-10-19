@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa01864",
+    "format": "pkg",
+    "filename": "CUSA01864_Farming_Simulator_15.pkg",
+    "url": "https://vikingfile.com/f/cusa01864_base",
+    "browserUrl": "https://vikingfile.com/f/cusa01864_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA01864"
+  },
+  {
+    "id": "r_mf_cusa01864",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA01864-Farming_Simulator_15.rar",
+    "url": "https://www.mediafire.com/file/cusa01864_mf/CUSA01864_Farming_Simulator_15.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa01864_mf/CUSA01864_Farming_Simulator_15.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA01864"
+  }
+]

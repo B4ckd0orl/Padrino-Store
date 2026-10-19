@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa23422",
+    "format": "pkg",
+    "filename": "CUSA23422_Turrican_Flashback.pkg",
+    "url": "https://vikingfile.com/f/cusa23422_base",
+    "browserUrl": "https://vikingfile.com/f/cusa23422_base",
+    "requiresBrowser": true,
+    "sizeBytes": 697932186,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA23422"
+  },
+  {
+    "id": "r_mf_cusa23422",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA23422-Turrican_Flashback.rar",
+    "url": "https://www.mediafire.com/file/cusa23422_mf/CUSA23422_Turrican_Flashback.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa23422_mf/CUSA23422_Turrican_Flashback.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 697932186,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA23422"
+  }
+]

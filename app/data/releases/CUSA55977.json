@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55977",
+    "format": "pkg",
+    "filename": "CUSA55977_Vagrus___The_Riven_Realms.pkg",
+    "url": "https://vikingfile.com/f/cusa55977_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55977_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1825361101,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55977"
+  },
+  {
+    "id": "r_mf_cusa55977",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55977-Vagrus___The_Riven_Realms.rar",
+    "url": "https://www.mediafire.com/file/cusa55977_mf/CUSA55977_Vagrus___The_Riven_Realms.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55977_mf/CUSA55977_Vagrus___The_Riven_Realms.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1825361101,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55977"
+  }
+]

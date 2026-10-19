@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50135",
+    "format": "pkg",
+    "filename": "CUSA50135_FIFA_20.pkg",
+    "url": "https://vikingfile.com/f/cusa50135_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50135_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6549825126,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50135"
+  },
+  {
+    "id": "r_mf_cusa50135",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50135-FIFA_20.rar",
+    "url": "https://www.mediafire.com/file/cusa50135_mf/CUSA50135_FIFA_20.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50135_mf/CUSA50135_FIFA_20.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6549825126,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50135"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50391",
+    "format": "pkg",
+    "filename": "CUSA50391_Jinki_Resurrection.pkg",
+    "url": "https://vikingfile.com/f/cusa50391_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50391_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50391"
+  },
+  {
+    "id": "r_mf_cusa50391",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50391-Jinki_Resurrection.rar",
+    "url": "https://www.mediafire.com/file/cusa50391_mf/CUSA50391_Jinki_Resurrection.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50391_mf/CUSA50391_Jinki_Resurrection.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50391"
+  }
+]

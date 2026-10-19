@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa03853",
+    "format": "pkg",
+    "filename": "CUSA03853_MXGP2__The_Official_Motocross_Videogame.pkg",
+    "url": "https://vikingfile.com/f/cusa03853_base",
+    "browserUrl": "https://vikingfile.com/f/cusa03853_base",
+    "requiresBrowser": true,
+    "sizeBytes": 15247133901,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03853"
+  },
+  {
+    "id": "r_mf_cusa03853",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA03853-MXGP2__The_Official_Motocross_Videogame.rar",
+    "url": "https://www.mediafire.com/file/cusa03853_mf/CUSA03853_MXGP2__The_Official_Motocross_Videogame.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa03853_mf/CUSA03853_MXGP2__The_Official_Motocross_Videogame.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 15247133901,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03853"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55304",
+    "format": "pkg",
+    "filename": "CUSA55304_Nexomon__Extinction.pkg",
+    "url": "https://vikingfile.com/f/cusa55304_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55304_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9878424781,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55304"
+  },
+  {
+    "id": "r_mf_cusa55304",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55304-Nexomon__Extinction.rar",
+    "url": "https://www.mediafire.com/file/cusa55304_mf/CUSA55304_Nexomon__Extinction.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55304_mf/CUSA55304_Nexomon__Extinction.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9878424781,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55304"
+  }
+]

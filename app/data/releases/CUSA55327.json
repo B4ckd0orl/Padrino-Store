@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55327",
+    "format": "pkg",
+    "filename": "CUSA55327_No_Heroes_Here.pkg",
+    "url": "https://vikingfile.com/f/cusa55327_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55327_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9448928051,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55327"
+  },
+  {
+    "id": "r_mf_cusa55327",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55327-No_Heroes_Here.rar",
+    "url": "https://www.mediafire.com/file/cusa55327_mf/CUSA55327_No_Heroes_Here.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55327_mf/CUSA55327_No_Heroes_Here.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9448928051,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55327"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa08333",
+    "format": "pkg",
+    "filename": "CUSA08333_Sundered__Eldritch_Edition.pkg",
+    "url": "https://vikingfile.com/f/cusa08333_base",
+    "browserUrl": "https://vikingfile.com/f/cusa08333_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA08333"
+  },
+  {
+    "id": "r_mf_cusa08333",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA08333-Sundered__Eldritch_Edition.rar",
+    "url": "https://www.mediafire.com/file/cusa08333_mf/CUSA08333_Sundered__Eldritch_Edition.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa08333_mf/CUSA08333_Sundered__Eldritch_Edition.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA08333"
+  }
+]

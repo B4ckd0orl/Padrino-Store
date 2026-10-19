@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49106",
+    "format": "pkg",
+    "filename": "CUSA49106_Aztech__Forgotten_Gods.pkg",
+    "url": "https://vikingfile.com/f/cusa49106_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49106_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6657199309,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49106"
+  },
+  {
+    "id": "r_mf_cusa49106",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49106-Aztech__Forgotten_Gods.rar",
+    "url": "https://www.mediafire.com/file/cusa49106_mf/CUSA49106_Aztech__Forgotten_Gods.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49106_mf/CUSA49106_Aztech__Forgotten_Gods.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6657199309,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49106"
+  }
+]

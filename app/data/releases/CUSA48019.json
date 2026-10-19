@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48019",
+    "format": "pkg",
+    "filename": "CUSA48019_3__C_Sand_Puzzle.pkg",
+    "url": "https://vikingfile.com/f/cusa48019_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48019_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48019"
+  },
+  {
+    "id": "r_mf_cusa48019",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48019-3__C_Sand_Puzzle.rar",
+    "url": "https://www.mediafire.com/file/cusa48019_mf/CUSA48019_3__C_Sand_Puzzle.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48019_mf/CUSA48019_3__C_Sand_Puzzle.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48019"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56028",
+    "format": "pkg",
+    "filename": "CUSA56028_Warsaw.pkg",
+    "url": "https://vikingfile.com/f/cusa56028_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56028_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8482560410,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56028"
+  },
+  {
+    "id": "r_mf_cusa56028",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56028-Warsaw.rar",
+    "url": "https://www.mediafire.com/file/cusa56028_mf/CUSA56028_Warsaw.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56028_mf/CUSA56028_Warsaw.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8482560410,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56028"
+  }
+]

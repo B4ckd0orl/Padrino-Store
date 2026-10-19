@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48038",
+    "format": "pkg",
+    "filename": "CUSA48038_Aaru_s_Awakening.pkg",
+    "url": "https://vikingfile.com/f/cusa48038_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48038_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5798205850,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48038"
+  },
+  {
+    "id": "r_mf_cusa48038",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48038-Aaru_s_Awakening.rar",
+    "url": "https://www.mediafire.com/file/cusa48038_mf/CUSA48038_Aaru_s_Awakening.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48038_mf/CUSA48038_Aaru_s_Awakening.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5798205850,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48038"
+  }
+]

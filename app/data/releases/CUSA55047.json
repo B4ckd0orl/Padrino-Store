@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55047",
+    "format": "pkg",
+    "filename": "CUSA55047_Laid_Back_Camp__Virtual__Lake_Motosu.pkg",
+    "url": "https://vikingfile.com/f/cusa55047_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55047_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1932735283,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55047"
+  },
+  {
+    "id": "r_mf_cusa55047",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55047-Laid_Back_Camp__Virtual__Lake_Motosu.rar",
+    "url": "https://www.mediafire.com/file/cusa55047_mf/CUSA55047_Laid_Back_Camp__Virtual__Lake_Motosu.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55047_mf/CUSA55047_Laid_Back_Camp__Virtual__Lake_Motosu.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1932735283,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55047"
+  }
+]

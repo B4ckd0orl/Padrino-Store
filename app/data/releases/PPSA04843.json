@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_ppsa04843",
+    "format": "exfat",
+    "filename": "PPSA04843_Hardspace__Shipbreaker.exfat",
+    "url": "https://vikingfile.com/f/ppsa04843_base",
+    "browserUrl": "https://vikingfile.com/f/ppsa04843_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game EXFAT - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA04843"
+  },
+  {
+    "id": "r_mf_ppsa04843",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-PPSA04843-Hardspace__Shipbreaker.rar",
+    "url": "https://www.mediafire.com/file/ppsa04843_mf/PPSA04843_Hardspace__Shipbreaker.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/ppsa04843_mf/PPSA04843_Hardspace__Shipbreaker.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA04843"
+  }
+]

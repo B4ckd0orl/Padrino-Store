@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49196",
+    "format": "pkg",
+    "filename": "CUSA49196_Boundless.pkg",
+    "url": "https://vikingfile.com/f/cusa49196_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49196_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6120328397,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49196"
+  },
+  {
+    "id": "r_mf_cusa49196",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49196-Boundless.rar",
+    "url": "https://www.mediafire.com/file/cusa49196_mf/CUSA49196_Boundless.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49196_mf/CUSA49196_Boundless.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6120328397,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49196"
+  }
+]

@@ -4,7 +4,7 @@
 
 import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
-import { formatLabel, preferredRelease, requiredFirmware } from './sources.js';
+import { formatDetail, inferFormat, preferredRelease, requiredFirmware } from './sources.js';
 import { useT } from '../i18n/index.js';
 import en from '../i18n/locales/en.json';
 import { formatDate3 } from '../state/catalog.js';
@@ -31,7 +31,7 @@ import { Text, View } from '@ps5-react/core';
       [label("game.facts.publisher"), game.publisher || "\u2014"],
       [label("game.facts.releaseDate"), formatDate3(game.releaseDate)],
       firmware === null ? null : [label("game.facts.firmware"), `${firmware}.xx`],
-      preferred ? [label("game.facts.format"), formatLabel(preferred.format)] : null,
+      preferred ? [label("game.facts.format"), formatDetail(inferFormat(preferred))] : null,
       size
     ].filter(Boolean);
     return /* @__PURE__ */ (0, jsxs)(View, { style: { width: 432 }, children: [

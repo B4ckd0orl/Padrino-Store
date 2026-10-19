@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49201",
+    "format": "pkg",
+    "filename": "CUSA49201_Brawl.pkg",
+    "url": "https://vikingfile.com/f/cusa49201_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49201_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6871947674,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49201"
+  },
+  {
+    "id": "r_mf_cusa49201",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49201-Brawl.rar",
+    "url": "https://www.mediafire.com/file/cusa49201_mf/CUSA49201_Brawl.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49201_mf/CUSA49201_Brawl.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6871947674,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49201"
+  }
+]

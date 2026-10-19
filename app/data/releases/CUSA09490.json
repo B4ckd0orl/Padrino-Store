@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa09490",
+    "format": "pkg",
+    "filename": "CUSA09490_Star_Ocean__The_Last_Hope_4K___Full_HD_Remaster.pkg",
+    "url": "https://vikingfile.com/f/cusa09490_base",
+    "browserUrl": "https://vikingfile.com/f/cusa09490_base",
+    "requiresBrowser": true,
+    "sizeBytes": 49606872269,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA09490"
+  },
+  {
+    "id": "r_mf_cusa09490",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA09490-Star_Ocean__The_Last_Hope_4K___Full_HD_Remaster.rar",
+    "url": "https://www.mediafire.com/file/cusa09490_mf/CUSA09490_Star_Ocean__The_Last_Hope_4K___Full_HD_Remaster.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa09490_mf/CUSA09490_Star_Ocean__The_Last_Hope_4K___Full_HD_Remaster.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 49606872269,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA09490"
+  }
+]

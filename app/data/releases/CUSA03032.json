@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa03032",
+    "format": "pkg",
+    "filename": "CUSA03032_Exist_Archive__The_Other_Side_of_the_Sky.pkg",
+    "url": "https://vikingfile.com/f/cusa03032_base",
+    "browserUrl": "https://vikingfile.com/f/cusa03032_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03032"
+  },
+  {
+    "id": "r_mf_cusa03032",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA03032-Exist_Archive__The_Other_Side_of_the_Sky.rar",
+    "url": "https://www.mediafire.com/file/cusa03032_mf/CUSA03032_Exist_Archive__The_Other_Side_of_the_Sky.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa03032_mf/CUSA03032_Exist_Archive__The_Other_Side_of_the_Sky.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03032"
+  }
+]

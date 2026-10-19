@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa08853",
+    "format": "pkg",
+    "filename": "CUSA08853_Utawarerumono__Mask_of_Truth.pkg",
+    "url": "https://vikingfile.com/f/cusa08853_base",
+    "browserUrl": "https://vikingfile.com/f/cusa08853_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9878424781,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA08853"
+  },
+  {
+    "id": "r_mf_cusa08853",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA08853-Utawarerumono__Mask_of_Truth.rar",
+    "url": "https://www.mediafire.com/file/cusa08853_mf/CUSA08853_Utawarerumono__Mask_of_Truth.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa08853_mf/CUSA08853_Utawarerumono__Mask_of_Truth.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9878424781,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA08853"
+  }
+]

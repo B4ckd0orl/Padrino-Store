@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55050",
+    "format": "pkg",
+    "filename": "CUSA55050_La_Mulana_2.pkg",
+    "url": "https://vikingfile.com/f/cusa55050_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55050_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4294967296,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55050"
+  },
+  {
+    "id": "r_mf_cusa55050",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55050-La_Mulana_2.rar",
+    "url": "https://www.mediafire.com/file/cusa55050_mf/CUSA55050_La_Mulana_2.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55050_mf/CUSA55050_La_Mulana_2.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4294967296,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55050"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55627",
+    "format": "pkg",
+    "filename": "CUSA55627_Rugby_18.pkg",
+    "url": "https://vikingfile.com/f/cusa55627_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55627_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2362232013,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55627"
+  },
+  {
+    "id": "r_mf_cusa55627",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55627-Rugby_18.rar",
+    "url": "https://www.mediafire.com/file/cusa55627_mf/CUSA55627_Rugby_18.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55627_mf/CUSA55627_Rugby_18.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2362232013,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55627"
+  }
+]

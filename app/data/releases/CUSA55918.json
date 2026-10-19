@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55918",
+    "format": "pkg",
+    "filename": "CUSA55918_Transformers__Rise_of_the_Dark_Spark.pkg",
+    "url": "https://vikingfile.com/f/cusa55918_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55918_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6442450944,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55918"
+  },
+  {
+    "id": "r_mf_cusa55918",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55918-Transformers__Rise_of_the_Dark_Spark.rar",
+    "url": "https://www.mediafire.com/file/cusa55918_mf/CUSA55918_Transformers__Rise_of_the_Dark_Spark.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55918_mf/CUSA55918_Transformers__Rise_of_the_Dark_Spark.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6442450944,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55918"
+  }
+]

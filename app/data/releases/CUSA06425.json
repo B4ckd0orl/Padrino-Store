@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa06425",
+    "format": "pkg",
+    "filename": "CUSA06425_Berserk_and_the_Band_of_the_Hawk.pkg",
+    "url": "https://vikingfile.com/f/cusa06425_base",
+    "browserUrl": "https://vikingfile.com/f/cusa06425_base",
+    "requiresBrowser": true,
+    "sizeBytes": 19756849562,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06425"
+  },
+  {
+    "id": "r_mf_cusa06425",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA06425-Berserk_and_the_Band_of_the_Hawk.rar",
+    "url": "https://www.mediafire.com/file/cusa06425_mf/CUSA06425_Berserk_and_the_Band_of_the_Hawk.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa06425_mf/CUSA06425_Berserk_and_the_Band_of_the_Hawk.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 19756849562,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06425"
+  }
+]

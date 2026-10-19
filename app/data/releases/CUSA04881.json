@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa04881",
+    "format": "pkg",
+    "filename": "CUSA04881_Sniper_Ghost_Warrior_3.pkg",
+    "url": "https://vikingfile.com/f/cusa04881_base",
+    "browserUrl": "https://vikingfile.com/f/cusa04881_base",
+    "requiresBrowser": true,
+    "sizeBytes": 50251117363,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA04881"
+  },
+  {
+    "id": "r_mf_cusa04881",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA04881-Sniper_Ghost_Warrior_3.rar",
+    "url": "https://www.mediafire.com/file/cusa04881_mf/CUSA04881_Sniper_Ghost_Warrior_3.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa04881_mf/CUSA04881_Sniper_Ghost_Warrior_3.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 50251117363,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA04881"
+  }
+]

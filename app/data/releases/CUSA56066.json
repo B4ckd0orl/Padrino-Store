@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56066",
+    "format": "pkg",
+    "filename": "CUSA56066_World_to_the_West.pkg",
+    "url": "https://vikingfile.com/f/cusa56066_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56066_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9019431322,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56066"
+  },
+  {
+    "id": "r_mf_cusa56066",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56066-World_to_the_West.rar",
+    "url": "https://www.mediafire.com/file/cusa56066_mf/CUSA56066_World_to_the_West.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56066_mf/CUSA56066_World_to_the_West.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9019431322,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56066"
+  }
+]

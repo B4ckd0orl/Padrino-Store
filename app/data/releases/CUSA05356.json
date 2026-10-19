@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa05356",
+    "format": "pkg",
+    "filename": "CUSA05356_Syberia_3.pkg",
+    "url": "https://vikingfile.com/f/cusa05356_base",
+    "browserUrl": "https://vikingfile.com/f/cusa05356_base",
+    "requiresBrowser": true,
+    "sizeBytes": 19864223744,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA05356"
+  },
+  {
+    "id": "r_mf_cusa05356",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA05356-Syberia_3.rar",
+    "url": "https://www.mediafire.com/file/cusa05356_mf/CUSA05356_Syberia_3.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa05356_mf/CUSA05356_Syberia_3.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 19864223744,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA05356"
+  }
+]

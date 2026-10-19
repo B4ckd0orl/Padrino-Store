@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa34426",
+    "format": "pkg",
+    "filename": "CUSA34426_Breakers_Collection.pkg",
+    "url": "https://vikingfile.com/f/cusa34426_base",
+    "browserUrl": "https://vikingfile.com/f/cusa34426_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA34426"
+  },
+  {
+    "id": "r_mf_cusa34426",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA34426-Breakers_Collection.rar",
+    "url": "https://www.mediafire.com/file/cusa34426_mf/CUSA34426_Breakers_Collection.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa34426_mf/CUSA34426_Breakers_Collection.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA34426"
+  }
+]

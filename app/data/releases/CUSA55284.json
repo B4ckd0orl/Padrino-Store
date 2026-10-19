@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55284",
+    "format": "pkg",
+    "filename": "CUSA55284_NBA_Playgrounds.pkg",
+    "url": "https://vikingfile.com/f/cusa55284_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55284_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9556302234,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55284"
+  },
+  {
+    "id": "r_mf_cusa55284",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55284-NBA_Playgrounds.rar",
+    "url": "https://www.mediafire.com/file/cusa55284_mf/CUSA55284_NBA_Playgrounds.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55284_mf/CUSA55284_NBA_Playgrounds.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9556302234,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55284"
+  }
+]

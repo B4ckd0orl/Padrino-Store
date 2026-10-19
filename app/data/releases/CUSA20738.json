@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa20738",
+    "format": "pkg",
+    "filename": "CUSA20738_Nickelodeon_Kart_Racers_2__Grand_Prix.pkg",
+    "url": "https://vikingfile.com/f/cusa20738_base",
+    "browserUrl": "https://vikingfile.com/f/cusa20738_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3758096384,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA20738"
+  },
+  {
+    "id": "r_mf_cusa20738",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA20738-Nickelodeon_Kart_Racers_2__Grand_Prix.rar",
+    "url": "https://www.mediafire.com/file/cusa20738_mf/CUSA20738_Nickelodeon_Kart_Racers_2__Grand_Prix.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa20738_mf/CUSA20738_Nickelodeon_Kart_Racers_2__Grand_Prix.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3758096384,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA20738"
+  }
+]

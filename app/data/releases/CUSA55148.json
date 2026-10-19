@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55148",
+    "format": "pkg",
+    "filename": "CUSA55148_Marvel_vs__Capcom__Infinite.pkg",
+    "url": "https://vikingfile.com/f/cusa55148_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55148_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1610612736,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55148"
+  },
+  {
+    "id": "r_mf_cusa55148",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55148-Marvel_vs__Capcom__Infinite.rar",
+    "url": "https://www.mediafire.com/file/cusa55148_mf/CUSA55148_Marvel_vs__Capcom__Infinite.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55148_mf/CUSA55148_Marvel_vs__Capcom__Infinite.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1610612736,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55148"
+  }
+]

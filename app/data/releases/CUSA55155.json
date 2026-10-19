@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55155",
+    "format": "pkg",
+    "filename": "CUSA55155_The_Mean_Greens___Plastic_Warfare.pkg",
+    "url": "https://vikingfile.com/f/cusa55155_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55155_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4831838208,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55155"
+  },
+  {
+    "id": "r_mf_cusa55155",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55155-The_Mean_Greens___Plastic_Warfare.rar",
+    "url": "https://www.mediafire.com/file/cusa55155_mf/CUSA55155_The_Mean_Greens___Plastic_Warfare.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55155_mf/CUSA55155_The_Mean_Greens___Plastic_Warfare.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4831838208,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55155"
+  }
+]

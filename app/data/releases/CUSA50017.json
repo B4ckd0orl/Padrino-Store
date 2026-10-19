@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50017",
+    "format": "pkg",
+    "filename": "CUSA50017_Dragon_Marked_For_Death.pkg",
+    "url": "https://vikingfile.com/f/cusa50017_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50017_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6979321856,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50017"
+  },
+  {
+    "id": "r_mf_cusa50017",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50017-Dragon_Marked_For_Death.rar",
+    "url": "https://www.mediafire.com/file/cusa50017_mf/CUSA50017_Dragon_Marked_For_Death.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50017_mf/CUSA50017_Dragon_Marked_For_Death.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6979321856,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50017"
+  }
+]

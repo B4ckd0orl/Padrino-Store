@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55689",
+    "format": "pkg",
+    "filename": "CUSA55689_Showa_American_Story.pkg",
+    "url": "https://vikingfile.com/f/cusa55689_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55689_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55689"
+  },
+  {
+    "id": "r_mf_cusa55689",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55689-Showa_American_Story.rar",
+    "url": "https://www.mediafire.com/file/cusa55689_mf/CUSA55689_Showa_American_Story.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55689_mf/CUSA55689_Showa_American_Story.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55689"
+  }
+]

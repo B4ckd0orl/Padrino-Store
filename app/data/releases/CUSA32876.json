@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa32876",
+    "format": "pkg",
+    "filename": "CUSA32876_Commandos_3_HD_Remaster.pkg",
+    "url": "https://vikingfile.com/f/cusa32876_base",
+    "browserUrl": "https://vikingfile.com/f/cusa32876_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6657199309,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA32876"
+  },
+  {
+    "id": "r_mf_cusa32876",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA32876-Commandos_3_HD_Remaster.rar",
+    "url": "https://www.mediafire.com/file/cusa32876_mf/CUSA32876_Commandos_3_HD_Remaster.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa32876_mf/CUSA32876_Commandos_3_HD_Remaster.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6657199309,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA32876"
+  }
+]

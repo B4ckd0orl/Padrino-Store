@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55020",
+    "format": "pkg",
+    "filename": "CUSA55020_King_s_Bounty_II.pkg",
+    "url": "https://vikingfile.com/f/cusa55020_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55020_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6120328397,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55020"
+  },
+  {
+    "id": "r_mf_cusa55020",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55020-King_s_Bounty_II.rar",
+    "url": "https://www.mediafire.com/file/cusa55020_mf/CUSA55020_King_s_Bounty_II.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55020_mf/CUSA55020_King_s_Bounty_II.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6120328397,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55020"
+  }
+]

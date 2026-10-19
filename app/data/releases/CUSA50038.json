@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50038",
+    "format": "pkg",
+    "filename": "CUSA50038_Dust__An_Elysian_Tail.pkg",
+    "url": "https://vikingfile.com/f/cusa50038_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50038_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4831838208,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50038"
+  },
+  {
+    "id": "r_mf_cusa50038",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50038-Dust__An_Elysian_Tail.rar",
+    "url": "https://www.mediafire.com/file/cusa50038_mf/CUSA50038_Dust__An_Elysian_Tail.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50038_mf/CUSA50038_Dust__An_Elysian_Tail.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4831838208,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50038"
+  }
+]

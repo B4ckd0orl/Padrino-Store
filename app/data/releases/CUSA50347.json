@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50347",
+    "format": "pkg",
+    "filename": "CUSA50347_Inferno_2.pkg",
+    "url": "https://vikingfile.com/f/cusa50347_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50347_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50347"
+  },
+  {
+    "id": "r_mf_cusa50347",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50347-Inferno_2.rar",
+    "url": "https://www.mediafire.com/file/cusa50347_mf/CUSA50347_Inferno_2.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50347_mf/CUSA50347_Inferno_2.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50347"
+  }
+]

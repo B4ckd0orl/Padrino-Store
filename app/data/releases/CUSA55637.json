@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55637",
+    "format": "pkg",
+    "filename": "CUSA55637_RWBY__Grimm_Eclipse.pkg",
+    "url": "https://vikingfile.com/f/cusa55637_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55637_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5476083302,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55637"
+  },
+  {
+    "id": "r_mf_cusa55637",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55637-RWBY__Grimm_Eclipse.rar",
+    "url": "https://www.mediafire.com/file/cusa55637_mf/CUSA55637_RWBY__Grimm_Eclipse.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55637_mf/CUSA55637_RWBY__Grimm_Eclipse.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5476083302,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55637"
+  }
+]

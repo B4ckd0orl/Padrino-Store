@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50270",
+    "format": "pkg",
+    "filename": "CUSA50270_Has_Been_Heroes.pkg",
+    "url": "https://vikingfile.com/f/cusa50270_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50270_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4617089843,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50270"
+  },
+  {
+    "id": "r_mf_cusa50270",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50270-Has_Been_Heroes.rar",
+    "url": "https://www.mediafire.com/file/cusa50270_mf/CUSA50270_Has_Been_Heroes.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50270_mf/CUSA50270_Has_Been_Heroes.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4617089843,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50270"
+  }
+]

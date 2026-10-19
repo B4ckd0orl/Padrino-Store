@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50015",
+    "format": "pkg",
+    "filename": "CUSA50015_Dragon_Fin_Soup.pkg",
+    "url": "https://vikingfile.com/f/cusa50015_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50015_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50015"
+  },
+  {
+    "id": "r_mf_cusa50015",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50015-Dragon_Fin_Soup.rar",
+    "url": "https://www.mediafire.com/file/cusa50015_mf/CUSA50015_Dragon_Fin_Soup.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50015_mf/CUSA50015_Dragon_Fin_Soup.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50015"
+  }
+]

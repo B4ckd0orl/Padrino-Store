@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55679",
+    "format": "pkg",
+    "filename": "CUSA55679_Sheltered.pkg",
+    "url": "https://vikingfile.com/f/cusa55679_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55679_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55679"
+  },
+  {
+    "id": "r_mf_cusa55679",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55679-Sheltered.rar",
+    "url": "https://www.mediafire.com/file/cusa55679_mf/CUSA55679_Sheltered.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55679_mf/CUSA55679_Sheltered.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55679"
+  }
+]

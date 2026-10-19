@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55470",
+    "format": "pkg",
+    "filename": "CUSA55470_Pro_Evolution_Soccer_2015.pkg",
+    "url": "https://vikingfile.com/f/cusa55470_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55470_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7086696038,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55470"
+  },
+  {
+    "id": "r_mf_cusa55470",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55470-Pro_Evolution_Soccer_2015.rar",
+    "url": "https://www.mediafire.com/file/cusa55470_mf/CUSA55470_Pro_Evolution_Soccer_2015.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55470_mf/CUSA55470_Pro_Evolution_Soccer_2015.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7086696038,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55470"
+  }
+]

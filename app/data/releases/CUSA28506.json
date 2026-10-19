@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa28506",
+    "format": "pkg",
+    "filename": "CUSA28506_Steel_Assault.pkg",
+    "url": "https://vikingfile.com/f/cusa28506_base",
+    "browserUrl": "https://vikingfile.com/f/cusa28506_base",
+    "requiresBrowser": true,
+    "sizeBytes": 375809638,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA28506"
+  },
+  {
+    "id": "r_mf_cusa28506",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA28506-Steel_Assault.rar",
+    "url": "https://www.mediafire.com/file/cusa28506_mf/CUSA28506_Steel_Assault.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa28506_mf/CUSA28506_Steel_Assault.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 375809638,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA28506"
+  }
+]

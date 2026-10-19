@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55157",
+    "format": "pkg",
+    "filename": "CUSA55157_Mega_Man__Dual_Override.pkg",
+    "url": "https://vikingfile.com/f/cusa55157_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55157_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2684354560,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55157"
+  },
+  {
+    "id": "r_mf_cusa55157",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55157-Mega_Man__Dual_Override.rar",
+    "url": "https://www.mediafire.com/file/cusa55157_mf/CUSA55157_Mega_Man__Dual_Override.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55157_mf/CUSA55157_Mega_Man__Dual_Override.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2684354560,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55157"
+  }
+]

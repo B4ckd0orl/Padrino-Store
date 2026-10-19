@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa30206",
+    "format": "pkg",
+    "filename": "CUSA30206_Batora__Lost_Haven.pkg",
+    "url": "https://vikingfile.com/f/cusa30206_base",
+    "browserUrl": "https://vikingfile.com/f/cusa30206_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA30206"
+  },
+  {
+    "id": "r_mf_cusa30206",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA30206-Batora__Lost_Haven.rar",
+    "url": "https://www.mediafire.com/file/cusa30206_mf/CUSA30206_Batora__Lost_Haven.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa30206_mf/CUSA30206_Batora__Lost_Haven.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA30206"
+  }
+]

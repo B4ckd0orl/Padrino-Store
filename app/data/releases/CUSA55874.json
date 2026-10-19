@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55874",
+    "format": "pkg",
+    "filename": "CUSA55874_Tiny_Metal.pkg",
+    "url": "https://vikingfile.com/f/cusa55874_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55874_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55874"
+  },
+  {
+    "id": "r_mf_cusa55874",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55874-Tiny_Metal.rar",
+    "url": "https://www.mediafire.com/file/cusa55874_mf/CUSA55874_Tiny_Metal.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55874_mf/CUSA55874_Tiny_Metal.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55874"
+  }
+]

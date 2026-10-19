@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50042",
+    "format": "pkg",
+    "filename": "CUSA50042_Dying__1983.pkg",
+    "url": "https://vikingfile.com/f/cusa50042_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50042_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4617089843,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50042"
+  },
+  {
+    "id": "r_mf_cusa50042",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50042-Dying__1983.rar",
+    "url": "https://www.mediafire.com/file/cusa50042_mf/CUSA50042_Dying__1983.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50042_mf/CUSA50042_Dying__1983.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4617089843,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50042"
+  }
+]

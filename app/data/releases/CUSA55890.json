@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55890",
+    "format": "pkg",
+    "filename": "CUSA55890_Torchlight_II.pkg",
+    "url": "https://vikingfile.com/f/cusa55890_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55890_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55890"
+  },
+  {
+    "id": "r_mf_cusa55890",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55890-Torchlight_II.rar",
+    "url": "https://www.mediafire.com/file/cusa55890_mf/CUSA55890_Torchlight_II.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55890_mf/CUSA55890_Torchlight_II.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5153960755,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55890"
+  }
+]

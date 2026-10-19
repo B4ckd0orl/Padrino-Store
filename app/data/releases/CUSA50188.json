@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50188",
+    "format": "pkg",
+    "filename": "CUSA50188_Galak_Z__The_Dimensional.pkg",
+    "url": "https://vikingfile.com/f/cusa50188_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50188_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8589934592,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50188"
+  },
+  {
+    "id": "r_mf_cusa50188",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50188-Galak_Z__The_Dimensional.rar",
+    "url": "https://www.mediafire.com/file/cusa50188_mf/CUSA50188_Galak_Z__The_Dimensional.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50188_mf/CUSA50188_Galak_Z__The_Dimensional.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8589934592,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50188"
+  }
+]

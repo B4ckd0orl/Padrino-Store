@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_ppsa05938",
+    "format": "exfat",
+    "filename": "PPSA05938_Serious_Sam__Siberian_Mayhem.exfat",
+    "url": "https://vikingfile.com/f/ppsa05938_base",
+    "browserUrl": "https://vikingfile.com/f/ppsa05938_base",
+    "requiresBrowser": true,
+    "sizeBytes": 24051816858,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game EXFAT - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA05938"
+  },
+  {
+    "id": "r_mf_ppsa05938",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-PPSA05938-Serious_Sam__Siberian_Mayhem.rar",
+    "url": "https://www.mediafire.com/file/ppsa05938_mf/PPSA05938_Serious_Sam__Siberian_Mayhem.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/ppsa05938_mf/PPSA05938_Serious_Sam__Siberian_Mayhem.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 24051816858,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA05938"
+  }
+]

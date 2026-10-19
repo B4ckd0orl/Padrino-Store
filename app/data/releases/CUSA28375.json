@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa28375",
+    "format": "pkg",
+    "filename": "CUSA28375_Mail_Time.pkg",
+    "url": "https://vikingfile.com/f/cusa28375_base",
+    "browserUrl": "https://vikingfile.com/f/cusa28375_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1503238554,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA28375"
+  },
+  {
+    "id": "r_mf_cusa28375",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA28375-Mail_Time.rar",
+    "url": "https://www.mediafire.com/file/cusa28375_mf/CUSA28375_Mail_Time.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa28375_mf/CUSA28375_Mail_Time.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1503238554,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA28375"
+  }
+]

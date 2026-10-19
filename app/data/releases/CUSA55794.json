@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55794",
+    "format": "pkg",
+    "filename": "CUSA55794_Stubbs_the_Zombie_in_Rebel_Without_a_Pulse.pkg",
+    "url": "https://vikingfile.com/f/cusa55794_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55794_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2254857830,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55794"
+  },
+  {
+    "id": "r_mf_cusa55794",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55794-Stubbs_the_Zombie_in_Rebel_Without_a_Pulse.rar",
+    "url": "https://www.mediafire.com/file/cusa55794_mf/CUSA55794_Stubbs_the_Zombie_in_Rebel_Without_a_Pulse.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55794_mf/CUSA55794_Stubbs_the_Zombie_in_Rebel_Without_a_Pulse.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2254857830,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55794"
+  }
+]

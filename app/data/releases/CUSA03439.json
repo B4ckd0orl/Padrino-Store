@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa03439",
+    "format": "pkg",
+    "filename": "CUSA03439_Quiplash.pkg",
+    "url": "https://vikingfile.com/f/cusa03439_base",
+    "browserUrl": "https://vikingfile.com/f/cusa03439_base",
+    "requiresBrowser": true,
+    "sizeBytes": 483183821,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03439"
+  },
+  {
+    "id": "r_mf_cusa03439",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA03439-Quiplash.rar",
+    "url": "https://www.mediafire.com/file/cusa03439_mf/CUSA03439_Quiplash.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa03439_mf/CUSA03439_Quiplash.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 483183821,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA03439"
+  }
+]

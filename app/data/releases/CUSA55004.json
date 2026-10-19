@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55004",
+    "format": "pkg",
+    "filename": "CUSA55004_Kamen_Rider__Memory_of_Heroez.pkg",
+    "url": "https://vikingfile.com/f/cusa55004_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55004_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3113851290,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55004"
+  },
+  {
+    "id": "r_mf_cusa55004",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55004-Kamen_Rider__Memory_of_Heroez.rar",
+    "url": "https://www.mediafire.com/file/cusa55004_mf/CUSA55004_Kamen_Rider__Memory_of_Heroez.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55004_mf/CUSA55004_Kamen_Rider__Memory_of_Heroez.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3113851290,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55004"
+  }
+]

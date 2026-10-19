@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55887",
+    "format": "pkg",
+    "filename": "CUSA55887_Tony_Hawk_s_Pro_Skater_5.pkg",
+    "url": "https://vikingfile.com/f/cusa55887_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55887_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4617089843,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55887"
+  },
+  {
+    "id": "r_mf_cusa55887",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55887-Tony_Hawk_s_Pro_Skater_5.rar",
+    "url": "https://www.mediafire.com/file/cusa55887_mf/CUSA55887_Tony_Hawk_s_Pro_Skater_5.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55887_mf/CUSA55887_Tony_Hawk_s_Pro_Skater_5.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4617089843,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55887"
+  }
+]

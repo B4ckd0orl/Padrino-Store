@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa31206",
+    "format": "pkg",
+    "filename": "CUSA31206_Bravery_and_Greed.pkg",
+    "url": "https://vikingfile.com/f/cusa31206_base",
+    "browserUrl": "https://vikingfile.com/f/cusa31206_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1181116006,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA31206"
+  },
+  {
+    "id": "r_mf_cusa31206",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA31206-Bravery_and_Greed.rar",
+    "url": "https://www.mediafire.com/file/cusa31206_mf/CUSA31206_Bravery_and_Greed.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa31206_mf/CUSA31206_Bravery_and_Greed.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1181116006,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA31206"
+  }
+]

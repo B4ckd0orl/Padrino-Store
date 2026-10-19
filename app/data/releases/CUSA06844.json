@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa06844",
+    "format": "pkg",
+    "filename": "CUSA06844_Toukiden_2.pkg",
+    "url": "https://vikingfile.com/f/cusa06844_base",
+    "browserUrl": "https://vikingfile.com/f/cusa06844_base",
+    "requiresBrowser": true,
+    "sizeBytes": 16750372454,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06844"
+  },
+  {
+    "id": "r_mf_cusa06844",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA06844-Toukiden_2.rar",
+    "url": "https://www.mediafire.com/file/cusa06844_mf/CUSA06844_Toukiden_2.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa06844_mf/CUSA06844_Toukiden_2.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 16750372454,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06844"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa09875",
+    "format": "pkg",
+    "filename": "CUSA09875_Space_Hulk__Tactics.pkg",
+    "url": "https://vikingfile.com/f/cusa09875_base",
+    "browserUrl": "https://vikingfile.com/f/cusa09875_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA09875"
+  },
+  {
+    "id": "r_mf_cusa09875",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA09875-Space_Hulk__Tactics.rar",
+    "url": "https://www.mediafire.com/file/cusa09875_mf/CUSA09875_Space_Hulk__Tactics.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa09875_mf/CUSA09875_Space_Hulk__Tactics.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA09875"
+  }
+]

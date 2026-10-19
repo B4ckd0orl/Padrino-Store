@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa14840",
+    "format": "pkg",
+    "filename": "CUSA14840_Super_Neptunia_RPG.pkg",
+    "url": "https://vikingfile.com/f/cusa14840_base",
+    "browserUrl": "https://vikingfile.com/f/cusa14840_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4831838208,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14840"
+  },
+  {
+    "id": "r_mf_cusa14840",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA14840-Super_Neptunia_RPG.rar",
+    "url": "https://www.mediafire.com/file/cusa14840_mf/CUSA14840_Super_Neptunia_RPG.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa14840_mf/CUSA14840_Super_Neptunia_RPG.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4831838208,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA14840"
+  }
+]

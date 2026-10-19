@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55634",
+    "format": "pkg",
+    "filename": "CUSA55634_Runner3.pkg",
+    "url": "https://vikingfile.com/f/cusa55634_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55634_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2899102925,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55634"
+  },
+  {
+    "id": "r_mf_cusa55634",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55634-Runner3.rar",
+    "url": "https://www.mediafire.com/file/cusa55634_mf/CUSA55634_Runner3.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55634_mf/CUSA55634_Runner3.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2899102925,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55634"
+  }
+]

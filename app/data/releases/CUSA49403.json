@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49403",
+    "format": "pkg",
+    "filename": "CUSA49403_DJMax_Respect.pkg",
+    "url": "https://vikingfile.com/f/cusa49403_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49403_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2899102925,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49403"
+  },
+  {
+    "id": "r_mf_cusa49403",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49403-DJMax_Respect.rar",
+    "url": "https://www.mediafire.com/file/cusa49403_mf/CUSA49403_DJMax_Respect.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49403_mf/CUSA49403_DJMax_Respect.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2899102925,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49403"
+  }
+]

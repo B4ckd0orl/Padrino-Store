@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49248",
+    "format": "pkg",
+    "filename": "CUSA49248_The_Castle_Game.pkg",
+    "url": "https://vikingfile.com/f/cusa49248_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49248_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9019431322,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49248"
+  },
+  {
+    "id": "r_mf_cusa49248",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49248-The_Castle_Game.rar",
+    "url": "https://www.mediafire.com/file/cusa49248_mf/CUSA49248_The_Castle_Game.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49248_mf/CUSA49248_The_Castle_Game.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9019431322,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49248"
+  }
+]

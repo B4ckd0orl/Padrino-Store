@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55644",
+    "format": "pkg",
+    "filename": "CUSA55644_Save_Me_Mr_Tako.pkg",
+    "url": "https://vikingfile.com/f/cusa55644_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55644_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6335076762,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55644"
+  },
+  {
+    "id": "r_mf_cusa55644",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55644-Save_Me_Mr_Tako.rar",
+    "url": "https://www.mediafire.com/file/cusa55644_mf/CUSA55644_Save_Me_Mr_Tako.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55644_mf/CUSA55644_Save_Me_Mr_Tako.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6335076762,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55644"
+  }
+]

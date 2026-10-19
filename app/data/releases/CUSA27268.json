@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa27268",
+    "format": "pkg",
+    "filename": "CUSA27268_Archvale.pkg",
+    "url": "https://vikingfile.com/f/cusa27268_base",
+    "browserUrl": "https://vikingfile.com/f/cusa27268_base",
+    "requiresBrowser": true,
+    "sizeBytes": 644245094,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA27268"
+  },
+  {
+    "id": "r_mf_cusa27268",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA27268-Archvale.rar",
+    "url": "https://www.mediafire.com/file/cusa27268_mf/CUSA27268_Archvale.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa27268_mf/CUSA27268_Archvale.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 644245094,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA27268"
+  }
+]

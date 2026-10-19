@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa37258",
+    "format": "pkg",
+    "filename": "CUSA37258_McPixel_3.pkg",
+    "url": "https://vikingfile.com/f/cusa37258_base",
+    "browserUrl": "https://vikingfile.com/f/cusa37258_base",
+    "requiresBrowser": true,
+    "sizeBytes": 644245094,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA37258"
+  },
+  {
+    "id": "r_mf_cusa37258",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA37258-McPixel_3.rar",
+    "url": "https://www.mediafire.com/file/cusa37258_mf/CUSA37258_McPixel_3.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa37258_mf/CUSA37258_McPixel_3.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 644245094,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA37258"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55354",
+    "format": "pkg",
+    "filename": "CUSA55354_One_Punch_Man__A_Hero_Nobody_Knows.pkg",
+    "url": "https://vikingfile.com/f/cusa55354_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55354_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6335076762,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55354"
+  },
+  {
+    "id": "r_mf_cusa55354",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55354-One_Punch_Man__A_Hero_Nobody_Knows.rar",
+    "url": "https://www.mediafire.com/file/cusa55354_mf/CUSA55354_One_Punch_Man__A_Hero_Nobody_Knows.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55354_mf/CUSA55354_One_Punch_Man__A_Hero_Nobody_Knows.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6335076762,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55354"
+  }
+]

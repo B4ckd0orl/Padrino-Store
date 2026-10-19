@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55707",
+    "format": "pkg",
+    "filename": "CUSA55707_Skylanders__SuperChargers.pkg",
+    "url": "https://vikingfile.com/f/cusa55707_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55707_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2684354560,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55707"
+  },
+  {
+    "id": "r_mf_cusa55707",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55707-Skylanders__SuperChargers.rar",
+    "url": "https://www.mediafire.com/file/cusa55707_mf/CUSA55707_Skylanders__SuperChargers.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55707_mf/CUSA55707_Skylanders__SuperChargers.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2684354560,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55707"
+  }
+]

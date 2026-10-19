@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48035",
+    "format": "pkg",
+    "filename": "CUSA48035_99Vidas.pkg",
+    "url": "https://vikingfile.com/f/cusa48035_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48035_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8912057139,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48035"
+  },
+  {
+    "id": "r_mf_cusa48035",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48035-99Vidas.rar",
+    "url": "https://www.mediafire.com/file/cusa48035_mf/CUSA48035_99Vidas.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48035_mf/CUSA48035_99Vidas.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8912057139,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48035"
+  }
+]

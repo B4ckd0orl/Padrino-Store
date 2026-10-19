@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50014",
+    "format": "pkg",
+    "filename": "CUSA50014_Dragon_Fantasy__The_Black_Tome_of_Ice.pkg",
+    "url": "https://vikingfile.com/f/cusa50014_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50014_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8804682957,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50014"
+  },
+  {
+    "id": "r_mf_cusa50014",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50014-Dragon_Fantasy__The_Black_Tome_of_Ice.rar",
+    "url": "https://www.mediafire.com/file/cusa50014_mf/CUSA50014_Dragon_Fantasy__The_Black_Tome_of_Ice.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50014_mf/CUSA50014_Dragon_Fantasy__The_Black_Tome_of_Ice.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8804682957,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50014"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49186",
+    "format": "pkg",
+    "filename": "CUSA49186_Blue_Estate.pkg",
+    "url": "https://vikingfile.com/f/cusa49186_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49186_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2469606195,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49186"
+  },
+  {
+    "id": "r_mf_cusa49186",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49186-Blue_Estate.rar",
+    "url": "https://www.mediafire.com/file/cusa49186_mf/CUSA49186_Blue_Estate.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49186_mf/CUSA49186_Blue_Estate.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2469606195,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49186"
+  }
+]

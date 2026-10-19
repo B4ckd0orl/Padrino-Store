@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa18861",
+    "format": "pkg",
+    "filename": "CUSA18861_Tour_de_France_2020.pkg",
+    "url": "https://vikingfile.com/f/cusa18861_base",
+    "browserUrl": "https://vikingfile.com/f/cusa18861_base",
+    "requiresBrowser": true,
+    "sizeBytes": 26628797235,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18861"
+  },
+  {
+    "id": "r_mf_cusa18861",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA18861-Tour_de_France_2020.rar",
+    "url": "https://www.mediafire.com/file/cusa18861_mf/CUSA18861_Tour_de_France_2020.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa18861_mf/CUSA18861_Tour_de_France_2020.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 26628797235,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18861"
+  }
+]

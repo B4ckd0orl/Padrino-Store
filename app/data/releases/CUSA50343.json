@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50343",
+    "format": "pkg",
+    "filename": "CUSA50343_Industry_Giant_II.pkg",
+    "url": "https://vikingfile.com/f/cusa50343_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50343_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8375186227,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50343"
+  },
+  {
+    "id": "r_mf_cusa50343",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50343-Industry_Giant_II.rar",
+    "url": "https://www.mediafire.com/file/cusa50343_mf/CUSA50343_Industry_Giant_II.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50343_mf/CUSA50343_Industry_Giant_II.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8375186227,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50343"
+  }
+]

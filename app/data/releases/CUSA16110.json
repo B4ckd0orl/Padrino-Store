@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa16110",
+    "format": "pkg",
+    "filename": "CUSA16110_Disney_Classic_Games_Aladdin_and_The_Lion_King_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa16110_pkg/CUSA16110_Disney_Classic_Games_Aladdin_and_The_Lion_King_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa16110_pkg/CUSA16110_Disney_Classic_Games_Aladdin_and_The_Lion_King_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2254857830,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA16110"
+  },
+  {
+    "id": "r_vk_cusa16110",
+    "format": "pkg",
+    "filename": "CUSA16110_Disney_Classic_Games_Aladdin_and_The_Lion_King_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa16110_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa16110_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 2254857830,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA16110"
+  }
+]

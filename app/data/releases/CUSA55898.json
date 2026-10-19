@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55898",
+    "format": "pkg",
+    "filename": "CUSA55898_Touhou_S_jin_Engi__The_Genius_of_Sappheiros.pkg",
+    "url": "https://vikingfile.com/f/cusa55898_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55898_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9663676416,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55898"
+  },
+  {
+    "id": "r_mf_cusa55898",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55898-Touhou_S_jin_Engi__The_Genius_of_Sappheiros.rar",
+    "url": "https://www.mediafire.com/file/cusa55898_mf/CUSA55898_Touhou_S_jin_Engi__The_Genius_of_Sappheiros.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55898_mf/CUSA55898_Touhou_S_jin_Engi__The_Genius_of_Sappheiros.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9663676416,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55898"
+  }
+]

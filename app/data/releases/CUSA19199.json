@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa19199",
+    "format": "pkg",
+    "filename": "CUSA19199_West_of_Dead.pkg",
+    "url": "https://vikingfile.com/f/cusa19199_base",
+    "browserUrl": "https://vikingfile.com/f/cusa19199_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2684354560,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA19199"
+  },
+  {
+    "id": "r_mf_cusa19199",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA19199-West_of_Dead.rar",
+    "url": "https://www.mediafire.com/file/cusa19199_mf/CUSA19199_West_of_Dead.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa19199_mf/CUSA19199_West_of_Dead.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2684354560,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA19199"
+  }
+]

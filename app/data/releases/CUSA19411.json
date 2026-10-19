@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa19411",
+    "format": "pkg",
+    "filename": "CUSA19411_Wizards_of_Brandel.pkg",
+    "url": "https://vikingfile.com/f/cusa19411_base",
+    "browserUrl": "https://vikingfile.com/f/cusa19411_base",
+    "requiresBrowser": true,
+    "sizeBytes": 697932186,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA19411"
+  },
+  {
+    "id": "r_mf_cusa19411",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA19411-Wizards_of_Brandel.rar",
+    "url": "https://www.mediafire.com/file/cusa19411_mf/CUSA19411_Wizards_of_Brandel.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa19411_mf/CUSA19411_Wizards_of_Brandel.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 697932186,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA19411"
+  }
+]

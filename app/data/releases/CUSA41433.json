@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa41433",
+    "format": "pkg",
+    "filename": "CUSA41433_Risk_of_Rain_Returns.pkg",
+    "url": "https://vikingfile.com/f/cusa41433_base",
+    "browserUrl": "https://vikingfile.com/f/cusa41433_base",
+    "requiresBrowser": true,
+    "sizeBytes": 858993459,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA41433"
+  },
+  {
+    "id": "r_mf_cusa41433",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA41433-Risk_of_Rain_Returns.rar",
+    "url": "https://www.mediafire.com/file/cusa41433_mf/CUSA41433_Risk_of_Rain_Returns.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa41433_mf/CUSA41433_Risk_of_Rain_Returns.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 858993459,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA41433"
+  }
+]

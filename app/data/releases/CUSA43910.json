@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa43910",
+    "format": "pkg",
+    "filename": "CUSA43910_Wildfrost_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa43910_pkg/CUSA43910_Wildfrost_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa43910_pkg/CUSA43910_Wildfrost_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA43910"
+  },
+  {
+    "id": "r_vk_cusa43910",
+    "format": "pkg",
+    "filename": "CUSA43910_Wildfrost_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa43910_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa43910_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA43910"
+  }
+]

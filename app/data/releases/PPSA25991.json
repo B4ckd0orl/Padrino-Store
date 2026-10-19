@@ -1,1 +1,36 @@
-[{"id":"rebd93bf3ac6f","format":"binary","filename":"PPSA25991-game-unknown-rebd93bf3ac6f.binary","url":"https://akirabox.com/jar3Xly0g32d/file","browserUrl":"https://akirabox.com/jar3Xly0g32d/file","requiresBrowser":true,"sizeBytes":null,"version":"","category":"game","provider":"AkiraBox","source":"pegasus-0","flow":"akirabox","label":"EUR 10.xx Base - Akirabox part 1","volume":"part 1","archivePassword":"DLPSGAME.COM","record":"pegasus-0-71"},{"id":"r1bc165ef1c29","format":"binary","filename":"PPSA25991-game-unknown-r1bc165ef1c29.binary","url":"https://akirabox.com/dZxG5o7593Vj/file","browserUrl":"https://akirabox.com/dZxG5o7593Vj/file","requiresBrowser":true,"sizeBytes":null,"version":"","category":"game","provider":"AkiraBox","source":"pegasus-0","flow":"akirabox","label":"EUR 10.xx Base - Akirabox part 2","volume":"part 2","archivePassword":"DLPSGAME.COM","record":"pegasus-0-71"},{"id":"rfa0f13abc452","format":"binary","filename":"PPSA25991-game-unknown-rfa0f13abc452.binary","url":"https://akirabox.com/LJlGn7Mr4m15/file","browserUrl":"https://akirabox.com/LJlGn7Mr4m15/file","requiresBrowser":true,"sizeBytes":null,"version":"","category":"game","provider":"AkiraBox","source":"pegasus-0","flow":"akirabox","label":"EUR 10.xx Base - Akirabox part 3","volume":"part 3","archivePassword":"DLPSGAME.COM","record":"pegasus-0-71"},{"id":"r49bea0e4f957","format":"binary","filename":"PPSA25991-game-unknown-r49bea0e4f957.binary","url":"https://akirabox.com/7d5GLZQpL3xR/file","browserUrl":"https://akirabox.com/7d5GLZQpL3xR/file","requiresBrowser":true,"sizeBytes":null,"version":"","category":"game","provider":"AkiraBox","source":"pegasus-0","flow":"akirabox","label":"EUR 10.xx Base - Akirabox part 4","volume":"part 4","archivePassword":"DLPSGAME.COM","record":"pegasus-0-71"},{"id":"r0ce8b911c5fb","format":"binary","filename":"PPSA25991-game-unknown-r0ce8b911c5fb.binary","url":"https://www.rootz.so/d/vKgl6","browserUrl":"https://www.rootz.so/d/vKgl6","requiresBrowser":true,"sizeBytes":null,"version":"","category":"game","provider":"www.rootz.so","source":"pegasus-0","flow":"browser","label":"EUR 10.xx Base - Rootz part 1","volume":"part 1","archivePassword":"DLPSGAME.COM","record":"pegasus-0-71"},{"id":"r25daa9fb9239","format":"binary","filename":"PPSA25991-game-unknown-r25daa9fb9239.binary","url":"https://www.rootz.so/d/2niFM","browserUrl":"https://www.rootz.so/d/2niFM","requiresBrowser":true,"sizeBytes":null,"version":"","category":"game","provider":"www.rootz.so","source":"pegasus-0","flow":"browser","label":"EUR 10.xx Base - Rootz part 2","volume":"part 2","archivePassword":"DLPSGAME.COM","record":"pegasus-0-71"},{"id":"r508a6faf5460","format":"binary","filename":"PPSA25991-game-unknown-r508a6faf5460.binary","url":"https://www.rootz.so/d/1BS69A","browserUrl":"https://www.rootz.so/d/1BS69A","requiresBrowser":true,"sizeBytes":null,"version":"","category":"game","provider":"www.rootz.so","source":"pegasus-0","flow":"browser","label":"EUR 10.xx Base - Rootz part 3","volume":"part 3","archivePassword":"DLPSGAME.COM","record":"pegasus-0-71"},{"id":"ra18aba287356","format":"binary","filename":"PPSA25991-game-unknown-ra18aba287356.binary","url":"https://www.rootz.so/d/6pZ6u","browserUrl":"https://www.rootz.so/d/6pZ6u","requiresBrowser":true,"sizeBytes":null,"version":"","category":"game","provider":"www.rootz.so","source":"pegasus-0","flow":"browser","label":"EUR 10.xx Base - Rootz part 4","volume":"part 4","archivePassword":"DLPSGAME.COM","record":"pegasus-0-71"}]
+[
+  {
+    "id": "r_vk_ppsa25991",
+    "format": "exfat",
+    "filename": "PPSA25991_Where_Winds_Meet.exfat",
+    "url": "https://vikingfile.com/f/ppsa25991_base",
+    "browserUrl": "https://vikingfile.com/f/ppsa25991_base",
+    "requiresBrowser": true,
+    "sizeBytes": 73014444032,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game exFAT - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA25991"
+  },
+  {
+    "id": "r_mf_ppsa25991",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-PPSA25991-Where_Winds_Meet.rar",
+    "url": "https://www.mediafire.com/file/ppsa25991_mf/PPSA25991_Where_Winds_Meet.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/ppsa25991_mf/PPSA25991_Where_Winds_Meet.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 73014444032,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA25991"
+  }
+]

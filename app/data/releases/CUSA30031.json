@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa30031",
+    "format": "pkg",
+    "filename": "CUSA30031_Theatrhythm_Final_Bar_Line.pkg",
+    "url": "https://vikingfile.com/f/cusa30031_base",
+    "browserUrl": "https://vikingfile.com/f/cusa30031_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA30031"
+  },
+  {
+    "id": "r_mf_cusa30031",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA30031-Theatrhythm_Final_Bar_Line.rar",
+    "url": "https://www.mediafire.com/file/cusa30031_mf/CUSA30031_Theatrhythm_Final_Bar_Line.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa30031_mf/CUSA30031_Theatrhythm_Final_Bar_Line.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA30031"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50328",
+    "format": "pkg",
+    "filename": "CUSA50328_Icey.pkg",
+    "url": "https://vikingfile.com/f/cusa50328_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50328_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7194070221,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50328"
+  },
+  {
+    "id": "r_mf_cusa50328",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50328-Icey.rar",
+    "url": "https://www.mediafire.com/file/cusa50328_mf/CUSA50328_Icey.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50328_mf/CUSA50328_Icey.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7194070221,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50328"
+  }
+]

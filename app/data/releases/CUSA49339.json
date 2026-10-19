@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49339",
+    "format": "pkg",
+    "filename": "CUSA49339_Dead_Alliance.pkg",
+    "url": "https://vikingfile.com/f/cusa49339_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49339_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8160437862,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49339"
+  },
+  {
+    "id": "r_mf_cusa49339",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49339-Dead_Alliance.rar",
+    "url": "https://www.mediafire.com/file/cusa49339_mf/CUSA49339_Dead_Alliance.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49339_mf/CUSA49339_Dead_Alliance.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8160437862,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49339"
+  }
+]

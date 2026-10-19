@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa31980",
+    "format": "pkg",
+    "filename": "CUSA31980_The_Legend_of_Heroes_Trails_into_Reverie_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa31980_pkg/CUSA31980_The_Legend_of_Heroes_Trails_into_Reverie_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa31980_pkg/CUSA31980_The_Legend_of_Heroes_Trails_into_Reverie_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 50251117363,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA31980"
+  },
+  {
+    "id": "r_vk_cusa31980",
+    "format": "pkg",
+    "filename": "CUSA31980_The_Legend_of_Heroes_Trails_into_Reverie_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa31980_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa31980_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 50251117363,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA31980"
+  }
+]

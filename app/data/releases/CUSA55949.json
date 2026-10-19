@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55949",
+    "format": "pkg",
+    "filename": "CUSA55949_The_Uncertain__Light_at_the_End.pkg",
+    "url": "https://vikingfile.com/f/cusa55949_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55949_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3113851290,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55949"
+  },
+  {
+    "id": "r_mf_cusa55949",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55949-The_Uncertain__Light_at_the_End.rar",
+    "url": "https://www.mediafire.com/file/cusa55949_mf/CUSA55949_The_Uncertain__Light_at_the_End.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55949_mf/CUSA55949_The_Uncertain__Light_at_the_End.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3113851290,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55949"
+  }
+]

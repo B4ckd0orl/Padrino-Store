@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56088",
+    "format": "pkg",
+    "filename": "CUSA56088_X_Morph__Defense.pkg",
+    "url": "https://vikingfile.com/f/cusa56088_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56088_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4509715661,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56088"
+  },
+  {
+    "id": "r_mf_cusa56088",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56088-X_Morph__Defense.rar",
+    "url": "https://www.mediafire.com/file/cusa56088_mf/CUSA56088_X_Morph__Defense.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56088_mf/CUSA56088_X_Morph__Defense.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4509715661,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56088"
+  }
+]

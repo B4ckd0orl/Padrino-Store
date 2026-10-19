@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa18425",
+    "format": "pkg",
+    "filename": "CUSA18425_The_Catch__Carp___Coarse.pkg",
+    "url": "https://vikingfile.com/f/cusa18425_base",
+    "browserUrl": "https://vikingfile.com/f/cusa18425_base",
+    "requiresBrowser": true,
+    "sizeBytes": 17394617549,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18425"
+  },
+  {
+    "id": "r_mf_cusa18425",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA18425-The_Catch__Carp___Coarse.rar",
+    "url": "https://www.mediafire.com/file/cusa18425_mf/CUSA18425_The_Catch__Carp___Coarse.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa18425_mf/CUSA18425_The_Catch__Carp___Coarse.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 17394617549,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18425"
+  }
+]

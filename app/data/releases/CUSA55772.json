@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55772",
+    "format": "pkg",
+    "filename": "CUSA55772_Stealth_Inc__A_Clone_in_the_Dark.pkg",
+    "url": "https://vikingfile.com/f/cusa55772_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55772_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2684354560,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55772"
+  },
+  {
+    "id": "r_mf_cusa55772",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55772-Stealth_Inc__A_Clone_in_the_Dark.rar",
+    "url": "https://www.mediafire.com/file/cusa55772_mf/CUSA55772_Stealth_Inc__A_Clone_in_the_Dark.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55772_mf/CUSA55772_Stealth_Inc__A_Clone_in_the_Dark.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2684354560,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55772"
+  }
+]

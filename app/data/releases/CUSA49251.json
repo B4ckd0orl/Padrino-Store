@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49251",
+    "format": "pkg",
+    "filename": "CUSA49251_CastleStorm_II.pkg",
+    "url": "https://vikingfile.com/f/cusa49251_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49251_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3650722202,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49251"
+  },
+  {
+    "id": "r_mf_cusa49251",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49251-CastleStorm_II.rar",
+    "url": "https://www.mediafire.com/file/cusa49251_mf/CUSA49251_CastleStorm_II.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49251_mf/CUSA49251_CastleStorm_II.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3650722202,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49251"
+  }
+]

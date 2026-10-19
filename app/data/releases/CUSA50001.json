@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50001",
+    "format": "pkg",
+    "filename": "CUSA50001_Dokapon_Up__Mugen_no_Roulette.pkg",
+    "url": "https://vikingfile.com/f/cusa50001_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50001_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3543348019,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50001"
+  },
+  {
+    "id": "r_mf_cusa50001",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50001-Dokapon_Up__Mugen_no_Roulette.rar",
+    "url": "https://www.mediafire.com/file/cusa50001_mf/CUSA50001_Dokapon_Up__Mugen_no_Roulette.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50001_mf/CUSA50001_Dokapon_Up__Mugen_no_Roulette.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3543348019,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50001"
+  }
+]

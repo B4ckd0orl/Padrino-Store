@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49293",
+    "format": "pkg",
+    "filename": "CUSA49293_Concept_Destruction.pkg",
+    "url": "https://vikingfile.com/f/cusa49293_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49293_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8697308774,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49293"
+  },
+  {
+    "id": "r_mf_cusa49293",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49293-Concept_Destruction.rar",
+    "url": "https://www.mediafire.com/file/cusa49293_mf/CUSA49293_Concept_Destruction.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49293_mf/CUSA49293_Concept_Destruction.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8697308774,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49293"
+  }
+]

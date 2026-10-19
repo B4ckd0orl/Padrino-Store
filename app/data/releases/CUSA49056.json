@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49056",
+    "format": "pkg",
+    "filename": "CUSA49056_Arcade_Archives__Cosmo_Police_Galivan.pkg",
+    "url": "https://vikingfile.com/f/cusa49056_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49056_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5261334938,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49056"
+  },
+  {
+    "id": "r_mf_cusa49056",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49056-Arcade_Archives__Cosmo_Police_Galivan.rar",
+    "url": "https://www.mediafire.com/file/cusa49056_mf/CUSA49056_Arcade_Archives__Cosmo_Police_Galivan.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49056_mf/CUSA49056_Arcade_Archives__Cosmo_Police_Galivan.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5261334938,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49056"
+  }
+]

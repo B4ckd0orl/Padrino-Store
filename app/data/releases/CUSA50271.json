@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50271",
+    "format": "pkg",
+    "filename": "CUSA50271_Hatoful_Boyfriend.pkg",
+    "url": "https://vikingfile.com/f/cusa50271_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50271_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2899102925,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50271"
+  },
+  {
+    "id": "r_mf_cusa50271",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50271-Hatoful_Boyfriend.rar",
+    "url": "https://www.mediafire.com/file/cusa50271_mf/CUSA50271_Hatoful_Boyfriend.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50271_mf/CUSA50271_Hatoful_Boyfriend.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2899102925,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50271"
+  }
+]

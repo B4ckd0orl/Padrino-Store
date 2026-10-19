@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50254",
+    "format": "pkg",
+    "filename": "CUSA50254_Gunlord_X.pkg",
+    "url": "https://vikingfile.com/f/cusa50254_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50254_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6012954214,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50254"
+  },
+  {
+    "id": "r_mf_cusa50254",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50254-Gunlord_X.rar",
+    "url": "https://www.mediafire.com/file/cusa50254_mf/CUSA50254_Gunlord_X.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50254_mf/CUSA50254_Gunlord_X.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6012954214,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50254"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49126",
+    "format": "pkg",
+    "filename": "CUSA49126_Battle_of_the_Bulge.pkg",
+    "url": "https://vikingfile.com/f/cusa49126_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49126_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4617089843,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49126"
+  },
+  {
+    "id": "r_mf_cusa49126",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49126-Battle_of_the_Bulge.rar",
+    "url": "https://www.mediafire.com/file/cusa49126_mf/CUSA49126_Battle_of_the_Bulge.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49126_mf/CUSA49126_Battle_of_the_Bulge.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4617089843,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49126"
+  }
+]

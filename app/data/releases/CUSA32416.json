@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa32416",
+    "format": "pkg",
+    "filename": "CUSA32416_Seven_Pirates_H.pkg",
+    "url": "https://vikingfile.com/f/cusa32416_base",
+    "browserUrl": "https://vikingfile.com/f/cusa32416_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA32416"
+  },
+  {
+    "id": "r_mf_cusa32416",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA32416-Seven_Pirates_H.rar",
+    "url": "https://www.mediafire.com/file/cusa32416_mf/CUSA32416_Seven_Pirates_H.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa32416_mf/CUSA32416_Seven_Pirates_H.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA32416"
+  }
+]

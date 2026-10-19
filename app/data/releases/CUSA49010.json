@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49010",
+    "format": "pkg",
+    "filename": "CUSA49010_Arcade_Archives__Aero_Fighters.pkg",
+    "url": "https://vikingfile.com/f/cusa49010_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49010_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6764573491,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49010"
+  },
+  {
+    "id": "r_mf_cusa49010",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49010-Arcade_Archives__Aero_Fighters.rar",
+    "url": "https://www.mediafire.com/file/cusa49010_mf/CUSA49010_Arcade_Archives__Aero_Fighters.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49010_mf/CUSA49010_Arcade_Archives__Aero_Fighters.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6764573491,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49010"
+  }
+]

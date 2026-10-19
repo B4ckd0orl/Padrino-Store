@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_ppsa14418",
+    "format": "exfat",
+    "filename": "PPSA14418_Promenade.exfat",
+    "url": "https://vikingfile.com/f/ppsa14418_base",
+    "browserUrl": "https://vikingfile.com/f/ppsa14418_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game EXFAT - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA14418"
+  },
+  {
+    "id": "r_mf_ppsa14418",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-PPSA14418-Promenade.rar",
+    "url": "https://www.mediafire.com/file/ppsa14418_mf/PPSA14418_Promenade.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/ppsa14418_mf/PPSA14418_Promenade.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-PPSA14418"
+  }
+]

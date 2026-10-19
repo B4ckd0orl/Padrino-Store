@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55245",
+    "format": "pkg",
+    "filename": "CUSA55245_MXGP_3.pkg",
+    "url": "https://vikingfile.com/f/cusa55245_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55245_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8589934592,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55245"
+  },
+  {
+    "id": "r_mf_cusa55245",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55245-MXGP_3.rar",
+    "url": "https://www.mediafire.com/file/cusa55245_mf/CUSA55245_MXGP_3.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55245_mf/CUSA55245_MXGP_3.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8589934592,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55245"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49142",
+    "format": "pkg",
+    "filename": "CUSA49142_Beyond_Blue.pkg",
+    "url": "https://vikingfile.com/f/cusa49142_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49142_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49142"
+  },
+  {
+    "id": "r_mf_cusa49142",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49142-Beyond_Blue.rar",
+    "url": "https://www.mediafire.com/file/cusa49142_mf/CUSA49142_Beyond_Blue.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49142_mf/CUSA49142_Beyond_Blue.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49142"
+  }
+]

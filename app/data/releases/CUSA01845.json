@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa01845",
+    "format": "pkg",
+    "filename": "CUSA01845_Dead_or_Alive_5_Last_Round.pkg",
+    "url": "https://vikingfile.com/f/cusa01845_base",
+    "browserUrl": "https://vikingfile.com/f/cusa01845_base",
+    "requiresBrowser": true,
+    "sizeBytes": 12025908429,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA01845"
+  },
+  {
+    "id": "r_mf_cusa01845",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA01845-Dead_or_Alive_5_Last_Round.rar",
+    "url": "https://www.mediafire.com/file/cusa01845_mf/CUSA01845_Dead_or_Alive_5_Last_Round.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa01845_mf/CUSA01845_Dead_or_Alive_5_Last_Round.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 12025908429,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA01845"
+  }
+]

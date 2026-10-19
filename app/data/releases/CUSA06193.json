@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa06193",
+    "format": "pkg",
+    "filename": "CUSA06193_Absolver.pkg",
+    "url": "https://vikingfile.com/f/cusa06193_base",
+    "browserUrl": "https://vikingfile.com/f/cusa06193_base",
+    "requiresBrowser": true,
+    "sizeBytes": 12670153523,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06193"
+  },
+  {
+    "id": "r_mf_cusa06193",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA06193-Absolver.rar",
+    "url": "https://www.mediafire.com/file/cusa06193_mf/CUSA06193_Absolver.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa06193_mf/CUSA06193_Absolver.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 12670153523,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06193"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49296",
+    "format": "pkg",
+    "filename": "CUSA49296_Constructor_HD.pkg",
+    "url": "https://vikingfile.com/f/cusa49296_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49296_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3650722202,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49296"
+  },
+  {
+    "id": "r_mf_cusa49296",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49296-Constructor_HD.rar",
+    "url": "https://www.mediafire.com/file/cusa49296_mf/CUSA49296_Constructor_HD.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49296_mf/CUSA49296_Constructor_HD.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3650722202,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49296"
+  }
+]

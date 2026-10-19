@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa28503",
+    "format": "pkg",
+    "filename": "CUSA28503_ISLANDERS__Console_Edition.pkg",
+    "url": "https://vikingfile.com/f/cusa28503_base",
+    "browserUrl": "https://vikingfile.com/f/cusa28503_base",
+    "requiresBrowser": true,
+    "sizeBytes": 483183821,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA28503"
+  },
+  {
+    "id": "r_mf_cusa28503",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA28503-ISLANDERS__Console_Edition.rar",
+    "url": "https://www.mediafire.com/file/cusa28503_mf/CUSA28503_ISLANDERS__Console_Edition.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa28503_mf/CUSA28503_ISLANDERS__Console_Edition.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 483183821,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA28503"
+  }
+]

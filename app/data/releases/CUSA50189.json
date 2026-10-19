@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50189",
+    "format": "pkg",
+    "filename": "CUSA50189_Galaxy_of_Pen___Paper__1_Edition.pkg",
+    "url": "https://vikingfile.com/f/cusa50189_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50189_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4939212390,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50189"
+  },
+  {
+    "id": "r_mf_cusa50189",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50189-Galaxy_of_Pen___Paper__1_Edition.rar",
+    "url": "https://www.mediafire.com/file/cusa50189_mf/CUSA50189_Galaxy_of_Pen___Paper__1_Edition.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50189_mf/CUSA50189_Galaxy_of_Pen___Paper__1_Edition.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4939212390,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50189"
+  }
+]

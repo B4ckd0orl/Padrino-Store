@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa18428",
+    "format": "pkg",
+    "filename": "CUSA18428_Song_of_Horror.pkg",
+    "url": "https://vikingfile.com/f/cusa18428_base",
+    "browserUrl": "https://vikingfile.com/f/cusa18428_base",
+    "requiresBrowser": true,
+    "sizeBytes": 18038862643,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18428"
+  },
+  {
+    "id": "r_mf_cusa18428",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA18428-Song_of_Horror.rar",
+    "url": "https://www.mediafire.com/file/cusa18428_mf/CUSA18428_Song_of_Horror.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa18428_mf/CUSA18428_Song_of_Horror.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 18038862643,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18428"
+  }
+]

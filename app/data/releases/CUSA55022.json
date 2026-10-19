@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55022",
+    "format": "pkg",
+    "filename": "CUSA55022_King_s_Quest.pkg",
+    "url": "https://vikingfile.com/f/cusa55022_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55022_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2791728742,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55022"
+  },
+  {
+    "id": "r_mf_cusa55022",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55022-King_s_Quest.rar",
+    "url": "https://www.mediafire.com/file/cusa55022_mf/CUSA55022_King_s_Quest.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55022_mf/CUSA55022_King_s_Quest.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2791728742,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55022"
+  }
+]

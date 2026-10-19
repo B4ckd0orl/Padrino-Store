@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa20279",
+    "format": "pkg",
+    "filename": "CUSA20279_Heroes_of_Hammerwatch__Ultimate_Edition.pkg",
+    "url": "https://vikingfile.com/f/cusa20279_base",
+    "browserUrl": "https://vikingfile.com/f/cusa20279_base",
+    "requiresBrowser": true,
+    "sizeBytes": 858993459,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA20279"
+  },
+  {
+    "id": "r_mf_cusa20279",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA20279-Heroes_of_Hammerwatch__Ultimate_Edition.rar",
+    "url": "https://www.mediafire.com/file/cusa20279_mf/CUSA20279_Heroes_of_Hammerwatch__Ultimate_Edition.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa20279_mf/CUSA20279_Heroes_of_Hammerwatch__Ultimate_Edition.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 858993459,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA20279"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48092",
+    "format": "pkg",
+    "filename": "CUSA48092_Amazing_Discoveries_in_Outer_Space.pkg",
+    "url": "https://vikingfile.com/f/cusa48092_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48092_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2899102925,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48092"
+  },
+  {
+    "id": "r_mf_cusa48092",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48092-Amazing_Discoveries_in_Outer_Space.rar",
+    "url": "https://www.mediafire.com/file/cusa48092_mf/CUSA48092_Amazing_Discoveries_in_Outer_Space.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48092_mf/CUSA48092_Amazing_Discoveries_in_Outer_Space.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2899102925,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48092"
+  }
+]

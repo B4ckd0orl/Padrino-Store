@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa06140",
+    "format": "pkg",
+    "filename": "CUSA06140_Battle_Garegga_Rev_2016.pkg",
+    "url": "https://vikingfile.com/f/cusa06140_base",
+    "browserUrl": "https://vikingfile.com/f/cusa06140_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06140"
+  },
+  {
+    "id": "r_mf_cusa06140",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA06140-Battle_Garegga_Rev_2016.rar",
+    "url": "https://www.mediafire.com/file/cusa06140_mf/CUSA06140_Battle_Garegga_Rev_2016.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa06140_mf/CUSA06140_Battle_Garegga_Rev_2016.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06140"
+  }
+]

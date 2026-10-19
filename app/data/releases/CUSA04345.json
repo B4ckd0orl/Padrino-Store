@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa04345",
+    "format": "pkg",
+    "filename": "CUSA04345_Guilty_Gear_Xrd__REVELATOR_.pkg",
+    "url": "https://vikingfile.com/f/cusa04345_base",
+    "browserUrl": "https://vikingfile.com/f/cusa04345_base",
+    "requiresBrowser": true,
+    "sizeBytes": 12025908429,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA04345"
+  },
+  {
+    "id": "r_mf_cusa04345",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA04345-Guilty_Gear_Xrd__REVELATOR_.rar",
+    "url": "https://www.mediafire.com/file/cusa04345_mf/CUSA04345_Guilty_Gear_Xrd__REVELATOR_.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa04345_mf/CUSA04345_Guilty_Gear_Xrd__REVELATOR_.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 12025908429,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA04345"
+  }
+]

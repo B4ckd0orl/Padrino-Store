@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49388",
+    "format": "pkg",
+    "filename": "CUSA49388_Disaster_Report_4_Plus__Summer_Memories.pkg",
+    "url": "https://vikingfile.com/f/cusa49388_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49388_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49388"
+  },
+  {
+    "id": "r_mf_cusa49388",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49388-Disaster_Report_4_Plus__Summer_Memories.rar",
+    "url": "https://www.mediafire.com/file/cusa49388_mf/CUSA49388_Disaster_Report_4_Plus__Summer_Memories.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49388_mf/CUSA49388_Disaster_Report_4_Plus__Summer_Memories.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49388"
+  }
+]

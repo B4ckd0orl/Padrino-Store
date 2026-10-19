@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_mf_cusa49970",
+    "format": "pkg",
+    "filename": "CUSA49970_Minishoot_Adventures_v1.00.pkg",
+    "url": "https://www.mediafire.com/file/cusa49970_pkg/CUSA49970_Minishoot_Adventures_v1.00.pkg/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49970_pkg/CUSA49970_Minishoot_Adventures_v1.00.pkg/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1181116006,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "PS4 FPKG Base v1.00 - MediaFire",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49970"
+  },
+  {
+    "id": "r_vk_cusa49970",
+    "format": "pkg",
+    "filename": "CUSA49970_Minishoot_Adventures_v1.00.pkg",
+    "url": "https://vikingfile.com/f/cusa49970_pkg",
+    "browserUrl": "https://vikingfile.com/f/cusa49970_pkg",
+    "requiresBrowser": true,
+    "sizeBytes": 1181116006,
+    "version": "v01.00",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "PS4 FPKG Base v1.00 - VikingFile",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49970"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55910",
+    "format": "pkg",
+    "filename": "CUSA55910_Toy_Soldiers_2__Finest_Hour.pkg",
+    "url": "https://vikingfile.com/f/cusa55910_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55910_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4617089843,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55910"
+  },
+  {
+    "id": "r_mf_cusa55910",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55910-Toy_Soldiers_2__Finest_Hour.rar",
+    "url": "https://www.mediafire.com/file/cusa55910_mf/CUSA55910_Toy_Soldiers_2__Finest_Hour.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55910_mf/CUSA55910_Toy_Soldiers_2__Finest_Hour.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4617089843,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55910"
+  }
+]

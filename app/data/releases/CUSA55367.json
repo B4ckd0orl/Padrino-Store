@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55367",
+    "format": "pkg",
+    "filename": "CUSA55367_Othercide.pkg",
+    "url": "https://vikingfile.com/f/cusa55367_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55367_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55367"
+  },
+  {
+    "id": "r_mf_cusa55367",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55367-Othercide.rar",
+    "url": "https://www.mediafire.com/file/cusa55367_mf/CUSA55367_Othercide.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55367_mf/CUSA55367_Othercide.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7730941133,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55367"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55766",
+    "format": "pkg",
+    "filename": "CUSA55766_Star_Wars_Episode_I__Jedi_Power_Battles.pkg",
+    "url": "https://vikingfile.com/f/cusa55766_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55766_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7623566950,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55766"
+  },
+  {
+    "id": "r_mf_cusa55766",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55766-Star_Wars_Episode_I__Jedi_Power_Battles.rar",
+    "url": "https://www.mediafire.com/file/cusa55766_mf/CUSA55766_Star_Wars_Episode_I__Jedi_Power_Battles.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55766_mf/CUSA55766_Star_Wars_Episode_I__Jedi_Power_Battles.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7623566950,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55766"
+  }
+]

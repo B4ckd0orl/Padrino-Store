@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa08455",
+    "format": "pkg",
+    "filename": "CUSA08455_Jeopardy_.pkg",
+    "url": "https://vikingfile.com/f/cusa08455_base",
+    "browserUrl": "https://vikingfile.com/f/cusa08455_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA08455"
+  },
+  {
+    "id": "r_mf_cusa08455",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA08455-Jeopardy_.rar",
+    "url": "https://www.mediafire.com/file/cusa08455_mf/CUSA08455_Jeopardy_.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa08455_mf/CUSA08455_Jeopardy_.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA08455"
+  }
+]

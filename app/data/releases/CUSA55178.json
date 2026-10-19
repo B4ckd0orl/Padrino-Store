@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55178",
+    "format": "pkg",
+    "filename": "CUSA55178_Metrico_.pkg",
+    "url": "https://vikingfile.com/f/cusa55178_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55178_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7086696038,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55178"
+  },
+  {
+    "id": "r_mf_cusa55178",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55178-Metrico_.rar",
+    "url": "https://www.mediafire.com/file/cusa55178_mf/CUSA55178_Metrico_.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55178_mf/CUSA55178_Metrico_.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7086696038,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55178"
+  }
+]

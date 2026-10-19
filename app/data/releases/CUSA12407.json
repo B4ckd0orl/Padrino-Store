@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa12407",
+    "format": "pkg",
+    "filename": "CUSA12407_The_Liar_Princess_and_the_Blind_Prince.pkg",
+    "url": "https://vikingfile.com/f/cusa12407_base",
+    "browserUrl": "https://vikingfile.com/f/cusa12407_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA12407"
+  },
+  {
+    "id": "r_mf_cusa12407",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA12407-The_Liar_Princess_and_the_Blind_Prince.rar",
+    "url": "https://www.mediafire.com/file/cusa12407_mf/CUSA12407_The_Liar_Princess_and_the_Blind_Prince.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa12407_mf/CUSA12407_The_Liar_Princess_and_the_Blind_Prince.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA12407"
+  }
+]

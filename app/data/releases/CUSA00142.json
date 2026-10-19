@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa00142",
+    "format": "pkg",
+    "filename": "CUSA00142_Super_Stardust_Ultra.pkg",
+    "url": "https://vikingfile.com/f/cusa00142_base",
+    "browserUrl": "https://vikingfile.com/f/cusa00142_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA00142"
+  },
+  {
+    "id": "r_mf_cusa00142",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA00142-Super_Stardust_Ultra.rar",
+    "url": "https://www.mediafire.com/file/cusa00142_mf/CUSA00142_Super_Stardust_Ultra.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa00142_mf/CUSA00142_Super_Stardust_Ultra.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA00142"
+  }
+]

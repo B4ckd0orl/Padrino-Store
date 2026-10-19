@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49205",
+    "format": "pkg",
+    "filename": "CUSA49205_Breakthrough_Gaming_Arcade__Football.pkg",
+    "url": "https://vikingfile.com/f/cusa49205_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49205_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3972844749,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49205"
+  },
+  {
+    "id": "r_mf_cusa49205",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49205-Breakthrough_Gaming_Arcade__Football.rar",
+    "url": "https://www.mediafire.com/file/cusa49205_mf/CUSA49205_Breakthrough_Gaming_Arcade__Football.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49205_mf/CUSA49205_Breakthrough_Gaming_Arcade__Football.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3972844749,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49205"
+  }
+]

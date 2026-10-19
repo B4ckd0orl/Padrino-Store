@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa18888",
+    "format": "pkg",
+    "filename": "CUSA18888_Kingdoms_of_Amalur__Re_Reckoning.pkg",
+    "url": "https://vikingfile.com/f/cusa18888_base",
+    "browserUrl": "https://vikingfile.com/f/cusa18888_base",
+    "requiresBrowser": true,
+    "sizeBytes": 34467112550,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18888"
+  },
+  {
+    "id": "r_mf_cusa18888",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA18888-Kingdoms_of_Amalur__Re_Reckoning.rar",
+    "url": "https://www.mediafire.com/file/cusa18888_mf/CUSA18888_Kingdoms_of_Amalur__Re_Reckoning.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa18888_mf/CUSA18888_Kingdoms_of_Amalur__Re_Reckoning.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 34467112550,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA18888"
+  }
+]

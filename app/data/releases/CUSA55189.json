@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55189",
+    "format": "pkg",
+    "filename": "CUSA55189_Minecraft__Bedrock_Edition.pkg",
+    "url": "https://vikingfile.com/f/cusa55189_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55189_base",
+    "requiresBrowser": true,
+    "sizeBytes": 5798205850,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55189"
+  },
+  {
+    "id": "r_mf_cusa55189",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55189-Minecraft__Bedrock_Edition.rar",
+    "url": "https://www.mediafire.com/file/cusa55189_mf/CUSA55189_Minecraft__Bedrock_Edition.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55189_mf/CUSA55189_Minecraft__Bedrock_Edition.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 5798205850,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55189"
+  }
+]

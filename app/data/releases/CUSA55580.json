@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55580",
+    "format": "pkg",
+    "filename": "CUSA55580_Retsnom.pkg",
+    "url": "https://vikingfile.com/f/cusa55580_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55580_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7838315315,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55580"
+  },
+  {
+    "id": "r_mf_cusa55580",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55580-Retsnom.rar",
+    "url": "https://www.mediafire.com/file/cusa55580_mf/CUSA55580_Retsnom.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55580_mf/CUSA55580_Retsnom.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7838315315,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55580"
+  }
+]

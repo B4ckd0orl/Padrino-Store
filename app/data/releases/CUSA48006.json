@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48006",
+    "format": "pkg",
+    "filename": "CUSA48006_100ft_Robot_Golf.pkg",
+    "url": "https://vikingfile.com/f/cusa48006_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48006_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8697308774,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48006"
+  },
+  {
+    "id": "r_mf_cusa48006",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48006-100ft_Robot_Golf.rar",
+    "url": "https://www.mediafire.com/file/cusa48006_mf/CUSA48006_100ft_Robot_Golf.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48006_mf/CUSA48006_100ft_Robot_Golf.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8697308774,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48006"
+  }
+]

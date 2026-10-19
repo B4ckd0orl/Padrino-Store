@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55270",
+    "format": "pkg",
+    "filename": "CUSA55270_NASCAR_21__Ignition.pkg",
+    "url": "https://vikingfile.com/f/cusa55270_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55270_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55270"
+  },
+  {
+    "id": "r_mf_cusa55270",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55270-NASCAR_21__Ignition.rar",
+    "url": "https://www.mediafire.com/file/cusa55270_mf/CUSA55270_NASCAR_21__Ignition.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55270_mf/CUSA55270_NASCAR_21__Ignition.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3435973837,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55270"
+  }
+]

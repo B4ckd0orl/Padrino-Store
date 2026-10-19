@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55066",
+    "format": "pkg",
+    "filename": "CUSA55066_The_Legend_of_Heroes__Trails_Beyond_the_Horizon.pkg",
+    "url": "https://vikingfile.com/f/cusa55066_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55066_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3972844749,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55066"
+  },
+  {
+    "id": "r_mf_cusa55066",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55066-The_Legend_of_Heroes__Trails_Beyond_the_Horizon.rar",
+    "url": "https://www.mediafire.com/file/cusa55066_mf/CUSA55066_The_Legend_of_Heroes__Trails_Beyond_the_Horizon.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55066_mf/CUSA55066_The_Legend_of_Heroes__Trails_Beyond_the_Horizon.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3972844749,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55066"
+  }
+]

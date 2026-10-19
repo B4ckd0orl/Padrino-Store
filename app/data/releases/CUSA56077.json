@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56077",
+    "format": "pkg",
+    "filename": "CUSA56077_WWE_2K15.pkg",
+    "url": "https://vikingfile.com/f/cusa56077_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56077_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1825361101,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56077"
+  },
+  {
+    "id": "r_mf_cusa56077",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56077-WWE_2K15.rar",
+    "url": "https://www.mediafire.com/file/cusa56077_mf/CUSA56077_WWE_2K15.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56077_mf/CUSA56077_WWE_2K15.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1825361101,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56077"
+  }
+]

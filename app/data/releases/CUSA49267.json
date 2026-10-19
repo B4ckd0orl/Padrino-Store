@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49267",
+    "format": "pkg",
+    "filename": "CUSA49267_Chroma_Squad.pkg",
+    "url": "https://vikingfile.com/f/cusa49267_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49267_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8375186227,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49267"
+  },
+  {
+    "id": "r_mf_cusa49267",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49267-Chroma_Squad.rar",
+    "url": "https://www.mediafire.com/file/cusa49267_mf/CUSA49267_Chroma_Squad.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49267_mf/CUSA49267_Chroma_Squad.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8375186227,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49267"
+  }
+]

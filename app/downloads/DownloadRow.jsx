@@ -9,7 +9,7 @@ import { StatsStrip } from './StatsStrip.jsx';
 import { STALE_PARTIAL, cause, explainError } from './errors.js';
 import { WAITING, clearAction, shownState, stateLabel } from './labels.js';
 import { shapeOf } from './useQueue.js';
-import { isOverdriveCdn } from '../game/sources.js';
+import { formatLabel, inferFormat, isOverdriveCdn } from '../game/sources.js';
 import { useT } from '../i18n/index.js';
 import { BUSY, COMPLETE } from '../state/download-queue.js';
 import { Button2 } from '../ui/Button.jsx';
@@ -72,7 +72,10 @@ import { Text, View } from '@ps5-react/core';
     const openGame = () => onOpenGame(job2);
     const main = primary(job2, (name) => run(job2, name), openGame);
     const onFocus = () => onFocusRow(job2);
-    const meta = [(job2.artifact.format || release.format).toUpperCase(), `${release.provider} ${release.version || ""}`.trim(), job2.root].join(" \xB7 ");
+    // This line shares 285 px with the host and the path, so it stays the bare code: whatever the
+    // bytes already revealed, else the format the link itself names.
+    const detected = job2.artifact?.format && job2.artifact.format !== "binary" ? job2.artifact.format : inferFormat(release);
+    const meta = [formatLabel(detected), `${release.provider} ${release.version || ""}`.trim(), job2.root].join(" \xB7 ");
     const problem = job2.error && explainError(job2.error, Boolean(release.parts));
     // The files' own title id differs from the game chosen: said before anything else but an error.
     const mismatch = job2.titleMismatch ? t2("downloads.titleMismatch", { found: job2.titleMismatch, expected: job2.titleId }) : "";

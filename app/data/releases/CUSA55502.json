@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55502",
+    "format": "pkg",
+    "filename": "CUSA55502_Pure_Pool.pkg",
+    "url": "https://vikingfile.com/f/cusa55502_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55502_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8912057139,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55502"
+  },
+  {
+    "id": "r_mf_cusa55502",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55502-Pure_Pool.rar",
+    "url": "https://www.mediafire.com/file/cusa55502_mf/CUSA55502_Pure_Pool.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55502_mf/CUSA55502_Pure_Pool.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8912057139,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55502"
+  }
+]

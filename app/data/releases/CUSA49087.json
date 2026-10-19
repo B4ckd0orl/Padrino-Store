@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49087",
+    "format": "pkg",
+    "filename": "CUSA49087_Astalon__Tears_of_the_Earth.pkg",
+    "url": "https://vikingfile.com/f/cusa49087_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49087_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7945689498,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49087"
+  },
+  {
+    "id": "r_mf_cusa49087",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49087-Astalon__Tears_of_the_Earth.rar",
+    "url": "https://www.mediafire.com/file/cusa49087_mf/CUSA49087_Astalon__Tears_of_the_Earth.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49087_mf/CUSA49087_Astalon__Tears_of_the_Earth.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7945689498,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49087"
+  }
+]

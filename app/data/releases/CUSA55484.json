@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55484",
+    "format": "pkg",
+    "filename": "CUSA55484_Project_Nimbus__Code_Mirai.pkg",
+    "url": "https://vikingfile.com/f/cusa55484_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55484_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55484"
+  },
+  {
+    "id": "r_mf_cusa55484",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55484-Project_Nimbus__Code_Mirai.rar",
+    "url": "https://www.mediafire.com/file/cusa55484_mf/CUSA55484_Project_Nimbus__Code_Mirai.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55484_mf/CUSA55484_Project_Nimbus__Code_Mirai.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55484"
+  }
+]

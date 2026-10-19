@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49213",
+    "format": "pkg",
+    "filename": "CUSA49213_Brief_Battles.pkg",
+    "url": "https://vikingfile.com/f/cusa49213_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49213_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9341553869,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49213"
+  },
+  {
+    "id": "r_mf_cusa49213",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49213-Brief_Battles.rar",
+    "url": "https://www.mediafire.com/file/cusa49213_mf/CUSA49213_Brief_Battles.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49213_mf/CUSA49213_Brief_Battles.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9341553869,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49213"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55935",
+    "format": "pkg",
+    "filename": "CUSA55935_Typoman.pkg",
+    "url": "https://vikingfile.com/f/cusa55935_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55935_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7623566950,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55935"
+  },
+  {
+    "id": "r_mf_cusa55935",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55935-Typoman.rar",
+    "url": "https://www.mediafire.com/file/cusa55935_mf/CUSA55935_Typoman.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55935_mf/CUSA55935_Typoman.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7623566950,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55935"
+  }
+]

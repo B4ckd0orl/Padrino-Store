@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55985",
+    "format": "pkg",
+    "filename": "CUSA55985_Vaporum.pkg",
+    "url": "https://vikingfile.com/f/cusa55985_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55985_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7086696038,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55985"
+  },
+  {
+    "id": "r_mf_cusa55985",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55985-Vaporum.rar",
+    "url": "https://www.mediafire.com/file/cusa55985_mf/CUSA55985_Vaporum.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55985_mf/CUSA55985_Vaporum.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7086696038,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55985"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50029",
+    "format": "pkg",
+    "filename": "CUSA50029_Dungeons_2.pkg",
+    "url": "https://vikingfile.com/f/cusa50029_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50029_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2684354560,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50029"
+  },
+  {
+    "id": "r_mf_cusa50029",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50029-Dungeons_2.rar",
+    "url": "https://www.mediafire.com/file/cusa50029_mf/CUSA50029_Dungeons_2.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50029_mf/CUSA50029_Dungeons_2.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2684354560,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50029"
+  }
+]

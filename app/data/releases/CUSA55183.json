@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55183",
+    "format": "pkg",
+    "filename": "CUSA55183_Mighty_Fight_Federation.pkg",
+    "url": "https://vikingfile.com/f/cusa55183_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55183_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9448928051,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55183"
+  },
+  {
+    "id": "r_mf_cusa55183",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55183-Mighty_Fight_Federation.rar",
+    "url": "https://www.mediafire.com/file/cusa55183_mf/CUSA55183_Mighty_Fight_Federation.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55183_mf/CUSA55183_Mighty_Fight_Federation.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9448928051,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55183"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa16210",
+    "format": "pkg",
+    "filename": "CUSA16210_SaGa_Scarlet_Grace__Ambitions.pkg",
+    "url": "https://vikingfile.com/f/cusa16210_base",
+    "browserUrl": "https://vikingfile.com/f/cusa16210_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2576980378,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA16210"
+  },
+  {
+    "id": "r_mf_cusa16210",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA16210-SaGa_Scarlet_Grace__Ambitions.rar",
+    "url": "https://www.mediafire.com/file/cusa16210_mf/CUSA16210_SaGa_Scarlet_Grace__Ambitions.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa16210_mf/CUSA16210_SaGa_Scarlet_Grace__Ambitions.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2576980378,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA16210"
+  }
+]

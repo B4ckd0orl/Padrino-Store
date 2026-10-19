@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49338",
+    "format": "pkg",
+    "filename": "CUSA49338_Daylight.pkg",
+    "url": "https://vikingfile.com/f/cusa49338_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49338_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6764573491,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49338"
+  },
+  {
+    "id": "r_mf_cusa49338",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49338-Daylight.rar",
+    "url": "https://www.mediafire.com/file/cusa49338_mf/CUSA49338_Daylight.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49338_mf/CUSA49338_Daylight.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6764573491,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49338"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55895",
+    "format": "pkg",
+    "filename": "CUSA55895_Tottemo_E_Mahjong_Plus.pkg",
+    "url": "https://vikingfile.com/f/cusa55895_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55895_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6549825126,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55895"
+  },
+  {
+    "id": "r_mf_cusa55895",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55895-Tottemo_E_Mahjong_Plus.rar",
+    "url": "https://www.mediafire.com/file/cusa55895_mf/CUSA55895_Tottemo_E_Mahjong_Plus.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55895_mf/CUSA55895_Tottemo_E_Mahjong_Plus.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6549825126,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55895"
+  }
+]

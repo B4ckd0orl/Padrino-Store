@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55753",
+    "format": "pkg",
+    "filename": "CUSA55753_Splitgate_2.pkg",
+    "url": "https://vikingfile.com/f/cusa55753_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55753_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6549825126,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55753"
+  },
+  {
+    "id": "r_mf_cusa55753",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55753-Splitgate_2.rar",
+    "url": "https://www.mediafire.com/file/cusa55753_mf/CUSA55753_Splitgate_2.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55753_mf/CUSA55753_Splitgate_2.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6549825126,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55753"
+  }
+]

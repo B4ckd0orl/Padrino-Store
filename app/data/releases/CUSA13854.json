@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa13854",
+    "format": "pkg",
+    "filename": "CUSA13854_Monster_Energy_Supercross___The_Official_Videogame_2.pkg",
+    "url": "https://vikingfile.com/f/cusa13854_base",
+    "browserUrl": "https://vikingfile.com/f/cusa13854_base",
+    "requiresBrowser": true,
+    "sizeBytes": 14495514624,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA13854"
+  },
+  {
+    "id": "r_mf_cusa13854",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA13854-Monster_Energy_Supercross___The_Official_Videogame_2.rar",
+    "url": "https://www.mediafire.com/file/cusa13854_mf/CUSA13854_Monster_Energy_Supercross___The_Official_Videogame_2.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa13854_mf/CUSA13854_Monster_Energy_Supercross___The_Official_Videogame_2.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 14495514624,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA13854"
+  }
+]

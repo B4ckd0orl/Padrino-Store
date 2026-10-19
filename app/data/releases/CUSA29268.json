@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa29268",
+    "format": "pkg",
+    "filename": "CUSA29268_Midnight_Fight_Express.pkg",
+    "url": "https://vikingfile.com/f/cusa29268_base",
+    "browserUrl": "https://vikingfile.com/f/cusa29268_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA29268"
+  },
+  {
+    "id": "r_mf_cusa29268",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA29268-Midnight_Fight_Express.rar",
+    "url": "https://www.mediafire.com/file/cusa29268_mf/CUSA29268_Midnight_Fight_Express.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa29268_mf/CUSA29268_Midnight_Fight_Express.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA29268"
+  }
+]

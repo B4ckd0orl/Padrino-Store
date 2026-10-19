@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55861",
+    "format": "pkg",
+    "filename": "CUSA55861_There_Came_an_Echo.pkg",
+    "url": "https://vikingfile.com/f/cusa55861_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55861_base",
+    "requiresBrowser": true,
+    "sizeBytes": 2469606195,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55861"
+  },
+  {
+    "id": "r_mf_cusa55861",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55861-There_Came_an_Echo.rar",
+    "url": "https://www.mediafire.com/file/cusa55861_mf/CUSA55861_There_Came_an_Echo.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55861_mf/CUSA55861_There_Came_an_Echo.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 2469606195,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55861"
+  }
+]

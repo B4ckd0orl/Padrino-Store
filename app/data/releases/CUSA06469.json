@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa06469",
+    "format": "pkg",
+    "filename": "CUSA06469_Ghost_Blade_HD.pkg",
+    "url": "https://vikingfile.com/f/cusa06469_base",
+    "browserUrl": "https://vikingfile.com/f/cusa06469_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06469"
+  },
+  {
+    "id": "r_mf_cusa06469",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA06469-Ghost_Blade_HD.rar",
+    "url": "https://www.mediafire.com/file/cusa06469_mf/CUSA06469_Ghost_Blade_HD.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa06469_mf/CUSA06469_Ghost_Blade_HD.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA06469"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55381",
+    "format": "pkg",
+    "filename": "CUSA55381_Pankapu.pkg",
+    "url": "https://vikingfile.com/f/cusa55381_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55381_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9556302234,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55381"
+  },
+  {
+    "id": "r_mf_cusa55381",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55381-Pankapu.rar",
+    "url": "https://www.mediafire.com/file/cusa55381_mf/CUSA55381_Pankapu.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55381_mf/CUSA55381_Pankapu.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9556302234,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55381"
+  }
+]

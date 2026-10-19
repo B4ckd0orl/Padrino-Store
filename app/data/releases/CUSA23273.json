@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa23273",
+    "format": "pkg",
+    "filename": "CUSA23273_Kaze_and_the_Wild_Masks.pkg",
+    "url": "https://vikingfile.com/f/cusa23273_base",
+    "browserUrl": "https://vikingfile.com/f/cusa23273_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1020054733,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA23273"
+  },
+  {
+    "id": "r_mf_cusa23273",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA23273-Kaze_and_the_Wild_Masks.rar",
+    "url": "https://www.mediafire.com/file/cusa23273_mf/CUSA23273_Kaze_and_the_Wild_Masks.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa23273_mf/CUSA23273_Kaze_and_the_Wild_Masks.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1020054733,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA23273"
+  }
+]

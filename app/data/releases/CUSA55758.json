@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55758",
+    "format": "pkg",
+    "filename": "CUSA55758_Square_Heroes.pkg",
+    "url": "https://vikingfile.com/f/cusa55758_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55758_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7408818586,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55758"
+  },
+  {
+    "id": "r_mf_cusa55758",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55758-Square_Heroes.rar",
+    "url": "https://www.mediafire.com/file/cusa55758_mf/CUSA55758_Square_Heroes.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55758_mf/CUSA55758_Square_Heroes.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7408818586,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55758"
+  }
+]

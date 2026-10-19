@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55982",
+    "format": "pkg",
+    "filename": "CUSA55982_Vampire__The_Masquerade___Coteries_of_New_York.pkg",
+    "url": "https://vikingfile.com/f/cusa55982_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55982_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3328599654,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55982"
+  },
+  {
+    "id": "r_mf_cusa55982",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55982-Vampire__The_Masquerade___Coteries_of_New_York.rar",
+    "url": "https://www.mediafire.com/file/cusa55982_mf/CUSA55982_Vampire__The_Masquerade___Coteries_of_New_York.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55982_mf/CUSA55982_Vampire__The_Masquerade___Coteries_of_New_York.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3328599654,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55982"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55971",
+    "format": "pkg",
+    "filename": "CUSA55971_Urban_Legend_in_Limbo.pkg",
+    "url": "https://vikingfile.com/f/cusa55971_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55971_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7623566950,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55971"
+  },
+  {
+    "id": "r_mf_cusa55971",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55971-Urban_Legend_in_Limbo.rar",
+    "url": "https://www.mediafire.com/file/cusa55971_mf/CUSA55971_Urban_Legend_in_Limbo.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55971_mf/CUSA55971_Urban_Legend_in_Limbo.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7623566950,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55971"
+  }
+]

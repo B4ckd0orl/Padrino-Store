@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa50267",
+    "format": "pkg",
+    "filename": "CUSA50267_Harvest_Moon__Light_of_Hope.pkg",
+    "url": "https://vikingfile.com/f/cusa50267_base",
+    "browserUrl": "https://vikingfile.com/f/cusa50267_base",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50267"
+  },
+  {
+    "id": "r_mf_cusa50267",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA50267-Harvest_Moon__Light_of_Hope.rar",
+    "url": "https://www.mediafire.com/file/cusa50267_mf/CUSA50267_Harvest_Moon__Light_of_Hope.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa50267_mf/CUSA50267_Harvest_Moon__Light_of_Hope.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 9126805504,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA50267"
+  }
+]

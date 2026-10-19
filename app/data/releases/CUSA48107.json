@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48107",
+    "format": "pkg",
+    "filename": "CUSA48107_Anthem.pkg",
+    "url": "https://vikingfile.com/f/cusa48107_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48107_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6012954214,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48107"
+  },
+  {
+    "id": "r_mf_cusa48107",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48107-Anthem.rar",
+    "url": "https://www.mediafire.com/file/cusa48107_mf/CUSA48107_Anthem.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48107_mf/CUSA48107_Anthem.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6012954214,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48107"
+  }
+]

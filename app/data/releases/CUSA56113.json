@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa56113",
+    "format": "pkg",
+    "filename": "CUSA56113_Zero_Time_Dilemma.pkg",
+    "url": "https://vikingfile.com/f/cusa56113_base",
+    "browserUrl": "https://vikingfile.com/f/cusa56113_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6764573491,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56113"
+  },
+  {
+    "id": "r_mf_cusa56113",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA56113-Zero_Time_Dilemma.rar",
+    "url": "https://www.mediafire.com/file/cusa56113_mf/CUSA56113_Zero_Time_Dilemma.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa56113_mf/CUSA56113_Zero_Time_Dilemma.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6764573491,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA56113"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55330",
+    "format": "pkg",
+    "filename": "CUSA55330_No_Straight_Roads.pkg",
+    "url": "https://vikingfile.com/f/cusa55330_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55330_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55330"
+  },
+  {
+    "id": "r_mf_cusa55330",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55330-No_Straight_Roads.rar",
+    "url": "https://www.mediafire.com/file/cusa55330_mf/CUSA55330_No_Straight_Roads.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55330_mf/CUSA55330_No_Straight_Roads.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1717986918,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55330"
+  }
+]

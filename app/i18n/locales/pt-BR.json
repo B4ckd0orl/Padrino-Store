@@ -144,6 +144,7 @@
     "downloads.installed": "Instalado. Já está na tela inicial.",
     "downloads.moved": "Movido",
     "downloads.moving": "Movendo...",
+    "downloads.notice.captured": "Link capturado, volte ao Padrino Store",
     "downloads.notice.complete": "Download concluído",
     "downloads.notice.failed": "Download falhou",
     "downloads.notice.installed": "Jogo instalado",
@@ -498,5 +499,17 @@
     "welcome.detail": "Mais de 1.800 jogos grátis para o seu PS5. Aproveite! Apoie-nos com um follow no Telegram e X: lá postamos notícias, suporte e novos jogos.",
     "welcome.enter": "Entrar",
     "welcome.family": "Bem-vindo à família!",
-    "welcome.title": "Bem-vindo à Padrino Store!"
+    "welcome.title": "Bem-vindo à Padrino Store!",
+    "sources.action.install": "Instalar",
+    "sources.action.extract": "Extrair",
+    "sources.action.image": "Montar imagem",
+    "tips.note.format": "O formato exato é confirmado assim que o download começa.",
+    "nav.info": "Info",
+    "info.subtitle": "Sobre o Padrino Store",
+    "info.lead": "Esta loja foi criada por Gran Padrino. Se encontrar algum problema, reporte para que seja corrigido. Também agradeço se me seguir.",
+    "info.firmwareTitle": "Firmware",
+    "info.firmware": "Alguns jogos podem não ser compatíveis com o seu firmware. Não é um bug da loja: depende dos links de download.",
+    "info.coversTitle": "Capas",
+    "info.covers": "Alguns jogos não têm capa porque falta a chave da API da PlayStation. Não afeta o funcionamento da loja.",
+    "info.follow": "Siga-me em:"
 }

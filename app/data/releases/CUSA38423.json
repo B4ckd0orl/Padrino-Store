@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa38423",
+    "format": "pkg",
+    "filename": "CUSA38423_Spelunker_HD_Deluxe.pkg",
+    "url": "https://vikingfile.com/f/cusa38423_base",
+    "browserUrl": "https://vikingfile.com/f/cusa38423_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1503238554,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA38423"
+  },
+  {
+    "id": "r_mf_cusa38423",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA38423-Spelunker_HD_Deluxe.rar",
+    "url": "https://www.mediafire.com/file/cusa38423_mf/CUSA38423_Spelunker_HD_Deluxe.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa38423_mf/CUSA38423_Spelunker_HD_Deluxe.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1503238554,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA38423"
+  }
+]

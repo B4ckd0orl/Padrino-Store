@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa26743",
+    "format": "pkg",
+    "filename": "CUSA26743_DC_League_of_Super_Pets__The_Adventures_of_Krypto_and_Ace.pkg",
+    "url": "https://vikingfile.com/f/cusa26743_base",
+    "browserUrl": "https://vikingfile.com/f/cusa26743_base",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA26743"
+  },
+  {
+    "id": "r_mf_cusa26743",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA26743-DC_League_of_Super_Pets__The_Adventures_of_Krypto_and_Ace.rar",
+    "url": "https://www.mediafire.com/file/cusa26743_mf/CUSA26743_DC_League_of_Super_Pets__The_Adventures_of_Krypto_and_Ace.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa26743_mf/CUSA26743_DC_League_of_Super_Pets__The_Adventures_of_Krypto_and_Ace.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 3006477107,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA26743"
+  }
+]

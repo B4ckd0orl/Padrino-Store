@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa00446",
+    "format": "pkg",
+    "filename": "CUSA00446_Monopoly_Plus.pkg",
+    "url": "https://vikingfile.com/f/cusa00446_base",
+    "browserUrl": "https://vikingfile.com/f/cusa00446_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1932735283,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA00446"
+  },
+  {
+    "id": "r_mf_cusa00446",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA00446-Monopoly_Plus.rar",
+    "url": "https://www.mediafire.com/file/cusa00446_mf/CUSA00446_Monopoly_Plus.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa00446_mf/CUSA00446_Monopoly_Plus.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1932735283,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA00446"
+  }
+]

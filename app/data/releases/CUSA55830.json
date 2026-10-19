@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55830",
+    "format": "pkg",
+    "filename": "CUSA55830_Surviving_Mars.pkg",
+    "url": "https://vikingfile.com/f/cusa55830_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55830_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8375186227,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55830"
+  },
+  {
+    "id": "r_mf_cusa55830",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55830-Surviving_Mars.rar",
+    "url": "https://www.mediafire.com/file/cusa55830_mf/CUSA55830_Surviving_Mars.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55830_mf/CUSA55830_Surviving_Mars.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8375186227,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55830"
+  }
+]

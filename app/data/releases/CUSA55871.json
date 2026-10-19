@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55871",
+    "format": "pkg",
+    "filename": "CUSA55871_Tina_s_Toy_Factory.pkg",
+    "url": "https://vikingfile.com/f/cusa55871_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55871_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8589934592,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55871"
+  },
+  {
+    "id": "r_mf_cusa55871",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55871-Tina_s_Toy_Factory.rar",
+    "url": "https://www.mediafire.com/file/cusa55871_mf/CUSA55871_Tina_s_Toy_Factory.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55871_mf/CUSA55871_Tina_s_Toy_Factory.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8589934592,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55871"
+  }
+]

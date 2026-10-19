@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55873",
+    "format": "pkg",
+    "filename": "CUSA55873_Tiny_Brains.pkg",
+    "url": "https://vikingfile.com/f/cusa55873_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55873_base",
+    "requiresBrowser": true,
+    "sizeBytes": 4294967296,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55873"
+  },
+  {
+    "id": "r_mf_cusa55873",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55873-Tiny_Brains.rar",
+    "url": "https://www.mediafire.com/file/cusa55873_mf/CUSA55873_Tiny_Brains.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55873_mf/CUSA55873_Tiny_Brains.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 4294967296,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55873"
+  }
+]

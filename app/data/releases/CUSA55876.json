@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55876",
+    "format": "pkg",
+    "filename": "CUSA55876_Titan_Attacks_.pkg",
+    "url": "https://vikingfile.com/f/cusa55876_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55876_base",
+    "requiresBrowser": true,
+    "sizeBytes": 8589934592,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55876"
+  },
+  {
+    "id": "r_mf_cusa55876",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55876-Titan_Attacks_.rar",
+    "url": "https://www.mediafire.com/file/cusa55876_mf/CUSA55876_Titan_Attacks_.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55876_mf/CUSA55876_Titan_Attacks_.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 8589934592,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55876"
+  }
+]

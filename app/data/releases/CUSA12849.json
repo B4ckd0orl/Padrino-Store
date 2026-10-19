@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa12849",
+    "format": "pkg",
+    "filename": "CUSA12849_Earth_Defense_Force_5.pkg",
+    "url": "https://vikingfile.com/f/cusa12849_base",
+    "browserUrl": "https://vikingfile.com/f/cusa12849_base",
+    "requiresBrowser": true,
+    "sizeBytes": 17716740096,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA12849"
+  },
+  {
+    "id": "r_mf_cusa12849",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA12849-Earth_Defense_Force_5.rar",
+    "url": "https://www.mediafire.com/file/cusa12849_mf/CUSA12849_Earth_Defense_Force_5.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa12849_mf/CUSA12849_Earth_Defense_Force_5.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 17716740096,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA12849"
+  }
+]

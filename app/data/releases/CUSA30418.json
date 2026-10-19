@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa30418",
+    "format": "pkg",
+    "filename": "CUSA30418_Demoniaca__Everlasting_Night.pkg",
+    "url": "https://vikingfile.com/f/cusa30418_base",
+    "browserUrl": "https://vikingfile.com/f/cusa30418_base",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA30418"
+  },
+  {
+    "id": "r_mf_cusa30418",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA30418-Demoniaca__Everlasting_Night.rar",
+    "url": "https://www.mediafire.com/file/cusa30418_mf/CUSA30418_Demoniaca__Everlasting_Night.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa30418_mf/CUSA30418_Demoniaca__Everlasting_Night.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 1288490189,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA30418"
+  }
+]

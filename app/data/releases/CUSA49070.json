@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa49070",
+    "format": "pkg",
+    "filename": "CUSA49070_Arietta_of_Spirits.pkg",
+    "url": "https://vikingfile.com/f/cusa49070_base",
+    "browserUrl": "https://vikingfile.com/f/cusa49070_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49070"
+  },
+  {
+    "id": "r_mf_cusa49070",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA49070-Arietta_of_Spirits.rar",
+    "url": "https://www.mediafire.com/file/cusa49070_mf/CUSA49070_Arietta_of_Spirits.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa49070_mf/CUSA49070_Arietta_of_Spirits.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7301444403,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA49070"
+  }
+]

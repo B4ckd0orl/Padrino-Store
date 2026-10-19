@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48016",
+    "format": "pkg",
+    "filename": "CUSA48016_The_25th_Ward__The_Silver_Case.pkg",
+    "url": "https://vikingfile.com/f/cusa48016_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48016_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7408818586,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48016"
+  },
+  {
+    "id": "r_mf_cusa48016",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48016-The_25th_Ward__The_Silver_Case.rar",
+    "url": "https://www.mediafire.com/file/cusa48016_mf/CUSA48016_The_25th_Ward__The_Silver_Case.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48016_mf/CUSA48016_The_25th_Ward__The_Silver_Case.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7408818586,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48016"
+  }
+]

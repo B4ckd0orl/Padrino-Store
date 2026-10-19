@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa48042",
+    "format": "pkg",
+    "filename": "CUSA48042_Abyss__The_Wraiths_of_Eden.pkg",
+    "url": "https://vikingfile.com/f/cusa48042_base",
+    "browserUrl": "https://vikingfile.com/f/cusa48042_base",
+    "requiresBrowser": true,
+    "sizeBytes": 6657199309,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48042"
+  },
+  {
+    "id": "r_mf_cusa48042",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA48042-Abyss__The_Wraiths_of_Eden.rar",
+    "url": "https://www.mediafire.com/file/cusa48042_mf/CUSA48042_Abyss__The_Wraiths_of_Eden.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa48042_mf/CUSA48042_Abyss__The_Wraiths_of_Eden.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 6657199309,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA48042"
+  }
+]

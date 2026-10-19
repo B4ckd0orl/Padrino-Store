@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa55483",
+    "format": "pkg",
+    "filename": "CUSA55483_Project_Highrise__Architect_s_Edition.pkg",
+    "url": "https://vikingfile.com/f/cusa55483_base",
+    "browserUrl": "https://vikingfile.com/f/cusa55483_base",
+    "requiresBrowser": true,
+    "sizeBytes": 7086696038,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55483"
+  },
+  {
+    "id": "r_mf_cusa55483",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA55483-Project_Highrise__Architect_s_Edition.rar",
+    "url": "https://www.mediafire.com/file/cusa55483_mf/CUSA55483_Project_Highrise__Architect_s_Edition.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa55483_mf/CUSA55483_Project_Highrise__Architect_s_Edition.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 7086696038,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA55483"
+  }
+]

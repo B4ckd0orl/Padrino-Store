@@ -1,0 +1,36 @@
+[
+  {
+    "id": "r_vk_cusa08851",
+    "format": "pkg",
+    "filename": "CUSA08851_Senran_Kagura__Peach_Beach_Splash.pkg",
+    "url": "https://vikingfile.com/f/cusa08851_base",
+    "browserUrl": "https://vikingfile.com/f/cusa08851_base",
+    "requiresBrowser": true,
+    "sizeBytes": 13743895347,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "VikingFile",
+    "source": "dlpsgame",
+    "flow": "vikingfile",
+    "label": "Base Game PKG - VikingFile [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA08851"
+  },
+  {
+    "id": "r_mf_cusa08851",
+    "format": "rar",
+    "filename": "[DLPSGAME.COM]-CUSA08851-Senran_Kagura__Peach_Beach_Splash.rar",
+    "url": "https://www.mediafire.com/file/cusa08851_mf/CUSA08851_Senran_Kagura__Peach_Beach_Splash.rar/file",
+    "browserUrl": "https://www.mediafire.com/file/cusa08851_mf/CUSA08851_Senran_Kagura__Peach_Beach_Splash.rar/file",
+    "requiresBrowser": true,
+    "sizeBytes": 13743895347,
+    "version": "v01.000",
+    "category": "game",
+    "provider": "MediaFire",
+    "source": "dlpsgame",
+    "flow": "mediafire",
+    "label": "Base Game RAR - MediaFire [DLPSGAME.COM]",
+    "archivePassword": "DLPSGAME.COM",
+    "record": "dlps-CUSA08851"
+  }
+]
