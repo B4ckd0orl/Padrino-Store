@@ -62,8 +62,9 @@ import { FocusScope, Text, View } from '@ps5-react/core';
         /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: keyOf("favorites"), icon: "heart", label: t2("nav.favorites"), current: section === "favorites", onPress: on.favorites, ...into, ...hover("favorites"), children: favorites ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: colors.accent }, children: String(favorites) }) : null }),
         /* @__PURE__ */ (0, jsx)(View, { style: { height: 1, width: 40, marginVertical: 8, backgroundColor: HAIRLINE } }),
         /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: keyOf("downloads"), icon: "download", label: t2("downloads.title"), current: section === "downloads", onPress: on.downloads, ...into, children: BADGE }),
-        /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: keyOf("files"), icon: "folder", label: t2("nav.files"), current: section === "files", onPress: on.files, ...into }),
-        /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: "nav:info", icon: "info", label: t2("nav.info"), current: top.name === "info", onPress: () => nav.push({ name: "info" }, "nav:info"), ...into }),
+/* @__PURE__ */ (0, jsx)(NavItem, { focusKey: keyOf("files"), icon: "folder", label: t2("nav.files"), current: section === "files", onPress: on.files, ...into }),
+/* @__PURE__ */ (0, jsx)(NavItem, { focusKey: "nav:homebrew", icon: "cpu", label: t2("nav.homebrew"), current: top.name === "homebrew", onPress: () => nav.push({ name: "homebrew" }, "nav:homebrew"), ...into }),
+/* @__PURE__ */ (0, jsx)(NavItem, { focusKey: "nav:info", icon: "info", label: t2("nav.info"), current: top.name === "info", onPress: () => nav.push({ name: "info" }, "nav:info"), ...into }),
         /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1 } }),
         /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: "nav:settings", icon: "settings", label: t2("settings.title"), current: top.name === "settings", onPress: () => nav.push({ name: "settings" }, "nav:settings"), ...into })
       ] }) }) })

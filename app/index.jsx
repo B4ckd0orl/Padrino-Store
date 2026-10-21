@@ -8,9 +8,11 @@ import { BrowsePage } from './browse/BrowsePage.jsx';
 import { DownloadsScreen } from './downloads/DownloadsScreen.jsx';
 import { FilesScreen } from './files/FilesScreen.jsx';
 import { GameScreen } from './game/index.jsx';
+import { HomebrewGame, HomebrewScreen } from './homebrew/HomebrewScreen.jsx';
 import { LocaleProvider, useLocale } from './i18n/index.js';
 import { SearchScreen } from './search/index.jsx';
 import { NO_FILTERS, getGame, warmCovers } from './state/catalog.js';
+import { isHomebrewId } from './state/homebrew.js';
 import { loadList, saveList } from './state/saved.js';
 import { NavProvider, useIsImmersive, useNavActions, useNavState } from './state/nav.jsx';
 import { StoreFreeze, StoreProvider } from './state/store.jsx';
@@ -32,6 +34,8 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
     // (Favorites, Top rated) the store was left on.
     const showLibrary = useShowLibrary();
     const openCard = (game) => openGame(game.id, `card:${game.id}`);
+    // A homebrew app's page reads its file from the catalog first, and says so when the app is gone.
+    if (screen2.name === "game" && isHomebrewId(screen2.id)) return /* @__PURE__ */ (0, jsx)(HomebrewGame, { game: getGame(screen2.id), download: screen2.download, onBack: pop, onOpenGame: openCard });
     if (screen2.name === "game") return /* @__PURE__ */ (0, jsx)(GameScreen, { game: getGame(screen2.id), download: screen2.download, onBack: pop, onOpenGame: openCard });
     if (screen2.name === "downloads") return /* @__PURE__ */ (0, jsx)(DownloadsScreen, { onBack: pop, onBrowse: () => showLibrary(NO_FILTERS, "newest", "spotlight:cta", "discover"), onOpenGame: openGame });
     if (screen2.name === "files") return /* @__PURE__ */ (0, jsx)(FilesScreen, { onBack: pop });
@@ -44,6 +48,14 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
     const side = rtl ? { left: 0, right: SIDEBAR_W } : { left: SIDEBAR_W, right: 0 };
     return /* @__PURE__ */ (0, jsx)(View, { style: [{ position: "absolute", top: 0, bottom: 60, ...side }, shown ? null : { display: "none" }], children: /* @__PURE__ */ (0, jsx)(StoreFreeze, { frozen: !shown, children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "page", autoFocus: true, inert: !shown, children: /* @__PURE__ */ (0, jsx)(BrowsePage, {}) }) }) });
   }
+  // The Homebrew page stays mounted while an app opened from it is on top, hidden like the store front,
+  // so Back finds it as it was left: its filter, its scroll and the card focus came from.
+  function HomebrewLayer({ shown }) {
+    const { rtl } = useLocale();
+    const { pop } = useNavActions();
+    const side = rtl ? { left: 0, right: SIDEBAR_W } : { left: SIDEBAR_W, right: 0 };
+    return /* @__PURE__ */ (0, jsx)(View, { style: [{ position: "absolute", top: 0, bottom: 60, ...side }, shown ? null : { display: "none" }], children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "homebrew-page", inert: !shown, children: /* @__PURE__ */ (0, jsx)(HomebrewScreen, { onBack: pop }) }) });
+  }
   var WARM_DELAY_MS = 3e3;
   function App() {
     useInterfaceSounds();
@@ -52,8 +64,10 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
       const id = setTimeout(warmCovers, WARM_DELAY_MS);
       return () => clearTimeout(id);
     }, []);
-    const { top } = useNavState();
+    const { stack, top } = useNavState();
     const onBrowse = top.name === "browse";
+    const onHomebrew = top.name === "homebrew";
+    const keepHomebrew = stack.some((screen2) => screen2.name === "homebrew");
     const key = top.name === "game" ? `game:${top.id}` : top.name;
     const immersive = useIsImmersive();
     const { rtl } = useLocale();
@@ -64,7 +78,8 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
         /* @__PURE__ */ (0, jsx)(Bgm, {}),
         /* @__PURE__ */ (0, jsxs)(Sidebar, { children: [
           /* @__PURE__ */ (0, jsx)(BrowseLayer, { shown: onBrowse }),
-          onBrowse ? null : (
+          keepHomebrew ? /* @__PURE__ */ (0, jsx)(HomebrewLayer, { shown: onHomebrew }) : null,
+          onBrowse || onHomebrew ? null : (
             // No background of its own: the root's canvas shows through, so a screen change does not
             // fill the whole screen twice. `screen` lets the sidebar's Into return to where it was left.
             /* @__PURE__ */ (0, jsx)(View, { style: immersive ? { position: "absolute", top: 0, right: 0, bottom: 0, left: 0 } : top.name === "downloads" || top.name === "files" || top.name === "settings" || top.name === "info" ? [{ position: "absolute", top: 0, bottom: 0 }, side] : [{ position: "absolute", top: 0, bottom: 60 }, side], children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "screen", children: /* @__PURE__ */ (0, jsx)(Screen, { screen: top }) }) }, key)
