@@ -3,9 +3,12 @@
 # Additional attribution term: see LICENSE-ATTRIBUTION.
 """rar-extract (native/rar_worker): RarLab's UnRAR library and a small MIT-licensed driver, built as a
 program of its own. UnRAR's license allows its use to extract RAR archives but is not GPL-compatible,
-so it is never linked into the engine; the engine starts this program and reads its reports.
+so it is never linked into the engine; the engine starts this program and reads its reports. The same
+program extracts a 7z too large for the engine's heap with libarchive (sevenzip.cpp), so `libraries`
+include libarchive and what it links.
 """
 import subprocess
+import sys
 import tarfile
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -84,7 +87,8 @@ def build(output, compiler, flags=(), libraries=(), env=None):
 
     library = ["-std=c++17", "-w"]
     driver = ["-std=c++20", "-Wall", "-Wextra", "-Werror"]
-    items = [(source / f"{name}.cpp", library) for name in SOURCES] + [(ROOT / "native/rar_worker/rar_worker.cpp", driver)]
+    items = [(source / f"{name}.cpp", library) for name in SOURCES] + [
+        (ROOT / "native/rar_worker" / name, driver) for name in ("rar_worker.cpp", "sevenzip.cpp")]
     with ThreadPoolExecutor(8) as pool:
         built = list(pool.map(compile_one, items))
     command = [*map(str, compiler), *map(str, flags), *map(str, built), *map(str, libraries), "-o", str(output)]
@@ -99,4 +103,9 @@ def build(output, compiler, flags=(), libraries=(), env=None):
 
 def build_host(output):
     """rar-extract for the desktop preview and the archive tests."""
-    return build(output, ["clang++"], ["-pthread"])
+    # macOS hashes with CommonCrypto and keeps Homebrew's libarchive keg-only; elsewhere the driver uses
+    # OpenSSL's EVP and the system's libarchive.
+    if sys.platform == "darwin":
+        prefix = subprocess.check_output(["brew", "--prefix", "libarchive"], text=True).strip()
+        return build(output, ["clang++"], ["-pthread", "-I", f"{prefix}/include"], ["-L", f"{prefix}/lib", "-larchive"])
+    return build(output, ["clang++"], ["-pthread"], ["-larchive", "-lcrypto"])

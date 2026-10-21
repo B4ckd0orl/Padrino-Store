@@ -36,9 +36,23 @@ def euc_rows(codec, first, last):
     return found
 
 
+def big5_level1():
+    """Big5's symbol rows (0xA1-0xA3) and its 5,401 common hanzi (level 1, lead bytes 0xA4-0xC6)."""
+    found = set()
+    for lead in range(0xA1, 0xC7):
+        for trail in [*range(0x40, 0x7F), *range(0xA1, 0xFF)]:
+            try:
+                found.update(map(ord, bytes((lead, trail)).decode("big5")))
+            except UnicodeDecodeError:
+                pass
+    return found
+
+
 SCRIPTS = {
     # GB 2312: the 6,763 hanzi of simplified Chinese plus its punctuation.
     "chinese": ("NotoSansSC-Regular.otf", lambda: euc_rows("gb2312", 1, 87) | CJK_COMMON),
+    # Big5 level 1: the 5,401 common hanzi of traditional Chinese (Taiwan, Hong Kong) and its symbols.
+    "chinese-traditional": ("NotoSansTC-Regular.otf", lambda: big5_level1() | CJK_COMMON),
     # JIS X 0208: kana and the 6,355 kanji of levels 1 and 2. Han characters outside it fall back
     # to the Chinese font when the app also lists "chinese".
     "japanese": ("NotoSansJP-Regular.otf", lambda: euc_rows("euc_jp", 1, 84) | KANA | CJK_COMMON),

@@ -7,7 +7,7 @@
   "render": { "width": 1920, "height": 1080 },
   "surface": { "width": 1920, "height": 1080 },
   "refreshRate": 60,
-  "textFonts": ["chinese", "japanese", "bengali", "devanagari", "arabic"],
+  "textFonts": ["chinese", "chinese-traditional", "japanese", "bengali", "devanagari", "arabic"],
   "resources": ["data/releases", "data/pages", "i18n/locales", "assets/bgm"],
   "filesystemAccess": "console",
   "networking": true,
