@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 namespace archives {
-inline constexpr std::uint64_t max_entries = 100000;
+inline constexpr std::uint64_t max_entries = 1000000;
 inline constexpr std::size_t max_metadata_bytes = 16 * 1024 * 1024;
 // `stream`: a RAR set whose later volumes are still downloading. Only the first exists yet; each next one is
 // read once its final name appears.
@@ -39,8 +39,10 @@ inline constexpr const char* no_memory = "Not enough memory to extract.";
 // True while the host downloads a file; a RAR extraction then leaves it more cores. Cheap, any thread.
 bool downloading();
 // RAR sets go to rar-extract (native/rar_worker), a program of its own: UnRAR's license keeps its code
-// out of this engine. The host starts it with `request` as its input (the console's payload loader, a
-// child process on the desktop) and returns its stream, or -1 with `error` when it cannot.
+// out of this engine. So does a 7z whose decoder needs more memory than this heap gives, within the
+// worker's budget: the worker has the console's memory. The host starts it with `request` as its input
+// (the console's payload loader, a child process on the desktop) and returns its stream, or -1 with
+// `error` when it cannot.
 int start_rar_worker(const std::string& request, std::string& error);
 // Bytes of its output; 0 at its end, -1 when none came within about a quarter second or on an error.
 long read_rar_worker(int stream, char* data, std::size_t size);

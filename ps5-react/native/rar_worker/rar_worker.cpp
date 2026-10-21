@@ -4,7 +4,8 @@
 // rar-extract: extracts one RAR set with RarLab's UnRAR library, in a process of its own. UnRAR's license
 // does not let it be linked into the GPL engine, so the engine talks to this program over a stream
 // (the PS5 payload loader's socket, or a pipe on the desktop) and never loads its code. Its own
-// crashes and C++ exceptions stay in this process too.
+// crashes and C++ exceptions stay in this process too. A request that starts with "7ZX1" is a 7z whose
+// decoder needs more memory than the app's heap can give, extracted with libarchive (sevenzip.cpp).
 //
 // Request, one item per line: "RARX1", then "threads <n>" (0 picks from the cores), "window <bytes>",
 // "limit <bytes>", "flatten <extension>"..., "reserved <text>", "password <hex>", "dest <directory>",
@@ -18,6 +19,8 @@
 // decoding with "fail Incomplete RAR archive or missing volume.", one whose first is not the first with
 // "fail Missing first RAR volume."; the app reads these two exactly.
 #include "rar.hpp"
+#include "sevenzip.hpp"
+#include "worker_io.hpp"
 #ifdef __APPLE__
 #include <CommonCrypto/CommonDigest.h>
 #else
@@ -37,12 +40,7 @@
 #include <unistd.h>
 
 namespace {
-constexpr size_t max_path_length = 4096, max_line = 8192, buffer_bytes = 4 << 20, buffer_count = 4;
-// Each queued file holds its descriptor; empty files take no buffer, so this bounds how far ahead they open.
-constexpr size_t max_queued_files = 32;
-constexpr unsigned max_depth = 128;
-constexpr uint64 progress_ns = 250000000;
-const char* too_much_memory = "This archive needs more memory to extract than the console app can use.";
+using namespace worker;
 const char* missing_first = "Missing first RAR volume.";
 
 struct Options {
@@ -53,41 +51,7 @@ struct Options {
   std::string reserved, password, destination;
 };
 
-std::mutex say_mutex;
 bool cancelled = false;  // Only the decoding thread reads and sets it.
-bool output_lost = false;
-
-void say(const std::string& line) {
-  std::lock_guard lock(say_mutex);
-  const std::string text = line + "\n";
-  size_t done = 0;
-  while (done < text.size() && !output_lost) {
-    const ssize_t count = write(STDOUT_FILENO, text.data() + done, text.size() - done);
-    if (count < 0 && errno == EINTR) continue;
-    if (count <= 0) output_lost = true;
-    else done += count;
-  }
-}
-
-uint64 now_ns() {
-  timespec time;
-  clock_gettime(CLOCK_MONOTONIC, &time);
-  return uint64(time.tv_sec) * 1000000000 + time.tv_nsec;
-}
-
-// The request is read byte by byte so nothing past "end" (a later "cancel") is consumed early.
-bool read_line(std::string& line) {
-  line.clear();
-  char c;
-  while (line.size() < max_line) {
-    const ssize_t count = read(STDIN_FILENO, &c, 1);
-    if (count < 0 && errno == EINTR) continue;
-    if (count <= 0) return false;
-    if (c == '\n') return true;
-    line += c;
-  }
-  return false;
-}
 
 bool from_hex(const std::string& hex, std::string& out) {
   if (hex.size() % 2) return false;
@@ -103,9 +67,9 @@ bool from_hex(const std::string& hex, std::string& out) {
   return true;
 }
 
+// The lines after "RARX1".
 bool read_request(Options& options) {
   std::string line;
-  if (!read_line(line) || line != "RARX1") return false;
   while (read_line(line)) {
     const auto space = line.find(' ');
     const std::string key = line.substr(0, space), value = space == std::string::npos ? "" : line.substr(space + 1);
@@ -122,270 +86,6 @@ bool read_request(Options& options) {
   }
   return false;
 }
-
-// True once the engine asked to stop or went away; checked a few times a second.
-bool stop_requested() {
-  pollfd input{STDIN_FILENO, POLLIN, 0};
-  if (poll(&input, 1, 0) > 0) {
-    std::string line;
-    if (!read_line(line) || line == "cancel") return true;
-  }
-  return output_lost;
-}
-
-// "a/./b" is "a/b", as the engine reads it.
-std::string without_dots(const std::string& name) {
-  std::string out;
-  size_t start = 0;
-  while (start <= name.size()) {
-    size_t end = name.find('/', start);
-    if (end == std::string::npos) end = name.size();
-    const std::string part = name.substr(start, end - start);
-    if (part != ".") out += (out.empty() ? "" : "/") + part;
-    start = end + 1;
-  }
-  return out;
-}
-
-// The same rule as the engine: a relative path of plain components, no separators or controls that
-// another system would read differently.
-bool safe(const std::string& name) {
-  if (name.empty() || name.size() > max_path_length || name[0] == '/') return false;
-  for (unsigned char c : name)
-    if (c < 32 || c == 127 || c == '|' || c == '\\' || c == ':') return false;
-  size_t start = 0;
-  unsigned depth = 0;
-  while (start < name.size()) {
-    size_t end = name.find('/', start);
-    if (end == std::string::npos) end = name.size();
-    const std::string part = name.substr(start, end - start);
-    if (part.empty() || part == ".." || ++depth > max_depth) return false;
-    start = end + 1;
-  }
-  return true;
-}
-
-bool plain_directory(const std::string& path) {
-  struct stat st;
-  return !lstat(path.c_str(), &st) && S_ISDIR(st.st_mode);
-}
-
-// Creates the directories of `name` under `root`, none of them a link, and returns the full path.
-bool make_parents(const std::string& root, const std::string& name, std::string& target) {
-  target = root;
-  size_t start = 0, end;
-  while ((end = name.find('/', start)) != std::string::npos) {
-    target += "/" + name.substr(start, end - start);
-    if (mkdir(target.c_str(), 0777) && errno != EEXIST) return false;
-    if (!plain_directory(target)) { errno = ENOTDIR; return false; }
-    start = end + 1;
-  }
-  target += "/" + name.substr(start);
-  return true;
-}
-
-// UnRAR's own SHA-256 is portable C and slower than decoding; these use the CPU's SHA instructions.
-class Sha256 {
-public:
-#ifdef __APPLE__
-  void init() { CC_SHA256_Init(&context_); }
-  void update(const void* data, size_t size) { CC_SHA256_Update(&context_, data, CC_LONG(size)); }
-  void finish(byte* digest) { CC_SHA256_Final(digest, &context_); }
-#else
-  Sha256() : context_(EVP_MD_CTX_new()) {}
-  ~Sha256() { EVP_MD_CTX_free(context_); }
-  void init() { EVP_DigestInit_ex(context_, EVP_sha256(), nullptr); }
-  void update(const void* data, size_t size) { EVP_DigestUpdate(context_, data, size); }
-  void finish(byte* digest) { EVP_DigestFinal_ex(context_, digest, nullptr); }
-#endif
-
-private:
-#ifdef __APPLE__
-  CC_SHA256_CTX context_;
-#else
-  EVP_MD_CTX* context_;
-#endif
-};
-
-std::string hex(const byte* data, size_t size) {
-  static const char digits[] = "0123456789abcdef";
-  std::string out;
-  for (size_t i = 0; i < size; ++i) { out += digits[data[i] >> 4]; out += digits[data[i] & 15]; }
-  return out;
-}
-
-// Writes, hashes, syncs and closes files on a thread of its own, so decoding never waits on the disk.
-// Memory is the fixed set of buffers; the decoder waits for a free one when the disk falls behind.
-class Writer {
-public:
-  Writer() {
-    for (auto& buffer : buffers_) {
-      buffer.reset(new byte[buffer_bytes]);
-      free_.push_back(buffer.get());
-    }
-    thread_ = std::thread([this] { loop(); });
-  }
-  ~Writer() {
-    {
-      std::lock_guard lock(mutex_);
-      quit_ = true;
-    }
-    changed_.notify_all();
-    thread_.join();
-    if (fd_ >= 0) close(fd_);
-  }
-  // Takes the descriptor; the file is reported as `name` once synced.
-  void begin(int fd, const std::string& name) {
-    current_ = nullptr;
-    {
-      const uint64 started = now_ns();
-      std::unique_lock lock(mutex_);
-      changed_.wait(lock, [this] { return queued_files_ < max_queued_files; });
-      ++queued_files_;
-      wait_ns += now_ns() - started;
-    }
-    push({Command::begin, fd, name, nullptr, 0});
-  }
-  bool append(const byte* data, size_t size) {
-    while (size) {
-      if (!current_ && !(current_ = take())) return false;
-      const size_t count = std::min(size, buffer_bytes - used_);
-      memcpy(current_ + used_, data, count);
-      used_ += count;
-      data += count;
-      size -= count;
-      if (used_ == buffer_bytes) flush();
-    }
-    return error().empty();
-  }
-  void end(uint64 size) {
-    if (current_) flush();
-    push({Command::end, -1, {}, nullptr, size});
-  }
-  // Waits until every queued file is closed; the first error, if any.
-  std::string finish() {
-    std::unique_lock lock(mutex_);
-    changed_.wait(lock, [this] { return queue_.empty() && !busy_; });
-    return error_;
-  }
-  std::string error() {
-    std::lock_guard lock(mutex_);
-    return error_;
-  }
-  // Time in pwrite and fsync on the writer thread, and the decoder's waits for a buffer or a file slot.
-  // Read once finish() returned.
-  uint64 write_ns = 0, sync_ns = 0, wait_ns = 0;
-  unsigned writes = 0, syncs = 0;
-
-private:
-  struct Command {
-    enum Type { begin, data, end } type;
-    int fd;
-    std::string name;
-    byte* buffer;
-    uint64 size;
-  };
-  byte* take() {
-    const uint64 started = now_ns();
-    std::unique_lock lock(mutex_);
-    changed_.wait(lock, [this] { return !free_.empty() || !error_.empty(); });
-    wait_ns += now_ns() - started;
-    if (!error_.empty()) return nullptr;
-    byte* buffer = free_.front();
-    free_.pop_front();
-    used_ = 0;
-    return buffer;
-  }
-  void flush() {
-    push({Command::data, -1, {}, current_, used_});
-    current_ = nullptr;
-  }
-  void push(Command command) {
-    {
-      std::lock_guard lock(mutex_);
-      queue_.push_back(std::move(command));
-    }
-    changed_.notify_all();
-  }
-  void fail(const std::string& reason) {
-    std::lock_guard lock(mutex_);
-    if (error_.empty()) error_ = reason;
-  }
-  void run(Command& command) {
-    if (command.type == Command::begin) {
-      fd_ = command.fd;
-      name_ = command.name;
-      written_ = 0;
-      hash_.init();
-    } else if (command.type == Command::data) {
-      const uint64 started = now_ns();
-      size_t done = 0;
-      while (done < command.size && error().empty()) {
-        const ssize_t count = pwrite(fd_, command.buffer + done, command.size - done, written_ + done);
-        if (count < 0 && errno == EINTR) continue;
-        if (count <= 0) fail(strerror(count < 0 ? errno : ENOSPC));
-        else done += count;
-      }
-      write_ns += now_ns() - started;
-      ++writes;
-      hash_.update(command.buffer, command.size);
-      written_ += command.size;
-    } else {
-      if (written_ != command.size) {
-        fail("Extracted file size mismatch.");
-      } else {
-        const uint64 started = now_ns();
-        if (fsync(fd_)) fail(strerror(errno));
-        sync_ns += now_ns() - started;
-        ++syncs;
-      }
-      const bool closed = !close(fd_);
-      fd_ = -1;
-      if (!closed) fail(strerror(errno));
-      if (error().empty()) {
-        byte digest[SHA256_DIGEST_SIZE];
-        hash_.finish(digest);
-        say("f " + hex(digest, sizeof digest) + " " + std::to_string(written_) + " " + name_);
-      }
-    }
-  }
-  void loop() {
-    std::unique_lock lock(mutex_);
-    while (true) {
-      changed_.wait(lock, [this] { return quit_ || !queue_.empty(); });
-      if (queue_.empty()) return;
-      Command command = std::move(queue_.front());
-      queue_.pop_front();
-      queued_files_ -= command.type == Command::begin;
-      busy_ = true;
-      lock.unlock();
-      // After an error, commands only give their buffers and descriptors back.
-      if (error().empty()) run(command);
-      else if (command.type == Command::begin) close(command.fd);
-      lock.lock();
-      busy_ = false;
-      if (command.buffer) free_.push_back(command.buffer);
-      changed_.notify_all();
-    }
-  }
-
-  std::unique_ptr<byte[]> buffers_[buffer_count];
-  std::deque<byte*> free_;
-  std::deque<Command> queue_;
-  std::mutex mutex_;
-  std::condition_variable changed_;
-  std::string error_;
-  bool quit_ = false, busy_ = false;
-  size_t queued_files_ = 0;
-  std::thread thread_;
-  byte* current_ = nullptr;
-  size_t used_ = 0;
-  // Writer thread only.
-  int fd_ = -1;
-  std::string name_;
-  uint64 written_ = 0;
-  Sha256 hash_;
-};
 
 struct Session {
   explicit Session(const Options& options) : options(options) {}
@@ -508,26 +208,12 @@ int dll_error(CommandData& command) {
   }
 }
 
-long cores() { return sysconf(_SC_NPROCESSORS_ONLN); }
-
 // The engine asks for fewer while downloads run. One core always stays with the app's interface; when the
 // count is unknown, the cap alone applies.
 unsigned pick_threads(unsigned requested) {
   const long known = cores();
   if (!requested) return unsigned(std::clamp(known - 2, 1L, 4L));
   return unsigned(std::min<long>(requested, known > 0 ? std::clamp(known - 1, 1L, 6L) : 6));
-}
-
-uint64 process_cpu_us() {
-  rusage usage;
-  if (getrusage(RUSAGE_SELF, &usage)) return 0;
-  return (uint64(usage.ru_utime.tv_sec) + usage.ru_stime.tv_sec) * 1000000 + usage.ru_utime.tv_usec + usage.ru_stime.tv_usec;
-}
-
-bool flattened(const Options& options, const std::string& name) {
-  for (const auto& extension : options.flatten)
-    if (name.size() >= extension.size() && !name.compare(name.size() - extension.size(), extension.size(), extension)) return true;
-  return false;
 }
 
 // Throws RAR_EXIT or std::bad_alloc from UnRAR; returns the reason extraction stopped, empty on success.
@@ -564,7 +250,7 @@ std::string extract(Session& session, CommandData& command, Archive& archive, Cm
       declared += header.UnpSize;
     }
     // ShadowMount's default scan reaches one subdirectory, so images are published at the set root.
-    if (!header.Dir && flattened(options, name)) name = name.substr(name.rfind('/') + 1);
+    if (!header.Dir && flattened(options.flatten, name)) name = name.substr(name.rfind('/') + 1);
     std::string target;
     if (!make_parents(options.destination, name, target)) return strerror(errno);
     if (header.Dir) {
@@ -761,8 +447,11 @@ int main() {
   signal(SIGPIPE, SIG_IGN);
   // Directories and files stay usable by the app, which may run as another user than this program.
   umask(0);
+  // "7ZX1" asks for a 7z (sevenzip.cpp); "RARX1" for a RAR set.
+  std::string magic;
+  if (read_line(magic) && magic == "7ZX1") return sevenzip::run();
   Options options;
-  if (!read_request(options)) {
+  if (magic != "RARX1" || !read_request(options)) {
     say("fail Invalid RAR worker request.");
     return 1;
   }

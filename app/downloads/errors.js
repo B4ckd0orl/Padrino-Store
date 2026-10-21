@@ -15,6 +15,10 @@ import { t } from '../i18n/core.js';
     [STALE_PARTIAL, "staleProgress", "restart"],
     [/file changed since this partial/i, "fileChanged", "restart"],
     [/needs more memory to extract/i, "archiveTooLarge", "otherSource"],
+    // A 7z too large for the app's heap extracts in rar-extract (a payload): with the console short of free
+    // memory it stops before decoding, and without a payload loader it cannot start.
+    [/too little free memory/i, "consoleMemoryBusy", "closeAppsRetry"],
+    [/needs the payload loader to extract/i, "archiveNoLoader", "startLoaderRetry"],
     // The engine's heap had no room for the extraction; a fresh launch frees it.
     [/not enough memory to extract/i, "noMemory", "reopenApp"],
     [/archive password/i, "archivePassword", "otherSource"],

@@ -1,4 +1,4 @@
-// Adapted from upstream store code by gran padrino.
+// Adapted from Orbit Store 1.0.1 by saawant12 (https://github.com/saawant12/orbit-store-ps5).
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Read-only browser capture; original corresponding source is recorded in README.md.
 #include "browser_match.h"
@@ -101,7 +101,7 @@ static bool host_under(const char *host, size_t length, const char *domain) {
   const size_t wanted = strlen(domain);
   return length > wanted + 1 && host[length - wanted - 1] == '.' && host_equals(host + length - wanted, wanted, domain);
 }
-/* Generated file routes with no file name of their own (upstream store 1.3.5, backend/providers.c).
+/* Generated file routes with no file name of their own (Orbit Store 1.3.5, backend/providers.c).
  * 1fichier serves the file from a-<n>.1fichier.com/<token>; Datanodes hands some files out
  * through its tunnel<n>.dlproxy.uk gateway, /<8>/<opaque name>?sig=<signature>. */
 static bool opaque_file_route(const char *host, size_t length, const char *path) {
@@ -143,7 +143,7 @@ static bool opaque_file_route(const char *host, size_t length, const char *path)
 /* A host's own page is never its file, even when it names the archive: LinkVault's vault lists the
  * mirrors' pages, and each page links itself. Datanodes, Filekeeper and Datavaults keep a file's
  * page at /<12-character id>[/<name>] and serve the file from another server; MediaFire's page sits
- * on www and the file on download<n>; AkiraBox serves its file under /download/ (upstream store 1.3.5). */
+ * on www and the file on download<n>; AkiraBox serves its file under /download/ (Orbit Store 1.3.5). */
 static bool host_page(const char *host, size_t length, const char *path) {
   if (host_equals(host, length, "link-vault.org") || host_under(host, length, "link-vault.org") ||
       host_equals(host, length, "mediafire.com"))

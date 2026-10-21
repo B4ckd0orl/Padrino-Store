@@ -62,7 +62,7 @@ int main(void) {
       !line(count, sizeof count) || count[0] < '0' || count[0] > '0' + BROWSER_CAPTURE_REJECTED_MAX || count[1])
     return fail("Invalid capture request.");
   /* Links the app already probed and refused: a page keeps them in memory, so a new scan would
-   * otherwise stop on the same one again (upstream store 1.3.5 keeps six). */
+   * otherwise stop on the same one again (Orbit Store 1.3.5 keeps six). */
   const size_t refused = (size_t)(count[0] - '0');
   for (size_t i = 0; i < refused; i++)
     if (!line(rejected[i], sizeof rejected[i]) || strncmp(rejected[i], "https://", 8))

@@ -5,6 +5,7 @@ import '../assets/Inter-Regular.ttf';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { memo } from 'react';
 import { GameRail } from './GameRail.jsx';
+import { useSectionShown } from './near.js';
 import { WAITING, shownState, stateLabel } from '../downloads/labels.js';
 import { fractionOf, useJobs, useProgress } from '../downloads/useQueue.js';
 import { formatPercent2 } from '../i18n/core.js';
@@ -37,8 +38,9 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
     const t2 = useT();
     const { jobs } = useJobs();
     const { push, openGame } = useNavActions();
-    const entries2 = jobs.filter((job2) => UNFINISHED.includes(job2.state)).map((job2) => ({ job: job2, game: getGame(job2.gameId) })).filter((entry2) => entry2.game);
-    if (!entries2.length) return null;
+const entries2 = jobs.filter((job2) => UNFINISHED.includes(job2.state)).map((job2) => ({ job: job2, game: getGame(job2.gameId) })).filter((entry2) => entry2.game);
+useSectionShown(entries2.length > 0);
+if (!entries2.length) return null;
     return /* @__PURE__ */ (0, jsx)(
       GameRail,
       {

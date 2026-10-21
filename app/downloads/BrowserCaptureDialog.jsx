@@ -36,7 +36,7 @@ import { FocusScope, Text, View, motion } from '@ps5-react/core';
       /* @__PURE__ */ (0, jsx)(Text, { style: { width: 1260, fontFamily: "Inter-Regular", fontSize: 24, color: "#a3a3ab", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 36 }, children: job2.title }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { ...INSTRUCTION, width: 1260, color: "#f2f2f3", numberOfLines: 2, ellipsizeMode: "tail" }, children: `${job2.captureFile.name || t2("capture.confirm.noName")} \xB7 ${formatBytes(job2.captureFile.bytes)}` }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { width: 1260, fontFamily: "Inter-Regular", fontSize: 24, color: "#a3a3ab", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 36 }, children: t2("capture.confirm.detail") }),
-      /* @__PURE__ */ (0, jsx)(Button2, { label: t2("capture.confirm.accept"), onPress: () => downloadQueue().confirmCapturedFile(job2.id, true) }),
+      /* @__PURE__ */ (0, jsx)(Button2, { label: t2("capture.confirm.accept"), icon: "download", onPress: () => downloadQueue().confirmCapturedFile(job2.id, true) }),
       /* @__PURE__ */ (0, jsx)(Button2, { label: t2("capture.confirm.refuse"), variant: "outline", onPress: () => downloadQueue().confirmCapturedFile(job2.id, false) })
     ] }) }) });
     return /* @__PURE__ */ (0, jsx)(FocusScope, { trap: true, autoFocus: true, onBack: () => {

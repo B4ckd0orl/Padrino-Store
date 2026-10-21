@@ -83,7 +83,90 @@ bool has_extension(const std::string& path, const std::array<std::string_view, c
   return std::any_of(extensions.begin(), extensions.end(), [&](std::string_view extension) { return path.ends_with(extension); });
 }
 bool image(const std::string& path) { return has_extension(path, image_extensions); }
-bool installable(const std::string& path) { return image(path) || has_extension(path, package_extensions); }
+// Check package signatures after extraction.
+bool package(const std::string& root, const std::string& path, std::string& error) {
+  if (!has_extension(path, package_extensions)) return false;
+
+  const auto file = root + "/" + path;
+  int fd;
+  // Reject substituted links and avoid blocking on substituted FIFOs.
+  do {
+    fd = open(file.c_str(), O_RDONLY | O_NOFOLLOW | O_NONBLOCK);
+  } while (fd < 0 && errno == EINTR);
+
+  if (fd < 0) {
+    error = "Cannot inspect extracted package " + path + ": " + std::strerror(errno);
+    return false;
+  }
+
+  struct stat st;
+  int status;
+  do {
+    status = fstat(fd, &st);
+  } while (status && errno == EINTR);
+
+  if (status || !S_ISREG(st.st_mode)) {
+    const char* reason = status ? std::strerror(errno) : "not a regular file.";
+    error = "Cannot inspect extracted package " + path + ": " + reason;
+    close(fd);
+    return false;
+  }
+
+  char header[4];
+  std::size_t count = 0;
+  while (count < sizeof header) {
+    const auto bytes = read(fd, header + count, sizeof header - count);
+    if (bytes < 0) {
+      if (errno == EINTR) continue;
+      error = "Cannot inspect extracted package " + path + ": " + std::strerror(errno);
+      break;
+    }
+    if (!bytes) break;
+    count += bytes;
+  }
+
+  close(fd);
+  return count == sizeof header &&
+    (!std::memcmp(header, "\x7f" "CNT", 4) || !std::memcmp(header, "\x7f" "FIH", 4));
+}
+
+bool installable(const std::string& root, const std::string& path, std::string& error) {
+  return image(path) || package(root, path, error);
+}
+
+// Writer can report the paths before their contents are complete.
+std::string collect_artifacts(Job& job, const std::string& root) {
+  const int fd = open((root + "/" + receipt_name).c_str(), O_RDONLY | O_NOFOLLOW | O_NONBLOCK);
+  if (fd < 0) return "Cannot inspect extraction receipt.";
+  struct Closer { int fd; ~Closer() { close(fd); } } closer{fd};
+
+  struct stat st;
+  if (fstat(fd, &st) || !S_ISREG(st.st_mode)) return "Invalid extraction receipt.";
+
+  LineReader reader(fd);
+  std::string line;
+  if (!reader.next(line) || !line.starts_with("P5AR001:")) return "Invalid extraction receipt.";
+
+  std::vector<std::string> artifacts;
+  while (reader.next(line)) {
+    const auto split = line.find('|');
+    if (split != 64 || line.size() <= split + 1) return "Invalid extraction receipt.";
+
+    std::string path = line.substr(split + 1);
+    std::string error;
+    const bool artifact = installable(root, path, error);
+    if (!error.empty()) return error;
+    if (artifact) {
+      if (artifacts.size() == max_artifacts) return "Archive has too many installable artifacts.";
+      artifacts.push_back(std::move(path));
+    }
+  }
+
+  if (!reader.clean()) return "Invalid extraction receipt.";
+  std::lock_guard lock(job.mutex);
+  job.snapshot.artifacts = std::move(artifacts);
+  return {};
+}
 const char* archive_error(archive* archive, const char* fallback) {
   const char* error = archive_error_string(archive);
   return error ? error : fallback;
@@ -291,17 +374,13 @@ bool recover(Job& job, const std::string& identity) {
   const auto root = job.request.destination;
   struct stat st;
   const auto receipt = root + "/" + receipt_name;
-  if (lstat(receipt.c_str(), &st) || !S_ISREG(st.st_mode) || static_cast<std::uint64_t>(st.st_size) > max_metadata_bytes) return false;
-  std::string metadata;
-  if (!read_metadata(receipt, metadata)) return false;
-  std::size_t cursor = 0;
-  auto next_line = [&](std::string& line) {
-    const auto end = metadata.find('\n', cursor);
-    if (end == std::string::npos) return false;
-    line = metadata.substr(cursor, end - cursor);
-    cursor = end + 1;
-    return true;
-  };
+  if (lstat(receipt.c_str(), &st) || !S_ISREG(st.st_mode)) return false;
+  // Read a line at a time: a game folder's receipt is far bigger than anything kept in memory (issue #52).
+  const int fd = open(receipt.c_str(), O_RDONLY | O_NOFOLLOW);
+  if (fd < 0) return false;
+  struct Closer { int fd; ~Closer() { close(fd); } } closer{fd};
+  LineReader reader(fd);
+  auto next_line = [&](std::string& line) { return reader.next(line); };
   std::string line;
   if (!next_line(line) || line != "P5AR001:" + identity) return false;
   Snapshot verified;
@@ -316,10 +395,13 @@ bool recover(Job& job, const std::string& identity) {
     if (st.st_size < 0 || static_cast<std::uint64_t>(st.st_size) > job.request.max_bytes - verified.written) return false;
     if (++verified.entries > max_entries) return false;
     verified.written += st.st_size;
-    if (installable(path)) verified.artifacts.push_back(path);
+    std::string error;
+    const bool artifact = installable(root, path, error);
+    if (!error.empty()) return false;
+    if (artifact) verified.artifacts.push_back(path);
     if (verified.artifacts.size() > max_artifacts) return false;
   }
-  if (cursor != metadata.size()) return false;
+  if (!reader.clean()) return false;
   std::lock_guard lock(job.mutex);
   job.snapshot.written = verified.written;
   job.snapshot.entries = verified.entries;
@@ -472,7 +554,7 @@ archive* open_archive(Job& job, std::string& error, std::unique_ptr<Rar5Password
   return archive;
 }
 // Writes every entry under root and appends its digest line to the receipt.
-std::string extract(Job& job, archive* archive, const std::string& staging, std::string& receipt, Rar5PasswordReader* decrypted, Writer* writer) {
+std::string extract(Job& job, archive* archive, const std::string& staging, Receipt& receipt, Rar5PasswordReader* decrypted, Writer* writer) {
   const auto& request = job.request;
   archive_entry* entry = nullptr;
   int result = ARCHIVE_OK;
@@ -518,15 +600,10 @@ std::string extract(Job& job, archive* archive, const std::string& staging, std:
       const auto error = write_entry(job, archive, fd, size, staging + "/" + path, digest, decrypted ? &crc : nullptr);
       close(fd);
       if (!error.empty() || job.cancelled) return error;
-      receipt += digest + "|" + path + "\n";
-      if (receipt.size() > max_metadata_bytes) return "Extraction receipt exceeds the metadata limit.";
+      if (!receipt.add(digest, path)) return "Cannot write extraction receipt.";
     }
     if (decrypted && !decrypted->verify(original_name, crc)) return "Extracted RAR5 file checksum mismatch.";
     std::lock_guard lock(job.mutex);
-    if (installable(path)) {
-      if (job.snapshot.artifacts.size() == max_artifacts) return "Archive has too many installable artifacts.";
-      job.snapshot.artifacts.push_back(path);
-    }
     if (++job.snapshot.entries > max_entries) return "Archive has too many entries.";
   }
   if (!job.cancelled && result != ARCHIVE_EOF) return archive_error(archive, "Incomplete archive headers.");
@@ -569,9 +646,21 @@ std::string rar_request(const Request& request, const std::string& staging) {
   for (const auto& path : request.sources) text += "source " + path + "\n";
   return text + "end\n";
 }
+// A 7z the heap cannot decode goes to rar-extract when its decoder memory is no more than this. A probe on a
+// console allocated up to 384 MiB in under 80 ms; from 512 MiB the system took seconds to free memory for it
+// and the console froze. This stays under that with room for what the app and the worker hold besides,
+// and admits the 256 MiB LZMA2 dictionary repacks use.
+constexpr std::uint64_t seven_zip_worker_memory = 288ULL * 1024 * 1024;
+std::string seven_zip_request(const Request& request, const std::string& staging, std::uint64_t memory) {
+  std::string text = "7ZX1\nmemory " + std::to_string(memory) + "\nlimit " + std::to_string(request.max_bytes) + "\n";
+  for (auto extension : image_extensions) text += "flatten " + std::string(extension) + "\n";
+  text += "reserved .ps5-react-\ndest " + staging + "\n";
+  for (const auto& path : request.sources) text += "source " + path + "\n";
+  return text + "end\n";
+}
 // One file the worker wrote and synced: "<sha256> <size> <path>". It is checked as libarchive's entries
 // are, since the worker is a separate program.
-std::string rar_file(Job& job, const std::string& staging, const std::string& report, std::uint64_t& total, std::string& receipt) {
+std::string rar_file(Job& job, const std::string& staging, const std::string& report, std::uint64_t& total, Receipt& receipt) {
   const auto space = report.find(' '), next = space == std::string::npos ? space : report.find(' ', space + 1);
   if (space != 64 || next == std::string::npos) return "Invalid RAR worker output.";
   const auto digest = report.substr(0, space), path = report.substr(next + 1), size_text = report.substr(space + 1, next - space - 1);
@@ -585,25 +674,23 @@ std::string rar_file(Job& job, const std::string& staging, const std::string& re
     return "Archive contains an unsafe path, link or special file.";
   if (size > job.request.max_bytes - total) return "Archive exceeds the extraction size limit.";
   total += size;
-  receipt += digest + "|" + path + "\n";
-  if (receipt.size() > max_metadata_bytes) return "Extraction receipt exceeds the metadata limit.";
+  if (!receipt.add(digest, path)) return "Cannot write extraction receipt.";
   std::lock_guard lock(job.mutex);
-  if (installable(path)) {
-    if (job.snapshot.artifacts.size() == max_artifacts) return "Archive has too many installable artifacts.";
-    job.snapshot.artifacts.push_back(path);
-  }
   if (++job.snapshot.entries > max_entries) return "Archive has too many entries.";
   return {};
 }
-// False when the worker could not be started, before anything was written: libarchive extracts instead.
-bool extract_rar(Job& job, const std::string& staging, std::string& receipt, std::string& error) {
+// Runs rar-extract on `request` (a RAR set's or a 7z's, `kind` naming which in traces and errors). False
+// when the worker could not be started, before anything was written.
+bool extract_worker(Job& job, const std::string& staging, Receipt& receipt, std::string& error, const std::string& request,
+                    const std::string& kind) {
+  const std::string name = (kind == "RAR" ? std::string("rar") : kind) + " worker";
   std::string unavailable;
-  const int stream = start_rar_worker(rar_request(job.request, staging), unavailable);
+  const int stream = start_rar_worker(request, unavailable);
   if (stream < 0) {
-    trace("rar worker unavailable", unavailable.c_str());
+    trace((name + " unavailable").c_str(), unavailable.c_str());
     return false;
   }
-  trace("rar worker started");
+  trace((name + " started").c_str());
   const auto started = std::chrono::steady_clock::now();
   std::string pending, timings;
   std::uint64_t total = 0;
@@ -641,7 +728,7 @@ bool extract_rar(Job& job, const std::string& staging, std::string& receipt, std
         job.snapshot.total = std::min(declared, job.request.max_bytes);
       } else if (line == "s" && !cancel_sent) {
         // Every file is decoded; the worker is writing out and syncing what it still holds.
-        trace("rar worker finishing");
+        trace((name + " finishing").c_str());
         enter(job, "finishing");
       } else if (line.starts_with("t ")) {
         timings = line.substr(1);
@@ -656,7 +743,7 @@ bool extract_rar(Job& job, const std::string& staging, std::string& receipt, std
   }
   close_rar_worker(stream);
   job.worker_unconfirmed = !finished && !exited;
-  trace("rar worker finished", error.c_str());
+  trace((name + " finished").c_str(), error.c_str());
   {
     std::lock_guard lock(job.mutex);
     // The worker's own timings, as its "t" line names them; one from an older worker has none.
@@ -666,17 +753,22 @@ bool extract_rar(Job& job, const std::string& staging, std::string& receipt, std
       const auto from = at + std::strlen(key) + 2;
       return timings.substr(from, timings.find(' ', from) - from);
     };
-    const auto summary = "RAR worker " + std::to_string(total >> 20) + "MiB " + std::to_string(job.snapshot.entries)
+    const auto summary = kind + " worker " + std::to_string(total >> 20) + "MiB " + std::to_string(job.snapshot.entries)
         + " entries total=" + std::to_string(elapsed_us(started) / 1000) + "ms threads=" + field("threads") + " cores=" + field("cores")
         + " decode-cpu=" + field("cpu") + " write=" + field("write") + " fsync=" + field("fsync") + " waited=" + field("waited");
     trace("throughput", summary.c_str());
   }
-  if (error.empty() && !job.cancelled && !succeeded) error = finished ? "RAR extraction failed." : "The RAR worker stopped before finishing.";
+  if (error.empty() && !job.cancelled && !succeeded)
+    error = finished ? kind + " extraction failed." : "The " + kind + " worker stopped before finishing.";
   if (error.empty() && !job.cancelled) {
     std::lock_guard lock(job.mutex);
     job.snapshot.written = total;
   }
   return true;
+}
+// False when the worker could not be started, before anything was written: libarchive extracts instead.
+bool extract_rar(Job& job, const std::string& staging, Receipt& receipt, std::string& error) {
+  return extract_worker(job, staging, receipt, error, rar_request(job.request, staging), "RAR");
 }
 std::string staging_path(const std::string& destination, unsigned attempt) {
   return destination + ".extracting" + (attempt ? "-" + std::to_string(attempt) : "");
@@ -738,12 +830,20 @@ void run(const std::shared_ptr<Job>& pointer) {
         std::none_of(request.sources.begin(), request.sources.end(), [](const std::string& path) { return path.find('\n') != std::string::npos; });
     return found.kind != "rar" || !lines ? std::string("Only a RAR set can be extracted while it downloads.") : found.refusal;
   };
-  if (const auto refusal = request.stream ? streamed() : preflight(request.sources); !refusal.empty()) {
+  std::uint64_t seven_zip_memory = 0;
+  const auto refusal = request.stream ? streamed() : preflight(request.sources, seven_zip_memory);
+  // A 7z refused for the heap's memory alone, within rar-extract's budget, goes to the worker; its paths go
+  // to the worker's line protocol. Without a worker the refusal stands.
+  const bool lines = request.destination.find('\n') == std::string::npos &&
+      std::none_of(request.sources.begin(), request.sources.end(), [](const std::string& path) { return path.find('\n') != std::string::npos; });
+  const bool seven_zip_worker = !refusal.empty() && seven_zip_memory && seven_zip_memory <= seven_zip_worker_memory && lines;
+  if (!refusal.empty() && !seven_zip_worker) {
     trace("preflight refused", refusal.c_str());
     fail(job, refusal);
     return;
   }
-  trace("preflight ok");
+  if (seven_zip_worker) trace("preflight 7z for the worker, MiB", std::to_string(seven_zip_memory >> 20).c_str());
+  else trace("preflight ok");
   if (!lstat(staging.c_str(), &st)) {
     std::string owner;
     // Empty staging with no ownership record is this task's own, left by a crash before it wrote one;
@@ -782,7 +882,7 @@ void run(const std::shared_ptr<Job>& pointer) {
     fail(job, "Cannot record extraction staging ownership.");
     return;
   }
-  std::string receipt = "P5AR001:" + identity + "\n";
+  Receipt receipt(staging, "P5AR001:" + identity);
   std::string error;
   trace("staging ok", staging.c_str());
   {
@@ -795,6 +895,9 @@ void run(const std::shared_ptr<Job>& pointer) {
   // extracts it once every volume is there.
   if (request.stream) {
     if (!extract_rar(job, staging, receipt, error) && error.empty()) error = "Extracting while downloading needs the RAR worker.";
+  } else if (seven_zip_worker) {
+    if (!extract_worker(job, staging, receipt, error, seven_zip_request(request, staging, seven_zip_memory), "7z") && error.empty())
+      error = "This archive needs the payload loader to extract: none answered on port 9021.";
   } else if (!rar_volumes(request) || !extract_rar(job, staging, receipt, error)) {
     const MemoryHold memory;
     std::unique_ptr<Rar5PasswordReader> decrypted;
@@ -804,7 +907,7 @@ void run(const std::shared_ptr<Job>& pointer) {
     {
       // Without the ring or its threads, files are written inline as before.
       Writer writer(job.cancelled, job.timings);
-      const bool pipelined = writer.start(pipeline_bytes());
+      const bool pipelined = writer.start(pipeline_bytes(), receipt);
       trace("writer", pipelined ? "pipelined" : "inline");
       const auto started = std::chrono::steady_clock::now();
       const auto cpu_started = thread_cpu_us();
@@ -812,7 +915,7 @@ void run(const std::shared_ptr<Job>& pointer) {
       const auto decoded_us = elapsed_us(started), cpu_us = thread_cpu_us() - cpu_started;
       // On an error or cancel the writer's destructor drops what is queued and closes every file.
       if (error.empty() && !job.cancelled) enter(job, "finishing");
-      if (pipelined && error.empty() && !job.cancelled) error = writer.finish(receipt, [&](std::size_t synced, std::size_t total) {
+      if (pipelined && error.empty() && !job.cancelled) error = writer.finish([&](std::size_t synced, std::size_t total) {
         std::lock_guard lock(job.mutex);
         job.snapshot.synced = synced;
         job.snapshot.sync_total = total;
@@ -839,9 +942,10 @@ void run(const std::shared_ptr<Job>& pointer) {
     // Every volume exists now: the receipt names them as a run after the download would.
     const auto full = input_identity(request);
     if (full.empty()) error = "Archive source is missing or not a regular file.";
-    else receipt.replace(0, receipt.find('\n'), "P5AR001:" + full);
+    else receipt.set_header("P5AR001:" + full);
   }
-  if (error.empty() && !job.cancelled && !write_metadata(staging, receipt_name, receipt)) error = "Cannot save extraction completion receipt.";
+  if (error.empty() && !job.cancelled && !receipt.commit(receipt_name)) error = "Cannot save extraction completion receipt.";
+  if (error.empty() && !job.cancelled) error = collect_artifacts(job, staging);
   if (error.empty() && !job.cancelled && fsync(root)) error = std::strerror(errno);
   close(root);
   if (job.cancelled || !error.empty()) {

@@ -58,7 +58,9 @@ import { Image, Text, View, motion } from '@ps5-react/core';
     const { rtl } = useLocale();
     const { toggleWish } = useStoreActions();
     const wished = useWishlist().includes(listedId(game.id));
-    const nextDown = game.shots.length > 0 ? "game:shots" : void 0;
+    // Down from the buttons goes to the screenshots, or else to the description's Show more: without
+    // either named, focus took the nearest card of "More like this" past the description.
+    const nextDown = game.shots.length > 0 ? "game:shots" : game.about.some((text) => text.trim()) ? "game:about" : void 0;
     return /* @__PURE__ */ (0, jsxs)(View, { scrollAnchor: true, style: { position: "relative", overflow: "hidden", borderBottomWidth: 1, borderColor: "#e09f3e33" }, children: [
       /* @__PURE__ */ (0, jsx)(Backdrop, { game }, game.id),
       /* @__PURE__ */ (0, jsx)(View, { style: rtl ? { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "left", stops: [{ color: "#000000", offset: 0 }, { color: "#ffffffd9", offset: 0.45 }, { color: "#ffffff40", offset: 1 }] } } : { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "right", stops: [{ color: "#000000", offset: 0 }, { color: "#ffffffd9", offset: 0.45 }, { color: "#ffffff40", offset: 1 }] } } }),

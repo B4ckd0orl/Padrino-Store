@@ -79,7 +79,7 @@ import { Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
       ] })
     ] });
   }
-  function Body({ game, width, caption, detailed }) {
+  function Body({ game, width, caption, detailed, deferArt }) {
     const { rtl } = useLocale();
     const focused = useIsFocused();
     const box = boxOf(width, detailed);
@@ -92,7 +92,7 @@ import { Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
           animate: focused ? lift : rest,
           transition: focusMotion,
           children: [
-            /* @__PURE__ */ (0, jsx)(Cover, { game, style: box.cover }),
+            /* @__PURE__ */ (0, jsx)(Cover, { game, style: box.cover, defer: deferArt }),
             /* @__PURE__ */ (0, jsx)(WishBadge, { id: game.id }),
             onCdn(game) ? /* @__PURE__ */ (0, jsx)(CdnMark, {}) : null,
             /* @__PURE__ */ (0, jsx)(CardFocus, { focused, width, height: box.height, platforms: game.platforms })
@@ -115,6 +115,7 @@ import { Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
     enterDelay,
     caption,
     detailed,
+    deferArt,
     onFocus,
     ...rest2
   }) {
@@ -160,7 +161,7 @@ import { Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
         transition: focusMotion,
         ...entrance,
         style: box.card,
-        children: /* @__PURE__ */ (0, jsx)(Body, { game, width, caption, detailed })
+        children: /* @__PURE__ */ (0, jsx)(Body, { game, width, caption, detailed, deferArt })
       }
     );
   }

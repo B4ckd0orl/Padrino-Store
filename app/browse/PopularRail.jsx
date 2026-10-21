@@ -2,13 +2,14 @@
 // reconstructed from the esbuild bundle in eboot.bin
 
 import { jsx } from 'react/jsx-runtime';
-import { memo } from 'react';
-import { GameRail } from './GameRail.jsx';
+import { memo, useState } from 'react';
+import { GameRail, ART_AHEAD, FIRST_ART } from './GameRail.jsx';
 import { games } from '../data/catalog.js';
 import { PINNED } from '../data/curate.js';
 import { useT } from '../i18n/index.js';
 import { NO_FILTERS, getGame, isHidden } from '../state/catalog.js';
 import { FAMOUS, INDIE, picked, shuffle } from './picks.js';
+import { RowCard, useRowWindow } from './near.js';
 import { useNavActions } from '../state/nav.jsx';
 import { useStoreActions } from '../state/store.jsx';
 import { GameCard } from '../ui/GameCard.jsx';
@@ -32,6 +33,10 @@ import { GameCard } from '../ui/GameCard.jsx';
     const t2 = useT();
     const { openGame, focusLater } = useNavActions();
     const { setFilters, setQuery, setSort } = useStoreActions();
+    // Covers load only up to a few cards past the furthest one reached.
+    const [reach, setReach] = (0, useState)(FIRST_ART);
+    // And the ones far from where focus rests let theirs go.
+    const row = useRowWindow();
     const seeAll = () => {
       setFilters(NO_FILTERS);
       setQuery("");
@@ -40,7 +45,7 @@ import { GameCard } from '../ui/GameCard.jsx';
     };
     return /* @__PURE__ */ (0, jsx)(GameRail, { title: t2("browse.forYou"), onSeeAll: seeAll, seeAllKey: "popular:all", children: POPULAR.map((game, index) => {
       const key = `popular:${game.id}`;
-      return /* @__PURE__ */ (0, jsx)(
+      return /* @__PURE__ */ (0, jsx)(RowCard, { far: row.far(index), children: /* @__PURE__ */ (0, jsx)(
         GameCard,
         {
           game,
@@ -48,10 +53,14 @@ import { GameCard } from '../ui/GameCard.jsx';
           detailed: true,
           focusKey: key,
           rowEnd: index === POPULAR.length - 1,
+          deferArt: index >= reach,
+          onFocus: () => {
+            setReach((count) => Math.max(count, index + ART_AHEAD));
+            row.reached(index);
+          },
           onPress: () => openGame(game.id, key)
-        },
-        game.id
-      );
+        }
+      ) }, game.id);
     }) });
   });
 

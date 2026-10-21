@@ -35,7 +35,9 @@ Writer::~Writer() {
   stop_threads();
 }
 
-bool Writer::start(std::size_t ring_bytes) {
+bool Writer::start(std::size_t ring_bytes, Receipt& receipt) {
+  receipt_ = &receipt;
+  first_line_ = receipt.lines();
   if (ring_bytes < 1024 * 1024) return false;
   ring_ = static_cast<unsigned char*>(std::malloc(ring_bytes));
   if (!ring_) return false;
@@ -222,8 +224,7 @@ void Writer::write_loop() {
       }
       if (!skip && digest.size() != 64) fail("Cannot verify extracted file.");
       if (!failed()) {
-        receipt_ += digest + "|" + name + "\n";
-        if (receipt_.size() > max_metadata_bytes) fail("Extraction receipt exceeds the metadata limit.");
+        if (!receipt_->add(digest, name)) fail("Cannot write extraction receipt.");
         const auto folder = path.size() - name.size() - 1;
         if (!path.ends_with("/" + name) || (!root_.empty() && path.compare(0, folder, root_)))
           fail("Extracted file outside its folder.");
@@ -256,11 +257,14 @@ std::string Writer::readback(const std::string& file) {
 }
 
 // Every file is on disk before the receipt: inputs are deleted once extraction completes.
-void Writer::sync_loop(const std::vector<std::size_t>& lines, std::atomic<std::size_t>& next, std::atomic<std::size_t>& synced_files, const Progress& progress) {
+void Writer::sync_loop(Receipt::Lines* lines, std::mutex& reading, std::atomic<std::size_t>& synced_files, std::size_t total, const Progress& progress) {
   name_thread("archive-sync");
-  for (std::size_t index; !failed() && (index = next++) < lines.size();) {
-    const auto at = receipt_.find('|', lines[index]) + 1;
-    const auto file = root_ + "/" + receipt_.substr(at, receipt_.find('\n', at) - at);
+  for (std::string line; !failed();) {
+    {
+      std::lock_guard lock(reading);
+      if (!lines || !lines->next(line)) break;
+    }
+    const auto file = root_ + "/" + line.substr(line.find('|') + 1);
     const auto syncing = std::chrono::steady_clock::now();
     // fsync needs no write access; a filesystem that wants it gets the file opened for writing.
     int fd = open(file.c_str(), O_RDONLY | O_NOFOLLOW);
@@ -275,7 +279,7 @@ void Writer::sync_loop(const std::vector<std::size_t>& lines, std::atomic<std::s
     timings_.sync_us += elapsed_us(syncing);
     ++timings_.syncs;
     if (!synced) fail(std::strerror(error));
-    else if (progress) progress(++synced_files, lines.size());
+    else if (progress) progress(++synced_files, total);
   }
 }
 
@@ -291,21 +295,22 @@ void Writer::stop_threads() {
   ring_ = nullptr;
 }
 
-std::string Writer::finish(std::string& receipt, const Progress& progress) {
+std::string Writer::finish(const Progress& progress) {
   stop_threads();
-  std::vector<std::size_t> lines;
-  for (std::size_t at = 0; at < receipt_.size(); at = receipt_.find('\n', at) + 1) lines.push_back(at);
-  std::atomic<std::size_t> next{0}, synced{0};
-  if (progress && !failed()) progress(0, lines.size());
+  const std::size_t total = receipt_ ? receipt_->lines() - first_line_ : 0;
+  Receipt::Lines* lines = nullptr;
+  if (!failed() && total && !receipt_->lines_from(first_line_, lines)) fail("Cannot read extraction receipt.");
+  std::mutex reading;
+  std::atomic<std::size_t> synced{0};
+  if (progress && !failed()) progress(0, total);
   // Without threads, the files are synced here, one after another.
   std::array<WorkerThread, syncers> threads;
   for (auto& thread : threads)
-    if (!failed() && lines.size() > 1) thread.start([&] { sync_loop(lines, next, synced, progress); }, thread_stack);
-  sync_loop(lines, next, synced, progress);
+    if (!failed() && total > 1) thread.start([&] { sync_loop(lines, reading, synced, total, progress); }, thread_stack);
+  sync_loop(lines, reading, synced, total, progress);
   for (auto& thread : threads) thread.join();
   if (cancelled_) return {};
   if (failed_ || aborted_) return error_.empty() ? "Extraction stopped." : error_;
-  receipt += receipt_;
   return {};
 }
 }

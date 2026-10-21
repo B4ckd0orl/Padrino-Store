@@ -13,6 +13,24 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 ### Actualizaciones
 - El detector de actualizaciones no se rinde: si el listado oficial no responde a la primera lo reintenta solo y también comprueba un espejo del listado, así la consola se entera de cada versión nueva aunque GitHub falle un momento
 
+### Tienda
+- La catálogo completo cambió al de Overdrive: 1.950 juegos revisados y con enlaces activos, con nuestras portadas servidas desde la tienda
+- Nueva sección Homebrew: apps y juegos de la comunidad (prosperostore.net), con su propia página, categorías y actualizaciones al abrirla
+- Las tarjetas de género ahora muestran dibujos pixelados en vez de tres portadas: la portada del apartado carga al instante
+- Las portadas dejan de parpadear y de atascar la memoria: solo las que están cerca de donde miras se mantienen cargadas, y si el motor se queda sin espacio una portada reintenta sola en vez de quedarse en blanco
+- Botón de información en cada fila de descarga para ir directo a la página del juego
+
+### Descargas
+- El progreso de extracción ahora cuenta los archivos extraídos en tiempo real
+- Las comprobaciones de cabeceras de los archivos se hacen en un hilo aparte: la app ya no se congela durante descargas rápidas
+- Se extran archivos 7z demasiado grandes para la memoria de la app usando el extractor externo, y los errores de memoria se explican mejor
+- Las descargas que se quedan congeladas a 0 MB/s se reinician solas
+- Carpetas "backport" junto al juego ya no se confunden con el juego principal
+- El botón "Explorar juegos" de Descargas vacías abre la portada de la tienda, no la última sección visitada
+
+### Idiomas
+- Se añadieron chino tradicional y portugués de Portugal (17 idiomas en total)
+
 ---
 
 ## Archivo

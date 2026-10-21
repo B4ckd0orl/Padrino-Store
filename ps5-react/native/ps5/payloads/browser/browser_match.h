@@ -1,4 +1,4 @@
-// Adapted from upstream store code by gran padrino.
+// Adapted from Orbit Store 1.0.1 by saawant12 (https://github.com/saawant12/orbit-store-ps5).
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Read-only browser capture; original corresponding source is recorded in README.md.
 #pragma once

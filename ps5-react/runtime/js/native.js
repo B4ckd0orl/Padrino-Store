@@ -91,6 +91,9 @@ export const FileSystem = {
   removeAsync: async path => { await networkTask(host().fs.removeAsync(path), 'fs.removeAsync', path, 'removals').done; },
   /** @param {string} from @param {string} to */
   rename: (from, to) => host().fs.rename(from, to),
+  /** Copies a file's bytes (readFile and writeFile carry text only), written beside `to` and renamed
+   * over it. @param {string} from @param {string} to */
+  copyFile: (from, to) => host().fs.copyFile(from, to),
   /** Sets a file's or directory's permission bits, such as 0o777. */
   chmod: (path, mode) => host().fs.chmod(path, mode),
   /** Mounted filesystems visible to the host process. Console access requires
@@ -510,6 +513,16 @@ export const Archives = Object.freeze({
    * Also works on a download's growing `.part` file.
    * @param {string[]} sources ordered volumes @returns {{kind: string, refusal: string}} */
   inspect: sources => host().archives.inspect(sources),
+  /** `inspect` on a native worker thread, one at a time in the order asked: a download's growing file
+   * can make the read wait for the drive while it is written, which would hold the render thread.
+   * Resolves with `{kind, refusal, title, waitedMs, tookMs}` (waitedMs: behind the ones asked before it).
+   * Falls back to `inspect` on a host without it (ABI < 19).
+   * @param {string[]} sources ordered volumes */
+  async inspectAsync(sources) {
+    if (typeof host().archives.inspectAsync !== 'function') return {...host().archives.inspect(sources), waitedMs: 0, tookMs: 0};
+    const {kind, refusal, title, waitedMs, tookMs} = await networkTask(host().archives.inspectAsync(sources), 'Archives.inspectAsync', '', 'inspections').done;
+    return {kind, refusal, title, waitedMs, tookMs};
+  },
   /** Whether `extract` takes `stream`. */
   streams: true,
 });

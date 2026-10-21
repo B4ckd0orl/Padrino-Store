@@ -1,13 +1,5 @@
-# Downloaded sources and build output
-.deps/
-.build/
-dist/
-node_modules/
-
-# Python
-__pycache__/
-.venv/
-
-# OS
-.DS_Store
-Thumbs.db
+﻿# Backups kept out of the repo and the build
+*.bak*
+*.bakcovers
+*.orig
+*.rej

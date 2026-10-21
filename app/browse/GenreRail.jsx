@@ -4,6 +4,7 @@
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { useState } from 'react';
 import { GenreCard } from './GenreCard.jsx';
+import { RowCard, useRowWindow } from './near.js';
 import { games } from '../data/catalog.js';
 import { useT } from '../i18n/index.js';
 import { genres } from '../state/catalog.js';
@@ -22,22 +23,25 @@ import { FocusScope, ScrollView, View } from '@ps5-react/core';
     const { filters } = useStoreState();
     const { toggleFilter } = useStoreActions();
     const [toggleGenre] = (0, useState)(() => (genre) => toggleFilter("genre", genre));
+    // Three covers a card: the cards far from where focus rests let theirs go.
+    const row = useRowWindow();
     return /* @__PURE__ */ (0, jsxs)(View, { scrollAnchor: true, children: [
       /* @__PURE__ */ (0, jsx)(SectionHeader, { title: t2("browse.popularGenres") }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { position: "relative", marginHorizontal: -9, marginVertical: -30 }, children: [
         // A row scope, like GameRail: Left and Right stop at the rail's ends.
         /* @__PURE__ */ (0, jsx)(FocusScope, { row: true, children: /* @__PURE__ */ (0, jsx)(ScrollView, { style: [{ flexDirection: "row", gap: 18, paddingHorizontal: 9, paddingVertical: 30 }, { direction: "ltr" }], children: RAIL.map(
-          ({ genre, count, covers }) => /* @__PURE__ */ (0, jsx)(
+          ({ genre, count, covers }, index) => /* @__PURE__ */ (0, jsx)(RowCard, { far: row.far(index), children: /* @__PURE__ */ (0, jsx)(
             GenreCard,
             {
               genre,
               count,
               covers,
+              index,
               active: filters.genre.includes(genre),
-              onToggle: toggleGenre
-            },
-            genre
-          )
+              onToggle: toggleGenre,
+              onReach: row.reached
+            }
+          ) }, genre)
         ) }) }),
         /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, bottom: 0, right: 0, width: 96, backgroundGradient: { type: "linear", to: "right", stops: [{ color: "transparent", offset: 0 }, { color: "#ffffff", offset: 1 }] } } })
       ] })

@@ -1,7 +1,7 @@
 // Copyright (C) 2026 half144 and PS5 React contributors
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Additional attribution term: see LICENSE-ATTRIBUTION.
-// Native API contract (ABI v17) between the hosts and `@ps5-react/core`. The input actions hosts
+// Native API contract (ABI v19) between the hosts and `@ps5-react/core`. The input actions hosts
 // pass to `__ps5ReactDispatch` are a separate contract with its own version (runtime/js/input.js).
 //
 // host_api.cpp (shared) installs `globalThis.__ps5ReactNative` through
@@ -25,6 +25,7 @@
 //                                  the order asked; a path already gone counts as removed
 //   removals.poll()                [{id, state, error}]; error is the system error; consumes terminal
 //   fs.rename(from, to)
+//   fs.copyFile(from, to)          ABI v18; copies bytes, written beside `to` and renamed into place
 //   fs.chmod(path, mode)           sets permission bits
 //   fs.mounts()                    [{device, path, type}], visible to the process
 //                                  console access is opt-in via app.json
@@ -66,6 +67,10 @@
 //   archives.extract(sources, destination, maxBytes) task ID; bounded native archive worker
 //   archives.inspect(sources)      {kind, refusal, title}; file type from leading bytes and, for an archive,
 //                                  a decoder-memory refusal its headers so far justify; partial files ok
+//   archives.inspectAsync(sources) ABI v19; task ID; inspect on a worker thread, one at a time in order
+//   inspections.poll()             ABI v19; [{id, state, error, kind, refusal, title, waitedMs, tookMs}];
+//                                  consumes terminal results
+//   inspections.cancel(id)         ABI v19; a queued inspection is dropped, one under way finishes unseen
 //   archives.cancel(id)            requests cancellation; source volumes remain intact
 //   archives.poll()                state/error/written/entries/artifacts; consumes terminal results
 //   browser.capture(prefix, suffix, timeoutSeconds, rejected, resume) ABI v7; Vikingfile capture task bound to a filename, or to any file when suffix is "/"; rejected: up to six refused links
@@ -263,6 +268,7 @@ void ps5_react_stop_sound();
 
 // ABI v5 additive archive tasks: extract(sources, destination, maxBytes, password?), inspect(sources), cancel(id), poll().
 JSValue ps5_react_archive_api(JSContext* ctx);
+JSValue ps5_react_inspection_api(JSContext* ctx);
 // ABI v5 additive package installs: install(path, name), cancel(id), poll().
 JSValue ps5_react_package_api(JSContext* ctx);
 

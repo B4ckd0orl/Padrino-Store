@@ -6,6 +6,7 @@ import cdnCard from '../assets/cdn-card.png';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { memo } from 'react';
 import { GameRail } from './GameRail.jsx';
+import { RowCard, useRowWindow, useSectionShown } from './near.js';
 import { games } from '../data/catalog.js';
 import { useT } from '../i18n/index.js';
 import { CDN_HOST, NO_FILTERS, onCdn, sortGames } from '../state/catalog.js';
@@ -45,6 +46,8 @@ import { Image, Text, View, motion, useIsFocused } from '@ps5-react/core';
   var CdnRail = (0, memo)(function CdnRail2() {
     const { openGame, focusLater } = useNavActions();
     const { setFilters, setQuery } = useStoreActions();
+    const row = useRowWindow();
+    useSectionShown(SERVED.length > 0);
     if (!SERVED.length) return null;
     const browse = () => {
       setFilters({ ...NO_FILTERS, provider: [CDN_HOST] });
@@ -55,7 +58,7 @@ import { Image, Text, View, motion, useIsFocused } from '@ps5-react/core';
       /* @__PURE__ */ (0, jsx)(View, { focusKey: "cdn:card", onPress: browse, children: /* @__PURE__ */ (0, jsx)(CollectionCard, {}) }),
       SERVED.map((game, index) => {
         const key = `cdn:${game.id}`;
-        return /* @__PURE__ */ (0, jsx)(
+        return /* @__PURE__ */ (0, jsx)(RowCard, { far: row.far(index), children: /* @__PURE__ */ (0, jsx)(
           GameCard,
           {
             game,
@@ -63,10 +66,10 @@ import { Image, Text, View, motion, useIsFocused } from '@ps5-react/core';
             detailed: true,
             focusKey: key,
             rowEnd: index === SERVED.length - 1,
+            onFocus: () => row.reached(index),
             onPress: () => openGame(game.id, key)
-          },
-          game.id
-        );
+          }
+        ) }, game.id);
       })
     ] });
   });

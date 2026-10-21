@@ -1,4 +1,4 @@
-// Adapted from upstream store code by gran padrino.
+// Adapted from Orbit Store 1.0.1 and 1.3.5 by saawant12 (https://github.com/saawant12/orbit-store-ps5).
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Read-only browser capture; original corresponding source is recorded in README.md.
 #ifndef ORBIT_BROWSER_SCAN_H
@@ -14,7 +14,7 @@
  * Datanodes' dlproxy.uk gateway with a 598-character token and a signature, about 675 bytes. */
 #define PROBE_MATCH_MAX 2048U
 /* Cumulative reads, not resident memory: enough to keep scanning through the whole verification
- * window at about 8 MiB/s, a late human verification included (upstream store 1.3.5). A LinkVault
+ * window at about 8 MiB/s, a late human verification included (Orbit Store 1.3.5). A LinkVault
  * page adds its own check and a mirror before the host's, so the window is up to 300 s. */
 #define PROBE_READ_DELAY_NS 8000000L
 #define PROBE_SESSION_BUDGET (3ULL * 1024ULL * 1024ULL * 1024ULL)

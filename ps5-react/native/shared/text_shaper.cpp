@@ -11,6 +11,7 @@
 #include "host_api.hpp"
 
 #include <algorithm>
+#include <cctype>
 #include <climits>
 #include <cstdint>
 #include <cstdio>
@@ -45,12 +46,13 @@ struct FaceSpec {
 constexpr FaceSpec kFaces[] = {
     {"NotoSansJP-Regular.otf", Script::kKana, 880, 120, false},
     {"NotoSansSC-Regular.otf", Script::kHan, 880, 120, false},
+    {"NotoSansTC-Regular.otf", Script::kHan, 880, 120, false},
     {"NotoSansDevanagari-Regular.ttf", Script::kDevanagari, 1000, 450, true},
     {"NotoSansBengali-Regular.ttf", Script::kBengali, 1000, 450, true},
     {"NotoSansArabic-Regular.ttf", Script::kArabic, 1050, 500, true},
 };
 constexpr int kFaceCount = sizeof kFaces / sizeof kFaces[0];
-constexpr int kJapanese = 0, kChinese = 1;
+constexpr int kJapanese = 0, kChinese = 1, kTraditional = 2;
 
 struct Face {
   bool present = false, failed = false;
@@ -65,7 +67,7 @@ struct State {
   Face faces[kFaceCount];
   bool any_face = false;
   hb_language_t language = nullptr;
-  bool prefer_japanese = false;
+  bool prefer_japanese = false, prefer_traditional = false;
   unsigned serial = 0;
   hb_buffer_t* buffer = nullptr;
   hb_raster_draw_t* raster = nullptr;
@@ -228,9 +230,14 @@ int face_for(std::uint32_t cp, int previous) {
   int count = 0;
   const Script script = script_of(cp);
   if (script == Script::kHan || script == Script::kKana) {
+    // Han in the language's own forms first; a character its font lacks takes the nearest one that
+    // has it (simplified and traditional Chinese share most characters, then Japanese kanji).
     const bool japanese = script == Script::kKana || state->prefer_japanese;
-    order[count++] = japanese ? kJapanese : kChinese;
-    order[count++] = japanese ? kChinese : kJapanese;
+    const bool traditional = state->prefer_traditional && !japanese;
+    if (japanese) order[count++] = kJapanese;
+    order[count++] = traditional ? kTraditional : kChinese;
+    order[count++] = traditional ? kChinese : kTraditional;
+    if (!japanese) order[count++] = kJapanese;
   } else if (script != Script::kOther) {
     for (int i = 0; i < kFaceCount; i++)
       if (kFaces[i].script == script) order[count++] = i;
@@ -858,6 +865,11 @@ void set_language(const char* tag) {
   if (!state) return;
   state->language = hb_language_from_string(tag, -1);
   state->prefer_japanese = std::strncmp(tag, "ja", 2) == 0 && (tag[2] == '\0' || tag[2] == '-');
+  // zh-Hant, and the regions that write it when the tag names no script: Taiwan, Hong Kong, Macau.
+  std::string lower(tag);
+  for (char& c : lower) c = c == '_' ? '-' : static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+  const auto has = [&](const char* part) { return (lower + "-").find(std::string("-") + part + "-") != std::string::npos; };
+  state->prefer_traditional = lower.rfind("zh-", 0) == 0 && !has("hans") && (has("hant") || has("tw") || has("hk") || has("mo"));
   state->serial++;
 }
 

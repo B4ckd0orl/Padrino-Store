@@ -55,26 +55,61 @@ JSValue extract(JSContext* ctx, JSValueConst, int argc, JSValueConst* argv) {
   if (!id) return JS_ThrowPlainError(ctx,"archives.extract: %s",error.c_str());
   return JS_NewUint32(ctx,id);
 }
-// Reads only a few headers, so it runs on the render thread; a download in progress can be inspected.
-JSValue inspect(JSContext* ctx, JSValueConst, int argc, JSValueConst* argv) {
-  if (argc < 1 || !JS_IsArray(argv[0])) return JS_ThrowTypeError(ctx,"archives.inspect: expected sources");
-  const JSValue length_value = JS_GetPropertyStr(ctx,argv[0],"length"); std::uint32_t length = 0;
+// The ordered volumes `call` names, as real paths; false after throwing.
+bool volumes(JSContext* ctx, JSValueConst value, const char* call, std::vector<std::string>& sources) {
+  if (!JS_IsArray(value)) { JS_ThrowTypeError(ctx,"%s: expected sources",call); return false; }
+  const JSValue length_value = JS_GetPropertyStr(ctx,value,"length"); std::uint32_t length = 0;
   const int result = JS_ToUint32(ctx,&length,length_value); JS_FreeValue(ctx,length_value);
-  if (result || !length || length > 1024) return JS_ThrowTypeError(ctx,"archives.inspect: expected 1–1024 ordered volumes");
-  std::vector<std::string> sources;
+  if (result || !length || length > 1024) { JS_ThrowTypeError(ctx,"%s: expected 1–1024 ordered volumes",call); return false; }
   for (std::uint32_t i = 0; i < length; ++i) {
-    const JSValue value = JS_GetPropertyUint32(ctx,argv[0],i); std::string file;
-    const bool ok = path(ctx,value,file); JS_FreeValue(ctx,value);
-    if (!ok) return JS_ThrowTypeError(ctx,"archives.inspect: source path is not allowed");
+    const JSValue item = JS_GetPropertyUint32(ctx,value,i); std::string file;
+    const bool ok = path(ctx,item,file); JS_FreeValue(ctx,item);
+    if (!ok) { JS_ThrowTypeError(ctx,"%s: source path is not allowed",call); return false; }
     sources.push_back(std::move(file));
   }
-  const host::CallScope scope("archives.inspect");
-  const auto inspection = archives::inspect(sources);
-  JSValue out = JS_NewObject(ctx);
+  return true;
+}
+void set_inspection(JSContext* ctx, JSValue out, const archives::Inspection& inspection) {
   JS_SetPropertyStr(ctx,out,"kind",JS_NewString(ctx,inspection.kind.c_str()));
   JS_SetPropertyStr(ctx,out,"refusal",JS_NewString(ctx,inspection.refusal.c_str()));
   JS_SetPropertyStr(ctx,out,"title",JS_NewString(ctx,inspection.title.c_str()));
+}
+// Reads only a few headers on the render thread, but a download's growing file can make it wait for
+// the drive: while one is written, inspectAsync is the one to use.
+JSValue inspect(JSContext* ctx, JSValueConst, int argc, JSValueConst* argv) {
+  std::vector<std::string> sources;
+  if (argc < 1 || !volumes(ctx,argv[0],"archives.inspect",sources)) return argc < 1 ? JS_ThrowTypeError(ctx,"archives.inspect: expected sources") : JS_EXCEPTION;
+  const host::CallScope scope("archives.inspect");
+  const auto inspection = archives::inspect(sources);
+  JSValue out = JS_NewObject(ctx);
+  set_inspection(ctx,out,inspection);
   return out;
+}
+JSValue inspect_async(JSContext* ctx, JSValueConst, int argc, JSValueConst* argv) {
+  std::vector<std::string> sources;
+  if (argc < 1 || !volumes(ctx,argv[0],"archives.inspectAsync",sources)) return argc < 1 ? JS_ThrowTypeError(ctx,"archives.inspectAsync: expected sources") : JS_EXCEPTION;
+  std::string error; const auto id = archives::inspect_start(std::move(sources),error);
+  if (!id) return JS_ThrowPlainError(ctx,"archives.inspectAsync: %s",error.c_str());
+  return JS_NewUint32(ctx,id);
+}
+JSValue inspections_poll(JSContext* ctx, JSValueConst, int, JSValueConst*) {
+  JSValue out = JS_NewArray(ctx); std::uint32_t index = 0;
+  for (const auto& snapshot : archives::inspect_poll()) {
+    JSValue item = JS_NewObject(ctx);
+    JS_SetPropertyStr(ctx,item,"id",JS_NewUint32(ctx,snapshot.id));
+    JS_SetPropertyStr(ctx,item,"state",JS_NewString(ctx,snapshot.state.c_str()));
+    JS_SetPropertyStr(ctx,item,"error",JS_NewString(ctx,snapshot.error.c_str()));
+    set_inspection(ctx,item,snapshot.inspection);
+    JS_SetPropertyStr(ctx,item,"waitedMs",JS_NewFloat64(ctx,static_cast<double>(snapshot.waited_ms)));
+    JS_SetPropertyStr(ctx,item,"tookMs",JS_NewFloat64(ctx,static_cast<double>(snapshot.took_ms)));
+    JS_SetPropertyUint32(ctx,out,index++,item);
+  }
+  return out;
+}
+JSValue inspections_cancel(JSContext* ctx, JSValueConst, int argc, JSValueConst* argv) {
+  std::uint32_t id = 0;
+  if (!argc || JS_ToUint32(ctx,&id,argv[0])) return JS_ThrowTypeError(ctx,"inspections.cancel: expected task id");
+  archives::inspect_cancel(id); return JS_UNDEFINED;
 }
 JSValue cancel(JSContext* ctx, JSValueConst, int argc, JSValueConst* argv) {
   std::uint32_t id = 0;
@@ -106,7 +141,14 @@ JSValue ps5_react_archive_api(JSContext* ctx) {
   JSValue api = JS_NewObject(ctx);
   JS_SetPropertyStr(ctx,api,"extract",JS_NewCFunction(ctx,extract,"extract",5));
   JS_SetPropertyStr(ctx,api,"inspect",JS_NewCFunction(ctx,inspect,"inspect",1));
+  JS_SetPropertyStr(ctx,api,"inspectAsync",JS_NewCFunction(ctx,inspect_async,"inspectAsync",1));
   JS_SetPropertyStr(ctx,api,"cancel",JS_NewCFunction(ctx,cancel,"cancel",1));
   JS_SetPropertyStr(ctx,api,"poll",JS_NewCFunction(ctx,poll,"poll",0));
+  return api;
+}
+JSValue ps5_react_inspection_api(JSContext* ctx) {
+  JSValue api = JS_NewObject(ctx);
+  JS_SetPropertyStr(ctx,api,"poll",JS_NewCFunction(ctx,inspections_poll,"poll",0));
+  JS_SetPropertyStr(ctx,api,"cancel",JS_NewCFunction(ctx,inspections_cancel,"cancel",1));
   return api;
 }

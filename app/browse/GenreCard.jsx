@@ -38,12 +38,13 @@ import { Image, Text, View, motion, useIsFocused } from '@ps5-react/core';
       )
     );
   }
-  var GenreCard = (0, memo)(function GenreCard2({ genre, count, covers, active: active2, onToggle }) {
+  var GenreCard = (0, memo)(function GenreCard2({ genre, count, covers, index, active: active2, onToggle, onReach }) {
     const t2 = useT();
     return /* @__PURE__ */ (0, jsxs)(
       motion.View,
       {
         focusKey: `genre:${genre}`,
+        onFocus: () => onReach?.(index),
         onPress: () => onToggle(genre),
         selected: active2,
         whileFocus: { y: -6 },

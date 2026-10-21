@@ -3,7 +3,7 @@
 
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { useEffect, useState } from 'react';
-import { AppRegistry, FocusScope, View } from '@ps5-react/core';
+import { AppRegistry, FocusScope, ReleaseImages, View } from '@ps5-react/core';
 import { BrowsePage } from './browse/BrowsePage.jsx';
 import { DownloadsScreen } from './downloads/DownloadsScreen.jsx';
 import { FilesScreen } from './files/FilesScreen.jsx';
@@ -46,7 +46,10 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
   function BrowseLayer({ shown }) {
     const { rtl } = useLocale();
     const side = rtl ? { left: 0, right: SIDEBAR_W } : { left: SIDEBAR_W, right: 0 };
-    return /* @__PURE__ */ (0, jsx)(View, { style: [{ position: "absolute", top: 0, bottom: 60, ...side }, shown ? null : { display: "none" }], children: /* @__PURE__ */ (0, jsx)(StoreFreeze, { frozen: !shown, children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "page", autoFocus: true, inert: !shown, children: /* @__PURE__ */ (0, jsx)(BrowsePage, {}) }) }) });
+    // The store front stays mounted under every other screen; while hidden it lets its images go (the
+    // decoded cache keeps them until another screen needs the room), so a game page or the Homebrew page
+    // is not left fighting a full cache for its own.
+    return /* @__PURE__ */ (0, jsx)(View, { style: [{ position: "absolute", top: 0, bottom: 60, ...side }, shown ? null : { display: "none" }], children: /* @__PURE__ */ (0, jsx)(ReleaseImages, { when: !shown, children: /* @__PURE__ */ (0, jsx)(StoreFreeze, { frozen: !shown, children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "page", autoFocus: true, inert: !shown, children: /* @__PURE__ */ (0, jsx)(BrowsePage, {}) }) }) }) });
   }
   // The Homebrew page stays mounted while an app opened from it is on top, hidden like the store front,
   // so Back finds it as it was left: its filter, its scroll and the card focus came from.
@@ -54,7 +57,7 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
     const { rtl } = useLocale();
     const { pop } = useNavActions();
     const side = rtl ? { left: 0, right: SIDEBAR_W } : { left: SIDEBAR_W, right: 0 };
-    return /* @__PURE__ */ (0, jsx)(View, { style: [{ position: "absolute", top: 0, bottom: 60, ...side }, shown ? null : { display: "none" }], children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "homebrew-page", inert: !shown, children: /* @__PURE__ */ (0, jsx)(HomebrewScreen, { onBack: pop }) }) });
+    return /* @__PURE__ */ (0, jsx)(View, { style: [{ position: "absolute", top: 0, bottom: 60, ...side }, shown ? null : { display: "none" }], children: /* @__PURE__ */ (0, jsx)(ReleaseImages, { when: !shown, children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "homebrew-page", inert: !shown, children: /* @__PURE__ */ (0, jsx)(HomebrewScreen, { onBack: pop }) }) }) });
   }
   var WARM_DELAY_MS = 3e3;
   function App() {

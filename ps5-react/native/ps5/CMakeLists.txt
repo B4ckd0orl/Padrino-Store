@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 # Additional attribution term: see LICENSE-ATTRIBUTION.
 cmake_minimum_required(VERSION 3.16)
-project(padrino-react-ps5 C)
+project(overdrive-react-ps5 C)
 if(NOT ER_ROOT)
   message(FATAL_ERROR "ER_ROOT must name the pinned embedded-react checkout")
 endif()
@@ -33,18 +33,21 @@ set(ERUI_XFORM_CACHE_SLOTS 2 CACHE STRING "" FORCE)
 set(ERUI_MAX_ANIM_VALUES 1024 CACHE STRING "" FORCE)
 set(ERUI_MAX_VALUE_BINDINGS 8 CACHE STRING "" FORCE)
 # Photos are baked at half size and scaled bilinearly. The scaler and gradient assemble rows of up to
-# 2560 px (+7 KB per worker each over 800 px) and render wider ones in chunks. 256 image slots cost
-# +11 KB at 88 B per slot.
+# 2560 px (+7 KB per worker each over 800 px) and render wider ones in chunks. The registry holds every
+# decoded image: the cache's 256 (image_loader.hpp kCacheEntries, in use or not) plus the app's baked
+# ones. At 256 slots, a cache of 256 small images (an app's icons, under its 64 MiB) left none for the
+# rest, and new images were discarded ("the engine image registry is full"). 512 slots cost 45 KB at
+# 88 B per slot.
 set(ERUI_BILINEAR_SCALE ON CACHE BOOL "" FORCE)
 set(ERUI_MAX_IMG_ROW_PIXELS 2560 CACHE STRING "" FORCE)
-set(ERUI_IMAGE_REGISTRY_MAX 256 CACHE STRING "" FORCE)
+set(ERUI_IMAGE_REGISTRY_MAX 512 CACHE STRING "" FORCE)
 # View backgroundGradient (linear and radial; also <Svg> gradient fills): about 5 KB of code, an 8 KB
 # colour ramp and a 10 KB row per render worker; nodes without a gradient pay nothing per frame.
 set(ERUI_GRADIENT ON CACHE BOOL "" FORCE)
 set(ERUI_GRADIENT_RADIAL ON CACHE BOOL "" FORCE)
 # Icons are <Svg> nodes: 128 geometry slots (4.5 KB each) and 32 cached static nodes (84 KB each),
 # about 3.1 MB of .bss over the 8/2 defaults, so icons are not re-flattened on nearby repaints. 64
-# slots ran out in the store (its hidden library page keeps a heart per favorited card mounted), and
+# slots ran out in Overdrive (its hidden library page keeps a heart per favorited card mounted), and
 # the legend glyphs past the 64th drew nothing.
 set(ERUI_MAX_VECTOR_NODES 128 CACHE STRING "" FORCE)
 set(ERUI_VECTOR_CACHE_NODES 32 CACHE STRING "" FORCE)

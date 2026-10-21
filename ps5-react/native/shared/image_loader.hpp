@@ -58,13 +58,19 @@ std::uint32_t load(const std::string& url, int width, int height, Fit fit, bool 
 // is cancelled; an image no element draws any more waits behind those on screen.
 void release(std::uint32_t id, bool prefetch);
 // Replaces the warm list: URLs fetched into the disk cache, in order, on a few connections while no
-// load waits, skipping those cached and responses over 2 MiB. Nothing is decoded.
+// load waits, skipping those cached and responses over 512 KiB. Nothing is decoded.
 void warm(std::vector<std::string> urls);
 // Finished loads since the last poll. Evicts unused images over budget first, calling `evict`
 // before their pixels are freed.
 std::vector<Result> poll(void (*evict)(std::uint32_t id));
 // Turns a ready image the caller could not use into a failure, freeing its pixels.
 void discard(std::uint32_t id, const std::string& reason);
+// Evicts the least recently used cached image nothing holds, other than `keep`, calling `evict` before
+// its pixels are freed (render thread): room for `keep` in an engine registry that is full. False when
+// every cached image is held.
+bool evict_unused(std::uint32_t keep, void (*evict)(std::uint32_t id));
+// The engine registry's slots in use after the host's last poll, for stats().
+void note_registry(unsigned used);
 // Heap the loader holds now: encoded bytes (transfers, decode queue, encoded cache) and decoded pixels.
 struct Memory { std::size_t encoded = 0, decoded = 0; };
 Memory memory();

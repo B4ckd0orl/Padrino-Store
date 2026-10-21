@@ -1,6 +1,7 @@
 rar-extract
 
-native/rar_worker/rar_worker.cpp is licensed under the MIT License:
+native/rar_worker/rar_worker.cpp, sevenzip.cpp, sevenzip.hpp and worker_io.hpp are licensed under the MIT
+License:
 
 Copyright (C) 2026 half144
 

@@ -11,6 +11,8 @@
 
 extern "C" {
 #include "er_scene.h"
+// The engine's count of registered images (engine/rendering/image_registry.c), for the stats line.
+unsigned image_registry_in_use(void);
 }
 
 namespace {
@@ -107,13 +109,19 @@ JSValue poll(JSContext* ctx, JSValueConst, int, JSValueConst*) {
   JSValue out = JS_NewArray(ctx);
   std::uint32_t index = 0;
   for (auto& result : images::poll(unregister)) {
-    if (result.ready && !publish(result)) {
+    // A full registry gets room from cached images nothing holds, least recently used first, before the
+    // new image is given up: the cache trims by its own count, which the app's baked images and the
+    // images still held can push the registry past.
+    bool published = !result.ready || publish(result);
+    while (!published && images::evict_unused(result.id, unregister)) published = publish(result);
+    if (!published) {
       images::discard(result.id, "the engine image registry is full");
       result.ready = false; result.failed = true; result.pixels = nullptr;
       result.error = "Image.load: the engine image registry is full";
     }
     JS_SetPropertyUint32(ctx, out, index++, state(ctx, result));
   }
+  images::note_registry(image_registry_in_use());
   return out;
 }
 

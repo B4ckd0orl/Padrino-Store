@@ -201,7 +201,7 @@ Image.getColor = uri => new Promise((resolve, reject) => {
 
 /**
  * Fills the disk cache with `uris` in the background, in order: a few connections, only while no
- * image waits to load, and only files up to 2 MiB. Nothing is decoded, so a later load still
+ * image waits to load, and only files up to 512 KiB. Nothing is decoded, so a later load still
  * decodes, from disk instead of the network. Each call replaces the previous list.
  * @param {string[]} uris
  */

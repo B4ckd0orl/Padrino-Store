@@ -203,7 +203,8 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       const before = job2.artifact;
       try {
         if (!fs.exists(job2.downloadDestination)) continue;
-        route(job2);
+        // At launch nothing is downloading yet, so the synchronous read does not wait on the drive.
+        route(job2, archives?.inspect?.([job2.downloadDestination]));
         if (!["shadowmount", "installer-required"].includes(job2.artifact.nextAction)) {
           job2.artifact = before;
           continue;
@@ -424,7 +425,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
           emit2();
         });
         await task.done;
-        if (job2.artifact.nextAction === "downloaded") route(job2);
+        if (job2.artifact.nextAction === "downloaded") route(job2, archives?.inspect && await headers([job2.downloadDestination], "downloaded"));
         job2.state = job2.artifact.nextAction === "shadowmount" ? "downloaded" : job2.artifact.nextAction === "downloaded" ? "file-downloaded" : job2.artifact.nextAction;
         job2.written = job2.total || job2.written;
         job2.bytesPerSecond = 0;
@@ -482,25 +483,43 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         pump(restarted ? job2 : void 0);
       }
     }
+    // Headers are read on a native worker thread (issue #71): a download's growing file can make the
+    // read wait for the drive until the download ends, and on the render thread that froze the app.
+    async function headers(sources, why) {
+      const started = Date.now();
+      let found;
+      try {
+        found = archives.inspectAsync ? await archives.inspectAsync(sources) : archives.inspect(sources);
+      } catch (error2) {
+        console.log(`[download-queue] header check (${why}) off the render thread failed, reading it here: ${error2.message}`);
+        found = archives.inspect(sources);
+      }
+      console.log(`[download-queue] header check (${why}): ${found.kind || "no known format"}${found.refusal ? `, refused: ${found.refusal}` : ""} in ${Date.now() - started} ms (waited ${found.waitedMs ?? 0} ms, read ${found.tookMs ?? 0} ms)`);
+      return found;
+    }
     const inspections = /* @__PURE__ */ new WeakMap();
+    const checking = /* @__PURE__ */ new WeakSet();
+    // While the file downloads, so a refused archive stops early; the download goes on meanwhile. A
+    // result that comes once the transfer has ended is left to the check after it.
     function checkHeaders(job2, path, task) {
       const tries = inspections.get(job2) || 0;
-      if (job2.inspected || tries >= 3 || !archives?.inspect || !fs.exists(path)) return;
+      if (job2.inspected || checking.has(job2) || tries >= 3 || !archives?.inspect || !fs.exists(path)) return;
       inspections.set(job2, tries + 1);
-      const started = Date.now();
-      const { kind, refusal, title } = archives.inspect([path]);
-      if (Date.now() - started > 250) console.log(`[download-queue] header check took ${Date.now() - started} ms`);
-      if (!kind) return;
-      job2.inspected = kind;
-      noteTitle(job2, title);
-      if (refusal) {
-        job2.error = refusal;
-        task.cancel();
-      }
+      checking.add(job2);
+      headers([path], "while downloading").then(({ kind, refusal, title }) => {
+        if (!kind || ["completed", "failed", "cancelled"].includes(task.snapshot.state)) return;
+        job2.inspected = kind;
+        noteTitle(job2, title);
+        if (refusal) {
+          job2.error = refusal;
+          task.cancel();
+        }
+      }, (error2) => console.log(`[download-queue] header check failed: ${error2.message}`)).finally(() => checking.delete(job2));
     }
-    function route(job2) {
-      if (!archives?.inspect) return;
-      const { kind, refusal, title } = archives.inspect([job2.downloadDestination]);
+    // `found`: the finished file's headers, or nothing without the archives module.
+    function route(job2, found) {
+      if (!found) return;
+      const { kind, refusal, title } = found;
       if (refusal) throw new Error(refusal);
       noteTitle(job2, title);
       // A source listed without a format is kept only for what its headers turn out to be: when they
@@ -832,9 +851,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         job2.message = `${job2.message} ${t("downloads.archiveNotDeleted", { error: error2.message })}`;
       }
     }
-    function streamSet(job2) {
+    async function streamSet(job2) {
       const first = job2.parts[0].destination;
-      if (!archives?.streams || job2.parts.length < 2 || archives.inspect([first]).kind !== "rar") return null;
+      if (!archives?.streams || job2.parts.length < 2 || (await headers([first], "streamed set")).kind !== "rar") return null;
       let task;
       try {
         const options = extraction(job2, job2.parts.map((part) => part.destination));
@@ -895,7 +914,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       let streamed = null;
       try {
         for (let index = 0; index < job2.parts.length; index++) {
-          if (!streamed && index > 0 && job2.parts[0].completed && fs.exists(job2.parts[0].destination)) streamed = active2.streamed = streamSet(job2);
+          if (!streamed && index > 0 && job2.parts[0].completed && fs.exists(job2.parts[0].destination)) streamed = active2.streamed = await streamSet(job2);
           job2.partIndex = index;
           const part = job2.parts[index];
           if (job2.state === "pausing") return;
@@ -964,7 +983,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
           job2.written = job2.parts.reduce((sum, item) => sum + item.written, 0);
           part.completed = true;
           change();
-          const refusal = index === 0 && archives?.inspect([part.destination]).refusal;
+          const refusal = index === 0 && archives?.inspect && (await headers([part.destination], "first part")).refusal;
           if (refusal) throw new Error(refusal);
         }
       } finally {

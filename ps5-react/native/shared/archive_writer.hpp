@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Additional attribution term: see LICENSE-ATTRIBUTION.
 #pragma once
+#include "extraction_receipt.hpp"
 #include "worker_thread.hpp"
 #include <array>
 #include <atomic>
@@ -35,17 +36,18 @@ public:
   ~Writer();
   Writer(const Writer&) = delete;
   Writer& operator=(const Writer&) = delete;
-  // False when the ring or a thread cannot be had; the caller then writes inline.
-  bool start(std::size_t ring_bytes);
+  // False when the ring or a thread cannot be had; the caller then writes inline. Each file's line goes
+  // to `receipt` once it is written and hashed.
+  bool start(std::size_t ring_bytes, Receipt& receipt);
   // Takes ownership of `fd` even on failure. `path` is the file's absolute path, `name` its receipt name.
   bool begin(int fd, std::string path, std::string name);
   bool append(const void* bytes, std::size_t size, std::uint64_t offset);
   bool end();
-  // Waits until every file is written, hashed, synced and closed, appends their receipt lines, and
-  // returns the first error (empty on success or cancellation). `progress` gets the files synced of the
-  // total once the writes are done and after each fsync, from any of the syncing threads.
+  // Waits until every file is written, hashed, synced and closed (their receipt lines are in the receipt
+  // given to start()), and returns the first error (empty on success or cancellation). `progress` gets the
+  // files synced of the total once the writes are done and after each fsync, from any of the syncing threads.
   using Progress = std::function<void(std::size_t synced, std::size_t total)>;
-  std::string finish(std::string& receipt, const Progress& progress = {});
+  std::string finish(const Progress& progress = {});
   // The first error, or empty when the job was cancelled.
   std::string error();
 
@@ -62,8 +64,8 @@ private:
     bool sealed = true, busy = false;
   };
   void write_loop();
-  // fsyncs the receipt's files from `next` on, one at a time, until none is left or one fails.
-  void sync_loop(const std::vector<std::size_t>& lines, std::atomic<std::size_t>& next, std::atomic<std::size_t>& synced_files, const Progress& progress);
+  // fsyncs this writer's files, read in turn from the receipt, one at a time, until none is left or one fails.
+  void sync_loop(Receipt::Lines* lines, std::mutex& reading, std::atomic<std::size_t>& synced_files, std::size_t total, const Progress& progress);
   bool push(Command command);
   std::string readback(const std::string& file);
   bool failed() const { return failed_.load() || aborted_.load() || cancelled_.load(); }
@@ -78,8 +80,11 @@ private:
   std::uint64_t head_ = 0, tail_ = 0;
   std::size_t queued_files_ = 0;
   std::deque<Command> commands_;
-  // The receipt's names are relative to this folder, taken from the first file.
-  std::string receipt_, error_, root_;
+  // The receipt's names are relative to this folder, taken from the first file. This writer's lines start
+  // at `first_line_` of `receipt_`.
+  std::string error_, root_;
+  Receipt* receipt_ = nullptr;
+  std::uint64_t first_line_ = 0;
   std::mutex mutex_;
   std::condition_variable work_, space_;
   std::atomic<bool> failed_{false}, aborted_{false};

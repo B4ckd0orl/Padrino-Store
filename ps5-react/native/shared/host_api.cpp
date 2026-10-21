@@ -256,6 +256,44 @@ JSValue fs_rename(JSContext* ctx, JSValueConst, int, JSValueConst* argv) {
   return JS_ThrowPlainError(ctx, "fs.rename %s -> %s: %s", from.app(), to.app(), std::strerror(errno));
 }
 
+// Bytes, not text: a file beside the app such as a title's sce_sys art. Written beside the target and
+// renamed over it, so a reader never sees half a file.
+JSValue fs_copy_file(JSContext* ctx, JSValueConst, int, JSValueConst* argv) {
+  Path from(ctx, argv[0]);
+  if (!from) return from.error("fs.copyFile");
+  Path to(ctx, argv[1]);
+  if (!to) return to.error("fs.copyFile");
+  const std::string temporary = std::string(to.real()) + ".copying";
+  const int in = open(from.real(), O_RDONLY);
+  if (in < 0) return from.error("fs.copyFile");
+  const int out = open(temporary.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0644);
+  if (out < 0) {
+    close(in);
+    return to.error("fs.copyFile");
+  }
+  char buffer[64 * 1024];
+  bool ok = true;
+  for (ssize_t count; ok && (count = read(in, buffer, sizeof buffer)) != 0;) {
+    if (count < 0) {
+      ok = errno == EINTR;
+      continue;
+    }
+    for (ssize_t written = 0; ok && written < count;) {
+      const ssize_t step = write(out, buffer + written, static_cast<std::size_t>(count - written));
+      ok = step > 0 || (step < 0 && errno == EINTR);
+      if (step > 0) written += step;
+    }
+  }
+  const int error = errno;
+  close(in);
+  ok = ok && fchmod(out, 0644) == 0 && fsync(out) == 0;
+  ok = close(out) == 0 && ok;
+  if (ok && rename(temporary.c_str(), to.real()) == 0) return JS_UNDEFINED;
+  const int failed = ok ? errno : error;
+  unlink(temporary.c_str());
+  return JS_ThrowPlainError(ctx, "fs.copyFile %s -> %s: %s", from.app(), to.app(), std::strerror(failed));
+}
+
 JSValue fs_chmod(JSContext* ctx, JSValueConst, int, JSValueConst* argv) {
   Path path(ctx, argv[0]);
   if (!path) return path.error("fs.chmod");
@@ -540,7 +578,7 @@ constexpr Function kFs[] = {
   {"readDir", fs_read_dir, 1}, {"stat", fs_stat, 1}, {"readFile", fs_read_file, 1},
   {"writeFile", fs_write_file, 4}, {"mkdir", fs_mkdir, 2}, {"remove", fs_remove, 1},
   {"removeTree", fs_remove_tree, 1}, {"removeAsync", fs_remove_async, 1},
-  {"rename", fs_rename, 2}, {"chmod", fs_chmod, 2}, {"mounts", fs_mounts, 0}, {"diskUsage", fs_disk_usage, 1},
+  {"rename", fs_rename, 2}, {"copyFile", fs_copy_file, 2}, {"chmod", fs_chmod, 2}, {"mounts", fs_mounts, 0}, {"diskUsage", fs_disk_usage, 1},
 };
 constexpr Function kRemovals[] = {{"poll", removals_poll, 0}};
 constexpr Function kDevice[] = {{"info", device_info, 0}, {"utcOffset", device_utc_offset, 1}};
@@ -573,6 +611,7 @@ void ps5_react_install_host_api(JSContext* ctx) {
   JS_SetPropertyStr(ctx, api, "text", namespace_object(ctx, "text", kText));
   JS_SetPropertyStr(ctx, api, "network", ps5_react_network_api(ctx));
   JS_SetPropertyStr(ctx, api, "archives", ps5_react_archive_api(ctx));
+  JS_SetPropertyStr(ctx, api, "inspections", ps5_react_inspection_api(ctx));
   JS_SetPropertyStr(ctx, api, "packages", ps5_react_package_api(ctx));
   JS_SetPropertyStr(ctx, api, "browser", ps5_react_browser_capture_api(ctx));
   JS_SetPropertyStr(ctx, api, "lan", ps5_react_lan_api(ctx));
