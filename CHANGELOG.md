@@ -11,22 +11,27 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 ## Próxima release
 
 ### Descargas
-- Cada fuente indica ahora su formato y qué hace la consola con él: "RAR · Extraer", "PKG · Instalar", "EXFAT · Montar imagen"
-- El formato se lee del propio enlace y de la etiqueta cuando el catálogo no lo declara, así que más fuentes se muestran con nombre
-- Donde el formato no se puede saber de antemano se dice "Desconocido" y los tips previos a la descarga avisan que se confirma al iniciar la descarga
+- Se actualizaron los enlaces de descarga y se quitaron los que ya no funcionaban
+- Hay muchos más juegos con descarga: +2915 juegos nuevos con su ficha y sus enlaces
+- Los enlaces dicen ahora qué tipo de archivo son (RAR, PKG, imagen) y cómo usarlos
+- Los PKG se instalan solos al terminar la descarga, sin pasos manuales
+- Los títulos sin enlace válido ya no muestran fuentes que fallan
 
-### Juegos nuevos
-- +2915 juegos nuevos implementados en la tienda, con su ficha y sus fuentes de descarga
+### Carátulas
+- Se arreglaron las portadas: todas las fichas tienen portada y ninguna sale deformada
+- Se sustituyeron portadas rotas o que no correspondían al juego
+- Se retiraron imágenes que ya no cargaban
+- Muchas portadas se cambiaron por una versión más grande y nítida
 
-### Instalación PKG
-- Los paquetes PKG se instalan automáticamente al terminar la descarga, sin pasos manuales
+### Tienda
+- Se mejoró la velocidad y la estabilidad de la app
+- Nueva pantalla Info con el mensaje del Gran Padrino y los enlaces de Telegram y X
+- Tetris Ultimate, SingStar Celebration, Maneater y Goosebumps: Dead of Night vuelven a la tienda
+- Se corrigieron unas 1.750 fichas que tenían el desarrollador o la editorial revueltos
 
-### Auto instalación de .binary
-- Los archivos .binary se reconocen por su cabecera: si son un paquete PS5 se renombran e instalan solos
-
-### Info
-- Nueva pantalla Info en el sidebar con el mensaje de Gran Padrino y los avisos sobre firmware y carátulas
-- Enlaces de Telegram y X que abren el navegador de la consola
+### Comprobaciones
+- El catálogo y los enlaces pasan todas las validaciones sin errores
+- Cada semana se comprueban solos los enlaces: los que ya no sirven quedan marcados como no disponibles y los que vuelven se activan otra vez
 
 ---
 
