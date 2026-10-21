@@ -38,13 +38,13 @@ import { Image, Text, View } from '@ps5-react/core';
     const [loaded, setLoaded] = (0, useState)(null);
     const copies = [game.art.cover, ...game.art.coverFallbacks || []].filter((url) => url && !failed.includes(url));
     const uri = copies[0];
-    // El watchdog se arma siempre que haya uri, incluso con una sola copia:
-    // una url primaria que no responde debe degradar a la caja con el titulo,
-    // no dejar un esqueleto bloqueado 8 s sin salida.
+    // El watchdog solo se arma cuando hay copias de respaldo: con una sola copia
+    // hay que esperar la carga, no degradar a caja de titulo a los 8 s (regresion v1.22).
+    const last = copies.length < 2;
     (0, useEffect)(() => {
-      if (!uri || loaded === uri) return void 0;
+      if (!uri || loaded === uri || last) return void 0;
       return watchStall(() => setFailed((previous) => [...previous, uri]));
-    }, [uri, loaded]);
+    }, [uri, loaded, last]);
     if (uri) {
       return /* @__PURE__ */ (0, jsx)(View, { style: loaded === uri ? style : [skeleton(game.art.tint), style], children: /* @__PURE__ */ (0, jsx)(
         Image,
