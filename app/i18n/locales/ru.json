@@ -135,6 +135,7 @@
     "downloads.empty": "Нет загрузок",
     "downloads.emptyDetail": "Игры, которые вы загружаете, появляются здесь с их прогрессом.",
     "downloads.extractedLeft": "Остальные папки остались в {path}.",
+"downloads.filesExtracted": "Распаковано файлов",
     "downloads.extractedReady": "{parts, select, all {Все части} other {Архив}} проверены и распакованы. Готово к установке.",
     "downloads.extractedTo": "Распаковано в {path}",
     "downloads.filter.all": "ВСЕ",

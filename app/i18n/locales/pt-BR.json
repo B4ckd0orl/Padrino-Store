@@ -135,6 +135,7 @@
     "downloads.empty": "Sem downloads",
     "downloads.emptyDetail": "Jogos que você baixa aparecem aqui com seu progresso.",
     "downloads.extractedLeft": "Outras pastas ficaram em {path}.",
+"downloads.filesExtracted": "Arquivos extraídos",
     "downloads.extractedReady": "{parts, select, all {Todas as partes} other {Arquivo}} verificado e extraído. Pronto para instalar.",
     "downloads.extractedTo": "Extraído para {path}",
     "downloads.filter.all": "TODOS",

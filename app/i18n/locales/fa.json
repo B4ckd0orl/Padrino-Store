@@ -135,6 +135,7 @@
     "downloads.empty": "دانلودی نیست",
     "downloads.emptyDetail": "بازی‌هایی که دانلود می‌کنید با پیشرفتشان اینجا ظاهر می‌شوند.",
     "downloads.extractedLeft": "پوشه‌های دیگر در {path} باقی ماندند.",
+"downloads.filesExtracted": "فایل‌های استخراج‌شده",
     "downloads.extractedReady": "{parts, select, all {همهٔ بخش‌ها} other {آرشیو}} تأیید و استخراج شد. آمادهٔ نصب است.",
     "downloads.extractedTo": "استخراج شد به {path}",
     "downloads.filter.all": "همه",

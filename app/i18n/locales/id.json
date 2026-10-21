@@ -135,6 +135,7 @@
     "downloads.empty": "Tidak ada unduhan",
     "downloads.emptyDetail": "Game yang Anda unduh muncul di sini dengan progresnya.",
     "downloads.extractedLeft": "Folder lainnya tetap berada di {path}.",
+"downloads.filesExtracted": "File diekstrak",
     "downloads.extractedReady": "{parts, select, all {All parts} other {Archive}} diverifikasi dan diekstrak. Siap untuk diinstal.",
     "downloads.extractedTo": "Diekstrak ke {path}",
     "downloads.filter.all": "SEMUA",

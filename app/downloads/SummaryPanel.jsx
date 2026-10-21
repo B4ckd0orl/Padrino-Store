@@ -59,7 +59,7 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
   }
   function SummaryPanel({ error: error2, onFocus }) {
     const t2 = useT();
-    const { active: active2, speed, left, connections, peak } = useActivity();
+    const { active: active2, speed, left, connections, peak, extracting, extractedFiles } = useActivity();
     const limit = useSpeedLimit();
     if (error2) return null;
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 56, paddingBottom: 16 }, children: [
@@ -69,6 +69,7 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
       /* @__PURE__ */ (0, jsx)(Kpi, { label: t2("downloads.panel.peak"), value: peak ? formatSpeed(peak) : "\u2014" }),
       /* @__PURE__ */ (0, jsx)(Kpi, { label: t2("downloads.panel.connections"), value: connections ? formatNumber2(connections) : "\u2014" }),
       /* @__PURE__ */ (0, jsx)(Kpi, { label: t2("settings.speedLimit"), value: limit ? t2("units.speed", { n: String(limit) }) : t2("settings.speedUnlimited") }),
+      extracting && extractedFiles > 0 ? /* @__PURE__ */ (0, jsx)(Kpi, { label: t2("downloads.filesExtracted"), value: formatNumber2(extractedFiles) }) : null,
       /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1 } }),
       storageRoots().map((root2) => /* @__PURE__ */ (0, jsx)(DrivePill, { root: root2 }, root2)),
       awake() ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 17, color: "#6e675e", marginLeft: 8 }, children: t2("downloads.panel.awake") }) : null

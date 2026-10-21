@@ -10,7 +10,7 @@ import { FilesScreen } from './files/FilesScreen.jsx';
 import { GameScreen } from './game/index.jsx';
 import { LocaleProvider, useLocale } from './i18n/index.js';
 import { SearchScreen } from './search/index.jsx';
-import { getGame, warmCovers } from './state/catalog.js';
+import { NO_FILTERS, getGame, warmCovers } from './state/catalog.js';
 import { loadList, saveList } from './state/saved.js';
 import { NavProvider, useIsImmersive, useNavActions, useNavState } from './state/nav.jsx';
 import { StoreFreeze, StoreProvider } from './state/store.jsx';
@@ -20,16 +20,20 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
   import { Legend } from './ui/Legend.jsx';
   import { WelcomeGate } from './ui/WelcomeGate.jsx';
   import { Bgm } from './ui/Bgm.jsx';
-import { UpdateDialog } from './ui/UpdateDialog.jsx';
-import { useInterfaceHaptics } from './ui/haptics.js';
-import { useInterfaceSounds } from './ui/sounds.js';
-import { VERSION } from './version.js';
+  import { UpdateDialog } from './ui/UpdateDialog.jsx';
+  import { useInterfaceHaptics } from './ui/haptics.js';
+  import { useInterfaceSounds } from './ui/sounds.js';
+  import { useShowLibrary } from './ui/useSections.js';
+  import { VERSION } from './version.js';
 
   function Screen({ screen: screen2 }) {
     const { openGame, pop } = useNavActions();
+    // "Browse games" on an empty Downloads opens the store front as Discover does, whatever section
+    // (Favorites, Top rated) the store was left on.
+    const showLibrary = useShowLibrary();
     const openCard = (game) => openGame(game.id, `card:${game.id}`);
     if (screen2.name === "game") return /* @__PURE__ */ (0, jsx)(GameScreen, { game: getGame(screen2.id), download: screen2.download, onBack: pop, onOpenGame: openCard });
-    if (screen2.name === "downloads") return /* @__PURE__ */ (0, jsx)(DownloadsScreen, { onBack: pop, onOpenGame: openGame });
+    if (screen2.name === "downloads") return /* @__PURE__ */ (0, jsx)(DownloadsScreen, { onBack: pop, onBrowse: () => showLibrary(NO_FILTERS, "newest", "spotlight:cta", "discover"), onOpenGame: openGame });
     if (screen2.name === "files") return /* @__PURE__ */ (0, jsx)(FilesScreen, { onBack: pop });
     if (screen2.name === "settings") return /* @__PURE__ */ (0, jsx)(SettingsScreen, { onBack: pop });
     if (screen2.name === "info") return /* @__PURE__ */ (0, jsx)(InfoScreen, { onBack: pop });

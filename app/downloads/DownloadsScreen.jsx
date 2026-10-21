@@ -52,16 +52,16 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
       count > 0 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, color: current ? "#1a1408b3" : "#6e675e", lineHeight: 26 }, children: formatNumber2(count) }) : null
     ] });
   }
-  function Empty({ error: error2, onBack }) {
+  function Empty({ error: error2, onBrowse }) {
     const t2 = useT();
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, alignItems: "center", justifyContent: "center", paddingBottom: 144 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: "download", size: 32, color: colors.subtle }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 24, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#f5f1ea", lineHeight: 42 }, children: t2(error2 ? "downloads.unavailable" : "downloads.empty") }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 6, width: 720, textAlign: "center", fontFamily: "Inter-Regular", fontSize: 24, color: "#a39c92", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 36 }, children: error2 || t2("downloads.emptyDetail") }),
-      /* @__PURE__ */ (0, jsx)(View, { style: { marginTop: 36 }, children: /* @__PURE__ */ (0, jsx)(Button2, { variant: "outline", label: t2("downloads.browseGames"), focusKey: EMPTY_KEY, autoFocus: true, onPress: onBack }) })
+      /* @__PURE__ */ (0, jsx)(View, { style: { marginTop: 36 }, children: /* @__PURE__ */ (0, jsx)(Button2, { variant: "outline", label: t2("downloads.browseGames"), focusKey: EMPTY_KEY, autoFocus: true, onPress: onBrowse }) })
     ] });
   }
-  function DownloadsScreen({ onBack, onOpenGame }) {
+  function DownloadsScreen({ onBack, onBrowse, onOpenGame }) {
     const t2 = useT();
     const { jobs, error: error2 } = useJobs();
     (0, useEffect)(() => {
@@ -174,7 +174,7 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
           },
           job2.id
         )
-      ) }) : /* @__PURE__ */ (0, jsx)(View, { style: { paddingTop: 96, alignItems: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#6e675e" }, children: t2("downloads.empty") }) }) }) : /* @__PURE__ */ (0, jsx)(Empty, { error: error2, onBack }) }),
+      ) }) : /* @__PURE__ */ (0, jsx)(View, { style: { paddingTop: 96, alignItems: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#6e675e" }, children: t2("downloads.empty") }) }) }) : /* @__PURE__ */ (0, jsx)(Empty, { error: error2, onBrowse }) }),
       /* @__PURE__ */ (0, jsx)(ButtonHints, { hints: jobs.length > 0 ? LIST_HINTS : EMPTY_HINTS })
     ] }) });
   }

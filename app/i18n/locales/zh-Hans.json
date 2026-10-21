@@ -135,6 +135,7 @@
     "downloads.empty": "没有下载内容",
     "downloads.emptyDetail": "您下载的游戏和进度会显示在这里。",
     "downloads.extractedLeft": "其他文件夹保留在 {path}。",
+"downloads.filesExtracted": "已解压文件",
     "downloads.extractedReady": "{parts, select, all {所有分卷} other {压缩包}}已验证并解压。可以安装。",
     "downloads.extractedTo": "已解压到 {path}",
     "downloads.filter.all": "全部",

@@ -246,6 +246,45 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       destination: `${root2}/downloads/extracted/${release.filename}`,
       nextAction: "extracted"
     } : formats.artifact(release, root2);
+    // Datanodes' dlproxy.uk gateway (FileKeeper's files too) can answer every range HTTP 503 with
+    // Retry-After: 60 for a while. The engine honours it, with its connections down to a few, and the
+    // download sits at 0 MB/s for minutes; a new transfer of the same link, which Pause and Resume
+    // start, goes on at full speed at once (issue #77). So a download from it that gets nothing for
+    // STALL_MS starts over by itself, from what it has written. A third start in a row with nothing
+    // received asks the source for a new link; past STALL_RESTARTS the engine's own retries decide.
+    var STALL_MS = 9e4;
+    var STALL_RESTARTS = 10;
+    function restartsAfterStall(job2) {
+      try {
+        return /(?:^|\.)dlproxy\.uk$/.test(webURL(job2.options?.url).host);
+      } catch {
+        return false;
+      }
+    }
+    function stallWatch(job2, task) {
+      let moved = Date.now(), seen = -1;
+      return (progress) => {
+        const bytes = (progress.received || 0) + (progress.completedBytes ?? progress.written ?? 0);
+        if (bytes !== seen) {
+          if (seen >= 0 && job2.stalls) {
+            console.log(`[download-queue] ${job2.id}: receiving again after ${job2.stalls} restart(s)`);
+            delete job2.stalls;
+          }
+          seen = bytes;
+          moved = Date.now();
+          return;
+        }
+        if (active2?.restarting || Date.now() - moved < STALL_MS || !["connecting", "downloading"].includes(progress.state) || !restartsAfterStall(job2)) return;
+        if ((job2.stalls || 0) >= STALL_RESTARTS) return;
+        job2.stalls = (job2.stalls || 0) + 1;
+        // Only FileKeeper's link comes from a form the app posts again; DataNodes' needs the browser.
+        const relink = job2.stalls % 3 === 0 && sourceKind(job2.release) === "filekeeper";
+        console.log(`[download-queue] ${job2.id}: nothing received for ${Math.round((Date.now() - moved) / 1e3)} s (connections ${progress.connections || 0}, retries ${progress.retries || 0}); restart ${job2.stalls} of ${STALL_RESTARTS}${relink ? ", with a new link from the source" : ""}`);
+        if (relink) delete job2.options;
+        active2.restarting = true;
+        task.cancel();
+      };
+    }
     function reresolve(job2) {
       const source2 = job2.parts ? job2.currentSource : job2.release;
       if ((job2.reresolved || 0) >= 2 || ["direct", "browser", "datanodes", "buzzheavier", "manifest", "unavailable"].includes(sourceKind(source2))) return false;
@@ -357,9 +396,11 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         active2.transferring = true;
         task = downloads.enqueue({ ...job2.options, rejectHtml: true, mirrors: void 0, connections: 64, adaptive: true, rangeBytes: 16 * 1024 * 1024, destination: job2.downloadDestination, storageRoot: job2.root, recoverCompleted: true });
         active2.task = task;
+        const stalled = stallWatch(job2, task);
         unsubscribe = task.subscribe((progress) => {
           if (job2.state === "pausing") return;
           if (ACTIVE.includes(progress.state)) job2.state = progress.state;
+          stalled(progress);
           job2.written = progress.written || 0;
           job2.total = progress.total ?? job2.total;
           job2.received = progress.received || 0;
@@ -393,6 +434,12 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         if (job2.state === "installer-required" && canInstall()) await install(job2);
       } catch (error2) {
         console.log("[download-queue] transfer stopped:", error2.message);
+        // Stopped by stallWatch: it starts over at once, as Pause and Resume would.
+        if (active2.restarting && job2.state !== "pausing" && !job2.cancelling) {
+          job2.state = "queued";
+          job2.error = "";
+          return;
+        }
         // The engine words every 401/403 as a possible browser check; from Archive.org it is a
         // restricted or removed item, so it reads as a dead link.
         const refused = archiveRefusal(job2.parts ? job2.currentSource : job2.release, cause(error2.message));
@@ -421,6 +468,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         unsubscribe?.();
         if (job2.state === "pausing") job2.state = "paused";
         if (COMPLETE.includes(job2.state)) delete job2.launches;
+        const restarted = active2.restarting && job2.state === "queued";
         active2 = null;
         // A cancelled download's files are deleted after the queue moves on: deleting tens of GB from a
         // USB drive can take long, and the next download sat "queued" at 0 MB the whole time.
@@ -431,7 +479,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
           job2.error = `Queue save failed: ${error2.message}`;
           emit2();
         }
-        pump();
+        pump(restarted ? job2 : void 0);
       }
     }
     const inspections = /* @__PURE__ */ new WeakMap();
@@ -515,11 +563,16 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       delete job2.routing;
       change();
     }
-    // gameFolder follows a lone folder down and gives up beside a second one, as a dump with its
-    // patch, DLC or backport folder next to it. Only when it finds nothing, every folder holding a
-    // game is listed, and one is taken only when exactly one is plainly the game: not named a patch
-    // or an update, with the chosen game's title id when several are left. Else nothing moves.
+    // A dump can hold its game beside a patch, an update or an optional backport, each a folder with
+    // its own eboot.bin (issue #76). gameFolder follows a lone folder down and takes it whatever its
+    // name: a backported game's folder is often named so, and a merged dump "(Base + Update)". When
+    // it gives up beside a second folder, every folder holding a game is listed. One is taken as it
+    // was before (unless named a patch or an update); among several, patches, updates and backports
+    // are left out by the names below the folder that holds them all (it may name a backport for
+    // every one of them), then the chosen game's title id decides. Only one left is taken, else
+    // nothing moves.
     var PATCH_FOLDER = /(?:^|[-_ .(\[])(?:patch|update|upd)(?:$|[-_ .)\]\d])/i;
+    var BACKPORT_FOLDER = /(?:^|[-_ .(\[])backport(?:$|[-_ .)\]\d])/i;
     function gameFolders(output) {
       const found = [];
       const queue = [{ path: output, depth: 0 }];
@@ -547,7 +600,14 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       const shown = (path) => path.slice(output.length) || "/";
       if (found.length) console.log(`[download-queue] game folders in ${output}: ${found.map(shown).join(", ")}`);
       const name = (path) => path.slice(path.lastIndexOf("/") + 1);
-      let games = found.filter((path) => !PATCH_FOLDER.test(name(path)));
+      let games;
+      if (found.length > 1) {
+        const parts = found.map((path) => path.split("/"));
+        let shared = 0;
+        while (parts.every((list) => shared < list.length - 1 && list[shared] === parts[0][shared])) shared++;
+        const supplemental = (list) => list.slice(shared).some((segment) => PATCH_FOLDER.test(segment) || BACKPORT_FOLDER.test(segment));
+        games = found.filter((path, index) => !supplemental(parts[index]));
+      } else games = found.filter((path) => !PATCH_FOLDER.test(name(path)));
       const titled = games.filter((path) => String(titleIn(path) || "").toUpperCase() === String(job2.titleId || "").toUpperCase());
       if (titled.length) games = titled;
       if (games.length !== 1) {
@@ -633,6 +693,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       const downloaded = { written: job2.written, total: job2.total };
       let estimate = files.reduce((sum, path) => sum + (fs.stat(path)?.size || 0), 0) || null;
       job2.state = "extracting";
+      job2.extractedFiles = 0;
       job2.written = 0;
       job2.total = estimate;
       job2.bytesPerSecond = 0;
@@ -649,6 +710,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         emit2();
       };
       const follow = (progress) => {
+        job2.extractedFiles = progress.entries || 0;
         if (progress.total && progress.total !== estimate) job2.total = estimate = progress.total;
         if (progress.phase !== "finishing") {
           report(progress.written || 0);
@@ -675,6 +737,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
           if (outcome.error) {
             console.log("[download-queue] extraction during download stopped, extracting again:", outcome.error.message);
             job2.written = 0;
+            job2.extractedFiles = 0;
             delete job2.phase;
             sample = { at: Date.now(), bytes: 0 };
             emit2();
@@ -697,6 +760,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
               if (last || job2.state === "pausing" || job2.cancelling || !PASSWORD_FAILURE.test(cause(error2.message))) throw error2;
               console.log(`[download-queue] archive password ${index + 1} of ${passwords.length} did not open it, trying the next`);
               job2.written = 0;
+              job2.extractedFiles = 0;
               sample = { at: Date.now(), bytes: 0 };
               emit2();
             } finally {
@@ -709,6 +773,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         throw error2;
       } finally {
         Object.assign(job2, downloaded, { bytesPerSecond: 0 });
+        delete job2.extractedFiles;
         delete job2.phase;
       }
       const images = (result.artifacts || []).filter((path) => /\.(ffpfsc|ffpfs|ffpkg|exfat)$/i.test(path));

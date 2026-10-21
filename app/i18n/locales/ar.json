@@ -135,6 +135,7 @@
     "downloads.empty": "لا توجد تحميلات",
     "downloads.emptyDetail": "الألعاب التي تحملها تظهر هنا مع تقدمها.",
     "downloads.extractedLeft": "مجلدات أخرى بقيت في {path}.",
+"downloads.filesExtracted": "الملفات المستخرجة",
     "downloads.extractedReady": "{parts, select, all {جميع الأجزاء} other {الأرشيف}} تم التحقق منه واستخراجه. جاهز للتثبيت.",
     "downloads.extractedTo": "تم الاستخراج إلى {path}",
     "downloads.filter.all": "الكل",

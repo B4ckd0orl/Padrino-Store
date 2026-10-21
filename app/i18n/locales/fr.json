@@ -135,6 +135,7 @@
     "downloads.empty": "Pas de téléchargement",
     "downloads.emptyDetail": "Les jeux téléchargés apparaissent ici avec leur progression.",
     "downloads.extractedLeft": "D'autres dossiers sont restés dans {path}.",
+"downloads.filesExtracted": "Fichiers extraits",
     "downloads.extractedReady": "{parts, select, all {Toutes les parties} other {L'archive}} vérifiées et extraites. Prêt à installer.",
     "downloads.extractedTo": "Extrait vers {path}",
     "downloads.filter.all": "TOUS",

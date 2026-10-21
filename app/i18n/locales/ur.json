@@ -135,6 +135,7 @@
     "downloads.empty": "کوئی ڈاؤن لوڈ نہیں",
     "downloads.emptyDetail": "آپ جو گیمز ڈاؤن لوڈ کرتے ہیں وہ ان کی ترقی کے ساتھ یہاں ظاہر ہوتی ہیں۔",
     "downloads.extractedLeft": "دیگر فولڈرز {path} میں موجود ہیں۔",
+"downloads.filesExtracted": "ایکسٹریکٹ کی گئی فائلیں",
     "downloads.extractedReady": "{parts, select, all {تمام حصے} other {آرکائیو}} تصدیق شدہ اور نکالے گئے۔ انسٹال کے لیے تیار۔",
     "downloads.extractedTo": "{path} میں نکالا گیا",
     "downloads.filter.all": "سب",

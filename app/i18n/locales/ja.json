@@ -135,6 +135,7 @@
     "downloads.empty": "ダウンロードはありません",
     "downloads.emptyDetail": "ダウンロードしたゲームが進行状況とともにここに表示されます。",
     "downloads.extractedLeft": "その他のフォルダーは {path} に残りました。",
+"downloads.filesExtracted": "展開済みファイル",
     "downloads.extractedReady": "{parts, select, all {すべてのパート} other {アーカイブ}}を検証して展開しました。インストールできます。",
     "downloads.extractedTo": "展開先：{path}",
     "downloads.filter.all": "すべて",

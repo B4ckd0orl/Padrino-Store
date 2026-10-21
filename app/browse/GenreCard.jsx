@@ -4,6 +4,7 @@
 import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { memo } from 'react';
+import { GENRE_ART } from './genre-art.js';
 import { useT } from '../i18n/index.js';
 import { genreLabel } from '../state/catalog.js';
 import { Cover } from '../ui/Cover.jsx';
@@ -12,13 +13,15 @@ import { Icon } from '../ui/Icon.jsx';
 import { Shine } from '../ui/Shine.jsx';
 import { colors } from '../ui/colors.js';
 import { EASE_OUT } from '../ui/ease.js';
-import { Text, View, motion, useIsFocused } from '@ps5-react/core';
+import { Image, Text, View, motion, useIsFocused } from '@ps5-react/core';
 
   var spread = { type: "tween", duration: 0.3, ease: EASE_OUT };
   var cover = { width: 126, height: 168, borderRadius: 12 };
   var side = { width: 113, height: 151, borderRadius: 12 };
   var front = { position: "absolute", left: 87, top: 24, zIndex: 10 };
   var OPEN = [-12.6, 12.6];
+  // The sprite is drawn at the size it was baked at, centred in the space the covers take.
+  var art = { position: "absolute", left: 78, top: 36, width: 144, height: 144 };
   function Fan({ covers }) {
     const focused = useIsFocused();
     return covers.slice(1).map(
@@ -47,8 +50,8 @@ import { Text, View, motion, useIsFocused } from '@ps5-react/core';
         transition: spread,
         style: (_state) => [{ width: 300, borderRadius: 18, backgroundColor: "#1c1a17", paddingHorizontal: 24, paddingBottom: 24, paddingTop: 216 }, active2 ? { backgroundColor: "#26231f" } : null, _state.focused ? { backgroundColor: "#26231f" } : null],
         children: [
-          /* @__PURE__ */ (0, jsx)(Fan, { covers }),
-          covers[0] && /* @__PURE__ */ (0, jsx)(Cover, { game: covers[0], style: [cover, front], label: false }),
+          GENRE_ART[genre] ? /* @__PURE__ */ (0, jsx)(Image, { source: GENRE_ART[genre], resizeMode: "contain", style: art }) : /* @__PURE__ */ (0, jsx)(Fan, { covers }),
+          !GENRE_ART[genre] && covers[0] && /* @__PURE__ */ (0, jsx)(Cover, { game: covers[0], style: [cover, front], label: false }),
           active2 && /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", right: 18, top: 18, zIndex: 20, width: 36, height: 36, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#e09f3e" }, children: /* @__PURE__ */ (0, jsx)(Icon, { name: "check", size: 14, strokeWidth: 3, color: colors.accentFg }) }),
           /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#f5f1ea", lineHeight: 36 }, children: genreLabel(genre) }),
           /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", lineHeight: 30 }, children: t2("catalog.gameCount", { count }) }),

@@ -11,6 +11,7 @@ import { WAITING, clearAction, shownState, stateLabel } from './labels.js';
 import { shapeOf } from './useQueue.js';
 import { formatLabel, inferFormat, isOverdriveCdn } from '../game/sources.js';
 import { useT } from '../i18n/index.js';
+import { getGame } from '../state/catalog.js';
 import { BUSY, COMPLETE } from '../state/download-queue.js';
 import { Button2 } from '../ui/Button.jsx';
 import { CdnSpark } from '../ui/CdnAura.jsx';
@@ -64,6 +65,19 @@ import { Text, View } from '@ps5-react/core';
       }
     );
   }
+  function InfoButton({ id, onPress, onFocus }) {
+    return /* @__PURE__ */ (0, jsx)(
+      Button2,
+      {
+        variant: "secondary",
+        size: "icon",
+        icon: "info",
+        focusKey: `downloads-info:${id}`,
+        onFocus,
+        onPress
+      }
+    );
+  }
   function DownloadRowView({ job: job2, game, autoFocus, run, onOpenGame, onFocusRow }) {
     const t2 = useT();
     const { state, release } = job2;
@@ -71,6 +85,9 @@ import { Text, View } from '@ps5-react/core';
     const complete = COMPLETE.includes(state);
     const openGame = () => onOpenGame(job2);
     const main = primary(job2, (name) => run(job2, name), openGame);
+    // A job outside the catalog has no page to open, and a primary button that already leads there
+    // (continue on page) needs no second one; the triangle shortcut opens it either way.
+    const infoPage = !getGame(job2.gameId) || main.onPress === openGame ? null : () => openGame();
     const onFocus = () => onFocusRow(job2);
     // This line shares 285 px with the host and the path, so it stays the bare code: whatever the
     // bytes already revealed, else the format the link itself names.
@@ -113,6 +130,7 @@ import { Text, View } from '@ps5-react/core';
               note ? /* @__PURE__ */ (0, jsx)(Text, { style: problem ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: mismatch ? "#fde68a" : "#a39c92", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: note }) : null
             ] }),
             /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 12 }, children: [
+              infoPage ? /* @__PURE__ */ (0, jsx)(InfoButton, { id: job2.id, onPress: infoPage, onFocus }) : null,
               /* @__PURE__ */ (0, jsx)(
                 Button2,
                 {

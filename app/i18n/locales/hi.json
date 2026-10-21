@@ -135,6 +135,7 @@
     "downloads.empty": "कोई डाउनलोड नहीं",
     "downloads.emptyDetail": "आप जो गेम डाउनलोड करते हैं वे यहाँ उनकी प्रगति के साथ दिखाई देते हैं।",
     "downloads.extractedLeft": "अन्य फ़ोल्डर {path} में रह गए।",
+"downloads.filesExtracted": "एक्सट्रैक्ट की गई फ़ाइलें",
     "downloads.extractedReady": "{parts, select, all {सभी भाग} other {संग्रह}} सत्यापित और निकाले गए। इंस्टॉल करने के लिए तैयार।",
     "downloads.extractedTo": "{path} में निकाले गए",
     "downloads.filter.all": "सभी",
