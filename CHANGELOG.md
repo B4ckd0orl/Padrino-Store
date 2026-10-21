@@ -10,22 +10,22 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 
 ## Próxima release
 
-### Descargas
-- Se actualizaron los enlaces: +14.000 enlaces nuevos y se quitaron los que ya no funcionaban
-- Se mejoró la estabilidad y la velocidad de las descargas: si un enlace falla, la app prueba el siguiente
-- Cada semana se comprueban solos los enlaces: los caídos quedan marcados como no disponibles y los recuperados se reactivan
-
 ### Carátulas
-- Se corrigieron las portadas de todas las fichas: ninguna sale deformada ni sin portada
-- 33 portadas que eran demasiado grandes para cargar se cambiaron por versiones más ligeras y nítidas
-- Muchas portadas se cargan más rápido al volver a entrar en la tienda
-
-### Fichas
-- Se corrigieron unas 1.750 fichas que tenían el desarrollador o la editorial revueltos
+- Se restauraron más de 5.000 portadas de respaldo que se habían perdido: si una portada principal falla o tarda, ahora aparece otra automáticamente
+- Las portadas en formato webp que no cargaban en la consola ahora se muestran correctamente
+- Se corrigió el fallo de la v1.22 donde muchas portadas desaparecían y solo quedaba el título
 
 ---
 
 ## Archivo
+
+### v1.22
+- Se actualizaron los enlaces: +14.000 enlaces nuevos y se quitaron los que ya no funcionaban
+- Se mejoró la estabilidad y la velocidad de las descargas: si un enlace falla, la app prueba el siguiente
+- Cada semana se comprueban solos los enlaces: los caídos quedan marcados como no disponibles y los recuperados se reactivan
+- 33 portadas que eran demasiado grandes para cargar se cambiaron por versiones más ligeras y nítidas
+- Muchas portadas se cargan más rápido al volver a entrar en la tienda
+- Se corrigieron unas 1.750 fichas que tenían el desarrollador o la editorial revueltos
 
 ### v1.9 y anteriores (histórico inicial)
 - Eliminados los códigos QR de la primera apertura; nueva pantalla de bienvenida con links a Telegram y X
