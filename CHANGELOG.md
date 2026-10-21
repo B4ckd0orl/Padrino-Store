@@ -12,6 +12,8 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 
 ### Descargas
 - Se actualizaron los enlaces de descarga y se quitaron los que ya no funcionaban
+- Se añadieron más de 14.000 enlaces nuevos con más alternativas por juego
+- Se mejoró la estabilidad y la velocidad de las descargas: si un enlace falla, la app prueba el siguiente
 - Hay muchos más juegos con descarga: +2915 juegos nuevos con su ficha y sus enlaces
 - Los enlaces dicen ahora qué tipo de archivo son (RAR, PKG, imagen) y cómo usarlos
 - Los PKG se instalan solos al terminar la descarga, sin pasos manuales
@@ -21,9 +23,11 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 - Se arreglaron las portadas: todas las fichas tienen portada y ninguna sale deformada
 - Se sustituyeron portadas rotas o que no correspondían al juego
 - Se retiraron imágenes que ya no cargaban
+- Se reemplazaron 33 portadas que eran demasiado grandes y no llegaban a cargar nunca
 - Muchas portadas se cambiaron por una versión más grande y nítida
 
 ### Tienda
+- Muchas portadas se cargan más rápido al volver a entrar en la tienda
 - Se mejoró la velocidad y la estabilidad de la app
 - Nueva pantalla Info con el mensaje del Gran Padrino y los enlaces de Telegram y X
 - Tetris Ultimate, SingStar Celebration, Maneater y Goosebumps: Dead of Night vuelven a la tienda
