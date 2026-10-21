@@ -4,6 +4,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { deletionTargets, scanDrive } from './scan.js';
 import { getGame } from '../state/catalog.js';
+import { deletesPackages } from '../state/package-cleanup.js';
 import { COMPLETE } from '../state/download-queue.js';
 import { downloadQueue, shadowMountUp } from '../state/downloads.js';
 import { mountedImages, shadowRequest } from '../state/shadowmount.js';
@@ -70,8 +71,21 @@ import { FileSystem, Http, Packages, Platform } from '@ps5-react/core';
       setInstalling({ path: file.path, fraction: 0 });
       task.subscribe((progress) => setInstalling((state) => state?.path === file.path ? { ...state, fraction: progress.total ? progress.written / progress.total : 0 } : state));
       task.done.then(
-        () => {
+        async () => {
           setInstalling((state) => ({ ...state, fraction: 1, done: true }));
+          try {
+            downloadQueue().packageInstalled(file.path);
+          } catch {
+          }
+          // The installed PKG goes when settings ask it, as after an install from the queue.
+          if (deletesPackages()) {
+            try {
+              await Promise.all([file.path, `${file.path}.complete`].map((path) => FileSystem.removeAsync(path)));
+              console.log(`[files] ${file.path}: installed, so deleted`);
+            } catch (error2) {
+              console.log(`[files] ${file.path}: installed, but not deleted: ${error2.message}`);
+            }
+          }
           rescan();
         },
         (error2) => setInstalling((state) => ({ ...state, error: error2.message }))

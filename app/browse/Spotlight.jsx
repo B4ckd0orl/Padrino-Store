@@ -148,6 +148,8 @@ import { AnimatePresence, Image, Text, View, motion } from '@ps5-react/core';
                 variant: "primary",
                 size: "lg",
                 label: t2("browse.viewGame"),
+                // The plain ring of the page's other buttons, not the primary button's halo.
+                halo: false,
                 focusKey: "spotlight:cta",
                 nextFocusUp: "nav:current",
                 nextFocusDown: FIRST_POPULAR,

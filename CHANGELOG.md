@@ -14,7 +14,12 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 - El detector de actualizaciones no se rinde: si el listado oficial no responde a la primera lo reintenta solo y también comprueba un espejo del listado, así la consola se entera de cada versión nueva aunque GitHub falle un momento
 
 ### Tienda
-- Catálogo ampliado a 1.950 juegos revisados y con enlaces activos, con nuestras portadas servidas desde la tienda
+- Catálogo ampliado a más de 2.400 juegos revisados y con enlaces activos (2.491 fichas), con las ediciones duplicadas dejando de contar dos veces la misma fila, y con nuestras portadas servidas desde la tienda
+- 516 portadas nuevas: el total llega a 5.646, servidas desde la propia tienda
+- Nueva fila "Añadidos recientemente" en el inicio y nuevo orden con el mismo nombre en el catálogo, para ver qué entró de último
+- Filtro de realidad virtual en el catálogo: PS VR y PS VR2 como opciones propias
+- Capturas de cada juego en su página (hasta tres por título), para verlo antes de descargarlo
+- Los filtros del catálogo se recalculan de un solo paso: mover los controles responde al instante
 - Nueva sección Homebrew: apps y juegos de la comunidad (prosperostore.net), cada uno descargado de la release de su desarrollador y verificado antes de instalarse; ocupa el lugar de "Lanzamientos" en el menú, recuerda dónde estabas al volver, muestra un spinner mientras carga y tiene filtro de Emuladores
 - Las tarjetas de género ahora muestran dibujos pixelados en vez de tres portadas: la portada del apartado carga al instante
 - "Sports" y "Sport" aparecían como dos tarjetas distintas en Géneros populares: ahora es una sola
@@ -23,7 +28,15 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 - El orden de fuentes ahora prefiere los hosts que la consola ya confirmó (Vikingfile, DataNodes, FileKeeper) por encima de MediaFire, cuyos archivos suelen caer y que responde 429 cuando está saturada
 
 ### Descargas
-- El progreso de extracción ahora cuenta los archivos extraídos en tiempo real
+- Si una descarga se corta, al reanudar la app calcula sola hasta dónde llegó y sigue desde ahí, sin repetir lo ya bajado
+- La barra de progreso cuenta bytes reales, tanto al descargar como al instalar
+- El progreso de extracción ahora cuenta los archivos extraídos en tiempo real y ya no se queda pegado en el 99 %
+- Toda descarga queda identificada aunque venga de un enlace suelto: nombre, tamaño y tipo de archivo se reconocen solos
+- Borrado automático de los PKGs ya instalados, con el nuevo ajuste "Borrar PKGs tras instalar" para no llenar el disco
+- Si el paquete ya está instalado o no hay nada que extraer, la app lo avisa en lugar de quedarse esperando
+- Antes de descargar se comprueba que la carpeta de destino se pueda escribir: si la consola no permite guardar ahí, se avisa enseguida
+- Una contraseña incorrecta en archivos RAR5 ahora se detecta y se explica, en vez de un error críptico
+- Se corrigió la instalación cuando la release pertenece a otra región: ahora se respeta el título id del paquete
 - Las comprobaciones de cabeceras de los archivos se hacen en un hilo aparte: la app ya no se congela durante descargas rápidas
 - Se extraen archivos 7z demasiado grandes para la memoria de la app usando el extractor externo (hasta 288 MiB), y los 7z con cabeceras grandes ya no fallan al extraerse
 - Los errores de memoria ahora explican qué pasó y qué hacer

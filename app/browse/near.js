@@ -14,7 +14,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { ReleaseImages, useFocus } from '@ps5-react/core';
 
   // The sections in page order, by the prefix of their elements' focus keys.
-  var SECTIONS = { spotlight: 0, popular: 1, cdn: 2, continue: 3, recent: 4, chart: 5, genre: 6, card: 7, catalog: 7, chip: 7 };
+  var SECTIONS = { spotlight: 0, popular: 1, added: 2, cdn: 3, continue: 4, recent: 5, chart: 6, genre: 7, card: 8, catalog: 8, chip: 8 };
   var NEAR = 1;
   var current = 0;
   var listeners = /* @__PURE__ */ new Set();

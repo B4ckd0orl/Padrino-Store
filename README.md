@@ -22,7 +22,7 @@
 
 ## Qué es
 
-Padrino Store es una aplicación homebrew para PS5 que funciona como tienda de juegos: navegás un catálogo de más de 1.800 títulos con portadas, puntuaciones y filtros, y los descargás directo al disco de la consola. Sin PC intermedia, sin pasos extra.
+Padrino Store es una aplicación homebrew para PS5 que funciona como tienda de juegos: navegás un catálogo de más de 2.400 títulos con portadas, puntuaciones y filtros, y los descargás directo al disco de la consola. Sin PC intermedia, sin pasos extra.
 
 ---
 
@@ -31,7 +31,7 @@ Padrino Store es una aplicación homebrew para PS5 que funciona como tienda de j
 <table>
   <tr>
     <td width="50%" valign="top">
-      <b>1.800+ juegos</b><br>
+      <b>2.400+ juegos</b><br>
       Catálogo con portadas, Metacritic, tamaño y filtros por plataforma, estado y género. Curaduría editorial y destacados semanales.
     </td>
     <td width="50%" valign="top">
@@ -51,8 +51,8 @@ Padrino Store es una aplicación homebrew para PS5 que funciona como tienda de j
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <b>15 idiomas</b><br>
-      Español, English, Deutsch, Français, Português, русский, 日本語, 中文, العربية, हिन्दी, Bahasa Indonesia, Italiano, فارسی, اردو y Bangla.
+      <b>17 idiomas</b><br>
+      Español, English, Deutsch, Français, Português (Brasil y Portugal), русский, 日本語, 中文 (simplificado y tradicional), العربية, हिन्दी, Bahasa Indonesia, Italiano, فارسی, اردو y Bangla.
     </td>
     <td width="50%" valign="top">
       <b>Actualización en-app</b><br>
@@ -177,6 +177,19 @@ en el disco donde está instalada.
 - Verificá que la carpeta se llame **`PPSA99059`** (no `update-app` ni otra).
 - Confirmá que **`eboot.bin`** esté en la raíz de esa carpeta, no en un subdirectorio.
 - Revisá permisos: el FTP debe haber copiado con lectura/escritura.
+
+</details>
+
+<details>
+<summary><b>Padrino Store abre pero la página no carga</b></summary>
+
+<br>
+
+- Suele ser una copia dañada o incompleta de **`PadrinoStore.exfat`**. Borrá el archivo de
+  la carpeta `homebrew` **y** el icono de la pantalla de inicio (como arriba), y descargalo
+  otra vez desde la [última release](https://github.com/B4ckd0orl/Padrino-Store/releases/latest).
+- Copialo de nuevo con **PS5Upload** (o el método que uses) y comprobá que el tamaño del
+  archivo coincida con el que figura en GitHub.
 
 </details>
 

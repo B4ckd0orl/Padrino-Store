@@ -5,6 +5,7 @@ import '../assets/Inter-Regular.ttf';
 import '../assets/JetBrainsMono-Regular.ttf';
 import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { memo, useState } from 'react';
+import { AddedRail } from './AddedRail.jsx';
 import { Catalog } from './Catalog.jsx';
 import { CdnRail } from './CdnRail.jsx';
 import { ContinueRow } from './ContinueRow.jsx';
@@ -53,13 +54,14 @@ import { FocusScope, ScrollView, Text, View } from '@ps5-react/core';
         /* @__PURE__ */ (0, jsx)(FolderInstallNotice, {}),
         /* @__PURE__ */ (0, jsx)(Spotlight, {})
       ] }) }),
-      /* @__PURE__ */ (0, jsx)(NearSection, { index: 1, children: /* @__PURE__ */ (0, jsx)(PopularRail, {}) }),
-      /* @__PURE__ */ (0, jsx)(NearSection, { index: 2, children: /* @__PURE__ */ (0, jsx)(CdnRail, {}) }),
-      /* @__PURE__ */ (0, jsx)(NearSection, { index: 3, children: /* @__PURE__ */ (0, jsx)(ContinueRow, {}) }),
-      /* @__PURE__ */ (0, jsx)(NearSection, { index: 4, children: /* @__PURE__ */ (0, jsx)(RecentRow, {}) }),
-      /* @__PURE__ */ (0, jsx)(NearSection, { index: 5, children: /* @__PURE__ */ (0, jsx)(TopCharts, {}) }),
-      /* @__PURE__ */ (0, jsx)(NearSection, { index: 6, children: /* @__PURE__ */ (0, jsx)(GenreRail, {}) }),
-      /* @__PURE__ */ (0, jsx)(NearSection, { index: 7, children: /* @__PURE__ */ (0, jsx)(Catalog, { onOpenFilters }) }),
+/* @__PURE__ */ (0, jsx)(NearSection, { index: 1, children: /* @__PURE__ */ (0, jsx)(PopularRail, {}) }),
+/* @__PURE__ */ (0, jsx)(NearSection, { index: 2, children: /* @__PURE__ */ (0, jsx)(AddedRail, {}) }),
+/* @__PURE__ */ (0, jsx)(NearSection, { index: 3, children: /* @__PURE__ */ (0, jsx)(CdnRail, {}) }),
+/* @__PURE__ */ (0, jsx)(NearSection, { index: 4, children: /* @__PURE__ */ (0, jsx)(ContinueRow, {}) }),
+/* @__PURE__ */ (0, jsx)(NearSection, { index: 5, children: /* @__PURE__ */ (0, jsx)(RecentRow, {}) }),
+/* @__PURE__ */ (0, jsx)(NearSection, { index: 6, children: /* @__PURE__ */ (0, jsx)(TopCharts, {}) }),
+/* @__PURE__ */ (0, jsx)(NearSection, { index: 7, children: /* @__PURE__ */ (0, jsx)(GenreRail, {}) }),
+/* @__PURE__ */ (0, jsx)(NearSection, { index: 8, children: /* @__PURE__ */ (0, jsx)(Catalog, { onOpenFilters }) }),
       /* @__PURE__ */ (0, jsx)(Footer, {})
     ] }) });
   });

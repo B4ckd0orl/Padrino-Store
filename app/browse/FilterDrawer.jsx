@@ -6,7 +6,7 @@ import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { memo, useRef, useState } from 'react';
 import { formatNumber2 } from '../i18n/core.js';
 import { useT } from '../i18n/index.js';
-import { FACETS, activeCount, facetCounts, facetTitle, filterGames, optionLabel } from '../state/catalog.js';
+import { FACETS, activeCount, facetSummary, facetTitle, optionLabel } from '../state/catalog.js';
 import { useNavActions } from '../state/nav.jsx';
 import { useStore } from '../state/store.jsx';
 import { Button2 } from '../ui/Button.jsx';
@@ -69,11 +69,10 @@ facet === "platform" ? /* @__PURE__ */ (0, jsx)(PlatformBadge, { platforms: [val
       /* @__PURE__ */ (0, jsx)(Text, { style: focused ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("filters.clearFacet") })
     ] });
   }
-  function Facet({ facet, store, autoFocus }) {
+  function Facet({ facet, store, counts, autoFocus }) {
     const t2 = useT();
     const [expanded, setExpanded] = (0, useState)(false);
     const { focusLater } = useNavActions();
-    const counts = facetCounts(store, facet);
     const picked = store.filters[facet.key];
     const tiles = facet.options.length <= TILE_LIMIT;
     const folded = !tiles && !expanded && facet.options.length > PILL_LIMIT;
@@ -119,7 +118,7 @@ facet === "platform" ? /* @__PURE__ */ (0, jsx)(PlatformBadge, { platforms: [val
     const { filters, clearFilters } = store;
     const { focusLater } = useNavActions();
     const count = activeCount(filters);
-    const total = filterGames(store).length;
+    const { total, counts } = facetSummary(store);
     const opened = (0, useRef)(JSON.stringify(filters));
     const close = () => {
       if (JSON.stringify(filters) !== opened.current) focusLater("catalog:filters");
@@ -136,7 +135,7 @@ facet === "platform" ? /* @__PURE__ */ (0, jsx)(PlatformBadge, { platforms: [val
           /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("catalog.gameCount", { count: total }) })
         ] }),
         /* @__PURE__ */ (0, jsxs)(ScrollView, { style: { marginHorizontal: -24, flex: 1, paddingHorizontal: 24 }, children: [
-          FACETS.map((facet, index) => /* @__PURE__ */ (0, jsx)(Facet, { facet, store, autoFocus: index === 0 }, facet.key)),
+          FACETS.map((facet, index) => /* @__PURE__ */ (0, jsx)(Facet, { facet, store, counts: counts[facet.key], autoFocus: index === 0 }, facet.key)),
           /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 18, paddingBottom: 36, paddingTop: 30 }, children: [
             count > 0 && /* @__PURE__ */ (0, jsx)(Button2, { variant: "secondary", size: "lg", label: t2("filters.clearAll"), onPress: () => {
               clearFilters();

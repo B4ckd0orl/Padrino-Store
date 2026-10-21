@@ -582,12 +582,20 @@ read to refuse archives whose declared decoder windows (7z LZMA/LZMA2/PPMd/zstd
 and BCJ2 buffers, RAR5 windows, RAR PPMd, ZIP LZMA/XZ/zstd/PPMd, and an outer
 xz/zstd/lzip/lzma layer) exceed 64 MiB, since libarchive has no memory limit
 and the title's heap is fixed. That budget assumes nothing else large runs during extraction: don't
-extract while downloading. Self-extracting executables are refused. This API does not install PKGs or
+extract while downloading. A 7z refused for that alone, whose largest folder declares at most 288 MiB
+(the 256 MiB LZMA2 dictionary repacks use), is extracted by `rar-extract` instead, in a process of its
+own started through the payload loader, with the console's memory rather than the title's heap. It first
+takes that memory and writes to every page; when the console needs over a second to hand it over (it is
+freeing memory from everything else: a probe froze a console from 512 MiB on), it fails with "The console
+has too little free memory to extract this archive now. Close other apps and retry." before decoding.
+Without a payload loader it fails with "This archive needs the payload loader to extract: none answered
+on port 9021." Over 288 MiB the memory refusal stands. Self-extracting executables are refused. This API does not install PKGs or
 register games. Desktop extraction and successful PS5 linking are not console
 execution evidence.
 
 `Archives.inspect(sources)` reads headers synchronously and returns
-`{kind, refusal}`. `kind` names the leading bytes: `rar`, `7z`, `zip`, `tar`,
+`{kind, refusal, title}`. For a `pkg`, `title` is the title id its content id
+names (the header's `UP0001-CUSA01234_00-...` at 0x40), or `''`. `kind` names the leading bytes: `rar`, `7z`, `zip`, `tar`,
 `tar.gz`, `tar.bz2`, `tar.xz`, `tar.zst`, `pkg` (`\x7FCNT`), `exfat`, `ffpkg` (a
 UFS2 superblock), `ffpfs`, `ffpfsc`, or `''`. For an archive, `refusal` is the
 decoder-memory message above when the headers read so far already declare a
@@ -602,6 +610,19 @@ error, so a first volume can be refused before the remaining volumes download.
 7z and ZIP keep their directories at the end and show no refusal until complete.
 An empty kind is not proof of anything; image kinds are recognized by superblock
 magic only, not validated as mountable.
+
+`Archives.inspectAsync(sources)` (ABI v19) does the same on a native worker
+thread and resolves with `{kind, refusal, title, waitedMs, tookMs}`; inspections
+run one at a time in the order asked, `waitedMs` behind the earlier ones. Use it
+while the file is being written: a read of a download's growing file waits
+behind the writes while they keep the drive at its write rate, and on the
+console one waited until the download ended (minutes on the render thread with
+`inspect`). Each inspection logs `archive inspect queued` and `archive inspect
+done` with both times. On a host without it, it falls back to `inspect`.
+If you're in a render sensitive path, call `Archives.supportsAsyncInspection`
+before trying `inspectAsync`, as the compatibility fallback will do the sync
+read on old hosts. Catch the worker error (if it fails), and don't retry
+`inspect` on render thread.
 
 
 ## Browser download capture (ABI v7)

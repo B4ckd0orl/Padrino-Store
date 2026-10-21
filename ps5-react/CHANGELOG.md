@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased — header checks off the render thread
+
+- Add `Archives.inspectAsync(sources)` (ABI v19): `inspect` on a native worker thread, one at a time,
+  through `archives.inspectAsync`, `inspections.poll` and `inspections.cancel`. A read of a download's
+  growing file waits behind its writes while they keep the drive at its write rate: on a console
+  downloading at ~100 MB/s to internal storage, `inspect` on the `.part` file held the render thread
+  until the download ended (122 s and 341 s in a tester's log, issue #71), and a probe writing that way
+  reproduced it (18 s at 115 MiB/s, a few ms at 100 MiB/s).
+- Each async inspection logs when it is queued and when it is done, with the time it waited and took.
+- Optional header inspection failure is treated as an unknown result: the download still finishes as
+  downloaded, and multi-part archives fall back to extracting once all volumes are complete. An
+  outright header refusal still fails the archive, and archive contents are still validated for
+  extraction preflight.
+
 ## Unreleased — warmer cover cache
 
 - `Image.warm(uris)` accepts files up to 2 MiB instead of 512 KiB. Most cover art between those

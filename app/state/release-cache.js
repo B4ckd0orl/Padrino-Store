@@ -16,7 +16,10 @@ import { pausedSource } from './paused-hosts.js';
         // Each source carries its game's title ID (CUSA for PS4, PPSA for PS5): the firmware limit on
         // fake PKGs is the PS5's alone, and a source never says which console it is for.
         const titleId = /([a-z0-9]+)\.json$/i.exec(file)[1].toUpperCase();
-        releases = releaseSets(parsed.filter((release) => !pausedSource(release)).map((release) => ({ ...release, titleId })));
+        // A paused browser host's sources are left out here, before any screen sees them. A source that
+        // names its own file's title ID (another region's edition, tools/import-superpsx.py) keeps it:
+        // the queue downloads by it, and the browser capture looks for it in the file's name.
+        releases = releaseSets(parsed.filter((release) => !pausedSource(release)).map((release) => ({ titleId, ...release })));
         if (games2.size === KEPT2) games2.delete(games2.keys().next().value);
       }
       games2.delete(file);
