@@ -62,7 +62,7 @@ import { Text, View } from '@ps5-react/core';
     const { openGame } = useNavActions();
     const show = useShowLibrary();
     // "See all" opens the library on that sort, as the header's section of the same name does.
-    const seeAll = (id) => show(NO_FILTERS, id, "catalog:sort", { rating: "top", newest: "new" }[id] ?? "catalog");
+    const seeAll = (id) => show(NO_FILTERS, id, "catalog:sort", { rating: "top" }[id] ?? "catalog");
     return /* @__PURE__ */ (0, jsx)(View, { scrollAnchor: true, style: { marginBottom: -18, marginTop: -12, flexDirection: "row", gap: 48 }, children: CHARTS.map(
       (chart) => /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1 }, children: [
         /* @__PURE__ */ (0, jsx)(SectionHeader, { title: sortLabel(chart.id), onSeeAll: () => seeAll(chart.id) }),

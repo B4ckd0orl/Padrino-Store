@@ -1452,6 +1452,8 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         session.cancel.signal.addEventListener("abort", () => session.decide?.(false));
         job2.captureState = "confirm";
         job2.captureFile = { name: found.filename, bytes: found.expectedBytes };
+        // The player is in the browser: the console's notification says a file waits for their word.
+        notifications.show(t("downloads.notice.confirm"), job2.title);
         change();
       });
     }

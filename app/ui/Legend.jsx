@@ -18,6 +18,7 @@ import { View } from '@ps5-react/core';
   var HINTS = {
     browse: [HINT.select, HINT.top, HINT.sections],
     game: [HINT.select, HINT.back, HINT.favorite, HINT.sections],
+    homebrew: [HINT.select, HINT.back, HINT.favorite, HINT.sections],
     search: [HINT.select, HINT.favorite, HINT.clear, HINT.back, HINT.sections],
     settings: [HINT.select, HINT.back]
   };

@@ -15,7 +15,8 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
     const t2 = useT();
     const { stack } = useNavState();
     const previous = stack[stack.length - 2];
-    return previous.name === "game" ? getGame(previous.id).title : t2(`game.back.${previous.name}`);
+    // A homebrew app can leave the catalog while its page is open: the label then names the library.
+    return previous.name === "game" ? getGame(previous.id)?.title ?? t2("game.back.browse") : t2(`game.back.${previous.name}`);
   }
   function Label2() {
     const focused = useIsFocused();

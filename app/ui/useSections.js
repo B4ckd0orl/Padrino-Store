@@ -11,13 +11,13 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
     discover: "nav:discover",
     catalog: "nav:browse",
     top: "nav:top",
-    new: "nav:new",
+    homebrew: "nav:homebrew",
     favorites: "nav:favorites",
     downloads: "nav:downloads",
     files: "nav:files"
   };
   // L1/R1 stop on Browse too: the item only takes focus there, and ✕ opens its menu.
-  var TABS = ["search", "discover", "catalog", "top", "new", "favorites", "downloads", "files"];
+  var TABS = ["search", "discover", "catalog", "top", "homebrew", "favorites", "downloads", "files"];
   // The section a header item showed, with the filters and sort it set: it names the page while
   // they stay as they are, since the library opens on New releases for Discover and Browse too and
   // the sort alone can no longer tell them apart. A change made on the page itself falls back to
@@ -41,7 +41,8 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
     if (!query && filters === pinned.filters && sort === pinned.sort) return pinned.section;
     if (filters.wishlist) return "favorites";
     if (sort === "rating") return "top";
-    if (sort === "newest") return "new";
+    // New releases was the whole library sorted the way Browse opens it; Homebrew took its place.
+    if (sort === "newest") return "catalog";
     if (activeCount(filters) > 0 || query) return "catalog";
     return "discover";
   }
@@ -51,7 +52,7 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
     const nav = useNavActions();
     const { top } = useNavState();
     const show = useShowLibrary();
-    const underneath = top.name === "downloads" || top.name === "files" ? top.name : sectionOf(store, queryActive);
+    const underneath = top.name === "downloads" || top.name === "files" || top.name === "homebrew" ? top.name : sectionOf(store, queryActive);
     const section = top.name === "search" ? "search" : top.name === "game" ? null : underneath;
     const topName = (0, useRef)(top.name);
     topName.current = top.name;
@@ -63,7 +64,7 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
       search: () => topName.current !== "search" && nav.push({ name: "search" }, "nav:search"),
       discover: () => show(NO_FILTERS, "newest", "spotlight:cta", "discover"),
       top: () => show(NO_FILTERS, "rating", void 0, "top"),
-      new: () => show(NO_FILTERS, "newest", void 0, "new"),
+      homebrew: () => topName.current !== "homebrew" && nav.push({ name: "homebrew" }, "nav:homebrew"),
       favorites: () => show({ ...NO_FILTERS, wishlist: true }, "newest", void 0, "favorites"),
       downloads: () => topName.current !== "downloads" && nav.push({ name: "downloads" }, "nav:downloads"),
       files: () => topName.current !== "files" && nav.push({ name: "files" }, "nav:files")
@@ -75,7 +76,7 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
     const preview = (name) => {
       if (topName.current !== "browse") return;
       if (name === section) return;
-      if (name === "search" || name === "downloads" || name === "files" || name === "catalog") return;
+      if (name === "search" || name === "downloads" || name === "files" || name === "catalog" || name === "homebrew") return;
       // The preview names its section too, so sectionOf keeps the pill on the hovered item.
       if (name === "discover") {
         pinned = { section: "discover", filters: NO_FILTERS, sort: "newest" };
@@ -87,11 +88,6 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
         store.setFilters(NO_FILTERS);
         store.setQuery("");
         store.setSort("rating");
-      } else if (name === "new") {
-        pinned = { section: "new", filters: NO_FILTERS, sort: "newest" };
-        store.setFilters(NO_FILTERS);
-        store.setQuery("");
-        store.setSort("newest");
       } else if (name === "favorites") {
         pinned = { section: "favorites", filters: { ...NO_FILTERS, wishlist: true }, sort: "newest" };
         store.setFilters({ ...NO_FILTERS, wishlist: true });
@@ -108,7 +104,7 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
         return;
       }
       setStopped(false);
-      if (next === "downloads" || next === "files") {
+      if (next === "downloads" || next === "files" || next === "homebrew") {
         store.setQuery("");
         nav.home();
       }
