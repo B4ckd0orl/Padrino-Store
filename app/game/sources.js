@@ -17,7 +17,7 @@ import { formatBytes } from '../state/size.js';
   }
   // The extensions a console recognizes, the ones the download engine routes on
   // (ps5-react/runtime/js/download-formats.js).
-  var FMT = /^(?:ffpfsc|ffpfs|ffpkg|exfat|pkg|fpkg|zip|rar|7z|tar|tgz)$/i;
+  var FMT = /^(?:ffpfsc|ffpfs|ffpkg|exfat|pkg|fpkg|lz4|zip|rar|7z|tar|tgz)$/i;
   // The format the host's own link names: the last path segment ending in one of them, reading
   // right to left so "…/file.part01.rar/file" yields "rar" and a bare "file" is skipped.
   function pathFormat(value) {
@@ -44,7 +44,7 @@ import { formatBytes } from '../state/size.js';
   // (exFAT, ffpfs, ffpkg) or a dotted extension: a bare "zip" inside a name would be a guess.
   function labelFormat(label) {
     const text = String(label || "");
-    const exotic = /\b(ffpfs|ffpkg|exfat)\b/i.exec(text);
+    const exotic = /\b(ffpfs|ffpkg|exfat|lz4)\b/i.exec(text);
     if (exotic) return exotic[1].toLowerCase();
     return /\.(zip|rar|7z|pkg|tar|tgz)\b/i.exec(text)?.[1]?.toLowerCase() ?? null;
   }
@@ -68,7 +68,8 @@ import { formatBytes } from '../state/size.js';
     exfat: "sources.action.image",
     ffpfs: "sources.action.image",
     ffpfsc: "sources.action.image",
-    ffpkg: "sources.action.image"
+    ffpkg: "sources.action.image",
+    lz4: "sources.action.image"
   };
   function formatAction(format) {
     const key = format && ACTION[String(format).toLowerCase()];
