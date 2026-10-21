@@ -11,31 +11,17 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 ## Próxima release
 
 ### Descargas
-- Se actualizaron los enlaces de descarga y se quitaron los que ya no funcionaban
-- Se añadieron más de 14.000 enlaces nuevos con más alternativas por juego
+- Se actualizaron los enlaces: +14.000 enlaces nuevos y se quitaron los que ya no funcionaban
 - Se mejoró la estabilidad y la velocidad de las descargas: si un enlace falla, la app prueba el siguiente
-- Hay muchos más juegos con descarga: +2915 juegos nuevos con su ficha y sus enlaces
-- Los enlaces dicen ahora qué tipo de archivo son (RAR, PKG, imagen) y cómo usarlos
-- Los PKG se instalan solos al terminar la descarga, sin pasos manuales
-- Los títulos sin enlace válido ya no muestran fuentes que fallan
+- Cada semana se comprueban solos los enlaces: los caídos quedan marcados como no disponibles y los recuperados se reactivan
 
 ### Carátulas
-- Se arreglaron las portadas: todas las fichas tienen portada y ninguna sale deformada
-- Se sustituyeron portadas rotas o que no correspondían al juego
-- Se retiraron imágenes que ya no cargaban
-- Se reemplazaron 33 portadas que eran demasiado grandes y no llegaban a cargar nunca
-- Muchas portadas se cambiaron por una versión más grande y nítida
-
-### Tienda
+- Se corrigieron las portadas de todas las fichas: ninguna sale deformada ni sin portada
+- 33 portadas que eran demasiado grandes para cargar se cambiaron por versiones más ligeras y nítidas
 - Muchas portadas se cargan más rápido al volver a entrar en la tienda
-- Se mejoró la velocidad y la estabilidad de la app
-- Nueva pantalla Info con el mensaje del Gran Padrino y los enlaces de Telegram y X
-- Tetris Ultimate, SingStar Celebration, Maneater y Goosebumps: Dead of Night vuelven a la tienda
-- Se corrigieron unas 1.750 fichas que tenían el desarrollador o la editorial revueltos
 
-### Comprobaciones
-- El catálogo y los enlaces pasan todas las validaciones sin errores
-- Cada semana se comprueban solos los enlaces: los que ya no sirven quedan marcados como no disponibles y los que vuelven se activan otra vez
+### Fichas
+- Se corrigieron unas 1.750 fichas que tenían el desarrollador o la editorial revueltos
 
 ---
 
