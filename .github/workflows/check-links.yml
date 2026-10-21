@@ -1,0 +1,56 @@
+name: check-links
+
+# Weekly link audit: re-checks every release URL and applies only the solid answers —
+# sources that answer 404/410 get an unavailableReason (they still show in the store with
+# "Choose another source", nothing is ever deleted), and sources that came back lose theirs.
+# Timeouts, 5xx, 429 and 401/403 never change a file, and bot-blocking hosts are skipped by
+# the script (their wall answer says nothing about the file).
+#
+# The commit carries [skip ci] on purpose: an audit is maintenance, not a release. The marks
+# reach the store with the next normal build (build.yml runs on the next push to main).
+on:
+  schedule:
+    # Mondays 04:17 UTC (off the hour on purpose: GitHub delays exact-hour crons).
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: check-links
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check every link and apply the solid answers
+        run: node tools/check-links.mjs --all --mark --out link-check-results.json
+
+      - name: Commit the updated release files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 'app/data/releases/*.json'
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "chore(check-links): mark gone sources, un-mark recovered ones [skip ci]"
+            git push
+          fi
+
+      - name: Upload the full report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-check-results
+          path: link-check-results.json
+          if-no-files-found: ignore
