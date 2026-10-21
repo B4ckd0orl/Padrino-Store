@@ -58,7 +58,7 @@ std::uint32_t load(const std::string& url, int width, int height, Fit fit, bool 
 // is cancelled; an image no element draws any more waits behind those on screen.
 void release(std::uint32_t id, bool prefetch);
 // Replaces the warm list: URLs fetched into the disk cache, in order, on a few connections while no
-// load waits, skipping those cached and responses over 512 KiB. Nothing is decoded.
+// load waits, skipping those cached and responses over 2 MiB. Nothing is decoded.
 void warm(std::vector<std::string> urls);
 // Finished loads since the last poll. Evicts unused images over budget first, calling `evict`
 // before their pixels are freed.

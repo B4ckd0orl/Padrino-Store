@@ -175,9 +175,10 @@ void count_request(const std::string& url, const std::string& failure, std::uint
 }
 constexpr std::uint64_t kDrawn = std::uint64_t{1} << 62;
 // Warming fills the disk cache in the background: a few connections, only while no load waits, and
-// only files small enough that many fit.
+// only files small enough that many fit. Cover art measures up to 2 MiB, so the cap matches that:
+// bigger files are still fetched and disk-cached on their first display.
 constexpr unsigned kWarmConnections = 4;
-constexpr std::size_t kWarmMaxBytes = 512 * 1024;
+constexpr std::size_t kWarmMaxBytes = 2 * 1024 * 1024;
 
 struct Entry {
   ~Entry() { free_pixels(); }

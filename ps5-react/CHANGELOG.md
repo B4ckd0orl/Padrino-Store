@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — warmer cover cache
+
+- `Image.warm(uris)` accepts files up to 2 MiB instead of 512 KiB. Most cover art between those
+  sizes was skipped by background warming and so fetched on its first display; it now reaches the
+  disk cache ahead of time. Larger responses still load and cache on first display, as before.
+
 ## Unreleased — Vikingfile capture without the Download button
 
 - Browser capture finds the verified Vikingfile link as the page holds it once the verification
