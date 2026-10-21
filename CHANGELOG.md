@@ -10,10 +10,15 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 
 ## Próxima release
 
+### Juegos
+- Se quitó NBA 2K27 de la tienda
+
 ### Carátulas
 - Se restauraron más de 5.000 portadas de respaldo que se habían perdido: si una portada principal falla o tarda, ahora aparece otra automáticamente
 - Las portadas en formato webp que no cargaban en la consola ahora se muestran correctamente
 - Se corrigió el fallo de la v1.22 donde muchas portadas desaparecían y solo quedaba el título
+- Se revisaron una por una las ~16.000 imágenes de la tienda: todas cargan y están en formatos compatibles con la consola
+- Se quitaron más de 3.000 enlaces de portadas de respaldo que ya no funcionaban
 
 ---
 
