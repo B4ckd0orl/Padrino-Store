@@ -208,7 +208,7 @@ import { FileSystem, Image } from '@ps5-react/core';
   var summaryOf = (game) => game.about.find((text) => text.length > 80 && text !== text.toUpperCase()) ?? game.shortDescription;
   function relatedGames(game, limit = 6) {
     const shared = (other) => other.genres.filter((genre) => game.genres.includes(genre)).length;
-    return games.filter((other) => other.id !== game.id && shared(other) > 0).sort((a, b) => shared(b) - shared(a) || b.recommendations - a.recommendations).slice(0, limit);
+    return games.filter((other) => other.id !== game.id && !isHidden(other) && shared(other) > 0).sort((a, b) => shared(b) - shared(a) || b.recommendations - a.recommendations).slice(0, limit);
   }
   var formatDate3 = (iso) => iso ? formatDate2(iso) : "\u2014";
   function formatCount(n) {
