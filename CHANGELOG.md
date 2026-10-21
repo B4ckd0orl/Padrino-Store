@@ -19,6 +19,7 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 - Se corrigió el fallo de la v1.22 donde muchas portadas desaparecían y solo quedaba el título
 - Se revisaron una por una las ~16.000 imágenes de la tienda: todas cargan y están en formatos compatibles con la consola
 - Se quitaron más de 3.000 enlaces de portadas de respaldo que ya no funcionaban
+- 48 fondos de juegos que dependían de sitios poco fiables ahora se sirven desde un CDN estable y 4 portadas sin respaldo recibieron copia de seguridad
 
 ---
 
