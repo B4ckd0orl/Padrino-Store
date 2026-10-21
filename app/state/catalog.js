@@ -21,7 +21,8 @@ import { FileSystem, Image } from '@ps5-react/core';
     "Role Playing Games": "RPG",
     "Role-playing": "RPG",
     Simulator: "Simulation",
-    "Driving/Racing": "Racing"
+    "Driving/Racing": "Racing",
+    Sports: "Sport"
   };
   var dataFile = (dir2, id) => `data/${dir2}/${encodeURIComponent(id)}.json`;
   var pageOf = (game) => {
