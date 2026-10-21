@@ -24,14 +24,31 @@ import { formatBytes } from './size.js';
     async function check() {
       const installed = installedImage();
       if (installed) return installed;
-      const response = await http.request(feed, { headers: { Accept: "application/vnd.github+json", "User-Agent": "PadrinoStore" }, maxBytes: 1024 ** 2 });
-      if (!response.ok) throw new Error(`Update feed ${feed} answered HTTP ${response.status}`);
-      const release = await response.json();
-      if (!release.tag_name || !newer(release.tag_name, version2)) return null;
-      const file = (release.assets || []).find((item) => item.name === asset);
-      const sha256 = /^sha256:([0-9a-f]{64})$/i.exec(file?.digest || "")?.[1];
-      if (!file || !sha256) return null;
-      return { version: release.tag_name.replace(/^v/, ""), notes: release.body || "", url: file.browser_download_url, size: file.size, sha256 };
+      // feed es una URL o una lista: la primera que responda con un release sirve; si todas
+      // fallan (DNS, límite de peticiones, caída) se propaga el último error y el caller reintenta.
+      const feeds = Array.isArray(feed) ? feed : [feed];
+      let lastError = null;
+      for (const url of feeds) {
+        let release;
+        try {
+          const response = await http.request(url, { headers: { Accept: "application/vnd.github+json", "User-Agent": "PadrinoStore" }, maxBytes: 1024 ** 2 });
+          if (!response.ok) throw new Error(`Update feed ${url} answered HTTP ${response.status}`);
+          release = await response.json();
+        } catch (error2) {
+          lastError = error2;
+          continue;
+        }
+        if (!release?.tag_name) {
+          lastError = new Error(`Update feed ${url} answered no release tag`);
+          continue;
+        }
+        if (!newer(release.tag_name, version2)) return null;
+        const file = (release.assets || []).find((item) => item.name === asset);
+        const sha256 = /^sha256:([0-9a-f]{64})$/i.exec(file?.digest || "")?.[1];
+        if (!file || !sha256) return null;
+        return { version: release.tag_name.replace(/^v/, ""), notes: release.body || "", url: file.browser_download_url, size: file.size, sha256 };
+      }
+      throw lastError ?? new Error("No update feed answered");
     }
     const entriesOf = (dir2) => fs.readDir(dir2).filter((entry2) => !entry2.name.startsWith(".ps5-react-"));
     function contentOf(dir2) {

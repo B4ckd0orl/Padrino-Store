@@ -10,12 +10,15 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 
 ## Próxima release
 
-### Carátulas
-- Las 5.113 portadas de los juegos se descargaron y ahora viven en la propia tienda: cargan desde un único servidor estable, sin depender de CDNs externos
+### Actualizaciones
+- El detector de actualizaciones no se rinde: si el listado oficial no responde a la primera lo reintenta solo y también comprueba un espejo del listado, así la consola se entera de cada versión nueva aunque GitHub falle un momento
 
 ---
 
 ## Archivo
+
+### v1.24
+- Las 5.113 portadas de los juegos se descargaron y ahora viven en la propia tienda: cargan desde un único servidor estable, sin depender de CDNs externos
 
 ### v1.23
 - Se quitó NBA 2K27 de la tienda

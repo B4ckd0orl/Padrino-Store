@@ -10,6 +10,9 @@ import { Archives, Downloads, FileSystem, Http, Platform } from '@ps5-react/core
 
   var TITLE = "PPSA99059";
   var FEED = "https://api.github.com/repos/B4ckd0orl/Padrino-Store/releases/latest";
+  // Espejo del mismo JSON del release, servido desde raw.githubusercontent: si api.github.com
+  // no responde desde la consola (DNS, límite de peticiones, caída), el check sigue teniendo dónde mirar.
+  var FEED_MIRROR = "https://raw.githubusercontent.com/B4ckd0orl/Padrino-Store/main/update-feed.json";
   var FEED_OVERRIDES = [`${FileSystem.dataDir}/padrino-store/update-feed`, `/data/ps5-react/${TITLE}/padrino-store/update-feed`];
   function location() {
     if (Platform.OS !== "ps5") return { installDir: `${FileSystem.dataDir}/homebrew/${TITLE}`, workDir: `${FileSystem.dataDir}/padrino-update` };
@@ -39,32 +42,59 @@ import { Archives, Downloads, FileSystem, Http, Platform } from '@ps5-react/core
       }
     });
     const feed = override ? FileSystem.readFile(override).trim() : FEED;
+    const feeds = feed === FEED_MIRROR ? [feed] : [feed, FEED_MIRROR];
     return updater = createUpdater({
       http: Http,
       downloads: Downloads,
       archives: Archives,
       fs: FileSystem,
       version: VERSION,
-      feed,
+      feed: feeds,
       asset: assetFor(install),
       marker: `${FileSystem.dataDir}/padrino-store/pending-image.json`,
       ...install
     });
   }
   var CHECK_DELAY_MS = 4e3;
+  // El check corre una sola vez al abrir; si el release se publica con la app ya abierta
+  // (o GitHub falla ese instante) la consola se entera tarde. Se reintenta solo:
+  // fallo -> backoff, y sin novedad -> otra pasada cada pocos minutos.
+  var RETRY_MS = [15e3, 30e3, 60e3, 120e3, 300e3];
+  var REFRESH_MS = 180e3;
   function useAvailableUpdate() {
     const [update, setUpdate] = (0, useState)(null);
     (0, useEffect)(() => {
-      const id = setTimeout(async () => {
+      let cancelled = false;
+      let timer = null;
+      let failures = 0;
+      const schedule = (ms) => {
+        timer = setTimeout(run, ms);
+      };
+      const run = async () => {
+        if (cancelled) return;
         try {
           const current = await instance2();
           void current.cleanup();
-          setUpdate(await current.check());
+          const found = await current.check();
+          if (cancelled) return;
+          if (found) {
+            setUpdate(found);
+            return;
+          }
+          failures = 0;
+          schedule(REFRESH_MS);
         } catch (error2) {
           console.log(`padrino: update check failed: ${error2.message}`);
+          if (cancelled) return;
+          schedule(RETRY_MS[Math.min(failures, RETRY_MS.length - 1)]);
+          failures++;
         }
-      }, CHECK_DELAY_MS);
-      return () => clearTimeout(id);
+      };
+      schedule(CHECK_DELAY_MS);
+      return () => {
+        cancelled = true;
+        clearTimeout(timer);
+      };
     }, []);
     return update;
   }

@@ -153,3 +153,19 @@ jobs:
           fi
           gh release view "$tag" --json tagName,isDraft,assets \
             --jq '"\(.tagName) draft=\(.isDraft) " + ([.assets[] | "\(.name) \(.size)"] | join(", "))'
+          # Mirror of the release as JSON for the in-app updater: same shape served from
+          # raw.githubusercontent, so the check still works when api.github.com is unreachable
+          # from the console. [skip ci] keeps this bot commit from starting another build.
+          gh api "repos/${GITHUB_REPOSITORY}/releases/tags/$tag" \
+            --jq '{tag_name, body, assets: [.assets[] | {name, size, digest, browser_download_url}]}' \
+            > update-feed.json || echo "feed mirror skipped"
+          if [ -s update-feed.json ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add update-feed.json
+            if ! git diff --cached --quiet; then
+              git commit -m "chore: refresh update feed mirror [skip ci]" || echo "feed mirror commit skipped"
+              git pull --rebase origin main && git push origin main \
+                || echo "feed mirror push skipped (release already published)"
+            fi
+          fi
