@@ -1,0 +1,24 @@
+{
+    "tag_name":  "v1.25",
+    "body":  "### Actualizaciones\n- El detector de actualizaciones no se rinde: si el listado oficial no responde a la primera lo reintenta solo y también comprueba un espejo del listado, así la consola se entera de cada versión nueva aunque GitHub falle un momento\n\n---\n\n",
+    "assets":  [
+                   {
+                       "name":  "PadrinoStore.exfat",
+                       "size":  706740224,
+                       "digest":  "sha256:3619b6ddad8750ab952dfdb09bed4600d38b3d72314a6ee5523493d1f54a308b",
+                       "browser_download_url":  "https://github.com/B4ckd0orl/Padrino-Store/releases/download/v1.25/PadrinoStore.exfat"
+                   },
+                   {
+                       "name":  "update-app.zip",
+                       "size":  36033543,
+                       "digest":  "sha256:bd4f73a3d7d1cd2f58e925843c353431984f073d6ebae3fbf950be933c3d97a4",
+                       "browser_download_url":  "https://github.com/B4ckd0orl/Padrino-Store/releases/download/v1.25/update-app.zip"
+                   },
+                   {
+                       "name":  "update.zip",
+                       "size":  35936775,
+                       "digest":  "sha256:bd07bb43d8b8ff9b4289964e239bec1957209d46042dc26fe4b9228136b40f52",
+                       "browser_download_url":  "https://github.com/B4ckd0orl/Padrino-Store/releases/download/v1.25/update.zip"
+                   }
+               ]
+}

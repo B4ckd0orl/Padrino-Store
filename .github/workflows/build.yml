@@ -165,7 +165,8 @@ jobs:
             git add update-feed.json
             if ! git diff --cached --quiet; then
               git commit -m "chore: refresh update feed mirror [skip ci]" || echo "feed mirror commit skipped"
-              git pull --rebase origin main && git push origin main \
+              # --autostash: the version stamp leaves version.js/app.json modified in the workspace.
+              git pull --rebase --autostash origin main && git push origin main \
                 || echo "feed mirror push skipped (release already published)"
             fi
           fi
