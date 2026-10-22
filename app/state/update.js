@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import { downloadQueue, storageRoots } from './downloads.js';
 import { locateInstall } from './install-location.js';
+import { PAYLOAD_DATA, isPayloadMode } from './install-mode.js';
 import { createUpdater } from './updater.js';
 import { VERSION } from '../version.js';
 import { Archives, Downloads, FileSystem, Http, Platform } from '@ps5-react/core';
@@ -16,12 +17,17 @@ import { Archives, Downloads, FileSystem, Http, Platform } from '@ps5-react/core
   var FEED_OVERRIDES = [`${FileSystem.dataDir}/padrino-store/update-feed`, `/data/ps5-react/${TITLE}/padrino-store/update-feed`];
   function location() {
     if (Platform.OS !== "ps5") return { installDir: `${FileSystem.dataDir}/homebrew/${TITLE}`, workDir: `${FileSystem.dataDir}/padrino-update` };
+    // Running as a payload (.elf): there is no install on disk to replace — the update
+    // goes to the payload copy under /data, and the user reloads it from their loader.
+    if (isPayloadMode()) return { payload: true, workDir: `${PAYLOAD_DATA}/padrino-update` };
     return locateInstall({ http: Http, fs: FileSystem, title: TITLE, roots: storageRoots });
   }
   // One package carries an update: the image alone, for an image install; the full app folder,
-  // for a folder install (the updater swaps it in with backup + rollback and relaunches).
-  function assetFor({ image, installDir }) {
+  // for a folder install (the updater swaps it in with backup + rollback and relaunches);
+  // the payload ELF alone, for a payload run (the updater writes it under /data).
+  function assetFor({ image, installDir, payload }) {
     if (Platform.OS !== "ps5") return "PadrinoStore-desktop.zip";
+    if (payload) return "update-elf.zip";
     if (image) return "update.zip";
     return installDir ? "update-app.zip" : null;
   }
@@ -33,6 +39,9 @@ import { Archives, Downloads, FileSystem, Http, Platform } from '@ps5-react/core
   async function instance2() {
     if (updater) return updater;
     const install = await location();
+    // Not running as a payload and nothing on disk: same situation as before the payload
+    // support existed — keep the old message instead of building an updater with no target.
+    if (!install?.payload && !install?.installDir && !install?.image) throw new Error("Padrino Store's install was not found");
     foundInstall(install);
     const override = FEED_OVERRIDES.find((path) => {
       try {
@@ -113,5 +122,12 @@ import { Archives, Downloads, FileSystem, Http, Platform } from '@ps5-react/core
     }, []);
     return folder;
   }
+  // Which way the store is running right now: image, data folder, or payload (.elf).
+  async function installModeKey() {
+    if (Platform.OS !== "ps5") return "settings.mode.folder";
+    const install = await location();
+    if (install?.payload) return "settings.mode.payload";
+    return install?.image ? "settings.mode.image" : "settings.mode.folder";
+  }
 
-export { installUpdate, useAvailableUpdate, useFolderInstall };
+export { installModeKey, installUpdate, useAvailableUpdate, useFolderInstall };

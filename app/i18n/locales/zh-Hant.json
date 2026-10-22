@@ -8,7 +8,7 @@
   "browse.popularGenres": "熱門類型",
   "browse.popularNow": "目前熱門",
   "browse.forYou": "你可能會喜歡",
-      "browse.recentlyAdded": "最近新增",
+  "browse.recentlyAdded": "最近新增",
   "browse.recentlyViewed": "最近瀏覽",
   "browse.reviews": "{count} 則評價",
   "browse.viewGame": "查看遊戲",
@@ -251,7 +251,7 @@
   "filters.facet.provider": "下載網站",
   "filters.facet.release": "發行時間",
   "filters.facet.size": "大小",
-    "filters.facet.vr": "虛擬實境",
+  "filters.facet.vr": "虛擬實境",
   "filters.favorites": "收藏",
   "filters.more": "另有 {count} 項",
   "filters.queryChip": "「{query}」",
@@ -414,7 +414,7 @@
   "settings.vibrationOff": "關閉",
   "shadowMount.offAction": "載入 ShadowMount 後遊戲才會出現。將它加入越獄環境的自動載入項目即可保持執行。",
   "shadowMount.offTitle": "ShadowMount 未執行",
-      "sort.added": "最近新增",
+  "sort.added": "最近新增",
   "sort.label": "排序",
   "sort.newest": "新品",
   "sort.rating": "評分最高",
@@ -514,5 +514,10 @@
   "capture.confirm.detail": "此檔案來源沒有標示這是哪一款遊戲。只有在確定是你選擇的遊戲時才下載。",
   "capture.confirm.noName": "未命名檔案",
   "capture.confirm.accept": "下載",
-  "capture.confirm.refuse": "繼續尋找"
+  "capture.confirm.refuse": "繼續尋找",
+  "update.payload.reload": "更新已儲存。請從載入器重新傳送載荷以套用。",
+  "settings.mode": "安裝模式",
+  "settings.mode.image": "exFAT 映像",
+  "settings.mode.folder": "資料夾",
+  "settings.mode.payload": "載荷 (.elf)"
 }

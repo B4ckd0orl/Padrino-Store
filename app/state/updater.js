@@ -5,7 +5,11 @@ import { formatBytes } from './size.js';
 
   var SECTOR = 512;
   var MIN_IMAGE_BYTES = 1024 ** 2;
+  var MIN_ELF_BYTES = 1024 ** 2;
   var MIB = 1024 ** 2;
+  // Where the updated payload lands. Same base the download queue already uses under /data;
+  // the store cannot reload itself by hand, so the user sends this .elf again from their loader.
+  var PAYLOAD_ELF = "/data/ps5-react/PPSA99059/PadrinoStore.elf";
   var MTIME_SLACK_MS = 2e3;
   var STUCK_LAUNCHES = 2;
   var BUDGET_MS = 8;
@@ -20,7 +24,7 @@ import { formatBytes } from './size.js';
       if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0);
     return false;
   }
-  function createUpdater({ http, downloads, archives, fs, version: version2, feed, asset, installDir, image, workDir, marker, now = Date.now }) {
+  function createUpdater({ http, downloads, archives, fs, version: version2, feed, asset, installDir, image, payload, workDir, marker, now = Date.now }) {
     async function check() {
       const installed = installedImage();
       if (installed) return installed;
@@ -160,6 +164,27 @@ import { formatBytes } from './size.js';
       }
       log(`renamed over ${image}`);
     }
+    // Payload run: the zip holds one .elf (update-elf.zip). Write it over /data/.../PadrinoStore.elf
+    // and let the user reload the payload — no image, no folder, no relaunch from inside the app.
+    function replacePayload(extracted, update) {
+      const entries2 = entriesOf(extracted);
+      const [entry2] = entries2;
+      if (entries2.length !== 1 || !entry2.isFile || !entry2.name.endsWith(".elf") || entry2.size < MIN_ELF_BYTES)
+        throw new Error(`The update holds ${entries2.map((item) => item.name).join(", ") || "nothing"} instead of one .elf payload`);
+      const file = `${extracted}/${entry2.name}`;
+      try {
+        fs.mkdir(PAYLOAD_ELF.slice(0, PAYLOAD_ELF.lastIndexOf("/")), { recursive: true });
+      } catch (error2) {
+        log(`payload folder not created: ${error2.message}`);
+      }
+      try {
+        fs.rename(file, PAYLOAD_ELF);
+      } catch (error2) {
+        log(`rename over ${PAYLOAD_ELF} failed: ${error2.message}`);
+        throw new Error(error2.message);
+      }
+      log(`v${update.version} payload written to ${PAYLOAD_ELF}: send it again from your loader`);
+    }
     async function clear() {
       await fs.removeAsync(workDir);
     }
@@ -188,8 +213,8 @@ import { formatBytes } from './size.js';
     }
     async function install(update, onProgress = () => {
     }) {
-      const target = image ?? installDir;
-      if (!fs.exists(target)) throw new Error(`The app is not installed at ${target}`);
+      const target = payload ? PAYLOAD_ELF : image ?? installDir;
+      if (!payload && !fs.exists(target)) throw new Error(`The app is not installed at ${target}`);
       await cleaning;
       await tidy();
       fs.mkdir(workDir, { recursive: true });
@@ -198,14 +223,15 @@ import { formatBytes } from './size.js';
         if (image) ensureRoomForImage(update);
         extracted = await fetchRelease(update, onProgress);
         if (image) replaceImage(extracted, update);
+        else if (payload) replacePayload(extracted, update);
       } catch (error2) {
         log(`v${update.version} failed: ${error2.message}`);
         await tidy();
         throw error2;
       }
-      if (image) {
+      if (image || payload) {
         await tidy();
-        return { relaunch: false };
+        return { relaunch: false, payload: payload ? PAYLOAD_ELF : null };
       }
       const staged = contentOf(extracted);
       const pace = pacer(CHANGES_PER_FRAME);

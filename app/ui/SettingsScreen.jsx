@@ -3,12 +3,13 @@
 
 import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { chooseLanguage, languageChoice, systemLocale, useT } from '../i18n/index.js';
 import { formatPercent2 } from '../i18n/core.js';
 import { LOCALES } from '../i18n/locales.js';
 import { exportBackup } from '../state/backup.js';
 import { storageRoots } from '../state/downloads.js';
+import { installModeKey } from '../state/update.js';
 import { replaceRecent, useRecent } from '../state/recent.js';
 import { replaceSearches, useSearchHistory } from '../search/history.js';
 import { useStoreActions, useWishlist } from '../state/store.jsx';
@@ -170,6 +171,16 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
     const [category, setCategory] = (0, useState)("general");
     const [status, setStatus] = (0, useState)(null);
     const [view, setView] = (0, useState)("settings");
+    const [mode, setMode] = (0, useState)(null);
+    (0, useEffect)(() => {
+      let alive = true;
+      installModeKey().then((key) => {
+        if (alive) setMode(key);
+      }).catch(() => {});
+      return () => {
+        alive = false;
+      };
+    }, []);
     const wishlist = useWishlist();
     const recent = useRecent();
     const searches = useSearchHistory();
@@ -225,6 +236,10 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
     ] });
     const data = /* @__PURE__ */ (0, jsxs)(motion.View, { variants: listAnim, initial: "hidden", animate: "shown", style: { gap: 4 }, children: [
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SectionLabel, { icon: "hardDrive", title: t2("settings.data"), detail: t2("settings.dataDetail") }) }),
+      mode ? /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 18, paddingVertical: 10 }, children: [
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 600, color: colors.muted }, children: t2("settings.mode") }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "JetBrainsMono-Regular", fontSize: 19, color: colors.accent, fontWeight: 600 }, children: t2(mode) })
+      ] }) }) : null,
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(StatusRow, { status }) }),
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(FlatRow, { focusKey: "settings:export", onPress: exportNow, children: /* @__PURE__ */ (0, jsx)(LanguageFace, { name: t2("backup.export"), detail: t2("backup.exportDetail"), checked: false }) }) }),
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(FlatRow, { focusKey: "settings:import", onPress: () => {

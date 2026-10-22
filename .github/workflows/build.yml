@@ -90,7 +90,12 @@ jobs:
 
       - name: Build
         working-directory: ps5-react
-        run: python3 tools/build_ps5.py --app-dir "$APP_DIR" --llvm /usr/bin
+        run: |
+          python3 tools/build_ps5.py --app-dir "$APP_DIR" --llvm /usr/bin
+          # The same linked ELF, before it is SELF-signed into eboot.bin, shipped raw so
+          # the store can also run as a payload (elfldr/etaHEN on port 9021).
+          cp .build/app/ps5/eboot.elf "$GITHUB_WORKSPACE/PadrinoStore.elf"
+          ls -l "$GITHUB_WORKSPACE/PadrinoStore.elf"
 
       - name: Package
         run: |
@@ -101,9 +106,14 @@ jobs:
           # update-app.zip: the full app folder, for a folder install (data/homebrew/PPSA99059).
           # The updater extracts it over the install dir with backup + rollback.
           (cd ps5-react/dist && zip -q -X -r "$GITHUB_WORKSPACE/update-app.zip" PPSA99059)
+          # update-elf.zip: the payload ELF alone at the root, for a payload run. The
+          # updater writes it to /data/ps5-react/PPSA99059/PadrinoStore.elf; the user
+          # reloads the payload. PadrinoStore.elf stays loose for a manual download.
+          zip -q -X -j update-elf.zip PadrinoStore.elf
           unzip -l update.zip
           unzip -l update-app.zip | head -20
-          ls -l PadrinoStore.exfat update.zip update-app.zip ps5-react/dist/
+          unzip -l update-elf.zip
+          ls -l PadrinoStore.exfat update.zip update-app.zip PadrinoStore.elf update-elf.zip ps5-react/dist/
 
       - name: Upload
         uses: actions/upload-artifact@v4
@@ -113,22 +123,28 @@ jobs:
             PadrinoStore.exfat
             update.zip
             update-app.zip
+            PadrinoStore.elf
+            update-elf.zip
             ps5-react/dist/PPSA99059.receipt.json
           if-no-files-found: error
 
       - name: Publish the release
         # The tag is stamped from the run number, so it is always greater than what a console has
         # already installed, and the feed (releases/latest) always points here. update.zip is the
-        # asset for an image install; update-app.zip is the asset for a folder install.
-        # Release body = CHANGELOG.md section for the upcoming release (in-app "what's new" list).
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        # asset for an image install; update-app.zip is the asset for a folder install;
+        # update-elf.zip is the asset for a payload run (PadrinoStore.elf is also attached loose
+        # for a manual download). Release body = CHANGELOG.md section for the upcoming release
+        # (in-app "what's new" list). Only a push to main publishes: a workflow_dispatch run on a
+        # test branch builds the same artifacts and stops there, so an update can be tried on a
+        # console before anyone else receives it.
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           run=${{ github.run_number }}
           sha=$(echo "$GITHUB_SHA" | cut -c1-7)
           tag="v1.$run"
-          assets="PadrinoStore.exfat update.zip update-app.zip"
+          assets="PadrinoStore.exfat update.zip update-app.zip PadrinoStore.elf update-elf.zip"
           # Body: everything under "## Próxima release" until "## Archivo", else the file, else a one-liner.
           notes_file="$RUNNER_TEMP/release-notes.md"
           if [ -f CHANGELOG.md ]; then
