@@ -131,23 +131,22 @@ Elegí el método según cómo quieras instalar:
 </details>
 
 <details>
-<summary><b>Método C — Payload .elf (elfldr / etaHEN)</b></summary>
+<summary><b>Método C — Launcher .elf (elfldr / etaHEN)</b></summary>
 
 <br>
 
-1. **Descargá `PadrinoStore.elf`** desde la
+1. **Instalá la tienda antes**, con el Método A (imagen) o B (carpeta). El launcher no
+   reemplaza la instalación: solo la arranca más rápido.
+
+2. **Descargá `PadrinoStore-launcher.elf`** desde la
    [última release](https://github.com/B4ckd0orl/Padrino-Store/releases/latest).
 
-2. **Cargalo con tu exploit o loader de payloads** (puerto 9021), igual que cualquier
-   otro `.elf`. Arranca directo, sin instalar nada.
-
-3. Lo único que necesita red: la tienda la usa para los catálogos y las descargas.
+3. **Cargalo con tu exploit o loader de payloads** (puerto 9021). La tienda arranca
+   directo, sin pasar por el menú de la consola.
 
 > [!NOTE]
-> En modo payload los datos (wishlist, descargas, backups) se guardan en
-> `/data/ps5-react/PPSA99059/`. Las actualizaciones se descargan ahí mismo como
-> `PadrinoStore.elf`: cuando el diálogo te avise, volvé a enviar ese archivo desde
-> tu loader para aplicar la versión nueva.
+> Si tu loader muestra el log del payload verás `padrino: store launched`. Si la tienda
+> no está instalada, dirá `launch failed` y tendrás que usar el Método A o B primero.
 
 </details>
 
@@ -163,8 +162,7 @@ segundos después de arrancar:
 3. Se cierra sola. Volvé a abrirla y ya estás en la nueva.
 
 Funciona igual para instalación por imagen y por carpeta. Necesita unos **600 MB libres**
-en el disco donde está instalada. En modo payload la app se cierra al terminar: volvé a
-enviar el `.elf` desde tu loader para entrar en la versión nueva.
+en el disco donde está instalada.
 
 ---
 

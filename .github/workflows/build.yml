@@ -92,10 +92,12 @@ jobs:
         working-directory: ps5-react
         run: |
           python3 tools/build_ps5.py --app-dir "$APP_DIR" --llvm /usr/bin
-          # The same linked ELF, before it is SELF-signed into eboot.bin, shipped raw so
-          # the store can also run as a payload (elfldr/etaHEN on port 9021).
+          # The linked ELF before it is SELF-signed into eboot.bin, kept for reference next to
+          # the launcher payload below; the console cannot run this file directly.
           cp .build/app/ps5/eboot.elf "$GITHUB_WORKSPACE/PadrinoStore.elf"
-          ls -l "$GITHUB_WORKSPACE/PadrinoStore.elf"
+          # The launcher payload: opens an installed store from the payload loader (9021).
+          cp .build/app/ps5/padrino-launcher.elf "$GITHUB_WORKSPACE/PadrinoStore-launcher.elf"
+          ls -l "$GITHUB_WORKSPACE/PadrinoStore.elf" "$GITHUB_WORKSPACE/PadrinoStore-launcher.elf"
 
       - name: Package
         run: |
@@ -125,6 +127,7 @@ jobs:
             update-app.zip
             PadrinoStore.elf
             update-elf.zip
+            PadrinoStore-launcher.elf
             ps5-react/dist/PPSA99059.receipt.json
           if-no-files-found: error
 
@@ -133,7 +136,8 @@ jobs:
         # already installed, and the feed (releases/latest) always points here. update.zip is the
         # asset for an image install; update-app.zip is the asset for a folder install;
         # update-elf.zip is the asset for a payload run (PadrinoStore.elf is also attached loose
-        # for a manual download). Release body = CHANGELOG.md section for the upcoming release
+        # for a manual download); PadrinoStore-launcher.elf opens an installed store from the
+        # payload loader. Release body = CHANGELOG.md section for the upcoming release
         # (in-app "what's new" list). Only a push to main publishes: a workflow_dispatch run on a
         # test branch builds the same artifacts and stops there, so an update can be tried on a
         # console before anyone else receives it.
@@ -144,7 +148,7 @@ jobs:
           run=${{ github.run_number }}
           sha=$(echo "$GITHUB_SHA" | cut -c1-7)
           tag="v1.$run"
-          assets="PadrinoStore.exfat update.zip update-app.zip PadrinoStore.elf update-elf.zip"
+          assets="PadrinoStore.exfat update.zip update-app.zip PadrinoStore.elf update-elf.zip PadrinoStore-launcher.elf"
           # Body: everything under "## Próxima release" until "## Archivo", else the file, else a one-liner.
           notes_file="$RUNNER_TEMP/release-notes.md"
           if [ -f CHANGELOG.md ]; then

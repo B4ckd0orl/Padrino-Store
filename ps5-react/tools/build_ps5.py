@@ -253,6 +253,12 @@ def main():
     run([sdk / "bin/prospero-clang", "-std=gnu11", "-O2", "-Wall", "-Wextra", "-Werror", "-o", relauncher,
          ROOT / "native/ps5/payloads/relauncher.c", "-lSceUserService", "-lSceSystemService"],
         env=env, log=BUILD / "relauncher.log")
+    # Opens the store from the payload loader on a console where it is installed; shipped loose
+    # as PadrinoStore-launcher.elf so a loader can start the store without the home screen.
+    launcher = BUILD / "padrino-launcher.elf"
+    run([sdk / "bin/prospero-clang", "-std=gnu11", "-O2", "-Wall", "-Wextra", "-Werror", "-o", launcher,
+         ROOT / "native/ps5/payloads/launcher.c", "-lSceUserService", "-lSceSystemService"],
+        env=env, log=BUILD / "padrino-launcher.log")
     capture = BUILD / "browser-capture.elf"
     browser = ROOT / "native/ps5/payloads/browser"
     run([sdk / "bin/prospero-clang", "-std=gnu11", "-O2", "-Wall", "-Wextra", "-Werror", "-o", capture,
@@ -270,6 +276,7 @@ def main():
     shutil.copy2(installer, app / "pkg-installer.elf")
     run([sdk / "bin/prospero-strip", "-o", app / "rar-extract.elf", rar_extract], env=env)
     shutil.copy2(relauncher, app / "relauncher.elf")
+    shutil.copy2(launcher, app / "padrino-launcher.elf")
     shutil.copy2(capture, app / "browser-capture.elf")
     param = json.loads((hui / "sce_sys/param.json").read_text())
     if refresh_rate_mask(config) & 2:
