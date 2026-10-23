@@ -101,8 +101,9 @@ import { sourceKind, webURL } from './download-sources.js';
     }
     const etag = response.headers?.etag;
     const lastModified = response.headers?.["last-modified"];
-    // No Date.parse either: a present, non-trivial header is the stability check.
-    if (!/^"[^"\x00-\x20\x7f]*"$/.test(etag || "") && !(typeof lastModified === "string" && lastModified.length > 8))
+    // A last-modified that does not parse as a date is not one: the identity check needs a real
+    // value, not just a header of any length.
+    if (!/^"[^"\x00-\x20\x7f]*"$/.test(etag || "") && !(typeof lastModified === "string" && Number.isFinite(Date.parse(lastModified))))
       throw new Error("Captured file has no stable identity. Reopen the page and retry.");
     return { url, expectedBytes: bytes };
   }

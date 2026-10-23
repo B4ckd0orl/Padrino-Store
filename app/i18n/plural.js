@@ -1,6 +1,6 @@
 // ../pub-game-store/native/i18n/plural.js
 // reconstructed from the esbuild bundle in eboot.bin
-// MODIFIED: Italian plural rule.
+// MODIFIED: Italian and European Portuguese plural rules.
 
 
   function operands(n) {
@@ -20,6 +20,8 @@
     it: (o) => o.i === 1 && o.v === 0 ? "one" : millions(o) ? "many" : "other",
     fr: (o) => o.i === 0 || o.i === 1 ? "one" : millions(o) ? "many" : "other",
     "pt-BR": (o) => o.i === 0 || o.i === 1 ? "one" : millions(o) ? "many" : "other",
+    // Unlike Brazil's, Portugal's "one" is 1 alone: "0 jogos".
+    "pt-PT": (o) => o.i === 1 && o.v === 0 ? "one" : millions(o) ? "many" : "other",
     ru: ({ i, v }) => {
       if (v !== 0) return "other";
       const mod10 = i % 10, mod100 = i % 100;
@@ -37,6 +39,7 @@
       return "other";
     },
     "zh-Hans": () => "other",
+    "zh-Hant": () => "other",
     ja: () => "other",
     id: () => "other"
   };

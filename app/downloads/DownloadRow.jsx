@@ -25,6 +25,14 @@ import { Text, View } from '@ps5-react/core';
   var PRIMARY = { width: 210 };
   var ARM_MS = 3e3;
   var primaryKey = (id) => `downloads:${id}`;
+  var FILE_KIND = /\.(exfat|ffpfsc|ffpfs|ffpkg|fpkg|pkg|rar|7z|zip)$/i;
+  function shownFormat(job2, release) {
+    const format = job2.artifact?.format || release.format;
+    if (format && format !== "binary") return format;
+    // Else what the archive's headers said while downloading, the name of the file itself, or
+    // the format the link and label name.
+    return job2.inspected || FILE_KIND.exec(job2.fileName || "")?.[1] || inferFormat(release) || format || null;
+  }
   function primary({ state, error: error2 }, run, openGame) {
     if (state === "pausing") return { icon: "pause", label: "downloads.action.pausing", onPress: () => {
     } };
@@ -91,12 +99,11 @@ import { Text, View } from '@ps5-react/core';
     const onFocus = () => onFocusRow(job2);
     // This line shares 285 px with the host and the path, so it stays the bare code: whatever the
     // bytes already revealed, else the format the link itself names.
-    const detected = job2.artifact?.format && job2.artifact.format !== "binary" ? job2.artifact.format : inferFormat(release);
-    const meta = [formatLabel(detected), `${release.provider} ${release.version || ""}`.trim(), job2.root].join(" \xB7 ");
+    const meta = [formatLabel(shownFormat(job2, release)), `${release.provider} ${release.version || ""}`.trim(), job2.root].join(" \xB7 ");
     const problem = job2.error && explainError(job2.error, Boolean(release.parts));
     // The files' own title id differs from the game chosen: said before anything else but an error.
     const mismatch = job2.titleMismatch ? t2("downloads.titleMismatch", { found: job2.titleMismatch, expected: job2.titleId }) : "";
-    const note = problem ? problem.action ? t2("downloads.problem", { title: problem.title, action: problem.action }) : problem.title : mismatch || (state === "downloaded" ? job2.message || t2("downloads.installHint") : "");
+    const note = problem ? problem.action ? t2("downloads.problem", { title: problem.title, action: problem.action }) : problem.title : mismatch || (state === "downloaded" ? job2.message || t2("downloads.installHint") : state === "extracted" ? job2.message || "" : "");
     const cdn = isOverdriveCdn(release.provider);
     const busy = BUSY.includes(state);
     return /* @__PURE__ */ (0, jsxs)(
@@ -122,7 +129,10 @@ import { Text, View } from '@ps5-react/core';
                   id: job2.id,
                   label: stateLabel(shown),
                   moving: busy && state !== "pausing",
-                  waiting: WAITING.includes(shown),
+                  // An extraction of unknown length has nothing to count: the bar shows full until
+                  // the total arrives.
+                  waiting: WAITING.includes(shown) || (shown === "extracting" && !job2.total),
+                  open: shown === "extracting" && !job2.total,
                   complete,
                   detail: shown === "finishing" ? t2("downloads.writingToDisk") : null
                 }

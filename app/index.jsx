@@ -12,6 +12,7 @@ import { HomebrewGame, HomebrewScreen } from './homebrew/HomebrewScreen.jsx';
 import { LocaleProvider, useLocale } from './i18n/index.js';
 import { SearchScreen } from './search/index.jsx';
 import { NO_FILTERS, getGame, warmCovers } from './state/catalog.js';
+import { fetchUpdate } from './state/catalog-update.js';
 import { isHomebrewId } from './state/homebrew.js';
 import { loadList, saveList } from './state/saved.js';
 import { NavProvider, useIsImmersive, useNavActions, useNavState } from './state/nav.jsx';
@@ -60,12 +61,19 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
     return /* @__PURE__ */ (0, jsx)(View, { style: [{ position: "absolute", top: 0, bottom: 60, ...side }, shown ? null : { display: "none" }], children: /* @__PURE__ */ (0, jsx)(ReleaseImages, { when: !shown, children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "homebrew-page", inert: !shown, children: /* @__PURE__ */ (0, jsx)(HomebrewScreen, { onBack: pop }) }) }) });
   }
   var WARM_DELAY_MS = 3e3;
+  var UPDATE_DELAY_MS = 2e4;
   function App() {
     useInterfaceSounds();
     useInterfaceHaptics();
     (0, useEffect)(() => {
       const id = setTimeout(warmCovers, WARM_DELAY_MS);
-      return () => clearTimeout(id);
+      // The catalog's update for the next launch, read once the app has settled: no list changes
+      // under the player.
+      const update = setTimeout(fetchUpdate, UPDATE_DELAY_MS);
+      return () => {
+        clearTimeout(id);
+        clearTimeout(update);
+      };
     }, []);
     const { stack, top } = useNavState();
     const onBrowse = top.name === "browse";

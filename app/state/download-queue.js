@@ -116,7 +116,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     http,
     formats,
     dataDir,
-    stateDir: stateDir2 = `${dataDir}/overdrive`,
+    stateDir: stateDir2 = `${dataDir}/padrino-store`,
     platform,
     notifications,
     power,
@@ -128,8 +128,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     browserCapture,
     wait = (ms) => new Promise((resolve2) => setTimeout(resolve2, ms))
   }) {
+    // An older build kept the queue under dataDir/overdrive; its file is still read once and moved.
     const legacy = `${dataDir}/overdrive/downloads.json`;
-    const directory = stateDir2 === `${dataDir}/overdrive` || durable(fs, stateDir2) ? stateDir2 : `${dataDir}/overdrive`;
+    const directory = stateDir2 === `${dataDir}/padrino-store` || durable(fs, stateDir2) ? stateDir2 : `${dataDir}/padrino-store`;
     const file = `${directory}/downloads.json`;
     const listeners4 = /* @__PURE__ */ new Set();
     sources ?? (sources = createSourceResolver({ http }));
@@ -1063,13 +1064,23 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       active2 = { job: job2, task: null };
       void execute(job2);
     }
+    // A drive is the id in its downloads/.drive-id, written the first time a download uses it: the
+    // root's device:inode changes with every boot on a USB drive, the file stays.
     function storageIdentity(job2) {
       const info = fs.stat(job2.root);
       if (!info?.isDirectory) throw new Error("Storage disconnected. Reconnect the selected drive.");
-      if (typeof info.device !== "string" || typeof info.inode !== "string") throw new Error("Storage identity is unavailable. Update the runtime.");
-      const identity = `${info.device}:${info.inode}`;
+      const file = `${job2.root}/downloads/.drive-id`;
+      let identity = fs.exists(file) ? String(fs.readFile(file)).trim() : "";
+      const named = job2.rootIdentity?.startsWith("drive:");
+      if (!identity) {
+        if (named && job2.root !== "/data") throw new Error("Storage changed. Reconnect the original drive.");
+        identity = `drive:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 10)}`;
+        fs.mkdir(`${job2.root}/downloads`, { recursive: true });
+        fs.writeFile(file, identity, { sync: true });
+      }
       if (job2.rootIdentity && job2.rootIdentity !== identity) {
-        if (job2.root !== "/data") throw new Error("Storage changed. Reconnect the original drive.");
+        // A task from before the id file holds device:inode instead; its partial files still on this drive vouch for it.
+        if (job2.root !== "/data" && (named || lostPartial(job2))) throw new Error("Storage changed. Reconnect the original drive.");
         job2.rootIdentity = identity;
       }
       return identity;

@@ -16,14 +16,14 @@ import { Text, View } from '@ps5-react/core';
 
   var TRACK2 = 416;
   var LABEL = { fontFamily: "Inter-Regular", fontSize: 21, lineHeight: 30 };
-  function RowProgress({ id, label, moving, waiting: waiting2, complete, detail: detail2 }) {
+  function RowProgress({ id, label, moving, waiting: waiting2, complete, open, detail: detail2 }) {
     const t2 = useT();
     const progress = useProgress(id);
     const { written = 0, total = null, bytesPerSecond = 0 } = progress ?? {};
     const left = moving && total && bytesPerSecond ? formatTimeLeft((total - written) / bytesPerSecond) : "";
     const size = detail2 ?? (complete ? formatBytes(total || written) : total ? t2("download.status.progress", { done: formatBytes(written), total: formatBytes(total) }) : written ? t2("download.soFar", { size: formatBytes(written) }) : "");
     return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 10 }, children: [
-      /* @__PURE__ */ (0, jsx)(ProgressBar, { fraction: complete ? 1 : fractionOf(progress), width: TRACK2, active: moving || complete }),
+      /* @__PURE__ */ (0, jsx)(ProgressBar, { fraction: complete || open ? 1 : fractionOf(progress), width: TRACK2, active: (moving && !open) || complete }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" }, children: [
         waiting2 ? /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1 }, children: /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: LABEL, background: colors.surface, children: label }) }) : /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, flexDirection: "row", alignItems: "center", gap: 10 }, children: [
           moving ? /* @__PURE__ */ (0, jsx)(View, { style: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.accent } }) : null,

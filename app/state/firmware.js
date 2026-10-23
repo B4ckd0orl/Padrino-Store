@@ -29,7 +29,9 @@ import { DeviceInfo } from '@ps5-react/core';
     const [major, minor] = version, [lastMajor, lastMinor] = LAST_PKG_FIRMWARE;
     return major < lastMajor || major === lastMajor && minor <= lastMinor;
   }
-  var isPackage = (release) => PKG_FORMATS.has(release.format);
+  // A source of unknown format whose label says "PKG" or "Fpkg" is one too (233 sources in the
+  // catalog list a pkg that way; RE Requiem's Fpkg installs only up to 11.60).
+  var isPackage = (release) => PKG_FORMATS.has(release.format) || release.format === "binary" && /\bf?pkg\b/i.test(release.label || "");
   // PS4 fake PKGs install on the PS5's later firmware too; the 11.60 limit is for PS5 ones.
   // The title ID tells them apart; the filename starts with it too.
   var isPs5Title = (titleId) => /^PPSA/i.test(titleId || "");

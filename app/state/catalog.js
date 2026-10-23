@@ -4,6 +4,7 @@
 import { features, games, twins } from '../data/catalog.js';
 import { HIDDEN } from '../data/curate.js';
 import { formatDate2, formatNumber2, t } from '../i18n/core.js';
+import { applyUpdate, loadUpdate } from './catalog-update.js';
 import { createPageCache } from './page-cache.js';
 import { createReleaseCache } from './release-cache.js';
 import { getHomebrew, homebrewApps, relatedHomebrew } from './homebrew.js';
@@ -12,8 +13,25 @@ import { FileSystem, Image } from '@ps5-react/core';
 
   var COVER_WIDTH = 440;
   var coverSize = (url) => url.startsWith("https://image.api.playstation.com/") ? url.replace(/([?&]w=)\d+/, `$1${COVER_WIDTH}`) : url;
-  var releaseCache = createReleaseCache((path) => FileSystem.readFile(`/app0/${path}`));
-  var pageCache = createPageCache((path) => FileSystem.readFile(`/app0/${path}`));
+  // An update kept by the last launch applies here, before anything is made of the lists; one that
+  // fails a check leaves the build's own catalog.
+  var updated = (() => {
+    try {
+      const update = loadUpdate();
+      return update ? applyUpdate(update, games, twins) : /* @__PURE__ */ new Map();
+    } catch (error2) {
+      console.log(`[catalog-update] not applied: ${error2.message}`);
+      return /* @__PURE__ */ new Map();
+    }
+  })();
+  var dataFileText = (path) => {
+    if (!updated.has(path)) return FileSystem.readFile(`/app0/${path}`);
+    const text = updated.get(path);
+    if (text === null) throw new Error("removed by the catalog update");
+    return text;
+  };
+  var releaseCache = createReleaseCache(dataFileText);
+  var pageCache = createPageCache(dataFileText);
   var NO_PAGE = { about: [], shots: [], summary: "" };
   var hiddenIds = new Set(HIDDEN);
   var isHidden = (game) => hiddenIds.has(game.id);
@@ -23,7 +41,11 @@ import { FileSystem, Image } from '@ps5-react/core';
     "Role-playing": "RPG",
     Simulator: "Simulation",
     "Driving/Racing": "Racing",
-    Sports: "Sport"
+    Sports: "Sport",
+    // Genres of a handful of games each, one card under the clearer name.
+    "Brain Training": "Educational",
+    Quiz: "Educational",
+    "Board Game": "Educational"
   };
   var dataFile = (dir2, id) => `data/${dir2}/${encodeURIComponent(id)}.json`;
   var pageOf = (game) => {
@@ -54,16 +76,22 @@ import { FileSystem, Image } from '@ps5-react/core';
       return this.id;
     }
   };
-  // paused-hosts: oculta solo los juegos con providers POBLADOS cuyos hosts están todos en pausa
-  // (el usuario no podría descargarlos en la app). providers vacío/ausente = las fuentes viven en
-  // el archivo de release (data/releases/*.json), patrón de los PS4 en este catálogo; esos juegos se
-  // conservan visibles y release-cache ya filtra las fuentes pausadas una a una al leer el release.
+  // paused-hosts: un juego con providers POBLADOS cuyos hosts están todos en pausa no se ofrece;
+  // providers vacío/ausente = las fuentes viven en data/releases/*.json (patrón PS4), y ese
+  // archivo decide. Un juego sin fuente viva en ninguno de los dos lados (los links muertos del
+  // catálogo) se oculta de las listas; un work con otra edición jugable se conserva (su botón la
+  // ofrece).
   var playable = (game) => game.providers?.length > 0 && !game.providers.every(pausedFilter);
-  // Un juego cuyo único edition está en pausa se queda cuando otro de sus editions sí se puede
-  // descargar, que su botón de descarga ofrece (2026-10-21: los twins PS5 de juegos PS4 cuyo
-  // único host está pausado); un edition sin fuente nunca se ofrece.
   var playableWorks = new Set([...games, ...twins].filter((game) => playable(game) && game.work != null).map((game) => game.work));
-  var hidden = (game) => game.providers?.length > 0 && !playable(game) && !playableWorks.has(game.work);
+  var liveRelease = (game) => {
+    try {
+      const live = (source) => !source.unavailableReason && (source.url || source.browserUrl);
+      return releaseCache(dataFile("releases", game.id)).some((release) => live(release) || release.parts?.some((part) => part.sources?.some(live)));
+    } catch {
+      return false;
+    }
+  };
+  var hidden = (game) => !playable(game) && !playableWorks.has(game.work) && !liveRelease(game);
   for (const list of [games, twins])
     for (let index = list.length - 1; index >= 0; index--)
       if (hidden(list[index])) list.splice(index, 1);
