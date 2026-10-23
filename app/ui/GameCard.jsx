@@ -21,7 +21,9 @@ import { Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
 
   var focusMotion = { type: "tween", duration: 0.3, ease: EASE_OUT };
   var CAPTION = 54;
-  var DETAILED_CAPTION = 96;
+  // Matches Details' rendered height (15 + 24 + 6 + 60 + 9 + 30 = 144); with 96 every row
+  // bled 48px past its itemHeight and ate into the next row's gap.
+  var DETAILED_CAPTION = 144;
   var press = { scale: 0.95 };
   var rest = { y: 0 };
   var lift = { y: -6 };

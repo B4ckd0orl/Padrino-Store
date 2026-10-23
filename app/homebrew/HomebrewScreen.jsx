@@ -16,9 +16,11 @@ import { DETAILED_CAPTION, GameCard, useFavoriteAction } from '../ui/GameCard.js
 import { Spinner } from '../ui/Spinner.jsx';
 import { FocusScope, ScrollView, Text, View, VirtualList, useIsFocused } from '@ps5-react/core';
 
-  var COLUMNS = 6;
-  var CARD_WIDTH = 182;
-  var CARD_HEIGHT = 243 + DETAILED_CAPTION;
+  // 5 × 196 + 4 × 24 = 1076 ≤ 1096 (1280 − sidebar 88 − padding 96): the 6-column grid
+  // of 182px cards needed 1212px and spilled past the right margin.
+  var COLUMNS = 5;
+  var CARD_WIDTH = 196;
+  var CARD_HEIGHT = 261 + DETAILED_CAPTION;
   var TITLE = { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f2f2f3", lineHeight: 42, letterSpacing: -0.75 };
   var NOTE = { fontFamily: "Inter-Regular", fontSize: 21, color: "#a3a3ab", lineHeight: 30 };
   var SOURCE = "prosperostore.net";
