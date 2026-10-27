@@ -1,6 +1,6 @@
 // ../pub-game-store/native/i18n/plural.js
 // reconstructed from the esbuild bundle in eboot.bin
-// MODIFIED: Italian and European Portuguese plural rules.
+// MODIFIED: Italian, European Portuguese and Polish plural rules.
 
 
   function operands(n) {
@@ -28,6 +28,13 @@
       if (mod10 === 1 && mod100 !== 11) return "one";
       if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return "few";
       return "many";
+    },
+    // Polish counts like Russian, with "one" for 1 alone: "1 gra", "2 gry", "5 gier", "0 gier".
+    pl: ({ i, v }) => {
+      if (v !== 0) return "other";
+      if (i === 1) return "one";
+      const mod10 = i % 10, mod100 = i % 100;
+      return mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14) ? "few" : "many";
     },
     ar: ({ n }) => {
       const mod100 = n % 100;

@@ -1,6 +1,6 @@
 // ../pub-game-store/native/i18n/locales.js
 // reconstructed from the esbuild bundle in eboot.bin
-// MODIFIED: Italian, traditional Chinese, European Portuguese, Dutch.
+// MODIFIED: Italian, traditional Chinese, European Portuguese, Dutch, Polish.
 
 
   var NBSP = "\xA0";
@@ -190,6 +190,16 @@
       date: "{d} {MMM} {y}",
       months: ["Jan", "Feb", "Mrt", "Apr", "Mei", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
       list: [", ", ", en ", " en "]
+    },
+    {
+      code: "pl",
+      name: "Polski",
+      group: NBSP,
+      decimal: ",",
+      percent: "{n}%",
+      date: "{d} {MMM} {y}",
+      months: ["sty", "lut", "mar", "kwi", "maj", "cze", "lip", "sie", "wrz", "paź", "lis", "gru"],
+      list: [", ", " i ", " i "]
     },
   ];
   var byCode = new Map(LOCALES.map((locale2) => [locale2.code, locale2]));

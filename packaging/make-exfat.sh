@@ -3,56 +3,111 @@
 #
 # The app's files sit at the root of the image (/eboot.bin, /sce_module/,
 # /sce_sys/, /data/...), which is how the released Padrino Store image is laid out.
-# Needs root: it mounts the image to copy into it.
+# Needs root: it mounts the image to copy into it. --size-only prints the size
+# the image would get and needs neither root nor mkfs.exfat.
 #
-# usage: make-exfat.sh <app-folder> <out.exfat> [label] [cluster-size]
+# The cluster size decides the image's size. This app ships about eight thousand
+# files of a few KB each (the catalog's JSON) and every file takes a whole
+# cluster, so 64K clusters cost ~530 MB where 8K clusters cost ~90 MB. ShadowMount+
+# refuses only a cluster smaller than the device's sector (512 bytes) and mounts
+# 4K through 128K alike; its recommendation of 64K is for images of big files,
+# which this one is not. 8K is the default here.
+#
+# usage: make-exfat.sh <app-folder> <out.exfat> [label] [cluster-size] [--size-only]
+#        EXFAT_SLACK_MB overrides the slack (default 32).
 set -euo pipefail
+
+size_only=0
+args=()
+for arg in "$@"; do
+    case "$arg" in
+        --size-only) size_only=1 ;;
+        *) args+=("$arg") ;;
+    esac
+done
+if [ "${#args[@]}" -gt 0 ]; then set -- "${args[@]}"; else set --; fi
 
 app="${1:-}"
 out="${2:-}"
 label="${3:-PADRINO}"
-cluster="${4:-64K}"
+cluster="${4:-8K}"
+slack_mb="${EXFAT_SLACK_MB:-32}"
 
 if [ -z "$app" ] || [ -z "$out" ]; then
-    echo "usage: $0 <app-folder> <out.exfat> [label] [cluster-size]" >&2
+    echo "usage: $0 <app-folder> <out.exfat> [label] [cluster-size] [--size-only]" >&2
     exit 2
 fi
 [ -d "$app" ] || { echo "error: no such app folder: $app" >&2; exit 1; }
 [ -f "$app/eboot.bin" ] || { echo "error: $app has no eboot.bin, it is not a built PS5 app" >&2; exit 1; }
-[ "$(id -u)" = 0 ] || { echo "error: needs root to mount the image, run it with sudo" >&2; exit 1; }
-command -v mkfs.exfat >/dev/null || { echo "error: mkfs.exfat not found, install exfatprogs" >&2; exit 1; }
+
+# A cluster size this script does not know is an error: the old fallback formatted with
+# mkfs's default instead, which quietly made the image four to eight times bigger.
+case "$cluster" in
+    4K|4k) cluster_bytes=4096 ;;
+    8K|8k) cluster_bytes=8192 ;;
+    16K|16k) cluster_bytes=16384 ;;
+    32K|32k) cluster_bytes=32768 ;;
+    64K|64k) cluster_bytes=65536 ;;
+    128K|128k) cluster_bytes=131072 ;;
+    *) echo "error: cluster size must be 4K, 8K, 16K, 32K, 64K or 128K, not $cluster" >&2; exit 2 ;;
+esac
 
 # Size the image from what exFAT actually consumes. Every file takes whole
 # clusters, and this app ships thousands of small JSON files, so the payload's
-# apparent size underestimates the volume by an order of magnitude: 14.7 MB of
-# catalog JSON needs 285 MB of 64 KiB clusters. Asking `du` for a block size
-# does not emulate that (it scales the host filesystem's own usage), hence the
-# count here. The slack covers the FAT, the upcase table and the directories.
-slack=$(( 128 * 1024 * 1024 ))
-case "$cluster" in
-    32K|32k) cluster_bytes=32768 ;;
-    128K|128k) cluster_bytes=131072 ;;
-    *) cluster_bytes=65536 ;;
-esac
-clusters=$(find "$app" -type f -printf '%s\n' |
-    awk -v c="$cluster_bytes" '{ n += int(($1 + c - 1) / c) } END { print n + 0 }')
+# apparent size underestimates the volume: 42 MB of app files need ~90 MB of
+# 8 KiB clusters. Asking `du` for a block size does not emulate that (it scales
+# the host filesystem's own usage), hence the count here. The slack covers the
+# FAT, the upcase table and the directories, and is what the console will have
+# free inside the image.
+read -r files bytes clusters < <(find "$app" -type f -printf '%s\n' |
+    awk -v c="$cluster_bytes" '{ n++; b += $1; k += int(($1 + c - 1) / c) } END { print n + 0, b + 0, k + 0 }')
 directories=$(find "$app" -type d | wc -l)
 payload=$(( (clusters + directories) * cluster_bytes ))
+slack=$(( slack_mb * 1024 * 1024 ))
 size=$(( (payload + slack + 1048575) / 1048576 * 1048576 ))
+
+mib() { awk -v b="$1" 'BEGIN { printf "%.1f MiB", b / 1048576 }'; }
+
+echo "make-exfat: $app"
+echo "make-exfat: $files files, $directories directories, $(mib "$bytes") of data, cluster $cluster ($cluster_bytes bytes), slack ${slack_mb} MiB"
+echo "make-exfat: $clusters clusters of data (+ $directories directory clusters) = $(mib "$payload") of clusters"
+echo "make-exfat: image $out: $size bytes ($(mib "$size")), allocation $(awk -v u="$bytes" -v s="$size" 'BEGIN { printf "%.1f%%", 100 * u / s }') of it"
+
+if [ "$size_only" = 1 ]; then
+    echo "make-exfat: --size-only, nothing written"
+    exit 0
+fi
+
+[ "$(id -u)" = 0 ] || { echo "error: needs root to mount the image, run it with sudo" >&2; exit 1; }
+command -v mkfs.exfat >/dev/null || { echo "error: mkfs.exfat not found, install exfatprogs" >&2; exit 1; }
 
 mkdir -p "$(dirname "$out")"
 rm -f "$out"
 truncate -s "$size" "$out"
 
-# Not every exfatprogs takes a cluster size, and the default it would otherwise
-# pick is not the 64 KiB the released image uses.
-if mkfs.exfat -L "$label" -c "$cluster" "$out" >/dev/null 2>&1; then
-    echo "mkfs.exfat: label $label, cluster $cluster, $size bytes"
-else
+mkfs_out=$(mkfs.exfat -L "$label" -c "$cluster" "$out" 2>&1) || {
+    echo "error: mkfs.exfat refused -c $cluster:" >&2
+    printf '%s\n' "$mkfs_out" | sed 's/^/  /' >&2
     rm -f "$out"
-    truncate -s "$size" "$out"
-    mkfs.exfat -L "$label" "$out" >/dev/null
-    echo "mkfs.exfat: label $label (this exfatprogs refused -c $cluster), $size bytes"
+    echo "error: the image was deleted rather than formatted with a cluster size of mkfs's own choosing" >&2
+    exit 1
+}
+printf '%s\n' "$mkfs_out" | sed 's/^/mkfs.exfat: /'
+
+# The image's own answer rather than the argument's: in the boot sector, byte 109 is
+# log2(bytes per sector) and byte 110 is log2(sectors per cluster), so their sum is
+# log2(bytes per cluster). The label is bytes 96-106, UTF-16LE.
+read -r shift_sector shift_cluster < <(od -An -tu1 -j 109 -N 2 "$out")
+actual=$(( (1 << shift_sector) << shift_cluster ))
+image_label=$(od -An -tu1 -j 96 -N 22 "$out" | awk '{ for (i = 1; i <= NF; i += 2) if ($i) printf "%c", $i }')
+echo "make-exfat: boot sector says label $image_label, sector $((1 << shift_sector)) bytes, cluster $actual bytes"
+if [ "$actual" != "$cluster_bytes" ]; then
+    echo "error: the image came out with $actual-byte clusters, not $cluster_bytes" >&2
+    exit 1
+fi
+if [ "$image_label" != "$label" ]; then
+    echo "error: the image's label is $image_label, not $label" >&2
+    exit 1
 fi
 
 mnt=$(mktemp -d)
@@ -91,14 +146,46 @@ mount_image() {
     return 1
 }
 
+# What the volume reports of itself while it is mounted: the figure the console will
+# show inside the image, before and after the copy.
+report_volume() {
+    local name="$1" line total used free
+    line=$(df -B1 -P "$mnt" 2>/dev/null | tail -n 1 || true)
+    if [ -z "$line" ]; then
+        echo "make-exfat: $name: df reported nothing"
+        return 0
+    fi
+    read -r _ total used free _ <<<"$line"
+    echo "make-exfat: $name: $total bytes total, $used used, $free free ($(mib "$free") free)"
+}
+
 mount_image || { echo "error: could not mount $out, install exfat-fuse or a kernel with exfat" >&2; exit 1; }
 mounted=1
+report_volume "mounted, empty"
+
 cp -r "$app/." "$mnt/"
+sync
+report_volume "mounted, after the copy"
+
 src=$(find "$app" -type f | wc -l)
 dst=$(find "$mnt" -type f | wc -l)
 [ "$src" = "$dst" ] || { echo "error: wrote $dst files, the app has $src" >&2; exit 1; }
-sync
+echo "make-exfat: $dst files copied, the app has $src"
 umount "$mnt" || fusermount -u "$mnt"
 mounted=0
 
-echo "wrote $out ($(stat -c%s "$out") bytes)"
+# The finished image, read as a filesystem by itself: the mount above proves it can hold
+# the files, this proves the tables it wrote are consistent.
+if command -v fsck.exfat >/dev/null; then
+    if fsck_out=$(fsck.exfat -n "$out" 2>&1); then
+        echo "fsck.exfat: clean"
+    else
+        echo "error: fsck.exfat found problems in $out:" >&2
+        printf '%s\n' "$fsck_out" | sed 's/^/  /' >&2
+        exit 1
+    fi
+else
+    echo "fsck.exfat: not installed, the finished image was not checked"
+fi
+
+echo "wrote $out ($(stat -c%s "$out") bytes, $dst files)"
