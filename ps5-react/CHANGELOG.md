@@ -414,7 +414,7 @@
   two letters, like CJK, so a line could end mid-word (`गे|म`). A word wider
   than its line breaks between grapheme clusters and never inside a conjunct,
   and a truncated line keeps whole clusters. `tools/test_text.py` checks the
-  layouts of Overdrive's notes in each script against text-lab's fonts.
+  layouts of Padrino Store's notes in each script against text-lab's fonts.
 - Text, TextInput and nested-Text span strings are clipped at their 255- and
   63-byte limits on a character boundary (`er_utf8_clip`): a span could end in
   half a UTF-8 sequence, and a clipped string in a mark without its letter.
@@ -484,7 +484,7 @@
   before; 8 fixed took 246 s). Each failed range logs its status, headers and final URL.
 - Remote images load lazily: an element's image reaches the network after 120 ms mounted, and no
   request starts while a ScrollView moves or for 150 ms after (new internal `image.defer`). Holding
-  Down through Overdrive's grid for 3 s fetched 45 covers instead of 140 and decoded 69 instead of 167;
+  Down through Padrino Store's grid for 3 s fetched 45 covers instead of 140 and decoded 69 instead of 167;
   cached art still draws at once.
 - Image requests retry connection failures, timeouts and 429/502/503/504 four times, 0.5 to 4 s apart
   (was twice, 0.5 and 1 s), use at most 8 keep-alive connections per origin, and cache hits no longer
@@ -509,11 +509,11 @@
   file by that kind; `tar.bz2`, `tar.xz` and `tar.zst` are archive formats.
 - Add `FileSystem.removeTree(path)`: removes a directory with its contents without following
   symbolic links, so an app can delete a finished download's whole folder.
-- Up to 128 `<Svg>` nodes can be mounted at once, from 64 (288 KB more .bss). Overdrive with two dozen
+- Up to 128 `<Svg>` nodes can be mounted at once, from 64 (288 KB more .bss). Padrino Store with two dozen
   favorites mounted more than 64 icons and its legend glyphs drew nothing.
 - The idle collector keeps QuickJS's GC threshold at most 28 MiB, an eighth below the 32 MiB JS heap
   limit. QuickJS sets the threshold to 1.5 times what survived a collection and fails an allocation
-  past the limit without collecting, so an app with over 21 MiB live (Overdrive's catalog) threw
+  past the limit without collecting, so an app with over 21 MiB live (Padrino Store's catalog) threw
   "out of memory" during a burst of input and its React tree stopped responding.
 - Remote images on screen load newest first, ahead of every prefetch. An image counted as on screen
   once stayed so while a prefetch held it, so a held key queued hundreds of covers ahead of those
@@ -709,13 +709,13 @@
   four frames, cruises at 40 logical px per frame and brakes to the target.
   It used to step from a 16 ms timer with an exponential ease: on the PS5,
   frames with no timer tick presented no motion (about 45 per 330 scrolling
-  frames in five Overdrive runs) and every scroll ended in a crawl of 1-3 px
+  frames in five Padrino Store runs) and every scroll ended in a crawl of 1-3 px
   steps (about 110 frames). Now there are none of either, and a held key
   scrolls at a constant 60 px per frame.
 - The PS5 frame log's engine split (`ERUI_PERF_STATS`) reads the time-stamp
   counter (`sceKernelReadTsc`, about 11 ns) instead of `clock_gettime` (about
   0.88 µs). The engine reads that clock around every blit and bridge call, so a
-  full-screen frame paid 10-15 ms for its own statistics: opening an Overdrive
+  full-screen frame paid 10-15 ms for its own statistics: opening a Padrino Store
   game page went from a 51 ms to a 36 ms frame and going back from 39 to 20 ms.
   Raster figures logged before this change include that overhead.
 - On AVX2 targets (the PS5) the software backend blends eight pixels per step,
@@ -723,14 +723,14 @@
 - When the surface matches the render size, the presenter keeps the frame in
   two buffer textures (`texelFetch`) and uploads changed rows with
   `glBufferSubData`. On the PS5 that costs about 0.46 ms for 1920×540 rows
-  against 14.9 ms through `glTexSubImage2D`; opening an Overdrive game page went
+  against 14.9 ms through `glTexSubImage2D`; opening a Padrino Store game page went
   from an 80 ms to a 53 ms frame, and the gallery's 28 ms image-change frame
   fits in 16.7 ms. Scroll moves need no GPU copy there. Other sizes keep the
   scaled texture.
 - A horizontal ScrollView beside a transparent container, such as a section
   header whose box overlaps the rail through a negative margin, scrolls by
   copy again instead of repainting its whole viewport each frame. On the PS5
-  the Overdrive genre rail went from 23 ms frames (about 43 fps) for the whole
+  the Padrino Store genre rail went from 23 ms frames (about 43 fps) for the whole
   scroll to 60 fps.
 - The PS5 host writes klog lines from a writer thread. A synchronous
   `sceKernelDebugOutText` on the render thread took 0.1-1 ms per line and
