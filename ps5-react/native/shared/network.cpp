@@ -570,6 +570,31 @@ const std::string& range_url(const Job& job, unsigned source, unsigned mirror) {
   return job.location.empty() ? job.request.url : job.location;
 }
 
+// Whether the URL's host is one of `domains` or a name under one.
+template <std::size_t N>
+bool host_in(const std::string& url, const char* const (&domains)[N]) {
+  auto host = host_of(url);
+  // A port is not part of the domain; a bare IPv6 address keeps its colons and matches nothing.
+  if (const auto colon = host.rfind(':'); colon != std::string::npos && host.find(':') == colon)
+    host.resize(colon);
+  for (const char* domain : domains) {
+    const std::size_t length = std::strlen(domain);
+    if (host == domain) return true;
+    if (host.size() > length && host.compare(host.size()-length, length, domain) == 0 &&
+        host[host.size()-length-1] == '.') return true;
+  }
+  return false;
+}
+
+// FileKeeper's download gateways (edge01.fetchio.cc, tunnel<n>.dlproxy.uk) answer every range HTTP 503
+// with Retry-After 60 once a download passes about twenty connections, and the whole download then
+// waits the minute out: 18 connections ran at 7.4 MB/s without one, 40 drew 503s within seconds and
+// averaged 2.4 MB/s with the pauses (issue #77, logs of 2026-10-25). Sixteen stay under it.
+bool connection_capped_gateway(const std::string& url) {
+  static const char* const domains[] = {"fetchio.cc", "dlproxy.uk"};
+  return host_in(url, domains);
+}
+
 // An origin that refuses connections cools down for five seconds after the last refusal: new connections
 // one at a time, from a quarter second apart up to four, and splits only onto connections left open by
 // finished ranges, which curl reuses without a handshake. Without it a console opened 121 handshakes into
@@ -1176,6 +1201,8 @@ bool Service::check_sample(Job& job) {
 }
 
 bool Service::prepare(Job& job) {
+  // The checkpoint identity this job had before the storage root left it, accepted on resume.
+  std::string legacy_identity;
   if (!job.request.storage_root.empty()) {
     job.root_fd = open(job.request.storage_root.c_str(), O_RDONLY | O_DIRECTORY | O_NOFOLLOW);
     if (job.root_fd < 0 || fstat(job.root_fd, &job.root_stat) != 0 || !storage_matches(job)) {
@@ -1215,23 +1242,30 @@ bool Service::prepare(Job& job) {
     if (count > max_ranges) { job.fail("too many ranges; increase rangeBytes (maximum 65536 ranges)"); return false; }
     job.completed.resize(static_cast<std::size_t>(count));
     // No URL: signed links change on every resolution while the file stays the same. The validator,
-    // size and hashes identify the bytes; the storage root and the sidecar's path identify the place.
-    Hash hash;
-    const auto validator = !job.etag.empty() ? "etag:"+job.etag : !job.last_modified.empty() ? "modified:"+job.last_modified : "size";
-    for (const auto& value : {validator, job.request.sha256, std::to_string(job.total)}) {
-      hash.update(value.data(), value.size()); hash.update("\0", 1);
-    }
-    for (const auto& source : job.sources) {
-      for (const auto& value : {source.etag, source.piece.sha1,
-                               std::to_string(source.piece.offset), std::to_string(source.piece.size)}) {
+    // size and hashes identify the bytes; the sidecar's path identifies the place. The storage root's
+    // device and inode were part of it once, and a USB drive gets new ones at every boot (issue #94):
+    // since a checkpoint that does not match is now discarded, that identity is still accepted when
+    // read, and the next checkpoint is written without it.
+    const auto checkpoint_identity = [&](bool with_root) {
+      Hash hash;
+      const auto validator = !job.etag.empty() ? "etag:"+job.etag : !job.last_modified.empty() ? "modified:"+job.last_modified : "size";
+      for (const auto& value : {validator, job.request.sha256, std::to_string(job.total)}) {
         hash.update(value.data(), value.size()); hash.update("\0", 1);
       }
-    }
-    if (job.root_fd >= 0) {
-      const auto identity = std::to_string(job.root_stat.st_dev)+":"+std::to_string(job.root_stat.st_ino);
-      hash.update(identity.data(), identity.size());
-    }
-    job.identity = hash.finish();
+      for (const auto& source : job.sources) {
+        for (const auto& value : {source.etag, source.piece.sha1,
+                                 std::to_string(source.piece.offset), std::to_string(source.piece.size)}) {
+          hash.update(value.data(), value.size()); hash.update("\0", 1);
+        }
+      }
+      if (with_root) {
+        const auto identity = std::to_string(job.root_stat.st_dev)+":"+std::to_string(job.root_stat.st_ino);
+        hash.update(identity.data(), identity.size());
+      }
+      return hash.finish();
+    };
+    job.identity = checkpoint_identity(false);
+    if (job.root_fd >= 0) legacy_identity = checkpoint_identity(true);
     if (job.identity.empty()) { job.fail("checkpoint identity hash failed"); return false; }
   }
   struct stat existing;
@@ -1248,15 +1282,32 @@ bool Service::prepare(Job& job) {
       existing.st_size >= 0 && static_cast<std::uint64_t>(existing.st_size) <= job.total && read_all(meta, &saved, sizeof saved) &&
       !std::memcmp(saved.magic, expected.magic, sizeof saved.magic) && saved.total == job.total &&
       saved.range_bytes == job.request.range_bytes && saved.count == job.completed.size() &&
-      !std::memcmp(saved.identity, job.identity.c_str(), 65) && read_all(meta, job.completed.data(), job.completed.size());
+      (!std::memcmp(saved.identity, job.identity.c_str(), 65) ||
+       (!legacy_identity.empty() && !std::memcmp(saved.identity, legacy_identity.c_str(), 65))) &&
+      read_all(meta, job.completed.data(), job.completed.size());
     if (meta >= 0) close(meta);
     for (unsigned char value : job.completed) if (value > 1) valid = false;
-    if (!valid) { job.fail("partial file has no matching durable checkpoint; remove .part/.resume or choose another destination"); return false; }
-    for (std::size_t i = 0; i < job.completed.size(); ++i) if (job.completed[i]) {
+    if (valid) for (std::size_t i = 0; i < job.completed.size(); ++i) if (job.completed[i]) {
       const auto begin = job.sources.empty() ? i*job.request.range_bytes : job.segments[i].begin;
       const auto end = job.sources.empty() ? std::min(job.total, (i+1)*job.request.range_bytes) : begin+job.segments[i].length;
-      if (end > static_cast<std::uint64_t>(existing.st_size)) { job.fail("partial file is shorter than its checkpoint"); return false; }
+      // A range the checkpoint calls saved that the file no longer holds is the same dead end.
+      if (end > static_cast<std::uint64_t>(existing.st_size)) { valid = false; break; }
       job.committed += end-begin;
+    }
+    if (!valid) {
+      // A partial its checkpoint does not match, or one shorter than the ranges it calls saved, can
+      // never resume: a restarted console, a changed validator or a file that moved changes the
+      // identity. Keeping it failed the download for good, with nothing the player could do from the
+      // app (issues #110 and #111), so it goes and the transfer starts over from zero.
+      platform_log(("download: " + job.request.destination + ".part cannot resume; starting over").c_str());
+      if (job.fd >= 0) close(job.fd);
+      job.fd = -1;
+      unlink(partial.c_str());
+      unlink((job.request.destination+".resume").c_str());
+      std::fill(job.completed.begin(), job.completed.end(), 0);
+      job.committed = 0;
+      job.fd = open(partial.c_str(), O_RDWR | O_CREAT | O_EXCL | O_NOFOLLOW, 0600);
+      if (job.fd < 0) { job.fail(system_error("open partial file")); return false; }
     }
     if (job.committed && job.etag.empty() && job.sources.empty() && !check_sample(job)) return false;
   }
@@ -1458,9 +1509,19 @@ void Service::run_job(const std::shared_ptr<Job>& job) {
     // A capped download needs few connections: about one per MB/s, so each gets bytes often enough to
     // stay over curl's low-speed cutoff (1 byte/s for 30 s) between its turns.
     const std::uint64_t capped = job->request.unlimited ? 0 : rate_limit_.load();
-    const unsigned limit = !job->ranged ? 1 : !capped ? job->request.connections :
+    const unsigned asked = !job->ranged ? 1 : !capped ? job->request.connections :
       std::min(std::max(static_cast<unsigned>(capped/(1024*1024)), 2u), job->request.connections);
+    // FileKeeper's gateways answer every range HTTP 503 once a download passes about twenty
+    // connections, so it gets sixteen at most whatever the app asked for; every other host keeps the
+    // number the app set.
+    const std::string target = range_url(*job, 0, 0);
+    const bool gateway = connection_capped_gateway(target);
+    const unsigned limit = gateway ? std::min(asked, 16u) : asked;
     const unsigned initial = job->request.adaptive ? std::min(8u, limit) : limit;
+    if (gateway && asked > limit) {
+      platform_log(("download: " + host_of(target) + " is a FileKeeper gateway: " + std::to_string(limit) +
+        " connections instead of " + std::to_string(asked) + ", past which it answers 503 for a minute").c_str());
+    }
     std::vector<Window> windows;
     const auto window_for = [&](const std::string& url) {
       auto host = host_of(url);

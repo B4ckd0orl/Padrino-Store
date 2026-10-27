@@ -28,6 +28,7 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
   import { useInterfaceSounds } from './ui/sounds.js';
   import { useShowLibrary } from './ui/useSections.js';
   import { VERSION } from './version.js';
+  import { BUILD } from './build.js';
 
   function Screen({ screen: screen2 }) {
     const { openGame, pop } = useNavActions();
@@ -116,6 +117,7 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
   function Boot() {
     return /* @__PURE__ */ (0, jsx)(View, { style: { width: 1920, height: 1080, backgroundColor: "#121110" }, children: /* @__PURE__ */ (0, jsx)(LocaleProvider, { children: /* @__PURE__ */ (0, jsx)(StoreProvider, { children: /* @__PURE__ */ (0, jsx)(NavProvider, { children: /* @__PURE__ */ (0, jsx)(Gate, {}) }) }) }) });
   }
-  // Which build wrote this session of app.log.
-  console.log(`[padrino] version ${VERSION}`);
+  // Which build wrote this session of app.log: a draft rebuilt with the same version is otherwise
+  // indistinguishable from the one before it.
+  console.log(`[padrino] version ${VERSION} build ${BUILD.commit}${BUILD.built ? ` ${BUILD.built}` : ""}`);
   AppRegistry.registerComponent("overdrive", () => () => /* @__PURE__ */ (0, jsx)(Boot, {}));

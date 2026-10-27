@@ -4,7 +4,7 @@
 import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { useEffect, useRef, useState } from 'react';
-import { DownloadRow, primaryKey } from './DownloadRow.jsx';
+import { DownloadRow, linksOf, primaryKey } from './DownloadRow.jsx';
 import { SummaryPanel } from './SummaryPanel.jsx';
 import { useJobs } from './useQueue.js';
 import { formatNumber2, t } from '../i18n/core.js';
@@ -32,6 +32,8 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
   ];
   var EMPTY_HINTS = [HINT.select, HINT.back];
   var EMPTY_KEY = "downloads:empty";
+  // The filter bar's right-hand segment, the one above a row's buttons.
+  var STRIP_KEY = "downloads-filter:completed";
   var listAnim = { hidden: {}, shown: { transition: { staggerChildren: 0.05, delayChildren: 0.08 } } };
   var rowAnim = { hidden: { opacity: 0, y: 16 }, shown: { opacity: 1, y: 0, transition: transitions.panel } };
   var headerAnim = { hidden: { opacity: 0, y: 10 }, shown: { opacity: 1, y: 0, transition: { type: "tween", duration: 0.3, ease: EASE_OUT } } };
@@ -44,9 +46,9 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
       [count(COMPLETE), "completed"]
     ].filter(([n]) => n > 0).map(([n, key]) => t(`downloads.summary.${key}`, { count: n })).join(" \xB7 ");
   }
-  function Segment({ label, count, current, focusKey, autoFocus, onPress }) {
+  function Segment({ label, count, current, focusKey, autoFocus, nextFocusDown, onPress }) {
     const focused = useIsFocused();
-    return /* @__PURE__ */ (0, jsxs)(View, { focusKey, autoFocus, onPress, style: (_state) => [{ height: SEGMENT_H, flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 18, borderRadius: RADIUS_PILL }, current ? { backgroundColor: colors.accent } : focused ? { backgroundColor: colors.surface2 } : null], children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey, autoFocus, onPress, nextFocusDown, style: (_state) => [{ height: SEGMENT_H, flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 18, borderRadius: RADIUS_PILL }, current ? { backgroundColor: colors.accent } : focused ? { backgroundColor: colors.surface2 } : null], children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: current ? "#1a1408" : focused ? "#f5f1ea" : "#a39c92", lineHeight: 26 }, children: label }),
       count > 0 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, color: current ? "#1a1408b3" : "#6e675e", lineHeight: 26 }, children: formatNumber2(count) }) : null
@@ -128,6 +130,14 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
     const groups = { all: [...active2, ...stopped, ...done], active: active2, stopped, completed: done };
     const filtered = groups[filter];
     const first = filtered[0];
+    // The rows in the order they are drawn: Up and Down go from a row to the one above or below it in
+    // this list, and Down from the filter bar's segments goes to the first of them. Up from the first
+    // row goes to the bar's right-hand segment, not to the summary panel above, which the D-pad found
+    // nearer (2026-10-25).
+    const near = filtered.map(linksOf);
+    const strip = { info: STRIP_KEY, primary: STRIP_KEY, delete: STRIP_KEY };
+    const links = new Map(filtered.map((job2, index) => [job2.id, { up: index ? near[index - 1] : strip, down: near[index + 1] }]));
+    const firstRowKey = filtered.length ? primaryKey(filtered[0].id) : EMPTY_KEY;
     const FILTERS = [
       ["all", "downloads.filter.all", groups.all.length],
       ["active", "downloads.section.active", active2.length],
@@ -151,7 +161,7 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
           focused.current = null;
         } }),
         jobs.length > 0 ? /* @__PURE__ */ (0, jsx)(motion.View, { variants: headerAnim, style: { flexDirection: "row", paddingHorizontal: GUTTER, paddingBottom: 14 }, children: /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", gap: 4, padding: 4, borderRadius: RADIUS_PILL, backgroundColor: colors.surface, borderWidth: 1, borderColor: HAIRLINE }, children: FILTERS.map(
-          ([key, labelKey, count]) => /* @__PURE__ */ (0, jsx)(Segment, { label: t2(labelKey), count, current: filter === key, focusKey: `downloads-filter:${key}`, onPress: () => setFilter(key) }, key)
+          ([key, labelKey, count]) => /* @__PURE__ */ (0, jsx)(Segment, { label: t2(labelKey), count, current: filter === key, focusKey: `downloads-filter:${key}`, nextFocusDown: firstRowKey, onPress: () => setFilter(key) }, key)
         ) }) }) : null
       ] }),
       /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1, paddingHorizontal: GUTTER }, children: jobs.length > 0 ? /* @__PURE__ */ (0, jsx)(ScrollView, { style: { flex: 1 }, children: filtered.length ? /* @__PURE__ */ (0, jsx)(motion.View, { variants: listAnim, initial: "hidden", animate: "shown", style: { gap: 14, paddingBottom: 60 }, children: filtered.map(
@@ -166,6 +176,8 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
                 job: job2,
                 game: getGame(job2.gameId) ?? { title: job2.title, art: {} },
                 autoFocus: job2 === first,
+                up: links.get(job2.id).up,
+                down: links.get(job2.id).down,
                 run: handlers.run,
                 onOpenGame: handlers.openGame,
                 onFocusRow: handlers.focusRow

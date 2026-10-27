@@ -1,7 +1,7 @@
 // ../pub-game-store/native/state/release-cache.js
 // reconstructed from the esbuild bundle in eboot.bin
 
-import { releaseSets } from './release-sets.js';
+import { isDlcPack, isPatchOnly, releaseSets } from './release-sets.js';
 import { pausedSource } from './paused-hosts.js';
 
   var KEPT2 = 6;
@@ -19,7 +19,10 @@ import { pausedSource } from './paused-hosts.js';
         // A paused browser host's sources are left out here, before any screen sees them. A source that
         // names its own file's title ID (another region's edition, tools/import-superpsx.py) keeps it:
         // the queue downloads by it, and the browser capture looks for it in the file's name.
-        releases = releaseSets(parsed.filter((release) => !pausedSource(release)).map((release) => ({ titleId, ...release })));
+        // A DLC pack (the scene's dlc_emu kits) or a backport's files alone go too: nothing on the
+        // console installs them, so offering them only leads to a download that then says there was
+        // nothing to install. A DLC in a PS5 package stays, as does anything holding the game itself.
+        releases = releaseSets(parsed.filter((release) => !pausedSource(release) && !isDlcPack(release) && !isPatchOnly(release)).map((release) => ({ titleId, ...release })));
         if (games2.size === KEPT2) games2.delete(games2.keys().next().value);
       }
       games2.delete(file);

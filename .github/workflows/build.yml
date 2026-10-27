@@ -46,6 +46,11 @@ jobs:
           c["version"] = f"01.{run:03d}.000"
           p.write_text(json.dumps(c, indent=2) + "\n", encoding="utf-8")
           PY
+          # app.log names the build that wrote it: a draft rebuilt with the same version is otherwise
+          # indistinguishable from the one before it. A local build keeps the committed "dev".
+          printf 'var BUILD = { commit: "%s", built: "%s" };\n\nexport { BUILD };\n' \
+            "${GITHUB_SHA:0:7}" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > app/build.js
+          cat app/build.js
           cp -a app "$RUNNER_TEMP/app"
           echo "APP_DIR=$RUNNER_TEMP/app" >> "$GITHUB_ENV"
           grep 'var VERSION' app/version.js

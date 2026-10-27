@@ -21,9 +21,17 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
   var ACTIVE = ["resolving", "connecting", "downloading", "verifying", "extracting", "installing", "pausing"];
   var BUSY = ["queued", ...ACTIVE];
   var COMPLETE = ["downloaded", "file-downloaded", "installer-required", "installed", "extraction-required", "extracted"];
-  var ADOPTED = "A partial download from another source holds this name. Resume it from its original source, or delete it in Files.";
+  var ADOPTED = "A partial download from another source holds this name. Retry starts over and replaces it, or resume it from its original source.";
   var DELETED = "Its partial files were deleted. Restart to download it again, or remove it.";
   var REMOVAL_CUT = "The app closed while deleting its files. Delete it again.";
+  // Datanodes' dlproxy.uk gateway (FileKeeper's files too) can answer every range HTTP 503 with
+  // Retry-After: 60 for a while. The engine honours it, with its connections down to a few, and the
+  // download sits at 0 MB/s for minutes; a new transfer of the same link, which Pause and Resume
+  // start, goes on at full speed at once (issue #77). So a download from it that gets nothing for
+  // STALL_MS starts over by itself, from what it has written. A third start in a row with nothing
+  // received asks the source for a new link; past STALL_RESTARTS the engine's own retries decide.
+  var STALL_MS = 9e4;
+  var STALL_RESTARTS = 10;
   // The passwords the catalog's archives are published with. Some entries name none or the wrong one,
   // so after the catalog's own (or none) these are tried in turn. A wrong or missing password is caught
   // on the archive's headers before anything is written ("RAR archive password is missing.",
@@ -126,6 +134,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     packages,
     releasesOf,
     browserCapture,
+    stallMs = STALL_MS,
     wait = (ms) => new Promise((resolve2) => setTimeout(resolve2, ms))
   }) {
     // An older build kept the queue under dataDir/overdrive; its file is still read once and moved.
@@ -255,15 +264,11 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       destination: `${root2}/downloads/extracted/${release.filename}`,
       nextAction: "extracted"
     } : formats.artifact(release, root2);
-    // Datanodes' dlproxy.uk gateway (FileKeeper's files too) can answer every range HTTP 503 with
-    // Retry-After: 60 for a while. The engine honours it, with its connections down to a few, and the
-    // download sits at 0 MB/s for minutes; a new transfer of the same link, which Pause and Resume
-    // start, goes on at full speed at once (issue #77). So a download from it that gets nothing for
-    // STALL_MS starts over by itself, from what it has written. A third start in a row with nothing
-    // received asks the source for a new link; past STALL_RESTARTS the engine's own retries decide.
-    var STALL_MS = 9e4;
-    var STALL_RESTARTS = 10;
     function restartsAfterStall(job2) {
+      // The hosts whose gateway answers every range HTTP 503 for a while: DataNodes and FileKeeper
+      // both. Named by kind too, since the resolved URL of a captured link need not be the gateway.
+      const source2 = job2.parts ? job2.currentSource : job2.release;
+      if (source2 && ["filekeeper", "datanodes"].includes(sourceKind(source2))) return true;
       try {
         return /(?:^|\.)dlproxy\.uk$/.test(webURL(job2.options?.url).host);
       } catch {
@@ -271,27 +276,77 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       }
     }
     function stallWatch(job2, task) {
-      let moved = Date.now(), seen = -1;
+      const began = Date.now();
+      let moved = began, best = -1, gaps = [];
+      // A gateway that sends a few seconds and then asks a minute's wait, over and over, never stays
+      // quiet for the stall time: FileKeeper's edge01.fetchio.cc sent 6-8 s at 30 MB/s, then HTTP 503
+      // with Retry-After 60, and averaged 2.7 MB/s for 106 minutes (issue #77, Elefantex's log). A
+      // transfer idle for three quarters of the last 300 s (with the stall time at 90 s) is restarted too.
+      const idleWindow = stallMs * 10 / 3, idleGap = stallMs * 2 / 9;
+      // FileKeeper's gateway still answered 503 with Retry-After 60 after 96 s at 11 MB/s on sixteen
+      // connections, and the download sat out 52 s of it (2026-10-25). Its form gives a new link after a
+      // five-second countdown, so 12 s of nothing asks for one instead of waiting the minute; when the
+      // first new link brings nothing back either, this download waits the gateway out as before.
+      const quickMs = stallMs * 2 / 15;
+      const filekeeper = sourceKind(job2.release) === "filekeeper" && !job2.parts;
+      const restart = (relink, line) => {
+        console.log(`[download-queue] ${job2.id}: ${line}${relink ? ", with a new link from the source" : ""}`);
+        if (relink) delete job2.options;
+        active2.restarting = true;
+        task.cancel();
+      };
       return (progress) => {
         const bytes = (progress.received || 0) + (progress.completedBytes ?? progress.written ?? 0);
-        if (bytes !== seen) {
-          if (seen >= 0 && job2.stalls) {
+        // Only a new high counts: a range the engine retries drops `received` back to what the file
+        // already holds, and with a plain "changed" test every one of those reset the wait, so a
+        // download 503-ing range after range never reached it (issue #77, Narci115's 4.7 MB log).
+        if (bytes > best) {
+          if (best >= 0 && job2.stalls) {
             console.log(`[download-queue] ${job2.id}: receiving again after ${job2.stalls} restart(s)`);
             delete job2.stalls;
           }
-          seen = bytes;
-          moved = Date.now();
+          if (best >= 0 && job2.quickRelinkAt) {
+            console.log(`[download-queue] ${job2.id}: the new link brought it back ${Math.round((Date.now() - job2.quickRelinkAt) / 1e3)} s after it was asked for`);
+            delete job2.quickRelinkAt;
+          }
+          const now = Date.now();
+          if (best >= 0 && now - moved >= idleGap) gaps.push({ at: now, gap: now - moved });
+          gaps = gaps.filter((item) => now - item.at < idleWindow);
+          best = bytes;
+          moved = now;
+          const idle = gaps.reduce((sum, item) => sum + item.gap, 0);
+          if (active2?.restarting || now - began < idleWindow || idle < idleWindow * 0.75 || !restartsAfterStall(job2)) return;
+          if ((job2.idleRestarts || 0) >= STALL_RESTARTS) return;
+          job2.idleRestarts = (job2.idleRestarts || 0) + 1;
+          // Every second one asks FileKeeper's form for a new link: whether a fresh link or a fresh
+          // transfer is what the gateway wants is not known yet, and app.log shows which one helped.
+          const relink = job2.idleRestarts % 2 === 0 && sourceKind(job2.release) === "filekeeper";
+          restart(relink, `idle ${Math.round(idle / 1e3)} s of the last ${Math.round(idleWindow / 1e3)} s in bursts and waits (${gaps.length} waits); restart ${job2.idleRestarts} of ${STALL_RESTARTS}`);
           return;
         }
-        if (active2?.restarting || Date.now() - moved < STALL_MS || !["connecting", "downloading"].includes(progress.state) || !restartsAfterStall(job2)) return;
+        const quiet = Date.now() - moved;
+        if (filekeeper && !active2?.restarting && progress.state === "downloading" && quiet >= quickMs && job2.quickRelink !== false) {
+          // A new link that went quiet as well: the gateway is not refusing the link, so another one
+          // will not help either, and this download waits it out with the rules below.
+          if (job2.quickRelinkAt) {
+            if (Date.now() - job2.quickRelinkAt >= quickMs * 4) {
+              console.log(`[download-queue] ${job2.id}: a new link did not bring it back; waiting FileKeeper's gateway out instead`);
+              job2.quickRelink = false;
+              delete job2.quickRelinkAt;
+            }
+          } else if ((job2.quickRelinks || 0) < 30) {
+            job2.quickRelinks = (job2.quickRelinks || 0) + 1;
+            job2.quickRelinkAt = Date.now();
+            restart(true, `nothing received for ${Math.round(quiet / 1e3)} s on FileKeeper's gateway; a new link instead of waiting its minute out (${job2.quickRelinks} of 30)`);
+            return;
+          }
+        }
+        if (active2?.restarting || quiet < stallMs || !["connecting", "downloading"].includes(progress.state) || !restartsAfterStall(job2)) return;
         if ((job2.stalls || 0) >= STALL_RESTARTS) return;
         job2.stalls = (job2.stalls || 0) + 1;
         // Only FileKeeper's link comes from a form the app posts again; DataNodes' needs the browser.
         const relink = job2.stalls % 3 === 0 && sourceKind(job2.release) === "filekeeper";
-        console.log(`[download-queue] ${job2.id}: nothing received for ${Math.round((Date.now() - moved) / 1e3)} s (connections ${progress.connections || 0}, retries ${progress.retries || 0}); restart ${job2.stalls} of ${STALL_RESTARTS}${relink ? ", with a new link from the source" : ""}`);
-        if (relink) delete job2.options;
-        active2.restarting = true;
-        task.cancel();
+        restart(relink, `nothing received for ${Math.round((Date.now() - moved) / 1e3)} s (connections ${progress.connections || 0}, retries ${progress.retries || 0}); restart ${job2.stalls} of ${STALL_RESTARTS}`);
       };
     }
     function reresolve(job2) {
@@ -322,6 +377,16 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         return 0;
       }
     }
+    // Why the console said no: its code is the only thing that names the cause, and its error arrives as
+    // "Packages.install <url>: <reason> (0x<code>)". app.log cuts a line at 382 characters, so a signed
+    // CDN link filled the line and both the reason and the code went missing exactly when they were
+    // wanted (a Wolverine fPKG, 2026-10-25). The link is logged already, masked, on the line before.
+    var consoleFailure = (message) => {
+      const text = String(message || "");
+      const code = text.match(/\(0x([0-9a-zA-Z]+)\)/)?.[1];
+      const reason = text.replace(/^Packages\.install\s+\S+:?\s*/i, "").replace(/\s*\(0x[0-9a-zA-Z]+\)\s*$/i, "").trim();
+      return `code=0x${code || "none"}${reason ? ` ${reason}` : ""}`;
+    };
     async function install(job2) {
       const paths = job2.packages ?? [job2.downloadDestination || job2.artifact.destination];
       const backport = (path) => /backport/i.test(path);
@@ -345,7 +410,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
             await task.done;
             installed.push(path);
           } catch (error2) {
-            console.log(`[download-queue] install refused ${path}:`, error2.message);
+            console.log(`[download-queue] install refused ${path}: ${consoleFailure(error2.message)}`);
             if (!backport(path) || paths.every(backport)) throw error2;
           } finally {
             off();
@@ -1698,8 +1763,13 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       async restart(id) {
         const job2 = find(id);
         if (!["paused", "failed", "awaiting-browser"].includes(job2.state) || active2?.job === job2) return;
-        if (job2.adopted) throw new Error(ADOPTED);
-        const paths = !job2.parts?.[job2.partIndex]?.completed && (job2.options || job2.rootIdentity || job2.written || fs.exists(job2.artifact.destination + ".part") || fs.exists(job2.artifact.destination + ".resume")) ? partialFiles(job2) : [];
+        // A partial this app did not write ("adopted", left by an earlier session) is what the last
+        // attempt stopped on: its checkpoint names another run and can never be resumed. Retry is the
+        // player asking to start over, so that partial goes with the rest; refusing here left the task
+        // failed for good, with no way to resume it or begin it again (issue #111).
+        const adopted = job2.adopted;
+        delete job2.adopted;
+        const paths = !job2.parts?.[job2.partIndex]?.completed && (adopted || job2.options || job2.rootIdentity || job2.written || fs.exists(job2.artifact.destination + ".part") || fs.exists(job2.artifact.destination + ".resume")) ? partialFiles(job2) : [];
         stopCapture(job2);
         if (paths.length) await removing(job2, () => removeAll(paths));
         delete job2.directURL;

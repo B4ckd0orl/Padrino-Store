@@ -15,6 +15,10 @@ import { FocusScope, Text, View, motion, useIsFocused } from '@ps5-react/core';
   var COLUMNS2 = 6;
   var LTR2 = { direction: "ltr" };
   var CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+  // What the letters miss, for a password or a key: the URL keyboard had no "! ( ) [ ] { } ; , < > '"
+  // and the like, so a qBittorrent password with one could not be typed at all. A second page,
+  // since 32 more keys on the first would not fit the dialog.
+  var SYMBOLS = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~".split("");
   var MAX_QUERY = 40;
   var TO_RESULTS = "search-results";
   var TYPE2 = { button: "cross", label: "hints.type" };
@@ -51,19 +55,22 @@ import { FocusScope, Text, View, motion, useIsFocused } from '@ps5-react/core';
     const { rtl } = useLocale();
     const edge = rtl ? 0 : COLUMNS2 - 1;
     const [upper, setUpper] = (0, useState)(false);
-    const characters = url ? [...CHARACTERS, ...":/._-?=&%+#@~".split("")] : CHARACTERS;
+    const [symbols, setSymbols] = (0, useState)(false);
+    const characters = symbols ? SYMBOLS : url ? [...CHARACTERS, ...":/._-?=&%+#@~".split("")] : CHARACTERS;
     const onKey = (0, useCallback)(
-      (value) => value === "case" ? setUpper((value2) => !value2) : value === "done" ? onSubmit() : onChange((query) => edit(query, value, url ? 8192 : MAX_QUERY)),
+      (value) => value === "case" ? setUpper((value2) => !value2) : value === "page" ? setSymbols((shown) => !shown) : value === "done" ? onSubmit() : onChange((query) => edit(query, value, url ? 8192 : MAX_QUERY)),
       [onChange, onSubmit, url]
     );
     const onAction = (action) => {
       if (action === "square") onKey("delete");
-      else if (action === "triangle" && !url) onKey(" ");
+      else if (action === "triangle" && (!url || symbols)) onKey(" ");
       else
         return false;
       return true;
     };
-    return /* @__PURE__ */ (0, jsx)(FocusScope, { wrap: true, focusKey, onAction, children: /* @__PURE__ */ (0, jsxs)(View, { style: [{ width: 564, flexDirection: "row", flexWrap: "wrap", gap: 12 }, LTR2], children: [
+    // The URL dialog's own Confirm and Cancel sit to the right of the keys: wrapping at the last
+    // column would keep focus here, so that dialog's keyboard lets the move leave.
+    return /* @__PURE__ */ (0, jsx)(FocusScope, { wrap: !url, focusKey, onAction, children: /* @__PURE__ */ (0, jsxs)(View, { style: [{ width: 564, flexDirection: "row", flexWrap: "wrap", gap: 12 }, LTR2], children: [
       characters.map(
         (character, i) => /* @__PURE__ */ (0, jsx)(
           Key,
@@ -77,14 +84,30 @@ import { FocusScope, Text, View, motion, useIsFocused } from '@ps5-react/core';
           character
         )
       ),
+      // The URL keyboard's second page: the toggle stays mounted across the two pages, so the focus
+      // stays on it (press again to go back). Search needs no punctuation, and the key moved the
+      // rows there, so it has none.
+      url ? /* @__PURE__ */ (0, jsx)(
+        Key,
+        {
+          compact: url,
+          // The label names what sits behind it, the characters a URL or a password asks for: "&123"
+          // once promised the digits the first page already has. On "ABC" the letters come back.
+          label: symbols ? "ABC" : "()@?~",
+          value: "page",
+          onKey
+        },
+        "page"
+      ) : null,
       /* @__PURE__ */ (0, jsx)(
         Key,
         {
           wide: true,
           compact: url,
-          label: url ? upper ? t2("keyboard.lowercase") : t2("keyboard.uppercase") : t2("keyboard.space"),
-          value: url ? "case" : " ",
-          button: url ? void 0 : "triangle",
+          // On the symbols page the wide key is the space, which a URL keyboard otherwise has nowhere.
+          label: !url || symbols ? t2("keyboard.space") : upper ? t2("keyboard.lowercase") : t2("keyboard.uppercase"),
+          value: !url || symbols ? " " : "case",
+          button: !url || symbols ? "triangle" : void 0,
           onKey,
           toResults: url || !rtl ? void 0 : TO_RESULTS
         }

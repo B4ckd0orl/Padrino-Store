@@ -40,11 +40,20 @@ import { Text, View } from '@ps5-react/core';
     if (["paused", "failed"].includes(state) && STALE_PARTIAL.test(cause(error2))) return { icon: "download", label: "downloads.action.restart", onPress: () => run("restart") };
     if (state === "paused") return { icon: "play", label: "downloads.action.resume", onPress: () => run("resume") };
     if (state === "failed") return { icon: "download", label: "downloads.action.retry", onPress: () => run("resume") };
-    if (state === "awaiting-browser") return { icon: "play", label: "downloads.action.continueOnPage", onPress: openGame };
+    if (state === "awaiting-browser") return { icon: "play", label: "downloads.action.continueOnPage", onPress: openGame, page: true };
     if (state === "downloaded") return { icon: "circleCheck", label: "downloads.action.install", onPress: () => run("register") };
-    return { icon: "chevronRight", label: "downloads.action.gamePage", onPress: openGame };
+    return { icon: "chevronRight", label: "downloads.action.gamePage", onPress: openGame, page: true };
   }
-  function DeleteButton({ id, action, run, onBlur }) {
+  // The row's three buttons, by the key the D-pad moves to. A row outside the catalog, or one whose
+  // primary already opens the game page, has no info button.
+  var keyFor = (id, kind) => kind === "info" ? `downloads-info:${id}` : kind === "delete" ? `downloads-cancel:${id}` : primaryKey(id);
+  var infoShown = (job2) => Boolean(getGame(job2.gameId)) && !primary(job2).page;
+  // Where Up or Down lands in a neighbouring row, by the button it leaves from: the same button, or the
+  // primary one where that row has no info button. Plain keys, so a row redraws only when they change:
+  // the jobs themselves are new objects on every progress update.
+  var linksOf = (job2) => ({ info: keyFor(job2.id, infoShown(job2) ? "info" : "primary"), primary: primaryKey(job2.id), delete: keyFor(job2.id, "delete") });
+  var sameLinks = (a, b) => a === b || Boolean(a && b) && a.info === b.info && a.primary === b.primary && a.delete === b.delete;
+  function DeleteButton({ id, action, run, onBlur, vertical }) {
     const [armed, setArmed] = (0, useState)(false);
     (0, useEffect)(() => {
       if (!armed) return void 0;
@@ -58,6 +67,7 @@ import { Text, View } from '@ps5-react/core';
         size: "icon",
         icon: armed ? "delete" : "x",
         focusKey: `downloads-cancel:${id}`,
+        ...vertical,
         onBlur: () => {
           setArmed(false);
           onBlur?.();
@@ -73,7 +83,7 @@ import { Text, View } from '@ps5-react/core';
       }
     );
   }
-  function InfoButton({ id, onPress, onFocus }) {
+  function InfoButton({ id, onPress, onFocus, vertical }) {
     return /* @__PURE__ */ (0, jsx)(
       Button2,
       {
@@ -81,12 +91,13 @@ import { Text, View } from '@ps5-react/core';
         size: "icon",
         icon: "info",
         focusKey: `downloads-info:${id}`,
+        ...vertical,
         onFocus,
         onPress
       }
     );
   }
-  function DownloadRowView({ job: job2, game, autoFocus, run, onOpenGame, onFocusRow }) {
+  function DownloadRowView({ job: job2, game, autoFocus, up, down, run, onOpenGame, onFocusRow }) {
     const t2 = useT();
     const { state, release } = job2;
     const shown = shownState(job2);
@@ -95,7 +106,11 @@ import { Text, View } from '@ps5-react/core';
     const main = primary(job2, (name) => run(job2, name), openGame);
     // A job outside the catalog has no page to open, and a primary button that already leads there
     // (continue on page) needs no second one; the triangle shortcut opens it either way.
-    const infoPage = !getGame(job2.gameId) || main.onPress === openGame ? null : () => openGame();
+    const infoPage = infoShown(job2) ? () => openGame() : null;
+    // Up and Down go from a button to the same button of the row above or below, instead of letting
+    // the D-pad pick whatever is nearest: the summary panel sits right of the list and won, so Up from
+    // the first row's X landed on the storage block (2026-10-25).
+    const vertical = (kind) => ({ nextFocusUp: up?.[kind], nextFocusDown: down?.[kind] });
     const onFocus = () => onFocusRow(job2);
     // This line shares 285 px with the host and the path, so it stays the bare code: whatever the
     // bytes already revealed, else the format the link itself names.
@@ -140,7 +155,7 @@ import { Text, View } from '@ps5-react/core';
               note ? /* @__PURE__ */ (0, jsx)(Text, { style: problem ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: mismatch ? "#fde68a" : "#a39c92", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: note }) : null
             ] }),
             /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 12 }, children: [
-              infoPage ? /* @__PURE__ */ (0, jsx)(InfoButton, { id: job2.id, onPress: infoPage, onFocus }) : null,
+              infoPage ? /* @__PURE__ */ (0, jsx)(InfoButton, { id: job2.id, onPress: infoPage, onFocus, vertical: vertical("info") }) : null,
               /* @__PURE__ */ (0, jsx)(
                 Button2,
                 {
@@ -150,6 +165,7 @@ import { Text, View } from '@ps5-react/core';
                   style: PRIMARY,
                   autoFocus,
                   focusKey: primaryKey(job2.id),
+                  ...vertical("primary"),
                   onFocus,
                   onPress: main.onPress
                 }
@@ -159,7 +175,8 @@ import { Text, View } from '@ps5-react/core';
                 {
                   id: job2.id,
                   action: clearAction(state),
-                  run: (name) => run(job2, name)
+                  run: (name) => run(job2, name),
+                  vertical: vertical("delete")
                 }
               )
             ] })
@@ -171,7 +188,7 @@ import { Text, View } from '@ps5-react/core';
   }
   var DownloadRow = (0, memo)(
     DownloadRowView,
-    (a, b) => shapeOf(a.job) === shapeOf(b.job) && a.autoFocus === b.autoFocus
+    (a, b) => shapeOf(a.job) === shapeOf(b.job) && a.autoFocus === b.autoFocus && sameLinks(a.up, b.up) && sameLinks(a.down, b.down)
   );
 
-export { DownloadRow, primaryKey };
+export { DownloadRow, linksOf, primaryKey };
