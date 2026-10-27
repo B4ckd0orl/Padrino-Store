@@ -3,8 +3,10 @@
 
 import { features, games, twins } from '../data/catalog.js';
 import { HIDDEN } from '../data/curate.js';
+import { formats as formatIndex } from '../data/formats.js';
 import { formatDate2, formatNumber2, t } from '../i18n/core.js';
 import { applyUpdate, loadUpdate } from './catalog-update.js';
+import { formatsOf } from './formats.js';
 import { createPageCache } from './page-cache.js';
 import { createReleaseCache } from './release-cache.js';
 import { getHomebrew, homebrewApps, relatedHomebrew } from './homebrew.js';
@@ -231,8 +233,26 @@ import { FileSystem, Image } from '@ps5-react/core';
       options: SIZES,
       has: (game, value) => game.sizeGb != null && SIZES.find((size) => size.value === value).test(game.sizeGb)
     },
-    { key: "provider", any: true, options: hosts, has: (game, value) => game.providers?.includes(value) }
+    { key: "provider", any: true, options: hosts, has: (game, value) => game.providers?.includes(value) },
+    // The kind of file the sources offer: the two the console installs, the folder image, and the
+    // archives. A release's format lives in its own file, which the app reads only when a game opens,
+    // so tools/formats-index.mjs writes the groups to data/formats.js for the whole catalog. A game
+    // it leaves out says only "binary" (FileKeeper's, mostly): "unknown" until a download tells.
+    {
+      key: "format",
+      any: true,
+      options: [
+        { value: "pkg", label: "filters.format.pkg" },
+        { value: "exfat", label: "filters.format.exfat" },
+        { value: "ffpfs", label: "filters.format.ffpfs" },
+        { value: "archive", label: "filters.format.archive" },
+        { value: "unknown", label: "filters.format.unknown" }
+      ],
+      has: (game, value) => formatsOfGame(game).includes(value)
+    }
   ];
+  // A homebrew app is not in data/formats.js, which the catalog owns: its one release says its format.
+  var formatsOfGame = (game) => formatIndex[game.id] ?? formatsOf(game.homebrew ? game.releases : []);
   var facetTitle = (key) => t(`filters.facet.${key}`);
   function optionLabel(option) {
     if (!option.label) return option.name;

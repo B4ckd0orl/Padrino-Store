@@ -86,18 +86,19 @@ test('wishlist includes homebrew entries, not just the built-in catalog', () => 
 });
 
 test('new OR facets are handled without special-case code (PR #75 compatibility)', () => {
+  // A key of its own: "format" is the real facet's now.
   const facet = {
-    key: 'format', any: true,
+    key: 'sourceKind', any: true,
     options: [{value: 'archive'}, {value: 'direct'}],
     has: (game, value) => value === 'archive'
       ? Boolean(game.providers?.includes('archive.org')) : Boolean(game.direct),
   };
   FACETS.push(facet);
   try {
-    compare(state({format: []}));
-    compare(state({format: ['archive'], genre: ['Action']}));
-    compare(state({format: ['archive', 'direct'], platform: ['ps4']}));
-    compare(state({format: ['direct'], genre: ['Action', 'Adventure']}));
+    compare(state({sourceKind: []}));
+    compare(state({sourceKind: ['archive'], genre: ['Action']}));
+    compare(state({sourceKind: ['archive', 'direct'], platform: ['ps4']}));
+    compare(state({sourceKind: ['direct'], genre: ['Action', 'Adventure']}));
   } finally {
     assert.equal(FACETS.pop(), facet);
   }
