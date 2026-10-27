@@ -94,20 +94,31 @@ mkfs_out=$(mkfs.exfat -L "$label" -c "$cluster" "$out" 2>&1) || {
 }
 printf '%s\n' "$mkfs_out" | sed 's/^/mkfs.exfat: /'
 
-# The image's own answer rather than the argument's: in the boot sector, byte 109 is
-# log2(bytes per sector) and byte 110 is log2(sectors per cluster), so their sum is
-# log2(bytes per cluster). The label is bytes 96-106, UTF-16LE.
-read -r shift_sector shift_cluster < <(od -An -tu1 -j 109 -N 2 "$out")
+# The image's own answer rather than the argument's: in the boot sector, byte 108 is
+# log2(bytes per sector) and byte 109 is log2(sectors per cluster), so their sum is
+# log2(bytes per cluster). The label is not in the boot sector at all: exFAT keeps it
+# as an entry in the root directory, so exfatlabel reads it back when it is installed.
+read -r shift_sector shift_cluster < <(od -An -tu1 -j 108 -N 2 "$out")
 actual=$(( (1 << shift_sector) << shift_cluster ))
-image_label=$(od -An -tu1 -j 96 -N 22 "$out" | awk '{ for (i = 1; i <= NF; i += 2) if ($i) printf "%c", $i }')
-echo "make-exfat: boot sector says label $image_label, sector $((1 << shift_sector)) bytes, cluster $actual bytes"
+echo "make-exfat: boot sector says sector $((1 << shift_sector)) bytes, cluster $actual bytes"
 if [ "$actual" != "$cluster_bytes" ]; then
     echo "error: the image came out with $actual-byte clusters, not $cluster_bytes" >&2
     exit 1
 fi
-if [ "$image_label" != "$label" ]; then
-    echo "error: the image's label is $image_label, not $label" >&2
-    exit 1
+if command -v exfatlabel >/dev/null 2>&1; then
+    # exfatlabel prints its version line first, then "label: <name>".
+    image_label=$(exfatlabel "$out" 2>/dev/null | sed -n 's/^label: //p' | tail -n 1 || true)
+    if [ -n "$image_label" ]; then
+        echo "make-exfat: the volume's own label is $image_label"
+        if [ "$image_label" != "$label" ]; then
+            echo "error: the image's label is $image_label, not $label" >&2
+            exit 1
+        fi
+    else
+        echo "make-exfat: exfatlabel read back no label; mkfs was asked for $label"
+    fi
+else
+    echo "make-exfat: exfatlabel not installed, the label was not read back"
 fi
 
 mnt=$(mktemp -d)
