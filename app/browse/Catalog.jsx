@@ -10,6 +10,7 @@ import { SortSelect } from './SortSelect.jsx';
 import { SPAN_MAX, fitBytes } from '../i18n/fit.js';
 import { useLocale, useT } from '../i18n/index.js';
 import { activeCount, filterGames, sortGames } from '../state/catalog.js';
+import { FAVORITE_KINDS, matchesFavoriteKind } from '../state/favorite-kinds.js';
 import { useNavActions } from '../state/nav.jsx';
 import { useStore } from '../state/store.jsx';
 import { ButtonGlyph } from '../ui/ButtonHints.jsx';
@@ -100,6 +101,23 @@ import { FocusScope, Image, Text, View, VirtualList, useIsFocused } from '@ps5-r
       /* @__PURE__ */ (0, jsx)(ButtonGlyph, { button: "triangle", size: 18 })
     ] });
   }
+  // The favorites view's kind chips (games, apps, emulators, tools): the catalog already lists every
+  // kind the store knows, and these narrow the kept games to one of them. Warm palette, like the row.
+  var chosenKind = "all";
+  function KindLabel({ label, count, current }) {
+    const focused = useIsFocused();
+    return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
+      /* @__PURE__ */ (0, jsx)(FocusRing, {}),
+      /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ fontFamily: "Inter-Regular", fontSize: 21, color: current ? "#1a1408" : "#f5f1ead9", lineHeight: 30 }, focused && !current ? { color: "#f5f1ea" } : null], children: label }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: current ? "#1a140899" : "#a39c92", lineHeight: 30 }, children: String(count) })
+    ] });
+  }
+  function KindChip({ id, label, count, current, onPress }) {
+    return /* @__PURE__ */ (0, jsx)(View, { focusKey: `favorites-kind:${id}`, onPress, style: (state) => [
+      { height: 60, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, paddingHorizontal: 24, backgroundColor: current ? "#e09f3e" : "#1c1a17" },
+      state.focused && !current ? { backgroundColor: "#302c27" } : null
+    ], children: /* @__PURE__ */ (0, jsx)(KindLabel, { label, count, current }) });
+  }
   function Catalog({ onOpenFilters }) {
     const t2 = useT();
     const { rtl } = useLocale();
@@ -109,6 +127,19 @@ import { FocusScope, Image, Text, View, VirtualList, useIsFocused } from '@ps5-r
       () => sortGames(filterGames(store), store.sort),
       [filters, query, store.wishlist, store.sort]
     );
+    // The favorites view can be narrowed to one kind (games, apps, emulators, tools); the choice
+    // survives a visit to a game's page, like the Homebrew screen's own chips.
+    const [kind, setKind] = (0, useState)(chosenKind);
+    const chooseKind = (next) => {
+      chosenKind = next;
+      setKind(next);
+    };
+    const favorites = filters.wishlist && !query;
+    const counts = (0, useMemo)(
+      () => favorites ? Object.fromEntries(FAVORITE_KINDS.map(({ id }) => [id, results.filter((game) => matchesFavoriteKind(game, id)).length])) : null,
+      [favorites, results]
+    );
+    const shown = favorites && kind !== "all" ? results.filter((game) => matchesFavoriteKind(game, kind)) : results;
     const settled = (0, useRef)(false);
     (0, useEffect)(() => {
       settled.current = true;
@@ -138,7 +169,10 @@ import { FocusScope, Image, Text, View, VirtualList, useIsFocused } from '@ps5-r
         /* @__PURE__ */ (0, jsx)(SortSelect, {}),
         /* @__PURE__ */ (0, jsx)(ActiveFilters, {})
       ] }),
-      results.length > 0 ? /* @__PURE__ */ (0, jsx)(Grid, { games: results, signature, enter: settled.current }, signature) : /* @__PURE__ */ (0, jsx)(
+      favorites && counts && results.length > 0 ? /* @__PURE__ */ (0, jsx)(FocusScope, { row: true, children: /* @__PURE__ */ (0, jsx)(View, { style: { zIndex: 10, marginTop: 12, flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12 }, children: FAVORITE_KINDS.filter(({ id }) => id === "all" || counts[id] > 0).map(
+        ({ id, label }) => /* @__PURE__ */ (0, jsx)(KindChip, { id, label: t2(label), count: counts[id], current: kind === id, onPress: () => chooseKind(id) }, id)
+      ) }) }) : null,
+      shown.length > 0 ? /* @__PURE__ */ (0, jsx)(Grid, { games: shown, signature, enter: settled.current }, signature) : /* @__PURE__ */ (0, jsx)(
         EmptyState,
         {
           query,
