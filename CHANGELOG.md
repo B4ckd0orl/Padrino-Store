@@ -33,6 +33,9 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 - Corregida la cuadrícula de Homebrew: con el menú lateral se salía de pantalla y las filas se solapaban; ahora va igual que el catálogo, sin distorsiones
 - CUSA04384 (Lovers in a Dangerous Spacetime) recibió sus tres capturas en la página del juego
 
+### Red
+- Los enlaces HTTPS se validan también en consolas con firmware antiguo: la app lleva el almacén de certificados de Mozilla junto al del sistema y los une al arrancar, así sitios como GitHub o los servidores de portadas dejan de fallar por certificados que el firmware viejo nunca recibió; si algo falla se usa solo el del sistema, como hasta ahora
+
 ### Descargas
 - Si una descarga se corta, al reanudar la app calcula sola hasta dónde llegó y sigue desde ahí, sin repetir lo ya bajado
 - La barra de progreso cuenta bytes reales, tanto al descargar como al instalar

@@ -18,6 +18,7 @@ import zipfile
 from rar_worker import build as build_rar_worker, unrar_source
 from common import layouts, layout_directory, resource_files, ROOT, DEPS, LOCK, run, digest, verify, fetch, app_files, bundle, dependency, stb_image, refresh_rate_mask
 from network_ports import ports, copy_notices
+from ca_bundle import ca_bundle
 import ffmpeg
 from text_fonts import harfbuzz, sheenbidi
 
@@ -309,6 +310,11 @@ def main():
         target = app / relative
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, target)
+    # Mozilla's roots beside the console's own store, which old firmwares let fall behind (network_platform.cpp).
+    shutil.rmtree(app / "certs", ignore_errors=True)
+    if network_ports:
+        (app / "certs").mkdir()
+        shutil.copy2(ca_bundle(), app / "certs/cacert.pem")
     fonts = sorted((generated / "fonts").glob("*"))
     if fonts:
         (app / "fonts").mkdir()
@@ -329,6 +335,8 @@ def main():
     stb = (stb_image() / "stb_image.h").read_text()
     (notices / "stb_image-LICENSE").write_text(stb[stb.index("This software is available under 2 licenses"):])
     copy_notices(compatibility_client, notices / "networking")
+    (notices / "cacert-MPL-2.0.txt").unlink(missing_ok=True)
+    if network_ports: shutil.copy2(ROOT / "licenses/MPL-2.0.txt", notices / "cacert-MPL-2.0.txt")
     shutil.copy2(compatibility_client / "LICENSE", notices / "networking-compat-LICENSE")
     for entry in json.loads((ROOT / "licenses/archives-SOURCES.json").read_text()):
         source = ROOT / "licenses" / entry["file"]

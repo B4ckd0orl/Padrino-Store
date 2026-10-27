@@ -139,7 +139,7 @@ def resource_files(app, config):
             if path.is_symlink() or not path.resolve().is_relative_to(app.resolve()):
                 raise ValueError(f"Resource symlinks are not supported: {entry}")
             target = path.relative_to(app)
-            reserved = ("sce_sys", "sce_module", "notices", *(("fonts",) if config.get("textFonts") else ()))
+            reserved = ("sce_sys", "sce_module", "notices", "certs", *(("fonts",) if config.get("textFonts") else ()))
             if target.parts[0] in reserved or str(target) in ("eboot.bin", "lapy.elf", "lapy-manifest.json"):
                 raise ValueError(f"Resource would overwrite package infrastructure: {target}")
             if path.is_file(): files[target] = path

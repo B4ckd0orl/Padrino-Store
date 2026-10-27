@@ -1,4 +1,18 @@
-﻿# Backups kept out of the repo and the build
+# Downloaded sources and build output
+.deps/
+.build/
+dist/
+node_modules/
+/Padrino.exfat
+/update.zip
+# Python
+__pycache__/
+.venv/
+# OS
+.DS_Store
+Thumbs.db
+
+# Backups kept out of the repo and the build
 *.bak*
 *.bakcovers
 *.orig
