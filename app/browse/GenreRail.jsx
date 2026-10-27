@@ -4,9 +4,9 @@
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { useState } from 'react';
 import { GenreCard } from './GenreCard.jsx';
+import { GENRE_ART } from './genre-art.js';
 import { RowCard, useRowWindow } from './near.js';
 import { games } from '../data/catalog.js';
-import { GENRE_ART } from './genre-art.js';
 import { useT } from '../i18n/index.js';
 import { genres } from '../state/catalog.js';
 import { useStoreActions, useStoreState } from '../state/store.jsx';

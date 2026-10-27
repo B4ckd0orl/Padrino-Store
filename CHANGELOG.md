@@ -12,6 +12,7 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 
 ### Actualizaciones
 - El detector de actualizaciones no se rinde: si el listado oficial no responde a la primera lo reintenta solo y también comprueba un espejo del listado, así la consola se entera de cada versión nueva aunque GitHub falle un momento
+- La tienda puede recibir actualizaciones del catálogo por la red: la app busca en segundo plano si hay novedades publicadas y las aplica sola en el siguiente arranque, sin que ninguna lista cambie mientras la usas
 
 ### Tienda
 - Catálogo ampliado a más de 2.400 juegos revisados y con enlaces activos (2.491 fichas), con las ediciones duplicadas dejando de contar dos veces la misma fila, y con nuestras portadas servidas desde la tienda
@@ -26,6 +27,11 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 - Las portadas dejan de parpadear y de atascar la memoria: solo las que están cerca de donde miras se mantienen cargadas (también la fila bajo "Géneros populares" mientras el foco está en "Te puede gustar"), y si el motor se queda sin espacio una portada reintenta sola en vez de quedarse en blanco
 - Botón de información en cada fila de descarga para ir directo a la página del juego
 - El orden de fuentes ahora prefiere los hosts que la consola ya confirmó (Vikingfile, DataNodes, FileKeeper) por encima de MediaFire, cuyos archivos suelen caer y que responde 429 cuando está saturada
+- Las fichas del catálogo que solo tenían enlaces caídos dejan de aparecer en las listas: la tienda muestra solo juegos que de verdad se pueden descargar, y un juego que tiene otra edición disponible se queda
+- "Brain Training", "Quiz" y "Board Game" se unen a la tarjeta "Educational" de Géneros populares, que ya tenía su dibujo
+- Los géneros sin dibujo propio dejan de abrir tarjeta en Géneros populares: siguen siendo filtro en el catálogo (ninguna tarjeta actual desaparece)
+- Corregida la cuadrícula de Homebrew: con el menú lateral se salía de pantalla y las filas se solapaban; ahora va igual que el catálogo, sin distorsiones
+- CUSA04384 (Lovers in a Dangerous Spacetime) recibió sus tres capturas en la página del juego
 
 ### Descargas
 - Si una descarga se corta, al reanudar la app calcula sola hasta dónde llegó y sigue desde ahí, sin repetir lo ya bajado
@@ -44,9 +50,19 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 - Carpetas "backport" junto al juego ya no se confunden con el juego principal
 - Cuando un archivo encontrado espera confirmación, la consola muestra una notificación con el nombre del juego
 - El botón "Explorar juegos" de Descargas vacías abre la portada de la tienda, no la última sección visitada
+- Una descarga pausada en un disco USB se reanuda aunque la consola le dé otro número al reiniciar: la app reconoce el disco por un archivo guardado en el propio disco
+- El tipo de archivo que muestra cada fila de descarga usa lo que revelaron las cabeceras del propio archivo durante la descarga, y también el nombre del archivo si lo nombra
+- Una extracción de longitud desconocida ahora muestra la barra completa en lugar de vacía hasta que se sabe el tamaño
+- Los fallos por contraseña de archivo ahora distinguen la contraseña que falta de la que está mal, y ofrecen conservar los archivos; la falta de espacio durante la extracción tiene su propio aviso
+- Al terminar de extraer, la fila de descarga vuelve a mostrar el mensaje con el destino
+- Al abrir la página de un juego con una descarga en curso, el botón de descarga la reconoce al instante
+- Un archivo del catálogo etiquetado como "binary" pero nombrado PKG o Fpkg se trata como paquete a la hora del límite de firmware 11.60
+- La comprobación de identidad al capturar un archivo de Vikingfile exige un last-modified que sea una fecha de verdad
 
 ### Idiomas
 - Chino tradicional, con su propia fuente para que cada carácter se muestre correctamente, y portugués de Portugal (17 idiomas en total)
+- Neerlandés (18 idiomas en total)
+- Los plurales de portugués de Portugal y del chino tradicional ahora siguen sus reglas correctas
 
 ---
 
