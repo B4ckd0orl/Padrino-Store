@@ -6,7 +6,9 @@
 // engine sends this program to the payload loader (127.0.0.1:9021), which hands it the rest of the
 // connection as standard input and output.
 //
-// Request lines: "PKI1", the package path, the name the home screen shows while it installs.
+// Request lines: "PKI2", the package path or its http(s) link, the name the home screen shows while it
+// installs, and the content ID of a link's PS4 package (empty otherwise). A link goes to the console's
+// own download queue, which fetches and installs it in the background.
 // Answers: "ready", then "started <content ID>", then "p <installed bytes> <total bytes> <status>"
 // once a second, then "ok" or "fail <code as eight hex digits> <reason>". A PS5 package whose ID the
 // service does not answer gets "started (unknown)" and "ok" as soon as the service takes it.
@@ -89,24 +91,52 @@ static int allowed(const char* path) {
     && !strstr(path, "/../") && !strstr(path, "//");
 }
 
-int main(void) {
-  char magic[8], path[1024], name[256], line[640];
-  if (!read_line(magic, sizeof magic) || strcmp(magic, "PKI1") || !read_line(path, sizeof path) ||
-      !read_line(name, sizeof name)) return 1;
-  if (!allowed(path)) return fail(0, "The package path is not allowed.");
+static int is_link(const char* uri) {
+  if (strncmp(uri, "https://", 8) && strncmp(uri, "http://", 7)) return 0;
+  for (const char* c = uri; *c; ++c) if ((unsigned char)*c <= ' ' || *c == 0x7F) return 0;
+  return 1;
+}
 
-  // A PS4 PKG starts with \x7FCNT and names its content ID at 0x40. A PS5 one starts with \x7FFIH,
-  // whose header has no content ID field: it goes to the service with none, and the service answers
-  // with the ID it read (as BFpilot does, verified there on 11.60).
+// A PS4 content ID: "UP0000-CUSA00000_00-" and sixteen letters or digits.
+static int content_id_valid(const char* id) {
+  if (strlen(id) != 36 || id[6] != '-' || id[16] != '_' || id[19] != '-') return 0;
+  for (int i = 0; i < 36; ++i) {
+    const char c = id[i];
+    if (i == 6 || i == 16 || i == 19) continue;
+    if (!((c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))) return 0;
+  }
+  return 1;
+}
+
+// A PS4 PKG starts with \x7FCNT and names its content ID at 0x40. A PS5 one starts with \x7FFIH,
+// whose header has no content ID field: it goes to the service with none, and the service answers
+// with the ID it read (as BFpilot does, verified there on 11.60).
+static const char* read_header(const char* path, char* content_id) {
   char header[0x40 + 36 + 1] = {0};
   const int file = open(path, O_RDONLY);
-  if (file < 0) return fail(0, "The package could not be opened.");
+  if (file < 0) return "The package could not be opened.";
   const ssize_t got = read(file, header, sizeof header - 1);
   close(file);
   const int ps5 = got == (ssize_t)sizeof header - 1 && !memcmp(header, "\x7F" "FIH", 4);
-  if (got != (ssize_t)sizeof header - 1 || (!ps5 && memcmp(header, "\x7F" "CNT", 4))) return fail(0, "The file is not a PKG.");
-  char content_id[37] = {0};
+  if (got != (ssize_t)sizeof header - 1 || (!ps5 && memcmp(header, "\x7F" "CNT", 4))) return "The file is not a PKG.";
   if (!ps5) memcpy(content_id, header + 0x40, 36);
+  return NULL;
+}
+
+int main(void) {
+  char magic[8], path[1024], name[256], given[64], line[640];
+  if (!read_line(magic, sizeof magic) || strcmp(magic, "PKI2") || !read_line(path, sizeof path) ||
+      !read_line(name, sizeof name) || !read_line(given, sizeof given)) return 1;
+  const int remote = is_link(path);
+  if (!remote && !allowed(path)) return fail(0, "The package path is not allowed.");
+  if (given[0] && (!remote || !content_id_valid(given))) return fail(0, "The content ID is not valid.");
+  // A link's header was read by the app, which names a PS4 package's content ID.
+  char content_id[37] = {0};
+  if (remote) memcpy(content_id, given, strlen(given));
+  else {
+    const char* refused = read_header(path, content_id);
+    if (refused) return fail(0, refused);
+  }
   say("ready\n");
 
   (void)sceUserServiceInitialize(NULL);
@@ -114,9 +144,9 @@ int main(void) {
   if (result) return fail((unsigned)result, "The install library could not be loaded.");
   if ((result = initialize())) return fail((unsigned)result, "The install service did not start.");
 
-  // The service reads internal-drive packages through its /user view of /data.
+  // The service reads internal-drive packages through its /user view of /data; a link goes as it is.
   char uri[1100];
-  snprintf(uri, sizeof uri, strncmp(path, "/data/", 6) ? "%s" : "/user%s", path);
+  snprintf(uri, sizeof uri, remote || strncmp(path, "/data/", 6) ? "%s" : "/user%s", path);
   MetaInfo meta;
   memset(&meta, 0, sizeof meta);
   meta.uri = uri; meta.ex_uri = ""; meta.playgo_scenario_id = ""; meta.content_id = content_id;

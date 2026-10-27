@@ -58,6 +58,14 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 - Al abrir la página de un juego con una descarga en curso, el botón de descarga la reconoce al instante
 - Un archivo del catálogo etiquetado como "binary" pero nombrado PKG o Fpkg se trata como paquete a la hora del límite de firmware 11.60
 - La comprobación de identidad al capturar un archivo de Vikingfile exige un last-modified que sea una fecha de verdad
+- Los juegos en PKG pueden bajarse en segundo plano: la consola los descarga con su propio gestor mientras la app se cierra y usas la PS5 para otra cosa, y el avance se ve en la fila de descarga
+- Antes de empezar un PKG, un diálogo pregunta dónde se descarga: en la app, con pausa, reanudación e instalación al final, o en segundo plano en la PS5; una opción recuerda la elección para todos los PKG siguientes
+- Nuevo ajuste "Descargas de PKG" en Ajustes para cambiar esa elección cuando quieras: Preguntar, Padrino Store o En segundo plano
+- Si la consola rechaza un enlace (por ejemplo, un enlace firmado que no contesta al HEAD previo), la app lo vuelve a ofrecer con su propio servidor en la red local o en 127.0.0.1 y, si tampoco así, lo baja ella sola como hasta ahora
+- Un servidor que trae la propia app mantiene el enlace vivo aunque la app se cierre: la PS5 termina de bajar el paquete sin tenerla abierta
+- Tras reiniciar la consola, un paquete que sigue bajándose se sirve otra vez con el mismo token y puerto, y la fila enseña el progreso hasta el final
+- La fila de descarga marca "Enviado a la PS5" cuando el paquete lo baja la propia consola, en vez de decir "Instalado" antes de tiempo
+- La cola de descargas guarda y recupera su estado completo entre sesiones, incluidos los paquetes que la consola está sirviendo
 
 ### Idiomas
 - Chino tradicional, con su propia fuente para que cada carácter se muestre correctamente, y portugués de Portugal (17 idiomas en total)

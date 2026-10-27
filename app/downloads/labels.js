@@ -22,11 +22,13 @@ import { COMPLETE } from '../state/download-queue.js';
     "installer-required",
     "installing",
     "installed",
+    "streamed",
     "extraction-required",
     "removing"
   ]);
   var WAITING = ["resolving", "connecting", "verifying", "pausing", "finishing", "removing"];
-  var shownState = (job2) => job2.state === "extracting" && job2.phase === "finishing" ? "finishing" : job2.state;
+  // A PKG handed to the console's own downloads is done here, but not installed yet.
+  var shownState = (job2) => job2.state === "extracting" && job2.phase === "finishing" ? "finishing" : job2.state === "installed" && job2.streamed ? "streamed" : job2.state;
   var hasStateLabel = (state) => LABELED.has(state);
   var stateLabel = (state) => t(`downloadState.${state}`);
   var clearAction = (state) => COMPLETE.includes(state) ? "remove" : "cancel";

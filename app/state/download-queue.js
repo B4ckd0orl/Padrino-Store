@@ -42,6 +42,14 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
   // A LinkVault page adds its own check and a mirror page before the host's, so a link capture gets
   // the payload's longest window.
   var LINK_CAPTURE_SECONDS = 300;
+  // Datanodes' dlproxy.uk gateway (FileKeeper's files too) can answer every range HTTP 503 with
+  // Retry-After: 60 for a while. The engine honours it, with its connections down to a few, and the
+  // download sits at 0 MB/s for minutes; a new transfer of the same link, which Pause and Resume
+  // start, goes on at full speed at once (issue #77). So a download from it that gets nothing for
+  // STALL_MS starts over by itself, from what it has written. A third start in a row with nothing
+  // received asks the source for a new link; past STALL_RESTARTS the engine's own retries decide.
+  var STALL_MS = 9e4;
+  var STALL_RESTARTS = 10;
   // The folder an extraction is written to, and its game's under homebrew: the source's file name
   // without the ".binary" a source of unknown format downloads under. Jobs extracted before used it
   // with that suffix, so ownedPaths claims both.
@@ -101,7 +109,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       delete job2.captureError;
       delete job2.captureFile;
       delete job2.fallbacks;
-      if (job2.state === "installing") return { ...job2, state: "installer-required" };
+      // Closed while the console was being handed its link: resumed, it downloads here.
+      if (job2.state === "installing" && !job2.streaming) return { ...job2, state: "installer-required" };
+      delete job2.streaming;
       if (job2.state === "extracting") job2.written = job2.total ?? job2.written;
       if (job2.state === "removing") {
         job2.state = job2.removingFrom ?? "failed";
@@ -135,6 +145,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     releasesOf,
     browserCapture,
     stallMs = STALL_MS,
+    // The package helper (pkg-helper.js), whose links keep working once the app has closed; without
+    // one, a package the console takes from the app is served by the app itself.
+    helper = null,
     wait = (ms) => new Promise((resolve2) => setTimeout(resolve2, ms))
   }) {
     // An older build kept the queue under dataDir/overdrive; its file is still read once and moved.
@@ -144,6 +157,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     const listeners4 = /* @__PURE__ */ new Set();
     sources ?? (sources = createSourceResolver({ http }));
     const captures = /* @__PURE__ */ new Map();
+    // The packages this session serves to the console's own download: rest mode would suspend the app
+    // and cut them, so the console stays awake while the app runs with one.
+    const serving = /* @__PURE__ */ new Set();
     let jobs = [];
     let active2 = null;
     let ticks = 0;
@@ -179,7 +195,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     }
     const snapshot = () => jobs.map((job2) => ({ ...job2 }));
     const emit2 = () => {
-      const busy = captures.size > 0 || jobs.some((job2) => BUSY.includes(job2.state));
+      const busy = captures.size > 0 || serving.size > 0 || jobs.some((job2) => BUSY.includes(job2.state));
       if (busy !== awake2) {
         awake2 = busy;
         power.keepAwake(busy);
@@ -196,6 +212,139 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       save();
       emit2();
     };
+    // The packages served to the console's own download (see streamed). Each job keeps its link's token
+    // and port, so a later session serves the same URL again and the console's queue, which retries
+    // it, reconnects without a second install. What the console has fetched shows on the row; once it
+    // has every byte, or after a week, nothing more is served for it.
+    const SERVE_FOR_MS = 7 * 24 * 3600e3;
+    // id -> "helper" (the payload, which outlives the app) or "app" (the server in this process, which
+    // rest mode would cut: the console stays awake for it, see emit2).
+    const watched = /* @__PURE__ */ new Map();
+    const sentBefore = /* @__PURE__ */ new Map();
+    let serveTimer = null, looks = 0;
+    const watch = (id, where) => {
+      watched.set(id, where);
+      if (where === "app") serving.add(id);
+    };
+    const unwatch = (id) => {
+      watched.delete(id);
+      serving.delete(id);
+      sentBefore.delete(id);
+    };
+    // The links' progress by token, from each server that serves one; a server that did not answer is
+    // left out, and its jobs wait for the next look instead of being dropped.
+    const readStats = async () => {
+      const byToken = /* @__PURE__ */ new Map(), answered = /* @__PURE__ */ new Set();
+      const wanted = new Set(watched.values());
+      if (wanted.has("app")) {
+        try {
+          for (const item of packages.proxyStats()) byToken.set(item.token, item);
+          answered.add("app");
+        } catch {
+        }
+      }
+      if (wanted.has("helper") && helper) {
+        try {
+          for (const item of await helper.stats()) byToken.set(item.token, item);
+          answered.add("helper");
+        } catch (error2) {
+          if (looks % 20 === 0) console.log(`[download-queue] the package helper did not answer: ${error2.message}`);
+        }
+      }
+      return { byToken, answered };
+    };
+    const look = async () => {
+      const { byToken, answered } = await readStats();
+      looks++;
+      let shown = false, settled = false;
+      for (const [id, where] of [...watched]) {
+        if (!answered.has(where)) continue;
+        const job2 = jobs.find((item) => item.id === id);
+        const entry = job2?.proxy && byToken.get(job2.proxy.token);
+        if (!entry) {
+          unwatch(id);
+          settled = true;
+          continue;
+        }
+        const fetched = Math.min(entry.delivered, entry.total);
+        // Every 30 s, how fast the console takes it: the one number that compares this with a
+        // download in Padrino Store.
+        if (looks % 10 === 0) {
+          const before = sentBefore.get(id) ?? { delivered: 0, gets: 0, asked: 0 };
+          sentBefore.set(id, { delivered: entry.delivered, gets: entry.gets || 0, asked: entry.asked || 0 });
+          // The size of the console's ranges says whether reading ahead of it would help.
+          const ranges = (entry.gets || 0) - before.gets;
+          const size = ranges > 0 ? `, ${ranges} ranges of ${Math.round(((entry.asked || 0) - before.asked) / ranges / 1024)} KiB on average` : "";
+          if (entry.delivered > before.delivered) console.log(`[download-queue] ${id}: the console fetched ${formatBytes(entry.delivered - before.delivered)} in 30 s (${((entry.delivered - before.delivered) / 30 / 1048576).toFixed(1)} MB/s) from the ${where === "helper" ? "helper" : "app"}, ${Math.floor(fetched / entry.total * 100)}%${size}`);
+        }
+        if (fetched >= entry.total) {
+          job2.proxy.done = true;
+          unwatch(id);
+          job2.message = t("downloads.proxyDone");
+          console.log(`[download-queue] ${id}: the console has fetched every byte (${entry.requests} requests); it installs the rest by itself`);
+          settled = true;
+          continue;
+        }
+        const values = { done: formatBytes(fetched), total: formatBytes(entry.total), percent: String(Math.floor(fetched / entry.total * 100)) };
+        const message = t(where === "helper" ? "downloads.helperProgress" : "downloads.proxyProgress", values);
+        if (message !== job2.message) {
+          job2.message = message;
+          shown = true;
+        }
+      }
+      if (!watched.size) {
+        clearInterval(serveTimer);
+        serveTimer = null;
+      }
+      // Progress is only shown; what changes the job for good is saved.
+      if (settled) change();
+      else if (shown) emit2();
+    };
+    const watchServing = () => {
+      if (serveTimer || !watched.size) return;
+      let busy = false;
+      serveTimer = setInterval(() => {
+        if (busy) return;
+        busy = true;
+        look().catch((error2) => console.log(`[download-queue] serving watch: ${error2.message}`)).finally(() => {
+          busy = false;
+        });
+      }, 3e3);
+      serveTimer.unref?.();
+    };
+    // After a restart: every link still being fetched is served again, on its own token and port, by
+    // the helper that may still be running, or by a new one, or by the app for a link it served itself.
+    const resumeServing = async () => {
+      if (platform !== "ps5") return;
+      for (const job2 of jobs) {
+        const proxy = job2.proxy;
+        if (!proxy || proxy.done) continue;
+        if (Date.now() - (proxy.since || 0) > SERVE_FOR_MS) {
+          proxy.done = true;
+          continue;
+        }
+        try {
+          if (proxy.background && helper) {
+            const running = await helper.alive();
+            const again = await helper.add({ url: proxy.origin, total: proxy.total, file: proxy.file, token: proxy.token });
+            if (again.port !== proxy.port) console.log(`[download-queue] ${job2.id}: served again on port ${again.port}, not ${proxy.port}: the console's download cannot reconnect, so Retry it in the PS5's Downloads or download it again`);
+            else console.log(`[download-queue] ${job2.id}: ${running ? "the helper is still serving it to the console" : "the helper serves it to the console again after a restart"} (${formatBytes(proxy.total)})`);
+            watch(job2.id, "helper");
+            job2.message = t("downloads.streamedBackground");
+          } else if (!proxy.background && typeof packages?.proxy === "function") {
+            const again = packages.proxy({ url: proxy.origin, total: proxy.total, file: proxy.file, token: proxy.token, port: proxy.port });
+            if (again.port !== proxy.port) console.log(`[download-queue] ${job2.id}: served again on port ${again.port}, not ${proxy.port}: the console's download cannot reconnect, so Retry it in the PS5's Downloads or download it again`);
+            else console.log(`[download-queue] ${job2.id}: served to the console again after a restart (${formatBytes(proxy.total)})`);
+            watch(job2.id, "app");
+            job2.message = t("downloads.streamedProxy");
+          }
+        } catch (error2) {
+          console.log(`[download-queue] ${job2.id}: not served again: ${error2.message}`);
+        }
+      }
+      emit2();
+      watchServing();
+    };
     if (legacy !== file && fs.exists(legacy)) {
       try {
         if (stored === legacy) save();
@@ -211,6 +360,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         console.log(`[download-queue] queue not saved to ${file}: ${error2.message}`);
       }
     }
+    void resumeServing();
     // A finished download that stayed a ".binary" before its header check knew PS5 packages and its
     // name was read (issues #24, #42) is routed now, once at launch, as a new one would be: a game
     // image to the homebrew folder for ShadowMount+, a PKG to the packages folder to install. One
@@ -435,6 +585,260 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       change();
     }
     const canInstall = () => Boolean(packages) && platform === "ps5";
+    // PKG streaming (issue #50): a plain PKG goes by its link to the console's own download queue, which
+    // installs it in the background, with Padrino Store closed too, and with no copy on the drive first.
+    // Archives and game images stay here, as does anything the console refuses: that downloads as before.
+    // The format is read from the file's first bytes, since most sources name none ("binary").
+    var STREAMABLE = ["pkg", "fpkg", "binary"];
+    var PKG_PROBE_BYTES = 4096;
+    var PS4_CONTENT_ID = /[A-Z]{2}\d{4}-[A-Z]{4}\d{5}_\d{2}-[A-Z0-9]{16}/;
+    // How long the console has to start fetching the link before the app leaves it to the console.
+    var STREAM_WATCH_MS = 3e4;
+    // How big the package is, from the range the host answered with: next to the internal drive's free
+    // space, it is the one line that says whether the console had room to take the link at all.
+    var packageSize = (headers) => Number(String(headers?.["content-range"] || "").split("/")[1]) || 0;
+    async function pkgLink(job2, signal) {
+      let url = job2.options.url;
+      for (let hop = 0; hop < 5; hop++) {
+        const response = await http.request(url, { headers: { Range: `bytes=0-${PKG_PROBE_BYTES - 1}` }, maxBytes: 64 * 1024, signal });
+        const location = response.headers.location;
+        if (response.status >= 300 && response.status < 400 && /^https?:\/\//i.test(location || "")) {
+          url = location;
+          continue;
+        }
+        // A host that ignores the range sends the whole file: the console's downloader needs ranges too.
+        if (response.status !== 206) {
+          console.log(`[download-queue] ${job2.id}: not streamed, the host answered ${response.status} instead of a range`);
+          return null;
+        }
+        const head = await response.text();
+        const ps4 = head.startsWith("\x7FCNT"), ps5 = head.startsWith("\x7FFIH");
+        const contentId = ps4 ? head.slice(0, 256).match(PS4_CONTENT_ID)?.[0] : "";
+        // Said out loud: a silent decline leaves "downloading it here instead" with no reason next to it.
+        if (!ps4 && !ps5) {
+          console.log(`[download-queue] ${job2.id}: not streamed, its first bytes are not a PKG`);
+          return null;
+        }
+        if (contentId === void 0) {
+          console.log(`[download-queue] ${job2.id}: not streamed, its PS4 header names no content ID`);
+          return null;
+        }
+        return { url, contentId, kind: ps4 ? "PS4" : "PS5", total: packageSize(response.headers), headers: response.headers };
+      }
+      return null;
+    }
+    // Why the console said no: its code is the only thing that names the cause, and its error arrives as
+    // "Packages.install <url>: <reason> (0x<code>)". app.log cuts a line at 382 characters, so a signed
+    // CDN link filled the line and both the reason and the code went missing exactly when they were
+    // wanted (a Wolverine fPKG, 2026-10-25). The link is logged already, masked, on the line before.
+    var consoleFailure = (message) => {
+      const text = String(message || "");
+      const code = text.match(/\(0x([0-9a-zA-Z]+)\)/)?.[1];
+      // The frame says it as "Packages.install: <url>: <reason> (0x<code>)": the last piece before the
+      // code is the reason, and reading it from there keeps a signed CDN link out of app.log's 382
+      // characters, which are not enough for both.
+      const parts = text.replace(/\(0x[0-9a-zA-Z]+\)\s*$/, "").split(": ");
+      const reason = parts[parts.length - 1].replace(/https?:\/\/\S+/g, "").trim();
+      return `code=0x${code || "none"}${reason ? ` ${reason}` : ""}`;
+    };
+    // What the console's own install has to work with: it installs to the internal drive, not to this
+    // job's, and a full one is refused before anything is fetched.
+    var internalFree = () => {
+      try {
+        return formatBytes(fs.diskUsage("/data").free);
+      } catch {
+        return "unknown";
+      }
+    };
+    // The ways the console is offered the package, in order. First the link as it came, which the
+    // console fetches by itself, also once the app has closed. Then the same file served by the app:
+    // the console asks a HEAD before it fetches, and a pre-signed link (Vikingfile's S3 storage) signs
+    // only the GET it was made for, so the HEAD got 403 and the console refused it with 0x80B22403
+    // whatever shape the link had (".pkg" on the end and a sorted query were tried and refused alike,
+    // 2026-10-25). The app's link names the console's LAN address, which its queue treats as any other
+    // origin (Pegasus DL+ serves its packages the same way), and 127.0.0.1 after it. The first shape the
+    // console takes is the one it installs.
+    var linkShapes = (link) => {
+      const shapes = [{ name: "as it came", url: link.url }];
+      if ((helper || typeof packages?.proxy === "function") && link.total)
+        shapes.push({ name: "through Padrino Store", proxied: "url" }, { name: "through Padrino Store on 127.0.0.1", proxied: "localUrl" });
+      return shapes;
+    };
+    // Padrino Store's own link to the package, or null when it cannot serve one. The helper first: its link
+    // keeps working once the app closes, which is the point of handing the package to the console. The
+    // app's own server is the fallback (no loader on 9021, a helper that did not start), and then
+    // Padrino Store has to stay open until the console has it.
+    var proxyLink = async (job2, link) => {
+      const file = job2.release.filename || job2.title;
+      if (helper) {
+        try {
+          return await helper.add({ url: link.url, total: link.total, file });
+        } catch (error2) {
+          console.log(`[download-queue] ${job2.id}: the package helper did not start (${error2.message}); serving it from the app, which has to stay open`);
+        }
+      }
+      if (typeof packages?.proxy !== "function") return null;
+      try {
+        return { ...packages.proxy({ url: link.url, total: link.total, file }), background: false };
+      } catch (error2) {
+        console.log(`[download-queue] ${job2.id}: the app could not serve it to the console: ${error2.message}`);
+        return null;
+      }
+    };
+    // Stops serving a link. Not "forget": that one deletes a job's files and drops it from the queue, and
+    // a second function of that name replaced it, so Delete removed nothing (2026-10-25).
+    var unserve = (served) => served.background ? helper?.remove(served.token) : packages?.proxyRemove?.(served.token);
+    // What the host answers: the console's refusal names no cause, and this is the response it would have
+    // had in front of it. A one-byte range, because a host that serves 85 GB will not answer a plain
+    // request at all ("response exceeds maxBytes", 2026-10-25).
+    var describeHost = async (job2, url) => {
+      const header = (response, key) => String(response?.headers?.[key] ?? "-").slice(0, 70);
+      try {
+        const response = await http.request(url, { headers: { Range: "bytes=0-0" }, maxBytes: 8 * 1024 });
+        console.log(`[download-queue] ${job2.id}: the host answers ${response.status} to a one-byte range, ${header(response, "content-type")}, ${header(response, "content-range") || header(response, "content-length")} bytes, ${header(response, "content-disposition")}`);
+        // A HEAD is what a downloader may ask before it fetches, and a pre-signed URL signs the method
+        // it was made for: a 403 here would be a refusal no shape of the link can cure (2026-10-25).
+        try {
+          const head = await http.request(url, { method: "HEAD", maxBytes: 8 * 1024 });
+          console.log(`[download-queue] ${job2.id}: the host answers ${head.status} to a HEAD, ${header(head, "content-length") || header(head, "content-range")} bytes, ${header(head, "etag")}`);
+        } catch (error2) {
+          console.log(`[download-queue] ${job2.id}: the HEAD failed: ${error2.message}`);
+        }
+        // Names only: a signed CDN's values alone are longer than the line app.log keeps.
+        const mark = url.indexOf("?");
+        if (mark > 0) console.log(`[download-queue] ${job2.id}: its query names ${url.slice(mark + 1).split("&").map(part => part.split("=")[0]).join(", ")}`);
+      } catch (error2) {
+        console.log(`[download-queue] ${job2.id}: a one-byte range of the host failed: ${error2.message}`);
+      }
+    };
+    // One ask of the console: it either takes the link or says no.
+    var handOver = async (job2, url, link) => {
+      let task;
+      // How long the console took to say no: an immediate no never tried to fetch, a late one did.
+      const asked = Date.now();
+      const accepted = await new Promise((resolve) => {
+        let settled = false, off = null, timer = null;
+        const settle = (value) => {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
+          off?.();
+          resolve(value);
+        };
+        try {
+          task = packages.install({ url, name: job2.title, contentId: link.contentId });
+        } catch (error2) {
+          console.log(`[download-queue] ${job2.id}: the console was not asked: ${error2.message}`);
+          settle(false);
+          return;
+        }
+        active2.task = task;
+        // Accepted once the console reports bytes, or has said nothing against it within the watch.
+        off = task.subscribe((progress) => {
+          if (progress.written > 0) settle(true);
+        });
+        if (settled) off();
+        task.done.then(() => settle(true), (error2) => {
+          const text = String(error2?.message || "");
+          const why = consoleFailure(text);
+          // The app stops the task itself once the console has taken the link: that is not a failure,
+          // and neither is a task closed without a code of its own ("the installer stopped answering",
+          // which is the app letting go of it, logged after every accepted link, 2026-10-25).
+          if (!/cancel/i.test(text) && !(settled && why.startsWith("code=0xnone"))) console.log(settled
+            ? `[download-queue] ${job2.id}: the install failed after the console took the link: ${why}`
+            : `[download-queue] ${job2.id}: the console refused the link after ${Date.now() - asked} ms: ${why}`);
+          settle(false);
+        });
+        timer = setTimeout(() => settle(task.snapshot.state === "installing"), STREAM_WATCH_MS);
+      });
+      return { task, accepted };
+    };
+    async function streamed(job2, signal) {
+      const options = job2.options;
+      const format = String(job2.release.format || "binary").toLowerCase();
+      if (!canInstall() || job2.streamTried || job2.written || job2.output || !STREAMABLE.includes(format) || !options?.url || options.pieces || Object.keys(options.headers || {}).length) return false;
+      // A part file means this job already began downloading here: the console would start from zero.
+      if (fs.exists(`${job2.downloadDestination}.part`)) {
+        console.log(`[download-queue] ${job2.id}: not streamed, it already has a part file here`);
+        return false;
+      }
+      // The player asked for it in Padrino Store, with pause, resume and the install at the end.
+      if (job2.streamMode === "here") {
+        console.log(`[download-queue] ${job2.id}: downloading it in Padrino Store, as asked`);
+        return false;
+      }
+      let link;
+      try {
+        link = await pkgLink(job2, signal);
+      } catch (error2) {
+        if (!signal.aborted) console.log(`[download-queue] ${job2.id}: not streamed, its first bytes were not read: ${error2.message}`);
+        return false;
+      }
+      if (!link) return false;
+      job2.streamTried = true;
+      job2.streaming = true;
+      job2.state = "installing";
+      job2.written = 0;
+      job2.message = "";
+      change();
+      console.log(`[download-queue] ${job2.id}: a ${link.kind} PKG${link.total ? ` of ${formatBytes(link.total)}` : ""}, handed to the console's downloads${link.contentId ? ` as ${link.contentId}` : ""}: ${linkForLog(link.url)}`);
+      // How the host served the bytes the console was offered: the same line for a link it takes and one
+      // it refuses is the only way to see what the two hosts do differently (2026-10-25).
+      console.log(`[download-queue] ${job2.id}: the host serves it as ${String(link.headers?.["content-type"] || "-").slice(0, 60)}, ${String(link.headers?.["content-disposition"] || "-").slice(0, 90)}`);
+      // The install goes to the internal drive: a full one is a refusal that looks like any other.
+      console.log(`[download-queue] ${job2.id}: internal drive free ${internalFree()}`);
+      const shapes = linkShapes(link);
+      let task = null, accepted = false, taken = null, served;
+      for (let attempt = 0; attempt < shapes.length && !accepted && job2.state !== "pausing"; attempt++) {
+        const shape = shapes[attempt];
+        // Served once, offered on each address: a console without a LAN address skips that one.
+        if (shape.proxied && served === void 0) served = await proxyLink(job2, link);
+        if (shape.proxied && !served) break;
+        const url = shape.proxied ? served[shape.proxied] : shape.url;
+        if (!url) continue;
+        // The app's own link names no secret: it goes to app.log whole.
+        if (attempt) console.log(`[download-queue] ${job2.id}: offered it again ${shape.name} to the console: ${shape.proxied ? url : linkForLog(url)}`);
+        const answer = await handOver(job2, url, link);
+        task = answer.task;
+        accepted = answer.accepted;
+        if (accepted) taken = shape;
+        else if (attempt === 0) await describeHost(job2, url);
+      }
+      delete job2.streaming;
+      // The console goes on by itself with what it took: the app stops listening, and waits until the
+      // installer has let go, since it takes one package at a time (the next one, or this one's
+      // download here, would be turned away).
+      if (task) {
+        task.cancel();
+        await task.done.catch(() => {});
+      }
+      // A link the console never took is not served.
+      if (served && !taken?.proxied) void unserve(served);
+      if (job2.state === "pausing") return true;
+      if (!accepted) {
+        job2.state = "resolving";
+        job2.written = 0;
+        change();
+        console.log(`[download-queue] ${job2.id}: downloading it here instead`);
+        return false;
+      }
+      console.log(`[download-queue] ${job2.id}: the console took it ${taken.name}`);
+      job2.state = "installed";
+      job2.streamed = true;
+      job2.written = job2.total || 0;
+      job2.bytesPerSecond = 0;
+      // Served by the app, the console's download lasts as long as the app does, or until a later
+      // session serves it again from what is kept here.
+      if (taken.proxied) {
+        job2.proxied = true;
+        job2.proxy = { token: served.token, port: served.port, origin: link.url, total: link.total, file: job2.release.filename || job2.title, since: Date.now(), background: Boolean(served.background) };
+        watch(job2.id, served.background ? "helper" : "app");
+        watchServing();
+      }
+      job2.message = t(!taken.proxied ? "downloads.streamed" : served.background ? "downloads.streamedBackground" : "downloads.streamedProxy");
+      notifications.show(t("downloads.notice.streamed"), job2.title);
+      return true;
+    }
     async function execute(job2) {
       let task;
       let unsubscribe;
@@ -466,7 +870,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
             job2.options = formats.manifest(await response.json());
           } else {
             if (!job2.release.url && !job2.release.browserUrl) throw new Error("This release has no download URL.");
-            const resolved = job2.directURL || sourceKind(job2.release) !== "direct" ? await sources.resolve(job2.release, { signal, directURL: job2.directURL }) : { url: webURL(job2.release.url).url };
+            // A pasted link may come from a service of the user's own (a qBittorrent's WebUI), whose
+            // file is behind its password: the release carries the headers for it (link-download.js).
+            const resolved = job2.directURL || sourceKind(job2.release) !== "direct" ? await sources.resolve(job2.release, { signal, directURL: job2.directURL }) : { url: webURL(job2.release.url).url, headers: job2.release.headers };
             job2.options = {
               ...resolved,
               rejectHtml: true,
@@ -480,6 +886,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
           change();
         }
         if (job2.state === "pausing") return;
+        if (await streamed(job2, signal) || job2.state === "pausing") return;
         const root2 = storageIdentity(job2);
         if (!job2.rootIdentity) {
           job2.rootIdentity = root2;
@@ -615,7 +1022,8 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       // are none the extractor knows, the host sent something else, usually a web page. Leaving it as a
       // downloaded ".binary" (issue #8) told the user nothing. Only a small file reads as one, though:
       // gigabytes the headers don't name are still the game, in a format not checked (issue #24).
-      if (!kind && job2.release.format === "binary" && (fs.stat(job2.downloadDestination)?.size || 0) < WEB_PAGE_BYTES) throw new Error("Not a game file: the host sent something else.");
+      // A pasted link is the user's own file, not a catalog entry: whatever it is, it is kept.
+      if (!kind && !job2.release.link && job2.release.format === "binary" && (fs.stat(job2.downloadDestination)?.size || 0) < WEB_PAGE_BYTES) throw new Error("Not a game file: the host sent something else.");
       const named = kind ? null : namedKind(job2);
       if (!kind && !named) return;
       if (named) console.log(`[download-queue] headers name no format; the file's name says ${named}`);
@@ -1683,7 +2091,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         listener(snapshot());
         return () => listeners4.delete(listener);
       },
-      enqueue(game, release, root2) {
+      // `streamMode`: "console" hands a PKG to the PS5's own Downloads, "here" keeps it in Padrino Store;
+      // none tries the console first, as before the question existed.
+      enqueue(game, release, root2, { streamMode } = {}) {
         const id = `${game.id}/${release.id}`;
         const existing = jobs.find((job2) => job2.id === id);
         if (existing) return existing.id;
@@ -1704,6 +2114,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         jobs.push({
           id,
           gameId: game.id,
+          ...streamMode === "console" || streamMode === "here" ? { streamMode } : {},
           // A source of another region or edition names its file's own title id: the capture looks
           // for it, and the files carry it, so it is no "another game?" warning.
           titleId: release.titleId || game.titleId || game.id,
@@ -1793,6 +2204,11 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         const job2 = find(id);
         if (!["paused", "failed", "awaiting-browser", ...COMPLETE].includes(job2.state) || active2?.job === job2) return;
         stopCapture(job2);
+        // A removed row stops serving its package: the console's download of it stops too.
+        if (job2.proxy && !job2.proxy.done) {
+          unwatch(job2.id);
+          void unserve(job2.proxy);
+        }
         const previous = jobs;
         jobs = jobs.filter((item) => item !== job2);
         try {

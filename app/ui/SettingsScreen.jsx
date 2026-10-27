@@ -21,6 +21,7 @@ import { EASE_OUT } from './ease.js';
 import { LEVELS, setVibrationLevel, useVibrationLevel } from './haptics.js';
 import { LIMITS, setSpeedLimit, useSpeedLimit } from '../state/speed-limit.js';
 import { setDeletePackages, useDeletePackages } from '../state/package-cleanup.js';
+import { MODES, setPkgMode, usePkgMode } from '../state/pkg-mode.js';
 import { playError, playNotify } from './sounds.js';
 import { GUTTER, HAIRLINE, HAIRLINE_FOCUS, RADIUS_CARD, RADIUS_PILL, ROW_H, SEGMENT_H } from './tokens.js';
 import { ButtonHints } from './ButtonHints.jsx';
@@ -119,6 +120,28 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
         /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, color: colors.muted, lineHeight: 26 }, children: t2("settings.deletePackagesDetail") })
       ] }),
       /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", gap: 8 }, children: [true, false].map((value) => /* @__PURE__ */ (0, jsx)(PackagesSegment, { on: value, chosen: value === on }, String(value))) })
+    ] });
+  }
+
+  // Where a PKG downloads (pkg-mode.js): asked each time, in Padrino Store, or in the background on the PS5.
+  function PkgModeSegment({ mode, chosen }) {
+    const t2 = useT();
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:pkg:${mode}`, autoFocus: chosen, onPress: () => setPkgMode(mode), style: { position: "relative", flex: 1, height: SEGMENT_H, borderRadius: RADIUS_PILL, backgroundColor: colors.surface2, overflow: "hidden" }, children: [
+      /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { initial: false, animate: { opacity: chosen ? 1 : 0 }, transition: { type: "tween", duration: 0.22, ease: EASE_OUT }, style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: colors.accent, borderRadius: RADIUS_PILL } }),
+      /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, alignItems: "center", justifyContent: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: chosen ? colors.accentFg : colors.muted, numberOfLines: 1 }, children: t2(`settings.pkgMode.${mode}`) }) })
+    ] });
+  }
+
+  function PkgMode() {
+    const t2 = useT();
+    const mode = usePkgMode();
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 14, paddingTop: 6, paddingBottom: 18 }, children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 3 }, children: [
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 22, fontWeight: 600, color: colors.fg }, children: t2("settings.pkgMode") }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, color: colors.muted, lineHeight: 26 }, children: t2("settings.pkgModeDetail") })
+      ] }),
+      /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", gap: 8 }, children: MODES.map((value) => /* @__PURE__ */ (0, jsx)(PkgModeSegment, { mode: value, chosen: value === mode }, value)) })
     ] });
   }
 
@@ -246,6 +269,7 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SpeedLimit, {}) }),
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(DiskForDownloads, {}) }),
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(DeletePackages, {}) }),
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(PkgMode, {}) }),
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(SectionLabel, { title: t2("settings.controller") }) }),
       /* @__PURE__ */ (0, jsx)(motion.View, { variants: itemAnim, children: /* @__PURE__ */ (0, jsx)(VibrationLevel, {}) })
     ] });

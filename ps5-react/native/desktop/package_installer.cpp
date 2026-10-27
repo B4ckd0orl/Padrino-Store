@@ -11,7 +11,7 @@ std::mutex guard;
 std::vector<Snapshot> pending;
 std::uint32_t next_id = 1;
 }
-std::uint32_t install(std::string, std::string, std::string&) {
+std::uint32_t install(std::string, std::string, std::string, std::string&) {
   std::lock_guard lock(guard);
   Snapshot snapshot;
   snapshot.id = next_id++;
@@ -28,4 +28,10 @@ std::vector<Snapshot> poll() {
   return out;
 }
 void stop() {}
+// The preview serves packages from the app itself (pkg_proxy.cpp): there is no payload loader here.
+std::uint32_t start_helper(std::uint32_t, std::string, std::string, std::string& error) {
+  error = "The package helper runs on a PS5 only.";
+  return 0;
+}
+std::vector<HelperSnapshot> poll_helper() { return {}; }
 }
