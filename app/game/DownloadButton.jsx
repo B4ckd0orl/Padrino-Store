@@ -18,6 +18,7 @@ import { formatPercent2 } from '../i18n/core.js';
 import { useT } from '../i18n/index.js';
 import { editionsOf } from '../state/catalog.js';
 import { BUSY, COMPLETE } from '../state/download-queue.js';
+import { downloadRoot, setDownloadRoot, storageIndex } from '../state/download-root.js';
 import { downloadQueue, driveName, freeBytes, storageRoots } from '../state/downloads.js';
 import { useNavActions } from '../state/nav.jsx';
 import { formatBytes } from '../state/size.js';
@@ -53,10 +54,11 @@ import { DownloadFormats, Text, View, motion } from '@ps5-react/core';
     });
     const [storage, setStorage] = (0, useState)(() => {
       const first = releases[preferredRelease(releases)];
-      return Math.max(0, roots.findIndex((root2) => {
+      // The drive picked last time (issue #103), unless it went away or has no room for this release.
+      return storageIndex(roots, downloadRoot(), (root2) => {
         const need2 = spaceNeeded(first, root2);
         return !need2 || freeBytes(root2) >= need2 + MARGIN2;
-      }));
+      });
     });
     const release = releases[selected];
     const download = useDownload(game, release, roots[storage]);
@@ -259,7 +261,12 @@ import { DownloadFormats, Text, View, motion } from '@ps5-react/core';
         {
           focusKey: storageFocus,
           nextFocusDown: after(storageFocus),
-          onPress: roots.length > 1 ? () => setStorage((index) => (index + 1) % roots.length) : null,
+          onPress: roots.length > 1 ? () => {
+            // Picking a drive here picks it for the games after this one too (issue #103).
+            const next = (storage + 1) % roots.length;
+            setDownloadRoot(roots[next]);
+            setStorage(next);
+          } : null,
           text: [t2("download.saveTo", { drive: driveName(roots[storage]) }), free[storage] !== null && t2("download.free", { size: formatBytes(free[storage]) })].filter(Boolean).join(" \xB7 ")
         }
       ) : null,

@@ -1,8 +1,8 @@
 // ../pub-game-store/native/state/downloads.js
 // reconstructed from the esbuild bundle in eboot.bin
 
-import { t } from '../i18n/core.js';
 import { getGame } from './catalog.js';
+import { driveName, driveShortName } from './drive-names.js';
 import { createDownloadQueue } from './download-queue.js';
 import { createSourceResolver } from './download-sources.js';
 import { createMockDownloadQueue } from './mock-download-queue.js';
@@ -38,15 +38,9 @@ import { Archives, BrowserCapture, DownloadFormats, Downloads, FileSystem, Http,
       return null;
     }
   }
-  function driveName(root2) {
-    if (root2 === "/data") return t("drives.internal");
-    const mount = /^\/mnt\/(usb|ext)(\d+)$/.exec(root2);
-    if (!mount) return t("drives.thisDevice");
-    return t(mount[1] === "usb" ? "drives.usb" : "drives.extended", { number: String(Number(mount[2]) + 1) });
-  }
   function storageRoots() {
     if (Platform.OS !== "ps5") return [FileSystem.dataDir];
     return consoleRoots(() => FileSystem.mounts());
   }
 
-export { downloadQueue, driveName, freeBytes, shadowMountUp, storageRoots };
+export { downloadQueue, driveName, driveShortName, freeBytes, shadowMountUp, storageRoots };
