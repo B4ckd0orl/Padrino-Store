@@ -77,7 +77,7 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
 
   function SpeedSegment({ limit, chosen }) {
     const t2 = useT();
-    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:speed:${limit}`, autoFocus: chosen, onPress: () => setSpeedLimit(limit), style: { position: "relative", flex: limit ? 1 : 2, height: SEGMENT_H, borderRadius: RADIUS_PILL, backgroundColor: colors.surface2, overflow: "hidden" }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:speed:${limit}`, autoFocus: chosen, onPress: () => setSpeedLimit(limit), style: { position: "relative", flex: limit ? 1 : 2, height: SEGMENT_H, borderRadius: RADIUS_PILL, backgroundColor: colors.surface2 }, children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
       /* @__PURE__ */ (0, jsx)(motion.View, { initial: false, animate: { opacity: chosen ? 1 : 0 }, transition: { type: "tween", duration: 0.22, ease: EASE_OUT }, style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: colors.accent, borderRadius: RADIUS_PILL } }),
       /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, alignItems: "center", justifyContent: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: chosen ? colors.accentFg : colors.muted, numberOfLines: 1 }, children: limit ? String(limit) : t2("settings.speedUnlimited") }) })
@@ -101,7 +101,7 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
 
   function PackagesSegment({ on, chosen }) {
     const t2 = useT();
-    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:packages:${on ? "on" : "off"}`, autoFocus: chosen, onPress: () => setDeletePackages(on), style: { position: "relative", flex: 1, height: SEGMENT_H, borderRadius: RADIUS_PILL, backgroundColor: colors.surface2, overflow: "hidden" }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:packages:${on ? "on" : "off"}`, autoFocus: chosen, onPress: () => setDeletePackages(on), style: { position: "relative", flex: 1, height: SEGMENT_H, borderRadius: RADIUS_PILL, backgroundColor: colors.surface2 }, children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
       /* @__PURE__ */ (0, jsx)(motion.View, { initial: false, animate: { opacity: chosen ? 1 : 0 }, transition: { type: "tween", duration: 0.22, ease: EASE_OUT }, style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: colors.accent, borderRadius: RADIUS_PILL } }),
       /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, alignItems: "center", justifyContent: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: chosen ? colors.accentFg : colors.muted, numberOfLines: 1 }, children: t2(on ? "settings.on" : "settings.off") }) })
@@ -126,7 +126,7 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
   // Where a PKG downloads (pkg-mode.js): asked each time, in Padrino Store, or in the background on the PS5.
   function PkgModeSegment({ mode, chosen }) {
     const t2 = useT();
-    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:pkg:${mode}`, autoFocus: chosen, onPress: () => setPkgMode(mode), style: { position: "relative", flex: 1, height: SEGMENT_H, borderRadius: RADIUS_PILL, backgroundColor: colors.surface2, overflow: "hidden" }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:pkg:${mode}`, autoFocus: chosen, onPress: () => setPkgMode(mode), style: { position: "relative", flex: 1, height: SEGMENT_H, borderRadius: RADIUS_PILL, backgroundColor: colors.surface2 }, children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
       /* @__PURE__ */ (0, jsx)(motion.View, { initial: false, animate: { opacity: chosen ? 1 : 0 }, transition: { type: "tween", duration: 0.22, ease: EASE_OUT }, style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: colors.accent, borderRadius: RADIUS_PILL } }),
       /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, alignItems: "center", justifyContent: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: chosen ? colors.accentFg : colors.muted, numberOfLines: 1 }, children: t2(`settings.pkgMode.${mode}`) }) })
@@ -148,7 +148,7 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
   // The drive downloads go to (issue #103), laid out like the speed limit: every drive in view,
   // plus Automatic for the app's own pick. It shows only when there is more than one drive.
   function DiskSegment({ root, label, chosen }) {
-    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:disk:${root ?? "auto"}`, autoFocus: chosen, onPress: () => setDownloadRoot(root), style: { position: "relative", flex: 1, height: SEGMENT_H, borderRadius: RADIUS_PILL, backgroundColor: colors.surface2, overflow: "hidden" }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:disk:${root ?? "auto"}`, autoFocus: chosen, onPress: () => setDownloadRoot(root), style: { position: "relative", flex: 1, height: SEGMENT_H, borderRadius: RADIUS_PILL, backgroundColor: colors.surface2 }, children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
       /* @__PURE__ */ (0, jsx)(motion.View, { initial: false, animate: { opacity: chosen ? 1 : 0 }, transition: { type: "tween", duration: 0.22, ease: EASE_OUT }, style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: colors.accent, borderRadius: RADIUS_PILL } }),
       /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, alignItems: "center", justifyContent: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: chosen ? colors.accentFg : colors.muted, numberOfLines: 1 }, children: label }) })
@@ -177,7 +177,7 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
 
   function VibrationSegment({ level, chosen }) {
     const t2 = useT();
-    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:vibration:${level}`, onPress: () => setVibrationLevel(level), style: { position: "relative", flex: level ? 1 : 2, height: SEGMENT_H, borderRadius: RADIUS_PILL, backgroundColor: colors.surface2, overflow: "hidden" }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { focusKey: `settings:vibration:${level}`, onPress: () => setVibrationLevel(level), style: { position: "relative", flex: level ? 1 : 2, height: SEGMENT_H, borderRadius: RADIUS_PILL, backgroundColor: colors.surface2 }, children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
       /* @__PURE__ */ (0, jsx)(motion.View, { initial: false, animate: { opacity: chosen ? 1 : 0 }, transition: { type: "tween", duration: 0.22, ease: EASE_OUT }, style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundColor: colors.accent, borderRadius: RADIUS_PILL } }),
       /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, alignItems: "center", justifyContent: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: chosen ? colors.accentFg : colors.muted, numberOfLines: 1 }, children: level ? formatPercent2(level) : t2("settings.vibrationOff") }) })
