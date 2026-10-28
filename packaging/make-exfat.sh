@@ -10,8 +10,11 @@
 # files of a few KB each (the catalog's JSON) and every file takes a whole
 # cluster, so 64K clusters cost ~530 MB where 8K clusters cost ~90 MB. ShadowMount+
 # refuses only a cluster smaller than the device's sector (512 bytes) and mounts
-# 4K through 128K alike; its recommendation of 64K is for images of big files,
-# which this one is not. 8K is the default here.
+# 4K through 128K alike. 64K is the default here on purpose: it is the only
+# geometry the console has a track record with, and the one release that dropped
+# the default to 8K came back with kernel panics that froze the update and rebooted
+# the PS5. A smaller image is not worth an install that reboots the console, so
+# keep this at 64K unless a smaller cluster is proven safe on hardware first.
 #
 # usage: make-exfat.sh <app-folder> <out.exfat> [label] [cluster-size] [--size-only]
 #        EXFAT_SLACK_MB overrides the slack (default 32).
@@ -30,7 +33,7 @@ if [ "${#args[@]}" -gt 0 ]; then set -- "${args[@]}"; else set --; fi
 app="${1:-}"
 out="${2:-}"
 label="${3:-PADRINO}"
-cluster="${4:-8K}"
+cluster="${4:-64K}"
 slack_mb="${EXFAT_SLACK_MB:-32}"
 
 if [ -z "$app" ] || [ -z "$out" ]; then

@@ -4,14 +4,15 @@
 # update.zip. This script writes the image alone.
 #
 # usage: make-exfat-mac.sh <app-folder> <out.exfat> [label] [cluster-size]
-#        EXFAT_SLACK_MB overrides the slack (default 32); 8K clusters keep a
-#        catalog of small files (see make-exfat.sh for the sizing).
+#        EXFAT_SLACK_MB overrides the slack (default 32). 64K is the default
+#        cluster: the only geometry the console has a track record with (see
+#        make-exfat.sh for why a smaller cluster is not worth the risk).
 set -euo pipefail
 
 app="${1:-}"
 out="${2:-}"
 label="${3:-PADRINO}"
-cluster="${4:-8K}"
+cluster="${4:-64K}"
 
 if [ -z "$app" ] || [ -z "$out" ]; then
     echo "usage: $0 <app-folder> <out.exfat> [label] [cluster-size]" >&2
