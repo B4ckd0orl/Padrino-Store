@@ -10,11 +10,12 @@ import { DownloadButton } from './DownloadButton.jsx';
 import { canDownload } from './releases.js';
 import { SPAN_MAX, fitBytes } from '../i18n/fit.js';
 import { latin, useLocale, useT } from '../i18n/index.js';
-import { genreLabel, listedId } from '../state/catalog.js';
+import { genreLabel, formatCount, listedId } from '../state/catalog.js';
 import { useStoreActions, useWishlist } from '../state/store.jsx';
 import { Button2 } from '../ui/Button.jsx';
 import { Cover } from '../ui/Cover.jsx';
 import { GameLogo } from '../ui/GameLogo.jsx';
+import { Icon } from '../ui/Icon.jsx';
 import { WishHeart } from '../ui/WishHeart.jsx';
 import { EASE_OUT } from '../ui/ease.js';
 import { Image, Text, View, motion } from '@ps5-react/core';
@@ -45,6 +46,14 @@ import { Image, Text, View, motion } from '@ps5-react/core';
         fitBytes(game.genres.map(genreLabel).join(", "), SPAN_MAX)
       ] }) }),
       /* @__PURE__ */ (0, jsxs)(motion.View, { variants: rise, style: { marginTop: 24, flexDirection: "row", alignItems: "center", gap: 36 }, children: [
+        // The store's star rating: the number of the stars it averages, then how many rated it.
+        game.ratingCount ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12 }, children: [
+          /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 8, borderRadius: 3, backgroundColor: "#ffffff1a", paddingHorizontal: 9 }, children: [
+            /* @__PURE__ */ (0, jsx)(Icon, { name: "star", size: 20, color: "#fbbf24", fill: "#fbbf24" }),
+            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 700, color: "#f5f1ea", lineHeight: 30 }, children: game.stars.toFixed(2) })
+          ] }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("browse.reviews", { count: formatCount(game.ratingCount) }) })
+        ] }) : null,
         game.metacritic ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12 }, children: [
           /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: "#ffffff1a", paddingHorizontal: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 700, color: "#f5f1ea", lineHeight: 30 }, children: String(game.metacritic) }) }),
           /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("game.metacritic") })

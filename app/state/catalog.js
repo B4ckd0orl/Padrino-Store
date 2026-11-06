@@ -3,6 +3,7 @@
 
 import { features, games, twins } from '../data/catalog.js';
 import { HIDDEN } from '../data/curate.js';
+import { ratings } from '../data/ratings.js';
 import { formats as formatIndex } from '../data/formats.js';
 import { formatDate2, formatNumber2, t } from '../i18n/core.js';
 import { applyUpdate, loadUpdate } from './catalog-update.js';
@@ -107,6 +108,18 @@ import { FileSystem, Image } from '@ps5-react/core';
   }
   var editionsByWork = /* @__PURE__ */ new Map();
   for (const game of entries) if (game.work) editionsByWork.set(game.work, [...editionsByWork.get(game.work) ?? [], game]);
+  // The PlayStation Store star rating of a game (data/ratings.js: [stars, ratings]) is made part of the
+  // entry here, so the card, the game page, the rating sort and Top Rated all read one value. An
+  // edition the store has no rating for takes its work's best-known one (the PS4 and PS5 of a game).
+  for (const game of entries) {
+    const pair = ratings[game.id] ?? ratings[game.titleId];
+    if (pair) [game.stars, game.ratingCount] = pair;
+  }
+  for (const game of entries) {
+    if (game.ratingCount || !game.work) continue;
+    const rated = (editionsByWork.get(game.work) ?? []).filter((edition2) => edition2.ratingCount).sort((a, b) => b.ratingCount - a.ratingCount)[0];
+    if (rated) [game.stars, game.ratingCount] = [rated.stars, rated.ratingCount];
+  }
   var listed = new Set(games);
   for (const game of entries) game.platforms = [...new Set(editionsOf(game).map((edition2) => edition2.platform))].sort();
   // When a game reached the catalog ("added", which the importers write from 2026-10-21 on): its own date
@@ -132,6 +145,12 @@ import { FileSystem, Image } from '@ps5-react/core';
     const icons = homebrewApps().map((app) => app.art.cover).filter(Boolean);
     Image.warm([...icons, ...sortGames(games, "relevance").filter((game) => game.art.cover).map((game) => game.art.cover)]);
   }
+  // A game's store rating weighed by how many rated it: the average pulled toward RATING_PRIOR stars by
+  // RATING_WEIGHT imagined ratings, so 4.9 stars from 40 people ranks under 4.8 from 70 000. 0 when unrated.
+  var RATING_PRIOR = 3.5, RATING_WEIGHT = 500;
+  // The fewest ratings a game needs to stand in Top Rated.
+  var TOP_RATED_MIN = 200;
+  var ratingScore = (game) => game.ratingCount ? (game.stars * game.ratingCount + RATING_PRIOR * RATING_WEIGHT) / (game.ratingCount + RATING_WEIGHT) : 0;
   var SORTS = [
     // New releases first: the library's sort menu opens on it.
     { id: "newest", compare: (a, b) => b.releaseDate.localeCompare(a.releaseDate) },
@@ -139,7 +158,8 @@ import { FileSystem, Image } from '@ps5-react/core';
     { id: "added", compare: (a, b) => addedAt(b).localeCompare(addedAt(a)) || b.releaseDate.localeCompare(a.releaseDate) },
     // Most popular puts the games Archive.org serves first: the app downloads them fastest.
     { id: "relevance", compare: (a, b) => fromArchive(b) - fromArchive(a) || b.recommendations - a.recommendations },
-    { id: "rating", compare: (a, b) => (b.metacritic ?? 0) - (a.metacritic ?? 0) },
+    // The store's rating first (ratingScore), the Metacritic score for the games the store doesn't rate.
+    { id: "rating", compare: (a, b) => ratingScore(b) - ratingScore(a) || (b.metacritic ?? 0) - (a.metacritic ?? 0) },
     { id: "size", compare: (a, b) => (b.sizeGb ?? 0) - (a.sizeGb ?? 0) },
     { id: "title", compare: (a, b) => a.title.localeCompare(b.title) }
   ];
@@ -323,4 +343,4 @@ import { FileSystem, Image } from '@ps5-react/core';
     return formatNumber2(n);
   }
 
-export { CDN_HOST, FACETS, NO_FILTERS, SORTS, activeCount, addedAt, editionsOf, facetLabel, facetSummary, facetTitle, featureLabel, filterGames, formatCount, formatDate3, fromArchive, genreLabel, genres, getGame, isHidden, listedId, onCdn, optionLabel, relatedGames, showcase, sortGames, sortLabel, summaryOf, toggleValue, warmCovers };
+export { CDN_HOST, FACETS, NO_FILTERS, SORTS, TOP_RATED_MIN, activeCount, addedAt, editionsOf, facetLabel, facetSummary, facetTitle, featureLabel, filterGames, formatCount, formatDate3, fromArchive, genreLabel, genres, getGame, isHidden, listedId, onCdn, optionLabel, ratingScore, relatedGames, showcase, sortGames, sortLabel, summaryOf, toggleValue, warmCovers };

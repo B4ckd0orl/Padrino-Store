@@ -10,6 +10,7 @@ import { KINDS, isPackage, totals } from './scan.js';
 import { useFiles, finishedJobs } from './useFiles.js';
 import { useT } from '../i18n/index.js';
 import { driveName, storageRoots } from '../state/downloads.js';
+import { driveIndex, lastDrive, setLastDrive } from '../state/last-drive.js';
 import { useNavActions } from '../state/nav.jsx';
 import { formatBytes } from '../state/size.js';
 import { ButtonHints } from '../ui/ButtonHints.jsx';
@@ -68,7 +69,9 @@ import { FileSystem, FocusScope, ScrollView, Text, View, useIsFocused } from '@p
   function FilesScreen({ onBack }) {
     const t2 = useT();
     const [roots] = (0, useState)(storageRoots);
-    const [drive, setDrive] = (0, useState)(0);
+    // The drive last looked at is the one the tab opens on (a drive that is gone falls back to the
+    // first), and picking another keeps it for the next time the screen opens.
+    const [drive, setDrive] = (0, useState)(() => driveIndex(roots, lastDrive()));
     const [kind, setKind] = (0, useState)("all");
     const root2 = roots[drive];
     const { files, installing, install, remove, shadowMount } = useFiles(root2);
@@ -169,6 +172,7 @@ import { FileSystem, FocusScope, ScrollView, Text, View, useIsFocused } from '@p
               onFocus: () => setFocused(null),
               onPress: () => {
                 setDrive(index);
+                setLastDrive(path);
                 setArmed(null);
               }
             },

@@ -4,7 +4,7 @@
 // out of the catalog (state/catalog.js). Nothing is removed from the catalog data; false brings
 // every one of them back. Archive.org stays, its /details/ pages too.
 
-import { sourceKind, webURL } from './download-sources.js';
+import { RESOLVED_KINDS, sourceKind, webURL } from './download-sources.js';
 import { vikingLinkPage } from './viking-capture.js';
 
   var PAUSE_BROWSER_HOSTS = true;
@@ -41,7 +41,7 @@ import { vikingLinkPage } from './viking-capture.js';
   // The catalog's own host keys (game.providers) whose every source needs the browser.
   var PAUSED_FILTERS = /* @__PURE__ */ new Set([
     "1fichier", "datavaults", "buzzheavier", "gofile", "rapidgator", "filecrypt",
-    "ranoz", "transfer", "mega", "urlvanish", "fileditchfiles", "tinyurl", "fuckingfast", "rootz.so",
+    "ranoz", "transfer", "mega", "urlvanish", "fileditchfiles", "tinyurl", "fuckingfast",
     "1024terabox"
   ]);
   function pausedSource(release) {
@@ -53,6 +53,9 @@ import { vikingLinkPage } from './viking-capture.js';
     } catch {
       return false;
     }
+    // A host the resolver reaches the file of on its own (FileKeeper, Rootz) never waits for the
+    // browser, so it is not paused with the ones that do.
+    if (RESOLVED_KINDS.has(kind)) return false;
     if (kind === "vikingfile" || vikingLinkPage(release) || /archive\.org$/i.test(release.provider || "") || testing(release)) return false;
     return kind === "browser" || kind === "datanodes" || kind === "buzzheavier";
   }

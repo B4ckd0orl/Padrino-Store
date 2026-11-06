@@ -6,12 +6,13 @@ import { Fragment, jsx, jsxs } from 'react/jsx-runtime';
 import { games } from '../data/catalog.js';
 import { prefetchWhenSettled } from '../game/art.js';
 import { latin, useLocale, useT } from '../i18n/index.js';
-import { NO_FILTERS, formatCount, formatDate3, sortGames, sortLabel } from '../state/catalog.js';
+import { NO_FILTERS, TOP_RATED_MIN, formatCount, formatDate3, ratingScore, sortGames, sortLabel } from '../state/catalog.js';
 import { shuffle } from './picks.js';
 import { useNavActions } from '../state/nav.jsx';
 import { useShowLibrary } from '../ui/useSections.js';
 import { Cover } from '../ui/Cover.jsx';
 import { FocusFrame } from '../ui/FocusRing.jsx';
+import { Icon } from '../ui/Icon.jsx';
 import { SectionHeader } from '../ui/SectionHeader.jsx';
 import { lightGame, unlight } from '../ui/lightBar.js';
 import { Text, View } from '@ps5-react/core';
@@ -23,7 +24,12 @@ import { Text, View } from '@ps5-react/core';
   var TOP = 15;
   var RANK = {
     relevance: { has: (game) => game.recommendations > 0, compare: (a, b) => b.recommendations - a.recommendations },
-    rating: { has: (game) => game.metacritic != null, compare: (a, b) => b.metacritic - a.metacritic }
+    // The store's own rating (ratingScore), a game with enough ratings standing first; the Metacritic
+    // score takes part for the games the store doesn't rate.
+    rating: {
+      has: (game) => (game.ratingCount ?? 0) >= TOP_RATED_MIN || game.metacritic != null,
+      compare: (a, b) => ratingScore(b) - ratingScore(a) || (b.metacritic ?? 0) - (a.metacritic ?? 0)
+    }
   };
   function chartOf(id) {
     if (!RANK[id]) return sortGames(games, id).slice(0, 5);
@@ -40,9 +46,16 @@ import { Text, View } from '@ps5-react/core';
   function Detail({ chart, game }) {
     const t2 = useT();
     if (chart !== "rating") return /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 6, fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92" }, children: DETAIL[chart](t2, game) });
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { marginTop: 6, flexDirection: "row", alignItems: "center", gap: 9 }, children: [
+    if (!game.ratingCount) return /* @__PURE__ */ (0, jsxs)(View, { style: { marginTop: 6, flexDirection: "row", alignItems: "center", gap: 9 }, children: [
       /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: "#ffffff1a", paddingHorizontal: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 700, color: "#f5f1ea", lineHeight: 30 }, children: String(game.metacritic ?? "\u2014") }) }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92" }, children: "Metacritic" })
+    ] });
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { marginTop: 6, flexDirection: "row", alignItems: "center", gap: 9 }, children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 7, borderRadius: 3, backgroundColor: "#ffffff1a", paddingHorizontal: 9 }, children: [
+        /* @__PURE__ */ (0, jsx)(Icon, { name: "star", size: 17, color: "#fbbf24", fill: "#fbbf24" }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 700, color: "#f5f1ea", lineHeight: 30 }, children: game.stars.toFixed(2) })
+      ] }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92" }, children: t2("browse.reviews", { count: formatCount(game.ratingCount) }) })
     ] });
   }
   function Row3({ rank, game, chart }) {

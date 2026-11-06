@@ -14,8 +14,11 @@
     buzzheavier: ["buzzheavier.com"],
     vikingfile: ["vikingfile.com", "vik1ngfile.site"],
     datanodes: ["datanodes.to"],
-    filekeeper: ["filekeeper.net"]
+    filekeeper: ["filekeeper.net"],
+    rootz: ["rootz.so"]
   };
+  // The hosts this resolver reaches the file of without the browser, whatever the catalog says.
+  var RESOLVED_KINDS = /* @__PURE__ */ new Set(["filekeeper", "rootz"]);
   var isHost = (host2, domain) => host2 === domain || host2.endsWith(`.${domain}`);
   // Archive.org answers 401 for a restricted item and 403 for one taken down. Neither is a
   // check a browser can pass: a login there gives the app no access, it only stays in the
@@ -75,6 +78,9 @@
     });
   });
   var FILEKEEPER_COUNTDOWN_MS = 5e3;
+  // Rootz answers a burst of asks with 429 (a set's parts resolve one after another), so one waits
+  // and asks once more before its check goes to the browser.
+  var ROOTZ_RETRY_MS = 3e3;
   function createSourceResolver({ http }) {
     async function request(url, options = {}) {
       webURL(url);
@@ -120,6 +126,33 @@
       const bytes = Number(head.headers?.["content-length"]);
       return { url: webURL(head.url || file).url, rejectHtml: true, ...Number.isSafeInteger(bytes) && bytes > 0 ? { expectedBytes: bytes } : {} };
     }
+    // Rootz's page (/d/<id>) is only a script that sends the browser to /api/files/proxy-download/<id>,
+    // which redirects to the file on its CDN (cdn-files.alcyone.so) with no check of any kind; the
+    // address is asked for here instead. A missing file answers 404, a burst of asks 429 (asked once
+    // more after a short wait), and a DDoS-Guard challenge (403) falls back to the browser.
+    async function rootz(url, signal) {
+      const id = /^\/d\/([A-Za-z0-9_-]{4,32})(?:[/?#]|$)/.exec(webURL(url).path)?.[1];
+      if (!id) throw new BrowserRequired(url);
+      const ask = () => http.request(`https://www.rootz.so/api/files/proxy-download/${id}`, { maxBytes: 1024 * 1024, signal, followRedirects: false, headers: { Referer: url } });
+      let next = await ask();
+      if (next.status === 429) {
+        console.log("[sources] rootz rate-limited (429); waiting 3 s and asking once more");
+        await pause(ROOTZ_RETRY_MS, signal);
+        if (signal?.aborted) throw new Error("Cancelled.");
+        next = await ask();
+      }
+      if (next.status === 404 || next.status === 410) throw new Error(`Source unavailable: HTTP ${next.status}. Choose another source.`);
+      if ([401, 403, 429].includes(next.status)) throw new BrowserRequired(url);
+      const location2 = next.headers?.location;
+      console.log("[sources] rootz", id, "answered HTTP", next.status, location2 ? `with ${webURL(absolute(location2, url)).host}` : "without a file");
+      if (!(next.status >= 300 && next.status < 400)) throw new Error(`Provider HTTP ${next.status}.`);
+      if (!location2) throw new BrowserRequired(url);
+      const file = absolute(location2, url);
+      const head = await request(file, { method: "HEAD", signal });
+      if (htmlResponse(head) || head.status >= 300) throw new BrowserRequired(url);
+      const bytes = Number(head.headers?.["content-length"]);
+      return { url: webURL(head.url || file).url, rejectHtml: true, ...Number.isSafeInteger(bytes) && bytes > 0 ? { expectedBytes: bytes } : {} };
+    }
     async function resolve2(release, { signal, directURL } = {}) {
       if (directURL) return direct(directURL, signal);
       const url = release.browserUrl || release.url;
@@ -131,6 +164,7 @@
       // 2026-10-17): its file link is captured from the console's browser, as Datanodes' is.
       if (kind === "browser" || kind === "datanodes" || kind === "buzzheavier") throw new BrowserRequired(url);
       if (kind === "filekeeper") return fileKeeper(url, signal);
+      if (kind === "rootz") return rootz(url, signal);
       const response = await request(url, { signal });
       const base = response.url || url;
       if (response.headers?.["content-disposition"]?.includes("attachment")) return direct(base, signal);
@@ -153,4 +187,4 @@
     } };
   }
 
-export { archiveRefusal, BrowserRequired, cancellation, createSourceResolver, sourceKind, webURL };
+export { archiveRefusal, BrowserRequired, cancellation, createSourceResolver, RESOLVED_KINDS, sourceKind, webURL };

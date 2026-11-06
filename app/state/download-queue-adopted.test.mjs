@@ -39,7 +39,7 @@ function boot(machine, {stale = false} = {}) {
         return {done: Promise.reject(new Error('partial file has no matching durable checkpoint')), snapshot: {state: 'connecting'},
           subscribe: () => () => {}, cancel: () => {}};
       machine.files.delete(destination + '.part');
-      machine.files.set(destination, 'game bytes');
+      machine.files.set(destination, 'x'.repeat(4096));
       return {done: Promise.resolve({written: 4096}), snapshot: {state: 'completed'}, subscribe: () => () => {}, cancel: () => {}};
     },
   };

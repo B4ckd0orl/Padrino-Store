@@ -4,6 +4,9 @@
 // MODIFIED: an archive the catalog's password doesn't open is tried with the known release passwords.
 // MODIFIED: any provider that needs the console browser (LinkVault's mirrors, Akirabox, Datanodes)
 // has its file link captured from the browser, like Vikingfile's.
+// MODIFIED: a source that answers HTTP 429 or 5xx (rate-limited or busy, not gone) is asked again by
+// itself, 3 minutes later and then 10, instead of failing at once; only a third refusal fails.
+// MODIFIED: a file under 1 KB is refused with what the source sent: no game ever comes that small.
 
 import { INCOMPLETE_PART, STALE_PARTIAL, cause } from '../downloads/errors.js';
 import { t } from '../i18n/core.js';
@@ -21,6 +24,14 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
   var ACTIVE = ["resolving", "connecting", "downloading", "verifying", "extracting", "installing", "pausing"];
   var BUSY = ["queued", ...ACTIVE];
   var COMPLETE = ["downloaded", "file-downloaded", "installer-required", "installed", "extraction-required", "extracted"];
+  // A busy answer is a wait, not a dead link: the host is rate-limiting (429) or briefly failing
+  // (5xx), so the queue asks again by itself after BUSY_RETRY_DELAYS, and only a third refusal
+  // fails for the player to pick another source. The wait itself is "queued" with a retryAt clock.
+  var BUSY_ANSWER = /HTTP (?:429|5\d\d)\b/;
+  var BUSY_RETRY_DELAYS = [3 * 60e3, 10 * 60e3];
+  // No game, archive or package of any kind is this small: a file under it is the host's error page,
+  // an empty body or a redirect stub, and it is refused with the raw answer instead of finishing.
+  var TINY_FILE_BYTES = 1024;
   var ADOPTED = "A partial download from another source holds this name. Retry starts over and replaces it, or resume it from its original source.";
   var DELETED = "Its partial files were deleted. Restart to download it again, or remove it.";
   var REMOVAL_CUT = "The app closed while deleting its files. Delete it again.";
@@ -120,6 +131,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       delete job2.phase;
       delete job2.removingFrom;
       const interrupted = BUSY.includes(job2.state);
+      // A wait for a busy host starts over when the app opens again (its own clock is not kept):
+      // the job is queued as any other is, and busyRetries carries how many waits it already had.
+      delete job2.retryAt;
       return {
         ...job2,
         state: interrupted ? "paused" : job2.state,
@@ -145,6 +159,8 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     releasesOf,
     browserCapture,
     stallMs = STALL_MS,
+    // The waits for a busy host (429/5xx), injectable like stallMs so a test can pass seconds.
+    busyRetryDelays = BUSY_RETRY_DELAYS,
     // The package helper (pkg-helper.js), whose links keep working once the app has closed; without
     // one, a package the console takes from the app is served by the app itself.
     helper = null,
@@ -162,6 +178,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     const serving = /* @__PURE__ */ new Set();
     let jobs = [];
     let active2 = null;
+    // The clocks of the waits for a busy host (BUSY_RETRY_DELAYS): each waiting job has one, and it
+    // asks the queue to start that job again when its own wait is over.
+    const retryTimers = /* @__PURE__ */ new Map();
     let ticks = 0;
     let awake2 = false;
     const modified = (path) => {
@@ -859,6 +878,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         change();
         if (job2.release.parts) {
           await executeSet(job2, signal);
+          // Its source answered: however many waits it had for busy hosts, they are over.
+          delete job2.busyRetries;
+          delete job2.retryAt;
           return;
         }
         job2.downloadDestination || (job2.downloadDestination = job2.artifact.destination);
@@ -882,6 +904,8 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
             };
             delete job2.directURL;
           }
+          // No check of `expectedBytes` here: the catalog's own sizeBytes are often placeholders,
+          // and a refusal belongs to what the source actually sent (checked after the transfer).
           job2.total = job2.options.expectedBytes || null;
           change();
         }
@@ -931,6 +955,10 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
           emit2();
         });
         await task.done;
+        // What the host actually sent: under 1 KB it is not a file of any game, and it is refused
+        // with the raw answer instead of finishing (the headers of a normal file are far larger).
+        const sent = tinyTransfer(job2.downloadDestination);
+        if (sent !== null) throw new Error(refusedTransfer(sent));
         // A "binary" source is what its headers say it is: those it must have (finishedHeaders).
         if (job2.artifact.nextAction === "downloaded") route(job2, archives?.inspect && await (job2.release.format === "binary" ? finishedHeaders : optionalHeaders)(archives, [job2.downloadDestination], "downloaded"));
         job2.state = job2.artifact.nextAction === "shadowmount" ? "downloaded" : job2.artifact.nextAction === "downloaded" ? "file-downloaded" : job2.artifact.nextAction;
@@ -938,6 +966,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         job2.bytesPerSecond = 0;
         if ((job2.artifact.nextAction === "extraction-required" || job2.output) && archives) await extract(job2, [job2.downloadDestination]);
         delete job2.reresolved;
+        // Its source answered: however many waits it had for busy hosts, they are over.
+        delete job2.busyRetries;
+        delete job2.retryAt;
         notifications.show(t("downloads.notice.complete"), job2.title);
         if (job2.state === "installer-required" && canInstall()) await install(job2);
       } catch (error2) {
@@ -959,9 +990,13 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         if (expired) console.log("[download-queue] the captured link expired while queued; asking for the check again");
         const browser = !refused && (expired || error2 instanceof BrowserRequired || /browser verification required/i.test(cause(error2.message)));
         const retried = job2.state !== "pausing" && !job2.cancelling && browser && active2.transferring && reresolve(job2);
+        // A busy host (429/5xx) still has the file: the wait arms itself and the queue asks again,
+        // 3 minutes later and then 10 (BUSY_RETRY_DELAYS). Past those, it fails as any source does.
+        const busy = !refused && !browser && !retried && job2.state !== "pausing" && !job2.cancelling && BUSY_ANSWER.test(cause(error2.message)) && (job2.busyRetries || 0) < busyRetryDelays.length;
+        if (busy) busyWait(job2, error2);
         // A source that fails stays failed: the player picks another (the automatic switch to an
         // "equivalent" source was removed on 2026-10-16 at the user's request).
-        if (!retried && job2.state !== "pausing") {
+        if (!retried && !busy && job2.state !== "pausing") {
           job2.state = browser ? "awaiting-browser" : "failed";
           job2.error || (job2.error = job2.adopted && STALE_PARTIAL.test(cause(error2.message)) ? ADOPTED : error2.message);
           if (browser) {
@@ -1499,6 +1534,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
           }
           part.written = result.written ?? part.total ?? part.written;
           job2.written = job2.parts.reduce((sum, item) => sum + item.written, 0);
+          // The same refusal a single file gets: a volume the host left under 1 KB is not one.
+          const sent = tinyTransfer(part.destination);
+          if (sent !== null) throw new Error(refusedTransfer(sent));
           part.completed = true;
           change();
           const refusal = index === 0 && archives?.inspect && (await optionalHeaders(archives, [part.destination], "first part"))?.refusal;
@@ -1529,11 +1567,80 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       if (unmarked.length) change();
       return jobs.filter((job2) => job2.root === root2 && (BUSY.includes(job2.state) || job2.state === "paused") && !lost.includes(job2));
     }
+    // What a finished transfer left: under TINY_FILE_BYTES no game, archive or package ever comes, so
+    // it is the host's error page, an empty body or a stub. The byte count of the file itself, else of
+    // the partial the engine may still hold; null when neither can be read (then nothing is claimed).
+    function tinyTransfer(path) {
+      const bytes = (target) => {
+        try {
+          return fs.stat(target)?.size ?? null;
+        } catch {
+          return null;
+        }
+      };
+      const sizes = [bytes(path), bytes(`${path}.part`)].filter((size) => size !== null);
+      if (!sizes.length) return null;
+      const size = Math.max(...sizes);
+      return size < TINY_FILE_BYTES ? size : null;
+    }
+    function refusedTransfer(size) {
+      return size ? `The source sent ${size} bytes instead of the file (under 1 KB). Choose another source.` : "The source sent no file at all. Choose another source.";
+    }
+    // A wait for a busy host (BUSY_RETRY_DELAYS): armed when the wait begins, and it hands the job
+    // back to the queue when its own wait is over. Paused, removed or finished meanwhile, it does
+    // nothing; if another download still runs, that one's own end picks the job up again.
+    function forgetRetry(job2) {
+      const timer = retryTimers.get(job2.id);
+      if (timer) clearTimeout(timer);
+      retryTimers.delete(job2.id);
+    }
+    function armRetry(job2) {
+      forgetRetry(job2);
+      const left = Math.max(0, (job2.retryAt || 0) - Date.now());
+      retryTimers.set(job2.id, setTimeout(() => {
+        retryTimers.delete(job2.id);
+        if (!jobs.includes(job2) || job2.state !== "queued" || (job2.retryAt || 0) > Date.now()) return;
+        console.log(`[download-queue] ${job2.id}: its wait for the busy host is over; asking again`);
+        try {
+          change();
+        } catch (failure) {
+          job2.error = `Queue save failed: ${failure.message}`;
+          emit2();
+        }
+        pump(job2);
+      }, left));
+    }
+    // The busy answer itself: how many waits this job has had decides the next one's length, and
+    // past them all it fails as any other source does (the message stays the source's own).
+    function busyWait(job2, error2) {
+      const attempt = (job2.busyRetries || 0) + 1;
+      const delay = busyRetryDelays[attempt - 1];
+      job2.busyRetries = attempt;
+      job2.retryAt = Date.now() + delay;
+      // Back to the queue's waiting line: the row keeps its Pause, and pump() skips it until the
+      // clock runs out (ready()). The wait is said in the words its length deserves.
+      job2.state = "queued";
+      const span = delay >= 60000 ? `${Math.round(delay / 60000)} minutes` : `${Math.max(1, Math.round(delay / 1000))} ${delay < 2000 ? "second" : "seconds"}`;
+      job2.error = `${cause(error2.message).replace(/[.\s]+$/, "")}. Asking again in ${span}.`;
+      console.log(`[download-queue] ${job2.id}: ${cause(error2.message)} - waiting ${span} (wait ${attempt} of ${busyRetryDelays.length})`);
+      armRetry(job2);
+      try {
+        change();
+      } catch (failure) {
+        job2.error = `Queue save failed: ${failure.message}`;
+        emit2();
+      }
+    }
+    // Queued, or waiting out a busy host with its own wait already over.
+    function ready(job2) {
+      return job2.state === "queued" && (!(job2.retryAt || 0) || (job2.retryAt || 0) <= Date.now());
+    }
     function pump(first) {
       // An open verification no longer holds the queue: what is queued downloads meanwhile.
       if (active2) return;
-      const job2 = first?.state === "queued" ? first : jobs.find((item) => item.state === "queued");
+      const job2 = first && ready(first) ? first : jobs.find(ready);
       if (!job2) return;
+      forgetRetry(job2);
       active2 = { job: job2, task: null };
       void execute(job2);
     }
@@ -2141,8 +2248,12 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       },
       pause(id) {
         const job2 = find(id);
-        if (job2.state === "queued") job2.state = "paused";
-        else if (active2?.job === job2 && ACTIVE.includes(job2.state)) {
+        if (job2.state === "queued") {
+          // A job waiting out a busy host stops waiting when it is paused, as any queued job does.
+          forgetRetry(job2);
+          delete job2.retryAt;
+          job2.state = "paused";
+        } else if (active2?.job === job2 && ACTIVE.includes(job2.state)) {
           job2.state = "pausing";
           active2.cancel?.cancel();
           active2.task?.cancel();
@@ -2166,6 +2277,11 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         const job2 = find(id);
         if (job2.state !== "paused" && job2.state !== "failed") return;
         delete job2.reresolved;
+        // The player asks to go now: no wait for a busy host stands in the way, and the count of
+        // them starts again (the source may well answer this time).
+        forgetRetry(job2);
+        delete job2.retryAt;
+        delete job2.busyRetries;
         job2.state = "queued";
         job2.error = "";
         change();
@@ -2185,6 +2301,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         if (paths.length) await removing(job2, () => removeAll(paths));
         delete job2.directURL;
         delete job2.reresolved;
+        forgetRetry(job2);
+        delete job2.retryAt;
+        delete job2.busyRetries;
         if (job2.parts?.[job2.partIndex] && !job2.parts[job2.partIndex].completed) {
           job2.parts[job2.partIndex].written = 0;
           delete job2.parts[job2.partIndex].options;
@@ -2318,6 +2437,8 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
           return;
         }
         stopCapture(job2);
+        forgetRetry(job2);
+        delete job2.retryAt;
         await forget(job2);
         emit2();
         pump();

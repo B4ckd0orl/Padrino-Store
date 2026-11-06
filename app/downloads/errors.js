@@ -48,7 +48,8 @@ import { t } from '../i18n/core.js';
     [/resolve|connect|timeout|timed out|unreachable|receiving data|SSL|network/i, "noConnection", "checkConnection"],
     [/SHA|hash|verification|mismatch|changed the resource|truncated/i, "damaged", "restartFromZero"]
   ];
-  var PLAIN = /ShadowMount|from another source holds this name/;
+  // Shown as it is written: the queue's own wording (a captured link's, a busy host's countdown).
+  var PLAIN = /ShadowMount|from another source holds this name|Asking again in/;
   function explainError(error2, set = false) {
     const message = cause(error2);
     if (PLAIN.test(message)) return { title: message, action: "" };
