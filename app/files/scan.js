@@ -69,4 +69,4 @@
   }
   var deletionTargets = (file) => file.isDirectory ? [file.path] : [file.path, ...[".complete", ".resume", ".part"].map((suffix) => file.path + suffix)];
 
-export { KINDS, deletionTargets, isPackage, scanDrive, totals };
+export { KINDS, deletionTargets, folderSize, isPackage, scanDrive, totals };
