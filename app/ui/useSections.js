@@ -14,10 +14,11 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
     homebrew: "nav:homebrew",
     favorites: "nav:favorites",
     downloads: "nav:downloads",
-    files: "nav:files"
+    files: "nav:files",
+    compress: "nav:compress"
   };
   // L1/R1 stop on Browse too: the item only takes focus there, and ✕ opens its menu.
-  var TABS = ["search", "discover", "catalog", "top", "homebrew", "favorites", "downloads", "files"];
+  var TABS = ["search", "discover", "catalog", "top", "homebrew", "favorites", "downloads", "files", "compress"];
   // The section a header item showed, with the filters and sort it set: it names the page while
   // they stay as they are, since the library opens on New releases for Discover and Browse too and
   // the sort alone can no longer tell them apart. A change made on the page itself falls back to
@@ -52,7 +53,7 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
     const nav = useNavActions();
     const { top } = useNavState();
     const show = useShowLibrary();
-    const underneath = top.name === "downloads" || top.name === "files" || top.name === "homebrew" ? top.name : sectionOf(store, queryActive);
+    const underneath = top.name === "downloads" || top.name === "files" || top.name === "homebrew" || top.name === "compress" ? top.name : sectionOf(store, queryActive);
     const section = top.name === "search" ? "search" : top.name === "game" ? null : underneath;
     const topName = (0, useRef)(top.name);
     topName.current = top.name;
@@ -67,7 +68,8 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
       homebrew: () => topName.current !== "homebrew" && nav.push({ name: "homebrew" }, "nav:homebrew"),
       favorites: () => show({ ...NO_FILTERS, wishlist: true }, "newest", void 0, "favorites"),
       downloads: () => topName.current !== "downloads" && nav.push({ name: "downloads" }, "nav:downloads"),
-      files: () => topName.current !== "files" && nav.push({ name: "files" }, "nav:files")
+      files: () => topName.current !== "files" && nav.push({ name: "files" }, "nav:files"),
+      compress: () => topName.current !== "compress" && nav.push({ name: "compress" }, "nav:compress")
     }));
     // Focus preview: hovering a browse section in the sidebar swaps the home
     // content live, PS5-guide style. Screens (search/downloads/files) and the
@@ -76,7 +78,7 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
     const preview = (name) => {
       if (topName.current !== "browse") return;
       if (name === section) return;
-      if (name === "search" || name === "downloads" || name === "files" || name === "catalog" || name === "homebrew") return;
+      if (name === "search" || name === "downloads" || name === "files" || name === "catalog" || name === "homebrew" || name === "compress") return;
       // The preview names its section too, so sectionOf keeps the pill on the hovered item.
       if (name === "discover") {
         pinned = { section: "discover", filters: NO_FILTERS, sort: "newest" };
@@ -104,7 +106,7 @@ import { useQueryActive, useStoreActions, useStoreState } from '../state/store.j
         return;
       }
       setStopped(false);
-      if (next === "downloads" || next === "files" || next === "homebrew") {
+      if (next === "downloads" || next === "files" || next === "homebrew" || next === "compress") {
         store.setQuery("");
         nav.home();
       }

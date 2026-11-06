@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-const {createForge, deletionGate, forgeRequest, normalizeJob, validLevel} = await import('./forge.js');
+const {createForge, deletionGate, forgeRequest, normalizeJob, unpackRequest, validLevel} = await import('./forge.js');
 
 // A fake console disk: forge.json appears under the state directory and survives a second client.
+// readDir walks the same map, so a job's source can have files (and a size) under it.
 function fakeFs(seed = {}) {
   const files = new Map(Object.entries(seed));
   return {
@@ -20,6 +21,22 @@ function fakeFs(seed = {}) {
       if (!files.has(from)) throw new Error(`missing ${from}`);
       files.set(to, files.get(from));
       files.delete(from);
+    },
+    readDir: path => {
+      const entries = [];
+      const folders = new Set();
+      for (const [key, value] of files) {
+        if (!key.startsWith(`${path}/`)) continue;
+        const rest = key.slice(path.length + 1);
+        const slash = rest.indexOf("/");
+        if (slash < 0) {
+          entries.push({ name: rest, isDirectory: false, size: String(value).length, modified: 0 });
+        } else if (!folders.has(rest.slice(0, slash))) {
+          folders.add(rest.slice(0, slash));
+          entries.push({ name: rest.slice(0, slash), isDirectory: true, size: 0, modified: 0 });
+        }
+      }
+      return entries;
     },
   };
 }
@@ -123,7 +140,7 @@ test('the engine’s own refusals become codes the screen can translate', async 
 });
 
 test('startJob sends the request the engine’s own UI sends', async () => {
-  const {forge, calls, awake, saved} = world({handler: () => ok({id: 'job-7'})});
+  const {forge, calls, awake, saved} = world({seed: {'/games/A/eboot.bin': 'abcdefghij'}, handler: () => ok({id: 'job-7'})});
   const {id, request} = await forge.startJob({
     source: '/games/A',
     output: '/games/A.fpkg',
@@ -153,6 +170,8 @@ test('startJob sends the request the engine’s own UI sends', async () => {
   assert.equal(stored.version, 1);
   assert.equal(stored.jobs[0].id, 'job-7');
   assert.equal(stored.jobs[0].state, 'running');
+  // The source's own size is kept with the job: the screen's before -> after -> freed line.
+  assert.equal(stored.jobs[0].size, 10);
   const reopened = createForge({
     fs: fakeFs({'/data/ps5-react/PPSA99059/queue/forge.json': saved()}),
     http: fakeHttp(() => ok({})).http,
@@ -177,6 +196,74 @@ test('an LZ4 job uses the LZ4 flags, and delete_source only when accepted', asyn
   });
   assert.equal('delete_source' in forgeRequest({source: '/a', output: '/a.fpkg', mode: 'lz4', level: 0}), false);
   assert.equal(forgeRequest({source: '/a', output: '/a.fpkg', mode: 'zstd', level: 5, fullVerify: true}).full_verify, true);
+});
+
+test('an unpack job runs the same request backwards and never removes anything', () => {
+  const base = {
+    source: '/games/A.packed',
+    format: 'folder',
+    output: '/games/A',
+    compression_threads: null,
+    inner: null,
+    remove_backport: false,
+    full_verify: false,
+    lz4: null,
+  };
+  assert.deepEqual(unpackRequest({source: '/games/A.packed', output: '/games/A', mode: 'zstd'}), {
+    ...base,
+    zstd_unpack: true,
+  });
+  assert.deepEqual(unpackRequest({source: '/games/A.packed', output: '/games/A', mode: 'lz4'}), {
+    ...base,
+    lz4: 'unpack',
+  });
+  // Undoing a pack only adds files back: no flag that could ever delete a source exists here.
+  for (const mode of ['zstd', 'lz4']) {
+    const request = unpackRequest({source: '/a', output: '/b', mode, fullVerify: true});
+    assert.equal('delete_source' in request, false, mode);
+    assert.equal('zstd_pack' in request, false, mode);
+    assert.equal(request.full_verify, true, mode);
+  }
+});
+
+test('unpacking follows the same guards as packing', async () => {
+  const busy = world({handler: () => ok({id: 'job-1'}), activeDownloads: () => true});
+  await assert.rejects(
+    busy.forge.unpackJob({source: '/games/A.packed', output: '/games/A', mode: 'zstd'}),
+    error => error.code === 'downloads-active',
+  );
+  assert.equal(busy.calls.length, 0);
+
+  const stranger = world({handler: () => ok({id: 'job-1'})});
+  await assert.rejects(
+    stranger.forge.unpackJob({source: '/games/A.packed', output: '/games/A', mode: 'gzip'}),
+    error => error.code === 'level',
+  );
+  assert.equal(stranger.calls.length, 0);
+
+  await stranger.forge.startJob({source: '/games/A', output: '/games/A.packed', mode: 'zstd', level: 15});
+  await assert.rejects(
+    stranger.forge.unpackJob({source: '/games/A.packed', output: '/games/A', mode: 'zstd'}),
+    error => error.code === 'duplicate',
+  );
+  assert.equal(stranger.calls.length, 1);
+});
+
+test('unpackJob sends the reverse request and keeps it in the record', async () => {
+  const {forge, calls, saved} = world({handler: () => ok({id: 'job-9'})});
+  const {id, request} = await forge.unpackJob({
+    source: '/games/A.packed',
+    output: '/games/A',
+    mode: 'lz4',
+  });
+  assert.equal(id, 'job-9');
+  assert.equal(request.lz4, 'unpack');
+  assert.equal('delete_source' in request, false);
+  assert.deepEqual(JSON.parse(calls[0].body), {request});
+  const record = JSON.parse(saved()).jobs[0];
+  assert.equal(record.action, 'unpack');
+  assert.equal(record.source, '/games/A.packed');
+  assert.equal(record.deleteAfter, false);
 });
 
 test('levels outside the engine’s ranges never leave the app', async () => {

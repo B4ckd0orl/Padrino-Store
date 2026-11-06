@@ -3,7 +3,7 @@ import {register} from 'node:module';
 import test from 'node:test';
 
 register(new URL('../state/download-queue-test-loader.mjs', import.meta.url), import.meta.url);
-const {compressibleFolder, own} = await import('./forge-eligible.js');
+const {compressibleFolder, eligibleFolder, own} = await import('./forge-eligible.js');
 
 // A disk that knows only the markers the check looks for: a path whose last segment has no dot
 // is a directory, anything else is a file.
@@ -87,4 +87,14 @@ test('a patch, update or backport folder is not the game', () => {
   const fs = fakeFs([`${FOLDER}-Backport/eboot.bin`, `${FOLDER}-Backport/sce_sys/param.json`]);
   assert.equal(compressibleFolder(finished({output: `${FOLDER}-Backport`}), fs), '');
   assert.equal(compressibleFolder(finished({output: `${FOLDER}-Patch`}), fakeFs([`${FOLDER}-Patch/eboot.bin`, `${FOLDER}-Patch/sce_sys/param.json`])), '');
+});
+
+test('a folder found on disk is judged by the same rules', () => {
+  assert.equal(eligibleFolder(fakeFs(GAME_FILES), FOLDER), FOLDER);
+  // Not a game folder, a package, or somewhere outside the console's own roots.
+  assert.equal(eligibleFolder(fakeFs([]), FOLDER), '');
+  assert.equal(eligibleFolder(fakeFs([`${FOLDER}/eboot.bin`, `${FOLDER}/sce_sys/param.json`]), `${FOLDER}.pkg`), '');
+  const elsewhere = '/update/games/CUSA12345';
+  assert.equal(eligibleFolder(fakeFs([`${elsewhere}/eboot.bin`, `${elsewhere}/sce_sys/param.json`]), elsewhere), '');
+  assert.equal(eligibleFolder(fakeFs(GAME_FILES), ''), '');
 });

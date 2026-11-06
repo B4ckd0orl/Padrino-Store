@@ -47,10 +47,17 @@ import { COMPLETE } from '../state/download-queue.js';
     if (job.packages?.length) return "";
     if (job.artifact?.nextAction === "installer-required") return "";
     const path = destination(job);
+    if (!path) return "";
+    return eligibleFolder(fs, path);
+  }
+
+  // The same check for a folder already sitting on disk, where no job is around to describe it:
+  // under the console's own roots, not a package, not a patch, and holding a game.
+  function eligibleFolder(fs, path) {
     if (!path || PACKAGE.test(path) || !own(path)) return "";
     const name = path.slice(path.lastIndexOf("/") + 1);
     if (PATCH_FOLDER.test(name) || BACKPORT_FOLDER.test(name)) return "";
     return gameFolder(fs, path);
   }
 
-export { compressibleFolder, own };
+export { compressibleFolder, eligibleFolder, own };

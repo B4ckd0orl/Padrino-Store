@@ -8,6 +8,7 @@
 // "level", "downloads-active", "duplicate", "stopping", "body", "saturated", "reading", "busy",
 // "timeout", "unreachable".
 
+import { folderSize } from '../files/scan.js';
 import { readJSON } from './read-json.js';
 
   const BASE = "http://127.0.0.1:8095";
@@ -100,6 +101,23 @@ import { readJSON } from './read-json.js';
     if (deleteAfter) request.delete_source = true;
     if (mode === "zstd") return { ...request, zstd_pack: true, zstd_level: level };
     return { ...request, lz4: "pack", lz4_level: level, lz4_runtime: "ng" };
+  }
+
+  // The same job backwards: the packs are read and the folder they came from is written back.
+  // Nothing is ever removed here -- undoing a pack only adds the files back.
+  function unpackRequest({ source, output, mode, fullVerify = false }) {
+    const request = {
+      source,
+      format: "folder",
+      output,
+      compression_threads: null,
+      inner: null,
+      remove_backport: false,
+      full_verify: !!fullVerify,
+      lz4: null
+    };
+    if (mode === "lz4") return { ...request, lz4: "unpack" };
+    return { ...request, zstd_unpack: true };
   }
 
   // One engine job as the store sees it: {id, state, progress, done, result, output}. The engine
@@ -239,6 +257,27 @@ import { readJSON } from './read-json.js';
       }
     }
 
+    // One job per route, and the console's cores to itself: an unpack swaps the two ends, so the
+    // route is the pair whatever way it runs. These checks happen before anything goes out.
+    async function guard(source, output) {
+      if (activeDownloads()) throw codedError("downloads-active", "A download is running; compression waits for it to finish.");
+      const open = records.find((job) => job.state === "running" && (job.source === source || job.output === output || job.source === output || job.output === source));
+      if (open) throw codedError("duplicate", `A compression job is already running over ${open.source}.`);
+    }
+
+    async function launch(action, request, record) {
+      // What the source takes on disk right now, kept for the "before -> after -> freed" line on
+      // the screen: the engine may remove the original itself once its result is verified.
+      const size = folderSize(fs, record.source, 4, { left: 4000 });
+      const data = await ask("start_job", { method: "POST", body: { request }, maxBytes: 64 * 1024 });
+      const id = data && typeof data === "object" ? data.id ?? null : data ?? null;
+      records.push({ id, action, ...record, size, startedAt: now(), state: "running", result: null });
+      trim();
+      save();
+      setAwake(true);
+      return { id, request };
+    }
+
     /**
      * Starts one pack job: {source, output, mode: "zstd" | "lz4", level, deleteAfter}. Refuses a
      * level outside the engine's ranges and a second job over a route one is already running,
@@ -246,27 +285,22 @@ import { readJSON } from './read-json.js';
      */
     async function startJob({ source, output, mode, level, deleteAfter = false, fullVerify = false }) {
       if (!validLevel(mode, level)) throw codedError("level", levelMessage(mode));
-      if (activeDownloads()) throw codedError("downloads-active", "A download is running; compression waits for it to finish.");
-      const open = records.find((job) => job.state === "running" && (job.source === source || job.output === output));
-      if (open) throw codedError("duplicate", `A compression job is already running over ${open.source}.`);
-      const request = forgeRequest({ source, output, mode, level, deleteAfter, fullVerify });
-      const data = await ask("start_job", { method: "POST", body: { request }, maxBytes: 64 * 1024 });
-      const id = data && typeof data === "object" ? data.id ?? null : data ?? null;
-      records.push({
-        id,
-        source,
-        output,
-        mode,
-        level,
-        deleteAfter: !!deleteAfter,
-        startedAt: now(),
-        state: "running",
-        result: null
+      await guard(source, output);
+      return launch("pack", forgeRequest({ source, output, mode, level, deleteAfter, fullVerify }), {
+        source, output, mode, level, deleteAfter: !!deleteAfter
       });
-      trim();
-      save();
-      setAwake(true);
-      return { id, request };
+    }
+
+    /**
+     * The same backwards: write the folder back from its packs. Only ever adds files, so there
+     * is no question of removing anything, and the same two guards apply.
+     */
+    async function unpackJob({ source, output, mode, fullVerify = false }) {
+      if (mode !== "zstd" && mode !== "lz4") throw codedError("level", levelMessage(mode));
+      await guard(source, output);
+      return launch("unpack", unpackRequest({ source, output, mode, fullVerify }), {
+        source, output, mode, level: null, deleteAfter: false
+      });
     }
 
     /**
@@ -336,7 +370,7 @@ import { readJSON } from './read-json.js';
       };
     }
 
-    return { probe, startJob, jobs, watch, records: () => records.map((job) => ({ ...job })) };
+    return { probe, startJob, unpackJob, jobs, watch, records: () => records.map((job) => ({ ...job })) };
   }
 
-export { createForge, deletionGate, forgeRequest, normalizeJob, validLevel };
+export { createForge, deletionGate, forgeRequest, normalizeJob, unpackRequest, validLevel };
