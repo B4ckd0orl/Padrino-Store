@@ -1,7 +1,8 @@
 // What the store does with a finished game folder: ask, compress with the last format used, or
 // leave it alone. The answer lives in settings.json beside the other choices, so the next
-// download is packed the way the last one was. The "remove the original" tick is its own
-// preference: on unless the player turned it off (kept only while off, like keepPackages).
+// download is packed the way the last one was. What then happens to the original is a setting of
+// its own, laid out like the installed-PKG one: remove it (on by default), keep it, or be asked
+// each time the question comes up (kept only while it is not the default, like keepPackages).
 
 import { useEffect, useState } from 'react';
 import { loadList, saveList } from './saved.js';
@@ -9,10 +10,17 @@ import { validLevel } from './forge.js';
 
   var SETTINGS = "settings.json";
   var ASKS = ["ask", "zstd", "lz4", "never"];
+  var ORIGINAL = ["on", "off", "ask"];
+
+  // What a stored answer means. Anything that is not one of the three falls back to the default,
+  // except the plain tick an older build saved, where false was the answer that kept the folder.
+  function normalizeOriginal(saved) {
+    return ORIGINAL.includes(saved) ? saved : saved === false ? "off" : "on";
+  }
   var savedAsk = loadList(SETTINGS, "settings").forgeAsk;
   var ask = ASKS.includes(savedAsk) ? savedAsk : "ask";
   var savedDelete = loadList(SETTINGS, "settings").forgeKeepOriginal;
-  var remove = savedDelete !== false;
+  var original = normalizeOriginal(savedDelete);
   var savedLevel = loadList(SETTINGS, "settings").forgeLevel;
   var level = savedLevel && validLevel(savedLevel.mode, savedLevel.level)
     ? { mode: savedLevel.mode, level: savedLevel.level }
@@ -35,15 +43,19 @@ import { validLevel } from './forge.js';
     write(ask === "ask" ? rest : { ...rest, forgeAsk: ask });
   }
 
-  // The tick in front of deleting the packed game's original: on unless turned off.
-  var forgeDeleteOriginal = () => remove;
-  function setForgeDeleteOriginal(on) {
-    const next = on !== false;
-    if (next === remove) return;
-    remove = next;
+  // The three answers Settings offers: remove the original after a verified pack, keep it, or
+  // have the question asked each time the dialog comes up.
+  var forgeOriginal = () => original;
+  function setForgeOriginal(next) {
+    if (!ORIGINAL.includes(next) || next === original) return;
+    original = next;
     const { forgeKeepOriginal: _old, ...rest } = settings();
-    write(remove ? rest : { ...rest, forgeKeepOriginal: false });
+    write(next === "on" ? rest : { ...rest, forgeKeepOriginal: next });
   }
+
+  // The tick the compression dialog opens with: on unless the player said keep it. "ask" has no
+  // answer of its own yet, so the question comes up with the on-by-default tick it always had.
+  var forgeDeleteOriginal = () => original !== "off";
 
   // The format and level last packed with, offered first next time.
   var forgeLevel = () => level;
@@ -64,7 +76,7 @@ import { validLevel } from './forge.js';
         listeners.delete(listener);
       };
     }, []);
-    return { ask, remove, level };
+    return { ask, original, remove: original !== "off", level };
   }
 
-export { ASKS, forgeAsk, forgeDeleteOriginal, forgeLevel, setForgeAsk, setForgeDeleteOriginal, setForgeLevel, useForgeState };
+export { ASKS, ORIGINAL, forgeAsk, forgeDeleteOriginal, forgeLevel, forgeOriginal, normalizeOriginal, setForgeAsk, setForgeLevel, setForgeOriginal, useForgeState };

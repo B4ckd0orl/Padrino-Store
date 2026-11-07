@@ -5,7 +5,7 @@
 // error code the screens translate.
 
 import { Downloads, FileSystem, Http, Platform, Payloads } from '@ps5-react/core';
-import { setForgeDeleteOriginal, setForgeLevel } from '../state/forge-ask.js';
+import { setForgeLevel } from '../state/forge-ask.js';
 import { forgeEngine } from '../state/forge-live.js';
 import { createAutoStart } from './auto-start.js';
 import { createRecovery } from './recovery.js';
@@ -47,8 +47,9 @@ import { outputFor } from './options.js';
       const code = await ensureEngine({ preparing });
       if (code) return code;
       await forgeEngine().startJob({ source: folder, output: outputFor(folder), mode, level, deleteAfter });
+      // Only the format is remembered: what happens to the original is Settings' answer, so a
+      // tick changed for this one game never rewrites the standing choice behind the player's back.
       setForgeLevel(mode, level);
-      setForgeDeleteOriginal(deleteAfter);
       return null;
     } catch (failure) {
       const code = failure?.code ?? failure?.message ?? "unknown";

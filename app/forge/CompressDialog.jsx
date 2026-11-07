@@ -8,7 +8,7 @@ import { jsx, jsxs } from 'react/jsx-runtime';
 import { useEffect, useState } from 'react';
 import { folderSize } from '../files/scan.js';
 import { useT } from '../i18n/index.js';
-import { forgeDeleteOriginal, forgeLevel, setForgeDeleteOriginal } from '../state/forge-ask.js';
+import { forgeDeleteOriginal, forgeLevel, forgeOriginal } from '../state/forge-ask.js';
 import { formatBytes } from '../state/size.js';
 import { useNavActions } from '../state/nav.jsx';
 import { Button2 } from '../ui/Button.jsx';
@@ -77,6 +77,10 @@ import { PRESETS, levelValid, rootOf, stepLevel } from './options.js';
     const preset = choice < CUSTOM ? PRESETS[choice] : null;
     const mode = preset ? preset.mode : custom.mode;
     const level = preset ? preset.level : custom.level;
+    // What the standing setting says about the original, in the words that go under the tick, so
+    // "remove it", "keep it" and "ask me" read differently even though the tick starts the same.
+    const standing = forgeOriginal();
+    const originalDetail = standing === "off" ? "forge.ask.keepOriginalDetail" : standing === "ask" ? "forge.ask.askOriginalDetail" : "forge.ask.deleteOriginalDetail";
     // The engine writes its output beside the source, so the original's own size has to fit
     // while it converts; without it there is no start.
     const free = space?.free ?? null;
@@ -182,7 +186,7 @@ import { PRESETS, levelValid, rootOf, stepLevel } from './options.js';
             /* @__PURE__ */ (0, jsx)(View, { style: { width: 34, height: 34, alignItems: "center", justifyContent: "center", borderRadius: 8, borderWidth: 2, borderColor: remove ? colors.fg : colors.subtle, backgroundColor: remove ? colors.fg : "transparent" }, children: remove ? /* @__PURE__ */ (0, jsx)(Icon, { name: "check", size: 22, color: colors.accentFg }) : null }),
             /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 2 }, children: [
               /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 22, fontWeight: 600 }, children: t2("forge.ask.deleteOriginal") }),
-              /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 19, color: colors.subtle }, children: t2("forge.ask.deleteOriginalDetail") })
+              /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 19, color: colors.subtle }, children: t2(originalDetail) })
             ] })
           ]
         }),

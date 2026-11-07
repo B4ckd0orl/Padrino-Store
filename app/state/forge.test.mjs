@@ -5,12 +5,14 @@ const {createForge, deletionGate, forgeRequest, normalizeJob, unpackRequest, val
 
 // A fake console disk: forge.json appears under the state directory and survives a second client.
 // readDir walks the same map, so a job's source can have files (and a size) under it.
-function fakeFs(seed = {}) {
+function fakeFs(seed = {}, {removeError} = {}) {
   const files = new Map(Object.entries(seed));
+  const under = (path) => [...files.keys()].filter((key) => key.startsWith(`${path}/`));
   return {
     dataDir: '/data',
     files,
-    exists: path => files.has(path),
+    // A directory is there when anything sits under it, which is how the real host answers.
+    exists: path => files.has(path) || under(path).length > 0,
     readFile: path => {
       if (!files.has(path)) throw new Error(`missing ${path}`);
       return files.get(path);
@@ -21,6 +23,12 @@ function fakeFs(seed = {}) {
       if (!files.has(from)) throw new Error(`missing ${from}`);
       files.set(to, files.get(from));
       files.delete(from);
+    },
+    // Resolves once the path is gone, or if it never existed; the caller can make it refuse.
+    removeAsync: async path => {
+      if (removeError && path === removeError.path) throw new Error(removeError.message);
+      for (const key of under(path)) files.delete(key);
+      files.delete(path);
     },
     readDir: path => {
       const entries = [];
@@ -59,8 +67,8 @@ function fakeHttp(handler) {
 const ok = data => ({status: 200, json: async () => data});
 const refused = (status, error) => ({status, json: async () => ({error})});
 
-function world({seed, handler, activeDownloads = () => false, power} = {}) {
-  const fs = fakeFs(seed);
+function world({seed, handler, activeDownloads = () => false, power, removeError} = {}) {
+  const fs = fakeFs(seed, {removeError});
   const {http, calls} = fakeHttp(handler);
   const awake = [];
   const forge = createForge({
@@ -412,4 +420,107 @@ test('normalizeJob reads the engine’s shapes', () => {
   assert.equal(normalizeJob({id: 'a', done: {result: {Err: 'nope'}}}).state, 'failed');
   assert.equal(normalizeJob({}).id, null);
   assert.deepEqual(normalizeJob({}).progress, {stage: '', done: 0, total: 0});
+});
+
+// A pack driven all the way to its own decision about the original: started, polled to the end,
+// then given its one pass over the records. What is left on disk is what the gate allowed.
+async function packedWorld({deleteAfter = true, index = 'ampr_zstd.index', state = 'done', removeError} = {}) {
+  const source = '/games/A';
+  const output = '/games/A.packed';
+  const seed = {'/games/A/eboot.bin': 'abcdefghij'};
+  if (index) seed[`${output}/${index}`] = 'index';
+  const result = state === 'failed' ? {Err: 'boom'} : {Ok: {}};
+  const created = world({
+    seed,
+    removeError,
+    handler: url => {
+      if (url.endsWith('/api/start_job')) return ok({id: 'job-1'});
+      return ok({
+        instance: 'forge',
+        jobs: [{
+          id: 'job-1',
+          done: state === 'running' ? null : {result},
+          progress: {stage: 'pack', done: 10, total: 10},
+          request: {source, output},
+        }],
+      });
+    },
+  });
+  await created.forge.startJob({source, output, mode: 'zstd', level: 9, deleteAfter});
+  await created.forge.jobs();
+  await created.forge.settleOriginals();
+  return {...created, source, record: () => JSON.parse(created.saved()).jobs[0]};
+}
+
+test('an accepted pack the engine verified takes the original off the disk and records it', async () => {
+  const {fs, forge, source, record} = await packedWorld();
+  assert.equal(fs.exists(source), false);
+  const stored = record();
+  assert.equal(stored.deletion.state, 'removed');
+  // The bytes it freed and the moment it happened, both in forge.json beside the job.
+  assert.equal(stored.deletion.bytes, 10);
+  assert.equal(stored.deletion.at, 1700000000000);
+  assert.deepEqual(forge.takeNotices(), ['originalRemoved']);
+});
+
+test('a pack the player did not accept keeps the original', async () => {
+  const {fs, source, record, forge} = await packedWorld({deleteAfter: false});
+  assert.equal(fs.exists(source), true);
+  assert.equal(record().deletion, undefined);
+  assert.deepEqual(forge.takeNotices(), []);
+});
+
+test('a job that failed, or has not settled with an Ok, keeps the original', async () => {
+  for (const state of ['failed', 'running']) {
+    const {fs, source, record} = await packedWorld({state});
+    assert.equal(fs.exists(source), true, state);
+    assert.equal(record().deletion, undefined, state);
+  }
+});
+
+test('a finished job whose output never got its index keeps the original', async () => {
+  const {fs, source, record} = await packedWorld({index: null});
+  assert.equal(fs.exists(source), true);
+  assert.equal(record().deletion.state, 'held');
+});
+
+test('a removal that refuses warns the screen and changes nothing', async () => {
+  const {fs, source, record, forge} = await packedWorld({removeError: {path: '/games/A', message: 'Permission denied'}});
+  assert.equal(fs.exists(source), true);
+  assert.equal(record().deletion.state, 'failed');
+  assert.equal(record().deletion.attempts, 1);
+  assert.deepEqual(forge.takeNotices(), ['deleteFailed']);
+});
+
+test('only the source this app sent is ever removed, and never a package file', async () => {
+  const seed = {
+    '/games/A.pkg': 'PKGDATA',
+    '/games/A.packed/ampr_zstd.index': 'index',
+    '/data/ps5-react/PPSA99059/queue/forge.json': JSON.stringify({
+      version: 1,
+      jobs: [{id: 'job-1', action: 'pack', source: '/games/A.pkg', output: '/games/A.packed', mode: 'zstd', level: 9, deleteAfter: true, size: 7, startedAt: 1, state: 'done', result: {Ok: {}}}],
+    }),
+  };
+  const {forge, fs} = world({seed, handler: () => ok({instance: 'forge', jobs: []})});
+  await forge.jobs();
+  await forge.settleOriginals();
+  assert.equal(fs.exists('/games/A.pkg'), true);
+  assert.equal(forge.records()[0].deletion.state, 'held');
+});
+
+test('a source the engine already took away is still recorded as removed', async () => {
+  const seed = {
+    '/games/A.packed/ampr_zstd.index': 'index',
+    '/data/ps5-react/PPSA99059/queue/forge.json': JSON.stringify({
+      version: 1,
+      jobs: [{id: 'job-1', action: 'pack', source: '/games/Gone', output: '/games/A.packed', mode: 'zstd', level: 9, deleteAfter: true, size: 42, startedAt: 1, state: 'done', result: {Ok: {}}}],
+    }),
+  };
+  const {forge} = world({seed, handler: () => ok({instance: 'forge', jobs: []})});
+  await forge.jobs();
+  await forge.settleOriginals();
+  const record = forge.records()[0];
+  assert.equal(record.deletion.state, 'removed');
+  assert.equal(record.deletion.bytes, 42);
+  assert.deepEqual(forge.takeNotices(), ['originalRemoved']);
 });

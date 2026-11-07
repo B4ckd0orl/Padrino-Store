@@ -9,6 +9,7 @@
 // "timeout", "unreachable".
 
 import { folderSize } from '../files/scan.js';
+import { packedFormat } from '../forge/detect.js';
 import { readJSON } from './read-json.js';
 
   const BASE = "http://127.0.0.1:8095";
@@ -86,7 +87,8 @@ import { readJSON } from './read-json.js';
 
   // The exact job shape the engine's own web UI sends: a folder beside its output, one codec, and
   // the source removal only when the player accepted it (the engine deletes the original only
-  // after it has verified the packed result itself).
+  // after it has verified the packed result itself). The store keeps its own double gate on top of
+  // that: a source the engine left behind is taken away by removeOriginal, and only then.
   function forgeRequest({ source, output, mode, level, deleteAfter = false, fullVerify = false }) {
     const request = {
       source,
@@ -206,6 +208,74 @@ import { readJSON } from './read-json.js';
       if (finished.length <= KEEP_FINISHED) return;
       const drop = new Set(finished.slice(0, finished.length - KEEP_FINISHED));
       records = records.filter((job) => !drop.has(job));
+    }
+
+    // Taking the original off the disk is its own step, after the engine has settled: the double
+    // gate is the player's answer, the engine's own "Ok", and the packed index where it said it
+    // would write one -- never the job while it runs, and never a path this client did not send
+    // as the source. A removal that fails says so and leaves the compressed game alone.
+    const DELETE_ATTEMPTS = 3;
+    const notices = [];
+    let settling = null;
+
+    function pendingOriginal(record) {
+      if (record.action !== "pack" || !record.deleteAfter || record.state !== "done") return false;
+      const outcome = record.deletion;
+      if (!outcome) return true;
+      return outcome.state === "failed" && (outcome.attempts ?? 0) < DELETE_ATTEMPTS;
+    }
+
+    async function removeOriginal(record) {
+      const source = String(record.source ?? "");
+      const mark = (state, extra = {}) => {
+        record.deletion = { state, at: now(), ...extra };
+        save();
+      };
+      // Only ever the source route this client sent, and never a package file.
+      if (!source || /\.pkg$/i.test(source)) return mark("held");
+      const indexes = packedFormat(fs, record.output);
+      const gate = deletionGate({ accepted: !!record.deleteAfter, job: { state: record.state, result: record.result }, indexes });
+      if (!gate) return mark("held");
+      const bytes = Number(record.size) || 0;
+      if (!fs.exists(source)) {
+        // The engine removed it itself once it had verified the pack; the record still says so.
+        mark("removed", { bytes });
+        notices.push("originalRemoved");
+        return;
+      }
+      try {
+        await fs.removeAsync(source);
+        mark("removed", { bytes });
+        notices.push("originalRemoved");
+      } catch (error) {
+        const attempts = (record.deletion?.attempts ?? 0) + 1;
+        mark("failed", { attempts });
+        if (attempts === 1) notices.push("deleteFailed");
+        console.log(`[forge] ${source}: kept, could not be removed: ${error.message}`);
+      }
+    }
+
+    // One pass over whatever has settled, run after every poll and never twice at once. The poll
+    // itself does not wait on it, so a large folder coming off the disk cannot freeze the
+    // progress the screen is showing; the next poll simply picks the result up.
+    function settleOriginals() {
+      if (settling) return settling;
+      settling = (async () => {
+        try {
+          for (const record of records) if (pendingOriginal(record)) await removeOriginal(record);
+        } catch (error) {
+          console.log(`[forge] original removal: ${error.message}`);
+        } finally {
+          settling = null;
+        }
+      })();
+      return settling;
+    }
+
+    // What the last pass wants the screen to say: "the original is gone, unpack brings it back",
+    // or "it stayed, the packed game is still fine". Read once, then gone.
+    function takeNotices() {
+      return notices.splice(0, notices.length);
     }
 
     // One bounded call to the engine. The timeout races the request and then aborts it, so both a
@@ -337,6 +407,8 @@ import { readJSON } from './read-json.js';
       }
       if (changed) save();
       setAwake(list.some((job) => job.state === "running") || records.some((job) => job.state === "running"));
+      // Whatever settled on this poll is now eligible for its own decision about the original.
+      void settleOriginals();
       return list;
     }
 
@@ -370,7 +442,7 @@ import { readJSON } from './read-json.js';
       };
     }
 
-    return { probe, startJob, unpackJob, jobs, watch, records: () => records.map((job) => ({ ...job })) };
+    return { probe, startJob, unpackJob, jobs, watch, settleOriginals, takeNotices, records: () => records.map((job) => ({ ...job })) };
   }
 
 export { createForge, deletionGate, forgeRequest, normalizeJob, unpackRequest, validLevel };

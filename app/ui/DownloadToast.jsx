@@ -8,7 +8,7 @@ import { CompressDialog } from '../forge/CompressDialog.jsx';
 import { packError, startPack } from '../forge/start-pack.js';
 import { useT } from '../i18n/index.js';
 import { getGame } from '../state/catalog.js';
-import { forgeAsk, forgeDeleteOriginal, forgeLevel } from '../state/forge-ask.js';
+import { forgeAsk, forgeDeleteOriginal, forgeLevel, forgeOriginal } from '../state/forge-ask.js';
 import { useNavActions, useNavState } from '../state/nav.jsx';
 import { Toast } from './Toast.jsx';
 import { pulseNotice } from './haptics.js';
@@ -50,7 +50,9 @@ import { AnimatePresence } from '@ps5-react/core';
       return () => clearTimeout(id);
     }, [alert]);
     actionRef.current = shown && (() => {
-      if (offer && (mode === "zstd" || mode === "lz4")) {
+      // Automatic compression only goes ahead unasked while the original's own setting is not
+      // "ask": deciding whether the folder goes is a question, and a question gets the dialog.
+      if (offer && (mode === "zstd" || mode === "lz4") && forgeOriginal() !== "ask") {
         packed(shown.folder, shown.title);
         return;
       }

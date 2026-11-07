@@ -1,7 +1,8 @@
 // The compression screen: every game folder on the console's drives that the engine may pack,
 // what is already packed (and at which level, as far as this app's own record knows), what is
-// running right now, and what each conversion took and gave back. Nothing here removes anything
-// by itself: packing opens the dialog that asks first, and unpacking only writes files back.
+// running right now, and what each conversion took and gave back. Packing opens the dialog that
+// asks first; the original is only ever taken off the disk once the engine's own result has been
+// verified, and this screen only reports that it went. Unpacking only writes files back.
 
 import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
@@ -106,6 +107,8 @@ import { ensureEngine, packError, recoverInterrupted } from './start-pack.js';
     // own size against the packed folder as it sits on disk now.
     const before = row.packed && record?.action === "pack" && record.output === row.path && record.size > 0 ? record.size : null;
     const freed = before && before > row.size ? before - row.size : 0;
+    // The historical marker: the original this pack came from is gone, so Unpack is the way back.
+    const originalGone = record?.deletion?.state === "removed";
     const sizes = before
       ? `${formatBytes(before)} \u2192 ${formatBytes(row.size)}${freed ? ` \u00B7 \u2212${formatBytes(freed)}` : ""}`
       : formatBytes(row.size);
@@ -135,6 +138,7 @@ import { ensureEngine, packError, recoverInterrupted } from './start-pack.js';
           /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 17, fontWeight: 600, color: colors.accent }, children: t2(`forge.badge.${row.packed}`) }),
           level !== null ? /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 17, color: colors.muted }, children: t2("forge.badge.level", { n: level }) }) : null
         ] }) : null,
+        originalGone ? /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", alignItems: "center", gap: 8, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 6, backgroundColor: colors.surface2, borderWidth: 1, borderColor: "#e09f3e44" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 17, fontWeight: 600, color: colors.ok }, children: t2("forge.badge.originalRemoved") }) }) : null,
         live
           ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 16, width: 460, justifyContent: "flex-end" }, children: [
             /* @__PURE__ */ (0, jsx)(ProgressBar, { fraction, width: 180, active: true }),
@@ -198,16 +202,30 @@ import { ensureEngine, packError, recoverInterrupted } from './start-pack.js';
     (0, useEffect)(() => {
       if (!polls || error) return;
       let alive = true;
+      // A removal that just happened -- or just refused -- is the newer fact on disk, so its own
+      // words come first and stay until another action replaces them.
+      const taken = forgeEngine().takeNotices();
+      const removal = taken.length ? t2(taken[taken.length - 1] === "deleteFailed" ? "forge.delete.failed" : "forge.delete.originalRemoved") : "";
+      // The original's own folder may just have gone: the list is read again at that moment,
+      // never under the player's focus.
+      if (taken.length) rescan();
+      const sayRemoval = () => {
+        recoveryNotice.current = false;
+        setNotice(removal);
+      };
       void recoverInterrupted().then(({ resumed, notices }) => {
         if (!alive) return;
-        if (notices.length) {
+        if (removal) sayRemoval();
+        else if (notices.length) {
           recoveryNotice.current = true;
           setNotice(t2("forge.auto.interrupted"));
         } else if (resumed.length && recoveryNotice.current) {
           recoveryNotice.current = false;
           setNotice("");
         }
-      }, () => {});
+      }, () => {
+        if (alive && removal) sayRemoval();
+      });
       return () => {
         alive = false;
       };
