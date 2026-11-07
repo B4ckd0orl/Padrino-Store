@@ -322,6 +322,75 @@ test('one job per route: a second start over the same folder is refused', async 
   assert.equal(calls.length, 1);
 });
 
+test('a second start that leaves before the first one is recorded is refused', async () => {
+  // An engine slow to answer: the first start sits between its guard and its record while the
+  // second one arrives. The route is owned from the first instant, so only the first goes out.
+  const {forge, calls} = world({
+    handler: () => new Promise(resolve => setTimeout(() => resolve(ok({id: 'job-1'})), 5)),
+  });
+  const first = forge.startJob({source: '/games/A', output: '/games/A.packed', mode: 'zstd', level: 15});
+  await assert.rejects(
+    forge.startJob({source: '/games/A', output: '/games/other.packed', mode: 'zstd', level: 15}),
+    error => error.code === 'duplicate',
+  );
+  await first;
+  assert.equal(calls.length, 1, 'only the first start reached the engine');
+  // The reservation is given back: the next start over the route goes once the record is there.
+  await forge.startJob({source: '/games/B', output: '/games/B.packed', mode: 'zstd', level: 15});
+  assert.equal(calls.length, 2);
+});
+
+test('starting a route over again replaces its interrupted record instead of duplicating it', async () => {
+  const seed = {
+    '/data/ps5-react/PPSA99059/queue/forge.json': JSON.stringify({
+      version: 1,
+      jobs: [{id: 'job-1', action: 'pack', source: '/games/A', output: '/games/A.packed', state: 'interrupted', startedAt: 1}],
+    }),
+  };
+  const {forge, saved} = world({seed, handler: () => ok({id: 'job-2'})});
+  await forge.startJob({source: '/games/A', output: '/games/A.packed', mode: 'zstd', level: 15});
+  const stored = JSON.parse(saved()).jobs;
+  assert.equal(stored.length, 1, 'the old record is replaced, not kept beside the new one');
+  assert.equal(stored[0].id, 'job-2');
+  assert.equal(stored[0].state, 'running');
+});
+
+test('a record binds to its own route even when the engine hands its id to another job', async () => {
+  const seed = {
+    '/data/ps5-react/PPSA99059/queue/forge.json': JSON.stringify({
+      version: 1,
+      jobs: [{id: 'job-1', action: 'pack', source: '/games/A', output: '/games/A.packed', state: 'running', startedAt: 1}],
+    }),
+  };
+  const {forge} = world({
+    seed,
+    // The engine restarted and gave job-1 to a folder of its own; ours came back as job-5.
+    handler: () => ok({instance: 'forge', jobs: [
+      {id: 'job-1', done: {result: {Ok: {}}}, progress: {}, request: {source: '/games/Other', output: '/games/Other.packed'}},
+      {id: 'job-5', done: null, progress: {stage: 'pack', done: 2, total: 10}, request: {source: '/games/A', output: '/games/A.packed'}},
+    ]}),
+  });
+  assert.equal(forge.records()[0].state, 'interrupted');
+  await forge.jobs();
+  // The id-first match would have claimed the other job's finished result for this record.
+  assert.equal(forge.records()[0].state, 'running');
+});
+
+test('a job the engine reports without a route still matches its record by id', async () => {
+  const seed = {
+    '/data/ps5-react/PPSA99059/queue/forge.json': JSON.stringify({
+      version: 1,
+      jobs: [{id: 'job-1', action: 'pack', source: '/games/A', output: '/games/A.packed', state: 'running', startedAt: 1}],
+    }),
+  };
+  const {forge} = world({
+    seed,
+    handler: () => ok({instance: 'forge', jobs: [{id: 'job-1', done: null, progress: {stage: 'pack', done: 2, total: 10}}]}),
+  });
+  await forge.jobs();
+  assert.equal(forge.records()[0].state, 'running');
+});
+
 test('polling settles the record and lets the console sleep again', async () => {
   let polls = 0;
   const {forge, awake, saved} = world({

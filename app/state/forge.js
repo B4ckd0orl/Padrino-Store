@@ -123,6 +123,12 @@ import { releaseAwake, requestAwake } from './keep-awake.js';
     return { ...request, zstd_unpack: true };
   }
 
+  // Two jobs share a route when they name the same source or the same output, whichever way
+  // round: a pack of /games/A writes /games/A.packed, and an unpack reads that same pair back.
+  function sharesRoute(aSource, aOutput, bSource, bOutput) {
+    return aSource === bSource || aOutput === bOutput || aSource === bOutput || aOutput === bSource;
+  }
+
   // One engine job as the store sees it: {id, state, progress, done, result, output}. The engine
   // reports done: null while a job runs and {result: {Ok}|{Err}} once it settles.
   function normalizeJob(raw) {
@@ -332,9 +338,26 @@ import { releaseAwake, requestAwake } from './keep-awake.js';
 
     // One job per route, and the console's cores to itself: an unpack swaps the two ends, so the
     // route is the pair whatever way it runs. These checks happen before anything goes out.
+    //
+    // A start owns its route from the first instant, not from the moment its record lands: two
+    // starts over the same route that leave together would both pass guard and both reach the
+    // engine. The reservation is taken before anything is awaited and given back in a finally.
+    const launching = [];
+
+    function reserve(source, output) {
+      const open = launching.find((route) => sharesRoute(route.source, route.output, source, output));
+      if (open) throw codedError("duplicate", `A compression job is already starting over ${open.source}.`);
+      const route = { source, output };
+      launching.push(route);
+      return () => {
+        const at = launching.indexOf(route);
+        if (at >= 0) launching.splice(at, 1);
+      };
+    }
+
     async function guard(source, output) {
       if (activeDownloads()) throw codedError("downloads-active", "A download is running; compression waits for it to finish.");
-      const open = records.find((job) => job.state === "running" && (job.source === source || job.output === output || job.source === output || job.output === source));
+      const open = records.find((job) => job.state === "running" && sharesRoute(job.source, job.output, source, output));
       if (open) throw codedError("duplicate", `A compression job is already running over ${open.source}.`);
     }
 
@@ -344,6 +367,10 @@ import { releaseAwake, requestAwake } from './keep-awake.js';
       const size = folderSize(fs, record.source, 4, { left: 4000 });
       const data = await ask("start_job", { method: "POST", body: { request }, maxBytes: 64 * 1024 });
       const id = data && typeof data === "object" ? data.id ?? null : data ?? null;
+      // The route's own history goes with it: a record from an earlier run over these same two
+      // paths -- an interrupted one a resume starts over, a finished one being redone -- would
+      // otherwise shadow this one on the screen and leave forge.json holding both.
+      records = records.filter((job) => !sharesRoute(job.source, job.output, record.source, record.output));
       records.push({ id, action, ...record, size, startedAt: now(), state: "running", result: null });
       trim();
       save();
@@ -358,10 +385,15 @@ import { releaseAwake, requestAwake } from './keep-awake.js';
      */
     async function startJob({ source, output, mode, level, deleteAfter = false, fullVerify = false }) {
       if (!validLevel(mode, level)) throw codedError("level", levelMessage(mode));
-      await guard(source, output);
-      return launch("pack", forgeRequest({ source, output, mode, level, deleteAfter, fullVerify }), {
-        source, output, mode, level, deleteAfter: !!deleteAfter
-      });
+      const release = reserve(source, output);
+      try {
+        await guard(source, output);
+        return await launch("pack", forgeRequest({ source, output, mode, level, deleteAfter, fullVerify }), {
+          source, output, mode, level, deleteAfter: !!deleteAfter
+        });
+      } finally {
+        release();
+      }
     }
 
     /**
@@ -370,10 +402,15 @@ import { releaseAwake, requestAwake } from './keep-awake.js';
      */
     async function unpackJob({ source, output, mode, fullVerify = false }) {
       if (mode !== "zstd" && mode !== "lz4") throw codedError("level", levelMessage(mode));
-      await guard(source, output);
-      return launch("unpack", unpackRequest({ source, output, mode, fullVerify }), {
-        source, output, mode, level: null, deleteAfter: false
-      });
+      const release = reserve(source, output);
+      try {
+        await guard(source, output);
+        return await launch("unpack", unpackRequest({ source, output, mode, fullVerify }), {
+          source, output, mode, level: null, deleteAfter: false
+        });
+      } finally {
+        release();
+      }
     }
 
     /**
@@ -387,7 +424,10 @@ import { releaseAwake, requestAwake } from './keep-awake.js';
       let changed = false;
       for (const record of records) {
         if (record.state !== "running" && record.state !== "interrupted") continue;
-        const live = list.find((job) => job.id !== null && job.id === record.id) ?? list.find((job) => job.source === record.source && job.output === record.output);
+        // The route decides, not the id: after a restart the engine may hand the same id to a
+        // job of its own, and a record that binds to it would claim someone else's result. An id
+        // only breaks the tie for a job that carries no route at all.
+        const live = list.find((job) => job.source === record.source && job.output === record.output) ?? list.find((job) => job.id !== null && job.id === record.id && !job.source && !job.output);
         if (!live) {
           // The engine never removes a source before verifying its own output, so an unknown job
           // only costs the claim that it is running -- the files stay as they were.
