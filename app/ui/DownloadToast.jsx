@@ -37,7 +37,9 @@ import { AnimatePresence } from '@ps5-react/core';
     const packed = (folder, title) => {
       const saved = forgeLevel();
       const level = saved.mode === mode ? saved.level : mode === "zstd" ? 9 : 0;
-      startPack({ folder, mode, level, deleteAfter: forgeDeleteOriginal() }).then((code) => {
+      // The engine may have to be started first; the toast says so for as long as that lasts.
+      const preparing = () => setAlert((last) => last ? { ...last, message: t2("forge.auto.starting") } : last);
+      startPack({ folder, mode, level, deleteAfter: forgeDeleteOriginal(), preparing }).then((code) => {
         if (code) setAsk({ folder, title, error: packError(t2, code) });
         else setAlert((last) => last ? { ...last, message: t2("forge.ask.packing"), folder: null, n: last.n + 1 } : last);
       });

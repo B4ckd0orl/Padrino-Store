@@ -26,7 +26,7 @@ import { FocusScope, FileSystem, ScrollView, Text, View, useIsFocused } from '@p
 import { CompressDialog } from './CompressDialog.jsx';
 import { packedFormat } from './detect.js';
 import { rootOf } from './options.js';
-import { packError } from './start-pack.js';
+import { ensureEngine, packError, recoverInterrupted } from './start-pack.js';
 
   var ARM_MS = 4e3;
   var rowKey = (path) => `forge:${path}`;
@@ -77,16 +77,18 @@ import { packError } from './start-pack.js';
   }
 
   // The engine as it is right now: its jobs (with progress), our own records, and the last
-  // failure to reach it. The first poll lands as soon as the screen opens.
+  // failure to reach it. The first poll lands as soon as the screen opens; `polls` counts every
+  // answer, good or bad, so the screen can act on the first one that arrives.
   function useEngine() {
-    const [state, setState] = (0, useState)(() => ({ jobs: [], records: forgeEngine().records(), error: null }));
+    const [state, setState] = (0, useState)(() => ({ jobs: [], records: forgeEngine().records(), error: null, polls: 0 }));
     (0, useEffect)(() => {
       const stop = forgeEngine().watch((list, error) => {
-        setState({
+        setState((last) => ({
           jobs: list ?? [],
           records: forgeEngine().records(),
-          error: error ? String(error.code ?? error.message ?? "unreachable") : null
-        });
+          error: error ? String(error.code ?? error.message ?? "unreachable") : null,
+          polls: last.polls + 1
+        }));
       }, { intervalMs: 2500 });
       return stop;
     }, []);
@@ -158,11 +160,14 @@ import { packError } from './start-pack.js';
     const [version, setVersion] = (0, useState)(0);
     const rescan = () => setVersion((value) => value + 1);
     const rows = (0, useMemo)(() => scanFolders(), [version]);
-    const { jobs, records, error } = useEngine();
+    const { jobs, records, error, polls } = useEngine();
     const [focused, setFocused] = (0, useState)(null);
     const [armed, setArmed] = (0, useState)(null);
     const [notice, setNotice] = (0, useState)("");
     const [dialog, setDialog] = (0, useState)(null);
+    // Whether the words on screen are the ones recovery put there, so its own resume can take
+    // them back without wiping a notice another action left.
+    const recoveryNotice = (0, useRef)(false);
 
     // A job settling changes the disk: the packed copy appears, the original may be gone. The
     // scan runs again only at that moment, never under the player's focus.
@@ -186,12 +191,40 @@ import { packError } from './start-pack.js';
       return () => clearTimeout(id);
     }, [armed]);
 
+    // The engine answered a poll: a job it lost in between may be running again. Recovery only
+    // ever resumes what the files still allow, and says so when it cannot; the words go once
+    // the resume it was about has actually got away. While the polls themselves are failing
+    // there is nothing to resume against, so the attempt waits for one that lands.
+    (0, useEffect)(() => {
+      if (!polls || error) return;
+      let alive = true;
+      void recoverInterrupted().then(({ resumed, notices }) => {
+        if (!alive) return;
+        if (notices.length) {
+          recoveryNotice.current = true;
+          setNotice(t2("forge.auto.interrupted"));
+        } else if (resumed.length && recoveryNotice.current) {
+          recoveryNotice.current = false;
+          setNotice("");
+        }
+      }, () => {});
+      return () => {
+        alive = false;
+      };
+    }, [polls, error]);
+
     const jobOf = (row) => jobs.find((job) => job.source === row.path || job.output === row.path) ?? null;
     const recordOf = (row) => records.find((record) => record.source === row.path) ?? records.find((record) => record.output === row.path) ?? null;
     const busy = (row) => Boolean(jobOf(row)) || records.some((record) => record.state === "running" && (record.source === row.path || record.output === row.path));
 
     const unpack = async (row) => {
       try {
+        // The engine may not be running yet: starting it is part of getting this job away.
+        const code = await ensureEngine({ preparing: () => setNotice(t2("forge.auto.starting")) });
+        if (code) {
+          setNotice(packError(t2, code));
+          return;
+        }
         // Writing the folder back from its packs: only ever adds files, never removes any.
         await forgeEngine().unpackJob({ source: row.path, output: row.path, mode: row.packed });
         setNotice(t2("forge.unpacking"));

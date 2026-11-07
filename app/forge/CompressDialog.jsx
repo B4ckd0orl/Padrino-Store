@@ -55,6 +55,8 @@ import { PRESETS, levelValid, rootOf, stepLevel } from './options.js';
     const [remove, setRemove] = (0, useState)(forgeDeleteOriginal());
     const [space, setSpace] = (0, useState)(null);
     const [busy, setBusy] = (0, useState)(false);
+    // The engine may have to be started first; the button says so for as long as that lasts.
+    const [preparing, setPreparing] = (0, useState)(false);
     const [error2, setError2] = (0, useState)(initialError);
     // As the stream dialog: a focus move still pending from the page would land under this one.
     (0, useEffect)(() => {
@@ -93,10 +95,11 @@ import { PRESETS, levelValid, rootOf, stepLevel } from './options.js';
       setBusy(true);
       setError2("");
       try {
-        const code = await startPack({ folder, mode, level, deleteAfter: remove });
+        const code = await startPack({ folder, mode, level, deleteAfter: remove, preparing: () => setPreparing(true) });
         if (code) {
           setError2(packError(t2, code));
           setBusy(false);
+          setPreparing(false);
           return;
         }
         onClose();
@@ -104,6 +107,7 @@ import { PRESETS, levelValid, rootOf, stepLevel } from './options.js';
       } catch (failure) {
         setError2(packError(t2, failure?.code ?? "unknown"));
         setBusy(false);
+        setPreparing(false);
       }
     };
     const step = (delta) => setCustom((last) => ({ mode: last.mode, level: stepLevel(last.mode, last.level, delta) }));
@@ -190,7 +194,7 @@ import { PRESETS, levelValid, rootOf, stepLevel } from './options.js';
         ] }),
         error2 ? /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 21, color: colors.warn, lineHeight: 30 }, children: error2 }) : null,
         /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 18, justifyContent: "flex-end" }, children: [
-          /* @__PURE__ */ (0, jsx)(Button2, { variant: "primary", size: "lg", icon: "layers", label: busy ? t2("forge.ask.packing") : t2("forge.ask.start"), autoFocus: true, onPress: start }),
+          /* @__PURE__ */ (0, jsx)(Button2, { variant: "primary", size: "lg", icon: "layers", label: busy ? t2(preparing ? "forge.auto.starting" : "forge.ask.packing") : t2("forge.ask.start"), autoFocus: true, onPress: start }),
           /* @__PURE__ */ (0, jsx)(Button2, { variant: "outline", size: "lg", label: t2("forge.ask.later"), onPress: onClose })
         ] })
       ] }) })

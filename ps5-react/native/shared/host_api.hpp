@@ -1,7 +1,7 @@
 // Copyright (C) 2026 half144 and PS5 React contributors
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Additional attribution term: see LICENSE-ATTRIBUTION.
-// Native API contract (ABI v21) between the hosts and `@ps5-react/core`. The input actions hosts
+// Native API contract (ABI v22) between the hosts and `@ps5-react/core`. The input actions hosts
 // pass to `__ps5ReactDispatch` are a separate contract with its own version (runtime/js/input.js).
 //
 // host_api.cpp (shared) installs `globalThis.__ps5ReactNative` through
@@ -97,6 +97,11 @@
 //   packages.pollHelper()          [{id, state: 'ready' | 'failed', port, error}] of starts that ended
 //   packages.cancel(id)            stops reporting; an install the console accepted carries on
 //   packages.poll()                state/error/contentId/status/written/total; consumes terminal results
+//   payloads.send(program, request) ABI v22; sends a program to the payload loader on 9021 and closes the
+//                                  connection as soon as it has it, so the program runs on its own (PS5
+//                                  only); `program` is a file in the app folder or an absolute path under
+//                                  /app0, /download0 or /temp0; `request` (optional) rides the rest of the
+//                                  connection as the program's standard input, at most 16 KiB
 //   network.version()              transport version string
 //   image.load(url, width, height, fit, prefetch) {id, state, name, width, height, error, color}; takes a
 //                                  reference; fit: 0 cover, 1 contain, 2 stretch, 3 none; prefetch
@@ -282,6 +287,8 @@ JSValue ps5_react_archive_api(JSContext* ctx);
 JSValue ps5_react_inspection_api(JSContext* ctx);
 // ABI v5 additive package installs: install(path, name), cancel(id), poll().
 JSValue ps5_react_package_api(JSContext* ctx);
+// ABI v22: a program handed to the payload loader to run on its own (payloads.hpp).
+JSValue ps5_react_payload_api(JSContext* ctx);
 
 // ABI v7: filename-bound browser capture tasks (PS5 only).
 JSValue ps5_react_browser_capture_api(JSContext* ctx);

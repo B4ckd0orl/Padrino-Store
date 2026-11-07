@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Additional attribution term: see LICENSE-ATTRIBUTION.
 #include "payload_loader.hpp"
+#include "payloads.hpp"
 #include "host_api.hpp"
 #include <climits>
 #include <cstdint>
@@ -33,9 +34,14 @@ bool send_all(int socket, const char* data, std::size_t size) {
 
 int send(const char* program, const std::string& request, int timeout_us, const char* what, std::string& error) {
   char path[PATH_MAX];
-  const std::string logical = std::string("/app0/") + program;
+  // A program outside the app folder is named by its absolute path; anything else is an app-folder file.
+  const bool named = program[0] == '/';
+  const std::string logical = named ? std::string(program) : std::string("/app0/") + program;
   const int file = host::resolve_path(logical.c_str(), path, sizeof path) ? open(path, O_RDONLY) : -1;
-  if (file < 0) { error = std::string(what) + ": " + program + " is missing from the app folder"; return -1; }
+  if (file < 0) {
+    error = std::string(what) + ": " + program + (named ? " is missing" : " is missing from the app folder");
+    return -1;
+  }
   const int socket = sceNetSocket("ps5-react-payload", 2, 1, 6);
   constexpr int connect_us = 5'000'000, level = 0xffff;
   const NetAddress address{sizeof(NetAddress), 2, static_cast<std::uint16_t>((9021 << 8) | (9021 >> 8)), 0x0100007f, 0, {}};
@@ -60,4 +66,16 @@ bool write(int socket, const char* data, std::size_t size) { return send_all(soc
 void receive_timeout(int socket, int timeout_us) { sceNetSetsockopt(socket, 0xffff, 0x1106, &timeout_us, sizeof timeout_us); }
 
 void close(int socket) { sceNetSocketClose(socket); }
+}
+
+namespace payloads {
+// The loader runs the program on its own once it has everything: this closes the connection as soon
+// as it does, so the render thread waits for the hand-over only, never for an answer.
+bool send(const std::string& program, const std::string& request, std::string& error) {
+  std::string reason;
+  const int socket = payload_loader::send(program.c_str(), request, 15'000'000, "payloads.send", reason);
+  if (socket < 0) { error = reason; return false; }
+  payload_loader::close(socket);
+  return true;
+}
 }

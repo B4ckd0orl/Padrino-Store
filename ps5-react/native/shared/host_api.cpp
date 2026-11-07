@@ -613,6 +613,7 @@ void ps5_react_install_host_api(JSContext* ctx) {
   JS_SetPropertyStr(ctx, api, "archives", ps5_react_archive_api(ctx));
   JS_SetPropertyStr(ctx, api, "inspections", ps5_react_inspection_api(ctx));
   JS_SetPropertyStr(ctx, api, "packages", ps5_react_package_api(ctx));
+  JS_SetPropertyStr(ctx, api, "payloads", ps5_react_payload_api(ctx));
   JS_SetPropertyStr(ctx, api, "browser", ps5_react_browser_capture_api(ctx));
   JS_SetPropertyStr(ctx, api, "lan", ps5_react_lan_api(ctx));
   JS_SetPropertyStr(ctx, api, "video", ps5_react_video_api(ctx));

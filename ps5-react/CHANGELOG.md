@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — a program of the app's own
+
+- Add `Payloads.send({program, request})` (ABI v22, `payloads.send`): hands a program to the payload
+  loader on `127.0.0.1:9021` — a file in the app folder, or an absolute path under `/app0`,
+  `/download0` or `/temp0` — and returns once the loader holds the whole file, so the program runs on
+  its own afterwards. An app can ship its own helper ELF beside `FileSystem.dataDir` instead of
+  inside the app folder.
+
 ## Unreleased — certificates for old firmwares
 
 - Networking apps ship Mozilla's root certificates (curl's `cacert.pem`, pinned as `caBundle`). At

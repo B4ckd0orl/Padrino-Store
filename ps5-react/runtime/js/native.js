@@ -575,6 +575,20 @@ export const Packages = Object.freeze({
 });
 
 /**
+ * Handing a program to the payload loader on `127.0.0.1:9021` (ABI v22, PS5 only): the loader runs it
+ * with `request` on the rest of the connection as standard input, and it keeps running after the call
+ * returns. `program` is a file in the app folder, or an absolute path under `/app0`, `/download0` or
+ * `/temp0` — a file beside `FileSystem.dataDir`, for instance. The call returns once the loader holds
+ * the whole file; it throws when the file or the loader is not there.
+ * @param {{program: string, request?: string}} options
+ */
+export const Payloads = Object.freeze({
+  send({program, request = ''}) {
+    host().payloads.send(program, request);
+  },
+});
+
+/**
  * UDP broadcast on the local network, for finding services that answer one (Jellyfin and Emby on
  * 7359, for instance). Replies come from anyone on the network: check what they claim before use.
  */

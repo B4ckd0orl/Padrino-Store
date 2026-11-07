@@ -577,6 +577,26 @@ helper writes `log`, uses the app's certificate store, resolves names over
 DNS-over-HTTPS, and ends once every link was fetched whole and nothing asked for
 ten minutes, or nothing asked for an hour.
 
+## Payload programs (ABI v22)
+
+```js
+import {FileSystem, Payloads} from '@ps5-react/core';
+Payloads.send({program: `${FileSystem.dataDir}/tools/engine.elf`});
+```
+
+`Payloads.send({program, request})` (ABI v22, PS5 only) hands a program to the
+payload loader on `127.0.0.1:9021`, which runs it with the rest of the
+connection as its standard input. The call returns as soon as the loader holds
+the whole file, and the program keeps running afterwards, independently of the
+app. `program` is a file in the app folder (`relauncher.elf`) or an absolute
+path under `/app0`, `/download0` or `/temp0` — the path the host resolves, so a
+file beside `FileSystem.dataDir` fits. `request` is optional, at most 16 KiB,
+and rides the connection after the file. A console without a loader on port 9021
+fails with an error naming the port, and a file that is not there fails with one
+naming the path; the preview fails with an error saying this runs on a PS5 only.
+The whole file crosses the socket before the call returns, so sending a large
+program waits on the render thread for as long as that takes.
+
 ## Archive extraction
 
 ```js

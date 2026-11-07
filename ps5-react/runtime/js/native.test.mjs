@@ -3,7 +3,7 @@
 // Additional attribution term: see LICENSE-ATTRIBUTION.
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import {acquireImage, Archives, BrowserCapture, Controller, Downloads, FileSystem, Http, LocalNetwork, Power, Sound} from './native.js';
+import {acquireImage, Archives, BrowserCapture, Controller, Downloads, FileSystem, Http, LocalNetwork, Payloads, Power, Sound} from './native.js';
 import {setFrameBatcher} from './frame.js';
 
 test('native network tasks deliver progress, release listeners and stop polling', async () => {
@@ -383,6 +383,26 @@ test('a LAN broadcast resolves with its replies, and an abort cancels it', async
     assert.equal(listeners.size, 0);
   } finally {
     globalThis.setInterval = originalInterval; globalThis.clearInterval = originalClear;
+    delete globalThis.__ps5ReactNative;
+  }
+});
+
+test('Payloads.send passes the program and request to the host and throws its error', () => {
+  const calls = [];
+  globalThis.__ps5ReactNative = {payloads: {send: (program, request) => {
+    if (typeof program !== 'string')
+      throw new TypeError('payloads.send: expected a program file in the app folder, or an absolute path under /app0, /download0 or /temp0');
+    if (program === 'missing.elf') throw new Error('payloads.send: missing.elf is missing from the app folder');
+    calls.push([program, request]);
+  }}};
+  try {
+    Payloads.send({program: '/download0/padrino-store/engine.elf'});
+    Payloads.send({program: 'relauncher.elf', request: 'RLA1\n'});
+    assert.deepEqual(calls, [['/download0/padrino-store/engine.elf', ''], ['relauncher.elf', 'RLA1\n']]);
+    assert.throws(() => Payloads.send({}), /payloads\.send: expected a program/);
+    assert.throws(() => Payloads.send({program: 'missing.elf'}), /payloads\.send: missing\.elf is missing from the app folder/);
+    assert.equal(calls.length, 2, 'a refused send reaches the host for nothing');
+  } finally {
     delete globalThis.__ps5ReactNative;
   }
 });
