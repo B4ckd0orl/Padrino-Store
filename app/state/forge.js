@@ -250,9 +250,9 @@ import { releaseAwake, requestAwake } from './keep-awake.js';
       if (!gate) return mark("held");
       const bytes = Number(record.size) || 0;
       if (!fs.exists(source)) {
-        // The engine removed it itself once it had verified the pack; the record still says so.
-        mark("removed", { bytes });
-        notices.push("originalRemoved");
+        // The engine removed it itself once it had verified the pack: the record says so and
+        // the row shows it, but this call removed nothing -- so there is nothing to announce.
+        mark("removed", { bytes, already: true });
         return;
       }
       try {

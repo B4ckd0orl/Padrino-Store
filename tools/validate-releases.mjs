@@ -3,9 +3,10 @@
 // Usage: node tools/validate-releases.mjs
 
 import { readdir, readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const RELEASES = "C:/Users/SysVoid/Desktop/storemia/padrino-store/app/data/releases";
+const RELEASES = join(dirname(fileURLToPath(import.meta.url)), "..", "app", "data", "releases");
 
 async function main() {
   const files = (await readdir(RELEASES)).filter((f) => f.endsWith(".json"));

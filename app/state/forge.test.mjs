@@ -631,5 +631,6 @@ test('a source the engine already took away is still recorded as removed', async
   const record = forge.records()[0];
   assert.equal(record.deletion.state, 'removed');
   assert.equal(record.deletion.bytes, 42);
-  assert.deepEqual(forge.takeNotices(), ['originalRemoved']);
+  assert.equal(record.deletion.already, true, 'the engine did it, not this call');
+  assert.deepEqual(forge.takeNotices(), [], 'nothing this call removed is announced');
 });

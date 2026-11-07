@@ -5,10 +5,12 @@
 //   --details  also resolve dead archive.org/details/ page URLs to real download URLs
 
 import { readdir, readFile, writeFile, access } from "node:fs/promises";
-import { join } from "node:path";
+import { tmpdir } from "node:os";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const RELEASES_DIR = "C:/Users/SysVoid/Desktop/storemia/padrino-store/app/data/releases";
-const TMP = "C:/Users/SysVoid/AppData/Local/Temp/opencode";
+const RELEASES_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "app", "data", "releases");
+const TMP = tmpdir();
 const args = process.argv.slice(2);
 const DRY = args.includes("--dry");
 const SKIP_VERIFY = args.includes("--skip-verify");

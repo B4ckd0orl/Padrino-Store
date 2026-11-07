@@ -3,10 +3,12 @@
 // Usage: node tools/find-replacements.mjs [--limit N] [--platform ps5|ps4] [--out FILE]
 
 import { readdir, readFile, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { tmpdir } from "node:os";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const RELEASES_DIR = "C:/Users/SysVoid/Desktop/storemia/padrino-store/app/data/releases";
-const OUT = "C:/Users/SysVoid/AppData/Local/Temp/opencode/replacements.json";
+const RELEASES_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "app", "data", "releases");
+const OUT = join(tmpdir(), "replacements.json");
 const SEARCH_DELAY_MS = 2000;
 const METADATA_DELAY_MS = 800;
 

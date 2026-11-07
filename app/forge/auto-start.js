@@ -102,7 +102,7 @@
       try {
         if (fs.exists(program)) fs.remove(program);
       } catch (error) {
-        console.log(`[padrino] old engine program not removed: ${error.message}`);
+        console.log(`[forge] old engine program not removed: ${error.message}`);
       }
       try {
         if (fs.exists(sidecar)) fs.remove(sidecar);
@@ -128,7 +128,7 @@
         const { size } = fs.stat(program);
         fs.writeFile(sidecar, JSON.stringify({ sha256: release.sha256, size }), { sync: true });
       } catch (error) {
-        console.log(`[padrino] engine program sidecar not written: ${error.message}`);
+        console.log(`[forge] engine program sidecar not written: ${error.message}`);
       }
       return null;
     }
@@ -141,7 +141,7 @@
         fs.mkdir("/data/dumpforge", { recursive: true });
         fs.writeFile(ARGS, "serve\n", { sync: true });
       } catch (error) {
-        console.log(`[padrino] engine args not written: ${error.message}`);
+        console.log(`[forge] engine args not written: ${error.message}`);
       }
     }
 
