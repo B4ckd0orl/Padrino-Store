@@ -11,6 +11,7 @@
 import { folderSize } from '../files/scan.js';
 import { packedFormat } from '../forge/detect.js';
 import { readJSON } from './read-json.js';
+import { releaseAwake, requestAwake } from './keep-awake.js';
 
   const BASE = "http://127.0.0.1:8095";
   const SESSION_TIMEOUT_MS = 1500;
@@ -165,7 +166,6 @@ import { readJSON } from './read-json.js';
     const directory = stateDir ?? `${fs.dataDir}/padrino-store`;
     const file = `${directory}/forge.json`;
     let records = load();
-    let awake = false;
     // Whatever was still running when the app closed is written back as interrupted right away,
     // so the file on disk never claims more than the next poll can prove.
     if (records.some((job) => job.state === "interrupted")) save();
@@ -197,10 +197,13 @@ import { readJSON } from './read-json.js';
       }
     }
 
+    // The console's stay-awake switch is shared with the download queue, which holds it for its
+    // own work, so the engine states its reason through the coordinator instead of writing the
+    // raw flag: the switch stays on while any reason is outstanding, whichever subsystem is
+    // still busy, and a finished download can no longer put the console to sleep mid-pack.
     function setAwake(busy) {
-      if (busy === awake) return;
-      awake = busy;
-      power.keepAwake(busy);
+      if (busy) requestAwake("forge", power);
+      else releaseAwake("forge", power);
     }
 
     function trim() {

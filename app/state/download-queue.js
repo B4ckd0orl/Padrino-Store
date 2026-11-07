@@ -14,6 +14,7 @@ import { archivePassword } from './archive-password.js';
 import { BrowserRequired, archiveRefusal, cancellation, createSourceResolver, sourceKind, webURL } from './download-sources.js';
 import { LINK_PREFIX, captureAnchor, linkForLog, otherSourceLink, validateCapturedLink } from './browser-links.js';
 import { readJSON } from './read-json.js';
+import { releaseAwake, requestAwake } from './keep-awake.js';
 import { finishedHeaders, inspectHeaders, optionalHeaders } from './archive-headers.js';
 import { mountedImages, shadowRequest, within2 } from './shadowmount.js';
 import { MARGIN2, spaceShortfall, stillNeeded } from './space.js';
@@ -217,7 +218,10 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       const busy = captures.size > 0 || serving.size > 0 || jobs.some((job2) => BUSY.includes(job2.state));
       if (busy !== awake2) {
         awake2 = busy;
-        power.keepAwake(busy);
+        // The switch is shared with the compression engine: state the queue's reason through the
+        // coordinator so a job finishing elsewhere cannot sleep the console under this one.
+        if (busy) requestAwake("downloads", power);
+        else releaseAwake("downloads", power);
       }
       const value = snapshot();
       for (const listener of listeners4) listener(value);
@@ -2494,7 +2498,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         job2.error = "";
         job2.message = t("downloads.moving");
         change();
-        power.keepAwake(true);
+        requestAwake("move", power);
         try {
           const reply = await shadowRequest2("games/move", {
             title_id: job2.consoleTitleId ?? job2.titleId,
@@ -2532,7 +2536,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
           job2.message = "";
           throw error2;
         } finally {
-          power.keepAwake(false);
+          releaseAwake("move", power);
           change();
         }
       }
