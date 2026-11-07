@@ -83,7 +83,7 @@ import { ensureEngine, packError, recoverInterrupted } from './start-pack.js';
   function useEngine() {
     const [state, setState] = (0, useState)(() => ({ jobs: [], records: forgeEngine().records(), error: null, polls: 0 }));
     (0, useEffect)(() => {
-      const stop = forgeEngine().watch((list, error) => {
+      const stop = forgeEngine().subscribe((list, error) => {
         setState((last) => ({
           jobs: list ?? [],
           records: forgeEngine().records(),

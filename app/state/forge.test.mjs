@@ -67,7 +67,7 @@ function fakeHttp(handler) {
 const ok = data => ({status: 200, json: async () => data});
 const refused = (status, error) => ({status, json: async () => ({error})});
 
-function world({seed, handler, activeDownloads = () => false, power, removeError} = {}) {
+function world({seed, handler, activeDownloads = () => false, power, removeError, wait} = {}) {
   const fs = fakeFs(seed, {removeError});
   const {http, calls} = fakeHttp(handler);
   const awake = [];
@@ -78,7 +78,7 @@ function world({seed, handler, activeDownloads = () => false, power, removeError
     stateDir: '/data/ps5-react/PPSA99059/queue',
     activeDownloads,
     now: () => 1700000000000,
-    wait: async () => {},
+    wait: wait ?? (async () => {}),
   });
   return {forge, fs, calls, awake, saved: () => fs.files.get('/data/ps5-react/PPSA99059/queue/forge.json')};
 }
@@ -397,6 +397,40 @@ test('watch hands over each poll and stops on demand', async () => {
   await within(first);
   await new Promise(resolve => setImmediate(resolve));
   assert.deepEqual(seen, [0]);
+});
+
+test('subscribe runs one loop for every listener and stops with the last', async () => {
+  const {forge} = world({
+    handler: () => ok({instance: 'forge', jobs: []}),
+    // A real timer between polls: this test waits on timers of its own between assertions.
+    wait: ms => new Promise(resolve => setTimeout(resolve, ms)),
+  });
+  const first = [];
+  const second = [];
+  const stopFirst = forge.subscribe(list => first.push(list.length), {intervalMs: 1});
+  const stopSecond = forge.subscribe(list => second.push(list.length), {intervalMs: 1});
+  const stopBad = forge.subscribe(() => {
+    throw new Error('a listener that blows up');
+  }, {intervalMs: 1});
+  await within(new Promise(resolve => {
+    const until = setInterval(() => {
+      if (first.length > 0 && second.length > 0) {
+        clearInterval(until);
+        resolve();
+      }
+    }, 1);
+  }));
+  // The second subscriber keeps its polls after the first one leaves: one loop, many readers,
+  // and a listener that throws never takes the others down with it.
+  stopFirst();
+  stopBad();
+  const seen = second.length;
+  await new Promise(resolve => setTimeout(resolve, 20));
+  assert.ok(second.length > seen, 'the shared loop is still running');
+  stopSecond();
+  const settled = first.length + second.length;
+  await new Promise(resolve => setTimeout(resolve, 20));
+  assert.equal(first.length + second.length, settled, 'the loop stops with the last subscriber');
 });
 
 test('the double gate: only an accepted, verified result may remove the original', () => {

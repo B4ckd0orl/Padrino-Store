@@ -14,6 +14,7 @@ import { LocaleProvider, useLocale } from './i18n/index.js';
 import { SearchScreen } from './search/index.jsx';
 import { NO_FILTERS, getGame, warmCovers } from './state/catalog.js';
 import { fetchUpdate } from './state/catalog-update.js';
+import { forgeEngine } from './state/forge-live.js';
 import { isHomebrewId } from './state/homebrew.js';
 import { loadList, saveList } from './state/saved.js';
 import { NavProvider, useIsImmersive, useNavActions, useNavState } from './state/nav.jsx';
@@ -79,6 +80,11 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
         clearTimeout(update);
       };
     }, []);
+    // The engine's jobs settle whether or not anyone is looking at the compression screen: the
+    // poll gives back the original when the engine is done with it, keeps forge.json honest and
+    // lets the console sleep again. The screen subscribes for its progress; this subscription is
+    // what keeps that one loop running for as long as the store is open.
+    (0, useEffect)(() => forgeEngine().subscribe(() => {}), []);
     const { stack, top } = useNavState();
     const onBrowse = top.name === "browse";
     const onHomebrew = top.name === "homebrew";

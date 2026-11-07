@@ -445,7 +445,37 @@ import { releaseAwake, requestAwake } from './keep-awake.js';
       };
     }
 
-    return { probe, startJob, unpackJob, jobs, watch, settleOriginals, takeNotices, records: () => records.map((job) => ({ ...job })) };
+    // One polling loop for every listener: the screen reads it for its progress, and the app keeps
+    // a subscription of its own for as long as it is open, so settling, the original's removal and
+    // the console's own sleep never depend on a screen being mounted. The loop starts with the
+    // first subscriber and stops with the last one to leave.
+    const subscribers = new Set();
+    let polling = null;
+
+    function dispatch(list, error) {
+      for (const subscriber of [...subscribers]) {
+        try {
+          subscriber(list, error);
+        } catch (failure) {
+          console.log(`[forge] watch listener: ${failure.message}`);
+        }
+      }
+    }
+
+    function subscribe(listener, options) {
+      subscribers.add(listener);
+      if (!polling) polling = watch(dispatch, options);
+      return () => {
+        subscribers.delete(listener);
+        if (!subscribers.size && polling) {
+          const stop = polling;
+          polling = null;
+          stop();
+        }
+      };
+    }
+
+    return { probe, startJob, unpackJob, jobs, watch, subscribe, settleOriginals, takeNotices, records: () => records.map((job) => ({ ...job })) };
   }
 
 export { createForge, deletionGate, forgeRequest, normalizeJob, unpackRequest, validLevel };
