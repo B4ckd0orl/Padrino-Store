@@ -30,6 +30,12 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 - Si el motor de compresión no está corriendo, la app lo arranca sola cuando hace falta; si una descarga le interrumpe un trabajo, se recupera solo al volver
 - Borrar el original sólo pasa cuando el resultado comprimido está verificado y el motor lo confirma; el motor lo elimina él mismo, nunca la app antes de tiempo
 - En Ajustes, «Eliminar el original al comprimir» pasa a ser de tres estados (Sí / No / Preguntar), igual que la fila de descargas de PKG de al lado
+- Los trabajos de compresión se vigilan también con la pantalla cerrada: al terminar, el original pendiente se recupera, el registro queda en su sitio y la consola vuelve a poder dormirse
+- La consola ya no se duerme en medio de una compresión cuando termina una descarga o un movimiento de archivos (ni al revés): el aviso de permanecer despierta lo comparten ahora todas las tareas
+- Dos arranques a la vez sobre la misma carpeta ya no se cuelan: el segundo se rechaza hasta que el primero queda registrado
+- Al reanudar un trabajo interrumpido, el registro anterior se sustituye en vez de quedar duplicado, y cada trabajo se empareja con su propia carpeta aunque el motor se reinicie con otros identificadores
+- Antes de descomprimir se comprueba que haya espacio en el disco, y los errores del motor (trabajo ya en cola, disco lleno, petición rechazada) se muestran traducidos en lugar de un texto genérico
+- Si el motor ya había eliminado el original, la app ya no avisa de un borrado que ella no hizo
 
 ### Red
 - Rootz vuelve a estar activo como fuente: sus enlaces se resuelven en la propia app, con un reintento si limita las peticiones y aviso claro si el archivo ya no existe
