@@ -136,6 +136,12 @@ test('the engine’s own refusals become codes the screen can translate', async 
     [refused(429, 'too many jobs'), 'saturated'],
     [refused(400, '2 games are being read'), 'reading'],
     [refused(400, 'a job is already queued or running'), 'busy'],
+    // A message that names the situation wins over the status it arrived with: the 409 that
+    // means "shutting down" is still a busy engine when the engine says "already queued", and
+    // a disk out of room is space whatever status carried it.
+    [refused(409, 'a job is already queued'), 'busy'],
+    [refused(500, 'No space left on device'), 'space'],
+    [refused(404, 'nothing here'), 'http'],
   ];
   for (const [response, code] of cases) {
     const {forge} = world({handler: () => response});

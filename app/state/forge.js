@@ -6,7 +6,7 @@
 // The engine's own level ranges are checked before any request leaves the app: zstd 1-22, LZ4 0
 // (fast path) or 3-12 (high compression). Every failure carries an error.code the UI translates:
 // "level", "downloads-active", "duplicate", "stopping", "body", "saturated", "reading", "busy",
-// "timeout", "unreachable".
+// "space", "timeout", "unreachable".
 
 import { folderSize } from '../files/scan.js';
 import { packedFormat } from '../forge/detect.js';
@@ -55,18 +55,21 @@ import { releaseAwake, requestAwake } from './keep-awake.js';
     return error;
   }
 
-  // The engine's refusals, mapped to codes the UI can translate. The status decides the common
-  // cases (409 stopping, 413 body too large, 429 saturated); a message that names the situation
-  // ("2 games are being read") wins over the status it arrived with.
+  // The engine's refusals, mapped to codes the UI can translate. A message that names the
+  // situation wins over the status it arrived with -- "already queued" is a busy engine even on
+  // the 409 that also means "shutting down", and a disk that ran out of room says so whatever
+  // carried it -- and the status decides what is left (413 body too large, 429 saturated, 409
+  // stopping).
   function forgeError(status, message) {
     const text = String(message ?? "").trim();
     const error = new Error(text || `HTTP ${status}`);
     error.status = status;
     if (/being read|reading or writing/i.test(text)) error.code = "reading";
+    else if (/queued or running|already queued|\bbusy\b/i.test(text)) error.code = "busy";
+    else if (/no space|not enough space|disk full|ENOSPC/i.test(text)) error.code = "space";
     else if (status === 413) error.code = "body";
     else if (status === 429) error.code = "saturated";
     else if (status === 409) error.code = "stopping";
-    else if (/queued or running|already queued|\bbusy\b/i.test(text)) error.code = "busy";
     else error.code = "http";
     return error;
   }

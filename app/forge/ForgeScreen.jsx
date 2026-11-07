@@ -237,6 +237,17 @@ import { ensureEngine, packError, recoverInterrupted } from './start-pack.js';
 
     const unpack = async (row) => {
       try {
+        // Writing the folder back from its packs only ever adds files: what sits on disk now is
+        // the smaller side of that trade, so a drive that cannot hold even the pack has no room
+        // for what comes out of it. The engine's own refusal is caught again below.
+        let free = null;
+        try {
+          free = FileSystem.diskUsage(rootOf(row.path)).free;
+        } catch {}
+        if (free !== null && row.size > 0 && free < row.size) {
+          setNotice(t2("forge.error.space"));
+          return;
+        }
         // The engine may not be running yet: starting it is part of getting this job away.
         const code = await ensureEngine({ preparing: () => setNotice(t2("forge.auto.starting")) });
         if (code) {
