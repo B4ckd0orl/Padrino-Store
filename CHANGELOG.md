@@ -33,6 +33,7 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 - La consola ya no se duerme en medio de una compresión cuando termina una descarga o un movimiento de archivos (ni al revés); con la pantalla cerrada los trabajos se vigilan igual y al terminar se recupera el original
 - Dos arranques a la vez sobre la misma carpeta ya no se cuelan, y al reanudar un trabajo interrumpido el registro se sustituye en vez de duplicarse
 - Antes de descomprimir se comprueba el espacio libre, y los errores del motor (trabajo ya en cola, disco lleno, petición rechazada) se muestran traducidos en lugar de un texto genérico
+- La lista se completa: una extracción que trae parches o actualizaciones junto al juego ya aparece, la pantalla se refresca sola si está abierta cuando termina una descarga, y las carpetas sin comprimir muestran el distintivo «Original»
 
 ### Red
 - Rootz vuelve a estar activo como fuente: sus enlaces se resuelven en la propia app, con un reintento si limita las peticiones y aviso claro si el archivo ya no existe

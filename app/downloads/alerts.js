@@ -15,6 +15,11 @@ import { compressibleFolder } from './forge-eligible.js';
       if (was === void 0 || was === job2.state) continue;
       if (COMPLETE.includes(job2.state) && !COMPLETE.includes(was)) {
         alerts.push({ kind: "complete", title: job2.title, gameId: job2.gameId, message: t("downloads.notice.complete"), folder: compressibleFolder(job2, fs) });
+      } else if (job2.state === "extracted" && was !== "extracted" && COMPLETE.includes(was)) {
+        // An extraction that lands while the job already counted as complete in another state
+        // (restored as "downloaded", or published straight to "extracted") is the moment the
+        // folder to compress exists: without this offer the player would never be asked.
+        alerts.push({ kind: "complete", title: job2.title, gameId: job2.gameId, message: t("downloads.notice.complete"), folder: compressibleFolder(job2, fs) });
       } else if (job2.state === "failed") {
         alerts.push({ kind: "failed", title: job2.title, gameId: job2.gameId, message: explainError(job2.error, Boolean(job2.release.parts)).title });
       }

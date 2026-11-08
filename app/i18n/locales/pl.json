@@ -359,6 +359,7 @@
     "forge.space.need": "Potrzeba {n} wolnego miejsca na czas kompresji",
     "forge.badge.level": "poziom {n}",
     "forge.badge.lz4": "LZ4",
+    "forge.badge.original": "Oryginał",
     "forge.badge.originalRemoved": "oryginał usunięty",
     "forge.badge.zstd": "zstd",
     "forge.delete.failed": "Nie udało się usunąć oryginału. Spakowana gra jest cała.",

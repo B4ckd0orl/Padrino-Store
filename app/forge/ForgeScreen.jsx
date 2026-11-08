@@ -9,6 +9,7 @@ import { jsx, jsxs } from 'react/jsx-runtime';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { folderSize, scanDrive } from '../files/scan.js';
 import { eligibleFolder } from '../downloads/forge-eligible.js';
+import { useDownloadAlerts } from '../downloads/useDownloadAlerts.js';
 import { useT } from '../i18n/index.js';
 import { COMPLETE } from '../state/download-queue.js';
 import { downloadQueue, driveName, storageRoots } from '../state/downloads.js';
@@ -137,7 +138,8 @@ import { ensureEngine, packError, recoverInterrupted } from './start-pack.js';
         row.packed ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 8, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 6, backgroundColor: colors.surface2, borderWidth: 1, borderColor: "#e09f3e44" }, children: [
           /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 17, fontWeight: 600, color: colors.accent }, children: t2(`forge.badge.${row.packed}`) }),
           level !== null ? /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 17, color: colors.muted }, children: t2("forge.badge.level", { n: level }) }) : null
-        ] }) : null,
+        ] })
+          : /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", alignItems: "center", gap: 8, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 6, backgroundColor: colors.surface2, borderWidth: 1, borderColor: HAIRLINE }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 17, fontWeight: 600, color: colors.muted }, children: t2("forge.badge.original") }) }),
         originalGone ? /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", alignItems: "center", gap: 8, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 6, backgroundColor: colors.surface2, borderWidth: 1, borderColor: "#e09f3e44" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 17, fontWeight: 600, color: colors.ok }, children: t2("forge.badge.originalRemoved") }) }) : null,
         live
           ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 16, width: 460, justifyContent: "flex-end" }, children: [
@@ -163,6 +165,11 @@ import { ensureEngine, packError, recoverInterrupted } from './start-pack.js';
     const { focusLater } = useNavActions();
     const [version, setVersion] = (0, useState)(0);
     const rescan = () => setVersion((value) => value + 1);
+    // A download finishing while this screen is open changes the disk: the folder it published
+    // belongs in the list right away, without the player leaving and coming back.
+    useDownloadAlerts((alert) => {
+      if (alert.kind === "complete") rescan();
+    });
     const rows = (0, useMemo)(() => scanFolders(), [version]);
     const { jobs, records, error, polls } = useEngine();
     const [focused, setFocused] = (0, useState)(null);

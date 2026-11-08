@@ -359,6 +359,7 @@
     "forge.space.need": "Needs {n} free while it converts",
     "forge.badge.level": "level {n}",
     "forge.badge.lz4": "LZ4",
+    "forge.badge.original": "Original",
     "forge.badge.originalRemoved": "original removed",
     "forge.badge.zstd": "zstd",
     "forge.delete.failed": "The original couldn't be removed. The packed game is still fine.",

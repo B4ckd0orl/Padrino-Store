@@ -89,6 +89,34 @@ test('a patch, update or backport folder is not the game', () => {
   assert.equal(compressibleFolder(finished({output: `${FOLDER}-Patch`}), fakeFs([`${FOLDER}-Patch/eboot.bin`, `${FOLDER}-Patch/sce_sys/param.json`])), '');
 });
 
+test('a supplemental folder beside the game does not hide it', () => {
+  const nested = `${FOLDER}/CUSA12345`;
+  const update = `${FOLDER}/CUSA12345-Update1.03`;
+  const fs = fakeFs([
+    `${nested}/eboot.bin`, `${nested}/sce_sys/param.json`,
+    `${update}/eboot.bin`, `${update}/sce_sys/param.json`,
+  ]);
+  assert.equal(compressibleFolder(finished(), fs), nested);
+});
+
+test('a supplemental folder alone under the extraction is not the game', () => {
+  const patch = `${FOLDER}/CUSA12345-Patch1.02`;
+  const fs = fakeFs([`${patch}/eboot.bin`, `${patch}/sce_sys/param.json`]);
+  assert.equal(compressibleFolder(finished(), fs), '');
+});
+
+test('several supplemental folders around the game still leave it found', () => {
+  const nested = `${FOLDER}/CUSA12345`;
+  const update = `${FOLDER}/CUSA12345-Update1.03`;
+  const backport = `${FOLDER}/CUSA12345-Backport`;
+  const fs = fakeFs([
+    `${nested}/eboot.bin`, `${nested}/sce_sys/param.json`,
+    `${update}/eboot.bin`, `${update}/sce_sys/param.json`,
+    `${backport}/eboot.bin`, `${backport}/sce_sys/param.json`,
+  ]);
+  assert.equal(compressibleFolder(finished(), fs), nested);
+});
+
 test('a folder found on disk is judged by the same rules', () => {
   assert.equal(eligibleFolder(fakeFs(GAME_FILES), FOLDER), FOLDER);
   // Not a game folder, a package, or somewhere outside the console's own roots.

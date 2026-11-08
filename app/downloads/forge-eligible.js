@@ -24,8 +24,11 @@ import { COMPLETE } from '../state/download-queue.js';
   }
 
   // A lone folder down is the game whatever it is named (a merged dump or a backport sits alone
-  // under its extraction folder); a second folder beside it is the queue's own choice to make,
-  // and it already put the game where it belongs.
+  // under its extraction folder). An extraction may publish supplemental folders beside it -- a
+  // patch, an update, a backport -- and those are never the game, so they are set aside first:
+  // what is left has to be a single folder resolving to a game. Two folders left to choose
+  // between is still the queue's own choice to make, and it already put the game where it
+  // belongs, so nothing is guessed.
   function gameFolder(fs, path) {
     for (let depth = 0; depth <= 16; depth++) {
       if (GAME.every((marker) => fs.exists(`${path}${marker}`))) return path;
@@ -35,8 +38,9 @@ import { COMPLETE } from '../state/download-queue.js';
       } catch {
         return "";
       }
-      if (children.length !== 1) return "";
-      path = `${path}/${children[0].name}`;
+      const usable = children.filter((entry) => !PATCH_FOLDER.test(entry.name) && !BACKPORT_FOLDER.test(entry.name));
+      if (usable.length !== 1) return "";
+      path = `${path}/${usable[0].name}`;
     }
     return "";
   }
