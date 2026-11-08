@@ -419,3 +419,34 @@ page whose card had focus for 300 ms showed hero, cover, logo and first shot
 in the first screenshot 300 ms later; without the settle the hero arrived
 after 0.7 s and the first shot after 1.1 s. Scroll windows stayed at
 59.9–60.2 fps with frames under 20 ms while images arrived.
+
+## Padrino Store compression flow — not yet validated — 2026-11-07
+
+Padrino Store v1.37 is the first release whose update feed pins the
+compression program (`dumpfolder.elf` attached to the release with a
+`sha256:` digest in `update-feed.json`). Everything below is covered by
+desktop tests only; none of it has been observed on a console:
+
+- **Engine start end to end.** Feed download and digest check of
+  `dumpfolder.elf`, `payloads.send` to the loader on port 9021, the
+  `/data/dumpforge/args` write, and the engine binding port 8095 (the app
+  reports `noPayload` when no loader answers; that path has not been
+  exercised against a real loader with this program).
+- **`Power.keepAwake` coordination.** The refcount coordinator writes the
+  native flag only when the shared verdict flips, so a download finishing
+  cannot sleep the console under a running pack. No console has been observed
+  staying out of rest mode across an overlapping pack, download or file move.
+- **Engine polling with the compression screen closed.** The shared
+  subscription keeps settling, the original's removal and `forge.json` honest
+  while no screen is mounted; this is desktop-tested only.
+- **Recovery of interrupted jobs** (resume, route-first matching, record
+  purge) at real engine latency.
+- **Unpack with a full drive** — the free-space pre-check and the engine's
+  own refusal wording.
+- **Real deletion of the original** (`fs.removeAsync`) after a verified pack.
+- **Job retention and engine-recycled ids** after an engine restart.
+
+Framework gaps recorded from this workstation (Windows): `npm test` and
+`npm run build` are not runnable here (`fcntl`-dependent), and `network.cpp`
+needs OpenSSL; the remaining C++ sources compile clean under
+`clang -fsyntax-only -std=c++20 -Wall -Wextra -Werror`.
