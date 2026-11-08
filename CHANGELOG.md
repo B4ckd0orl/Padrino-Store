@@ -10,34 +10,10 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 
 ## Próxima release
 
-### Tienda
-- 86 juegos nuevos entran en la tienda con su ficha, sus capturas y sus enlaces de descarga
-- Los juegos que se habían quedado sin enlaces recuperan los que siguen vivos: 827 enlaces comprobados uno a uno en 522 juegos
-- Las tarjetas y las fichas muestran la valoración por estrellas de la PlayStation Store: el promedio con estrella dorada y, en la ficha, cuántas personas la han dado
-- La ordenación y la gráfica "Mejor valorado" puntúan con esa valoración ponderada por el número de valoraciones, de modo que 4,9 estrellas de 40 personas no superan a 4,8 de 70 000; sin valoración de la tienda entra el Metacritic
-- La pantalla Archivos recuerda el último disco visto: al volver se abre en el mismo mientras siga conectado, y si no, en el primero
-
-### Descargas
-- Cuando una fuente responde 429 o 5xx (servidor ocupado o limitando), la cola espera y vuelve a preguntar por su cuenta a los 3 minutos y a los 10, en vez de fallar; solo una tercera negativa seguida falla el trabajo
-- Un archivo de menos de 1 KB se rechaza antes de escribirlo: no es ningún juego sino la página de error del host, y se avisa con los bytes exactos que envió
-
-### Compresión
-- Al terminar una descarga que deja una carpeta de juego, la app pregunta si quieres comprimirla: zstd o LZ4, con la opción de eliminar el original al terminar y la nota de cuánto espacio necesitas y cuánto se liberará
-- La pregunta se puede responder una sola vez o guardarse en Ajustes: preguntar siempre, comprimir siempre con zstd, siempre con LZ4 o no preguntar nunca
-- Nueva sección «Compresión» en el menú lateral: lista las carpetas de los discos que se pueden comprimir, con su tamaño, y las que ya están comprimidas muestran el formato y el nivel en el que están
-- Cada juego comprimido se puede volver a descomprimir desde la misma pantalla, y si se interrumpe a medias vuelve a aparecer como estaba
-- Los niveles son los del motor: zstd 1–22 (recomendado el 9) y LZ4 0 o 3–12 (recomendado el 0), más un nivel personalizado que nunca se sale del rango que admite cada formato
-- Si el motor de compresión no está corriendo, la app lo arranca sola cuando hace falta; si una descarga le interrumpe un trabajo, se recupera solo al volver
-- Borrar el original sólo pasa cuando el resultado comprimido está verificado y el motor lo confirma; el motor lo elimina él mismo, nunca la app antes de tiempo
-- En Ajustes, «Eliminar el original al comprimir» pasa a ser de tres estados (Sí / No / Preguntar), igual que la fila de descargas de PKG de al lado
-- La consola ya no se duerme en medio de una compresión cuando termina una descarga o un movimiento de archivos (ni al revés); con la pantalla cerrada los trabajos se vigilan igual y al terminar se recupera el original
-- Dos arranques a la vez sobre la misma carpeta ya no se cuelan, y al reanudar un trabajo interrumpido el registro se sustituye en vez de duplicarse
-- Antes de descomprimir se comprueba el espacio libre, y los errores del motor (trabajo ya en cola, disco lleno, petición rechazada) se muestran traducidos en lugar de un texto genérico
-- La lista se completa: una extracción que trae parches o actualizaciones junto al juego ya aparece, la pantalla se refresca sola si está abierta cuando termina una descarga, y las carpetas sin comprimir muestran el distintivo «Original»
-- La lista se completa de verdad: lee también la carpeta homebrew, donde la cola deja los juegos ya terminados (antes sólo miraba downloads/extracted), resuelve extracciones con varias carpetas —envoltorios, parches y updates— igual que hace la propia cola, y muestra el título del param.json cuando el nombre de la carpeta no lleva el id
-
-### Red
-- Rootz vuelve a estar activo como fuente: sus enlaces se resuelven en la propia app, con un reintento si limita las peticiones y aviso claro si el archivo ya no existe
+- 💛 GRACIAS A TODOS POR USAR PADRINO STORE 💛
+- 📢 Aviso importante: esta será, posiblemente, la última actualización. Los gastos del VPS deben cubrirse y, de momento, no hay disponibilidad para afrontarlos.
+- ⏳ La tienda permanecerá disponible un par de meses más; sin vuestro apoyo, terminará cerrándose sola.
+- 🤝 ¿Te gustaría donar para mantenerla viva? Contáctame en Telegram: @granpadrino
 
 ## Archivo
 
