@@ -6,12 +6,18 @@ register(new URL('../state/download-queue-test-loader.mjs', import.meta.url), im
 const {compressibleFolder, eligibleFolder, own} = await import('./forge-eligible.js');
 
 // A disk that knows only the markers the check looks for: a path whose last segment has no dot
-// is a directory, anything else is a file.
-function fakeFs(present = []) {
+// is a directory, anything else is a file. `titles` maps a folder to the title id its own
+// param.json carries, so titleIn reads the same answers the queue's own titleIn would.
+function fakeFs(present = [], titles = {}) {
   const files = new Set(present);
   const directory = path => !path.slice(path.lastIndexOf("/") + 1).includes(".");
   return {
     exists: path => files.has(path),
+    readFile: path => {
+      if (!files.has(path)) throw new Error("no such file");
+      const folder = path.replace(/\/sce_sys\/param\.json$/, "");
+      return JSON.stringify({ titleId: titles[folder] });
+    },
     readDir: path => {
       const seen = new Set();
       const entries = [];
@@ -74,10 +80,12 @@ test('a folder without a game in it is left alone', () => {
   assert.equal(compressibleFolder(finished(), fakeFs([`${FOLDER}/eboot.bin`])), '');
 });
 
-test('the game one folder down is found, and a second folder beside it is not guessed', () => {
+// The queue's finder (findGame) resolves this the same way: a folder beside the game does not
+// break the choice, only a folder that is itself a game competes with it.
+test('the game one folder down is found even with a second folder beside it', () => {
   const nested = `${FOLDER}/CUSA12345`;
   const withGame = fakeFs([`${nested}/eboot.bin`, `${nested}/sce_sys/param.json`, `${FOLDER}/other`]);
-  assert.equal(compressibleFolder(finished(), withGame), '');
+  assert.equal(compressibleFolder(finished(), withGame), nested);
 
   const alone = fakeFs([`${nested}/eboot.bin`, `${nested}/sce_sys/param.json`]);
   assert.equal(compressibleFolder(finished(), alone), nested);
@@ -125,4 +133,36 @@ test('a folder found on disk is judged by the same rules', () => {
   const elsewhere = '/update/games/CUSA12345';
   assert.equal(eligibleFolder(fakeFs([`${elsewhere}/eboot.bin`, `${elsewhere}/sce_sys/param.json`]), elsewhere), '');
   assert.equal(eligibleFolder(fakeFs(GAME_FILES), ''), '');
+});
+
+// Parity with the queue's findGame: a wrapper merely NAMED a backport is the box the game came
+// in, not a supplemental folder, so the game inside it is the one taken.
+test('a wrapper named for a backport gives up the game inside it', () => {
+  const inner = `${FOLDER}/Dawnwalker 4.xx Backport/PPSA28000-app`;
+  const fs = fakeFs([`${inner}/eboot.bin`, `${inner}/sce_sys/param.json`]);
+  assert.equal(eligibleFolder(fs, FOLDER), inner);
+});
+
+test('two games side by side are never guessed between', () => {
+  const one = `${FOLDER}/PPSA11111-app`;
+  const two = `${FOLDER}/PPSA22222-app`;
+  const files = [`${one}/eboot.bin`, `${one}/sce_sys/param.json`, `${two}/eboot.bin`, `${two}/sce_sys/param.json`];
+  const fs = fakeFs(files, {[one]: 'PPSA11111', [two]: 'PPSA22222'});
+  assert.equal(eligibleFolder(fs, FOLDER), '');
+  // The title id the download was for is what decides, and one that matches neither changes
+  // nothing: two left, nothing guessed.
+  assert.equal(eligibleFolder(fs, FOLDER, 'PPSA11111'), one);
+  assert.equal(eligibleFolder(fs, FOLDER, 'PPSA99999'), '');
+});
+
+// The queue's finder walks a one-child chain deeper than the breadth-first search ever reaches,
+// so the same game far down a narrow extraction is taken here too.
+test('a game seven folders down a single chain is still found', () => {
+  const deep = `${FOLDER}/a/b/c/d/e/f/PPSA12345`;
+  const fs = fakeFs([`${deep}/eboot.bin`, `${deep}/sce_sys/param.json`]);
+  assert.equal(eligibleFolder(fs, FOLDER), deep);
+  // The chain never widens: a second folder at any level stops it, and the breadth-first search
+  // cannot reach that deep either -- so nothing is guessed, the same as the queue's own finder.
+  const wide = fakeFs([`${deep}/eboot.bin`, `${deep}/sce_sys/param.json`, `${FOLDER}/a/twin`]);
+  assert.equal(eligibleFolder(fs, wide), '');
 });

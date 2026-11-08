@@ -23,13 +23,46 @@ import { COMPLETE } from '../state/download-queue.js';
     return typeof path === "string" && path.length > 1 ? path : "";
   }
 
-  // A lone folder down is the game whatever it is named (a merged dump or a backport sits alone
-  // under its extraction folder). An extraction may publish supplemental folders beside it -- a
-  // patch, an update, a backport -- and those are never the game, so they are set aside first:
-  // what is left has to be a single folder resolving to a game. Two folders left to choose
-  // between is still the queue's own choice to make, and it already put the game where it
-  // belongs, so nothing is guessed.
-  function gameFolder(fs, path) {
+  // Every folder under `path` holding a game, read the way the queue's own finder reads the same
+  // trees (download-queue.js, gameFolders): breadth first, a few levels deep, capped so a
+  // pathological tree cannot spin. Keep the two in step.
+  function gameFolders(fs, path) {
+    const found = [];
+    const queue = [{ path, depth: 0 }];
+    for (let visited = 0; queue.length && visited < 2e3 && found.length < 16; visited++) {
+      const { path: current, depth } = queue.shift();
+      if (GAME.every((marker) => fs.exists(`${current}${marker}`))) {
+        found.push(current);
+        continue;
+      }
+      if (depth >= 6) continue;
+      let children;
+      try {
+        children = fs.readDir(current).filter((entry) => entry.isDirectory && !entry.name.startsWith(".ps5-react"));
+      } catch {
+        continue;
+      }
+      for (const child of children) queue.push({ path: `${current}/${child.name}`, depth: depth + 1 });
+    }
+    return found;
+  }
+
+  // The title id the folder's own files carry, read from its param.json (the queue's own titleIn
+  // reads the same file the same way).
+  function titleIn(fs, folder) {
+    try {
+      const parsed = JSON.parse(fs.readFile(`${folder}/sce_sys/param.json`));
+      return typeof parsed?.titleId === "string" ? parsed.titleId : null;
+    } catch {
+      return null;
+    }
+  }
+
+  // A lone chain of one-child directories down to the game, the way the queue's own finder takes
+  // it before the breadth-first search (download-queue.js, gameFolder): deeper than the search
+  // ever walks, so a game far down a narrow extraction is still found. A patch at the end of the
+  // chain is still turned away by the name filter below. Keep the two in step.
+  function chainFolder(fs, path) {
     for (let depth = 0; depth <= 16; depth++) {
       if (GAME.every((marker) => fs.exists(`${path}${marker}`))) return path;
       let children;
@@ -38,11 +71,36 @@ import { COMPLETE } from '../state/download-queue.js';
       } catch {
         return "";
       }
-      const usable = children.filter((entry) => !PATCH_FOLDER.test(entry.name) && !BACKPORT_FOLDER.test(entry.name));
-      if (usable.length !== 1) return "";
-      path = `${path}/${usable[0].name}`;
+      if (children.length !== 1) return "";
+      path = `${path}/${children[0].name}`;
     }
     return "";
+  }
+
+  // The folder to compress, the way the queue's own finder (findGame) chooses among the same
+  // candidates: a lone folder down is the game whatever it is named; among several, patches,
+  // updates and backports below the folder holding them all are set aside, then the title id the
+  // download was for decides. Only one left is taken, else nothing is guessed. Keep the two in
+  // step with download-queue.js.
+  function gameFolder(fs, path, titleId) {
+    const lone = chainFolder(fs, path);
+    const found = lone ? [lone] : gameFolders(fs, path);
+    if (!found.length) return "";
+    let games;
+    if (found.length > 1) {
+      const parts = found.map((item) => item.split("/"));
+      let shared = 0;
+      while (parts.every((list) => shared < list.length - 1 && list[shared] === parts[0][shared])) shared++;
+      const supplemental = (list) => list.slice(shared).some((segment) => PATCH_FOLDER.test(segment) || BACKPORT_FOLDER.test(segment));
+      games = found.filter((item, index) => !supplemental(parts[index]));
+    } else {
+      games = found.filter((item) => !PATCH_FOLDER.test(item.slice(item.lastIndexOf("/") + 1)));
+    }
+    if (titleId) {
+      const wanted = games.filter((item) => String(titleIn(fs, item) || "").toUpperCase() === String(titleId).toUpperCase());
+      if (wanted.length) games = wanted;
+    }
+    return games.length === 1 ? games[0] : "";
   }
 
   // The folder to compress, or "" when this job must not be offered one.
@@ -52,16 +110,19 @@ import { COMPLETE } from '../state/download-queue.js';
     if (job.artifact?.nextAction === "installer-required") return "";
     const path = destination(job);
     if (!path) return "";
-    return eligibleFolder(fs, path);
+    return eligibleFolder(fs, path, job.titleId);
   }
 
   // The same check for a folder already sitting on disk, where no job is around to describe it:
-  // under the console's own roots, not a package, not a patch, and holding a game.
-  function eligibleFolder(fs, path) {
+  // under the console's own roots, not a package, not a patch itself, and holding a game. A folder
+  // merely NAMED a patch may still be the wrapper a game came in; only a folder whose own files
+  // are a game's (the markers at the top) with that name is turned away.
+  function eligibleFolder(fs, path, titleId) {
     if (!path || PACKAGE.test(path) || !own(path)) return "";
     const name = path.slice(path.lastIndexOf("/") + 1);
-    if (PATCH_FOLDER.test(name) || BACKPORT_FOLDER.test(name)) return "";
-    return gameFolder(fs, path);
+    const atTop = GAME.every((marker) => fs.exists(`${path}${marker}`));
+    if (atTop && (PATCH_FOLDER.test(name) || BACKPORT_FOLDER.test(name))) return "";
+    return gameFolder(fs, path, titleId);
   }
 
-export { compressibleFolder, eligibleFolder, own };
+export { compressibleFolder, eligibleFolder, own, titleIn };

@@ -34,6 +34,7 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 - Dos arranques a la vez sobre la misma carpeta ya no se cuelan, y al reanudar un trabajo interrumpido el registro se sustituye en vez de duplicarse
 - Antes de descomprimir se comprueba el espacio libre, y los errores del motor (trabajo ya en cola, disco lleno, petición rechazada) se muestran traducidos en lugar de un texto genérico
 - La lista se completa: una extracción que trae parches o actualizaciones junto al juego ya aparece, la pantalla se refresca sola si está abierta cuando termina una descarga, y las carpetas sin comprimir muestran el distintivo «Original»
+- La lista se completa de verdad: lee también la carpeta homebrew, donde la cola deja los juegos ya terminados (antes sólo miraba downloads/extracted), resuelve extracciones con varias carpetas —envoltorios, parches y updates— igual que hace la propia cola, y muestra el título del param.json cuando el nombre de la carpeta no lleva el id
 
 ### Red
 - Rootz vuelve a estar activo como fuente: sus enlaces se resuelven en la propia app, con un reintento si limita las peticiones y aviso claro si el archivo ya no existe

@@ -7,8 +7,7 @@
 import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { folderSize, scanDrive } from '../files/scan.js';
-import { eligibleFolder } from '../downloads/forge-eligible.js';
+import { scanDrive } from '../files/scan.js';
 import { useDownloadAlerts } from '../downloads/useDownloadAlerts.js';
 import { useT } from '../i18n/index.js';
 import { COMPLETE } from '../state/download-queue.js';
@@ -26,8 +25,8 @@ import { colors } from '../ui/colors.js';
 import { GUTTER, HAIRLINE, RADIUS_CARD } from '../ui/tokens.js';
 import { FocusScope, FileSystem, ScrollView, Text, View, useIsFocused } from '@ps5-react/core';
 import { CompressDialog } from './CompressDialog.jsx';
-import { packedFormat } from './detect.js';
 import { rootOf } from './options.js';
+import { rowsFor } from './scan-folders.js';
 import { ensureEngine, packError, recoverInterrupted } from './start-pack.js';
 
   var ARM_MS = 4e3;
@@ -43,39 +42,34 @@ import { ensureEngine, packError, recoverInterrupted } from './start-pack.js';
   }
 
   // Every folder on the drives the engine may touch: a game folder the store can pack, or one
-  // whose packs are already inside it. A folder the console installed itself, a patch, a
-  // backport or a plain file never reaches the list.
+  // whose packs are already inside it. Both trees a finished download can be in are read --
+  // downloads/extracted while it unpacks, homebrew/<name>-app where the queue publishes it --
+  // and which folders qualify is decided in scan-folders.js, so this list and the dialog a
+  // finished download offers cannot disagree.
   function scanFolders() {
     const titles = new Map();
+    const titleIds = new Map();
     try {
       for (const job of downloadQueue().snapshot()) {
         if (!COMPLETE.includes(job.state)) continue;
         for (const path of [job.output, job.artifact?.destination]) {
-          if (typeof path === "string" && path.length > 1 && job.title) titles.set(path, job.title);
+          if (typeof path !== "string" || path.length <= 1) continue;
+          if (job.title) titles.set(path, job.title);
+          if (job.titleId) titleIds.set(path, job.titleId);
         }
       }
     } catch {
       // No queue here (nothing downloaded yet): the disk alone decides.
     }
-    const rows = new Map();
+    const entries = [];
     for (const root of storageRoots()) {
-      let entries;
       try {
-        entries = scanDrive(FileSystem, root);
+        entries.push(...scanDrive(FileSystem, root));
       } catch {
-        continue;
-      }
-      for (const entry of entries) {
-        if (!entry.isDirectory || entry.kind !== "extracted") continue;
-        const packed = packedFormat(FileSystem, entry.path);
-        const folder = packed ? entry.path : eligibleFolder(FileSystem, entry.path);
-        if (!folder) continue;
-        const size = folder === entry.path ? entry.size : folderSize(FileSystem, folder, 4, { left: 4000 });
-        const title = entry.titleId ? getGame(entry.titleId)?.title ?? "" : titles.get(entry.path) ?? titles.get(folder) ?? "";
-        rows.set(folder, { path: folder, name: folder.slice(folder.lastIndexOf("/") + 1), size, packed, title, titleId: entry.titleId });
+        // A drive that is not answering is simply not on the list.
       }
     }
-    return [...rows.values()].sort((a, b) => b.size - a.size || a.name.localeCompare(b.name));
+    return rowsFor(entries, FileSystem, { titles, titleIds, gameTitle: (id) => getGame(id)?.title ?? null });
   }
 
   // The engine as it is right now: its jobs (with progress), our own records, and the last
