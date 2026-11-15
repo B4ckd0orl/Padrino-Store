@@ -27,6 +27,17 @@ import { vikingLinkPage } from './viking-capture.js';
       return false;
     }
   }
+  // The community ZSTD catalog's Gofile mirrors are the one browser host left in for their own rows
+  // (source "zstd-catalog"): they are tested on the console like Vikingfile's. No other Gofile row
+  // of the catalog moves with them.
+  function zstdGofile(release) {
+    if (release.source !== "zstd-catalog") return false;
+    try {
+      return /(?:^|\.)gofile\.io$/i.test(webURL(release.browserUrl || release.url).host);
+    } catch {
+      return false;
+    }
+  }
   // Off for good, not a test: MediaFire removed most of the catalog's files in October 2026 (22 of 25 PS4
   // links checked answered 404, whole PS5 sets went with them) and answers a busy address with HTTP 429.
   // Its sources leave every game as a paused host's do, and a game with no other host leaves the catalog.
@@ -57,6 +68,7 @@ import { vikingLinkPage } from './viking-capture.js';
     // browser, so it is not paused with the ones that do.
     if (RESOLVED_KINDS.has(kind)) return false;
     if (kind === "vikingfile" || vikingLinkPage(release) || /archive\.org$/i.test(release.provider || "") || testing(release)) return false;
+    if (kind === "browser" && zstdGofile(release)) return false;
     return kind === "browser" || kind === "datanodes" || kind === "buzzheavier";
   }
   var pausedFilter = (host) => DISABLED_FILTERS.has(host) || PAUSE_BROWSER_HOSTS && PAUSED_FILTERS.has(host);

@@ -11,14 +11,15 @@ import { HAIRLINE } from '../ui/tokens.js';
 import { px } from '../ui/scale.js';
 import { Text, View, motion } from '@ps5-react/core';
 
-  var SHADE = { packages: "#d9d9de", images: "#a39c92", archives: "#76767f", extracted: "#5a5a62", other: "#46464d" };
-  var OTHER_DATA = "#302c27";
+  // The store's own ramp, in the steps of the OpenCode scale the theme follows.
+  var SHADE = { packages: "#eeeeee", images: "#808080", archives: "#606060", extracted: "#484848", other: "#3c3c3c" };
+  var OTHER_DATA = "#282828";
   var lift3 = { type: "tween", duration: 0.18, ease: EASE_OUT };
   function Swatch({ color, label, size }) {
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 10 }, children: [
       /* @__PURE__ */ (0, jsx)(View, { style: [{ height: 10, width: 10, borderRadius: 5 }, { backgroundColor: color }] }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, color: "#a39c92" }, children: label }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, color: "#6e675e" }, children: size })
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, color: "#808080" }, children: label }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, color: "#606060" }, children: size })
     ] });
   }
   function StorageBar({ usage, sums, focus: focus2, width }) {
@@ -28,7 +29,7 @@ import { Text, View, motion } from '@ps5-react/core';
     const kinds = KINDS.filter((kind) => sums[kind.key].size > 0);
     const others = Math.max(0, usage.total - usage.free - sums.all.size);
     return /* @__PURE__ */ (0, jsxs)(View, { style: { paddingHorizontal: 56, paddingBottom: 16, gap: 12 }, children: [
-      /* @__PURE__ */ (0, jsxs)(View, { style: [{ height: 10, flexDirection: "row", overflow: "hidden", borderRadius: 5, backgroundColor: "#1c1a17" }, { width: px(width) }], children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: [{ height: 10, flexDirection: "row", overflow: "hidden", borderRadius: 5, backgroundColor: "#141414" }, { width: px(width) }], children: [
         kinds.map(
           (kind) => /* @__PURE__ */ (0, jsx)(
             motion.View,
@@ -36,7 +37,7 @@ import { Text, View, motion } from '@ps5-react/core';
               initial: false,
               transition: lift3,
               animate: { opacity: !focus2 || focus2 === kind.key ? 1 : 0.55 },
-              style: [{ height: 10 }, { width: px(Math.max(3, share(sums[kind.key].size))), backgroundColor: focus2 === kind.key ? "#e09f3e" : SHADE[kind.key] }]
+              style: [{ height: 10 }, { width: px(Math.max(3, share(sums[kind.key].size))), backgroundColor: focus2 === kind.key ? "#fab283" : SHADE[kind.key] }]
             },
             kind.key
           )
@@ -47,7 +48,7 @@ import { Text, View, motion } from '@ps5-react/core';
         kinds.map((kind) => /* @__PURE__ */ (0, jsx)(
           Swatch,
           {
-            color: focus2 === kind.key ? "#e09f3e" : SHADE[kind.key],
+            color: focus2 === kind.key ? "#fab283" : SHADE[kind.key],
             label: t2(`files.kind.${kind.key}`),
             size: formatBytes(sums[kind.key].size)
           },

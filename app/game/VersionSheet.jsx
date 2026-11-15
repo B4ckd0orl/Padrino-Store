@@ -34,9 +34,9 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
       /* @__PURE__ */ (0, jsx)(PlatformBadge, { platforms: [edition2.platform] }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f1ea" }, children: twin ? [name, edition2.region, edition2.titleId].filter(Boolean).join(" \xB7 ") : name }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#eeeeee" }, children: twin ? [name, edition2.region, edition2.titleId].filter(Boolean).join(" \xB7 ") : name }),
         /* @__PURE__ */ (0, jsx)(Text, { style: [{ fontFamily: "Inter-Regular", fontSize: 21, lineHeight: 30 }, { color: focused ? colors.fg : colors.muted }], children: t2(recommended ? "versions.recommended" : `versions.note.${edition2.platform}`) }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", lineHeight: 30 }, children: detail2 })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#606060", lineHeight: 30 }, children: detail2 })
       ] })
     ] });
   }
@@ -46,7 +46,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
       (edition2, index) => /* @__PURE__ */ (0, jsx)(View, { autoFocus: index === 0, onPress: () => {
         onClose();
         submit(edition2);
-      }, style: (_state) => [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 24 }, _state.focused ? { backgroundColor: "#26231f" } : null], children: /* @__PURE__ */ (0, jsx)(
+      }, style: (_state) => [{ position: "relative", flexDirection: "row", alignItems: "center", gap: 24, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 24 }, _state.focused ? { backgroundColor: "#1e1e1e" } : null], children: /* @__PURE__ */ (0, jsx)(
         VersionFace,
         {
           edition: edition2,

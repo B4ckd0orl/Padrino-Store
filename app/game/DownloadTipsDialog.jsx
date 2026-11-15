@@ -21,7 +21,7 @@ import { FocusScope, ScrollView, Text, View, useIsFocused } from '@ps5-react/cor
 
   var LABEL = { fontFamily: "Inter-Regular", fontSize: 17, fontWeight: 600, color: colors.subtle, letterSpacing: 2 };
   var BODY = { fontFamily: "Inter-Regular", fontSize: 21, color: colors.muted, lineHeight: 30 };
-  var TINT = { warn: [colors.warn, "#fde68a18"], info: [colors.info, "#a5f3fc14"] };
+  var TINT = { warn: [colors.warn, "#f5a74218"], info: [colors.info, "#56b6c214"] };
   var TIPS = ["firmware", "fullGame", "top", "retry"];
   var NOTE_TEXT = 1200 - 44 - 18;
   var TIP_WIDTH = (1200 - 44) / 2;
@@ -51,7 +51,7 @@ import { FocusScope, ScrollView, Text, View, useIsFocused } from '@ps5-react/cor
     const direct = kind === "direct" || kind === "manifest";
     const key = direct ? "tips.badge.direct" : "tips.badge.browser";
     const ink = direct ? colors.ok : colors.info;
-    const wash = direct ? "#a7f3d018" : "#a5f3fc14";
+    const wash = direct ? "#7fd88f18" : "#56b6c214";
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 14, height: 36, borderRadius: 8, backgroundColor: wash, borderWidth: 1, borderColor: `${ink}33` }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: direct ? "download" : "globe", size: 18, color: ink }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 17, fontWeight: 600, color: ink, letterSpacing: 0.5 }, children: t2(key) })
@@ -105,7 +105,7 @@ import { FocusScope, ScrollView, Text, View, useIsFocused } from '@ps5-react/cor
       return true;
     };
     return (
-      /* @__PURE__ */ (0, jsx)(FocusScope, { trap: true, autoFocus: true, onBack: cancel, onAction: () => true, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#121110e0" }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1340, maxHeight: 920, gap: 0, borderRadius: 20, borderWidth: 1, borderColor: "#e09f3e40", backgroundColor: colors.canvas, overflow: "hidden" }, children: [
+      /* @__PURE__ */ (0, jsx)(FocusScope, { trap: true, autoFocus: true, onBack: cancel, onAction: () => true, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#0a0a0ae0" }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1340, maxHeight: 920, gap: 0, borderRadius: 20, borderWidth: 1, borderColor: "#fab28340", backgroundColor: colors.canvas, overflow: "hidden" }, children: [
         /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 14, paddingHorizontal: 48, paddingTop: 36, paddingBottom: 20, borderBottomWidth: 1, borderColor: HAIRLINE, backgroundColor: colors.surface }, children: [
           /* @__PURE__ */ (0, jsx)(Icon, { name: "download", size: 24, color: colors.accent }),
           /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 2 }, children: [

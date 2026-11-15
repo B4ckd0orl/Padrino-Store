@@ -19,9 +19,9 @@ import { Text, View, motion, useIsFocused } from '@ps5-react/core';
     const focused = useIsFocused();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "full" }),
-      /* @__PURE__ */ (0, jsxs)(Text, { focused, style: [{ fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, focused ? { color: "#f5f1ead9" } : null], children: [
+      /* @__PURE__ */ (0, jsxs)(Text, { focused, style: [{ fontFamily: "Inter-Regular", fontSize: 21, color: "#808080", lineHeight: 30 }, focused ? { color: "#eeeeeed9" } : null], children: [
         fitBytes(t2("sort.label"), SPAN_MAX),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { color: "#f5f1ea" }, children: fitBytes(`  ${sortLabel(sort)}`, SPAN_MAX) })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { color: "#eeeeee" }, children: fitBytes(`  ${sortLabel(sort)}`, SPAN_MAX) })
       ] }),
       /* @__PURE__ */ (0, jsx)(
         motion.View,
@@ -41,10 +41,10 @@ import { Text, View, motion, useIsFocused } from '@ps5-react/core';
     const [open, setOpen] = (0, useState)(false);
     return /* @__PURE__ */ (0, jsxs)(View, { style: { position: "relative", zIndex: 10 }, children: [
       /* @__PURE__ */ (0, jsx)(View, { focusKey: "catalog:sort", selected: open, onPress: () => setOpen((value) => !value), style: (_state) => [
-        { height: 60, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, backgroundColor: "#1c1a17" },
+        { height: 60, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, backgroundColor: "#141414" },
         rtl ? { paddingRight: 24, paddingLeft: 18 } : { paddingLeft: 24, paddingRight: 18 },
-        open ? { backgroundColor: "#302c27" } : null,
-        _state.focused ? { backgroundColor: "#302c27" } : null
+        open ? { backgroundColor: "#282828" } : null,
+        _state.focused ? { backgroundColor: "#282828" } : null
       ], children: /* @__PURE__ */ (0, jsx)(Trigger, { sort, open }) }),
       /* @__PURE__ */ (0, jsx)(Menu, { open, onClose: () => setOpen(false), align: "left", rows: SORTS.length, children: SORTS.map(
         (option) => /* @__PURE__ */ (0, jsx)(

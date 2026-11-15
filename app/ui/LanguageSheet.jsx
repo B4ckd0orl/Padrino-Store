@@ -35,7 +35,7 @@ import { FileSystem, Text, View, motion, transitions, useIsFocused } from '@ps5-
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 3 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f1ea" }, children: name }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#eeeeee" }, children: name }),
         /* @__PURE__ */ (0, jsx)(Text, { style: [{ fontFamily: "Inter-Regular", fontSize: 21, lineHeight: 30 }, { color: focused ? colors.fg : colors.muted }], children: detail2 })
       ] }),
       checked ? /* @__PURE__ */ (0, jsx)(Icon, { name: "check", color: colors.fg }) : /* @__PURE__ */ (0, jsx)(View, { style: { width: 24, height: 24 } })
@@ -51,7 +51,7 @@ import { FileSystem, Text, View, motion, transitions, useIsFocused } from '@ps5-
         whileFocus: { y: -3 },
         whilePress: { scale: 0.98 },
         transition: rowMotion,
-        style: (_state) => [{ position: "relative", borderRadius: 18, backgroundColor: "#1c1a17", borderWidth: 1, borderColor: "#e09f3e33" }, _state.focused ? { backgroundColor: "#26231f", borderColor: "#e09f3e66" } : null],
+        style: (_state) => [{ position: "relative", borderRadius: 18, backgroundColor: "#141414", borderWidth: 1, borderColor: "#fab28333" }, _state.focused ? { backgroundColor: "#1e1e1e", borderColor: "#fab28366" } : null],
         children
       }
     );
@@ -125,7 +125,7 @@ import { FileSystem, Text, View, motion, transitions, useIsFocused } from '@ps5-
     if (!status) return null;
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 18, paddingTop: 4, paddingBottom: 6 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: status.kind === "error" ? "alert" : "circleCheck", size: 22, color: status.kind === "error" ? colors.warn : colors.ok }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 19, color: "#a39c92", lineHeight: 27 }, children: status.text })
+      /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 19, color: "#808080", lineHeight: 27 }, children: status.text })
     ] });
   }
   function LanguageSheet({ onClose }) {

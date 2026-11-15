@@ -7,6 +7,7 @@ import { ratings } from '../data/ratings.js';
 import { formats as formatIndex } from '../data/formats.js';
 import { formatDate2, formatNumber2, t } from '../i18n/core.js';
 import { applyUpdate, loadUpdate } from './catalog-update.js';
+import { applyZstdFeed, loadZstdFeed } from './zstd-feed.js';
 import { formatsOf } from './formats.js';
 import { createPageCache } from './page-cache.js';
 import { createReleaseCache } from './release-cache.js';
@@ -33,6 +34,14 @@ import { FileSystem, Image } from '@ps5-react/core';
     if (text === null) throw new Error("removed by the catalog update");
     return text;
   };
+  // The community ZSTD catalog kept by the last launch joins its rows to each game's release file
+  // here, adds the games it names that the build lacks and marks a game with a live ZSTD row, all
+  // before any list is made; a feed that failed its checks leaves the catalog the build's own.
+  try {
+    applyZstdFeed(loadZstdFeed(), games, twins, dataFileText, updated);
+  } catch (error2) {
+    console.log(`[zstd-feed] not applied: ${error2.message}`);
+  }
   var releaseCache = createReleaseCache(dataFileText);
   var pageCache = createPageCache(dataFileText);
   var NO_PAGE = { about: [], shots: [], summary: "" };
@@ -254,6 +263,9 @@ import { FileSystem, Image } from '@ps5-react/core';
       has: (game, value) => game.sizeGb != null && SIZES.find((size) => size.value === value).test(game.sizeGb)
     },
     { key: "provider", any: true, options: hosts, has: (game, value) => game.providers?.includes(value) },
+    // Games the community ZSTD catalog serves (their rows carry source "zstd-catalog"): one option,
+    // its own name, counted from the flag the merge at the top of this file sets.
+    { key: "zstd", options: [{ value: "zstd", name: "ZSTD" }], has: (game) => game.zstd === true },
     // The kind of file the sources offer: the two the console installs, the folder image, and the
     // archives. A release's format lives in its own file, which the app reads only when a game opens,
     // so tools/formats-index.mjs writes the groups to data/formats.js for the whole catalog. A game
@@ -272,7 +284,12 @@ import { FileSystem, Image } from '@ps5-react/core';
     }
   ];
   // A homebrew app is not in data/formats.js, which the catalog owns: its one release says its format.
-  var formatsOfGame = (game) => formatIndex[game.id] ?? formatsOf(game.homebrew ? game.releases : []);
+  // A ZSTD game's files are archives (.rar), which data/formats.js (built before the feed) may not
+  // know: the group joins whatever the index says, so the format filter finds it too.
+  var formatsOfGame = (game) => {
+    const base = formatIndex[game.id] ?? formatsOf(game.homebrew ? game.releases : []);
+    return game.zstd && !base.includes("archive") ? [...base, "archive"] : base;
+  };
   var facetTitle = (key) => t(`filters.facet.${key}`);
   function optionLabel(option) {
     if (!option.label) return option.name;

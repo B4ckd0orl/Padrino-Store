@@ -61,8 +61,8 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
 
   function LanguageFace({ name, detail: detail2, checked, onAccent }) {
     const focused = useIsFocused();
-    const nameInk = onAccent ? colors.accentFg : "#f5f1ea";
-    const detailInk = onAccent ? "#1a1408cc" : focused ? colors.fg : colors.muted;
+    const nameInk = onAccent ? colors.accentFg : "#eeeeee";
+    const detailInk = onAccent ? "#0a0a0acc" : focused ? colors.fg : colors.muted;
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, flexDirection: "row", alignItems: "center", gap: 14 }, children: [
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 2 }, children: [
         /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 22, fontWeight: 600, color: nameInk }, children: name }),
@@ -265,7 +265,7 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
     if (!status) return null;
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 10, paddingTop: 4, paddingBottom: 6 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: status.kind === "error" ? "alert" : "circleCheck", size: 20, color: status.kind === "error" ? colors.warn : colors.ok }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 18, color: "#a39c92", lineHeight: 26 }, children: status.text })
+      /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 18, color: "#808080", lineHeight: 26 }, children: status.text })
     ] });
   }
 
@@ -347,9 +347,9 @@ import { FileSystem, FocusScope, ScrollView, Text, View, motion, transitions, us
         /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 4 }, children: [
           /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 14 }, children: [
             /* @__PURE__ */ (0, jsx)(Icon, { name: "settings", size: 22, color: colors.accent }),
-            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, fontWeight: 600, color: "#f5f1ea", lineHeight: 48, letterSpacing: -1 }, children: t2("settings.title") })
+            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, fontWeight: 600, color: "#eeeeee", lineHeight: 48, letterSpacing: -1 }, children: t2("settings.title") })
           ] }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e675e", lineHeight: 28 }, children: view === "backup" ? t2("backup.title") : t2("settings.subtitle") })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#606060", lineHeight: 28 }, children: view === "backup" ? t2("backup.title") : t2("settings.subtitle") })
         ] })
       ] }),
       /* @__PURE__ */ (0, jsx)(View, { style: { height: 1, marginHorizontal: GUTTER, backgroundColor: HAIRLINE } }),

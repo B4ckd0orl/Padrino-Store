@@ -90,8 +90,8 @@ import { AnimatePresence, Image, Text, View, motion } from '@ps5-react/core';
               onReady: () => current.current === id && setReady(id)
             }
           ),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { marginBottom: -12, fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: game.genres.map(genreLabel).join(" \xB7 ") }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: [{ width: 552, fontFamily: "Inter-Regular", fontSize: 23, color: "#f5f1ead9", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 37 }, rtl ? LATIN_IN_RTL : void 0], children: summaryOf(game) })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { marginBottom: -12, fontFamily: "Inter-Regular", fontSize: 21, color: "#808080", lineHeight: 30 }, children: game.genres.map(genreLabel).join(" \xB7 ") }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: [{ width: 552, fontFamily: "Inter-Regular", fontSize: 23, color: "#eeeeeed9", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 37 }, rtl ? LATIN_IN_RTL : void 0], children: summaryOf(game) })
         ]
       },
       game.id
@@ -132,7 +132,7 @@ import { AnimatePresence, Image, Text, View, motion } from '@ps5-react/core';
       return () => clearTimeout(id);
     }, []);
     return /* @__PURE__ */ (0, jsxs)(View, { style: [{ position: "relative", height: 660 }, rtl ? { marginRight: -48 } : { marginLeft: -48 }], children: [
-      /* @__PURE__ */ (0, jsxs)(View, { style: { position: "relative", flex: 1, height: 660, overflow: "hidden", borderRadius: 18, backgroundColor: "#26231f" }, children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: { position: "relative", flex: 1, height: 660, overflow: "hidden", borderRadius: 18, backgroundColor: "#1e1e1e" }, children: [
         /* @__PURE__ */ (0, jsx)(Art, { game }),
         /* @__PURE__ */ (0, jsx)(View, { style: rtl ? { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "left", stops: [{ color: "#000000", offset: 0 }, { color: "#ffffffbf", offset: 0.35 }, { color: "transparent", offset: 0.75 }] } } : { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "right", stops: [{ color: "#000000", offset: 0 }, { color: "#ffffffbf", offset: 0.35 }, { color: "transparent", offset: 0.75 }] } } }),
         /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "top", stops: [{ color: "#000000b3", offset: 0 }, { color: "transparent", offset: 0.5 }] } } }),
@@ -159,7 +159,7 @@ import { AnimatePresence, Image, Text, View, motion } from '@ps5-react/core';
             /* @__PURE__ */ (0, jsx)(WishButton, { id: game.id, toList: `spotlight:${slides.active}` })
           ] })
         ] }),
-        /* @__PURE__ */ (0, jsx)(View, { style: [{ position: "absolute", top: 24, bottom: 24, width: 390, borderRadius: 18, backgroundColor: "#121110cc" }, rtl ? { left: 24 } : { right: 24 }], children: /* @__PURE__ */ (0, jsx)(SpotlightList, { games: featured, slides }) })
+        /* @__PURE__ */ (0, jsx)(View, { style: [{ position: "absolute", top: 24, bottom: 24, width: 390, borderRadius: 18, backgroundColor: "#0a0a0acc" }, rtl ? { left: 24 } : { right: 24 }], children: /* @__PURE__ */ (0, jsx)(SpotlightList, { games: featured, slides }) })
       ] })
     ] });
   });

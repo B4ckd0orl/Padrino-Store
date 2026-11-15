@@ -129,12 +129,12 @@ import { ensureEngine, packError, recoverInterrupted } from './start-pack.js';
             ] })
             : /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 18, color: focused ? colors.muted : colors.subtle, numberOfLines: 1, ellipsizeMode: "tail" }, children: secondary })
         ] }),
-        row.packed ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 8, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 6, backgroundColor: colors.surface2, borderWidth: 1, borderColor: "#e09f3e44" }, children: [
+        row.packed ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 8, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 6, backgroundColor: colors.surface2, borderWidth: 1, borderColor: "#fab28344" }, children: [
           /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 17, fontWeight: 600, color: colors.accent }, children: t2(`forge.badge.${row.packed}`) }),
           level !== null ? /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 17, color: colors.muted }, children: t2("forge.badge.level", { n: level }) }) : null
         ] })
           : /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", alignItems: "center", gap: 8, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 6, backgroundColor: colors.surface2, borderWidth: 1, borderColor: HAIRLINE }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 17, fontWeight: 600, color: colors.muted }, children: t2("forge.badge.original") }) }),
-        originalGone ? /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", alignItems: "center", gap: 8, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 6, backgroundColor: colors.surface2, borderWidth: 1, borderColor: "#e09f3e44" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 17, fontWeight: 600, color: colors.ok }, children: t2("forge.badge.originalRemoved") }) }) : null,
+        originalGone ? /* @__PURE__ */ (0, jsx)(View, { style: { flexDirection: "row", alignItems: "center", gap: 8, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 6, backgroundColor: colors.surface2, borderWidth: 1, borderColor: "#fab28344" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 17, fontWeight: 600, color: colors.ok }, children: t2("forge.badge.originalRemoved") }) }) : null,
         live
           ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 16, width: 460, justifyContent: "flex-end" }, children: [
             /* @__PURE__ */ (0, jsx)(ProgressBar, { fraction, width: 180, active: true }),

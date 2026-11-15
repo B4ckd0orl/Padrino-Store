@@ -36,8 +36,8 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
           _state.focused ? { backgroundColor: colors.surface2 } : null
         ],
         children: [
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 16, fontWeight: 600, color: "#6e675e", letterSpacing: 1, lineHeight: 22 }, children: label }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, fontWeight: 600, color: "#f5f1ea", lineHeight: 32, numberOfLines: 1, ellipsizeMode: "tail" }, children: value }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 16, fontWeight: 600, color: "#606060", letterSpacing: 1, lineHeight: 22 }, children: label }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, fontWeight: 600, color: "#eeeeee", lineHeight: 32, numberOfLines: 1, ellipsizeMode: "tail" }, children: value }),
           /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" })
         ]
       }
@@ -53,8 +53,8 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
     const free = usage ? t2("download.free", { size: formatBytes(usage.free) }) : t2("downloads.panel.unavailable");
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 8, paddingHorizontal: 14, paddingVertical: 8, borderRadius: 10, backgroundColor: colors.surface, borderWidth: 1, borderColor: HAIRLINE }, children: [
       /* @__PURE__ */ (0, jsx)(View, { style: { height: 8, width: 8, borderRadius: 4, backgroundColor: colors.accent } }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: "#f5f1ea", numberOfLines: 1 }, children: driveName(root2) }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, color: "#6e675e", numberOfLines: 1 }, children: free })
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: "#eeeeee", numberOfLines: 1 }, children: driveName(root2) }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, color: "#606060", numberOfLines: 1 }, children: free })
     ] });
   }
   function SummaryPanel({ error: error2, onFocus }) {
@@ -72,7 +72,7 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
       extracting && extractedFiles > 0 ? /* @__PURE__ */ (0, jsx)(Kpi, { label: t2("downloads.filesExtracted"), value: formatNumber2(extractedFiles) }) : null,
       /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1 } }),
       storageRoots().map((root2) => /* @__PURE__ */ (0, jsx)(DrivePill, { root: root2 }, root2)),
-      awake() ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 17, color: "#6e675e", marginLeft: 8 }, children: t2("downloads.panel.awake") }) : null
+      awake() ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 17, color: "#606060", marginLeft: 8 }, children: t2("downloads.panel.awake") }) : null
     ] });
   }
 

@@ -44,7 +44,7 @@ import { Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
     if (wished && !last.current) added.current += 1;
     last.current = wished;
     if (!wished) return null;
-    return /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", right: 12, top: 12, width: 42, height: 42, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#121110bf" }, children: /* @__PURE__ */ (0, jsx)(
+    return /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", right: 12, top: 12, width: 42, height: 42, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#0a0a0abf" }, children: /* @__PURE__ */ (0, jsx)(
       motion.View,
       {
         initial: added.current ? { scale: 1.7 } : false,
@@ -73,15 +73,15 @@ import { Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
   function Details({ game, focused, box }) {
     const { rtl } = useLocale();
     return /* @__PURE__ */ (0, jsxs)(View, { style: [{ height: 144, paddingTop: 15 }, box.text], children: [
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e675e", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 24 }, children: game.genres[0] ? genreLabel(game.genres[0]) : game.platform.toUpperCase() }),
-      /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ marginTop: 6, height: 60, paddingRight: 6, fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f1eae6", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, focused ? { color: "#f5f1ea" } : null], children: latin(rtl, game.title) }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#606060", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 24 }, children: game.genres[0] ? genreLabel(game.genres[0]) : game.platform.toUpperCase() }),
+      /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ marginTop: 6, height: 60, paddingRight: 6, fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#eeeeeee6", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, focused ? { color: "#eeeeee" } : null], children: latin(rtl, game.title) }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { marginTop: 9, height: 30, flexDirection: "row", alignItems: "center", gap: 12 }, children: [
         game.stars != null && /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 7, borderRadius: 3, backgroundColor: "#ffffff1a", paddingHorizontal: 9 }, children: [
-          /* @__PURE__ */ (0, jsx)(Icon, { name: "star", size: 15, color: "#fbbf24", fill: "#fbbf24" }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 700, color: "#f5f1ea", lineHeight: 24 }, children: game.stars.toFixed(1) })
+          /* @__PURE__ */ (0, jsx)(Icon, { name: "star", size: 15, color: "#fab283", fill: "#fab283" }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 700, color: "#eeeeee", lineHeight: 24 }, children: game.stars.toFixed(1) })
         ] }),
-        game.metacritic != null && /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: "#ffffff1a", paddingHorizontal: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 700, color: "#f5f1ea", lineHeight: 24 }, children: String(game.metacritic) }) }),
-        game.sizeGb != null && /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#a39c92" }, children: formatSize(game.sizeGb) })
+        game.metacritic != null && /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: "#ffffff1a", paddingHorizontal: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, fontWeight: 700, color: "#eeeeee", lineHeight: 24 }, children: String(game.metacritic) }) }),
+        game.sizeGb != null && /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#808080" }, children: formatSize(game.sizeGb) })
       ] })
     ] });
   }
@@ -93,21 +93,24 @@ import { Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
       /* @__PURE__ */ (0, jsxs)(
         motion.View,
         {
-          style: [{ borderRadius: 12, backgroundColor: "#1c1a17" }, box.tile],
+          style: [{ borderRadius: 12, backgroundColor: "#141414" }, box.tile],
           initial: false,
           animate: focused ? lift : rest,
           transition: focusMotion,
           children: [
             /* @__PURE__ */ (0, jsx)(Cover, { game, style: box.cover, defer: deferArt }),
             /* @__PURE__ */ (0, jsx)(WishBadge, { id: game.id }),
+            // The community ZSTD catalog's mark, opposite the wishlist's: a game whose rows carry
+            // source "zstd-catalog" (state/catalog.js sets the flag).
+            game.zstd ? /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", left: 12, top: 12, borderRadius: 4, backgroundColor: colors.accent, paddingHorizontal: 9, paddingVertical: 3 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 16, fontWeight: 700, color: colors.accentFg, lineHeight: 20 }, children: "ZSTD" }) }) : null,
             onCdn(game) ? /* @__PURE__ */ (0, jsx)(CdnMark, {}) : null,
             /* @__PURE__ */ (0, jsx)(CardFocus, { focused, width, height: box.height, platforms: game.platforms })
           ]
         }
       ),
       caption ?? (detailed ? /* @__PURE__ */ (0, jsx)(Details, { game, focused, box }) : /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
-        /* @__PURE__ */ (0, jsx)(Text, { focused, style: [[{ marginTop: 18, fontFamily: "Inter-Regular", fontSize: 23, color: "#f5f1ead9", numberOfLines: 1, ellipsizeMode: "tail" }, focused ? { color: "#f5f1ea" } : null], box.text], children: latin(rtl, game.title) }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: [{ marginTop: 3, fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", numberOfLines: 1, ellipsizeMode: "tail" }, box.text], children: game.genres.slice(0, 2).map(genreLabel).join(" \xB7 ") })
+        /* @__PURE__ */ (0, jsx)(Text, { focused, style: [[{ marginTop: 18, fontFamily: "Inter-Regular", fontSize: 23, color: "#eeeeeed9", numberOfLines: 1, ellipsizeMode: "tail" }, focused ? { color: "#eeeeee" } : null], box.text], children: latin(rtl, game.title) }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: [{ marginTop: 3, fontFamily: "Inter-Regular", fontSize: 21, color: "#606060", numberOfLines: 1, ellipsizeMode: "tail" }, box.text], children: game.genres.slice(0, 2).map(genreLabel).join(" \xB7 ") })
       ] }))
     ] });
   }

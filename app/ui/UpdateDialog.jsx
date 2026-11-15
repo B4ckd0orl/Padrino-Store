@@ -31,10 +31,10 @@ import { BackHandler, FocusScope, Image, ScrollView, Text, View } from '@ps5-rea
     const lines = changelogLines(body);
     if (!lines.length) return null;
     return /* @__PURE__ */ (0, jsxs)(View, { style: { width: 700, gap: 10 }, children: [
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "JetBrainsMono-Regular", fontSize: 16, color: "#6e675e", letterSpacing: 2 }, children: title.toLocaleUpperCase() }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "JetBrainsMono-Regular", fontSize: 16, color: "#606060", letterSpacing: 2 }, children: title.toLocaleUpperCase() }),
       /* @__PURE__ */ (0, jsx)(ScrollView, { style: { maxHeight: 280 }, children: /* @__PURE__ */ (0, jsx)(View, { style: { gap: 8, paddingRight: 8 }, children: lines.map((line) => /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "flex-start", gap: 12 }, children: [
-        /* @__PURE__ */ (0, jsx)(View, { style: { width: 6, height: 6, borderRadius: 3, marginTop: 10, backgroundColor: "#e09f3e" } }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 20, color: "#a39c92", lineHeight: 30 }, children: line })
+        /* @__PURE__ */ (0, jsx)(View, { style: { width: 6, height: 6, borderRadius: 3, marginTop: 10, backgroundColor: "#fab283" } }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 20, color: "#808080", lineHeight: 30 }, children: line })
       ] }, line)) }) })
     ] });
   }
@@ -73,25 +73,25 @@ import { BackHandler, FocusScope, Image, ScrollView, Text, View } from '@ps5-rea
     const status = state === "downloading" ? `${formatPercent2(Math.round(fraction * 100)).replace(/\u202f/g, "\xA0")}  \xB7  ${formatBytes(progress.written)} / ${formatBytes(progress.total)}` : state === "installing" ? t2("update.installing") : state === "done" ? t2(relaunch ? "update.restarting" : "update.reopen") : null;
     return (
       // A modal: the page's actions stop here, and nothing leaves it while it installs.
-      /* @__PURE__ */ (0, jsx)(FocusScope, { trap: true, autoFocus: true, onBack: close, onAction: () => true, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#121110e6" }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1410, flexDirection: "row", alignItems: "center", gap: 72, borderRadius: 24, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#121110", paddingHorizontal: 72, paddingVertical: 60 }, children: [
+      /* @__PURE__ */ (0, jsx)(FocusScope, { trap: true, autoFocus: true, onBack: close, onAction: () => true, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#0a0a0ae6" }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1410, flexDirection: "row", alignItems: "center", gap: 72, borderRadius: 24, borderWidth: 1, borderColor: "#fab28333", backgroundColor: "#0a0a0a", paddingHorizontal: 72, paddingVertical: 60 }, children: [
         /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 24 }, children: [
           /* @__PURE__ */ (0, jsx)(Image, { source: asciiDial, resizeMode: "contain", style: { width: px(DIAL), height: px(DIAL) } }),
           state ? /* @__PURE__ */ (0, jsx)(ProgressBar, { fraction, width: DIAL, active: true }) : null
         ] }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 36 }, children: [
           /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 18 }, children: [
-            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "JetBrainsMono-Regular", fontSize: 20, color: "#6e675e", letterSpacing: 3 }, children: label }),
-            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 66, fontWeight: 600, color: "#f5f1ea", letterSpacing: -1.65 }, children: `v${update.version}` }),
-            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "JetBrainsMono-Regular", fontSize: 23, color: "#a39c92" }, children: `v${VERSION}  \u2192  v${update.version}` })
+            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "JetBrainsMono-Regular", fontSize: 20, color: "#606060", letterSpacing: 3 }, children: label }),
+            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 66, fontWeight: 600, color: "#eeeeee", letterSpacing: -1.65 }, children: `v${update.version}` }),
+            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "JetBrainsMono-Regular", fontSize: 23, color: "#808080" }, children: `v${VERSION}  \u2192  v${update.version}` })
           ] }),
           state ? null : /* @__PURE__ */ (0, jsxs)(View, { style: { width: 700, gap: 18 }, children: [
-            error2 ? error2.map((text) => /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 22, color: "#fde68a", lineHeight: 32 }, children: text }, text)) : null,
+            error2 ? error2.map((text) => /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 22, color: "#f5a742", lineHeight: 32 }, children: text }, text)) : null,
             !error2 && installed ? /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 8 }, children: [
-              /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 22, color: "#a39c92", lineHeight: 32 }, children: t2("update.reopenInstalled", { version: update.version }) }),
-              update.stuck ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 22, color: "#fde68a", lineHeight: 32 }, children: t2("update.restartConsole") }) : null
+              /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 22, color: "#808080", lineHeight: 32 }, children: t2("update.reopenInstalled", { version: update.version }) }),
+              update.stuck ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 22, color: "#f5a742", lineHeight: 32 }, children: t2("update.restartConsole") }) : null
             ] }) : null,
             !error2 && !installed ? /* @__PURE__ */ (0, jsx)(Changelog, { body: update.notes, title: t2("update.changelog") }) : null,
-            !error2 && !installed && !update.notes ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 22, color: "#a39c92", lineHeight: 32 }, children: t2("update.detail") }) : null
+            !error2 && !installed && !update.notes ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 22, color: "#808080", lineHeight: 32 }, children: t2("update.detail") }) : null
           ] }),
           status ? /* @__PURE__ */ (0, jsx)(View, { focusable: true, children: /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: STATUS2, children: status }) }) : installed ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 18 }, children: [
             /* @__PURE__ */ (0, jsx)(Button2, { variant: "primary", size: "lg", label: t2("update.quit"), autoFocus: true, onPress: () => BackHandler.exitApp({ relaunch: false }) }),

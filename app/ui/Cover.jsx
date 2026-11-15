@@ -6,7 +6,7 @@ import { jsx, jsxs } from 'react/jsx-runtime';
 import { useEffect, useRef, useState } from 'react';
 import { Image, Text, View } from '@ps5-react/core';
 
-  var SKELETON = { backgroundColor: "#26231f" };
+  var SKELETON = { backgroundColor: "#1e1e1e" };
   var tinted = /* @__PURE__ */ new Map();
   var skeleton = (tint) => tint ? tinted.get(tint) ?? tinted.set(tint, { backgroundColor: tint }).get(tint) : SKELETON;
   var STALL_MS = 8e3;
@@ -72,7 +72,7 @@ import { Image, Text, View } from '@ps5-react/core';
     if (uri && game.art.square) {
       const { width = 0, height = 0, borderRadius } = Object.assign({}, ...[style].flat(Infinity).filter(Boolean));
       const side = Math.round(Math.min(width, height) * 0.72);
-      return /* @__PURE__ */ (0, jsxs)(View, { style: [{ overflow: "hidden", alignItems: "center", justifyContent: "center", backgroundColor: "#1c1a17" }, style], children: [
+      return /* @__PURE__ */ (0, jsxs)(View, { style: [{ overflow: "hidden", alignItems: "center", justifyContent: "center", backgroundColor: "#141414" }, style], children: [
         /* @__PURE__ */ (0, jsx)(
           Image,
           {
@@ -99,7 +99,7 @@ import { Image, Text, View } from '@ps5-react/core';
         `${uri}#${attempt}`
       ) });
     }
-    return /* @__PURE__ */ (0, jsx)(View, { style: [{ overflow: "hidden" }, style], children: /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#26231f", padding: 12 }, children: label && /* @__PURE__ */ (0, jsx)(Text, { style: { width: "100%", textAlign: "center", fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 30 }, children: game.title }) }) });
+    return /* @__PURE__ */ (0, jsx)(View, { style: [{ overflow: "hidden" }, style], children: /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#1e1e1e", padding: 12 }, children: label && /* @__PURE__ */ (0, jsx)(Text, { style: { width: "100%", textAlign: "center", fontFamily: "Inter-Regular", fontSize: 21, color: "#808080", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 30 }, children: game.title }) }) });
   }
 
 export { Cover };

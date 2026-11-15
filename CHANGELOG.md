@@ -11,9 +11,12 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 ## Próxima release
 
 - 💛 GRACIAS A TODOS POR USAR PADRINO STORE 💛
-- 📢 Aviso importante: esta será, posiblemente, la última actualización. Los gastos del VPS deben cubrirse y, de momento, no hay disponibilidad para afrontarlos.
-- ⏳ La tienda permanecerá disponible un par de meses más; sin vuestro apoyo, terminará cerrándose sola.
-- 🤝 ¿Te gustaría donar para mantenerla viva? Contáctame en Telegram: @granpadrino
+- 🎮 Se implementaron juegos en formato ZSTD, y se seguirán subiendo.
+- 🔄 La lista ZSTD se sincroniza sola en cada arranque de la app.
+- 🏷️ Etiqueta ZSTD en la portada, en la ficha y en el filtro de los juegos que la traen.
+- 🧹 Del menú lateral desaparecieron los enlaces de Info, bienvenida y Telegram-X.
+- 🌑 Nuevo tema oscuro "Durazno".
+- 🎵 Nueva música de fondo: "First Light Particles" (Yoiyami, CC0).
 
 ## Archivo
 

@@ -1,25 +1,25 @@
 // ../pub-game-store/native/ui/colors.js
 // reconstructed from the esbuild bundle in eboot.bin
-// MODIFIED: Padrino Store palette — warm black canvas, single gold accent (#e09f3e),
-  // no stray brand blue. accentFg is the ink that sits ON gold.
+// MODIFIED: Padrino Store palette — the OpenCode default theme (dark), whose accent is durazno
+  // #fab283 on a #0a0a0a canvas. accentFg is the ink that sits ON the accent.
 
   var colors = {
-    canvas: "#121110",
-    surface: "#1c1a17",
-    surface2: "#26231f",
-    surface3: "#302c27",
-    fg: "#f5f1ea",
-    muted: "#a39c92",
-    subtle: "#6e675e",
-    accent: "#e09f3e",
-    accentBright: "#f2b655",
-    accentInk: "#1a1408",
-    // Ink for text and glyphs drawn on top of the gold accent.
-    accentFg: "#1a1408",
+    canvas: "#0a0a0a",
+    surface: "#141414",
+    surface2: "#1e1e1e",
+    surface3: "#282828",
+    fg: "#eeeeee",
+    muted: "#808080",
+    subtle: "#606060",
+    accent: "#fab283",
+    accentBright: "#ffc9a3",
+    accentInk: "#0a0a0a",
+    // Ink for text and glyphs drawn on top of the durazno accent.
+    accentFg: "#0a0a0a",
     // Soft status tones beside the CDN pastels: a source that suits the console, or one to look at first.
-    ok: "#a7f3d0",
-    warn: "#fde68a",
-    info: "#a5f3fc"
+    ok: "#7fd88f",
+    warn: "#f5a742",
+    info: "#56b6c2"
   };
 
 export { colors };

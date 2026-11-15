@@ -125,17 +125,17 @@ import { Text, View } from '@ps5-react/core';
       View,
       {
         style: [
-          { position: "relative", overflow: "hidden", borderRadius: RADIUS_CARD, backgroundColor: colors.surface, borderWidth: 1, borderColor: busy ? "#e09f3e40" : HAIRLINE }
+          { position: "relative", overflow: "hidden", borderRadius: RADIUS_CARD, backgroundColor: colors.surface, borderWidth: 1, borderColor: busy ? "#fab28340" : HAIRLINE }
         ],
         children: [
           /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 30, paddingHorizontal: 30, paddingVertical: 24 }, children: [
             /* @__PURE__ */ (0, jsx)(Cover, { game, label: false, style: THUMB2 }),
             /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 15 }, children: [
               /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "flex-end", justifyContent: "space-between" }, children: [
-                /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 42, letterSpacing: -0.68 }, children: job2.title }),
+                /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#eeeeee", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 42, letterSpacing: -0.68 }, children: job2.title }),
                 /* @__PURE__ */ (0, jsxs)(View, { style: { width: 285, flexDirection: "row", alignItems: "center", justifyContent: "flex-end", gap: 9 }, children: [
                   cdn ? /* @__PURE__ */ (0, jsx)(CdnSpark, { size: 13 }) : null,
-                  /* @__PURE__ */ (0, jsx)(Text, { style: cdn ? { maxWidth: 285, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { width: 285, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: meta })
+                  /* @__PURE__ */ (0, jsx)(Text, { style: cdn ? { maxWidth: 285, fontFamily: "Inter-Regular", fontSize: 21, color: "#eeeeee", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { width: 285, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#606060", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: meta })
                 ] })
               ] }),
               /* @__PURE__ */ (0, jsx)(
@@ -152,7 +152,7 @@ import { Text, View } from '@ps5-react/core';
                   detail: shown === "finishing" ? t2("downloads.writingToDisk") : null
                 }
               ),
-              note ? /* @__PURE__ */ (0, jsx)(Text, { style: problem ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: mismatch ? "#fde68a" : "#a39c92", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: note }) : null
+              note ? /* @__PURE__ */ (0, jsx)(Text, { style: problem ? { fontFamily: "Inter-Regular", fontSize: 21, color: "#eeeeee", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: mismatch ? "#f5a742" : "#808080", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: note }) : null
             ] }),
             /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 12 }, children: [
               infoPage ? /* @__PURE__ */ (0, jsx)(InfoButton, { id: job2.id, onPress: infoPage, onFocus, vertical: vertical("info") }) : null,

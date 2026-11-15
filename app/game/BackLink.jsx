@@ -23,7 +23,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
     const origin = useOrigin();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: "chevronLeft", size: 16, color: focused ? colors.fg : colors.muted }),
-      /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ maxWidth: 720, fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, focused ? { color: "#f5f1ea" } : null], children: origin })
+      /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ maxWidth: 720, fontFamily: "Inter-Regular", fontSize: 21, color: "#808080", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, focused ? { color: "#eeeeee" } : null], children: origin })
     ] });
   }
   function BackLink({ onPress }) {

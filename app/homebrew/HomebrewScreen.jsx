@@ -21,8 +21,8 @@ import { FocusScope, ScrollView, Text, View, VirtualList, useIsFocused } from '@
   var COLUMNS = 5;
   var CARD_WIDTH = 196;
   var CARD_HEIGHT = 261 + DETAILED_CAPTION;
-  var TITLE = { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f2f2f3", lineHeight: 42, letterSpacing: -0.75 };
-  var NOTE = { fontFamily: "Inter-Regular", fontSize: 21, color: "#a3a3ab", lineHeight: 30 };
+  var TITLE = { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#eeeeee", lineHeight: 42, letterSpacing: -0.75 };
+  var NOTE = { fontFamily: "Inter-Regular", fontSize: 21, color: "#808080", lineHeight: 30 };
   var SOURCE = "prosperostore.net";
   // The chips: the catalog's kinds, and emulators, a category of apps people look for on their own.
   var FILTERS = [
@@ -43,14 +43,14 @@ import { FocusScope, ScrollView, Text, View, VirtualList, useIsFocused } from '@
     const focused = useIsFocused();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
-      /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ fontFamily: "Inter-Regular", fontSize: 21, color: current ? "#0d0d0f" : "#f2f2f3d9", lineHeight: 30 }, focused && !current ? { color: "#f2f2f3" } : null], children: label }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: current ? "#0d0d0f99" : "#8a8a94", lineHeight: 30 }, children: String(count) })
+      /* @__PURE__ */ (0, jsx)(Text, { focused, style: [{ fontFamily: "Inter-Regular", fontSize: 21, color: current ? "#0a0a0a" : "#eeeeeed9", lineHeight: 30 }, focused && !current ? { color: "#eeeeee" } : null], children: label }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: current ? "#0a0a0a99" : "#808080", lineHeight: 30 }, children: String(count) })
     ] });
   }
   function Chip({ id, label, count, current, onPress }) {
     return /* @__PURE__ */ (0, jsx)(View, { focusKey: `homebrew-kind:${id}`, onPress, style: (state) => [
-      { height: 60, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, paddingHorizontal: 24, backgroundColor: current ? "#f2f2f3" : "#17171a" },
-      state.focused && !current ? { backgroundColor: "#2b2b30" } : null
+      { height: 60, flexDirection: "row", alignItems: "center", gap: 12, borderRadius: 14999, paddingHorizontal: 24, backgroundColor: current ? "#eeeeee" : "#1e1e1e" },
+      state.focused && !current ? { backgroundColor: "#282828" } : null
     ], children: /* @__PURE__ */ (0, jsx)(ChipLabel, { label, count, current }) });
   }
   function Grid({ apps }) {
@@ -114,7 +114,7 @@ import { FocusScope, ScrollView, Text, View, VirtualList, useIsFocused } from '@
       /* @__PURE__ */ (0, jsxs)(View, { scrollAnchor: true, children: [
         /* @__PURE__ */ (0, jsxs)(Text, { style: TITLE, children: [
           fitBytes(t2("nav.homebrew"), SPAN_MAX),
-          apps.length ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontWeight: 400, color: "#8a8a94" }, children: fitBytes(`  ${t2("homebrew.count", { count: apps.length })}`, SPAN_MAX) }) : null
+          apps.length ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontWeight: 400, color: "#808080" }, children: fitBytes(`  ${t2("homebrew.count", { count: apps.length })}`, SPAN_MAX) }) : null
         ] }),
         /* @__PURE__ */ (0, jsx)(Text, { style: [NOTE, { marginTop: 12, width: 1400, textAlign: rtl ? "right" : "left" }], children: t2("homebrew.about", { source: SOURCE }) }),
         apps.length ? /* @__PURE__ */ (0, jsx)(FocusScope, { row: true, children: /* @__PURE__ */ (0, jsx)(View, { style: { marginTop: 36, flexDirection: "row", flexWrap: "wrap", gap: 12 }, children: chips.map(

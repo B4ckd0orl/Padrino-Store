@@ -32,8 +32,7 @@
     "settings.json": isRecord,
     "wishlist.json": isStringList,
     "recent.json": isStringList,
-    "searches.json": isStringList,
-    "qr.json": isRecord
+    "searches.json": isStringList
   };
 
 export { SAVED_FILES, isRecord, isStringList, readJSON };

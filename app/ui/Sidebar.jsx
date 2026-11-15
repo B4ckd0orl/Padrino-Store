@@ -49,7 +49,7 @@ import { FocusScope, Text, View } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsxs)(FocusScope, { onAction, onBack, children: [
       children,
       /* @__PURE__ */ (0, jsx)(DownloadToast, { actionRef: toastAction }),
-      /* @__PURE__ */ (0, jsx)(View, { style: [immersive ? { display: "none" } : null, { position: "absolute", top: 0, bottom: 0, width: SIDEBAR_W, zIndex: 40, backgroundColor: "#0f0e0c" }, side], children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "sidebar", inert: immersive, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: SIDEBAR_W, height: 1080, paddingTop: 24, paddingBottom: 24, alignItems: "center", gap: 6 }, children: [
+      /* @__PURE__ */ (0, jsx)(View, { style: [immersive ? { display: "none" } : null, { position: "absolute", top: 0, bottom: 0, width: SIDEBAR_W, zIndex: 40, backgroundColor: "#0a0a0a" }, side], children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "sidebar", inert: immersive, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: SIDEBAR_W, height: 1080, paddingTop: 24, paddingBottom: 24, alignItems: "center", gap: 6 }, children: [
         /* @__PURE__ */ (0, jsx)(View, { focusKey: "nav:home", onPress: on.discover, ...into, onFocus: () => preview("discover"), style: { position: "relative", marginBottom: 12 }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: 14, backgroundColor: colors.surface }, children: [
           /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
           /* @__PURE__ */ (0, jsx)(Logo, { compact: true })
@@ -64,7 +64,6 @@ import { FocusScope, Text, View } from '@ps5-react/core';
         /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: keyOf("downloads"), icon: "download", label: t2("downloads.title"), current: section === "downloads", onPress: on.downloads, ...into, children: BADGE }),
 /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: keyOf("files"), icon: "folder", label: t2("nav.files"), current: section === "files", onPress: on.files, ...into }),
         /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: keyOf("compress"), icon: "layers", label: t2("nav.compress"), current: section === "compress", onPress: on.compress, ...into }),
-/* @__PURE__ */ (0, jsx)(NavItem, { focusKey: "nav:info", icon: "info", label: t2("nav.info"), current: top.name === "info", onPress: () => nav.push({ name: "info" }, "nav:info"), ...into }),
         /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1 } }),
         /* @__PURE__ */ (0, jsx)(NavItem, { focusKey: "nav:settings", icon: "settings", label: t2("settings.title"), current: top.name === "settings", onPress: () => nav.push({ name: "settings" }, "nav:settings"), ...into })
       ] }) }) })

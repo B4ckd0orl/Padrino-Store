@@ -223,7 +223,7 @@ import { DownloadFormats, Platform, Text, View, motion } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsxs)(View, { style: { width: 408, gap: 12 }, children: [
       /* @__PURE__ */ (0, jsxs)(View, { onPress: advance, autoFocus: canDownload(game) && !disabled, focusKey: mainFocus, nextFocusDown: after(mainFocus), style: (_state) => [
         { position: "relative", height: 72, width: 408, borderRadius: 12 },
-        disabled ? { borderWidth: 1, borderColor: "#e09f3e33" } : inProgress ? { backgroundColor: "#26231f" } : [{ backgroundColor: "#e09f3e" }, _state.focused ? { backgroundColor: "#f2b655" } : null]
+        disabled ? { borderWidth: 1, borderColor: "#fab28333" } : inProgress ? { backgroundColor: "#1e1e1e" } : [{ backgroundColor: "#fab283" }, _state.focused ? { backgroundColor: "#ffc9a3" } : null]
       ], children: [
         /* @__PURE__ */ (0, jsxs)(
           motion.View,
@@ -238,7 +238,7 @@ import { DownloadFormats, Platform, Text, View, motion } from '@ps5-react/core';
               inProgress && /* @__PURE__ */ (0, jsx)(
                 motion.View,
                 {
-                  style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, overflow: "hidden", backgroundColor: "#e09f3e" },
+                  style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, overflow: "hidden", backgroundColor: "#fab283" },
                   initial: { x: -WIDTH6 },
                   animate: { x: -hidden },
                   transition: glide,
@@ -252,10 +252,10 @@ import { DownloadFormats, Platform, Text, View, motion } from '@ps5-react/core';
         /* @__PURE__ */ (0, jsx)(FocusRing, {})
       ] }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", justifyContent: "space-between" }, children: [
-        WAITING.includes(shown) ? /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: STATUS, children: state }) : /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", lineHeight: 30 }, children: state }),
-        detail2 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#6e675e", lineHeight: 30 }, children: detail2 }) : null
+        WAITING.includes(shown) ? /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: STATUS, children: state }) : /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#606060", lineHeight: 30 }, children: state }),
+        detail2 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#606060", lineHeight: 30 }, children: detail2 }) : null
       ] }),
-      problem ? /* @__PURE__ */ (0, jsx)(ProblemNote, { title: problem.title, action: problem.action }) : notice ? /* @__PURE__ */ (0, jsx)(Text, { style: { width: 408, fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 30 }, children: notice.slice(0, 160) }) : null,
+      problem ? /* @__PURE__ */ (0, jsx)(ProblemNote, { title: problem.title, action: problem.action }) : notice ? /* @__PURE__ */ (0, jsx)(Text, { style: { width: 408, fontFamily: "Inter-Regular", fontSize: 21, color: "#808080", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 30 }, children: notice.slice(0, 160) }) : null,
       choosing && release ? /* @__PURE__ */ (0, jsx)(
         Choice,
         {

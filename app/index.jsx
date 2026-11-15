@@ -2,7 +2,7 @@
 // reconstructed from the esbuild bundle in eboot.bin
 
 import { jsx, jsxs } from 'react/jsx-runtime';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { AppRegistry, FileSystem, FocusScope, ReleaseImages, View } from '@ps5-react/core';
 import { BrowsePage } from './browse/BrowsePage.jsx';
 import { DownloadsScreen } from './downloads/DownloadsScreen.jsx';
@@ -14,16 +14,14 @@ import { LocaleProvider, useLocale } from './i18n/index.js';
 import { SearchScreen } from './search/index.jsx';
 import { NO_FILTERS, getGame, warmCovers } from './state/catalog.js';
 import { fetchUpdate } from './state/catalog-update.js';
+import { fetchZstdFeed } from './state/zstd-feed.js';
 import { forgeEngine } from './state/forge-live.js';
 import { isHomebrewId } from './state/homebrew.js';
-import { loadList, saveList } from './state/saved.js';
 import { NavProvider, useIsImmersive, useNavActions, useNavState } from './state/nav.jsx';
 import { StoreFreeze, StoreProvider } from './state/store.jsx';
 import { Sidebar, SIDEBAR_W } from './ui/Sidebar.jsx';
-import { InfoScreen } from './ui/InfoScreen.jsx';
 import { SettingsScreen } from './ui/SettingsScreen.jsx';
   import { Legend } from './ui/Legend.jsx';
-  import { WelcomeGate } from './ui/WelcomeGate.jsx';
   import { Bgm } from './ui/Bgm.jsx';
   import { UpdateDialog } from './ui/UpdateDialog.jsx';
   import { useInterfaceHaptics } from './ui/haptics.js';
@@ -46,7 +44,6 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
     if (screen2.name === "files") return /* @__PURE__ */ (0, jsx)(FilesScreen, { onBack: pop });
     if (screen2.name === "compress") return /* @__PURE__ */ (0, jsx)(ForgeScreen, { onBack: pop });
     if (screen2.name === "settings") return /* @__PURE__ */ (0, jsx)(SettingsScreen, { onBack: pop });
-    if (screen2.name === "info") return /* @__PURE__ */ (0, jsx)(InfoScreen, { onBack: pop });
     return /* @__PURE__ */ (0, jsx)(SearchScreen, { onBack: pop, onOpenGame: openCard });
   }
   function BrowseLayer({ shown }) {
@@ -73,11 +70,14 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
     (0, useEffect)(() => {
       const id = setTimeout(warmCovers, WARM_DELAY_MS);
       // The catalog's update for the next launch, read once the app has settled: no list changes
-      // under the player.
+      // under the player. The community ZSTD catalog comes after it, so the two requests never
+      // overlap (native network_api.cpp refuses a burst).
       const update = setTimeout(fetchUpdate, UPDATE_DELAY_MS);
+      const zstd = setTimeout(fetchZstdFeed, UPDATE_DELAY_MS + 5e3);
       return () => {
         clearTimeout(id);
         clearTimeout(update);
+        clearTimeout(zstd);
       };
     }, []);
     // The engine's jobs settle whether or not anyone is looking at the compression screen: the
@@ -95,7 +95,7 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
     const side = rtl ? { left: 0, right: SIDEBAR_W } : { left: SIDEBAR_W, right: 0 };
     return (
       // Arabic and Urdu mirror every row and right-align every paragraph from here.
-      /* @__PURE__ */ (0, jsxs)(View, { style: [{ width: 1920, height: 1080, backgroundColor: "#121110" }, { direction: rtl ? "rtl" : "ltr" }], children: [
+      /* @__PURE__ */ (0, jsxs)(View, { style: [{ width: 1920, height: 1080, backgroundColor: "#0a0a0a" }, { direction: rtl ? "rtl" : "ltr" }], children: [
         /* @__PURE__ */ (0, jsx)(Bgm, {}),
         /* @__PURE__ */ (0, jsxs)(Sidebar, { children: [
           /* @__PURE__ */ (0, jsx)(BrowseLayer, { shown: onBrowse }),
@@ -103,7 +103,7 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
           onBrowse || onHomebrew ? null : (
             // No background of its own: the root's canvas shows through, so a screen change does not
             // fill the whole screen twice. `screen` lets the sidebar's Into return to where it was left.
-            /* @__PURE__ */ (0, jsx)(View, { style: immersive ? { position: "absolute", top: 0, right: 0, bottom: 0, left: 0 } : top.name === "downloads" || top.name === "files" || top.name === "compress" || top.name === "settings" || top.name === "info" ? [{ position: "absolute", top: 0, bottom: 0 }, side] : [{ position: "absolute", top: 0, bottom: 60 }, side], children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "screen", children: /* @__PURE__ */ (0, jsx)(Screen, { screen: top }) }) }, key)
+            /* @__PURE__ */ (0, jsx)(View, { style: immersive ? { position: "absolute", top: 0, right: 0, bottom: 0, left: 0 } : top.name === "downloads" || top.name === "files" || top.name === "compress" || top.name === "settings" ? [{ position: "absolute", top: 0, bottom: 0 }, side] : [{ position: "absolute", top: 0, bottom: 60 }, side], children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "screen", children: /* @__PURE__ */ (0, jsx)(Screen, { screen: top }) }) }, key)
           ),
           immersive ? null : /* @__PURE__ */ (0, jsx)(Legend, { screen: top.name, style: side }),
           /* @__PURE__ */ (0, jsx)(UpdateDialog, {})
@@ -111,20 +111,10 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
       ] })
     );
   }
-  // The welcome gate shows once per console: the flag lives next to the other saved
-  // lists, and the store mounts only after it is dismissed (like the splash before it).
-  function Gate() {
-    const [seen, setSeen] = (0, useState)(() => loadList("qr.json", "qr gate").seen === true);
-    if (!seen) return /* @__PURE__ */ (0, jsx)(WelcomeGate, { onDone: () => {
-      saveList("qr.json", "qr gate", { seen: true });
-      setSeen(true);
-    } });
-    return /* @__PURE__ */ (0, jsx)(App, {});
-  }
   // The console shows sce_sys/pic0.png during launch, so this is the only screen the player
-  // ever waits on: the store mounts straight into the (first-time) community gate.
+  // ever waits on: the store mounts straight into the community gate.
   function Boot() {
-    return /* @__PURE__ */ (0, jsx)(View, { style: { width: 1920, height: 1080, backgroundColor: "#121110" }, children: /* @__PURE__ */ (0, jsx)(LocaleProvider, { children: /* @__PURE__ */ (0, jsx)(StoreProvider, { children: /* @__PURE__ */ (0, jsx)(NavProvider, { children: /* @__PURE__ */ (0, jsx)(Gate, {}) }) }) }) });
+    return /* @__PURE__ */ (0, jsx)(View, { style: { width: 1920, height: 1080, backgroundColor: "#0a0a0a" }, children: /* @__PURE__ */ (0, jsx)(LocaleProvider, { children: /* @__PURE__ */ (0, jsx)(StoreProvider, { children: /* @__PURE__ */ (0, jsx)(NavProvider, { children: /* @__PURE__ */ (0, jsx)(App, {}) }) }) }) });
   }
   // Which build wrote this session of app.log: a draft rebuilt with the same version is otherwise
   // indistinguishable from the one before it.

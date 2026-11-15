@@ -27,12 +27,12 @@ import { Text, View } from '@ps5-react/core';
       /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" }, children: [
         waiting2 ? /* @__PURE__ */ (0, jsx)(View, { style: { flex: 1 }, children: /* @__PURE__ */ (0, jsx)(ShimmerText, { textStyle: LABEL, background: colors.surface, children: label }) }) : /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, flexDirection: "row", alignItems: "center", gap: 10 }, children: [
           moving ? /* @__PURE__ */ (0, jsx)(View, { style: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.accent } }) : null,
-          /* @__PURE__ */ (0, jsxs)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: [
+          /* @__PURE__ */ (0, jsxs)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 21, color: "#eeeeee", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: [
             fitBytes(label, SPAN_MAX),
-            /* @__PURE__ */ (0, jsx)(Text, { style: { color: "#a39c92" }, children: left ? fitBytes(`  ${left}`, SPAN_MAX) : "" })
+            /* @__PURE__ */ (0, jsx)(Text, { style: { color: "#808080" }, children: left ? fitBytes(`  ${left}`, SPAN_MAX) : "" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 315, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: size })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { width: 315, textAlign: "end", fontFamily: "Inter-Regular", fontSize: 21, color: "#808080", lineHeight: 30 }, children: size })
       ] })
     ] });
   }

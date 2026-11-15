@@ -24,7 +24,7 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View, motion, useIsFocus
     return /* @__PURE__ */ (0, jsx)(AnimatePresence, { children: open && /* @__PURE__ */ (0, jsx)(
       motion.View,
       {
-        style: left ? { position: "absolute", left: 0, top: "100%", zIndex: 50, marginTop: 9, width: 360, borderRadius: 12, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#1c1a17", padding: 6, transformOrigin: [0, 0] } : { position: "absolute", right: 0, top: "100%", zIndex: 50, marginTop: 9, width: 360, borderRadius: 12, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#1c1a17", padding: 6, transformOrigin: [1, 0] },
+        style: left ? { position: "absolute", left: 0, top: "100%", zIndex: 50, marginTop: 9, width: 360, borderRadius: 12, borderWidth: 1, borderColor: "#fab28333", backgroundColor: "#141414", padding: 6, transformOrigin: [0, 0] } : { position: "absolute", right: 0, top: "100%", zIndex: 50, marginTop: 9, width: 360, borderRadius: 12, borderWidth: 1, borderColor: "#fab28333", backgroundColor: "#141414", padding: 6, transformOrigin: [1, 0] },
         initial: { opacity: 0, y: -6, scale: pop },
         animate: { opacity: 1, y: 0, scale: 1 },
         exit: { opacity: 0, y: -4, transition: { type: "tween", duration: 0.1, ease: "easeIn" } },
@@ -37,7 +37,7 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View, motion, useIsFocus
   function ItemContent({ label, checked }) {
     const focused = useIsFocused();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
-      /* @__PURE__ */ (0, jsx)(Text, { focused, selected: checked, style: [{ flex: 1, fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, checked ? { color: "#f5f1ea" } : null, focused ? { color: "#f5f1ea" } : null], children: label }),
+      /* @__PURE__ */ (0, jsx)(Text, { focused, selected: checked, style: [{ flex: 1, fontFamily: "Inter-Regular", fontSize: 21, color: "#808080", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, checked ? { color: "#eeeeee" } : null, focused ? { color: "#eeeeee" } : null], children: label }),
       checked && /* @__PURE__ */ (0, jsx)(Icon, { name: "check", color: colors.fg })
     ] });
   }
@@ -46,8 +46,8 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View, motion, useIsFocus
     return /* @__PURE__ */ (0, jsx)(View, { autoFocus: checked || autoFocus, onPress: () => {
       onSelect();
       close();
-    }, style: (_state) => [{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 36, borderRadius: 9, paddingHorizontal: 18, paddingVertical: 12 }, _state.focused ? { backgroundColor: "#302c27" } : null], children: /* @__PURE__ */ (0, jsx)(ItemContent, { label, checked }) });
+    }, style: (_state) => [{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 36, borderRadius: 9, paddingHorizontal: 18, paddingVertical: 12 }, _state.focused ? { backgroundColor: "#282828" } : null], children: /* @__PURE__ */ (0, jsx)(ItemContent, { label, checked }) });
   }
-  var MenuDivider = () => /* @__PURE__ */ (0, jsx)(View, { style: { marginVertical: 6, height: 1, backgroundColor: "#e09f3e33" } });
+  var MenuDivider = () => /* @__PURE__ */ (0, jsx)(View, { style: { marginVertical: 6, height: 1, backgroundColor: "#fab28333" } });
 
 export { Menu, MenuDivider, MenuItem };

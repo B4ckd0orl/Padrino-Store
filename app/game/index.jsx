@@ -31,9 +31,9 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View } from '@ps5-react/
   function Features({ features: features2 }) {
     const t2 = useT();
     return /* @__PURE__ */ (0, jsxs)(View, { children: [
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f1ea", lineHeight: 42, letterSpacing: -0.75 }, children: t2("game.features") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#eeeeee", lineHeight: 42, letterSpacing: -0.75 }, children: t2("game.features") }),
       /* @__PURE__ */ (0, jsx)(View, { style: { marginTop: 24, flexDirection: "row", flexWrap: "wrap", gap: 12 }, children: features2.map(
-        (feature) => /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 9, backgroundColor: "#26231f", paddingHorizontal: 18, paddingVertical: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1eae6", lineHeight: 30 }, children: featureLabel(feature) }) }, feature)
+        (feature) => /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 9, backgroundColor: "#1e1e1e", paddingHorizontal: 18, paddingVertical: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#eeeeeee6", lineHeight: 30 }, children: featureLabel(feature) }) }, feature)
       ) })
     ] });
   }

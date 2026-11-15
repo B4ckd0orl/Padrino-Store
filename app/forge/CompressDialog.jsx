@@ -126,7 +126,7 @@ import { PRESETS, levelValid, rootOf, stepLevel } from './options.js';
         if (action === "r2") start();
         return true;
       },
-      children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#000000d9" }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1240, gap: 26, borderRadius: 24, borderWidth: 2, borderColor: "#e09f3e33", backgroundColor: colors.surface, paddingHorizontal: 56, paddingTop: 44, paddingBottom: 40 }, children: [
+      children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#000000d9" }, children: /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1240, gap: 26, borderRadius: 24, borderWidth: 2, borderColor: "#fab28333", backgroundColor: colors.surface, paddingHorizontal: 56, paddingTop: 44, paddingBottom: 40 }, children: [
         /* @__PURE__ */ (0, jsxs)(View, { style: { gap: 6 }, children: [
           /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 40, fontWeight: 600, letterSpacing: -1, lineHeight: 48 }, children: t2("forge.ask.title") }),
           /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 21, color: colors.muted, numberOfLines: 1, ellipsizeMode: "tail" }, children: [title, space ? formatBytes(space.size) : ""].filter(Boolean).join(" \xB7 ") })

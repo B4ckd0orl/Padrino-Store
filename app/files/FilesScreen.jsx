@@ -36,7 +36,7 @@ import { FileSystem, FocusScope, ScrollView, Text, View, useIsFocused } from '@p
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
       /* @__PURE__ */ (0, jsx)(Icon, { name: "hardDrive", size: 16, color: current ? colors.accentFg : focused ? colors.fg : colors.subtle }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: current ? colors.accentFg : focused ? colors.fg : colors.muted, numberOfLines: 1 }, children: label }),
-      detail2 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 16, color: current ? "#1a1408b3" : colors.subtle, numberOfLines: 1 }, children: detail2 }) : null
+      detail2 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 16, color: current ? "#0a0a0ab3" : colors.subtle, numberOfLines: 1 }, children: detail2 }) : null
     ] });
   }
   function KindTab({ icon, label, detail: detail2, current, focusKey, autoFocus, onFocus, onPress }) {
@@ -48,7 +48,7 @@ import { FileSystem, FocusScope, ScrollView, Text, View, useIsFocused } from '@p
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
       /* @__PURE__ */ (0, jsx)(Icon, { name: icon, size: 16, color: current ? colors.accentFg : focused ? colors.fg : colors.subtle }),
       /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: current ? colors.accentFg : focused ? colors.fg : colors.muted, numberOfLines: 1 }, children: label }),
-      detail2 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 16, color: current ? "#1a1408b3" : colors.subtle, numberOfLines: 1 }, children: detail2 }) : null
+      detail2 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 16, color: current ? "#0a0a0ab3" : colors.subtle, numberOfLines: 1 }, children: detail2 }) : null
     ] });
   }
   function ShadowMountStatus({ up }) {
@@ -62,8 +62,8 @@ import { FileSystem, FocusScope, ScrollView, Text, View, useIsFocused } from '@p
     const t2 = useT();
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, alignItems: "center", justifyContent: "center", paddingBottom: 96 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: "folder", size: 32, color: colors.subtle }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 24, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#f5f1ea", lineHeight: 42 }, children: t2("files.empty") }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 6, width: 660, textAlign: "center", fontFamily: "Inter-Regular", fontSize: 24, color: "#a39c92", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 36 }, children: t2("files.emptyDetail") })
+      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 24, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#eeeeee", lineHeight: 42 }, children: t2("files.empty") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 6, width: 660, textAlign: "center", fontFamily: "Inter-Regular", fontSize: 24, color: "#808080", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 36 }, children: t2("files.emptyDetail") })
     ] });
   }
   function FilesScreen({ onBack }) {
@@ -149,13 +149,13 @@ import { FileSystem, FocusScope, ScrollView, Text, View, useIsFocused } from '@p
         /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 4 }, children: [
           /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 14 }, children: [
             /* @__PURE__ */ (0, jsx)(Icon, { name: "folder", size: 22, color: colors.accent }),
-            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, fontWeight: 600, color: "#f5f1ea", lineHeight: 48, letterSpacing: -1 }, children: t2("files.title") })
+            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, fontWeight: 600, color: "#eeeeee", lineHeight: 48, letterSpacing: -1 }, children: t2("files.title") })
           ] }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e675e", lineHeight: 28 }, children: t2("files.summary", { count: sums.all.count, size: formatBytes(sums.all.size) }) })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#606060", lineHeight: 28 }, children: t2("files.summary", { count: sums.all.count, size: formatBytes(sums.all.size) }) })
         ] }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { alignItems: "flex-end", gap: 10 }, children: [
           /* @__PURE__ */ (0, jsx)(ShadowMountStatus, { up: shadowMount }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#a39c92", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 28 }, children: notice })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#808080", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 28 }, children: notice })
         ] })
       ] }),
       /* @__PURE__ */ (0, jsx)(View, { style: { height: 1, marginHorizontal: GUTTER, backgroundColor: HAIRLINE } }),

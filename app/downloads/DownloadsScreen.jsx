@@ -50,16 +50,16 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
     const focused = useIsFocused();
     return /* @__PURE__ */ (0, jsxs)(View, { focusKey, autoFocus, onPress, nextFocusDown, style: (_state) => [{ height: SEGMENT_H, flexDirection: "row", alignItems: "center", gap: 10, paddingHorizontal: 18, borderRadius: RADIUS_PILL }, current ? { backgroundColor: colors.accent } : focused ? { backgroundColor: colors.surface2 } : null], children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: current ? "#1a1408" : focused ? "#f5f1ea" : "#a39c92", lineHeight: 26 }, children: label }),
-      count > 0 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, color: current ? "#1a1408b3" : "#6e675e", lineHeight: 26 }, children: formatNumber2(count) }) : null
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, fontWeight: 600, color: current ? "#0a0a0a" : focused ? "#eeeeee" : "#808080", lineHeight: 26 }, children: label }),
+      count > 0 ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 19, color: current ? "#0a0a0ab3" : "#606060", lineHeight: 26 }, children: formatNumber2(count) }) : null
     ] });
   }
   function Empty({ error: error2, onBrowse }) {
     const t2 = useT();
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, alignItems: "center", justifyContent: "center", paddingBottom: 144 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: "download", size: 32, color: colors.subtle }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 24, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#f5f1ea", lineHeight: 42 }, children: t2(error2 ? "downloads.unavailable" : "downloads.empty") }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 6, width: 720, textAlign: "center", fontFamily: "Inter-Regular", fontSize: 24, color: "#a39c92", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 36 }, children: error2 || t2("downloads.emptyDetail") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 24, fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#eeeeee", lineHeight: 42 }, children: t2(error2 ? "downloads.unavailable" : "downloads.empty") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 6, width: 720, textAlign: "center", fontFamily: "Inter-Regular", fontSize: 24, color: "#808080", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 36 }, children: error2 || t2("downloads.emptyDetail") }),
       /* @__PURE__ */ (0, jsx)(View, { style: { marginTop: 36 }, children: /* @__PURE__ */ (0, jsx)(Button2, { variant: "outline", label: t2("downloads.browseGames"), focusKey: EMPTY_KEY, autoFocus: true, onPress: onBrowse }) })
     ] });
   }
@@ -150,11 +150,11 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
           /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 4 }, children: [
             /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 14 }, children: [
               /* @__PURE__ */ (0, jsx)(Icon, { name: "download", size: 22, color: colors.accent }),
-              /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, fontWeight: 600, color: "#f5f1ea", lineHeight: 48, letterSpacing: -1 }, children: fitBytes(t2("downloads.title"), SPAN_MAX) })
+              /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, fontWeight: 600, color: "#eeeeee", lineHeight: 48, letterSpacing: -1 }, children: fitBytes(t2("downloads.title"), SPAN_MAX) })
             ] }),
-            jobs.length ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#6e675e", lineHeight: 28 }, children: fitBytes(summary(jobs), SPAN_MAX) }) : null
+            jobs.length ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 20, color: "#606060", lineHeight: 28 }, children: fitBytes(summary(jobs), SPAN_MAX) }) : null
           ] }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { width: 420, fontFamily: "Inter-Regular", fontSize: 20, color: "#f5f1ea", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 28 }, children: failure })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { width: 420, fontFamily: "Inter-Regular", fontSize: 20, color: "#eeeeee", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 28 }, children: failure })
         ] }),
         /* @__PURE__ */ (0, jsx)(View, { style: { height: 1, marginHorizontal: GUTTER, backgroundColor: HAIRLINE } }),
         /* @__PURE__ */ (0, jsx)(SummaryPanel, { error: error2, onFocus: () => {
@@ -186,7 +186,7 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
           },
           job2.id
         )
-      ) }) : /* @__PURE__ */ (0, jsx)(View, { style: { paddingTop: 96, alignItems: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#6e675e" }, children: t2("downloads.empty") }) }) }) : /* @__PURE__ */ (0, jsx)(Empty, { error: error2, onBrowse }) }),
+      ) }) : /* @__PURE__ */ (0, jsx)(View, { style: { paddingTop: 96, alignItems: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#606060" }, children: t2("downloads.empty") }) }) }) : /* @__PURE__ */ (0, jsx)(Empty, { error: error2, onBrowse }) }),
       /* @__PURE__ */ (0, jsx)(ButtonHints, { hints: jobs.length > 0 ? LIST_HINTS : EMPTY_HINTS })
     ] }) });
   }

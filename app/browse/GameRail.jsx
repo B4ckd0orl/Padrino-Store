@@ -12,13 +12,13 @@ import { FocusScope, ScrollView, Text, View, useIsFocused } from '@ps5-react/cor
     const focused = useIsFocused();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, {}),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f1ea", lineHeight: 42, letterSpacing: -0.75 }, children: title }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#eeeeee", lineHeight: 42, letterSpacing: -0.75 }, children: title }),
       /* @__PURE__ */ (0, jsx)(Icon, { name: "chevronRight", size: 16, color: focused ? colors.fg : colors.muted })
     ] });
   }
   // A row scope: Left and Right stop at the rail's first and last card. Without one, a press past
   // the end looked for the nearest element across the whole page and could land at its top.
-  var Arrow = ({ name }) => /* @__PURE__ */ (0, jsx)(View, { style: { width: 48, height: 48, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#1c1a17" }, children: /* @__PURE__ */ (0, jsx)(Icon, { name, size: 16, color: colors.muted, fixed: true }) });
+  var Arrow = ({ name }) => /* @__PURE__ */ (0, jsx)(View, { style: { width: 48, height: 48, alignItems: "center", justifyContent: "center", borderRadius: 14999, backgroundColor: "#141414" }, children: /* @__PURE__ */ (0, jsx)(Icon, { name, size: 16, color: colors.muted, fixed: true }) });
   var BAR = { width: 4, height: 26, borderRadius: 14999, backgroundColor: colors.accent };
   var LTR = { direction: "ltr" };
   // A long row loads the art of its first cards (about a screen and a half of them) and, as focus moves
@@ -31,7 +31,7 @@ import { FocusScope, ScrollView, Text, View, useIsFocused } from '@ps5-react/cor
       /* @__PURE__ */ (0, jsxs)(View, { style: { marginBottom: 24, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }, children: [
         /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12 }, children: [
           /* @__PURE__ */ (0, jsx)(View, { style: BAR }),
-          onSeeAll ? /* @__PURE__ */ (0, jsx)(View, { onPress: onSeeAll, focusKey: seeAllKey, style: { flexDirection: "row", alignItems: "center", gap: 6, borderRadius: 9 }, children: /* @__PURE__ */ (0, jsx)(TitleLink, { title }) }) : /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#f5f1ea", lineHeight: 42, letterSpacing: -0.75 }, children: title })
+          onSeeAll ? /* @__PURE__ */ (0, jsx)(View, { onPress: onSeeAll, focusKey: seeAllKey, style: { flexDirection: "row", alignItems: "center", gap: 6, borderRadius: 9 }, children: /* @__PURE__ */ (0, jsx)(TitleLink, { title }) }) : /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, color: "#eeeeee", lineHeight: 42, letterSpacing: -0.75 }, children: title })
         ] }),
         /* @__PURE__ */ (0, jsxs)(View, { style: [{ flexDirection: "row", gap: 12 }, LTR], children: [
           /* @__PURE__ */ (0, jsx)(Arrow, { name: "chevronLeft" }),

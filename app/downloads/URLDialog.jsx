@@ -31,17 +31,17 @@ import { FocusScope, Text, View, motion } from '@ps5-react/core';
       }, onAction: (action) => {
         if (action === "r2") done();
         return true;
-      }, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#121110f2" }, children: /* @__PURE__ */ (0, jsxs)(motion.View, { initial: { opacity: 0, y: 28 }, animate: { opacity: 1, y: 0 }, transition: dialogEnter, style: { width: 1380, gap: 30, borderRadius: 18, borderWidth: 1, borderColor: "#e09f3e33", backgroundColor: "#1c1a17", padding: 48 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, color: "#f5f1ea", lineHeight: 48 }, children: title }),
+      }, children: /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, zIndex: 50, alignItems: "center", justifyContent: "center", backgroundColor: "#0a0a0af2" }, children: /* @__PURE__ */ (0, jsxs)(motion.View, { initial: { opacity: 0, y: 28 }, animate: { opacity: 1, y: 0 }, transition: dialogEnter, style: { width: 1380, gap: 30, borderRadius: 18, borderWidth: 1, borderColor: "#fab28333", backgroundColor: "#141414", padding: 48 }, children: [
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 36, color: "#eeeeee", lineHeight: 48 }, children: title }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", gap: 48 }, children: [
           /* @__PURE__ */ (0, jsx)(Keyboard, { url: true, onChange: setValue, onSubmit: done }),
           /* @__PURE__ */ (0, jsxs)(View, { style: { width: 600, gap: 30 }, children: [
-            /* @__PURE__ */ (0, jsx)(Text, { style: { width: 600, fontFamily: "Inter-Regular", fontSize: 24, color: "#a39c92", numberOfLines: 5, ellipsizeMode: "tail", lineHeight: 36 }, children: detail2 }),
-            /* @__PURE__ */ (0, jsx)(Text, { style: { width: 600, fontFamily: "Inter-Regular", fontSize: 24, color: "#f5f1ea", numberOfLines: 5, ellipsizeMode: "tail", lineHeight: 36 }, children: value.slice(-180) || t2("urlDialog.empty") }),
-            error2 ? /* @__PURE__ */ (0, jsx)(Text, { style: { width: 600, fontFamily: "Inter-Regular", fontSize: 21, color: "#f5f1ea", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 30 }, children: error2 }) : null,
+            /* @__PURE__ */ (0, jsx)(Text, { style: { width: 600, fontFamily: "Inter-Regular", fontSize: 24, color: "#808080", numberOfLines: 5, ellipsizeMode: "tail", lineHeight: 36 }, children: detail2 }),
+            /* @__PURE__ */ (0, jsx)(Text, { style: { width: 600, fontFamily: "Inter-Regular", fontSize: 24, color: "#eeeeee", numberOfLines: 5, ellipsizeMode: "tail", lineHeight: 36 }, children: value.slice(-180) || t2("urlDialog.empty") }),
+            error2 ? /* @__PURE__ */ (0, jsx)(Text, { style: { width: 600, fontFamily: "Inter-Regular", fontSize: 21, color: "#eeeeee", numberOfLines: 3, ellipsizeMode: "tail", lineHeight: 30 }, children: error2 }) : null,
             /* @__PURE__ */ (0, jsx)(Button2, { label: t2("urlDialog.confirm"), onPress: done }),
             /* @__PURE__ */ (0, jsx)(Button2, { label: t2("urlDialog.cancel"), variant: "outline", onPress: onClose }),
-            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("urlDialog.controls") })
+            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#808080", lineHeight: 30 }, children: t2("urlDialog.controls") })
           ] })
         ] })
       ] }) }) })

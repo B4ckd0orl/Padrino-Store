@@ -12,11 +12,11 @@ import { Text, View } from '@ps5-react/core';
   function Chip({ label, onPress, focusKey }) {
     const { rtl } = useLocale();
     return /* @__PURE__ */ (0, jsxs)(View, { focusKey, onPress, style: [
-      { height: 60, flexDirection: "row", alignItems: "center", gap: 9, borderRadius: 14999, backgroundColor: "#e09f3e" },
+      { height: 60, flexDirection: "row", alignItems: "center", gap: 9, borderRadius: 14999, backgroundColor: "#fab283" },
       rtl ? { paddingRight: 24, paddingLeft: 18 } : { paddingLeft: 24, paddingRight: 18 }
     ], children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "full" }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: "#1a1408", lineHeight: 30 }, children: label }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: "#0a0a0a", lineHeight: 30 }, children: label }),
       /* @__PURE__ */ (0, jsx)(Icon, { name: "x", size: 14, color: colors.accentFg })
     ] });
   }

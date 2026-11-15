@@ -17,6 +17,7 @@ import { Cover } from '../ui/Cover.jsx';
 import { GameLogo } from '../ui/GameLogo.jsx';
 import { Icon } from '../ui/Icon.jsx';
 import { WishHeart } from '../ui/WishHeart.jsx';
+import { colors } from '../ui/colors.js';
 import { EASE_OUT } from '../ui/ease.js';
 import { Image, Text, View, motion } from '@ps5-react/core';
 
@@ -29,7 +30,7 @@ import { Image, Text, View, motion } from '@ps5-react/core';
       Image,
       {
         source: { uri },
-        style: [{ position: "absolute", left: 0, right: 0, top: 0, height: 900, backgroundColor: "#26231f" }, game.art.tint ? { backgroundColor: game.art.tint } : null],
+        style: [{ position: "absolute", left: 0, right: 0, top: 0, height: 900, backgroundColor: "#1e1e1e" }, game.art.tint ? { backgroundColor: game.art.tint } : null],
         resizeMode: "cover",
         onError: () => setFailed((previous) => [...previous, uri])
       },
@@ -40,25 +41,27 @@ import { Image, Text, View, motion } from '@ps5-react/core';
     const t2 = useT();
     const { rtl } = useLocale();
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
-      /* @__PURE__ */ (0, jsx)(motion.View, { variants: rise, style: { marginTop: 12 }, children: /* @__PURE__ */ (0, jsxs)(Text, { style: { width: 960, fontFamily: "Inter-Regular", fontSize: 23, color: "#a39c92", numberOfLines: 1, ellipsizeMode: "tail" }, children: [
+      /* @__PURE__ */ (0, jsx)(motion.View, { variants: rise, style: { marginTop: 12 }, children: /* @__PURE__ */ (0, jsxs)(Text, { style: { width: 960, fontFamily: "Inter-Regular", fontSize: 23, color: "#808080", numberOfLines: 1, ellipsizeMode: "tail" }, children: [
         latin(rtl, fitBytes(game.developer, SPAN_MAX - 3)),
-        game.developer && game.genres.length > 0 ? /* @__PURE__ */ (0, jsx)(Text, { style: { color: "#6e675e" }, children: "  \xB7  " }) : null,
+        game.developer && game.genres.length > 0 ? /* @__PURE__ */ (0, jsx)(Text, { style: { color: "#606060" }, children: "  \xB7  " }) : null,
         fitBytes(game.genres.map(genreLabel).join(", "), SPAN_MAX)
       ] }) }),
       /* @__PURE__ */ (0, jsxs)(motion.View, { variants: rise, style: { marginTop: 24, flexDirection: "row", alignItems: "center", gap: 36 }, children: [
         // The store's star rating: the number of the stars it averages, then how many rated it.
         game.ratingCount ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12 }, children: [
           /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 8, borderRadius: 3, backgroundColor: "#ffffff1a", paddingHorizontal: 9 }, children: [
-            /* @__PURE__ */ (0, jsx)(Icon, { name: "star", size: 20, color: "#fbbf24", fill: "#fbbf24" }),
-            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 700, color: "#f5f1ea", lineHeight: 30 }, children: game.stars.toFixed(2) })
+            /* @__PURE__ */ (0, jsx)(Icon, { name: "star", size: 20, color: "#fab283", fill: "#fab283" }),
+            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 700, color: "#eeeeee", lineHeight: 30 }, children: game.stars.toFixed(2) })
           ] }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("browse.reviews", { count: formatCount(game.ratingCount) }) })
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#808080", lineHeight: 30 }, children: t2("browse.reviews", { count: formatCount(game.ratingCount) }) })
         ] }) : null,
         game.metacritic ? /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12 }, children: [
-          /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: "#ffffff1a", paddingHorizontal: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 700, color: "#f5f1ea", lineHeight: 30 }, children: String(game.metacritic) }) }),
-          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("game.metacritic") })
+          /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: "#ffffff1a", paddingHorizontal: 9 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 700, color: "#eeeeee", lineHeight: 30 }, children: String(game.metacritic) }) }),
+          /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#808080", lineHeight: 30 }, children: t2("game.metacritic") })
         ] }) : null,
-        game.year ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#a39c92", lineHeight: 30 }, children: t2("game.released", { year: String(game.year) }) }) : null
+        game.year ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#808080", lineHeight: 30 }, children: t2("game.released", { year: String(game.year) }) }) : null,
+        // The community ZSTD catalog's mark on the game's own page, as on its card.
+        game.zstd ? /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 3, backgroundColor: colors.accent, paddingHorizontal: 9, paddingVertical: 2 }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: colors.accentFg, lineHeight: 24 }, children: "ZSTD" }) }) : null
       ] })
     ] });
   }
@@ -70,14 +73,14 @@ import { Image, Text, View, motion } from '@ps5-react/core';
     // Down from the buttons goes to the screenshots, or else to the description's Show more: without
     // either named, focus took the nearest card of "More like this" past the description.
     const nextDown = game.shots.length > 0 ? "game:shots" : game.about.some((text) => text.trim()) ? "game:about" : void 0;
-    return /* @__PURE__ */ (0, jsxs)(View, { scrollAnchor: true, style: { position: "relative", overflow: "hidden", borderBottomWidth: 1, borderColor: "#e09f3e33" }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { scrollAnchor: true, style: { position: "relative", overflow: "hidden", borderBottomWidth: 1, borderColor: "#fab28333" }, children: [
       /* @__PURE__ */ (0, jsx)(Backdrop, { game }, game.id),
       /* @__PURE__ */ (0, jsx)(View, { style: rtl ? { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "left", stops: [{ color: "#000000", offset: 0 }, { color: "#ffffffd9", offset: 0.45 }, { color: "#ffffff40", offset: 1 }] } } : { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "right", stops: [{ color: "#000000", offset: 0 }, { color: "#ffffffd9", offset: 0.45 }, { color: "#ffffff40", offset: 1 }] } } }),
       /* @__PURE__ */ (0, jsx)(View, { style: { position: "absolute", top: 0, right: 0, bottom: 0, left: 0, backgroundGradient: { type: "linear", to: "top", stops: [{ color: "#000000", offset: 0 }, { color: "transparent", offset: 0.4 }, { color: "#ffffff66", offset: 1 }] } } }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { paddingHorizontal: 48, paddingTop: 36, paddingBottom: 72 }, children: [
         /* @__PURE__ */ (0, jsx)(BackLink, { onPress: onBack }),
         /* @__PURE__ */ (0, jsxs)(View, { style: { marginTop: 60, flexDirection: "row", alignItems: "flex-end", gap: 60 }, children: [
-          /* @__PURE__ */ (0, jsx)(View, { style: { width: 288, height: 384, overflow: "hidden", borderRadius: 12, backgroundColor: "#1c1a17" }, children: /* @__PURE__ */ (0, jsx)(Cover, { game, style: COVER }) }),
+          /* @__PURE__ */ (0, jsx)(View, { style: { width: 288, height: 384, overflow: "hidden", borderRadius: 12, backgroundColor: "#141414" }, children: /* @__PURE__ */ (0, jsx)(Cover, { game, style: COVER }) }),
           /* @__PURE__ */ (0, jsxs)(motion.View, { variants: column, initial: "hidden", animate: "show", style: { flex: 1 }, children: [
             /* @__PURE__ */ (0, jsx)(motion.View, { variants: rise, style: { marginBottom: 24 }, children: /* @__PURE__ */ (0, jsx)(GameLogo, { game, width: LOGO.width, height: LOGO.height }) }),
             /* @__PURE__ */ (0, jsx)(Meta, { game }),

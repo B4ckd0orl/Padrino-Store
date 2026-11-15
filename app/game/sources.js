@@ -138,7 +138,9 @@ import { formatBytes } from '../state/size.js';
       size: release.sizeBytes ? formatBytes(release.sizeBytes) : null,
       group: release.unavailableReason ? "unavailable" : reach,
       reason: release.unavailableReason ?? null,
-      status: release.unavailableReason ? null : compatibility(release)
+      status: release.unavailableReason ? null : compatibility(release),
+      // A row of the community ZSTD catalog (state/zstd-feed.js): the chip beside its name.
+      zstd: release.source === "zstd-catalog"
     };
   }
   var isDlc = ({ label }) => /\bDLCs?\b/i.test(label || "") && !/\b(?:game|full)\b|\+\s*(?:all\s+)?DLCs?\b|\bwith\s+(?:all\s+)?DLCs?\b|\bincl/i.test(label);

@@ -21,8 +21,8 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
     return /* @__PURE__ */ (0, jsxs)(Fragment, { children: [
       /* @__PURE__ */ (0, jsx)(FocusRing, { round: "md" }),
       /* @__PURE__ */ (0, jsxs)(View, { style: { flex: 1, gap: 2 }, children: [
-        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: armed ? "#121110" : "#f5f1ea", numberOfLines: 1, ellipsizeMode: "tail" }, children: name }),
-        armed ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: "#1a1408" }, children: t2("backup.confirm") }) : /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, color: focused ? colors.fg : colors.muted }, children: " " })
+        /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: armed ? "#0a0a0a" : "#eeeeee", numberOfLines: 1, ellipsizeMode: "tail" }, children: name }),
+        armed ? /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, fontWeight: 600, color: "#0a0a0a" }, children: t2("backup.confirm") }) : /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 18, color: focused ? colors.fg : colors.muted }, children: " " })
       ] })
     ] });
   }
@@ -33,15 +33,15 @@ import { FileSystem, Text, View, useIsFocused } from '@ps5-react/core';
     const t2 = useT();
     return /* @__PURE__ */ (0, jsxs)(View, { style: { alignItems: "center", justifyContent: "center", paddingVertical: 72, gap: 6, paddingHorizontal: 18 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: "archive", size: 32, color: colors.subtle }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 18, fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#f5f1ea", textAlign: "center", lineHeight: 36 }, children: t2("backup.none") }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 620, textAlign: "center", fontFamily: "Inter-Regular", fontSize: 20, color: "#6e675e", lineHeight: 30 }, children: t2("backup.noneDetail") })
+      /* @__PURE__ */ (0, jsx)(Text, { style: { marginTop: 18, fontFamily: "Inter-Regular", fontSize: 23, fontWeight: 600, color: "#eeeeee", textAlign: "center", lineHeight: 36 }, children: t2("backup.none") }),
+      /* @__PURE__ */ (0, jsx)(Text, { style: { width: 620, textAlign: "center", fontFamily: "Inter-Regular", fontSize: 20, color: "#606060", lineHeight: 30 }, children: t2("backup.noneDetail") })
     ] });
   }
   function Status({ status }) {
     if (!status) return null;
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 10, paddingTop: 12 }, children: [
       /* @__PURE__ */ (0, jsx)(Icon, { name: status.kind === "error" ? "alert" : "circleCheck", size: 20, color: status.kind === "error" ? colors.warn : colors.ok }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 18, color: "#a39c92", lineHeight: 26 }, children: status.text })
+      /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 18, color: "#808080", lineHeight: 26 }, children: status.text })
     ] });
   }
   function BackupList({ onImport, onBack }) {
