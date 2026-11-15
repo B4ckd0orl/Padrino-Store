@@ -11,12 +11,9 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 ## Próxima release
 
 - 💛 GRACIAS A TODOS POR USAR PADRINO STORE 💛
-- 🎮 Se implementaron juegos en formato ZSTD, y se seguirán subiendo.
-- 🔄 La lista ZSTD se sincroniza sola en cada arranque de la app.
-- 🏷️ Etiqueta ZSTD en la portada, en la ficha y en el filtro de los juegos que la traen.
-- 🧹 Del menú lateral desaparecieron los enlaces de Info, bienvenida y Telegram-X.
-- 🌑 Nuevo tema oscuro "Durazno".
-- 🎵 Nueva música de fondo: "First Light Particles" (Yoiyami, CC0).
+- 📦 El catálogo ZSTD viaja en el propio build: el primer arranque ya lo muestra, aunque la consola no tenga red ni feed guardado.
+- 🔄 La lista ZSTD se actualiza en vivo mientras usas la tienda: etiquetas, filtros y ficha al momento.
+- 🐛 Corregido: la sincronización ZSTD se rompía si el feed traía una subida repetida de un juego ya listado.
 
 ## Archivo
 

@@ -3,7 +3,7 @@ import {register} from 'node:module';
 import test from 'node:test';
 
 register(new URL('./download-queue-test-loader.mjs', import.meta.url), import.meta.url);
-const {applyZstdFeed, fetchZstdFeed, itemsOf, loadZstdFeed, valid} = await import('./zstd-feed.js');
+const {applyZstdFeed, feedForLaunch, fetchZstdFeed, itemsOf, loadZstdFeed, valid} = await import('./zstd-feed.js');
 const {FileSystem, Http} = await import('@ps5-react/core');
 
 // The published page, reduced: unquoted keys, a trailing comma, an apostrophe in a title, a
@@ -222,4 +222,73 @@ test('a page without a readable ITEMS array is not kept', async () => {
   }
   assert.match(logs[0], /not read/);
   assert.equal(files.has('/data/padrino-store/zstd-feed.json'), false);
+});
+
+// The catalog's own site names a second upload of a game it already lists "<title id>-2" (a title
+// id is 4 letters and 5 digits): without the suffix cut, one invented id would fail the checks of
+// the whole feed — the fetch would never keep it and the shipped snapshot could never be written.
+test('a second upload named "<id>-2" joins its game instead of failing the feed', () => {
+  const page = PAGE.replace('];', `  { title: "ASTRO BOT", id: "PPSA21567-2", version: "v01.005", size: "8.0 GB",
+    image: "Covers/astrobot.jpg", links: ["https://gofile.io/d/reupload"], ampr: "v0.3.3", firmware: "4.00+", credits: "", notes: "" },
+];`);
+  const items = itemsOf(page);
+  assert.equal(items.length, 6);
+  assert.equal(items[1].id, 'PPSA21567', 'the first upload is left as it is');
+  assert.equal(items[5].id, 'PPSA21567', 'the suffix of the second is cut');
+  assert.equal(valid(feed(items)), true, 'the feed passes its checks with it');
+  // Both uploads' rows land in the one game's own release file — the read sees what the first
+  // upload already wrote, the way state/catalog.js dataFileText sees its own map.
+  const updated = new Map();
+  const read = (path) => { if (updated.has(path)) return updated.get(path); throw new Error('no such file'); };
+  applyZstdFeed(feed(items), [{id: 'PPSA21567', title: 'ASTRO BOT'}], [], read, updated);
+  const merged = JSON.parse(updated.get('data/releases/PPSA21567.json'));
+  assert.equal(merged.length, 3, "the second upload's rows join the first's game");
+});
+
+// state/catalog.js mergeZstdNow reads this to know whether any list has something new to draw.
+test('a merge reports what it changed, and nothing when it changed nothing', () => {
+  const existing = [{
+    id: 'rold00000001', format: 'rar', filename: 'PPSA01467-game-unknown-rold00000001.rar',
+    url: 'https://vik1ngfile.site/f/Ms9VvjacNM', requiresBrowser: true, sizeBytes: null, version: '',
+    category: 'game', provider: 'VikingFile', source: 'pegasus-0', flow: 'vikingfile',
+    label: 'USA 10.xx Base - Vikingfile', platform: 'ps5', record: 'pegasus-0-1',
+  }];
+  const onDisk = new Map([['data/releases/PPSA01467.json', JSON.stringify(existing)]]);
+  const read = (path) => { if (onDisk.has(path)) return onDisk.get(path); throw new Error('no such file'); };
+  const games = [{id: 'PPSA01467', title: 'Spider-Man'}, {id: 'PPSA21567', title: 'ASTRO BOT'}];
+  const updated = new Map();
+  const counts = applyZstdFeed(feed(itemsOf(PAGE)), games, [], read, updated);
+  // PPSA01467's link is already in its file: nothing written there. The page's rest — two ASTRO
+  // BOT rows, Gofile, Welinkly (paused, still written) and Ratatan — is, and every live row marks
+  // its game, the two the feed creates among them.
+  assert.deepEqual(counts, {written: 5, files: 4, made: 2, flagged: 4});
+  assert.equal(applyZstdFeed(null, games, [], read, updated), null, 'no feed is no change');
+  const again = applyZstdFeed(feed(itemsOf(PAGE)), games, [], (path) => updated.get(path) ?? read(path), new Map());
+  assert.deepEqual(again, {written: 0, files: 0, made: 0, flagged: 0}, 'a feed already merged changes nothing');
+});
+
+// The shipped snapshot is the first launch's feed (state/catalog.js feedForLaunch): a console
+// that kept none — updating to this build, offline — lists the community catalog at once instead
+// of after the first fetch, or never. A kept feed newer than the snapshot still wins.
+test('the first lists read the shipped snapshot when no feed was kept, and the newer feed when one was', async () => {
+  const {snapshot} = await import('./zstd-snapshot.js');
+  const files = new Map();
+  Object.assign(FileSystem, {
+    exists: (path) => files.has(path),
+    readFile: (path) => files.get(path),
+    writeFile: (path, text) => { files.set(path, text); },
+    rename: (from, to) => { files.set(to, files.get(from)); files.delete(from); },
+    mkdir: () => {},
+  });
+  assert.equal(valid(snapshot), true, 'the snapshot this build ships with passes its checks');
+  assert.ok(snapshot.items.length > 0, 'and holds the community catalog');
+  assert.equal(feedForLaunch(), snapshot, 'nothing kept on disk: the shipped feed is used');
+  files.set('/data/padrino-store/zstd-feed.json', JSON.stringify(feed(itemsOf(PAGE))));
+  assert.equal(feedForLaunch(), snapshot, 'a feed kept before the snapshot was generated loses to it');
+  const newer = feed(itemsOf(PAGE));
+  newer.generated = '2999-01-01T00:00:00.000Z';
+  files.set('/data/padrino-store/zstd-feed.json', JSON.stringify(newer));
+  const chosen = feedForLaunch();
+  assert.notEqual(chosen, snapshot, 'a feed kept after it wins');
+  assert.equal(chosen.items.length, 5);
 });

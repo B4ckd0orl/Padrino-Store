@@ -10,6 +10,7 @@
 import { isRecord, readJSON } from './read-json.js';
 import { pausedSource } from './paused-hosts.js';
 import { webURL } from './download-sources.js';
+import { snapshot } from './zstd-snapshot.js';
 import { FileSystem, Http } from '@ps5-react/core';
 
   var URL2 = "https://raw.githubusercontent.com/FrancoVoid9/zstd-catalog/main/index.html";
@@ -130,6 +131,10 @@ import { FileSystem, Http } from '@ps5-react/core';
     if (!isText(page, 4 * MAX_BYTES)) throw new Error("the page is not text");
     const items = JSON.parse(literalJSON(arrayLiteral(page)));
     if (!Array.isArray(items)) throw new Error("its ITEMS is not an array");
+    // The catalog's site names a second upload of a game it already lists "<title id>-2" (a title
+    // id is 4 letters and 5 digits); the suffix is cut here so both uploads' rows join that one
+    // game instead of the whole feed failing its checks over the invented id.
+    for (const item of items) if (isRecord(item) && typeof item.id === "string") item.id = item.id.replace(/-\d+$/, "");
     return items;
   }
   function validItem(item) {
@@ -146,6 +151,14 @@ import { FileSystem, Http } from '@ps5-react/core';
   // The feed kept by the last launch, for this format only.
   function loadZstdFeed() {
     return readJSON(FileSystem, FILE, null, valid, log);
+  }
+  // The feed the launch's first lists are made from: the one kept on disk, or the snapshot this
+  // build ships with when there is none yet — a console updating to this build, or one that never
+  // managed to keep a feed, would otherwise list nothing ZSTD until the fetch 25 seconds later,
+  // and never at all offline. When both hold the newer wins (both timestamps are ISO strings).
+  function feedForLaunch() {
+    const kept = loadZstdFeed();
+    return valid(snapshot) && (!kept || snapshot.generated > kept.generated) ? snapshot : kept;
   }
   // Once a launch, after the start: the feed for the next one. Unchanged (the same ETag) it is not
   // read again; one that fails a check is not kept. Without anything published the 404 leaves the
@@ -330,7 +343,7 @@ import { FileSystem, Http } from '@ps5-react/core';
   // a game with a live ZSTD row is marked for the ZSTD filter and chip. A row a paused host holds
   // is still written; paused-hosts decides what a screen sees of it, as for every other source.
   function applyZstdFeed(feed, games, twins, read, updated) {
-    if (!feed) return;
+    if (!feed) return null;
     const byId = new Map();
     for (const game of [...games, ...twins]) if (!byId.has(game.id)) byId.set(game.id, game);
     let written = 0, files = 0, made = 0, flagged = 0;
@@ -372,6 +385,9 @@ import { FileSystem, Http } from '@ps5-react/core';
       }
     }
     if (written || made) log(`merged ${written} rows into ${files} files, ${made} games added, ${flagged} marked ZSTD`);
+    // What changed, so a merge while the store runs knows whether any list has something new to
+    // draw (state/catalog.js mergeZstdNow) or the feed it read again was already applied.
+    return { written, files, made, flagged };
   }
 
-export { applyZstdFeed, fetchZstdFeed, itemsOf, loadZstdFeed, valid };
+export { applyZstdFeed, feedForLaunch, fetchZstdFeed, itemsOf, loadZstdFeed, valid };

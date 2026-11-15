@@ -8,7 +8,7 @@ import { prefetchWhenSettled } from '../game/art.js';
 import { focusEnd, focusStart, latin, useLocale } from '../i18n/index.js';
 import { genreLabel, onCdn } from '../state/catalog.js';
 import { formatSize } from '../state/size.js';
-import { useStoreActions, useWishlist } from '../state/store.jsx';
+import { useStoreActions, useStoreState, useWishlist } from '../state/store.jsx';
 import { CardFocus } from './CardFocus.jsx';
 import { CdnMark } from './CdnAura.jsx';
 import { Cover } from './Cover.jsx';
@@ -129,6 +129,10 @@ import { Text, View, motion, transitions, useIsFocused } from '@ps5-react/core';
     ...rest2
   }) {
     const { rtl } = useLocale();
+    // The store's state, feed tick among it: the lists memoize their rows and cache their cards
+    // by item identity, so a card whose game only gained its ZSTD mark when a feed merged is
+    // reached as a context consumer — the mark repaints where the card stands.
+    useStoreState();
     const box = boxOf(width, detailed);
     const scales = canScale(width, box.height + (detailed ? DETAILED_CAPTION : CAPTION));
     const [entering, setEntering] = (0, useState)(enterDelay != null);

@@ -43,7 +43,7 @@ import { FocusScope, Image, Text, View, VirtualList, useIsFocused } from '@ps5-r
       Image.prefetch(game.art.cover, coverBox).catch(() => fetched.delete(game.id));
     }
   }
-  var sameGrid = (a, b) => a.signature === b.signature && a.enter === b.enter && a.games.length === b.games.length && a.games.every((game, i) => game === b.games[i]);
+  var sameGrid = (a, b) => a.signature === b.signature && a.feedTick === b.feedTick && a.enter === b.enter && a.games.length === b.games.length && a.games.every((game, i) => game === b.games[i]);
   var Grid = (0, memo)(function Grid2({ games: games2, enter: enter3 }) {
     const { openGame } = useNavActions();
     const [limit, setLimit] = (0, useState)(BATCH);
@@ -124,8 +124,10 @@ import { FocusScope, Image, Text, View, VirtualList, useIsFocused } from '@ps5-r
     const store = useStore();
     const { filters, query } = store;
     const results = (0, useMemo)(
+      // The feed tick is a dep so a feed merged mid-session re-filters (a game it added or marked
+      // ZSTD), even when every game in the list is one that was already there.
       () => sortGames(filterGames(store), store.sort),
-      [filters, query, store.wishlist, store.sort]
+      [filters, query, store.wishlist, store.sort, store.feedTick]
     );
     // The favorites view can be narrowed to one kind (games, apps, emulators, tools); the choice
     // survives a visit to a game's page, like the Homebrew screen's own chips.
@@ -172,7 +174,7 @@ import { FocusScope, Image, Text, View, VirtualList, useIsFocused } from '@ps5-r
       favorites && counts && results.length > 0 ? /* @__PURE__ */ (0, jsx)(FocusScope, { row: true, children: /* @__PURE__ */ (0, jsx)(View, { style: { zIndex: 10, marginTop: 12, flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 12 }, children: FAVORITE_KINDS.filter(({ id }) => id === "all" || counts[id] > 0).map(
         ({ id, label }) => /* @__PURE__ */ (0, jsx)(KindChip, { id, label: t2(label), count: counts[id], current: kind === id, onPress: () => chooseKind(id) }, id)
       ) }) }) : null,
-      shown.length > 0 ? /* @__PURE__ */ (0, jsx)(Grid, { games: shown, signature, enter: settled.current }, signature) : /* @__PURE__ */ (0, jsx)(
+      shown.length > 0 ? /* @__PURE__ */ (0, jsx)(Grid, { games: shown, signature, feedTick: store.feedTick, enter: settled.current }, signature) : /* @__PURE__ */ (0, jsx)(
         EmptyState,
         {
           query,

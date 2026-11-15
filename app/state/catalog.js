@@ -7,7 +7,7 @@ import { ratings } from '../data/ratings.js';
 import { formats as formatIndex } from '../data/formats.js';
 import { formatDate2, formatNumber2, t } from '../i18n/core.js';
 import { applyUpdate, loadUpdate } from './catalog-update.js';
-import { applyZstdFeed, loadZstdFeed } from './zstd-feed.js';
+import { applyZstdFeed, feedForLaunch } from './zstd-feed.js';
 import { formatsOf } from './formats.js';
 import { createPageCache } from './page-cache.js';
 import { createReleaseCache } from './release-cache.js';
@@ -36,14 +36,42 @@ import { FileSystem, Image } from '@ps5-react/core';
   };
   // The community ZSTD catalog kept by the last launch joins its rows to each game's release file
   // here, adds the games it names that the build lacks and marks a game with a live ZSTD row, all
-  // before any list is made; a feed that failed its checks leaves the catalog the build's own.
+  // before any list is made; without one on disk the snapshot this build ships with is used, and a
+  // feed that failed its checks leaves the catalog the build's own.
   try {
-    applyZstdFeed(loadZstdFeed(), games, twins, dataFileText, updated);
+    applyZstdFeed(feedForLaunch(), games, twins, dataFileText, updated);
   } catch (error2) {
     console.log(`[zstd-feed] not applied: ${error2.message}`);
   }
   var releaseCache = createReleaseCache(dataFileText);
   var pageCache = createPageCache(dataFileText);
+  // A feed fetched while the store runs joins this session's lists: its rows are written, its games
+  // added and marked, and the caches over those files are made again so every screen reads what was
+  // just merged. A game the feed adds here gets what the launch gave every game before any list was
+  // made — the entry getters its own page reads through, its platforms for the badge on its card,
+  // its place in the lookups. A feed with nothing new changes nothing: null, and no list is redrawn.
+  function mergeZstdNow() {
+    try {
+      const counts = applyZstdFeed(feedForLaunch(), games, twins, dataFileText, updated);
+      if (!counts || !(counts.written || counts.made || counts.flagged)) return null;
+      for (const game of games) {
+        if (byId.has(game.id)) continue;
+        Object.setPrototypeOf(game, Entry);
+        game.genres = [...new Set(game.genres.flatMap((genre) => genre.split(" / ")).map((genre) => SYNONYMS[genre] ?? genre))];
+        if (game.art.cover) game.art.cover = coverSize(game.art.cover);
+        game.platforms = [...new Set(editionsOf(game).map((edition) => edition.platform))].sort();
+        byId.set(game.id, game);
+        listed.add(game);
+        addedOn.set(game, game.added ?? "");
+      }
+      releaseCache = createReleaseCache(dataFileText);
+      pageCache = createPageCache(dataFileText);
+      return counts;
+    } catch (error2) {
+      console.log(`[zstd-feed] not merged: ${error2.message}`);
+      return null;
+    }
+  }
   var NO_PAGE = { about: [], shots: [], summary: "" };
   var hiddenIds = new Set(HIDDEN);
   var isHidden = (game) => hiddenIds.has(game.id);
@@ -360,4 +388,4 @@ import { FileSystem, Image } from '@ps5-react/core';
     return formatNumber2(n);
   }
 
-export { CDN_HOST, FACETS, NO_FILTERS, SORTS, TOP_RATED_MIN, activeCount, addedAt, editionsOf, facetLabel, facetSummary, facetTitle, featureLabel, filterGames, formatCount, formatDate3, fromArchive, genreLabel, genres, getGame, isHidden, listedId, onCdn, optionLabel, ratingScore, relatedGames, showcase, sortGames, sortLabel, summaryOf, toggleValue, warmCovers };
+export { CDN_HOST, FACETS, NO_FILTERS, SORTS, TOP_RATED_MIN, activeCount, addedAt, editionsOf, facetLabel, facetSummary, facetTitle, featureLabel, filterGames, formatCount, formatDate3, fromArchive, genreLabel, genres, getGame, isHidden, listedId, mergeZstdNow, onCdn, optionLabel, ratingScore, relatedGames, showcase, sortGames, sortLabel, summaryOf, toggleValue, warmCovers };

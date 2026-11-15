@@ -12,13 +12,13 @@ import { GameScreen } from './game/index.jsx';
 import { HomebrewGame, HomebrewScreen } from './homebrew/HomebrewScreen.jsx';
 import { LocaleProvider, useLocale } from './i18n/index.js';
 import { SearchScreen } from './search/index.jsx';
-import { NO_FILTERS, getGame, warmCovers } from './state/catalog.js';
+import { NO_FILTERS, getGame, mergeZstdNow, warmCovers } from './state/catalog.js';
 import { fetchUpdate } from './state/catalog-update.js';
 import { fetchZstdFeed } from './state/zstd-feed.js';
 import { forgeEngine } from './state/forge-live.js';
 import { isHomebrewId } from './state/homebrew.js';
 import { NavProvider, useIsImmersive, useNavActions, useNavState } from './state/nav.jsx';
-import { StoreFreeze, StoreProvider } from './state/store.jsx';
+import { StoreFreeze, StoreProvider, useStoreActions, useStoreState } from './state/store.jsx';
 import { Sidebar, SIDEBAR_W } from './ui/Sidebar.jsx';
 import { SettingsScreen } from './ui/SettingsScreen.jsx';
   import { Legend } from './ui/Legend.jsx';
@@ -33,6 +33,9 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
 
   function Screen({ screen: screen2 }) {
     const { openGame, pop } = useNavActions();
+    // The store's state, its feed tick among it: a feed merged while a game page or the search
+    // screen is on top redraws it here — the page's rows and ZSTD mark, the search's cards.
+    useStoreState();
     // "Browse games" on an empty Downloads opens the store front as Discover does, whatever section
     // (Favorites, Top rated) the store was left on.
     const showLibrary = useShowLibrary();
@@ -67,13 +70,22 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
   function App() {
     useInterfaceSounds();
     useInterfaceHaptics();
+    const { bumpFeed } = useStoreActions();
     (0, useEffect)(() => {
       const id = setTimeout(warmCovers, WARM_DELAY_MS);
       // The catalog's update for the next launch, read once the app has settled: no list changes
       // under the player. The community ZSTD catalog comes after it, so the two requests never
       // overlap (native network_api.cpp refuses a burst).
       const update = setTimeout(fetchUpdate, UPDATE_DELAY_MS);
-      const zstd = setTimeout(fetchZstdFeed, UPDATE_DELAY_MS + 5e3);
+      const zstd = setTimeout(() => {
+        // The feed kept for the next launch joins this session's lists too: whatever it changed
+        // (state/catalog.js mergeZstdNow) is announced with the store's feed tick, and every list
+        // that reads the store's state draws the rows, chips and games it gained. Nothing new in
+        // the feed means nothing is redrawn.
+        fetchZstdFeed().then(() => {
+          if (mergeZstdNow()) bumpFeed();
+        });
+      }, UPDATE_DELAY_MS + 5e3);
       return () => {
         clearTimeout(id);
         clearTimeout(update);

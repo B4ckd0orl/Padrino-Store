@@ -16,10 +16,15 @@ import { loadList, saveList } from './saved.js';
     const [filters, setFilters] = (0, useState)(NO_FILTERS);
     const [sort, setSort] = (0, useState)("newest");
     const [query, setQuery] = (0, useState)("");
+    const [feedTick, setFeedTick] = (0, useState)(0);
     const [actions] = (0, useState)(() => ({
       setFilters,
       setSort,
       setQuery,
+      // A ZSTD feed merged while the store runs: the tick rides the state context, so every list
+      // that reads it (memoized or not) draws the rows, chips and games it gained, and StoreFreeze
+      // holds it back while another screen is on top.
+      bumpFeed: () => setFeedTick((tick) => tick + 1),
       toggleWish: (id) => setWishlist((list) => {
         const next = toggleValue(list, listedId(id));
         saveList("wishlist.json", "wishlist", next);
@@ -36,7 +41,7 @@ import { loadList, saveList } from './saved.js';
         setQuery("");
       }
     }));
-    const state = (0, useMemo)(() => ({ filters, sort }), [filters, sort]);
+    const state = (0, useMemo)(() => ({ filters, sort, feedTick }), [filters, sort, feedTick]);
     return /* @__PURE__ */ (0, jsx)(ActionsContext.Provider, { value: actions, children: /* @__PURE__ */ (0, jsx)(StateContext.Provider, { value: state, children: /* @__PURE__ */ (0, jsx)(WishlistContext.Provider, { value: wishlist, children: /* @__PURE__ */ (0, jsx)(QueryActiveContext.Provider, { value: query !== "", children: /* @__PURE__ */ (0, jsx)(QueryContext.Provider, { value: query, children }) }) }) }) });
   }
   function StoreFreeze({ frozen, children }) {
