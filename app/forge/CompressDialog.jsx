@@ -39,7 +39,7 @@ import { PRESETS, levelValid, rootOf, stepLevel } from './options.js';
           /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 19, fontWeight: 600, letterSpacing: 1.5, color: colors.muted }, children: mode.toUpperCase() }),
           recommended ? /* @__PURE__ */ (0, jsx)(View, { style: { borderRadius: 999, paddingHorizontal: 10, paddingVertical: 3, backgroundColor: colors.ok }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 16, fontWeight: 600, color: colors.accentInk }, children: t2("forge.recommended") }) }) : null
         ] }),
-        /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 25, fontWeight: 600, lineHeight: 32 }, children: level === null ? t2("forge.option.custom") : t2(`forge.option.${mode}.${name}`) }),
+        /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 24, fontWeight: 600, lineHeight: 32 }, children: level === null ? t2("forge.option.custom") : t2(`forge.option.${mode}.${name}`) }),
         /* @__PURE__ */ (0, jsx)(Text, { style: { ...TEXT, fontSize: 18, color: colors.muted, lineHeight: 26 }, children: level === null ? t2("forge.option.custom.hint") : t2(`forge.option.${mode}.${name}.hint`) })
       ]
     });

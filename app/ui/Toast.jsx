@@ -39,7 +39,7 @@ import { Text, View, motion } from '@ps5-react/core';
               /* @__PURE__ */ (0, jsx)(Icon, { name: icon, size: 16, color: failed ? colors.fg : colors.muted }),
               /* @__PURE__ */ (0, jsx)(Text, { style: failed ? { fontFamily: "Inter-Regular", fontSize: 21, fontWeight: 600, color: "#eeeeee", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 } : { fontFamily: "Inter-Regular", fontSize: 21, color: "#808080", numberOfLines: 1, ellipsizeMode: "tail", lineHeight: 30 }, children: status })
             ] }),
-            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 26, fontWeight: 600, color: "#eeeeee", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 36 }, children: title }),
+            /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 27, fontWeight: 600, color: "#eeeeee", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 36 }, children: title }),
             action ? /* @__PURE__ */ (0, jsxs)(View, { style: { marginTop: 3, flexDirection: "row", alignItems: "center", gap: 9 }, children: [
               /* @__PURE__ */ (0, jsx)(ButtonGlyph, { button: action.button }),
               /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 21, color: "#eeeeeed9", lineHeight: 30 }, children: action.label })

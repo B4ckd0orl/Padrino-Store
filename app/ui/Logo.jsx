@@ -17,7 +17,7 @@ import { px } from './scale.js';
     }
     return /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "center", gap: 12 }, children: [
       /* @__PURE__ */ (0, jsx)(Image, { source: brandIcon, resizeMode: "contain", style: ICON }),
-      /* @__PURE__ */ (0, jsx)(Text, { style: [{ fontFamily: "Inter-Regular", fontSize: 29, fontWeight: 600, letterSpacing: -0.85 }, { color }], children: "padrino" })
+      /* @__PURE__ */ (0, jsx)(Text, { style: [{ fontFamily: "Inter-Regular", fontSize: 30, fontWeight: 600, letterSpacing: -0.85 }, { color }], children: "padrino" })
     ] });
   }
 
