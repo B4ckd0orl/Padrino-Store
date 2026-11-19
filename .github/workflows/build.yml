@@ -121,6 +121,12 @@ jobs:
             ps5-react/dist/PPSA99059.receipt.json
           if-no-files-found: error
 
+      - name: Remember the baseline release
+        # The catalog update published after the release targets the release this build
+        # supersedes: the feed as this checkout has it. The publish step rewrites
+        # update-feed.json with the release being made, so the baseline is copied aside now.
+        run: cp update-feed.json "$RUNNER_TEMP/baseline-feed.json"
+
       - name: Publish the release
         # The tag is stamped from the run number, so it is always greater than what a console has
         # already installed, and the feed (releases/latest) always points here. update.zip is the
@@ -133,7 +139,15 @@ jobs:
           run=${{ github.run_number }}
           sha=$(echo "$GITHUB_SHA" | cut -c1-7)
           tag="v1.$run"
-          assets="PadrinoStore.exfat update.zip update-app.zip"
+          # The compression engine's program, which auto-start.js pins from this very feed: it
+          # stopped being attached at v1.40 and left every console unable to start the engine.
+          # The repository carries it, so every release carries it again; GitHub computes the
+          # digest the feed pins when the upload lands.
+          if [ ! -f packaging/dumpfolder.elf ]; then
+            echo "packaging/dumpfolder.elf is missing from the repository"
+            exit 1
+          fi
+          assets="PadrinoStore.exfat update.zip update-app.zip dumpfolder.elf"
           # Body: everything under "## Próxima release" until "## Archivo", else the file, else a one-liner.
           notes_file="$RUNNER_TEMP/release-notes.md"
           if [ -f CHANGELOG.md ]; then
@@ -175,3 +189,14 @@ jobs:
                 || echo "feed mirror push skipped (release already published)"
             fi
           fi
+
+      - name: Publish the catalog update
+        # The incremental catalog (state/catalog-update.js) for the consoles still on the
+        # baseline release: the delta from that release's catalog to this commit, published on
+        # the catalog branch for that release's version (tools/catalog-update.py). No data
+        # changed it, this exits without touching the branch; the release above is already out
+        # either way, so a catalog failure marks the run without costing the release.
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/catalog-update.py --feed "$RUNNER_TEMP/baseline-feed.json"

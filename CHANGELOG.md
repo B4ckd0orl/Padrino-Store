@@ -10,10 +10,8 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 
 ## Próxima release
 
-- 💛 GRACIAS A TODOS POR USAR PADRINO STORE 💛
-- 📦 El catálogo ZSTD viaja en el propio build: el primer arranque ya lo muestra, aunque la consola no tenga red ni feed guardado.
-- 🔄 La lista ZSTD se actualiza en vivo mientras usas la tienda: etiquetas, filtros y ficha al momento.
-- 🐛 Corregido: la sincronización ZSTD se rompía si el feed traía una subida repetida de un juego ya listado.
+- Vuelve el programa del motor de compresión en cada release: faltaba desde la v1.40 y por eso el arranque de una compresión fallaba en todas las consolas.
+- El catálogo se actualiza entre releases: los enlaces arreglados y los juegos nuevos llegan a la consola sin esperar una actualización de la app.
 
 ## Archivo
 
