@@ -10,7 +10,6 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 
 ## Próxima release
 
-- Vuelve el programa del motor de compresión en cada release: faltaba desde la v1.40 y por eso el arranque de una compresión fallaba en todas las consolas.
 - El catálogo se actualiza entre releases: los enlaces arreglados y los juegos nuevos llegan a la consola sin esperar una actualización de la app.
 
 ## Archivo
