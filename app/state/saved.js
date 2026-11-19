@@ -16,7 +16,9 @@ import { FileSystem } from '@ps5-react/core';
       (message) => console.log(`padrino: ${what}: ${message}`)
     );
   }
-  var SYNCED = /* @__PURE__ */ new Set(["settings.json", "wishlist.json"]);
+  // The marker decides whether the startup notice shows on the next launch, so its write is one
+  // of the sync'd ones: a crash right after CONTINUAR must not lose it.
+  var SYNCED = /* @__PURE__ */ new Set(["settings.json", "wishlist.json", "notice.json"]);
   function saveList(name, what, list) {
     try {
       FileSystem.mkdir(dir, { recursive: true });

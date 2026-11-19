@@ -32,7 +32,10 @@
     "settings.json": isRecord,
     "wishlist.json": isStringList,
     "recent.json": isStringList,
-    "searches.json": isStringList
+    "searches.json": isStringList,
+    // The startup notice's own marker: a record with the version that saw it. Registered so
+    // loadList accepts it, the same way the old welcome gate kept "qr.json".
+    "notice.json": isRecord
   };
 
 export { SAVED_FILES, isRecord, isStringList, readJSON };

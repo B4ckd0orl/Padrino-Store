@@ -2,7 +2,7 @@
 // reconstructed from the esbuild bundle in eboot.bin
 
 import { jsx, jsxs } from 'react/jsx-runtime';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { AppRegistry, FileSystem, FocusScope, ReleaseImages, View } from '@ps5-react/core';
 import { BrowsePage } from './browse/BrowsePage.jsx';
 import { DownloadsScreen } from './downloads/DownloadsScreen.jsx';
@@ -18,12 +18,14 @@ import { fetchZstdFeed } from './state/zstd-feed.js';
 import { forgeEngine } from './state/forge-live.js';
 import { isHomebrewId } from './state/homebrew.js';
 import { NavProvider, useIsImmersive, useNavActions, useNavState } from './state/nav.jsx';
+import { loadList, saveList } from './state/saved.js';
 import { StoreFreeze, StoreProvider, useStoreActions, useStoreState } from './state/store.jsx';
 import { Sidebar, SIDEBAR_W } from './ui/Sidebar.jsx';
 import { SettingsScreen } from './ui/SettingsScreen.jsx';
   import { Legend } from './ui/Legend.jsx';
   import { Bgm } from './ui/Bgm.jsx';
   import { UpdateDialog } from './ui/UpdateDialog.jsx';
+  import { StartupNotice } from './ui/StartupNotice.jsx';
   import { useInterfaceHaptics } from './ui/haptics.js';
   import { useInterfaceSounds } from './ui/sounds.js';
   import { useShowLibrary } from './ui/useSections.js';
@@ -67,6 +69,8 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
   }
   var WARM_DELAY_MS = 3e3;
   var UPDATE_DELAY_MS = 2e4;
+  // The startup notice's marker: the version that saw it, in its own file under /data.
+  var NOTICE_FILE = "notice.json";
   function App() {
     useInterfaceSounds();
     useInterfaceHaptics();
@@ -108,7 +112,6 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
     return (
       // Arabic and Urdu mirror every row and right-align every paragraph from here.
       /* @__PURE__ */ (0, jsxs)(View, { style: [{ width: 1920, height: 1080, backgroundColor: "#0a0a0a" }, { direction: rtl ? "rtl" : "ltr" }], children: [
-        /* @__PURE__ */ (0, jsx)(Bgm, {}),
         /* @__PURE__ */ (0, jsxs)(Sidebar, { children: [
           /* @__PURE__ */ (0, jsx)(BrowseLayer, { shown: onBrowse }),
           keepHomebrew ? /* @__PURE__ */ (0, jsx)(HomebrewLayer, { shown: onHomebrew }) : null,
@@ -123,10 +126,29 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
       ] })
     );
   }
+  // The notice stands before the store itself: it mounts instead of the app, so nothing behind it —
+  // the update dialog among it, which mounts a few seconds in — can take focus while it is up.
+  // Shown when there is no marker (a fresh install) or the marker holds another version (an
+  // update); the CI stamps a new VERSION on every release, so each install and each update shows
+  // it exactly once and the relaunch after CONTINUAR goes straight in.
+  function Gate() {
+    const [shown, setShown] = (0, useState)(() => loadList(NOTICE_FILE, "startup notice").version !== VERSION);
+    if (!shown) return /* @__PURE__ */ (0, jsx)(App, {});
+    return /* @__PURE__ */ (0, jsx)(StartupNotice, { onDone: () => {
+      saveList(NOTICE_FILE, "startup notice", { seen: true, version: VERSION });
+      setShown(false);
+    } });
+  }
   // The console shows sce_sys/pic0.png during launch, so this is the only screen the player
-  // ever waits on: the store mounts straight into the community gate.
+  // ever waits on: the Gate shows the startup notice while this build has not been seen, and
+  // mounts the store straight after.
   function Boot() {
-    return /* @__PURE__ */ (0, jsx)(View, { style: { width: 1920, height: 1080, backgroundColor: "#0a0a0a" }, children: /* @__PURE__ */ (0, jsx)(LocaleProvider, { children: /* @__PURE__ */ (0, jsx)(StoreProvider, { children: /* @__PURE__ */ (0, jsx)(NavProvider, { children: /* @__PURE__ */ (0, jsx)(App, {}) }) }) }) });
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { width: 1920, height: 1080, backgroundColor: "#0a0a0a" }, children: [
+      // The music lives above the Gate: it plays while the startup notice is up and never unmounts
+      // on the way into the store (Bgm.jsx: unmounting closes the player).
+      /* @__PURE__ */ (0, jsx)(Bgm, {}),
+      /* @__PURE__ */ (0, jsx)(LocaleProvider, { children: /* @__PURE__ */ (0, jsx)(StoreProvider, { children: /* @__PURE__ */ (0, jsx)(NavProvider, { children: /* @__PURE__ */ (0, jsx)(Gate, {}) }) }) })
+    ] });
   }
   // Which build wrote this session of app.log: a draft rebuilt with the same version is otherwise
   // indistinguishable from the one before it.
