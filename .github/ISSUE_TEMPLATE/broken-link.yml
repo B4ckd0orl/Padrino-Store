@@ -1,0 +1,48 @@
+name: Broken link
+description: A download link in the store no longer works or leads nowhere.
+title: "[Broken link] "
+labels: ["bug"]
+body:
+  - type: input
+    id: game
+    attributes:
+      label: Game
+      description: The name exactly as it appears in Padrino Store.
+      placeholder: Castlevania Dominus Collection
+    validations:
+      required: true
+
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: The address that failed, copied from the download list if you can.
+      placeholder: https://...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: problem
+    attributes:
+      label: What happens?
+      options:
+        - The download fails or never starts
+        - The host says the file is gone
+        - The link opens a login or an ad page
+        - Something else
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Anything else that helps, like the region or version shown for the game.
+
+  - type: input
+    id: version
+    attributes:
+      label: Padrino Store version
+      placeholder: v1.0.1
+    validations:
+      required: true
