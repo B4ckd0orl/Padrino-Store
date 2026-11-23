@@ -46,7 +46,12 @@ import { formatBytes } from './size.js';
         const file = (release.assets || []).find((item) => item.name === asset);
         const sha256 = /^sha256:([0-9a-f]{64})$/i.exec(file?.digest || "")?.[1];
         if (!file || !sha256) return null;
-        return { version: release.tag_name.replace(/^v/, ""), notes: release.body || "", url: file.browser_download_url, size: file.size, sha256 };
+        // El release publica la imagen suelta junto al zip (mismo archivo, mismo job de CI): su
+        // tamaño es la referencia con la que la instalación comprueba que la extracción rindió el
+        // archivo entero antes de sustituir la imagen instalada. Si el release no la publica, la
+        // referencia queda en null y la instalación sigue como siempre.
+        const imageAsset = (release.assets || []).find((item) => item.name === "PadrinoStore.exfat");
+        return { version: release.tag_name.replace(/^v/, ""), notes: release.body || "", url: file.browser_download_url, size: file.size, sha256, imageSize: imageAsset?.size ?? null };
       }
       throw lastError ?? new Error("No update feed answered");
     }
@@ -138,6 +143,11 @@ import { formatBytes } from './size.js';
       const [entry2] = entries2;
       if (entries2.length !== 1 || !entry2.isFile || !entry2.name.endsWith(".exfat") || entry2.size < MIN_IMAGE_BYTES || entry2.size % SECTOR)
         throw new Error(`The update holds ${entries2.map((item) => item.name).join(", ") || "nothing"} instead of one exFAT image`);
+      // La imagen extraída debe medir exactamente lo que el release publica: una extracción
+      // cortada (disco lleno, corte de alimentación) queda descartada aquí, con la imagen
+      // instalada todavía intacta, en vez de sustituirla por una incompleta.
+      if (update.imageSize && entry2.size !== update.imageSize)
+        throw new Error(`The extracted image is ${entry2.size} bytes; the release publishes ${update.imageSize}`);
       const file = `${extracted}/${entry2.name}`;
       try {
         fs.chmod(file, 511);
