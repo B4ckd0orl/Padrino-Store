@@ -337,6 +337,10 @@ import { FileSystem, Http } from '@ps5-react/core';
       source: "zstd-catalog"
     };
   }
+  // A second title id the feed gives for a game the build already lists: the catalog's own id is
+  // the one that stays, so the feed's rows join that game's release file and no second entry is
+  // ever made for the same game (the feed names SAROS PPSA07632, the catalog lists it PPSA07631).
+  var ALIAS = { PPSA07632: "PPSA07631" };
   // Into the data the lists are made of, before state/catalog.js makes anything of them: each
   // item's rows join its game's release file (a link the file already holds is never added
   // twice), a game the feed names that the build lacks is added when any of its rows is live, and
@@ -347,7 +351,8 @@ import { FileSystem, Http } from '@ps5-react/core';
     const byId = new Map();
     for (const game of [...games, ...twins]) if (!byId.has(game.id)) byId.set(game.id, game);
     let written = 0, files = 0, made = 0, flagged = 0;
-    for (const item of feed.items) {
+    for (const given of feed.items) {
+      const item = ALIAS[given.id] ? { ...given, id: ALIAS[given.id] } : given;
       const rows = rowsOf(item);
       if (!rows.length) continue;
       const path = `data/releases/${encodeURIComponent(item.id)}.json`;

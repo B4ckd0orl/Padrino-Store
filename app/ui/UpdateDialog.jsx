@@ -25,14 +25,14 @@ import { BackHandler, FocusScope, Image, ScrollView, Text, View } from '@ps5-rea
   // GitHub release body → bullet list: strip markdown noise, keep one line per change.
   function changelogLines(body) {
     if (!body) return [];
-    return body.split(/\r?\n/).map((line) => line.replace(/^\s*[-*•]\s+/, "").replace(/^\s*\d+[.)]\s+/, "").trim()).filter((line) => line && !/^#{1,6}\s/.test(line) && !/^```/.test(line)).slice(0, 24);
+    return body.split(/\r?\n/).map((line) => line.replace(/^\s*[-*•]\s+/, "").replace(/^\s*\d+[.)]\s+/, "").trim()).filter((line) => line && !/^#{1,6}\s/.test(line) && !/^```/.test(line)).slice(0, 40);
   }
   function Changelog({ body, title }) {
     const lines = changelogLines(body);
     if (!lines.length) return null;
-    return /* @__PURE__ */ (0, jsxs)(View, { style: { width: 700, gap: 10 }, children: [
+    return /* @__PURE__ */ (0, jsxs)(View, { style: { width: 860, gap: 10 }, children: [
       /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "JetBrainsMono-Regular", fontSize: 16, color: "#606060", letterSpacing: 2 }, children: title.toLocaleUpperCase() }),
-      /* @__PURE__ */ (0, jsx)(ScrollView, { style: { maxHeight: 280 }, children: /* @__PURE__ */ (0, jsx)(View, { style: { gap: 8, paddingRight: 8 }, children: lines.map((line) => /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "flex-start", gap: 12 }, children: [
+      /* @__PURE__ */ (0, jsx)(ScrollView, { style: { maxHeight: 460 }, children: /* @__PURE__ */ (0, jsx)(View, { style: { gap: 8, paddingRight: 8 }, children: lines.map((line) => /* @__PURE__ */ (0, jsxs)(View, { style: { flexDirection: "row", alignItems: "flex-start", gap: 12 }, children: [
         /* @__PURE__ */ (0, jsx)(View, { style: { width: 6, height: 6, borderRadius: 3, marginTop: 10, backgroundColor: "#fab283" } }),
         /* @__PURE__ */ (0, jsx)(Text, { style: { flex: 1, fontFamily: "Inter-Regular", fontSize: 20, color: "#808080", lineHeight: 30 }, children: line })
       ] }, line)) }) })

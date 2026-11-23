@@ -10,13 +10,14 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 
 ## Próxima release
 
-- El catálogo se actualiza entre releases: los enlaces arreglados y los juegos nuevos llegan a la consola sin esperar una actualización de la app.
-- 20 juegos nuevos y 5 ediciones alternativas en el catálogo; 13 fichas duplicadas unificadas.
-- 128 enlaces de descarga nuevos y 829 enlaces corregidos para que las descargas vuelvan a funcionar.
-- 22 fichas de juego renovadas con más información de cada título.
-- Música de fondo de la tienda: nueva opción en Ajustes para activarla o desactivarla.
-- Barra de luz del mando: se enciende con el color de la portada de cada juego, con interruptor en Ajustes.
-- Reportar enlace roto: nuevo formulario en Ajustes para avisar cuando una descarga deje de funcionar.
+- Corregido: los enlaces de descarga que dejaron de funcionar ya apuntan a fuentes verificadas.
+- Corregido: los juegos comprimidos en ZSTD tienen ahora una fuente de descarga adicional de respaldo.
+- Nuevo: 12 juegos en el catálogo con sus enlaces de descarga.
+- Nuevo: descripción y sinopsis en 166 fichas de juego que estaban vacías.
+- Nuevo: las ediciones alternativas de un mismo juego (PS4 y PS5) se unifican en una sola ficha conmutable.
+- Nuevo: el catálogo ZSTD incluido en la aplicación: juegos y enlaces nuevos en el primer arranque, también sin conexión.
+- Nuevo: la ventana de actualización muestra el listado de cambios ampliado para leerlo completo de un vistazo.
+- Nuevo: la música de fondo de la tienda vuelve a ser la original.
 
 ## Archivo
 

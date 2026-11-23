@@ -1,5 +1,5 @@
-// Padrino Store — background music: "First Light Particles" by Yoiyami (CC0 1.0 Universal).
-// Source: https://opengameart.org/node/182244 — public domain, no attribution required.
+// Padrino Store — background music: "Morning Coffee" by HoliznaCC0 (CC0 1.0 Universal).
+// Source: https://freemusicarchive.org/track/morning-coffee — public domain, no attribution required.
 // Plays via <Video> (audio-only, repeat). Must stay mounted: unmounting closes the player.
 // MODIFIED: the music is a setting, on unless the player turns it off in Settings — while it is
 // off the player never mounts, which is exactly how the music stops.
@@ -9,7 +9,7 @@ import { jsx } from 'react/jsx-runtime';
 import { Video } from '@ps5-react/core';
 import { loadList, saveList } from '../state/saved.js';
 
-  var BGM_SOURCE = "/app0/assets/bgm/first-light-particles.mp3";
+  var BGM_SOURCE = "/app0/assets/bgm/morning-coffee.mp3";
   var BGM_VOLUME = 0.22;
   // Kept in settings.json beside the vibration: only "off" is written, so a fresh install plays
   // the music the way it always did. The choice takes effect at once, no restart.
