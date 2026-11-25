@@ -14,6 +14,8 @@ import { LocaleProvider, useLocale } from './i18n/index.js';
 import { SearchScreen } from './search/index.jsx';
 import { NO_FILTERS, getGame, mergeZstdNow, warmCovers } from './state/catalog.js';
 import { fetchUpdate } from './state/catalog-update.js';
+import { cancellation } from './state/download-sources.js';
+import { backgroundHold, backgroundRelease } from './state/net-turn.js';
 import { fetchZstdFeed } from './state/zstd-feed.js';
 import { forgeEngine } from './state/forge-live.js';
 import { isHomebrewId } from './state/homebrew.js';
@@ -67,8 +69,10 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
     const side = rtl ? { left: 0, right: SIDEBAR_W } : { left: SIDEBAR_W, right: 0 };
     return /* @__PURE__ */ (0, jsx)(View, { style: [{ position: "absolute", top: 0, bottom: 60, ...side }, shown ? null : { display: "none" }], children: /* @__PURE__ */ (0, jsx)(ReleaseImages, { when: !shown, children: /* @__PURE__ */ (0, jsx)(FocusScope, { focusKey: "homebrew-page", inert: !shown, children: /* @__PURE__ */ (0, jsx)(HomebrewScreen, { onBack: pop }) }) }) });
   }
-  var WARM_DELAY_MS = 3e3;
+  var WARM_DELAY_MS = 1e4;
   var UPDATE_DELAY_MS = 2e4;
+  // A background fetch fired again after a resolution cancelled it (state/net-turn.js).
+  var TURN_RETRY_MS = 3e3;
   // The startup notice's marker: the version that saw it, in its own file under /data.
   var NOTICE_FILE = "notice.json";
   function App() {
@@ -76,24 +80,47 @@ import { SettingsScreen } from './ui/SettingsScreen.jsx';
     useInterfaceHaptics();
     const { bumpFeed } = useStoreActions();
     (0, useEffect)(() => {
+      // The cover warm starts after the store has settled, so its background connections are not
+      // competing with the first screens the player opens (state/catalog.js warmCovers).
       const id = setTimeout(warmCovers, WARM_DELAY_MS);
       // The catalog's update for the next launch, read once the app has settled: no list changes
-      // under the player. The community ZSTD catalog comes after it, so the two requests never
-      // overlap (native network_api.cpp refuses a burst).
-      const update = setTimeout(fetchUpdate, UPDATE_DELAY_MS);
-      const zstd = setTimeout(() => {
+      // under the player. The ZSTD feed comes after it, so the two requests never overlap (native
+      // network_api.cpp refuses a burst). Both take their turn (state/net-turn.js): fired late
+      // while a link resolution runs, and cancelled to be fired again if one starts mid-request,
+      // so a download the player begins never queues behind them.
+      const background = (run, delay) => {
+        let timer = 0;
+        const arm = (ms) => {
+          timer = setTimeout(fire, ms);
+        };
+        const fire = async () => {
+          const { signal, cancel } = cancellation();
+          if (!backgroundHold(cancel)) return arm(TURN_RETRY_MS);
+          try {
+            await run(signal);
+          } catch {
+            // The fetch logs its own failure; only an abort fires it again.
+          } finally {
+            backgroundRelease(cancel);
+          }
+          if (signal.aborted) arm(TURN_RETRY_MS);
+        };
+        arm(delay);
+        return () => clearTimeout(timer);
+      };
+      const update = background((signal) => fetchUpdate(signal), UPDATE_DELAY_MS);
+      const zstd = background(async (signal) => {
+        await fetchZstdFeed(signal);
         // The feed kept for the next launch joins this session's lists too: whatever it changed
         // (state/catalog.js mergeZstdNow) is announced with the store's feed tick, and every list
         // that reads the store's state draws the rows, chips and games it gained. Nothing new in
         // the feed means nothing is redrawn.
-        fetchZstdFeed().then(() => {
-          if (mergeZstdNow()) bumpFeed();
-        });
+        if (!signal.aborted && mergeZstdNow()) bumpFeed();
       }, UPDATE_DELAY_MS + 5e3);
       return () => {
         clearTimeout(id);
-        clearTimeout(update);
-        clearTimeout(zstd);
+        update();
+        zstd();
       };
     }, []);
     // The engine's jobs settle whether or not anyone is looking at the compression screen: the

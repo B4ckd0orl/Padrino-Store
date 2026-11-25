@@ -34,16 +34,32 @@ import { Archives, BrowserCapture, DownloadFormats, Downloads, FileSystem, Http,
     releasesOf: (id) => getGame(id)?.releases || []
   }));
   var shadowMountUp = Platform.OS === "ps5" ? createShadowMountProbe({ http: Http, now: Date.now }) : async () => true;
+  // The mounts and the free space of a drive change only when a drive is plugged or a download
+  // writes: a few seconds of staleness shows nothing the player can act on differently, and both
+  // calls are made again for every screen that lists the roots (state/roots.js reads the mounts
+  // on each call, freeBytes a stat per root).
+  var SPACE_TTL_MS = 3e3;
+  var freeCache = { at: 0, values: /* @__PURE__ */ new Map() };
   function freeBytes(root2) {
+    const hit = freeCache.values.get(root2);
+    if (hit && Date.now() - hit.at < SPACE_TTL_MS) return hit.value;
+    let value = null;
     try {
-      return FileSystem.diskUsage(root2).free;
+      value = FileSystem.diskUsage(root2).free;
     } catch {
-      return null;
+      value = null;
     }
+    freeCache.values.set(root2, { at: Date.now(), value });
+    return value;
   }
+  var rootsCache = { at: 0, value: null };
   function storageRoots() {
     if (Platform.OS !== "ps5") return [FileSystem.dataDir];
-    return consoleRoots(() => FileSystem.mounts());
+    if (rootsCache.value && Date.now() - rootsCache.at < SPACE_TTL_MS) return rootsCache.value;
+    const roots = consoleRoots(() => FileSystem.mounts());
+    rootsCache.at = Date.now();
+    rootsCache.value = roots;
+    return roots;
   }
 
 export { downloadQueue, driveName, driveShortName, freeBytes, shadowMountUp, storageRoots };

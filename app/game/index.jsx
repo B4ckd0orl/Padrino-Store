@@ -3,7 +3,7 @@
 
 import '../assets/Inter-Regular.ttf';
 import { jsx, jsxs } from 'react/jsx-runtime';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { BrowserCaptureDialog } from '../downloads/BrowserCaptureDialog.jsx';
 import { URLDialog } from '../downloads/URLDialog.jsx';
 import { DownloadTipsDialog } from './DownloadTipsDialog.jsx';
@@ -21,6 +21,7 @@ import { useT } from '../i18n/index.js';
 import { featureLabel, relatedGames } from '../state/catalog.js';
 import { downloadQueue } from '../state/downloads.js';
 import { useNavActions } from '../state/nav.jsx';
+import { useStoreState } from '../state/store.jsx';
 import { GameCard, useFavoriteAction } from '../ui/GameCard.jsx';
 import { SectionHeader } from '../ui/SectionHeader.jsx';
 import { lightGame, unlight } from '../ui/lightBar.js';
@@ -53,7 +54,12 @@ import { AnimatePresence, FocusScope, ScrollView, Text, View } from '@ps5-react/
     const [viewing, setViewing] = (0, useState)(null);
     const { focusLater } = useNavActions();
     const Dialog = { source: SourcePicker, options: OptionsSheet, version: VersionSheet, tips: DownloadTipsDialog, stream: StreamChoiceDialog }[dialog?.kind] ?? URLDialog;
-    const related = relatedGames(game);
+    // relatedGames scans every game in the catalog (state/catalog.js): one pass per render of
+    // this screen is what a page used to cost. The store's feed tick is the only thing that
+    // changes its result — a ZSTD merge that added games — so the pass runs for this game and
+    // for each such merge, not for every focus or dialog change.
+    const { feedTick } = useStoreState();
+    const related = (0, useMemo)(() => relatedGames(game), [game, feedTick]);
     const about = game.about.filter((text) => text.trim());
     (0, useEffect)(() => {
       const key = `page:${game.id}`;

@@ -38,8 +38,13 @@ import { FileSystem, Image } from '@ps5-react/core';
   // here, adds the games it names that the build lacks and marks a game with a live ZSTD row, all
   // before any list is made; without one on disk the snapshot this build ships with is used, and a
   // feed that failed its checks leaves the catalog the build's own.
+  var appliedFeed = null;
   try {
-    applyZstdFeed(feedForLaunch(), games, twins, dataFileText, updated);
+    const feed = feedForLaunch();
+    applyZstdFeed(feed, games, twins, dataFileText, updated);
+    // The generated of the feed those rows came from: what the lists hold now, so a merge of the
+    // same feed later has nothing to change (mergeZstdNow below).
+    appliedFeed = feed?.generated ?? null;
   } catch (error2) {
     console.log(`[zstd-feed] not applied: ${error2.message}`);
   }
@@ -52,7 +57,14 @@ import { FileSystem, Image } from '@ps5-react/core';
   // its place in the lookups. A feed with nothing new changes nothing: null, and no list is redrawn.
   function mergeZstdNow() {
     try {
-      const counts = applyZstdFeed(feedForLaunch(), games, twins, dataFileText, updated);
+      const feed = feedForLaunch();
+      // The feed the lists already hold (the boot's snapshot or an earlier merge): its rows are
+      // in the games already, so the release files — one read per game — are not re-read for
+      // nothing. Only a feed kept by a later fetch (state/zstd-feed.js fetchZstdFeed, a 304
+      // keeps nothing) has something new to apply.
+      if (!feed || feed.generated === appliedFeed) return null;
+      const counts = applyZstdFeed(feed, games, twins, dataFileText, updated);
+      if (counts) appliedFeed = feed.generated;
       if (!counts || !(counts.written || counts.made || counts.flagged)) return null;
       for (const game of games) {
         if (byId.has(game.id)) continue;

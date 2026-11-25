@@ -75,11 +75,12 @@ import { FileSystem, Http } from '@ps5-react/core';
   }
   // Once a launch, after the start: the update for the next one. Unchanged (the same ETag) it is not
   // read again; one that fails a check is not kept, nor one for another version. Without anything
-  // published the 404 leaves the catalog the build's own.
-  async function fetchUpdate() {
+  // published the 404 leaves the catalog the build's own. The signal a resolution holds cancels it
+  // (state/net-turn.js), so the player's link never waits behind this request.
+  async function fetchUpdate(signal) {
     try {
       const etag = FileSystem.exists(FILE) && FileSystem.exists(TAG) ? FileSystem.readFile(TAG).trim() : "";
-      const response = await Http.request(URL2, { headers: { Accept: "application/json", "User-Agent": "Padrino Store", ...etag ? { "If-None-Match": etag } : {} }, maxBytes: MAX_BYTES });
+      const response = await Http.request(URL2, { headers: { Accept: "application/json", "User-Agent": "Padrino Store", ...etag ? { "If-None-Match": etag } : {} }, maxBytes: MAX_BYTES, ...(signal ? { signal } : {}) });
       if (response.status === 304) {
         log("no change since the kept update");
         return;

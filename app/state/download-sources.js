@@ -2,6 +2,8 @@
 // reconstructed from the esbuild bundle in eboot.bin
 // MODIFIED: archiveRefusal, so an Archive.org 401/403 is a dead link, not a browser check.
 
+import { turnBegin, turnEnd } from './net-turn.js';
+
 
   function webURL(value) {
     if (typeof value !== "string" || value.length > 8192 || /[\s\\\x00-\x1f]/.test(value)) throw new Error("Invalid HTTP URL.");
@@ -153,27 +155,35 @@
       const bytes = Number(head.headers?.["content-length"]);
       return { url: webURL(head.url || file).url, rejectHtml: true, ...Number.isSafeInteger(bytes) && bytes > 0 ? { expectedBytes: bytes } : {} };
     }
+    // Every request this makes holds the store's HTTP turn (state/net-turn.js): the native thread
+    // runs one request at a time, so the player's link goes first and the background fetches wait
+    // or give theirs up, whatever this resolution costs — a countdown, a retry, a redirect chain.
     async function resolve2(release, { signal, directURL } = {}) {
-      if (directURL) return direct(directURL, signal);
-      const url = release.browserUrl || release.url;
-      const kind = sourceKind(release);
-      if (kind === "unavailable") throw new Error("Source unavailable: no download URL.");
-      if (kind === "direct") return { url: webURL(url).url, rejectHtml: true };
-      if (kind === "manifest") throw new Error("Split manifests must be resolved by the queue.");
-      // Buzzheavier's pages sit behind a Cloudflare check only a browser passes (403 to the app,
-      // 2026-10-17): its file link is captured from the console's browser, as Datanodes' is.
-      if (kind === "browser" || kind === "datanodes" || kind === "buzzheavier") throw new BrowserRequired(url);
-      if (kind === "filekeeper") return fileKeeper(url, signal);
-      if (kind === "rootz") return rootz(url, signal);
-      const response = await request(url, { signal });
-      const base = response.url || url;
-      if (response.headers?.["content-disposition"]?.includes("attachment")) return direct(base, signal);
-      const html = await response.text();
-      let candidate;
-      if (kind === "mediafire") candidate = anchor(html, "downloadButton");
-      if (kind === "vikingfile") candidate = anchor(html, "download-link");
-      if (!candidate) throw new BrowserRequired(url);
-      return direct(absolute(candidate, base), signal);
+      turnBegin();
+      try {
+        if (directURL) return direct(directURL, signal);
+        const url = release.browserUrl || release.url;
+        const kind = sourceKind(release);
+        if (kind === "unavailable") throw new Error("Source unavailable: no download URL.");
+        if (kind === "direct") return { url: webURL(url).url, rejectHtml: true };
+        if (kind === "manifest") throw new Error("Split manifests must be resolved by the queue.");
+        // Buzzheavier's pages sit behind a Cloudflare check only a browser passes (403 to the app,
+        // 2026-10-17): its file link is captured from the console's browser, as Datanodes' is.
+        if (kind === "browser" || kind === "datanodes" || kind === "buzzheavier") throw new BrowserRequired(url);
+        if (kind === "filekeeper") return fileKeeper(url, signal);
+        if (kind === "rootz") return rootz(url, signal);
+        const response = await request(url, { signal });
+        const base = response.url || url;
+        if (response.headers?.["content-disposition"]?.includes("attachment")) return direct(base, signal);
+        const html = await response.text();
+        let candidate;
+        if (kind === "mediafire") candidate = anchor(html, "downloadButton");
+        if (kind === "vikingfile") candidate = anchor(html, "download-link");
+        if (!candidate) throw new BrowserRequired(url);
+        return direct(absolute(candidate, base), signal);
+      } finally {
+        turnEnd();
+      }
     }
     return { resolve: resolve2 };
   }

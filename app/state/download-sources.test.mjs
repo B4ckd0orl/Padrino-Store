@@ -3,6 +3,7 @@ import test from 'node:test';
 
 import { BrowserRequired, RESOLVED_KINDS, createSourceResolver, sourceKind } from './download-sources.js';
 import { pausedFilter, pausedSource } from './paused-hosts.js';
+import { turnBusy } from './net-turn.js';
 
 // Rootz's page only sends the browser to its proxy address, which redirects straight to the CDN
 // file: the resolver asks for it, so a Rootz source never waits for a browser check.
@@ -20,6 +21,20 @@ function mockHttp(routes) {
     },
   };
 }
+
+test('a resolution holds the network turn while it runs, and lets go when it settles', async () => {
+  const http = mockHttp([]);
+  const request = http.request.bind(http);
+  let during = null;
+  http.request = (url, options) => {
+    during = turnBusy();
+    return request(url, options);
+  };
+  await assert.rejects(createSourceResolver({ http }).resolve({ url: 'https://rootz.so/d/GONE00' }, {}),
+    /Source unavailable: HTTP 404/);
+  assert.equal(during, true, 'the turn is held while the resolution makes its requests');
+  assert.equal(turnBusy(), false, 'and released when it settles');
+});
 
 test('a Rootz source is a resolved kind, not a browser one', () => {
   assert.equal(sourceKind(release), 'rootz');
