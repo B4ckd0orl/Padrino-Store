@@ -1,18 +1,18 @@
 [
   {
-    "id": "r-gtavi-magnet",
+    "id": "r-gtavi-vikingfile",
     "format": "pkg",
-    "filename": "Grand Theft Auto VI PPSA38500 v01.002.001.pkg",
-    "url": "magnet:?xt=urn:btih:46a3c8c22b1e2a5f987229b04fb5ddaa193e5290&dn=Grand+Theft+Auto+VI+PPSA38500+v01.002.001.pkg&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
-    "browserUrl": "magnet:?xt=urn:btih:46a3c8c22b1e2a5f987229b04fb5ddaa193e5290&dn=Grand+Theft+Auto+VI+PPSA38500+v01.002.001.pkg&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
+    "filename": "GrandTheft Auto VI [PPSA38500] [v01.002].pkg",
+    "url": "https://vik1ngf1le.online/f/JbQIQC9EMm#GrandTheft%20Auto%20VI%20[PPSA38500]%20[v01.002].pkg",
+    "browserUrl": "https://vik1ngf1le.online/f/JbQIQC9EMm#GrandTheft%20Auto%20VI%20[PPSA38500]%20[v01.002].pkg",
     "requiresBrowser": false,
     "sizeBytes": 216513692961,
-    "version": "01.002.001",
+    "version": "01.002",
     "category": "game",
-    "provider": "RuTracker",
-    "source": "p2p",
-    "flow": "torrent",
-    "label": "Magnet P2P (v01.002.001)",
-    "record": "rutracker-6943138"
+    "provider": "VikingFile",
+    "source": "vikingfile",
+    "flow": "vikingfile",
+    "label": "Descarga directa (v01.002)",
+    "record": "viking-gtavi"
   }
 ]
