@@ -124,10 +124,11 @@ import { formatBytes } from '../state/size.js';
   var isOverdriveCdn = (provider) => /^(?:overdrive|padrino)\s*cdn$/i.test(provider ?? "");
   function describeSource(release) {
     const parts = release.parts?.length;
+    const format = inferFormat(release);
     const detail2 = [
       edition(release),
       release.version ? `v${release.version.replace(/^v/i, "")}` : null,
-      isPatchOnly(release) ? t("sources.kind.patch") : formatDetail(inferFormat(release)),
+      isPatchOnly(release) ? t("sources.kind.patch") : formatDetail(format),
       parts ? t("sources.parts", { count: parts }) : null
     ].filter(Boolean).join(" \xB7 ");
     const reach = access(release);
@@ -140,7 +141,10 @@ import { formatBytes } from '../state/size.js';
       reason: release.unavailableReason ?? null,
       status: release.unavailableReason ? null : compatibility(release),
       // A row of the community ZSTD catalog (state/zstd-feed.js): the chip beside its name.
-      zstd: release.source === "zstd-catalog"
+      zstd: release.source === "zstd-catalog",
+      // An exFAT image, the format the console installs straight from a USB drive: what marks
+      // this row the recommended one to download (ranked, sourceSections).
+      exfat: format === "exfat"
     };
   }
   var isDlc = ({ label }) => /\bDLCs?\b/i.test(label || "") && !/\b(?:game|full)\b|\+\s*(?:all\s+)?DLCs?\b|\bwith\s+(?:all\s+)?DLCs?\b|\bincl/i.test(label);
@@ -161,6 +165,9 @@ import { formatBytes } from '../state/size.js';
     // A backport is the game fixed for older firmware, or only the files to copy over it (a 40 MB
     // download, issue #47): the full game comes first whatever its host.
     isBackport(release) ? 1 : 0,
+    // An exFAT image installs straight onto a USB drive: among the sources every check passes,
+    // the console's own image format comes before any other, whatever host carries it.
+    inferFormat(release) === "exfat" ? 0 : 1,
     hostRank(release),
     GROUP_RANK[describeSource(release).group],
     HEALTH_RANK[release.health] ?? 1,
@@ -179,7 +186,13 @@ import { formatBytes } from '../state/size.js';
       sections.find((section) => section.group === into).items.push({ release, index });
     });
     const links = ({ release }) => release.parts?.length ?? 1;
-    sections[2].items.sort((a, b) => links(a) - links(b));
+    // Every section lists its exFAT images first — the same priority preferredRelease gives them
+    // — then what the section ordered on: the browser rows by how many parts they carry, the
+    // rest straight by the release's own place, which is the order they had before.
+    const image = ({ release }) => inferFormat(release) === "exfat" ? 0 : 1;
+    for (const section of sections) {
+      section.items.sort((a, b) => image(a) - image(b) || (section.group === "browser" ? links(a) - links(b) : 0) || a.index - b.index);
+    }
     return sections.filter((section) => section.items.length);
   }
 

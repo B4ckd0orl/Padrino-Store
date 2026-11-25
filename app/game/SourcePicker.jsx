@@ -61,7 +61,7 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
         note ? /* @__PURE__ */ (0, jsx)(Text, { style: { width: 660, fontFamily: "Inter-Regular", fontSize: 21, color: "#606060", numberOfLines: 2, ellipsizeMode: "tail", lineHeight: 30 }, children: t2(note) }) : null
       ] }),
       items.map(({ release, index }, row) => {
-        const { name, detail: detail2, size, status, zstd } = describeSource(release);
+        const { name, detail: detail2, size, status, zstd, exfat } = describeSource(release);
         return /* @__PURE__ */ (0, jsx)(View, { autoFocus: index === selected || revealed && row === 0, onPress: () => onPick(index), style: (_state) => [{ position: "relative", minHeight: 84, flexDirection: "row", alignItems: "center", gap: 18, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 12 }, _state.focused ? { backgroundColor: "#1e1e1e" } : null], children: /* @__PURE__ */ (0, jsx)(
           RowFace,
           {
@@ -72,7 +72,9 @@ import { Text, View, useIsFocused } from '@ps5-react/core';
             status,
             zstd,
             cdn: isOverdriveCdn(release.provider),
-            recommended: index === recommended && group !== "browser",
+            // The recommended mark never sat on a browser row — the player opens a page for it —
+            // except an exFAT image, which is the format this list puts first (sources.js).
+            recommended: index === recommended && (group !== "browser" || exfat),
             current: index === selected
           }
         ) }, release.id);
