@@ -14,21 +14,5 @@
     "flow": "torrent",
     "label": "Magnet P2P (v01.002.001)",
     "record": "rutracker-6943138"
-  },
-  {
-    "id": "r-gtavi-torrent",
-    "format": "pkg",
-    "filename": "PPSA38500.torrent",
-    "url": "asset.php?f=torrent&id=PPSA38500",
-    "browserUrl": "asset.php?f=torrent&id=PPSA38500",
-    "requiresBrowser": false,
-    "sizeBytes": 216513692961,
-    "version": "01.002.001",
-    "category": "game",
-    "provider": "Torrent",
-    "source": "p2p",
-    "flow": "torrent",
-    "label": "Archivo .torrent (P2P)",
-    "record": "rutracker-6943138-file"
   }
 ]
