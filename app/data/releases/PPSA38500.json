@@ -1,0 +1,34 @@
+[
+  {
+    "id": "r-gtavi-magnet",
+    "format": "pkg",
+    "filename": "Grand Theft Auto VI PPSA38500 v01.002.001.pkg",
+    "url": "magnet:?xt=urn:btih:46a3c8c22b1e2a5f987229b04fb5ddaa193e5290&dn=Grand+Theft+Auto+VI+PPSA38500+v01.002.001.pkg&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
+    "browserUrl": "magnet:?xt=urn:btih:46a3c8c22b1e2a5f987229b04fb5ddaa193e5290&dn=Grand+Theft+Auto+VI+PPSA38500+v01.002.001.pkg&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
+    "requiresBrowser": false,
+    "sizeBytes": 216513692961,
+    "version": "01.002.001",
+    "category": "game",
+    "provider": "RuTracker",
+    "source": "p2p",
+    "flow": "torrent",
+    "label": "Magnet P2P (v01.002.001)",
+    "record": "rutracker-6943138"
+  },
+  {
+    "id": "r-gtavi-torrent",
+    "format": "pkg",
+    "filename": "PPSA38500.torrent",
+    "url": "asset.php?f=torrent&id=PPSA38500",
+    "browserUrl": "asset.php?f=torrent&id=PPSA38500",
+    "requiresBrowser": false,
+    "sizeBytes": 216513692961,
+    "version": "01.002.001",
+    "category": "game",
+    "provider": "Torrent",
+    "source": "p2p",
+    "flow": "torrent",
+    "label": "Archivo .torrent (P2P)",
+    "record": "rutracker-6943138-file"
+  }
+]
