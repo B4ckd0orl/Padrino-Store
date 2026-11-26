@@ -1,4 +1,4 @@
-// A text field typed with an on-screen keyboard laid out like SwanStationPS5's: four rows of ten keys
+// A text field typed with an on-screen keyboard: four rows of ten keys
 // (digits and letters, or symbols), then Shift, Symbols, Space and Apply. Used for an archive password the known ones
 // do not open.
 //   Cross types, Square deletes, Triangle shifts, L2 swaps letters and symbols, L1/R1 move the cursor,
