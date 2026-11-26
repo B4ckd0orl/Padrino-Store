@@ -33,11 +33,13 @@ import { Text, View } from '@ps5-react/core';
     // the format the link and label name.
     return job2.inspected || FILE_KIND.exec(job2.fileName || "")?.[1] || inferFormat(release) || format || null;
   }
+  var NEEDS_PASSWORD = /archive password|RAR5 password|passphrase/i;
   function primary({ state, error: error2 }, run, openGame) {
     if (state === "pausing") return { icon: "pause", label: "downloads.action.pausing", onPress: () => {
     } };
     if (BUSY.includes(state)) return { icon: "pause", label: "downloads.action.pause", onPress: () => run("pause") };
     if (["paused", "failed"].includes(state) && STALE_PARTIAL.test(cause(error2))) return { icon: "download", label: "downloads.action.restart", onPress: () => run("restart") };
+    if (state === "failed" && NEEDS_PASSWORD.test(cause(error2))) return { icon: "play", label: "downloads.action.enterPassword", onPress: () => run("password") };
     if (state === "paused") return { icon: "play", label: "downloads.action.resume", onPress: () => run("resume") };
     if (state === "failed") return { icon: "download", label: "downloads.action.retry", onPress: () => run("resume") };
     if (state === "awaiting-browser") return { icon: "play", label: "downloads.action.continueOnPage", onPress: openGame, page: true };

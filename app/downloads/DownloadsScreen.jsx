@@ -6,6 +6,8 @@ import { jsx, jsxs } from 'react/jsx-runtime';
 import { useEffect, useRef, useState } from 'react';
 import { DownloadRow, linksOf, primaryKey } from './DownloadRow.jsx';
 import { SummaryPanel } from './SummaryPanel.jsx';
+import { PasswordDialog } from './PasswordDialog.jsx';
+import { cause } from './errors.js';
 import { useJobs } from './useQueue.js';
 import { formatNumber2, t } from '../i18n/core.js';
 import { SPAN_MAX, fitBytes } from '../i18n/fit.js';
@@ -74,6 +76,17 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
     }, []);
     const [failure, setFailure] = (0, useState)("");
     const [filter, setFilter] = (0, useState)("all");
+    const [asking, setAsking] = (0, useState)(null);
+    // A download that fails on its archive password while this page is open asks for it at once; one that
+    // was already failed when the page opened keeps its "Enter password" button instead.
+    const seen = (0, useRef)(null);
+    (0, useEffect)(() => {
+      const before = seen.current;
+      seen.current = new Map(jobs.map((job2) => [job2.id, job2.state]));
+      if (!before || asking) return;
+      const failed = jobs.find((job2) => job2.state === "failed" && before.has(job2.id) && before.get(job2.id) !== "failed" && /archive password|RAR5 password|passphrase/i.test(cause(job2.error || "")));
+      if (failed) setAsking(failed);
+    }, [jobs]);
     const { focusLater } = useNavActions();
     const focused = (0, useRef)(null);
     const latest2 = (0, useRef)(jobs);
@@ -94,6 +107,10 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
     const [handlers] = (0, useState)(() => ({
       run(job2, name) {
         setFailure("");
+        if (name === "password") {
+          setAsking(job2);
+          return;
+        }
         const target = ["remove", "cancel"].includes(name) ? neighbor(job2) : null;
         try {
           void Promise.resolve(downloadQueue()[name](job2.id)).catch((caught) => setFailure(caught.message));
@@ -187,7 +204,12 @@ import { FocusScope, ScrollView, Text, View, motion, useIsFocused, transitions }
           job2.id
         )
       ) }) : /* @__PURE__ */ (0, jsx)(View, { style: { paddingTop: 96, alignItems: "center" }, children: /* @__PURE__ */ (0, jsx)(Text, { style: { fontFamily: "Inter-Regular", fontSize: 24, color: "#606060" }, children: t2("downloads.empty") }) }) }) : /* @__PURE__ */ (0, jsx)(Empty, { error: error2, onBrowse }) }),
-      /* @__PURE__ */ (0, jsx)(ButtonHints, { hints: jobs.length > 0 ? LIST_HINTS : EMPTY_HINTS })
+      /* @__PURE__ */ (0, jsx)(ButtonHints, { hints: jobs.length > 0 ? LIST_HINTS : EMPTY_HINTS }),
+      asking ? /* @__PURE__ */ (0, jsx)(PasswordDialog, { title: t2("downloads.passwordTitle", { title: asking.title }), detail: t2("downloads.passwordDetail"), submit: (value) => downloadQueue().retryWithPassword(asking.id, value), onClose: () => {
+        const key = primaryKey(asking.id);
+        setAsking(null);
+        focusLater(key);
+      } }) : null
     ] }) });
   }
 
