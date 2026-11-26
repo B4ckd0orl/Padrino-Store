@@ -49,7 +49,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
   // on the archive's headers before anything is written ("RAR archive password is missing.",
   // "Incorrect RAR archive password.", "Incorrect RAR5 archive password."), and a failed attempt leaves
   // no staging behind, so each one costs a moment. They are checked on the console: nothing counts them.
-  var KNOWN_PASSWORDS = ["DLPSGAME.COM", "[DLPSGAME.COM]", "www.DLPSGAME.COM", "SuperPSX", "downloadgameps3.com", "hako"];
+  var KNOWN_PASSWORDS = ["DLPSGAME.COM", "(DLPSGAME.COM)", "[DLPSGAME.COM]", "www.DLPSGAME.COM", "SuperPSX", "downloadgameps3.com", "hako"];
   var PASSWORD_FAILURE = /archive password|RAR5 password|passphrase/i;
   // A LinkVault page adds its own check and a mirror page before the host's, so a link capture gets
   // the payload's longest window.
@@ -1215,7 +1215,8 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
           if (source2.archivePassword == null && match?.archivePassword) source2.archivePassword = match.archivePassword;
         }
       }
-      const password = archivePassword(job2.release);
+      // A password the player typed on the Downloads page outranks the catalog's.
+      const password = job2.manualPassword || archivePassword(job2.release);
       storageIdentity(job2);
       const directory2 = `${job2.root}/downloads/extracted`;
       fs.mkdir(directory2, { recursive: true });
@@ -1669,12 +1670,16 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       }
       return identity;
     }
-    function partialFiles(job2) {
+    // `discard` is Cancel: a final file this download finished (the engine leaves its ".complete" record
+    // beside it) goes too, as when the archive downloaded but would not extract. Without that record the
+    // file may be another's, and a restart keeps refusing so that Retry can verify it.
+    function partialFiles(job2, discard = false) {
       storageIdentity(job2);
       if (!job2.rootIdentity) throw new Error("This older task has no storage identity. Preserve and inspect its partial files.");
-      if (fs.exists(job2.parts?.[job2.partIndex]?.destination || job2.downloadDestination || job2.artifact.destination)) throw new Error("A final file exists. Retry to verify and recover it.");
       const destination = job2.parts?.[job2.partIndex]?.destination || job2.downloadDestination || job2.artifact.destination;
-      const paths = [".part", ".resume", ".resume.tmp", ".complete", ".complete.tmp"].map((suffix) => destination + suffix);
+      const finished = fs.exists(destination);
+      if (finished && !(discard && fs.exists(destination + ".complete"))) throw new Error("A final file exists. Retry to verify and recover it.");
+      const paths = [...finished ? [destination] : [], ...[".part", ".resume", ".resume.tmp", ".complete", ".complete.tmp"].map((suffix) => destination + suffix)];
       for (const path of paths) {
         const info = fs.stat(path);
         if (info && !info.isFile) throw new Error(`Cannot discard a non-file: ${path}`);
@@ -1747,7 +1752,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     }
     async function forget(job2) {
       if ((job2.rootIdentity || job2.written) && !job2.adopted && onOriginalStorage(job2)) {
-        const paths = job2.release.parts ? setFiles(job2) : partialFiles(job2);
+        const paths = job2.release.parts ? setFiles(job2) : partialFiles(job2, true);
         if (job2.state === "queued") job2.state = "paused";
         await removing(job2, () => removeAll(paths));
       }
@@ -2290,6 +2295,14 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         job2.error = "";
         change();
         pump();
+      },
+      // The player's own password for an archive none of the known ones opened: kept on the job and
+      // tried first, then the download resumes (the files are still there, only the extraction reruns).
+      retryWithPassword(id, password) {
+        const job2 = find(id);
+        if (typeof password !== "string" || !password || password.length > 1024 || password.includes("\0")) throw new Error("Invalid archive password.");
+        job2.manualPassword = password;
+        this.resume(id);
       },
       async restart(id) {
         const job2 = find(id);
