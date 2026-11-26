@@ -587,5 +587,15 @@
   "settings.deletePackages": "Eliminar los PKG tras instalarlos",
   "settings.deletePackagesDetail": "Libera el espacio cuando la consola ha instalado el juego. Desactívalo para conservar los archivos.",
   "settings.on": "Activado",
-  "settings.off": "Apagada"
+  "settings.off": "Apagada",
+  "notice.title": "SÍGUEME EN MIS REDES",
+  "notice.hi": "Hola, soy Padrino, creador de PADRINO STORE.",
+  "notice.thanks": "Gracias por confiar en el proyecto y por acompañarme desde el inicio: esto lo hacemos juntos.",
+  "notice.follow": "Sígueme en mis redes y sé el primero en enterarte de novedades, actualizaciones, arreglos y soporte:",
+  "notice.x.desc": "Avisos rápidos, cambios, fechas y todo lo que se viene.",
+  "notice.x.link": "→ X: x.com/padrinostorevp",
+  "notice.tg.desc": "Soporte oficial: dudas, descargas, arreglos y novedades de la store.",
+  "notice.tg.link": "→ Telegram: t.me/padrinostores",
+  "notice.closing": "Leo ambos canales, así que si algo no funciona o tienes una idea, escríbeme por ahí. ¡Nos vemos dentro!",
+  "notice.continue": "CONTINUAR"
 }

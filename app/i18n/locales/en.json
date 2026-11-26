@@ -676,5 +676,15 @@
   "settings.deletePackages": "Delete PKGs after installing",
   "settings.deletePackagesDetail": "Frees the space once the console has installed the game. Turn it off to keep the files.",
   "settings.on": "On",
-  "settings.off": "Off"
+  "settings.off": "Off",
+  "notice.title": "FOLLOW ME ON MY SOCIALS",
+  "notice.hi": "Hi, I'm Padrino, the creator of PADRINO STORE.",
+  "notice.thanks": "Thanks for trusting this project and being here since day one: we build this together.",
+  "notice.follow": "Follow me and be the first to hear about news, updates, fixes and support:",
+  "notice.x.desc": "Quick notices, changes, dates and everything that's coming.",
+  "notice.x.link": "→ X: x.com/padrinostorevp",
+  "notice.tg.desc": "Official support: questions, downloads, fixes and store news.",
+  "notice.tg.link": "→ Telegram: t.me/padrinostores",
+  "notice.closing": "I read both channels, so if something breaks or you have an idea, message me there. See you inside!",
+  "notice.continue": "CONTINUE"
 }

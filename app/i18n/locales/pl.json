@@ -676,5 +676,15 @@
     "settings.deletePackages": "Usuwaj PKG po instalacji",
     "settings.deletePackagesDetail": "Zwalnia miejsce, gdy konsola zainstaluje grę. Wyłącz, by zachować pliki.",
     "settings.on": "Wł.",
-    "settings.off": "Wył."
+    "settings.off": "Wył.",
+    "notice.title": "OBSERWAJ MNIE W SIECIACH",
+    "notice.hi": "Cześć, jestem Padrino, twórca PADRINO STORE.",
+    "notice.thanks": "Dzięki, że ufasz temu projektowi i że jesteś tu od początku: robimy to razem.",
+    "notice.follow": "Obserwuj mnie i dowiaduj się jako pierwszy o nowościach, aktualizacjach, poprawkach i wsparciu:",
+    "notice.x.desc": "Szybkie ogłoszenia, zmiany, daty i wszystko, co nadchodzi.",
+    "notice.x.link": "→ X: x.com/padrinostorevp",
+    "notice.tg.desc": "Oficjalne wsparcie: pytania, pobieranie, poprawki i nowości ze sklepu.",
+    "notice.tg.link": "→ Telegram: t.me/padrinostores",
+    "notice.closing": "Czytam oba kanały, więc jeśli coś nie działa albo masz pomysł, napisz tam. Do zobaczenia w środku!",
+    "notice.continue": "KONTYNUUJ"
 }
