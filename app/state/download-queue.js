@@ -240,8 +240,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     // A power loss can leave the native transfer's durable files intact while the app's queue
     // record is absent. Recover only unambiguous catalog PKGs, and wait for the player's Resume.
     // The filename can be a title ID (PPSA38500.pkg) even when the catalog uses a longer name.
+    console.log(`[download-queue] checkpoint scan platform=${platform} jobs=${jobs.length} catalog=${Boolean(gameOf && releasesOf)}`);
+    const refreshed = platform === "ps5" ? refreshPackageJobs(fs, jobs) : false;
     if (platform === "ps5" && gameOf && releasesOf) {
-      const refreshed = refreshPackageJobs(fs, jobs);
       const recovered = recoverPackageJobs({ fs, jobs, gameOf, releasesOf, formats });
       if (recovered.length) {
         jobs.push(...recovered);
@@ -250,6 +251,8 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       if (recovered.length || refreshed) {
         try { change(); } catch (error2) { console.log(`[download-queue] recovered queue not saved: ${error2.message}`); }
       }
+    } else if (refreshed) {
+      try { change(); } catch (error2) { console.log(`[download-queue] recovered queue not saved: ${error2.message}`); }
     }
     // The packages served to the console's own download (see streamed). Each job keeps its link's token
     // and port, so a later session serves the same URL again and the console's queue, which retries

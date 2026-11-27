@@ -5,11 +5,12 @@ import { checkpointProgress } from './checkpoint-progress.js';
 export function refreshPackageJobs(fs, jobs) {
   let refreshed = false;
   for (const job of jobs) {
-    if (job.parts || !['pkg', 'fpkg'].includes(job.release?.format) ||
-        !['paused', 'failed', 'awaiting-browser'].includes(job.state)) continue;
     const destination = job.downloadDestination || job.artifact?.destination;
-    if (!destination || fs.exists(destination)) continue;
-    const progress = checkpointProgress(fs, destination);
+    // A saved row may have incomplete or stale release metadata after a power loss. The actual
+    // sidecar pair, rather than the row's former state, determines whether progress can be read.
+    if (job.parts || !/\.(?:f?pkg)$/i.test(destination || '') || fs.exists(destination)) continue;
+    const progress = checkpointProgress(fs, destination,
+      reason => console.log(`[download-queue] checkpoint ${destination}: ${reason}`));
     if (!progress) continue;
     if (job.written !== progress.written || job.total !== progress.total ||
         job.checkpointRangeBytes !== progress.rangeBytes) {
@@ -17,6 +18,7 @@ export function refreshPackageJobs(fs, jobs) {
       job.total = progress.total;
       job.checkpointRangeBytes = progress.rangeBytes;
       refreshed = true;
+      console.log(`[download-queue] restored checkpoint ${destination}: ${progress.written}/${progress.total}`);
     }
   }
   return refreshed;

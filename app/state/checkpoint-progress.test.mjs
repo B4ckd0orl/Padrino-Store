@@ -18,7 +18,7 @@ test('counts only durable ranges, including a shorter final range', () => {
   const bytes = sidecar(10, 4, [0, 2]);
   const fs = {
     stat: path => path.endsWith('.part') ? { isFile: true, size: 10 } : { isFile: true, size: bytes.length },
-    readBytes: () => bytes
+    readBytes: () => [...bytes]
   };
   assert.deepEqual(checkpointProgress(fs, '/data/downloads/packages/game.pkg'),
     { written: 6, total: 10, rangeBytes: 4 });
@@ -28,7 +28,7 @@ test('does not report progress from a malformed or truncated checkpoint', () => 
   const bytes = sidecar(10, 4, [0, 2]);
   const fs = {
     stat: path => path.endsWith('.part') ? { isFile: true, size: 8 } : { isFile: true, size: bytes.length },
-    readBytes: () => bytes
+    readBytes: () => [...bytes]
   };
   assert.equal(checkpointProgress(fs, '/data/downloads/packages/game.pkg'), null);
   fs.stat = path => ({ isFile: true, size: path.endsWith('.part') ? 10 : bytes.length });

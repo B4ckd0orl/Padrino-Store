@@ -193,7 +193,17 @@ JSValue fs_read_bytes(JSContext* ctx, JSValueConst, int, JSValueConst* argv) {
     length += static_cast<std::size_t>(count);
   }
   close(fd);
-  return JS_NewArrayBufferCopy(ctx, bytes.data(), bytes.size());
+  // The embedded QuickJS runtime has no typed-array constructors. Return ordinary numeric
+  // elements so the app can inspect binary sidecars without relying on Uint8Array or DataView.
+  JSValue result = JS_NewArray(ctx);
+  if (JS_IsException(result)) return result;
+  for (std::uint32_t index = 0; index < bytes.size(); ++index) {
+    if (JS_SetPropertyUint32(ctx, result, index, JS_NewInt32(ctx, bytes[index])) < 0) {
+      JS_FreeValue(ctx, result);
+      return JS_EXCEPTION;
+    }
+  }
+  return result;
 }
 
 JSValue fs_write_file(JSContext* ctx, JSValueConst, int, JSValueConst* argv) {

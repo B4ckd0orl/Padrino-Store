@@ -16,7 +16,7 @@
 //   fs.stat(path)                  {name, isDirectory, isFile, size, modified, device, inode} | null
 //                                  device/inode are decimal strings, preserving 64-bit IDs
 //   fs.readFile(path)              string (UTF-8; at most kMaxReadBytes)
-//   fs.readBytes(path)             ArrayBuffer (at most kMaxReadBytes)
+//   fs.readBytes(path)             Array of byte values (at most kMaxReadBytes)
 //   fs.writeFile(path, text, append, sync)  sync: fsync before close
 //   fs.mkdir(path, recursive)
 //   fs.remove(path)                file or empty directory

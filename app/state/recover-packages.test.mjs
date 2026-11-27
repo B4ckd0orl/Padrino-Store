@@ -81,7 +81,7 @@ test('shows completed bytes when rebuilding a queue entry', () => {
   view.setUint32(24, bytes.length - 96, true);
   bytes[96] = bytes[97] = bytes[98] = 1;
   files.set(`${destination}.resume`, { isFile: true, size: bytes.length });
-  input.fs.readBytes = () => bytes;
+  input.fs.readBytes = () => [...bytes];
   const [job] = recoverPackageJobs(input);
   assert.equal(job.written, 3 * rangeBytes);
   assert.equal(job.total, total);
@@ -90,4 +90,24 @@ test('shows completed bytes when rebuilding a queue entry', () => {
   input.fs.exists = () => false;
   assert.equal(refreshPackageJobs(input.fs, [job]), true);
   assert.equal(job.written, 3 * rangeBytes);
+});
+
+test('refreshes a saved package from its sidecars even with stale row metadata', () => {
+  const { files, input } = fixture([`${release.filename}.part`]);
+  const destination = `${folder}/${release.filename}`;
+  const rangeBytes = 4 * 1024 ** 2;
+  const bytes = new Uint8Array(96 + Math.ceil(total / rangeBytes));
+  bytes.set(new TextEncoder().encode('P5RDL001'));
+  const view = new DataView(bytes.buffer);
+  view.setBigUint64(8, BigInt(total), true);
+  view.setBigUint64(16, BigInt(rangeBytes), true);
+  view.setUint32(24, bytes.length - 96, true);
+  bytes[96] = 1;
+  files.set(`${destination}.resume`, { isFile: true, size: bytes.length });
+  input.fs.readBytes = () => [...bytes];
+  const job = { release: { id: release.id }, state: 'interrupted',
+    downloadDestination: destination, artifact: { destination }, written: 0, total: null };
+  assert.equal(refreshPackageJobs(input.fs, [job]), true);
+  assert.equal(job.written, rangeBytes);
+  assert.equal(job.total, total);
 });

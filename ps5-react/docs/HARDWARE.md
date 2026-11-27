@@ -462,6 +462,17 @@ ShadowMount+, and launched the title. The app presented its home screen.
 The console's existing binary download checkpoint was copied for local inspection:
 45,151 of 52,698 ranges were durable, or 189,377,019,904 of 221,028,009,318
 bytes. The adjacent `.part` file was 189,618,190,600 bytes; its length alone
-would overstate completed data. The new `FileSystem.readBytes` call and the
-updated progress row have not yet been observed after opening Downloads on this
-build, so this launch does not validate their runtime behavior.
+would overstate completed data. The first progress build showed 0 MB because its
+JavaScript called `Uint8Array`, which this embedded runtime does not define.
+The console log identified the exception after opening Downloads. The binary
+API now returns ordinary byte values, and the checkpoint parser reads them
+without typed arrays. The corrected image (`PadrinoStore-progress3.exfat`, SHA-256
+`b57c2bb78df83e68693dbf3e2585afca3c489a6bdc6a85f21aada2a166756470`,
+`eboot.bin` SHA-256 `5260559a3c87bd5c7349ae5f5156d5ca7c08b213e42dfa018a91dddfb7fc4641`)
+was uploaded and launched through PS5Upload. After selecting **Depois** in the
+update dialog and opening **Downloads** with the remote controller, the row
+showed **189,4 GB de 221 GB** and a partially filled progress bar. The console
+log reported `restored checkpoint ... 189377019904/221028009318`, and the queue
+file persisted those values. The row remained **Aguardando verificação do
+navegador** with **Continue**; an actual transfer resume was not tested because
+the source requires a final direct file URL from its browser page.
