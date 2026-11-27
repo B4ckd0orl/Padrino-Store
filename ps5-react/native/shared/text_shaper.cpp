@@ -32,7 +32,7 @@ constexpr std::size_t kGlyphCacheBytes = 4u << 20;
 // about 1 KB each for a typical label.
 constexpr std::size_t kLayoutCacheEntries = 128;
 
-enum class Script : std::uint8_t { kOther, kHan, kKana, kDevanagari, kBengali, kArabic };
+enum class Script : std::uint8_t { kOther, kHan, kKana, kHangul, kDevanagari, kBengali, kArabic };
 
 struct FaceSpec {
   const char* file;
@@ -50,9 +50,11 @@ constexpr FaceSpec kFaces[] = {
     {"NotoSansDevanagari-Regular.ttf", Script::kDevanagari, 1000, 450, true},
     {"NotoSansBengali-Regular.ttf", Script::kBengali, 1000, 450, true},
     {"NotoSansArabic-Regular.ttf", Script::kArabic, 1050, 500, true},
+    {"NotoSansKR-Regular.otf", Script::kHangul, 880, 120, false},
 };
 constexpr int kFaceCount = sizeof kFaces / sizeof kFaces[0];
-constexpr int kJapanese = 0, kChinese = 1, kTraditional = 2;
+constexpr int kJapanese = 0, kChinese = 1, kTraditional = 2, kKorean = 6;
+static_assert(kFaces[kKorean].script == Script::kHangul, "kKorean indexes the Hangul face");
 
 struct Face {
   bool present = false, failed = false;
@@ -67,7 +69,7 @@ struct State {
   Face faces[kFaceCount];
   bool any_face = false;
   hb_language_t language = nullptr;
-  bool prefer_japanese = false, prefer_traditional = false;
+  bool prefer_japanese = false, prefer_traditional = false, prefer_korean = false;
   unsigned serial = 0;
   hb_buffer_t* buffer = nullptr;
   hb_raster_draw_t* raster = nullptr;
@@ -113,6 +115,10 @@ Script script_of(std::uint32_t c) {
     return Script::kArabic;
   if ((c >= 0x3040 && c <= 0x30FF) || (c >= 0x31F0 && c <= 0x31FF) || (c >= 0xFF66 && c <= 0xFF9F))
     return Script::kKana;
+  // Hangul syllables and jamo (conjoining, compatibility, extended A and B). Korean breaks at spaces.
+  if ((c >= 0x1100 && c <= 0x11FF) || (c >= 0x3130 && c <= 0x318F) || (c >= 0xA960 && c <= 0xA97F) ||
+      (c >= 0xAC00 && c <= 0xD7FF) || (c >= 0xFFA0 && c <= 0xFFDC))
+    return Script::kHangul;
   if ((c >= 0x2E80 && c <= 0x2FDF) || (c >= 0x3000 && c <= 0x303F) || (c >= 0x3190 && c <= 0x33FF) ||
       (c >= 0x3400 && c <= 0x4DBF) || (c >= 0x4E00 && c <= 0x9FFF) || (c >= 0xF900 && c <= 0xFAFF) ||
       (c >= 0xFE30 && c <= 0xFE4F) || (c >= 0xFF00 && c <= 0xFFEF) || (c >= 0x20000 && c <= 0x3FFFF))
@@ -242,7 +248,10 @@ int face_for(std::uint32_t cp, int previous) {
     for (int i = 0; i < kFaceCount; i++)
       if (kFaces[i].script == script) order[count++] = i;
   } else {
+    // Symbols take the face of the text around them; at the start of a Korean string (the ×□△○
+    // button marks), the Korean face rather than the first one listed.
     if (previous >= 0) order[count++] = previous;
+    else if (state->prefer_korean) order[count++] = kKorean;
     for (int i = 0; i < kFaceCount; i++) order[count++] = i;
   }
   for (int i = 0; i < count; i++)
@@ -865,6 +874,7 @@ void set_language(const char* tag) {
   if (!state) return;
   state->language = hb_language_from_string(tag, -1);
   state->prefer_japanese = std::strncmp(tag, "ja", 2) == 0 && (tag[2] == '\0' || tag[2] == '-');
+  state->prefer_korean = std::strncmp(tag, "ko", 2) == 0 && (tag[2] == '\0' || tag[2] == '-' || tag[2] == '_');
   // zh-Hant, and the regions that write it when the tag names no script: Taiwan, Hong Kong, Macau.
   std::string lower(tag);
   for (char& c : lower) c = c == '_' ? '-' : static_cast<char>(std::tolower(static_cast<unsigned char>(c)));

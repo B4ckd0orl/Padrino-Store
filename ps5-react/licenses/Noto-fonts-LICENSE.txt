@@ -3,7 +3,8 @@ subset at build time by tools/text_fonts.py: only the characters listed there
 are kept, and hinting is removed. These are Modified Versions under the license
 below.
 
-NotoSansSC-Regular.otf, NotoSansJP-Regular.otf (Noto Sans CJK 2.004)
+NotoSansSC-Regular.otf, NotoSansTC-Regular.otf, NotoSansJP-Regular.otf,
+NotoSansKR-Regular.otf (Noto Sans CJK 2.004)
   Copyright © 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font
   Name 'Source'.
   https://github.com/notofonts/noto-cjk

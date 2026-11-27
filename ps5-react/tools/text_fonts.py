@@ -56,6 +56,10 @@ SCRIPTS = {
     # JIS X 0208: kana and the 6,355 kanji of levels 1 and 2. Han characters outside it fall back
     # to the Chinese font when the app also lists "chinese".
     "japanese": ("NotoSansJP-Regular.otf", lambda: euc_rows("euc_jp", 1, 84) | KANA | CJK_COMMON),
+    # Korean: all 11,172 Hangul syllables, the compatibility jamo, and KS X 1001's symbol rows (1-12:
+    # punctuation, the ×□△○ button marks, arrows, units). Hanja fall back to the Chinese and Japanese fonts.
+    "korean": ("NotoSansKR-Regular.otf",
+               lambda: span(0xAC00, 0xD7A3) | span(0x3131, 0x318E) | euc_rows("euc_kr", 1, 12) | CJK_COMMON),
     # Whole blocks, with the joiners and the dotted circle HarfBuzz draws under a stray mark.
     "devanagari": ("NotoSansDevanagari-Regular.ttf",
                    lambda: ASCII | span(0x0900, 0x097F) | span(0xA8E0, 0xA8FF) | span(0x1CD0, 0x1CFF) | SHAPING),
