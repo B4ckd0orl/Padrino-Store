@@ -1,7 +1,7 @@
 // Copyright (C) 2026 half144 and PS5 React contributors
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Additional attribution term: see LICENSE-ATTRIBUTION.
-// Native API contract (ABI v22) between the hosts and `@ps5-react/core`. The input actions hosts
+// Native API contract (ABI v23) between the hosts and `@ps5-react/core`. The input actions hosts
 // pass to `__ps5ReactDispatch` are a separate contract with its own version (runtime/js/input.js).
 //
 // host_api.cpp (shared) installs `globalThis.__ps5ReactNative` through
@@ -55,7 +55,8 @@
 //                                  switches after this frame (PS5: restarts EGL, the TV resyncs)
 //   network.download(url, path, options) task ID; queues native binary file I/O
 //     options: expectedBytes, storageRoot, pieces[{url, offset, size, sha1}],
-//              sha256, connections, adaptive, rangeBytes, resume, recoverCompleted, headers, rejectHtml,
+//              sha256, connections, adaptive, rangeBytes, resume, recoverCompleted,
+//              preservePartialOnMismatch (ABI v23), headers, rejectHtml,
 //              unlimited (ABI v17; exempt from setRateLimit)
 //   network.request(url, options)  task ID; queues bounded HTTP text I/O
 //     options: method, body, maxBytes, headers, followRedirects (default true)

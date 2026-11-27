@@ -21,7 +21,7 @@ struct Request {
   std::uint64_t expected_bytes = 0;
   std::uint64_t max_bytes = 1024 * 1024, range_bytes = 32 * 1024 * 1024;
   unsigned connections = 8;
-  bool resume = true, adaptive = true, recover_completed = false;
+  bool resume = true, adaptive = true, recover_completed = false, preserve_partial_on_mismatch = false;
   bool follow_redirects = true, reject_html = false;
   // Exempt from set_rate_limit (an app's own update).
   bool unlimited = false;

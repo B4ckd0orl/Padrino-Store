@@ -151,10 +151,11 @@ native, use parallel validated ranges when eligible, and resume durable ranges.
 byte manifests with per-piece SHA-1 and whole-file SHA-256 verification.
 `DownloadFormats` validates manifests and routes image, package, archive and
 binary filenames to their appropriate destinations. Native download options
-include opt-in `rejectHtml`, exact `expectedBytes`, `storageRoot` identity checks, `recoverCompleted`
-for receipt-backed SHA-256 verification of published files, and normalized
-`pieces: [{url, offset, size, sha1}]`. These options share ABI v2 on both hosts;
-there are no additional global native functions.
+include opt-in `rejectHtml`, exact `expectedBytes`, `storageRoot` identity checks,
+`recoverCompleted` for receipt-backed SHA-256 verification of published files,
+`preservePartialOnMismatch` (ABI v23) for adopted checkpoint files, and normalized
+`pieces: [{url, offset, size, sha1}]`. These options use the same download task API on both
+hosts; there are no additional global native functions.
 `Downloads.setRateLimit(bytesPerSecond)` (ABI v17) caps what all file downloads
 receive together, 0 for no limit. It applies at once, running downloads included;
 a capped download opens about one connection per MB/s. A download enqueued with

@@ -155,6 +155,7 @@ JSValue begin(JSContext* ctx, JSValueConst, int argc, JSValueConst* argv, bool d
         !number_option(ctx, options, "rangeBytes", request.range_bytes, 1024*1024, 256*1024*1024) ||
         !boolean_option(ctx, options, "resume", request.resume) || !boolean_option(ctx, options, "adaptive", request.adaptive) ||
         !boolean_option(ctx, options, "recoverCompleted", request.recover_completed) ||
+        !boolean_option(ctx, options, "preservePartialOnMismatch", request.preserve_partial_on_mismatch) ||
         !boolean_option(ctx, options, "rejectHtml", request.reject_html) ||
         !boolean_option(ctx, options, "unlimited", request.unlimited) ||
         !string_option(ctx, options, "sha256", request.sha256, 64) || !digest(request.sha256, 64) ||

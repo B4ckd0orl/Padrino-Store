@@ -1295,6 +1295,12 @@ bool Service::prepare(Job& job) {
       job.committed += end-begin;
     }
     if (!valid) {
+      if (job.request.preserve_partial_on_mismatch) {
+        if (job.fd >= 0) close(job.fd);
+        job.fd = -1;
+        job.fail("partial checkpoint does not match this source; original files were kept. Restart to download again");
+        return false;
+      }
       // A partial its checkpoint does not match, or one shorter than the ranges it calls saved, can
       // never resume: a restarted console, a changed validator or a file that moved changes the
       // identity. Keeping it failed the download for good, with nothing the player could do from the
