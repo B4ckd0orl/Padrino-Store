@@ -51,8 +51,8 @@ Padrino Store es una aplicación homebrew para PS5 que funciona como tienda de j
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <b>17 idiomas</b><br>
-      Español, English, Deutsch, Français, Português (Brasil y Portugal), русский, 日本語, 中文 (simplificado y tradicional), العربية, हिन्दी, Bahasa Indonesia, Italiano, فارسی, اردو y Bangla.
+      <b>20 idiomas</b><br>
+      Español, English, Deutsch, Français, Português (Brasil y Portugal), русский, 日本語, 中文 (simplificado y tradicional), العربية, हिन्दी, Bahasa Indonesia, Italiano, فارسی, اردو, Bangla, Nederlands, Polski y 한국어.
     </td>
     <td width="50%" valign="top">
       <b>Actualización en-app</b><br>
