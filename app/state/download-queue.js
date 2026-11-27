@@ -14,7 +14,7 @@ import { archivePassword } from './archive-password.js';
 import { BrowserRequired, archiveRefusal, cancellation, createSourceResolver, sourceKind, webURL } from './download-sources.js';
 import { LINK_PREFIX, captureAnchor, linkForLog, otherSourceLink, validateCapturedLink } from './browser-links.js';
 import { readJSON } from './read-json.js';
-import { recoverPackageJobs } from './recover-packages.js';
+import { recoverPackageJobs, refreshPackageJobs } from './recover-packages.js';
 import { releaseAwake, requestAwake } from './keep-awake.js';
 import { finishedHeaders, inspectHeaders, optionalHeaders } from './archive-headers.js';
 import { mountedImages, shadowRequest, within2 } from './shadowmount.js';
@@ -241,10 +241,13 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     // record is absent. Recover only unambiguous catalog PKGs, and wait for the player's Resume.
     // The filename can be a title ID (PPSA38500.pkg) even when the catalog uses a longer name.
     if (platform === "ps5" && gameOf && releasesOf) {
+      const refreshed = refreshPackageJobs(fs, jobs);
       const recovered = recoverPackageJobs({ fs, jobs, gameOf, releasesOf, formats });
       if (recovered.length) {
         jobs.push(...recovered);
         for (const job2 of recovered) console.log(`[download-queue] recovered interrupted package ${job2.downloadDestination}`);
+      }
+      if (recovered.length || refreshed) {
         try { change(); } catch (error2) { console.log(`[download-queue] recovered queue not saved: ${error2.message}`); }
       }
     }
@@ -958,7 +961,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
           job2.received = progress.received || 0;
           job2.connections = progress.connections || 0;
           job2.bytesPerSecond = progress.bytesPerSecond || 0;
-          if (job2.written > 0) delete job2.adopted;
+          if (completedBytes > 0) delete job2.adopted;
           if (++ticks % 20 === 0) {
             delete job2.launches;
             try {

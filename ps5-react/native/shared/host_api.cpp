@@ -16,6 +16,7 @@ extern "C" {
 #include <cstdio>
 #include <climits>
 #include <cmath>
+#include <cstdint>
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
@@ -162,6 +163,37 @@ JSValue fs_read_file(JSContext* ctx, JSValueConst, int, JSValueConst* argv) {
   std::free(buffer);
   close(fd);
   return result;
+}
+
+JSValue fs_read_bytes(JSContext* ctx, JSValueConst, int, JSValueConst* argv) {
+  Path path(ctx, argv[0]);
+  const int fd = path ? open(path.real(), O_RDONLY | O_NOFOLLOW) : -1;
+  if (fd < 0) return path.error("fs.readBytes");
+  struct stat st;
+  if (fstat(fd, &st) != 0) {
+    const JSValue error = path.error("fs.readBytes");
+    close(fd);
+    return error;
+  }
+  if (!S_ISREG(st.st_mode) || st.st_size < 0 || st.st_size > static_cast<off_t>(kMaxReadBytes)) {
+    close(fd);
+    return JS_ThrowPlainError(ctx, "fs.readBytes %s: Expected a regular file of at most %zu bytes", path.app(), kMaxReadBytes);
+  }
+  std::vector<std::uint8_t> bytes(static_cast<std::size_t>(st.st_size));
+  std::size_t length = 0;
+  while (length < bytes.size()) {
+    const ssize_t count = read(fd, bytes.data() + length, bytes.size() - length);
+    if (count < 0 && errno == EINTR) continue;
+    if (count <= 0) {
+      const JSValue error = count < 0 ? path.error("fs.readBytes") :
+        JS_ThrowPlainError(ctx, "fs.readBytes %s: File changed while reading", path.app());
+      close(fd);
+      return error;
+    }
+    length += static_cast<std::size_t>(count);
+  }
+  close(fd);
+  return JS_NewArrayBufferCopy(ctx, bytes.data(), bytes.size());
 }
 
 JSValue fs_write_file(JSContext* ctx, JSValueConst, int, JSValueConst* argv) {
@@ -575,7 +607,7 @@ JSValue namespace_object(JSContext* ctx, const char* space, const Function (&fun
 }
 
 constexpr Function kFs[] = {
-  {"readDir", fs_read_dir, 1}, {"stat", fs_stat, 1}, {"readFile", fs_read_file, 1},
+  {"readDir", fs_read_dir, 1}, {"stat", fs_stat, 1}, {"readFile", fs_read_file, 1}, {"readBytes", fs_read_bytes, 1},
   {"writeFile", fs_write_file, 4}, {"mkdir", fs_mkdir, 2}, {"remove", fs_remove, 1},
   {"removeTree", fs_remove_tree, 1}, {"removeAsync", fs_remove_async, 1},
   {"rename", fs_rename, 2}, {"copyFile", fs_copy_file, 2}, {"chmod", fs_chmod, 2}, {"mounts", fs_mounts, 0}, {"diskUsage", fs_disk_usage, 1},

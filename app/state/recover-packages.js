@@ -1,5 +1,27 @@
 // Rebuild queue rows from native download sidecars after a power loss. The source is selected only
 // when its catalog match is unambiguous; the native worker validates the checkpoint on Resume.
+import { checkpointProgress } from './checkpoint-progress.js';
+
+export function refreshPackageJobs(fs, jobs) {
+  let refreshed = false;
+  for (const job of jobs) {
+    if (job.parts || !['pkg', 'fpkg'].includes(job.release?.format) ||
+        !['paused', 'failed', 'awaiting-browser'].includes(job.state)) continue;
+    const destination = job.downloadDestination || job.artifact?.destination;
+    if (!destination || fs.exists(destination)) continue;
+    const progress = checkpointProgress(fs, destination);
+    if (!progress) continue;
+    if (job.written !== progress.written || job.total !== progress.total ||
+        job.checkpointRangeBytes !== progress.rangeBytes) {
+      job.written = progress.written;
+      job.total = progress.total;
+      job.checkpointRangeBytes = progress.rangeBytes;
+      refreshed = true;
+    }
+  }
+  return refreshed;
+}
+
 export function recoverPackageJobs({ fs, jobs, gameOf, releasesOf, formats }) {
   const folder = '/data/downloads/packages';
   let entries;
@@ -47,12 +69,13 @@ export function recoverPackageJobs({ fs, jobs, gameOf, releasesOf, formats }) {
     const closest = Number.isSafeInteger(total) && total > 0 && ranges ? widths.reduce((best, bytes) =>
       Math.abs(total / bytes - ranges) < Math.abs(total / best - ranges) ? bytes : best) : null;
     const rangeBytes = closest && Math.abs(total / closest - ranges) / ranges < 0.25 ? closest : null;
+    const progress = checkpointProgress(fs, destination);
     recovered.push({
       id: `${game.id}/${release.id}`, gameId: game.id, titleId: release.titleId || game.titleId || game.id,
       title: game.title, release: { ...release }, requestedId: release.id, root: '/data',
       artifact, downloadDestination: destination, streamMode: 'here', state: 'paused',
-      written: 0, total: total || null, error: '', adopted: true,
-      ...(rangeBytes ? { checkpointRangeBytes: rangeBytes } : {})
+      written: progress?.written ?? 0, total: progress?.total ?? total ?? null, error: '', adopted: true,
+      ...((progress?.rangeBytes || rangeBytes) ? { checkpointRangeBytes: progress?.rangeBytes || rangeBytes } : {})
     });
   }
   return recovered;

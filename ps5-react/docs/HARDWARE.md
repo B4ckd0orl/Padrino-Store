@@ -450,3 +450,18 @@ Framework gaps recorded from this workstation (Windows): `npm test` and
 `npm run build` are not runnable here (`fcntl`-dependent), and `network.cpp`
 needs OpenSSL; the remaining C++ sources compile clean under
 `clang -fsyntax-only -std=c++20 -Wall -Wextra -Werror`.
+
+## Padrino Store checkpoint progress — 2026-11-27
+
+Padrino Store `PPSA99059` was built as a 636 MiB exFAT image (SHA-256
+`0254d24bed6a134ad9c9ef69ad540eedcd20f41f4b88b42b065c78d66fe85bcd`,
+`eboot.bin` SHA-256 `4a07335a27c05f03ebf8dcbcd26aeef391a8b9375105e35540218f1dbeb312b3`).
+PS5Upload v12.6.33 transferred it to a PS5 on firmware 13.20, handed it to
+ShadowMount+, and launched the title. The app presented its home screen.
+
+The console's existing binary download checkpoint was copied for local inspection:
+45,151 of 52,698 ranges were durable, or 189,377,019,904 of 221,028,009,318
+bytes. The adjacent `.part` file was 189,618,190,600 bytes; its length alone
+would overstate completed data. The new `FileSystem.readBytes` call and the
+updated progress row have not yet been observed after opening Downloads on this
+build, so this launch does not validate their runtime behavior.

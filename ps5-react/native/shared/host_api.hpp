@@ -1,7 +1,7 @@
 // Copyright (C) 2026 half144 and PS5 React contributors
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Additional attribution term: see LICENSE-ATTRIBUTION.
-// Native API contract (ABI v23) between the hosts and `@ps5-react/core`. The input actions hosts
+// Native API contract (ABI v24) between the hosts and `@ps5-react/core`. The input actions hosts
 // pass to `__ps5ReactDispatch` are a separate contract with its own version (runtime/js/input.js).
 //
 // host_api.cpp (shared) installs `globalThis.__ps5ReactNative` through
@@ -16,6 +16,7 @@
 //   fs.stat(path)                  {name, isDirectory, isFile, size, modified, device, inode} | null
 //                                  device/inode are decimal strings, preserving 64-bit IDs
 //   fs.readFile(path)              string (UTF-8; at most kMaxReadBytes)
+//   fs.readBytes(path)             ArrayBuffer (at most kMaxReadBytes)
 //   fs.writeFile(path, text, append, sync)  sync: fsync before close
 //   fs.mkdir(path, recursive)
 //   fs.remove(path)                file or empty directory

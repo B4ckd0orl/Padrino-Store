@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { recoverPackageJobs } from './recover-packages.js';
+import { recoverPackageJobs, refreshPackageJobs } from './recover-packages.js';
 
 const folder = '/data/downloads/packages';
 const total = 216513692961;
@@ -67,4 +67,27 @@ test('identifies a 16 MiB checkpoint from its range count', () => {
   files.set(`${folder}/PPSA38500.pkg.resume`, { isFile: true,
     size: 96 + Math.ceil(total * 1.02 / (16 * 1024 ** 2)) });
   assert.equal(recoverPackageJobs(input)[0].checkpointRangeBytes, 16 * 1024 ** 2);
+});
+
+test('shows completed bytes when rebuilding a queue entry', () => {
+  const { files, input } = fixture([`${release.filename}.part`]);
+  const destination = `${folder}/${release.filename}`;
+  const rangeBytes = 4 * 1024 ** 2;
+  const bytes = new Uint8Array(96 + Math.ceil(total / rangeBytes));
+  bytes.set(new TextEncoder().encode('P5RDL001'));
+  const view = new DataView(bytes.buffer);
+  view.setBigUint64(8, BigInt(total), true);
+  view.setBigUint64(16, BigInt(rangeBytes), true);
+  view.setUint32(24, bytes.length - 96, true);
+  bytes[96] = bytes[97] = bytes[98] = 1;
+  files.set(`${destination}.resume`, { isFile: true, size: bytes.length });
+  input.fs.readBytes = () => bytes;
+  const [job] = recoverPackageJobs(input);
+  assert.equal(job.written, 3 * rangeBytes);
+  assert.equal(job.total, total);
+  job.written = 0;
+  job.state = 'awaiting-browser';
+  input.fs.exists = () => false;
+  assert.equal(refreshPackageJobs(input.fs, [job]), true);
+  assert.equal(job.written, 3 * rangeBytes);
 });

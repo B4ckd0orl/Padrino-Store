@@ -96,6 +96,7 @@ inside it can be read by path. Paths containing `..` components are rejected.
 | `stat(path)` | `FileStat \| null` | `null` when the path does not exist |
 | `exists(path)` | `boolean` | `stat(path) !== null` |
 | `readFile(path)` | `string` | UTF-8; throws above 8 MiB |
+| `readBytes(path)` | `Uint8Array` | Binary regular file, at most 8 MiB; rejects symbolic links |
 | `writeFile(path, text, {sync})` | — | Creates or truncates; `sync: true` flushes it to the disk before returning, for a file saved then renamed into place |
 | `appendFile(path, text)` | — | Creates or appends |
 | `mkdir(path, {recursive})` | — | `recursive` defaults to `false` |
