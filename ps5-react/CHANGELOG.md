@@ -2,6 +2,9 @@
 
 ## Unreleased — a program of the app's own
 
+- Use a per-title data directory for the image cache when the shared directory
+  is unwritable. Keep disk caching and background cover warming off the fixed
+  app volume when both data directories are unavailable.
 - Add `Payloads.send({program, request})` (ABI v22, `payloads.send`): hands a program to the payload
   loader on `127.0.0.1:9021` — a file in the app folder, or an absolute path under `/app0`,
   `/download0` or `/temp0` — and returns once the loader holds the whole file, so the program runs on

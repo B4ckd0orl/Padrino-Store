@@ -30,7 +30,7 @@ function console_() {
 }
 
 // One boot of the app: its first transfer hangs until paused, the next one finishes.
-function boot(machine) {
+function boot(machine, storage = {}) {
   let transfers = 0;
   const downloads = {
     enqueue({destination}) {
@@ -57,6 +57,7 @@ function boot(machine) {
   return createDownloadQueue({
     fs: machine.fs, downloads, formats, dataDir: '/data', platform: 'desktop',
     notifications: {show() {}}, power: {keepAwake() {}},
+    ...storage,
     sources: {resolve: async () => ({url: 'https://example.com/game.pkg'})},
   });
 }
@@ -118,4 +119,54 @@ test('a task saved before the id file resumes on its drive and takes the id', as
   const job = await settled(queue, id, ['file-downloaded', 'failed', 'paused']);
   assert.equal(job.state, 'file-downloaded', job.error);
   assert.match(machine.files.get(ROOT + '/downloads/.drive-id'), /^drive:/);
+});
+
+test('a queue stranded in app data migrates to writable console storage and keeps its partial', async () => {
+  const machine = console_();
+  const id = await pausedOnUsb(machine);
+  const sandbox = '/download0/padrino-store/downloads.json';
+  const preferred = '/data/ps5-react/PPSA99059/queue';
+  const fallback = '/data/ps5-react-PPSA99059/queue';
+  machine.files.set(sandbox, machine.files.get('/data/padrino-store/downloads.json'));
+  machine.files.set(sandbox + '.tmp', '');
+  const mkdir = machine.fs.mkdir;
+  machine.fs.mkdir = path => {
+    if (path === preferred) throw new Error('Permission denied');
+    mkdir(path);
+  };
+  const writeFile = machine.fs.writeFile;
+  machine.fs.writeFile = (path, data) => {
+    if (path.startsWith('/download0/')) throw new Error('No space left on device');
+    writeFile(path, data);
+  };
+  const storage = {dataDir: '/download0', stateDir: preferred, fallbackStateDir: fallback};
+  const queue = boot(machine, storage);
+  const migrated = machine.files.get(fallback + '/downloads.json');
+  assert.ok(migrated, 'the queue was saved outside the full app volume during startup');
+  assert.equal(JSON.parse(migrated).jobs[0].id, id);
+  assert.ok(machine.files.has(ROOT + '/downloads/files/game.pkg.part'));
+  queue.resume(id);
+  const job = await settled(queue, id, ['file-downloaded', 'failed']);
+  assert.equal(job.state, 'file-downloaded', job.error);
+  assert.equal(boot(machine, storage).snapshot().find(job => job.id === id)?.state, 'file-downloaded');
+});
+
+test('migration recovers the older console data path when the preferred queue save is refused', async () => {
+  const machine = console_();
+  const id = await pausedOnUsb(machine);
+  const previous = '/data/ps5-react/PPSA99059/padrino-store';
+  const preferred = '/data/ps5-react/PPSA99059/queue';
+  const fallback = '/data/ps5-react-PPSA99059/queue';
+  machine.files.set(previous + '/downloads.json', machine.files.get('/data/padrino-store/downloads.json'));
+  const rename = machine.fs.rename;
+  machine.fs.rename = (source, target) => {
+    if (target === preferred + '/downloads.json') throw new Error('Permission denied');
+    rename(source, target);
+  };
+  const queue = boot(machine, {
+    dataDir: '/download0', stateDir: preferred, fallbackStateDir: fallback, previousStateDirs: [previous],
+  });
+  assert.equal(queue.snapshot().find(job => job.id === id)?.state, 'paused');
+  assert.equal(JSON.parse(machine.files.get(fallback + '/downloads.json')).jobs[0].id, id);
+  assert.ok(machine.files.has(ROOT + '/downloads/files/game.pkg.part'));
 });

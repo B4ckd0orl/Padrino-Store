@@ -161,6 +161,7 @@ void reset(bool writable_sandbox) {
   fixture::elevate = nullptr;
   fixture::held.clear();
   console_access = false;
+  persistent_image_cache = false;
   std::strcpy(app_root, "/app0");
   std::strcpy(data_root, "/download0");
   std::strcpy(temp_root, "/temp0");
@@ -183,6 +184,7 @@ int main() {
   initialize_filesystem_access();
   expect_path("/download0/padrino-store/downloads.json.tmp", "/data/ps5-react/PPSA99058/padrino-store/downloads.json.tmp");
   expect_path("/temp0/test", "/data/ps5-react/PPSA99058/tmp/test");
+  expect_path("/download0-original/padrino-store/downloads.json", "/download0/padrino-store/downloads.json");
   assert(console_filesystem_accessible());
   assert(fixture::files.empty() && fixture::handles.empty());
 
@@ -195,6 +197,18 @@ int main() {
   fixture::corrupt_read = true;
   assert(!writable("/download0"));
   assert(fixture::files.empty() && fixture::handles.empty());
+
+  reset(true);
+  fixture::directories["/data/ps5-react"] = false;
+  initialize_filesystem_access();
+  expect_path("/cache0/images", "/data/ps5-react-PPSA99058/cache/images");
+
+  reset(true);
+  fixture::directories["/data"] = false;
+  initialize_filesystem_access();
+  char image_cache[512];
+  assert(!resolve_filesystem_path("/cache0/images", image_cache, sizeof image_cache));
+  expect_path("/cache0/ca-bundle.pem", "/download0/.cache/ca-bundle.pem");
 
   reset(false);
   status = elevation::Status::transport_error;

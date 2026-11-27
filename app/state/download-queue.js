@@ -100,14 +100,13 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
   function durable(fs, stateDir2) {
     try {
       fs.mkdir(stateDir2, { recursive: true });
-      // A folder that exists but takes no files (issue #9: every download failed with "Permission
-      // denied" before it started) leaves the queue in the app data instead.
+      // A directory entry can still be created on a volume that cannot allocate file data.
       const probe = `${stateDir2}/downloads.probe`;
-      fs.writeFile(probe, "", { sync: false });
+      fs.writeFile(probe, "queue", { sync: false });
       fs.remove(probe);
       return true;
     } catch (error2) {
-      console.log(`[download-queue] ${stateDir2} unavailable, queue kept in the app data: ${error2.message}`);
+      console.log(`[download-queue] ${stateDir2} unavailable: ${error2.message}`);
       return false;
     }
   }
@@ -149,7 +148,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     http,
     formats,
     dataDir,
-    stateDir: stateDir2 = `${dataDir}/padrino-store`,
+    stateDir,
+    fallbackStateDir,
+    previousStateDirs = [],
     platform,
     notifications,
     power,
@@ -167,10 +168,12 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     helper = null,
     wait = (ms) => new Promise((resolve2) => setTimeout(resolve2, ms))
   }) {
-    // An older build kept the queue under dataDir/overdrive; its file is still read once and moved.
+    const appDirectory = `${dataDir}/padrino-store`;
+    const consoleDirectories = [stateDir, fallbackStateDir].filter(path => path && path !== appDirectory);
+    const writableDirectories = [...new Set([...consoleDirectories, appDirectory])];
+    let directory = consoleDirectories.find(path => durable(fs, path)) ?? appDirectory;
+    const queueFile = path => `${path}/downloads.json`;
     const legacy = `${dataDir}/overdrive/downloads.json`;
-    const directory = stateDir2 === `${dataDir}/padrino-store` || durable(fs, stateDir2) ? stateDir2 : `${dataDir}/padrino-store`;
-    const file = `${directory}/downloads.json`;
     const listeners4 = /* @__PURE__ */ new Set();
     sources ?? (sources = createSourceResolver({ http }));
     const captures = /* @__PURE__ */ new Map();
@@ -191,7 +194,9 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
         return 0;
       }
     };
-    const candidates = [.../* @__PURE__ */ new Set([file, `${file}.tmp`, legacy])].filter((path) => {
+    const stateFiles = [directory, ...writableDirectories, ...previousStateDirs].flatMap(path =>
+      [queueFile(path), `${queueFile(path)}.tmp`]);
+    const candidates = [...new Set([...stateFiles, legacy])].filter((path) => {
       try {
         return fs.exists(path);
       } catch {
@@ -227,9 +232,22 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       for (const listener of listeners4) listener(value);
     };
     const save = ({ sync = true } = {}) => {
-      fs.mkdir(directory, { recursive: true });
-      fs.writeFile(`${file}.tmp`, JSON.stringify({ version: 1, jobs }), { sync });
-      fs.rename(`${file}.tmp`, file);
+      const json = JSON.stringify({ version: 1, jobs });
+      let failure;
+      for (const candidate of new Set([directory, ...writableDirectories])) {
+        const path = queueFile(candidate);
+        const temporary = `${path}.tmp`;
+        try {
+          fs.mkdir(candidate, { recursive: true });
+          fs.writeFile(temporary, json, { sync });
+          fs.rename(temporary, path);
+          directory = candidate;
+          return;
+        } catch (error) {
+          failure ??= error;
+        }
+      }
+      throw failure;
     };
     const change = () => {
       save();
@@ -368,20 +386,11 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       emit2();
       watchServing();
     };
-    if (legacy !== file && fs.exists(legacy)) {
-      try {
-        if (stored === legacy) save();
-        fs.rename(legacy, `${legacy}.moved`);
-      } catch (error2) {
-        console.log(`[download-queue] queue not moved to ${file}: ${error2.message}`);
-      }
-    }
-    if (stored === `${file}.tmp`) {
-      try {
-        save();
-      } catch (error2) {
-        console.log(`[download-queue] queue not saved to ${file}: ${error2.message}`);
-      }
+    try {
+      if (stored && stored !== queueFile(directory)) save();
+      if (fs.exists(legacy)) fs.rename(legacy, `${legacy}.moved`);
+    } catch (error2) {
+      console.log(`[download-queue] queue not migrated to ${queueFile(directory)}: ${error2.message}`);
     }
     void resumeServing();
     // A finished download that stayed a ".binary" before its header check knew PS5 packages and its
