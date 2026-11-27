@@ -602,7 +602,7 @@ public:
   }
 
   void warm(std::vector<std::string> urls) {
-    if (!running_) return;
+    if (!running_ || cache_directory_.empty()) return;
     { std::lock_guard lock(mutex_); warms_.assign(std::make_move_iterator(urls.begin()), std::make_move_iterator(urls.end())); }
     curl_multi_wakeup(multi_);
   }

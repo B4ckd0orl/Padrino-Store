@@ -26,8 +26,10 @@ int sceNetPoolDestroy(int pool);
 
 namespace {
 bool console_access = false;
+bool persistent_image_cache = false;
 char app_root[256] = "/app0";
 char data_root[256] = "/download0";
+char original_data_root[256] = "/download0";
 char temp_root[256] = "/temp0";
 // Caches that may grow large: the title's download0 is a fixed image of a few hundred MiB that also holds
 // its state, so a full cache there left the app nowhere to write.
@@ -238,9 +240,10 @@ void initialize_filesystem_access() {
     for (int i = 0; i < 3; ++i) sandbox_root(names[i], before[i], roots[i], sizeof app_root);
   for (const Before& held : before)
     if (held.fd >= 0) close(held.fd);
+  std::snprintf(original_data_root, sizeof original_data_root, "%s", data_root);
+  remove_legacy_image_cache();
   if (status != elevation::Status::ok) return;
   console_access = true;
-  remove_legacy_image_cache();
   if (!writable(data_root)) {
     hui::sys::log("[PS5-REACT] data root not writable path=%s errno=%d; trying title data", data_root, errno);
     std::snprintf(data_root, sizeof data_root, "/data/ps5-react/%s", PS5_REACT_TITLE);
@@ -254,10 +257,17 @@ void initialize_filesystem_access() {
   }
   char title_data[256];
   std::snprintf(title_data, sizeof title_data, "/data/ps5-react/%s", PS5_REACT_TITLE);
-  std::snprintf(cache_root, sizeof cache_root, "%s/cache", title_data);
-  if (!ensure_directory("/data/ps5-react") || !ensure_directory(title_data) || !ensure_directory(cache_root) || !writable(cache_root))
-    std::snprintf(cache_root, sizeof cache_root, "%s/.cache", data_root);
-  else crash_log::start(title_data);
+  const auto prepare_cache = [&] {
+    std::snprintf(cache_root, sizeof cache_root, "%s/cache", title_data);
+    return ensure_directory(title_data) && ensure_directory(cache_root) && writable(cache_root);
+  };
+  persistent_image_cache = ensure_directory("/data/ps5-react") && prepare_cache();
+  if (!persistent_image_cache) {
+    std::snprintf(title_data, sizeof title_data, "/data/ps5-react-%s", PS5_REACT_TITLE);
+    persistent_image_cache = prepare_cache();
+  }
+  if (persistent_image_cache) crash_log::start(title_data);
+  else std::snprintf(cache_root, sizeof cache_root, "%s/.cache", data_root);
   hui::sys::log("[PS5-REACT] filesystem roots app=%s data=%s temp=%s cache=%s", app_root, data_root, temp_root, cache_root);
 #endif
 }
@@ -266,13 +276,16 @@ bool resolve_filesystem_path(const char* path, char* out, std::size_t size) {
   const char* suffix = "";
   const char* base = path;
   if (!std::strncmp(path, "/cache0", 7) && (!path[7] || path[7] == '/')) {
-    // Without console access the sandbox paths are used as they are.
-    base = console_access ? cache_root : "/download0/.cache";
     suffix = path + 7;
+    // TLS still needs the cache directory. Keep image files off the app's fixed-size volume.
+    if (!persistent_image_cache && !std::strncmp(suffix, "/images", 7) && (!suffix[7] || suffix[7] == '/'))
+      return false;
+    base = console_access ? cache_root : "/download0/.cache";
   } else if (console_access) {
-    const char* logical[] = {"/app0", "/download0", "/temp0"};
-    const char* physical[] = {app_root, data_root, temp_root};
-    for (int i = 0; i < 3; ++i) {
+    // The original app data remains readable for migration after /download0 is redirected.
+    const char* logical[] = {"/app0", "/download0", "/temp0", "/download0-original"};
+    const char* physical[] = {app_root, data_root, temp_root, original_data_root};
+    for (int i = 0; i < 4; ++i) {
       const auto length = std::strlen(logical[i]);
       if (!std::strncmp(path, logical[i], length) && (!path[length] || path[length] == '/')) {
         base = physical[i];
