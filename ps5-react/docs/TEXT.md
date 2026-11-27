@@ -58,11 +58,14 @@ List the scripts an app shows in `app.json`:
 | --- | --- | --- | --- | --- |
 | `chinese` | Chinese (Simplified) | Noto Sans SC | GB 2312: 6,763 hanzi, CJK punctuation, full-width forms | 1.6 MB |
 | `japanese` | Japanese | Noto Sans JP | JIS X 0208: kana, 6,355 kanji (levels 1 and 2), punctuation | 1.7 MB |
+| `korean` | Korean | Noto Sans KR | All 11,172 Hangul syllables, compatibility jamo, KS X 1001 symbols (×□△○, arrows, units), CJK punctuation | 1.3 MB |
 | `devanagari` | Hindi, Marathi, Nepali | Noto Sans Devanagari | Devanagari, Devanagari Extended, Vedic Extensions | 0.16 MB |
 | `bengali` | Bengali, Assamese | Noto Sans Bengali | Bengali | 0.09 MB |
 | `arabic` | Arabic, Urdu, Persian | Noto Sans Arabic | Arabic, Supplement, Extended-A, presentation forms | 0.11 MB |
 
-All five add 3.7 MB to the package. Urdu is drawn in Noto Sans Arabic's Naskh
+Chinese, Japanese, Devanagari, Bengali and Arabic add 3.7 MB to the package
+together; Korean adds 1.3 MB. Hanja in Korean text use the Chinese or Japanese
+font when the app lists one. Urdu is drawn in Noto Sans Arabic's Naskh
 style, not Nastaliq.
 
 The build pins each font in `dependencies.lock.json`, subsets it with HarfBuzz
@@ -84,8 +87,10 @@ read whole and kept (the package sizes above). Rasterized glyphs live in one
 least-recently-used cache capped at 4 MiB, about 7,000 CJK glyphs at 24 px; the
 128 most recent shaped strings are kept as well (about 1 KB each for a label).
 An app showing every script therefore holds at most about 8 MB for text (3.7 MB
-of fonts, 4 MiB of glyphs, up to 0.2 MB of layouts), from the title heap, never
-the JavaScript heap. HarfBuzz and SheenBidi add about 0.8 MB of code to the
+of fonts, 4 MiB of glyphs, up to 0.2 MB of layouts; Korean adds its 1.3 MB),
+from the title heap, never the JavaScript heap. A Korean interface loads only the
+Korean font: symbols at the start of a string, like the ×□△○ button marks, take
+the Korean face when the language is Korean. HarfBuzz and SheenBidi add about 0.8 MB of code to the
 executable.
 
 ### Line breaking
@@ -94,7 +99,7 @@ Runtime text breaks where the bitmap path does (newlines, spaces, inside a
 word only when nothing else fits) and also between any two CJK characters,
 following the basic kinsoku rules: closing punctuation (`。、，」』）`), small
 kana, `ー` and iteration marks never start a line, and opening brackets
-(`「『（`) never end one. Devanagari, Bengali, Arabic and Urdu break only at
+(`「『（`) never end one. Devanagari, Bengali, Arabic, Urdu and Korean (Hangul) break only at
 spaces (and after a zero-width space, U+200B). A word wider than its line
 breaks between grapheme clusters: a letter keeps its marks and a conjunct
 (consonant, virama, consonant) stays whole. `numberOfLines` truncates with `…`

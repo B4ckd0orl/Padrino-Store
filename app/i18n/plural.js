@@ -1,6 +1,6 @@
 // ../pub-game-store/native/i18n/plural.js
 // reconstructed from the esbuild bundle in eboot.bin
-// MODIFIED: Italian, European Portuguese and Polish plural rules.
+// MODIFIED: Italian, European Portuguese, Polish and Korean plural rules.
 
 
   function operands(n) {
@@ -48,6 +48,8 @@
     "zh-Hans": () => "other",
     "zh-Hant": () => "other",
     ja: () => "other",
+    // Korean has no grammatical plural: every count takes "other".
+    ko: () => "other",
     id: () => "other"
   };
   var pluralCategory = (locale2, n) => (RULES[locale2] ?? RULES.en)(operands(n));

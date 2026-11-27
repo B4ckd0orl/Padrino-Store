@@ -1,6 +1,6 @@
 // ../pub-game-store/native/i18n/locales.js
 // reconstructed from the esbuild bundle in eboot.bin
-// MODIFIED: Italian, traditional Chinese, European Portuguese, Dutch, Polish.
+// MODIFIED: Italian, traditional Chinese, European Portuguese, Dutch, Polish, Korean.
 
 
   var NBSP = "\xA0";
@@ -200,6 +200,15 @@
       date: "{d} {MMM} {y}",
       months: ["sty", "lut", "mar", "kwi", "maj", "cze", "lip", "sie", "wrz", "paź", "lis", "gru"],
       list: [", ", " i ", " i "]
+    },
+    {
+      code: "ko",
+      name: "\uD55C\uAD6D\uC5B4",
+      group: ",",
+      decimal: ".",
+      percent: "{n}%",
+      date: "{y}\uB144 {M}\uC6D4 {d}\uC77C",
+      list: [", ", " \uBC0F ", " \uBC0F "]
     },
   ];
   var byCode = new Map(LOCALES.map((locale2) => [locale2.code, locale2]));

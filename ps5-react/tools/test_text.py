@@ -42,11 +42,18 @@ GOLDEN = {
             "されます。Padrino Storeを終了すると完了しま", "す。"]),
     "ja-lab": ("「こんにちは」と彼は言った。日本語の文章は、単語の間に空白がなくても折り返せます。",
                ["「こんにちは」と彼は言った。日本語の文章", "は、単語の間に空白がなくても折り返せま", "す。"]),
+    "ko": ("완료된 게임은 ShadowMount를 통해 설치되며, 실행 중인 게임이 없을 때까지 기다립니다. Padrino Store를 닫으면 설치가 마무리됩니다.",
+           ["완료된 게임은 ShadowMount를 통해", "설치되며, 실행 중인 게임이 없을 때까지", "기다립니다. Padrino Store를 닫으면 설치가",
+            "마무리됩니다."]),
+    "ko-awake": ("다운로드가 끝날 때까지 콘솔이 절전 모드로 전환되지 않습니다.",
+                 ["다운로드가 끝날 때까지 콘솔이 절전 모드로", "전환되지 않습니다."]),
     "zh": ("已完成的游戏通过 ShadowMount 安装，它会等到没有游戏运行时才开始。请关闭 Padrino Store 以让其完成。",
            ["已完成的游戏通过 ShadowMount 安装，它", "会等到没有游戏运行时才开始。请关闭", "Padrino Store 以让其完成。"]),
 }
-LANGUAGE = {"ja": "ja", "ja-lab": "ja", "zh": "zh-Hans"}
-SPACED = ("hi", "bn", "ar", "ur")
+LANGUAGE = {"ja": "ja", "ja-lab": "ja", "zh": "zh-Hans", "ko": "ko", "ko-awake": "ko"}
+SPACED = ("hi", "bn", "ar", "ur", "ko")
+# The PlayStation button marks Korean hints start with: drawn from the Korean face, not a CJK neighbour's.
+BUTTON_MARKS = "×□△○"
 
 
 class TextClient:
@@ -138,6 +145,25 @@ class LineBreaking(unittest.TestCase):
         self.assertEqual(lines, ["क्ष"])
 
 
+class Korean(unittest.TestCase):
+    def test_subset_keeps_every_syllable_and_the_button_marks(self):
+        from text_fonts import SCRIPTS
+        kept = SCRIPTS["korean"][1]()
+        self.assertTrue(set(range(0xAC00, 0xD7A4)) <= kept)
+        self.assertTrue(set(map(ord, BUTTON_MARKS)) <= kept)
+
+    def test_button_marks_draw_from_the_korean_face(self):
+        # A fresh process, so its log names only the faces this text loads.
+        _, build = desktop(LAB, target="ps5-react-text-test")
+        result = subprocess.run([build / "ps5-react-text-test", ROOT / ".build/text-lab/generated/fonts"],
+                                input=f"lines\tko\t{FAMILY}\t{SIZE}\t{WIDTH}\t□: 삭제 · R2: 확인 · ○: 취소 △\n",
+                                capture_output=True, text=True, encoding="utf-8", check=True)
+        self.assertEqual(result.stdout.split()[0], "1")
+        self.assertIn("loaded NotoSansKR-Regular.otf", result.stderr)
+        self.assertNotIn("loaded NotoSansJP", result.stderr)
+        self.assertNotIn("loaded NotoSansSC", result.stderr)
+
+
 class Clipping(unittest.TestCase):
     """er_utf8_clip, which Text, TextInput and span strings are copied through at 255 and 63 bytes."""
 
@@ -151,7 +177,7 @@ class Clipping(unittest.TestCase):
                 self.assertEqual(self.client.clip(text, limit), kept)
 
     def test_every_cut_of_each_script(self):
-        for name in ("hi", "bn", "ar", "ur", "ja", "zh"):
+        for name in ("hi", "bn", "ar", "ur", "ja", "zh", "ko"):
             text = GOLDEN[name][0]
             data = text.encode()
             for limit in range(len(data) + 1):
