@@ -79,6 +79,7 @@ task during cleanup if its lifetime belongs to that component.
 | `adaptive` | `true` | Per-origin congestion window (AIMD) under `connections`: starts at up to 8 and grows by half each second while full and healthy; HTTP 5xx/429/408 or a broken connection halves it (Retry-After also pauses that origin), after which it grows by one a second. `false` keeps `connections` fixed |
 | `rangeBytes` | 32 MiB | Integer 1–256 MiB; at most 65,536 ranges |
 | `resume` | `true` | Reuses matching durable completed ranges; `false` refuses existing partial files |
+| `preservePartialOnMismatch` | `false` | If an existing `.part`/`.resume` checkpoint cannot be validated, fail and keep both files instead of restarting from zero. Use when adopting a transfer whose queue record was lost. |
 | `rejectHtml` | `false` | Rejects HTML content types and initial HTML signatures before a file can be published; provider pages are not binary downloads |
 | `recoverCompleted` | `false` | Writes a durable `.complete` receipt before publication; a later identical request accepts its owned final file (re-hashing it only against a requested `sha256`) instead of downloading it again |
 | `sha256` | omitted | Trusted 64-digit SHA-256; verifies the complete file in the writer thread before publication |

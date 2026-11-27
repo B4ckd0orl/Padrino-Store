@@ -73,6 +73,8 @@ export const FileSystem = {
   exists: path => host().fs.stat(path) !== null,
   /** UTF-8, at most 8 MiB. @param {string} path @returns {string} */
   readFile: path => host().fs.readFile(path),
+  /** Binary file, at most 8 MiB. @param {string} path @returns {number[]} */
+  readBytes: path => host().fs.readBytes(path),
   /** `sync` waits until the text is on the disk, for a file saved then renamed into place.
    * @param {string} path @param {string} text @param {{sync?: boolean}} [options] */
   writeFile: (path, text, {sync = false} = {}) => host().fs.writeFile(path, text, false, sync),
@@ -481,6 +483,8 @@ export const Http = {
 export const Downloads = {
   // recoverCompleted verifies a native completion receipt and the final file's SHA-256.
   // It never accepts an existing destination based on size or filename alone.
+  // preservePartialOnMismatch keeps an adopted .part/.resume pair when its checkpoint cannot be
+  // validated; the caller can offer an explicit Restart without silently deleting those bytes.
   enqueue({url, destination, ...options}) {
     const id = host().network.download(url ?? options.pieces?.[0]?.url, destination, options);
     return networkTask(id, 'Downloads.enqueue', destination);

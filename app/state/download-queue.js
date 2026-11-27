@@ -14,6 +14,7 @@ import { archivePassword } from './archive-password.js';
 import { BrowserRequired, archiveRefusal, cancellation, createSourceResolver, sourceKind, webURL } from './download-sources.js';
 import { LINK_PREFIX, captureAnchor, linkForLog, otherSourceLink, validateCapturedLink } from './browser-links.js';
 import { readJSON } from './read-json.js';
+import { recoverPackageJobs, refreshPackageJobs } from './recover-packages.js';
 import { releaseAwake, requestAwake } from './keep-awake.js';
 import { finishedHeaders, inspectHeaders, optionalHeaders } from './archive-headers.js';
 import { mountedImages, shadowRequest, within2 } from './shadowmount.js';
@@ -157,6 +158,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
     sources,
     archives,
     packages,
+    gameOf,
     releasesOf,
     browserCapture,
     stallMs = STALL_MS,
@@ -235,6 +237,23 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
       save();
       emit2();
     };
+    // A power loss can leave the native transfer's durable files intact while the app's queue
+    // record is absent. Recover only unambiguous catalog PKGs, and wait for the player's Resume.
+    // The filename can be a title ID (PPSA38500.pkg) even when the catalog uses a longer name.
+    console.log(`[download-queue] checkpoint scan platform=${platform} jobs=${jobs.length} catalog=${Boolean(gameOf && releasesOf)}`);
+    const refreshed = platform === "ps5" ? refreshPackageJobs(fs, jobs) : false;
+    if (platform === "ps5" && gameOf && releasesOf) {
+      const recovered = recoverPackageJobs({ fs, jobs, gameOf, releasesOf, formats });
+      if (recovered.length) {
+        jobs.push(...recovered);
+        for (const job2 of recovered) console.log(`[download-queue] recovered interrupted package ${job2.downloadDestination}`);
+      }
+      if (recovered.length || refreshed) {
+        try { change(); } catch (error2) { console.log(`[download-queue] recovered queue not saved: ${error2.message}`); }
+      }
+    } else if (refreshed) {
+      try { change(); } catch (error2) { console.log(`[download-queue] recovered queue not saved: ${error2.message}`); }
+    }
     // The packages served to the console's own download (see streamed). Each job keeps its link's token
     // and port, so a later session serves the same URL again and the console's queue, which retries
     // it, reconnects without a second install. What the console has fetched shows on the row; once it
@@ -932,7 +951,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
           job2.options.rangeBytes = job2.checkpointRangeBytes = rangeBytes;
           change();
         }
-        task = downloads.enqueue({ ...job2.options, rejectHtml: true, mirrors: void 0, connections: 64, adaptive: true, rangeBytes: job2.options.rangeBytes, destination: job2.downloadDestination, storageRoot: job2.root, recoverCompleted: true });
+        task = downloads.enqueue({ ...job2.options, rejectHtml: true, mirrors: void 0, connections: 64, adaptive: true, rangeBytes: job2.options.rangeBytes, destination: job2.downloadDestination, storageRoot: job2.root, recoverCompleted: true, preservePartialOnMismatch: Boolean(job2.adopted) });
         active2.task = task;
         const stalled = stallWatch(job2, task);
         unsubscribe = task.subscribe((progress) => {
@@ -945,7 +964,7 @@ import { VIKING_PAGE_PREFIX, VIKING_PREFIX, describeVikingCapture, linkPageMetad
           job2.received = progress.received || 0;
           job2.connections = progress.connections || 0;
           job2.bytesPerSecond = progress.bytesPerSecond || 0;
-          if (job2.written > 0) delete job2.adopted;
+          if (completedBytes > 0) delete job2.adopted;
           if (++ticks % 20 === 0) {
             delete job2.launches;
             try {

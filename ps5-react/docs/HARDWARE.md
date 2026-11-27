@@ -450,3 +450,29 @@ Framework gaps recorded from this workstation (Windows): `npm test` and
 `npm run build` are not runnable here (`fcntl`-dependent), and `network.cpp`
 needs OpenSSL; the remaining C++ sources compile clean under
 `clang -fsyntax-only -std=c++20 -Wall -Wextra -Werror`.
+
+## Padrino Store checkpoint progress — 2026-11-27
+
+Padrino Store `PPSA99059` was built as a 636 MiB exFAT image (SHA-256
+`0254d24bed6a134ad9c9ef69ad540eedcd20f41f4b88b42b065c78d66fe85bcd`,
+`eboot.bin` SHA-256 `4a07335a27c05f03ebf8dcbcd26aeef391a8b9375105e35540218f1dbeb312b3`).
+PS5Upload v12.6.33 transferred it to a PS5 on firmware 13.20, handed it to
+ShadowMount+, and launched the title. The app presented its home screen.
+
+The console's existing binary download checkpoint was copied for local inspection:
+45,151 of 52,698 ranges were durable, or 189,377,019,904 of 221,028,009,318
+bytes. The adjacent `.part` file was 189,618,190,600 bytes; its length alone
+would overstate completed data. The first progress build showed 0 MB because its
+JavaScript called `Uint8Array`, which this embedded runtime does not define.
+The console log identified the exception after opening Downloads. The binary
+API now returns ordinary byte values, and the checkpoint parser reads them
+without typed arrays. The corrected image (`PadrinoStore-progress3.exfat`, SHA-256
+`b57c2bb78df83e68693dbf3e2585afca3c489a6bdc6a85f21aada2a166756470`,
+`eboot.bin` SHA-256 `5260559a3c87bd5c7349ae5f5156d5ca7c08b213e42dfa018a91dddfb7fc4641`)
+was uploaded and launched through PS5Upload. After selecting **Depois** in the
+update dialog and opening **Downloads** with the remote controller, the row
+showed **189,4 GB de 221 GB** and a partially filled progress bar. The console
+log reported `restored checkpoint ... 189377019904/221028009318`, and the queue
+file persisted those values. The row remained **Aguardando verificação do
+navegador** with **Continue**; an actual transfer resume was not tested because
+the source requires a final direct file URL from its browser page.

@@ -10,6 +10,7 @@ El diálogo de actualización en la app lo parsea y muestra como lista.
 
 ## Próxima release
 
+- La tienda recupera paquetes incompletos de `/data/downloads/packages` después de un reinicio inesperado y muestra **Retomar** en Descargas y en la página del juego cuando identifica una única fuente del catálogo.
 - FIXED LINKS AND OTHER PROBLEMS
 
 ## Archivo

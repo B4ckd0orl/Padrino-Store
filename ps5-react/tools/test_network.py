@@ -279,14 +279,15 @@ def main():
         directory = Path(temporary)
         binary = compile_client(directory)
 
-        def run(endpoint, path="-", connections=4, max_bytes=1024*1024, cancel=0, digest="", method="GET", file_limit=0, stop=0, pieces=False, hashes=None, recover=False, reject_html=False, no_redirect=False, mirrors=(), adaptive=False, range_probe=False, range_bytes=0):
+        def run(endpoint, path="-", connections=4, max_bytes=1024*1024, cancel=0, digest="", method="GET", file_limit=0, stop=0, pieces=False, hashes=None, recover=False, reject_html=False, no_redirect=False, mirrors=(), adaptive=False, range_probe=False, range_bytes=0, preserve_partial=False):
             environment = dict(os.environ)
             environment.pop("NETWORK_TEST_RANGE_PROBE", None)
             environment.pop("NETWORK_TEST_RANGE_BYTES", None)
             if range_bytes: environment["NETWORK_TEST_RANGE_BYTES"] = str(range_bytes)
             if range_probe: environment["NETWORK_TEST_RANGE_PROBE"] = "1"
-            for name in ("NETWORK_TEST_RECOVER", "NETWORK_TEST_REJECT_HTML", "NETWORK_TEST_NO_REDIRECT", "NETWORK_TEST_ADAPTIVE"):
+            for name in ("NETWORK_TEST_RECOVER", "NETWORK_TEST_REJECT_HTML", "NETWORK_TEST_NO_REDIRECT", "NETWORK_TEST_ADAPTIVE", "NETWORK_TEST_PRESERVE_PARTIAL"):
                 environment.pop(name, None)
+            if preserve_partial: environment["NETWORK_TEST_PRESERVE_PARTIAL"] = "1"
             if adaptive: environment["NETWORK_TEST_ADAPTIVE"] = "1"
             if reject_html: environment["NETWORK_TEST_REJECT_HTML"] = "1"
             if no_redirect: environment["NETWORK_TEST_NO_REDIRECT"] = "1"
@@ -557,6 +558,16 @@ def main():
         requests = Handler.requests[before:]
         assert len([item for item in requests if item[1] != "bytes=0-0"]) < 16, requests
         assert all(item[2] == '"fixture-v1"' for item in requests if item[1] != "bytes=0-0")
+        path.unlink()
+        path = directory / "preserve-partial"
+        assert run("/slow", path, cancel=180)["state"] == "cancelled"
+        partial, checkpoint = Path(str(path)+".part"), Path(str(path)+".resume")
+        before = (partial.stat().st_size, checkpoint.read_bytes())
+        refused = run("/slow", path, range_bytes=2*1024*1024, preserve_partial=True)
+        assert refused["state"] == "failed" and "checkpoint" in refused["error"], refused
+        assert (partial.stat().st_size, checkpoint.read_bytes()) == before
+        assert run("/slow", path)["state"] == "completed"
+        assert path.read_bytes() == DATA
         path.unlink()
         # A signed link that expires mid-download resumes from a freshly resolved one: the checkpoint
         # names the bytes (validator, size), not the URL.

@@ -38,6 +38,7 @@ int main(int argc, char** argv) {
   request.reject_html = std::getenv("NETWORK_TEST_REJECT_HTML") != nullptr;
   request.follow_redirects = std::getenv("NETWORK_TEST_NO_REDIRECT") == nullptr;
   request.recover_completed = std::getenv("NETWORK_TEST_RECOVER") != nullptr;
+  request.preserve_partial_on_mismatch = std::getenv("NETWORK_TEST_PRESERVE_PARTIAL") != nullptr;
   if (const char* mirrors = std::getenv("NETWORK_TEST_MIRRORS")) {
     for (std::string list = mirrors; !list.empty();) {
       const auto comma = list.find(',');

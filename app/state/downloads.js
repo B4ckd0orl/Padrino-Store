@@ -31,6 +31,7 @@ import { Archives, BrowserCapture, DownloadFormats, Downloads, FileSystem, Http,
     // On the PS5 the console's Downloads take a package from the helper payload, which outlives the app.
     helper: Platform.OS === "ps5" && typeof Packages.startHelper === "function" ? createPkgHelper({ packages: Packages, http: Http, fs: FileSystem, dir: "/data/ps5-react/PPSA99059/queue", log: "/data/ps5-react/PPSA99059/pkg-helper.log" }) : null,
     browserCapture: BrowserCapture,
+    gameOf: getGame,
     releasesOf: (id) => getGame(id)?.releases || []
   }));
   var shadowMountUp = Platform.OS === "ps5" ? createShadowMountProbe({ http: Http, now: Date.now }) : async () => true;

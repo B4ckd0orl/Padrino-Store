@@ -96,6 +96,7 @@ inside it can be read by path. Paths containing `..` components are rejected.
 | `stat(path)` | `FileStat \| null` | `null` when the path does not exist |
 | `exists(path)` | `boolean` | `stat(path) !== null` |
 | `readFile(path)` | `string` | UTF-8; throws above 8 MiB |
+| `readBytes(path)` | `number[]` | Binary regular file, at most 8 MiB; rejects symbolic links. Each element is an integer from 0 to 255. |
 | `writeFile(path, text, {sync})` | — | Creates or truncates; `sync: true` flushes it to the disk before returning, for a file saved then renamed into place |
 | `appendFile(path, text)` | — | Creates or appends |
 | `mkdir(path, {recursive})` | — | `recursive` defaults to `false` |
@@ -151,10 +152,11 @@ native, use parallel validated ranges when eligible, and resume durable ranges.
 byte manifests with per-piece SHA-1 and whole-file SHA-256 verification.
 `DownloadFormats` validates manifests and routes image, package, archive and
 binary filenames to their appropriate destinations. Native download options
-include opt-in `rejectHtml`, exact `expectedBytes`, `storageRoot` identity checks, `recoverCompleted`
-for receipt-backed SHA-256 verification of published files, and normalized
-`pieces: [{url, offset, size, sha1}]`. These options share ABI v2 on both hosts;
-there are no additional global native functions.
+include opt-in `rejectHtml`, exact `expectedBytes`, `storageRoot` identity checks,
+`recoverCompleted` for receipt-backed SHA-256 verification of published files,
+`preservePartialOnMismatch` (ABI v23) for adopted checkpoint files, and normalized
+`pieces: [{url, offset, size, sha1}]`. These options use the same download task API on both
+hosts; there are no additional global native functions.
 `Downloads.setRateLimit(bytesPerSecond)` (ABI v17) caps what all file downloads
 receive together, 0 for no limit. It applies at once, running downloads included;
 a capped download opens about one connection per MB/s. A download enqueued with

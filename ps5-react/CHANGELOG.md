@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased — show durable download progress
+
+- Add `FileSystem.readBytes(path)` (ABI v24) for small binary files. Recovered downloads can read
+  the native range checkpoint and show completed bytes instead of resetting their progress to zero.
+
+## Unreleased — preserve adopted download checkpoints
+
+- Add `preservePartialOnMismatch` to native downloads (ABI v23). A recovered queue entry can try
+  to resume an existing `.part`/`.resume` pair without the worker deleting it if its checkpoint
+  belongs to another file or range layout. The player can then explicitly restart the download.
+
 ## Unreleased — a program of the app's own
 
 - Add `Payloads.send({program, request})` (ABI v22, `payloads.send`): hands a program to the payload
